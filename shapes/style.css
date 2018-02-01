@@ -1,0 +1,89 @@
+/**
+ * Flexible ellipse
+ */
+
+div {
+	width: 16em;
+	height: 10em;
+	background: #fb3;
+	border-radius: 50%;
+}
+
+/**
+ * Flexible half ellipse
+ */
+
+div:nth-of-type(2) {
+	display: inline-block;
+	width: 16em;
+	height: 10em;
+	margin: 1em;
+	background: #fb3;
+	border-radius: 50% / 100% 100% 0 0;
+}
+
+div:nth-of-type(3) { border-radius: 50% / 0 0 100% 100%; }
+div:nth-of-type(4) { border-radius: 100% 0 0 100% / 50%; }
+div:nth-of-type(5) { border-radius: 0 100% 100% 0 / 50%; }
+
+
+/**
+ * Flexible quarter ellipse
+ */
+
+div:nth-of-type(6) {
+	display: inline-block;
+	width: 16em;
+	height: 10em;
+	margin: 1em;
+	background: #fb3;
+	border-radius: 100% 0 0 0;
+}
+
+div:nth-of-type(7) { border-radius: 0 100% 0 0; }
+div:nth-of-type(8) { border-radius: 0 0 100% 0; }
+div:nth-of-type(9) { border-radius: 0 0 0 100%; }
+
+/**
+ * Parallelograms — with extra HTML element
+ */
+ 
+.button { transform: skewX(45deg); }
+.button > div { transform: skewX(-45deg); }
+
+.button {
+	display: inline-block;
+	padding: .5em 1em;
+	border: 0; margin: .5em;
+	background: #58a;
+	color: white;
+	text-transform: uppercase;
+	text-decoration: none;
+	font: bold 200%/1 sans-serif;
+}
+
+
+/**
+ * Parallelograms — with pseudoelements
+ */
+
+/*.button {
+	position: relative;
+	display: inline-block;
+	padding: .5em 1em;
+	border: 0; margin: .5em;
+	background: transparent;
+	color: white;
+	text-transform: uppercase;
+	text-decoration: none;
+	font: bold 200%/1 sans-serif;
+}
+
+.button::before {
+	content: ''; /* To generate the box */
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	z-index: -1;
+	background: #58a;
+	transform: skew(45deg);
+}*/

@@ -1,0 +1,37 @@
+/**
+ * The cicada principle in animations
+ * Remember the cicada principle that used prime numbers to make multiple overlaid repeated backgrounds seem more random?
+ * There’s no reason it can’t be applied to repeating linear animations too (using primes for the durations, divided by 10)
+ */
+ 
+@keyframes spin { to { transform: rotate(1turn); } }
+@keyframes radius { 50% { border-radius: 50%; } }
+@keyframes color { 33% { color: orange; } 66% { color: deeppink } }
+@keyframes width { 50% { border-width: .3em; } }
+
+.loading:before {
+	content: '';
+	display: block;
+	width: 4em;
+	height: 4em;
+	margin: 0 auto 1em;
+	border: 1.5em solid;
+	color: yellowgreen;
+	box-sizing: border-box;
+	animation: 1s spin, .7s radius, 1.1s color, 1.3s width;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.loading {
+	margin: auto;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	min-height: 100vh;
+	text-align: center;
+	background: #655;
+	color: white;
+}

@@ -1,0 +1,24 @@
+/**
+ * Static interpolation via paused animations
+ * This technique becomes more useful if you need to interpolate more than 1 properties, and/or if you need multiple values in the spectrum
+ * Currently works in every modern browser except Safari
+ */
+
+@keyframes foo {
+	from { background: red }
+	to { background: yellowgreen }
+}
+
+div {
+	display: inline-block;
+	width: 100px; height: 100px;
+	
+	animation: foo 1s both linear;
+	animation-play-state: paused;
+}
+
+div:nth-of-type(2) { animation-delay: -.2s; }
+div:nth-of-type(3) { animation-delay: -.4s; }
+div:nth-of-type(4) { animation-delay: -.6s; }
+div:nth-of-type(5) { animation-delay: -.8s; }
+div:nth-of-type(6) { animation-delay: -1s; }
