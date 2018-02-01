@@ -1,5 +1,28 @@
 function $$(expr, con) { return [].slice.call((con || document).querySelectorAll(expr)); }
 
+function testProperty(props) {
+	var root = document.getElement;
+	if(props in root.style) {
+		root.classList.add(props.toLowerCase());
+		return true;
+	}
+	root.classList.add('no-' + props.toLowerCase());
+	return false;
+}
+
+function testValue(props, value) {
+	var root = document.createElement('p');
+	root.style[props] = value;
+	if(root.style[props]) {
+		root.classList.add(props.toLowerCase());
+		return true;
+	}
+	root.classList.add('no-' + props.toLowerCase());
+	return false;
+}
+
+
+
 var colors = [
 	'#D6E055', // Agave
 	'#082323', '#E6E2AF', '#A7A37E', '#EFECCA', '#046380', // Sandy stone beach
