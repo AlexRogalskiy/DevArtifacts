@@ -1,0 +1,14 @@
+---
+layout: base
+---
+
+<h2>Recent Posts</h2>
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <!-- link to the post -->
+      <span>{{ post.date | date_to_string }}</span>
+      &raquo; <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>

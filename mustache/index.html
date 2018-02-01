@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Mustache Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    </head>
+<!--  header -->
+<body>
+
+
+    <script type="text/template" charset="utf-8" id="products-template">
+      {{#products}}
+        <li>
+          <span class="product-name">{{name}}</span>
+          <i class="product-price">{{price}}</i>
+          {{#description}}
+            <div class="product-description">{{description}}</div>
+          {{/description}}
+          <ul class="product-notes">
+            {{#notes}}
+              <li>{{text}}</li>
+            {{/notes}}
+          </ul>
+        </li>
+      {{/products}}
+    </script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="mustache.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      function renderProducts() {
+        $.getJSON('/products.json', function(products) {
+          var data = { products: products };
+          var rendered = Mustache.to_html($('#products-template').html(), data);
+          $('body').append(rendered);
+        });
+      };
+      function renderTemplate(data) {
+        $.get('http://template.html', function(template) {
+          // var rendered = Mustache.render(template, data);
+          // $('body').html(rendered);
+          Mustache.to_html(template, data).appendTo('body');
+        });
+      };
+      function renderProducts2(products) {
+        var data = { products: products };
+        var rendered = Mustache.to_html($('#products-template').html(), data);
+          $('body').append(rendered);
+      };
+      renderProducts2([{'name': 'name', 'price': 3.0, 'description': 'description', 'notes': [{'text': 'text'}, {'text': 'text2'}]}]);
+    </script>
+</body>
+<!--  footer -->
+</html>

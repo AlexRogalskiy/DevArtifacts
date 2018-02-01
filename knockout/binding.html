@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Knockout Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    </head>
+<!--  header -->
+<body>
+    <p>First name: <input type="text" data-bind="value: firstname"></p>
+    <p>Last name: <input type="text" data-bind="value: lastname"></p>
+    <p>Full name:
+       <span aria-live="polite" data-bind="text: fullname"></span>
+    </p>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js" type="text/javascript" charset="utf-8">
+    </script>
+    <script type="text/javascript" charset="utf-8">
+    (function() {
+      var Person = function(){
+        this.firstname = ko.observable("John");
+        this.lastname = ko.observable("Smith");
+        this.fullname = ko.computed(function(){
+          return(
+            this.firstname() + " " + this.lastname()
+          );
+        }, this);
+      };
+      ko.applyBindings( new Person );
+    })();
+    </script>
+</body>
+<!--  footer -->
+</html>

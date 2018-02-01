@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Knockout Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+        <style>
+          table{width: 600px; border: none;}
+          th.product{ width: 300px;}
+          th.price{ width: 100px; }
+          td.price{text-align: right}
+          th.qty{ width:50px }
+          input.qty{width: 40px;}
+        </style>
+    </head>
+<!--  header -->
+<body>
+    <div role="application">
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td colspan="4">Total</td>
+            <td aria-live="polite" data-bind="text: total()"></td>
+          </tr>
+        </tfoot>
+        <tbody data-bind="foreach: items">
+          <tr aria=live="polite">
+            <td data-bind="text: name"></td>
+            <td data-bind="text: price"></td>
+            <td><input type="text" name="quantity" data-bind='value: quantity'></td>
+            <td data-bind="text: subtotal "></td>
+            <td>
+              <button
+                data-bind="click: $parent.remove">Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js" type="text/javascript" charset="utf-8"></script>
+    </script>
+    <script type="text/javascript" charset="utf-8">
+    (function(){
+      var LineItem = function(product_name, product_price){
+        this.name = product_name;
+        this.price = product_price;
+        this.quantity = ko.observable(1);
+        this.subtotal = ko.computed(function() {
+          return(this.price * parseInt("0"+this.quantity(), 10) );
+        }, this);
+      };
+
+      var products = [
+        {name: "Macbook Pro 15 inch", price: 1699.00},
+        {name: "Mini Display Port to VGA Adapter", price: 29.00},
+        {name: "Magic Trackpad", price: 69.00},
+        {name: "Apple Wireless Keyboard", price: 69.00}
+      ];
+
+      var Cart = function(items){
+        this.items = ko.observableArray();
+
+        for(var i in items){
+          var item = new LineItem(items[i].name, items[i].price);
+          this.items.push(item);
+        }
+        this.total = ko.computed(function(){
+          var total = 0;
+          for (item in this.items()){
+            total += this.items()[item].subtotal();
+          }
+          return total;
+        }, this);
+        this.remove = function(item){
+          this.items.remove(item);
+        }.bind(this);
+      }
+
+      var cartViewModel = new Cart(products);
+      ko.applyBindings(cartViewModel);
+    })();
+    </script>
+</body>
+<!--  footer -->
+</html>
