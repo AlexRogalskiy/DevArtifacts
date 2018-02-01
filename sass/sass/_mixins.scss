@@ -11,3 +11,10 @@
 @mixin shadow($x, $y, $offset, $color){
   box-shadow: $x $y $offset $color;
 }
+
+@mixin n-items($n) {
+	&:first-child:nth-last-child(#{$n}),
+	&:first-child:nth-last-child(#{$n}) ~ & {
+		@content;
+	}
+}
