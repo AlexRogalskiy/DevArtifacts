@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+@gold: #c2a74c;
+@black: #212223;
+@white: #e5e9ea;
+
+@scale: .6;
+
+body {
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	background: #eee;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body,
+html,
+.wrapper {
+	height: 100%;
+}
+
+.wrapper {
+	padding: 5vmin 0;
+}
+
+.poster {
+	width: 100vmin * @scale;
+	margin: 0px auto;
+}
+
+.poster-top,
+.poster-bottom {
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+	grid-gap: 1vmin * @scale;
+	padding: 1vmin * @scale;
+	background: @gold;
+}
+
+.circle {
+	width: 8.9vmin * @scale;
+	height: 8.9vmin * @scale;
+	border-radius: 1000px;
+	background: @black;
+}
+
+.circle-inner {
+	width: 4.45vmin * @scale;
+	height: 4.45vmin * @scale;
+	border-radius: 1000px;
+	background: @gold;
+	transform-origin: 4.45vmin * @scale 4.45vmin * @scale;
+	animation-name: spin;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.title {
+	background: @black;
+	color: @white;
+	padding: 3vmin * @scale 4vmin * @scale;
+	
+	.main {
+		font-size: 10.3vmin * @scale;
+		margin-bottom: 3vmin * @scale;
+		line-height: 8vmin * @scale;
+	}
+	
+	.sub {
+		font-size: 2.19vmin * @scale;
+		line-height: 1.5vmin * @scale;
+	}
+}
+
+.credit {
+	font-size: 2vmin * @scale;
+	padding: 5vmin * @scale;
+	text-align: center;
+	color: @black;
+}
+
+@iterations: 100;
+@rotationSeed: 4;
+
+.loop (@i) when (@i > 0) {
+	@rotationOffset: @rotationSeed * @i;
+	
+	.circle-@{i} .circle-inner {
+		animation-name: ~"spin-@{i}";
+	}
+	
+	@keyframes ~"spin-@{i}" {
+		0% {
+			transform: rotate(unit(@rotationOffset, deg));
+		}
+
+		100% {
+			transform: rotate(unit((@rotationOffset + 360), deg));
+		}
+	}
+	
+	.loop(@i - 1);
+}
+
+.loop (@iterations);

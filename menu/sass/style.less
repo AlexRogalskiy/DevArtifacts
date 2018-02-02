@@ -1,0 +1,66 @@
+@theme-primary-color: #759c94;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: 'Open sans', sans-serif;
+	background-image: url('https://images.pexels.com/photos/4827/nature-forest-trees-fog.jpeg?w=1280&h=720&auto=compress&cs=tinysrgb');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: 0;
+	height: 100%;
+}
+
+#nav {
+	@highlight-height: 5px;
+	
+	font-size: 1.4rem;
+	background: rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+	text-align: center;
+	
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		white-space: nowrap;
+	}
+	
+	li {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		text-transform: uppercase;
+	}
+	
+	.menu-item {
+		display: block;
+		padding: 1.5rem 2rem;
+		text-decoration: none;
+		color: rgba(255, 255, 255, 0.95);
+		position: relative;
+		
+		&:after {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: @highlight-height;
+			bottom: -@highlight-height;
+			left: 0;
+			background: @theme-primary-color;
+			transform: translateY(0);
+			transition: transform .2s ease-out;
+		}
+		
+		&:hover,
+		&.active {
+			&:after {
+				transform: translateY(-@highlight-height);
+			}
+		}
+	}
+}

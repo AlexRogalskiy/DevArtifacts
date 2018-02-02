@@ -1,0 +1,106 @@
+@size: 100%;
+
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+body {
+	background: #1d1d1d;
+	overflow: hidden;
+}
+
+.container {
+	position: relative;
+	display: block;
+	height: @size;
+	width: @size;
+}
+
+[class^="layer"] {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	animation-duration: 4s;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.31, 0.08, 0.63, 0.15);
+	animation-name: zoom;
+	opacity: 0;
+}
+
+[class^="star"] {
+	width: 2px;
+	height: 2px;
+	background: #fffcd9;
+	position: absolute;
+	border-radius: 50%;
+}
+
+.layerRandomiser(5);
+
+@keyframes zoom {
+	0% {
+		transform: scale(0.8);
+		opacity: 0;
+	}
+	
+	30% {
+		opacity: 1;
+	}
+	
+	70% {
+		opacity: 1;
+	}
+	
+	100% {
+		transform: scale(1.5);
+		opacity: 0;
+	}
+}
+
+.generateStars(@iterations: 15) {
+	.loop (@i) when (@i > 0) {
+
+		.star-@{i} {
+			.MakeRandom(5, 95);	
+
+			top: unit(@randX, %);
+			left: unit(@randY, %);
+		}
+
+		.loop(@i - 1);
+	}
+
+	.loop (@iterations);
+}
+
+.MakeRandom(@min: 0, @max: @min+1) {	
+	.doX() {
+		@getNumX: `Math.random() * (@{max} - @{min})`;
+		@baseX: unit(`Math.floor(@{getNumX})`);
+	}
+	.doX();
+	@randX: @baseX + @min;
+
+	.doY() {
+		@getNumY: `Math.random() * (@{max} - @{min})`;
+		@baseY: unit(`Math.floor(@{getNumY})`);
+	}
+	.doY();
+	@randY: @baseY + @min;
+}
+
+.layerRandomiser(@iterations) {
+	.loop (@i) when (@i > 0) {
+		
+		.layer-@{i} {
+			.generateStars();
+			animation-delay: unit(@i - 1, s);
+		}
+
+		.loop(@i - 1);
+	}
+
+	.loop (@iterations);
+}

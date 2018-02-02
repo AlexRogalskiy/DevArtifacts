@@ -1,0 +1,114 @@
+@import url(https://fonts.googleapis.com/css?family=Rubik);
+
+body {margin: 0px; padding: 0px;width: 800px; font-family: 'Rubik', Arial;}
+
+/* Controls */
+.controls {position:fixed; z-index:30; top:0; padding:20px;}
+.colors a {display:inline-block; width:30px; height:30px; border-radius:3px; box-shadow: inset 0px 0px 5px rgba(0,0,0,.5); border:3px solid #e2e2e2;}
+.white {background-color:#fff;}
+.black {background-color:#000;}
+.red {background-color:#f00;}
+.yellow {background-color:#ff0;}
+.blue {background-color:#00f;}
+.colors .active {border: 3px solid yellow;}
+button { font-family: 'Rubik', Arial; }
+
+#cursor {
+	border: 3px solid yellow;
+	width: 7px;
+	height: 7px;
+	position: absolute;
+	top: 120px;
+	left: 40px;
+	z-index: 30;
+	border-radius: 10px;
+	pointer-events:none;
+}
+
+
+#info {
+	position: fixed;
+	bottom:0;
+	z-index: 30;
+	width:100%;
+}
+#info p {
+	background-color: rgba(255, 255, 255, 0.3);
+	width: 294px;
+	margin-left: 130px;
+	padding: 20px;
+	border-radius: 10px;
+	margin-top: 6px;
+}
+#guida {
+	width: 110px;
+	height: 110px;
+	border-radius: 55px;
+	border: 1px solid #AAA;
+	display:block;
+	position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+
+#disegno {position: absolute;
+z-index: 10;
+top: 82px;
+left: 161px;
+opacity: 0.3;}
+
+#log {position:absolute; top:0; right:0; background:#e0e0e0; padding:20px; z-index:30; display:none;}
+
+
+#opponent {position:absolute; width:800px;}
+#avatar {
+	background: url('https://cdn.pbrd.co/images/YfyvKDt.png') no-repeat 0 -220px;
+	position: absolute;
+	top: 12px;
+	left: 675px;
+	z-index: 40;
+	width: 110px;
+	height: 110px;
+	border-radius: 55px;
+}
+#avatar.ok {
+	background-position:0px 0px;
+}
+#avatar.no {
+	background-position:0px -110px;
+}
+
+canvas {
+  position:absolute; z-index:20; }
+#filo {z-index:22; pointer-events:none;}
+#points {
+	position: absolute;
+	right: 150px;
+	top: 45px;
+	font-size: 16px;
+	z-index: 20;
+	background: white;
+	padding: 10px 15px;
+	border-radius: 10px;
+	box-shadow: 0px 1px 3px #999;
+	text-align: right;
+}
+#points.ok {color:green;}
+#points.no {color:red;}
+
+#bg {position:absolute; width:100%; height:100%; top:0; left:0; z-index:10; opacity:.8; background:url('https://cdn.pbrd.co/images/YfBgLnB.png') #e0e0e0 -1px -1px;
+}
+
+button {
+  padding: 7px;
+  border-radius: 4px;
+  font-family: 'Raleway', arial;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* Animazione punteggio */
+/*
+http://www.dreamstime.com/splashpage-colldet12439
+*/

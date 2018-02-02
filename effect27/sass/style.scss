@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background: #f7f7f7;
+	margin: 0;
+	padding: 1rem;
+}
+
+.gridViewContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -1rem;
+}
+
+.gridView-listItem {
+	display: flex;
+	align-self: stretch;
+	flex-direction: column;
+	width: 100%;
+}
+
+.gridView-tile {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	position: relative;
+	/* grid gutters */
+	margin-bottom: 1rem;
+	margin-right: 1rem;
+	background: #fff;
+	overflow: hidden;
+	border-radius: 4px;
+	box-shadow: 0 3px 9px -3px rgba(0, 0, 0, 0.3)
+}
+
+
+
+.gridView-tile .u-link {
+	text-decoration: none;
+}
+
+.gridView-imageSection {
+	position: relative;
+	overflow: hidden;
+	border-radius: 4px 4px 0 0;
+}
+
+/* Enforce the aspect ratio with padding trick */
+.gridView-imageSection:after {
+	content: ' ';
+	display: block;
+	/* 16:9 */
+	padding-bottom: 56.25%;
+}
+
+.gridView-imageSection .gridView-image {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #f5f5f5;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.gridView-duration {
+	position: absolute;
+	bottom: .5rem;
+	left: .5rem;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	font-weight: bold;
+	padding: .2rem .4rem;
+	font-size: 0.8rem;
+	border-radius: 3px;
+}
+
+.gridView-detailsSection {
+	padding: .5rem .6rem;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	word-break: break-word;
+}
+
+.gridView-detailsBottom {
+	display: flex;
+	align-items: center;
+	margin-top: .5rem;
+	color: #777;
+	line-height: 1;
+}
+
+.gridView-title {
+	overflow: hidden;
+	position: relative;
+	color: #444;
+	font-size: 1.2rem;
+	line-height: 1.2em;
+	font-weight: bold;
+	display: block;
+	/* Using webkit only multi line ellisis trick */
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+
+	/* lines to show: 3 - fallback for no webkit will just cut text */
+	max-height: calc(1.2em * 3);
+}
+
+.gridView-title:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.gridView-date {
+	flex-grow: 1;
+	font-size: 0.9rem;
+}
+
+.mediaType-iconMultiple {
+	display: flex;
+}
+
+.gridView-tile .mediaType-iconMultiple {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.mediaType-iconMultiple .mediaType-icon:not(:last-child) {
+	margin-right: .5rem;
+}
+
+.gridView-tile .mediaType-iconMultiple .mediaType-icon:not(:last-child) {
+	opacity: 0;
+	transition: opacity 0.2s ease-out, transform 0.15s ease-out;
+	top: .5rem;
+	position: relative;
+}
+
+/* Add transition delays to stagger the animations */
+.gridView-tile .mediaType-iconMultiple .mediaType-icon:nth-child(1) {
+	transition-delay: .05s;
+}
+
+.gridView-tile .mediaType-iconMultiple .mediaType-icon:nth-child(2) {
+	transition-delay: .1s;
+}
+
+.gridView-tile .mediaType-iconMultiple .mediaType-icon:nth-child(3) {
+	transition-delay: .15s;
+}
+
+.gridView-tile .mediaType-iconMultiple .mediaType-icon:nth-child(4) {
+	transition-delay: .2s;
+}
+
+.gridView-tile .mediaType-iconMultiple .mediaType-icon:nth-child(5) {
+	transition-delay: .25s;
+}
+
+/* on hover and on mobile devices */
+.gridView-tile:hover .mediaType-icon:not(:last-child) {
+	opacity: 1;
+	transform: translateY(-.5rem);
+}
+
+.gridView-detailsBottom {
+	position: relative;
+}
+
+.gridView-imageSectionMaskTop {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 70px;
+	opacity: 0;
+	transition: opacity .4s ease-out;
+	pointer-events: none;
+
+	/* standard linear-gradient gives a harsh edge, here an easing function is
+	being apllied to the gragient for a smoother result */
+	background: linear-gradient(
+		rgba(10, 20, 20, .5),
+		hsla(180, 33.3%, 5.8%, 0.473) 7.9%,
+		hsla(180, 33.3%, 5.6%, 0.441) 15.3%,
+		hsla(180, 33.3%, 5.5%, 0.408) 22.2%,
+		hsla(180, 33.3%, 5.3%, 0.371) 28.7%,
+		hsla(180, 33.3%, 5%, 0.333) 34.8%,
+		hsla(180, 33.3%, 4.8%, 0.294) 40.6%,
+		hsla(180, 33.3%, 4.5%, 0.255) 46.2%,
+		hsla(180, 33.3%, 4.1%, 0.214) 51.7%,
+		hsla(180, 33.3%, 3.6%, 0.174) 57.2%,
+		hsla(180, 33.3%, 3.1%, 0.135) 62.8%,
+		hsla(180, 33.3%, 2.5%, 0.097) 68.7%,
+		hsla(180, 33.3%, 1.7%, 0.061) 75.2%,
+		hsla(180, 33.3%, 0.9%, 0.029) 82.6%,
+		hsla(180, 33.3%, 0.2%, 0.007) 91.2%,
+		transparent
+	);
+}
+
+.gridView-searchHitSelect {
+	left: .5rem;
+}
+
+.gridView-menu {
+	right: .5rem;
+	font-size: 1.1rem;
+}
+
+.gridView-searchHitSelect,
+.gridView-menu {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	z-index: 2;
+	opacity: 0;
+	color: rgba(255, 255, 255, 0.75);
+	text-shadow: 0 0 4px rgba(10, 20, 20, 0.4);
+	padding: .2rem .3rem;
+	transition: transform .25s ease-out, opacity .25s ease-out, color .3s ease-out;
+}
+
+.gridView-searchHitSelect:hover,
+.gridView-menu:hover {
+	color: rgba(255, 255, 255, 1);
+}
+
+.gridView-tile:hover .gridView-menu,
+.gridView-tile:hover .gridView-searchHitSelect {
+	transform: translateY(.5rem);
+}
+
+.gridView-tile:hover .gridView-menu,
+.gridView-tile:hover .gridView-searchHitSelect {
+	opacity: 1;
+}
+
+.gridView-tile:hover .gridView-imageSectionMaskTop {
+	opacity: 1;
+}
+
+/* Responsive percentage widths */
+@media (min-width: 500px) {
+	.gridView-listItem {
+		width: 50%;
+	}
+}
+
+@media (min-width: 768px) {
+	.gridView-listItem {
+		width: 33%;
+	}
+}
+
+@media (min-width: 1000px) {
+	.gridView-listItem {
+		width: 25%;
+	}
+}
+
+@media (min-width: 1280px) {
+	.gridView-listItem {
+		width: 20%;
+	}
+}
+
+@media (min-width: 1920px) {
+	.gridView-listItem {
+		width: 16.6667%;
+	}
+}
+
+@media (min-width: 2500px) {
+	.gridView-listItem {
+		width: 14.2857%;
+	}
+}

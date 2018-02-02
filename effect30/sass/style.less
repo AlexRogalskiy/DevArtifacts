@@ -1,0 +1,283 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
+
+/* Monokai palette */
+@monokai-green: #A6E22E;
+@monokai-white: #F8F8F2;
+@monokai-pink: #F92672;
+@monokai-blue: #66D9EF;
+@monokai-purple: #AE81FF;
+@monokai-grey: #9c9c97;
+@monokai-bgGrey: #272822;
+@monokai-bgGreyLight: #49483E;
+	
+/* vars */
+@fontPrimary: @monokai-green;
+@fontAlt1: @monokai-white;
+@fontAlt2: @monokai-pink;
+@fontAlt3: @monokai-blue;
+@fontAlt4: @monokai-purple;
+@fontAlt5: @monokai-grey;
+@cardBgPrimary: @monokai-white;
+@cardBgSecondary: @gradBgFrom;
+@gradBgFrom: @monokai-bgGrey;
+@gradBgTo: @monokai-bgGreyLight;
+@starColor: @monokai-white;
+
+.business-card {
+	display: grid;
+	overflow: hidden;
+	position: relative;
+	line-height: 1.6;
+	font-size: 4.5vmin;
+	width: 100vmin;
+	height: 60vmin;
+	padding: 7vmin;
+	border-radius: 6px;
+	box-shadow: 0 6px 19px -5px rgba(0, 0, 0, 0.6);
+}
+
+.content {
+	z-index: 2;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	font-family: 'Inconsolata', sans-serif;
+	color: @fontPrimary;
+}
+
+.top {
+	display: grid;
+	grid-column: 1 / 3;
+	grid-row: 1;
+	align-content: start;
+	grid-gap: 1.5vmin;
+	animation: inLeft;
+	animation-duration: 1s;
+}
+
+.top,
+.left {
+	text-shadow: 1px 1px @monokai-bgGrey;
+}
+
+.name {
+	font-size: 2em;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.profession {
+	color: @fontAlt5;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: 700;
+}
+
+.bottom {
+	display: grid;
+	grid-column: 1 / 3;
+	grid-row: 3;
+	grid-template-columns: 1fr 1fr 1fr;
+  	align-content: end;
+	
+	.left {
+		font-weight: 700;
+		font-size: 0.9em;
+		grid-column: 1;
+		animation: inLeft;
+		animation-duration: 1s;
+	}
+	
+	.right {
+		grid-column: 3;
+		align-self: end;
+		animation: inRight;
+		animation-duration: 1s;
+	}
+}
+
+.website {
+	color: @fontAlt1;
+	font-weight: 400;
+}
+
+.location {
+	white-space: nowrap;
+	text-align: right;
+	color: @fontAlt2;
+	text-transform: uppercase;
+	font-size: 0.9em;
+}
+
+.email {
+	color: @fontAlt3;
+}
+
+.phone {
+	color: @fontAlt4;
+}
+
+.background {
+	z-index: 1;
+	background-color: @cardBgPrimary;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.slice {
+	top: -59vmin;
+	left: -1vmin;
+	position: absolute;
+	width: 90vmin;
+	height: 150vmin;
+	background: @cardBgSecondary;
+	// background: -webkit-linear-gradient(to right, @gradBgFrom, @gradBgTo);
+	background: linear-gradient(to right, @gradBgFrom 55%, @gradBgTo);
+	transform: rotate(38deg);
+	animation: inRotate;
+	animation-duration: 1s;
+	overflow: hidden;
+}
+
+@size: 100%;
+
+.container {
+	position: relative;
+	display: block;
+	height: @size;
+	width: @size;
+}
+
+[class^="layer"] {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	animation-duration: 4s;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.31, 0.08, 0.63, 0.15);
+	animation-name: zoom;
+	opacity: 0;
+}
+
+[class^="star"] {
+	width: 2px;
+	height: 2px;
+	background: #fffcd9;
+	background: @starColor;
+	position: absolute;
+	border-radius: 50%;
+}
+
+.layerRandomiser(5);
+
+@keyframes zoom {
+	0% {
+		transform: scale(0.8);
+		opacity: 0;
+	}
+	
+	30% {
+		opacity: 1;
+	}
+	
+	70% {
+		opacity: 1;
+	}
+	
+	100% {
+		transform: scale(1.5);
+		opacity: 0;
+	}
+}
+
+.generateStars(@iterations: 15) {
+	.loop (@i) when (@i > 0) {
+
+		.star-@{i} {
+			.MakeRandom(5, 95);	
+
+			top: unit(@randX, %);
+			left: unit(@randY, %);
+		}
+
+		.loop(@i - 1);
+	}
+
+	.loop (@iterations);
+}
+
+.MakeRandom(@min: 0, @max: @min+1) {	
+	.doX() {
+		@getNumX: `Math.random() * (@{max} - @{min})`;
+		@baseX: unit(`Math.floor(@{getNumX})`);
+	}
+	.doX();
+	@randX: @baseX + @min;
+
+	.doY() {
+		@getNumY: `Math.random() * (@{max} - @{min})`;
+		@baseY: unit(`Math.floor(@{getNumY})`);
+	}
+	.doY();
+	@randY: @baseY + @min;
+}
+
+.layerRandomiser(@iterations) {
+	.loop (@i) when (@i > 0) {
+		
+		.layer-@{i} {
+			.generateStars();
+			animation-delay: unit(@i - 1, s);
+		}
+
+		.loop(@i - 1);
+	}
+
+	.loop (@iterations);
+}
+
+@keyframes inRotate {
+	0% {
+		transform: translateX(-100vmin) rotate(15deg);
+	}
+	
+	100% {
+		transform: translateX(0) rotate(38deg);
+	}
+}
+
+@keyframes inLeft {
+	0% {
+		transform: translateX(-100vmin);
+	}
+	
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes inRight {
+	0% {
+		transform: translateX(100vmin);
+	}
+	
+	100% {
+		transform: translateX(0);
+	}
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	background: #e2e2e2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	margin: 0;
+}

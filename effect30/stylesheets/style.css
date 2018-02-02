@@ -1,0 +1,496 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
+/* Monokai palette */
+/* vars */
+.business-card {
+  display: grid;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.6;
+  font-size: 4.5vmin;
+  width: 100vmin;
+  height: 60vmin;
+  padding: 7vmin;
+  border-radius: 6px;
+  box-shadow: 0 6px 19px -5px rgba(0, 0, 0, 0.6);
+}
+.content {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  font-family: 'Inconsolata', sans-serif;
+  color: #A6E22E;
+}
+.top {
+  display: grid;
+  grid-column: 0.33333333;
+  grid-row: 1;
+  align-content: start;
+  grid-gap: 1.5vmin;
+  animation: inLeft;
+  animation-duration: 1s;
+}
+.top,
+.left {
+  text-shadow: 1px 1px #272822;
+}
+.name {
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1;
+}
+.profession {
+  color: #9c9c97;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 700;
+}
+.bottom {
+  display: grid;
+  grid-column: 0.33333333;
+  grid-row: 3;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-content: end;
+}
+.bottom .left {
+  font-weight: 700;
+  font-size: 0.9em;
+  grid-column: 1;
+  animation: inLeft;
+  animation-duration: 1s;
+}
+.bottom .right {
+  grid-column: 3;
+  align-self: end;
+  animation: inRight;
+  animation-duration: 1s;
+}
+.website {
+  color: #F8F8F2;
+  font-weight: 400;
+}
+.location {
+  white-space: nowrap;
+  text-align: right;
+  color: #F92672;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+.email {
+  color: #66D9EF;
+}
+.phone {
+  color: #AE81FF;
+}
+.background {
+  z-index: 1;
+  background-color: #F8F8F2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.slice {
+  top: -59vmin;
+  left: -1vmin;
+  position: absolute;
+  width: 90vmin;
+  height: 150vmin;
+  background: #272822;
+  background: linear-gradient(to right, #272822 55%, #49483E);
+  transform: rotate(38deg);
+  animation: inRotate;
+  animation-duration: 1s;
+  overflow: hidden;
+}
+.container {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+[class^="layer"] {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.31, 0.08, 0.63, 0.15);
+  animation-name: zoom;
+  opacity: 0;
+}
+[class^="star"] {
+  width: 2px;
+  height: 2px;
+  background: #fffcd9;
+  background: #F8F8F2;
+  position: absolute;
+  border-radius: 50%;
+}
+.layer-5 {
+  animation-delay: 4s;
+}
+.layer-5 .star-15 {
+  top: 38%;
+  left: 69%;
+}
+.layer-5 .star-14 {
+  top: 44%;
+  left: 9%;
+}
+.layer-5 .star-13 {
+  top: 15%;
+  left: 77%;
+}
+.layer-5 .star-12 {
+  top: 61%;
+  left: 82%;
+}
+.layer-5 .star-11 {
+  top: 70%;
+  left: 89%;
+}
+.layer-5 .star-10 {
+  top: 33%;
+  left: 92%;
+}
+.layer-5 .star-9 {
+  top: 42%;
+  left: 55%;
+}
+.layer-5 .star-8 {
+  top: 29%;
+  left: 91%;
+}
+.layer-5 .star-7 {
+  top: 55%;
+  left: 93%;
+}
+.layer-5 .star-6 {
+  top: 48%;
+  left: 59%;
+}
+.layer-5 .star-5 {
+  top: 78%;
+  left: 56%;
+}
+.layer-5 .star-4 {
+  top: 54%;
+  left: 17%;
+}
+.layer-5 .star-3 {
+  top: 79%;
+  left: 21%;
+}
+.layer-5 .star-2 {
+  top: 56%;
+  left: 37%;
+}
+.layer-5 .star-1 {
+  top: 73%;
+  left: 13%;
+}
+.layer-4 {
+  animation-delay: 3s;
+}
+.layer-4 .star-15 {
+  top: 18%;
+  left: 16%;
+}
+.layer-4 .star-14 {
+  top: 79%;
+  left: 69%;
+}
+.layer-4 .star-13 {
+  top: 55%;
+  left: 69%;
+}
+.layer-4 .star-12 {
+  top: 70%;
+  left: 55%;
+}
+.layer-4 .star-11 {
+  top: 67%;
+  left: 46%;
+}
+.layer-4 .star-10 {
+  top: 22%;
+  left: 6%;
+}
+.layer-4 .star-9 {
+  top: 39%;
+  left: 60%;
+}
+.layer-4 .star-8 {
+  top: 88%;
+  left: 57%;
+}
+.layer-4 .star-7 {
+  top: 12%;
+  left: 89%;
+}
+.layer-4 .star-6 {
+  top: 61%;
+  left: 89%;
+}
+.layer-4 .star-5 {
+  top: 25%;
+  left: 5%;
+}
+.layer-4 .star-4 {
+  top: 44%;
+  left: 33%;
+}
+.layer-4 .star-3 {
+  top: 27%;
+  left: 50%;
+}
+.layer-4 .star-2 {
+  top: 65%;
+  left: 58%;
+}
+.layer-4 .star-1 {
+  top: 94%;
+  left: 36%;
+}
+.layer-3 {
+  animation-delay: 2s;
+}
+.layer-3 .star-15 {
+  top: 73%;
+  left: 91%;
+}
+.layer-3 .star-14 {
+  top: 39%;
+  left: 11%;
+}
+.layer-3 .star-13 {
+  top: 14%;
+  left: 86%;
+}
+.layer-3 .star-12 {
+  top: 34%;
+  left: 21%;
+}
+.layer-3 .star-11 {
+  top: 37%;
+  left: 66%;
+}
+.layer-3 .star-10 {
+  top: 15%;
+  left: 16%;
+}
+.layer-3 .star-9 {
+  top: 53%;
+  left: 31%;
+}
+.layer-3 .star-8 {
+  top: 9%;
+  left: 93%;
+}
+.layer-3 .star-7 {
+  top: 14%;
+  left: 67%;
+}
+.layer-3 .star-6 {
+  top: 63%;
+  left: 38%;
+}
+.layer-3 .star-5 {
+  top: 7%;
+  left: 72%;
+}
+.layer-3 .star-4 {
+  top: 43%;
+  left: 23%;
+}
+.layer-3 .star-3 {
+  top: 63%;
+  left: 55%;
+}
+.layer-3 .star-2 {
+  top: 69%;
+  left: 24%;
+}
+.layer-3 .star-1 {
+  top: 74%;
+  left: 41%;
+}
+.layer-2 {
+  animation-delay: 1s;
+}
+.layer-2 .star-15 {
+  top: 50%;
+  left: 71%;
+}
+.layer-2 .star-14 {
+  top: 69%;
+  left: 18%;
+}
+.layer-2 .star-13 {
+  top: 36%;
+  left: 75%;
+}
+.layer-2 .star-12 {
+  top: 23%;
+  left: 63%;
+}
+.layer-2 .star-11 {
+  top: 29%;
+  left: 23%;
+}
+.layer-2 .star-10 {
+  top: 34%;
+  left: 92%;
+}
+.layer-2 .star-9 {
+  top: 53%;
+  left: 83%;
+}
+.layer-2 .star-8 {
+  top: 15%;
+  left: 85%;
+}
+.layer-2 .star-7 {
+  top: 36%;
+  left: 41%;
+}
+.layer-2 .star-6 {
+  top: 11%;
+  left: 80%;
+}
+.layer-2 .star-5 {
+  top: 25%;
+  left: 84%;
+}
+.layer-2 .star-4 {
+  top: 7%;
+  left: 62%;
+}
+.layer-2 .star-3 {
+  top: 55%;
+  left: 63%;
+}
+.layer-2 .star-2 {
+  top: 40%;
+  left: 94%;
+}
+.layer-2 .star-1 {
+  top: 91%;
+  left: 86%;
+}
+.layer-1 {
+  animation-delay: 0s;
+}
+.layer-1 .star-15 {
+  top: 40%;
+  left: 38%;
+}
+.layer-1 .star-14 {
+  top: 75%;
+  left: 50%;
+}
+.layer-1 .star-13 {
+  top: 7%;
+  left: 45%;
+}
+.layer-1 .star-12 {
+  top: 32%;
+  left: 58%;
+}
+.layer-1 .star-11 {
+  top: 91%;
+  left: 17%;
+}
+.layer-1 .star-10 {
+  top: 75%;
+  left: 34%;
+}
+.layer-1 .star-9 {
+  top: 71%;
+  left: 16%;
+}
+.layer-1 .star-8 {
+  top: 12%;
+  left: 85%;
+}
+.layer-1 .star-7 {
+  top: 27%;
+  left: 60%;
+}
+.layer-1 .star-6 {
+  top: 72%;
+  left: 73%;
+}
+.layer-1 .star-5 {
+  top: 5%;
+  left: 75%;
+}
+.layer-1 .star-4 {
+  top: 47%;
+  left: 8%;
+}
+.layer-1 .star-3 {
+  top: 33%;
+  left: 71%;
+}
+.layer-1 .star-2 {
+  top: 61%;
+  left: 16%;
+}
+.layer-1 .star-1 {
+  top: 54%;
+  left: 32%;
+}
+@keyframes zoom {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@keyframes inRotate {
+  0% {
+    transform: translateX(-100vmin) rotate(15deg);
+  }
+  100% {
+    transform: translateX(0) rotate(38deg);
+  }
+}
+@keyframes inLeft {
+  0% {
+    transform: translateX(-100vmin);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes inRight {
+  0% {
+    transform: translateX(100vmin);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+html {
+  height: 100%;
+}
+body {
+  background: #e2e2e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+}
