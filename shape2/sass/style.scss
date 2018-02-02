@@ -1,0 +1,200 @@
+///
+/// Creates a triangle on one of the edges of an element
+///
+/// @author Eduardo Boucas
+///
+/// @param {String}   $pos - Which edge to create the triangle on
+/// @param {Length}   $offset - The offset from the origin (top or left) on the edge
+/// @param {String}   $direction - Direction of the triangle (in or out)
+/// @param {Length}   $width - Width of the triangle
+/// @param {String}   $type - Type of the pseudo-element (before or after)
+///
+/// @example scss - A triangle on the left edge of the parent, 15px from the top, pointing out with a width of 30px
+///  @include triangle('left', 15px, 'out', 30px);
+///
+/// @example scss - A triangle on the bottom edge of the parent, 220px from the left, pointing out, with a width of 60px and using a :before
+///  @include triangle('bottom', 220px, 'out', 60px, 'before');
+///
+@mixin triangle($pos, $offset, $direction, $width, $type: 'after') {
+  position: relative;
+  
+  &:#{$type} {
+    position: absolute;
+    content: '';
+    z-index: 9999;
+    
+    // Reset position and offsets
+		top: auto;
+		bottom: auto;
+		left: auto;
+		right: auto;
+    $hOffset: 0;
+    $vOffset: 0;
+    
+    // Triangle: down
+    @if ((($pos == 'top') and ($direction == 'in')) or ($pos == 'bottom') and ($direction == 'out')) {
+			border-top: $width solid currentColor;
+			border-right: $width solid transparent;
+			border-bottom: none;
+			border-left: $width solid transparent;
+      
+      $vOffset: if($direction == 'in', 0, -$width);
+    }
+    
+    // Triangle: up
+    @if ((($pos == 'top') and ($direction == 'out')) or ($pos == 'bottom') and ($direction == 'in')) {
+			border-top: none;
+			border-right: $width solid transparent;
+			border-bottom: $width solid currentColor;
+			border-left: $width solid transparent;
+      
+      $vOffset: if($direction == 'in', 0, -$width);
+    }
+    
+    // Triangle: right
+    @if ((($pos == 'left') and ($direction == 'in')) or ($pos == 'right') and ($direction == 'out')) {
+			border-top: $width solid transparent;
+			border-right: none;
+			border-bottom: $width solid transparent;
+			border-left: $width solid currentColor;
+      
+      $hOffset: if($direction == 'in', 0, -$width);
+    }
+    
+    // Triangle: left
+    @if ((($pos == 'left') and ($direction == 'out')) or ($pos == 'right') and ($direction == 'in')) {
+			border-top: $width solid transparent;
+			border-right: $width solid currentColor;
+			border-bottom: $width solid transparent;
+			border-left: none;
+      
+      $hOffset: if($direction == 'in', 0, -$width);
+    }
+    
+    @if ($pos == 'top') {
+      top: $vOffset;
+      left: if($offset == 'center', calc(50% - #{$width}), $offset);
+    } @else if ($pos == 'bottom') {
+      bottom: $vOffset;
+      left: if($offset == 'center', calc(50% - #{$width}), $offset);
+    } @else if ($pos == 'left') {
+      top: if($offset == 'center', calc(50% - #{$width}), $offset);
+      left: $hOffset;
+    } @else if ($pos == 'right') {
+      top: if($offset == 'center', calc(50% - #{$width}), $offset);
+      right: $hOffset;
+    }
+  }
+}
+
+/*
+ _____  ______ __  __  ____  
+|  __ \|  ____|  \/  |/ __ \ 
+| |  | | |__  | \  / | |  | |
+| |  | |  __| | |\/| | |  | |
+| |__| | |____| |  | | |__| |
+|_____/|______|_|  |_|\____/ 
+                             
+*/
+
+body {
+  background-color: #ECE6E0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+.articles {
+  display: inline-block;
+  text-align: left;
+}
+
+.article {
+  height: 600px;
+  width: 300px;
+  float: left;
+  
+  @media (max-width: 915px) {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+}
+
+.article__copy,
+.article__image-wrapper {
+    width: 100%;
+    height: 50%;  
+}
+
+.article__copy {
+  background-color: tomato;
+  color: white;
+  padding: 30px;
+  box-sizing: border-box;
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  text-transform: uppercase;
+  
+  &:after,
+  &:before {
+    color: tomato;
+  }
+  
+  &:nth-of-type(1) {
+    @include triangle('bottom', 15px, 'out', 30px);
+  }
+  
+  &:nth-of-type(2) {
+    @include triangle('top', 15px, 'out', 30px);
+  }
+  
+  @media (max-width: 915px) {
+    &:nth-of-type(1),
+    &:nth-of-type(2) {
+      @include triangle('top', 15px, 'out', 30px);
+      order: 1;
+    }
+  }
+}
+
+.article__copy--left {
+  &:nth-of-type(1) {
+    @include triangle('left', 15px, 'out', 30px);
+    @include triangle('bottom', 220px, 'out', 30px, 'before');
+  }
+
+}
+
+.article__image-wrapper {
+  overflow: hidden;
+  background-color: #cde;
+}
+
+.article__image {
+  display: block;
+  width: 100%;  
+}
+
+.title {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 18px;
+  font-size: 23px;
+  line-height: 40px;
+  margin-bottom: 40px;
+  
+  &:after {
+    content: ' ';
+    position: absolute;
+    bottom: -20px;
+    width: 15%;
+    border-bottom: 1px solid black;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+}

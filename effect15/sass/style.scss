@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css?family=Quattrocento%20Sans);
+/* 1 */
+*{ box-sizing:border-box; margin:0; padding:0; color:white; font-size:16px; font-family:"Quattrocento Sans", sans-serif; -webkit-font-smoothing: antialiased;}
+html,body{  height:100%; background-color:#333;}
+#contenedor{
+	display:flex;
+	-webkit-flex-direction : column;
+    -ms-flex-direction : column;
+    flex-direction : column;
+	margin:50px auto;
+	width:640px; 
+	 }
+.rowDiv{
+	display:flex; 
+	-webkit-flex-direction : row;
+    -ms-flex-direction : row;
+    flex-direction : row;
+	width:100%;
+	}
+#control label{  display:inline-block; width:25%; height:2em;}
+#control [type=range]:disabled{ opacity:.4;}
+
+
+.radioDiv{
+	display:flex; 
+	-webkit-flex-direction : column;
+    -ms-flex-direction : column;
+    flex-direction : column;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	margin-top:2em;
+	width:100%;
+	}
+
+input[type=radio]{ margin:.25em 1em .25em 0;}
+#control{ width:640px; padding-top:2em;}
+#contenedor h1{ font-size:180%; width:100%; text-align:center; margin:1em 0;}
+
+.inputDiv{ width:640px; height:480px;position:relative; overflow:hidden;}
+.inputDiv div{ position:absolute;overflow:hidden} 
+.inputDiv #typeRange{ position:absolute; bottom:0px;} 
+
+#filterImg img{
+-webkit-filter:sepia(1);
+         filter:sepia(1);
+		
+}
+#filterImg{ width:calc(640px * .65); border-right:10px solid rgba(0,0,0,.3)}
+#typeRange{ display:block; width:640px; height:480px; background-color:transparent}
+#typeRange:focus {
+  outline: none;
+}
+	
+/* 2 */
+#typeRange, #typeRange::-webkit-slider-runnable-track, #typeRange::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+}
+#typeRange, #typeRange::-moz-range-thumb, #typeRange::-moz-range-thumb {
+  -moz-appearance: none; position:relative;
+}
+
+/* 2.1 THUMB */
+#typeRange::-webkit-slider-thumb{ height:480px; width:15px;  background-color:transparent; cursor: col-resize;}
+#typeRange::-moz-range-thumb{ height:480px; width:15px;  background-color:transparent;  cursor: col-resize; border:none;}
+#typeRange::-ms-thumb{ height:480px; width:15px;  background-color:transparent;  cursor: col-resize;}
+
+
+/* 2.2 TRACK */
+
+
+#typeRange::-webkit-slider-runnable-track{height:480px; background:transparent;}
+#typeRange:focus::-webkit-slider-runnable-track{outline: none;}
+
+#typeRange::-moz-range-track{outline:none; background:none;}
+
+#typeRange::-ms-track{}
+	
+#typeRange::-ms-fill-lower{} 
+#typeRange::-ms-fill-upper{} 
+
+
+/*****************************/
+
+input[type=range].plain{ 
+	position:relative; 
+	top:1px; 
+	width:60%; 
+	margin:0 1em;
+	-webkit-align-self: flex-start;
+	-ms-flex-align: start;
+	align-self: flex-start; 
+}
+
+p{ line-height:200%; color:#ddd; margin:1em 0;}

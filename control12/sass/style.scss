@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  background-color: #2980b9;
+}
+
+$white: #FFF;
+$black: #000;
+$button-width: 180px;
+
+.button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 4px 0;
+    width: $button-width;
+    overflow: hidden;
+    user-select: none;
+    background-color: #16a085;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    p {
+        font-family: 'Roboto';
+        font-size: 16px;
+        color: $white;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .feedback {
+        position: absolute;
+        width: $button-width * 2;
+        height: $button-width * 2;
+        background-color: rgba($white, 0.5);
+        left: 0;
+        top: 0;
+        border-radius: 50%;
+        margin-left: - $button-width;
+        margin-top: - $button-width;
+        transform: scaleX(0) scaleY(0);
+    }
+}

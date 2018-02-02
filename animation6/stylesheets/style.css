@@ -1,0 +1,1619 @@
+@import url(//fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700);
+/* line 541, ../sass/style.scss */
+.bounce {
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  transform-origin: center bottom;
+}
+@keyframes bounce {
+  20%, 53%, 80%, from, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+/* line 542, ../sass/style.scss */
+.flash {
+  animation-name: flash;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes flash {
+  50%, from, to {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+/* line 543, ../sass/style.scss */
+.pulse {
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+/* line 544, ../sass/style.scss */
+.rubberBand {
+  animation-name: rubberBand;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+/* line 545, ../sass/style.scss */
+.shake {
+  animation-name: shake;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes shake {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+/* line 546, ../sass/style.scss */
+.headShake {
+  animation-name: headShake;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+@keyframes headShake {
+  0% {
+    transform: translateX(0);
+  }
+  6.5% {
+    transform: translateX(-6px) rotateY(-9deg);
+  }
+  18.5% {
+    transform: translateX(5px) rotateY(7deg);
+  }
+  31.5% {
+    transform: translateX(-3px) rotateY(-5deg);
+  }
+  43.5% {
+    transform: translateX(2px) rotateY(3deg);
+  }
+  50% {
+    transform: translateX(0);
+  }
+}
+/* line 547, ../sass/style.scss */
+.swing {
+  animation-name: swing;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  transform-origin: top center;
+}
+@keyframes swing {
+  20% {
+    transform: rotate3d(0, 0, 1, 15deg);
+  }
+  40% {
+    transform: rotate3d(0, 0, 1, -10deg);
+  }
+  60% {
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+  80% {
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+/* line 548, ../sass/style.scss */
+.tada {
+  animation-name: tada;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  10%, 20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%, 50%, 70%, 90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%, 60%, 80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+/* line 549, ../sass/style.scss */
+.wobble {
+  animation-name: wobble;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes wobble {
+  from {
+    transform: none;
+  }
+  15% {
+    transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+  }
+  30% {
+    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+  }
+  45% {
+    transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+  }
+  60% {
+    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+  }
+  75% {
+    transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+  }
+  to {
+    transform: none;
+  }
+}
+/* line 550, ../sass/style.scss */
+.jello {
+  animation-name: jello;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  transform-origin: center;
+}
+@keyframes jello {
+  11.1%, from, to {
+    transform: none;
+  }
+  22.2% {
+    transform: skewX(-12.5deg) skewY(-12.5deg);
+  }
+  33.3% {
+    transform: skewX(6.25deg) skewY(6.25deg);
+  }
+  44.4% {
+    transform: skewX(-3.125deg) skewY(-3.125deg);
+  }
+  55.5% {
+    transform: skewX(1.5625deg) skewY(1.5625deg);
+  }
+  66.6% {
+    transform: skewX(-0.78125deg) skewY(-0.78125deg);
+  }
+  77.7% {
+    transform: skewX(0.39063deg) skewY(0.39063deg);
+  }
+  88.8% {
+    transform: skewX(-0.19531deg) skewY(-0.19531deg);
+  }
+}
+/* line 551, ../sass/style.scss */
+.bounceIn {
+  animation-name: bounceIn;
+  animation-duration: 0.75s;
+  animation-fill-mode: both;
+}
+@keyframes bounceIn {
+  20%, 40%, 60%, 80%, from, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+/* line 552, ../sass/style.scss */
+.bounceInDown {
+  animation-name: bounceInDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes bounceInDown {
+  60%, 75%, 90%, from, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+/* line 553, ../sass/style.scss */
+.bounceInLeft {
+  animation-name: bounceInLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes bounceInLeft {
+  60%, 75%, 90%, from, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    transform: translate3d(-3000px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(25px, 0, 0);
+  }
+  75% {
+    transform: translate3d(-10px, 0, 0);
+  }
+  90% {
+    transform: translate3d(5px, 0, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+/* line 554, ../sass/style.scss */
+.bounceInRight {
+  animation-name: bounceInRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes bounceInRight {
+  60%, 75%, 90%, from, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  from {
+    opacity: 0;
+    transform: translate3d(3000px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(-25px, 0, 0);
+  }
+  75% {
+    transform: translate3d(10px, 0, 0);
+  }
+  90% {
+    transform: translate3d(-5px, 0, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+/* line 555, ../sass/style.scss */
+.bounceInUp {
+  animation-name: bounceInUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes bounceInUp {
+  60%, 75%, 90%, from, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+  75% {
+    transform: translate3d(0, 10px, 0);
+  }
+  90% {
+    transform: translate3d(0, -5px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* line 556, ../sass/style.scss */
+.bounceOut {
+  animation-name: bounceOut;
+  animation-duration: 0.75s;
+  animation-fill-mode: both;
+}
+@keyframes bounceOut {
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+  50%, 55% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  to {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+}
+/* line 557, ../sass/style.scss */
+.bounceOutDown {
+  animation-name: bounceOutDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes bounceOutDown {
+  20% {
+    transform: translate3d(0, 10px, 0);
+  }
+  40%, 45% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 2000px, 0);
+  }
+}
+/* line 558, ../sass/style.scss */
+.bounceOutLeft {
+  animation-name: bounceOutLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes bounceOutLeft {
+  20% {
+    opacity: 1;
+    transform: translate3d(20px, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-2000px, 0, 0);
+  }
+}
+/* line 559, ../sass/style.scss */
+.bounceOutRight {
+  animation-name: bounceOutRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes bounceOutRight {
+  20% {
+    opacity: 1;
+    transform: translate3d(-20px, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(2000px, 0, 0);
+  }
+}
+/* line 560, ../sass/style.scss */
+.bounceOutUp {
+  animation-name: bounceOutUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes bounceOutUp {
+  20% {
+    transform: translate3d(0, -10px, 0);
+  }
+  40%, 45% {
+    opacity: 1;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0);
+  }
+}
+/* line 561, ../sass/style.scss */
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* line 562, ../sass/style.scss */
+.fadeInDown {
+  animation-name: fadeInDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* line 563, ../sass/style.scss */
+.fadeInDownBig {
+  animation-name: fadeInDownBig;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeInDownBig {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* line 564, ../sass/style.scss */
+.fadeInLeft {
+  animation-name: fadeInLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* line 565, ../sass/style.scss */
+.fadeInLeftBig {
+  animation-name: fadeInLeftBig;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeInLeftBig {
+  from {
+    opacity: 0;
+    transform: translate3d(-2000px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* line 566, ../sass/style.scss */
+.fadeInRight {
+  animation-name: fadeInRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* line 567, ../sass/style.scss */
+.fadeInRightBig {
+  animation-name: fadeInRightBig;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeInRightBig {
+  from {
+    opacity: 0;
+    transform: translate3d(2000px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* line 568, ../sass/style.scss */
+.fadeInUp {
+  animation-name: fadeInUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* line 569, ../sass/style.scss */
+.fadeInUpBig {
+  animation-name: fadeInUpBig;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeInUpBig {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 2000px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* line 570, ../sass/style.scss */
+.fadeOut {
+  animation-name: fadeOut;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+/* line 571, ../sass/style.scss */
+.fadeOutDown {
+  animation-name: fadeOutDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+/* line 572, ../sass/style.scss */
+.fadeOutDownBig {
+  animation-name: fadeOutDownBig;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeOutDownBig {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 2000px, 0);
+  }
+}
+/* line 573, ../sass/style.scss */
+.fadeOutLeft {
+  animation-name: fadeOutLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+/* line 574, ../sass/style.scss */
+.fadeOutLeftBig {
+  animation-name: fadeOutLeftBig;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeOutLeftBig {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-2000px, 0, 0);
+  }
+}
+/* line 575, ../sass/style.scss */
+.fadeOutRight {
+  animation-name: fadeOutRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+/* line 576, ../sass/style.scss */
+.fadeOutRightBig {
+  animation-name: fadeOutRightBig;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeOutRightBig {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(2000px, 0, 0);
+  }
+}
+/* line 577, ../sass/style.scss */
+.fadeOutUp {
+  animation-name: fadeOutUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+/* line 578, ../sass/style.scss */
+.fadeOutUpBig {
+  animation-name: fadeOutUpBig;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeOutUpBig {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0);
+  }
+}
+/* line 579, ../sass/style.scss */
+.flipInX {
+  animation-name: flipInX;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  backface-visibility: visible !important;
+}
+@keyframes flipInX {
+  from {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in;
+  }
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+  to {
+    transform: perspective(400px);
+  }
+}
+/* line 580, ../sass/style.scss */
+.flipInY {
+  animation-name: flipInY;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  backface-visibility: visible !important;
+}
+@keyframes flipInY {
+  from {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  40% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    animation-timing-function: ease-in;
+  }
+  60% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1;
+  }
+  80% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+  }
+  to {
+    transform: perspective(400px);
+  }
+}
+/* line 581, ../sass/style.scss */
+.flipOutX {
+  animation-name: flipOutX;
+  animation-duration: 0.75s;
+  animation-fill-mode: both;
+  backface-visibility: visible !important;
+}
+@keyframes flipOutX {
+  from {
+    transform: perspective(400px);
+  }
+  30% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    opacity: 1;
+  }
+  to {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    opacity: 0;
+  }
+}
+/* line 582, ../sass/style.scss */
+.flipOutY {
+  animation-name: flipOutY;
+  animation-duration: 0.75s;
+  animation-fill-mode: both;
+  backface-visibility: visible !important;
+}
+@keyframes flipOutY {
+  from {
+    transform: perspective(400px);
+  }
+  30% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -15deg);
+    opacity: 1;
+  }
+  to {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    opacity: 0;
+  }
+}
+/* line 583, ../sass/style.scss */
+.lightSpeedIn {
+  animation-name: lightSpeedIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+@keyframes lightSpeedIn {
+  from {
+    transform: translate3d(100%, 0, 0) skewX(-30deg);
+    opacity: 0;
+  }
+  60% {
+    transform: skewX(20deg);
+    opacity: 1;
+  }
+  80% {
+    transform: skewX(-5deg);
+    opacity: 1;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+/* line 584, ../sass/style.scss */
+.lightSpeedOut {
+  animation-name: lightSpeedOut;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in;
+}
+@keyframes lightSpeedOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    opacity: 0;
+  }
+}
+/* line 585, ../sass/style.scss */
+.rotateIn {
+  animation-name: rotateIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rotateIn {
+  from {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 0;
+  }
+  to {
+    transform-origin: center;
+    transform: none;
+    opacity: 1;
+  }
+}
+/* line 586, ../sass/style.scss */
+.rotateInDownLeft {
+  animation-name: rotateInDownLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rotateInDownLeft {
+  from {
+    transform-origin: left bottom;
+    transform: rotate3d(0, 0, 1, -45deg);
+    opacity: 0;
+  }
+  to {
+    transform-origin: left bottom;
+    transform: none;
+    opacity: 1;
+  }
+}
+/* line 587, ../sass/style.scss */
+.rotateInDownRight {
+  animation-name: rotateInDownRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rotateInDownRight {
+  from {
+    transform-origin: right bottom;
+    transform: rotate3d(0, 0, 1, 45deg);
+    opacity: 0;
+  }
+  to {
+    transform-origin: right bottom;
+    transform: none;
+    opacity: 1;
+  }
+}
+/* line 588, ../sass/style.scss */
+.rotateInUpLeft {
+  animation-name: rotateInUpLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rotateInUpLeft {
+  from {
+    transform-origin: left bottom;
+    transform: rotate3d(0, 0, 1, 45deg);
+    opacity: 0;
+  }
+  to {
+    transform-origin: left bottom;
+    transform: none;
+    opacity: 1;
+  }
+}
+/* line 589, ../sass/style.scss */
+.rotateInUpRight {
+  animation-name: rotateInUpRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rotateInUpRight {
+  from {
+    transform-origin: right bottom;
+    transform: rotate3d(0, 0, 1, -90deg);
+    opacity: 0;
+  }
+  to {
+    transform-origin: right bottom;
+    transform: none;
+    opacity: 1;
+  }
+}
+/* line 590, ../sass/style.scss */
+.rotateOut {
+  animation-name: rotateOut;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rotateOut {
+  from {
+    transform-origin: center;
+    opacity: 1;
+  }
+  to {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, 200deg);
+    opacity: 0;
+  }
+}
+/* line 591, ../sass/style.scss */
+.rotateOutDownLeft {
+  animation-name: rotateOutDownLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rotateOutDownLeft {
+  from {
+    transform-origin: left bottom;
+    opacity: 1;
+  }
+  to {
+    transform-origin: left bottom;
+    transform: rotate3d(0, 0, 1, 45deg);
+    opacity: 0;
+  }
+}
+/* line 592, ../sass/style.scss */
+.rotateOutDownRight {
+  animation-name: rotateOutDownRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rotateOutDownRight {
+  from {
+    transform-origin: right bottom;
+    opacity: 1;
+  }
+  to {
+    transform-origin: right bottom;
+    transform: rotate3d(0, 0, 1, -45deg);
+    opacity: 0;
+  }
+}
+/* line 593, ../sass/style.scss */
+.rotateOutUpLeft {
+  animation-name: rotateOutUpLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rotateOutUpLeft {
+  from {
+    transform-origin: left bottom;
+    opacity: 1;
+  }
+  to {
+    transform-origin: left bottom;
+    transform: rotate3d(0, 0, 1, -45deg);
+    opacity: 0;
+  }
+}
+/* line 594, ../sass/style.scss */
+.rotateOutUpRight {
+  animation-name: rotateOutUpRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rotateOutUpRight {
+  from {
+    transform-origin: right bottom;
+    opacity: 1;
+  }
+  to {
+    transform-origin: right bottom;
+    transform: rotate3d(0, 0, 1, 90deg);
+    opacity: 0;
+  }
+}
+/* line 595, ../sass/style.scss */
+.hinge {
+  animation-name: hinge;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+}
+@keyframes hinge {
+  0% {
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+  }
+  20%, 60% {
+    transform: rotate3d(0, 0, 1, 80deg);
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+  }
+  40%, 80% {
+    transform: rotate3d(0, 0, 1, 60deg);
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(0, 700px, 0);
+    opacity: 0;
+  }
+}
+/* line 596, ../sass/style.scss */
+.rollIn {
+  animation-name: rollIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rollIn {
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* line 597, ../sass/style.scss */
+.rollOut {
+  animation-name: rollOut;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes rollOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
+  }
+}
+/* line 598, ../sass/style.scss */
+.zoomIn {
+  animation-name: zoomIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+/* line 599, ../sass/style.scss */
+.zoomInDown {
+  animation-name: zoomInDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes zoomInDown {
+  from {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+/* line 600, ../sass/style.scss */
+.zoomInLeft {
+  animation-name: zoomInLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes zoomInLeft {
+  from {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+/* line 601, ../sass/style.scss */
+.zoomInRight {
+  animation-name: zoomInRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes zoomInRight {
+  from {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+/* line 602, ../sass/style.scss */
+.zoomInUp {
+  animation-name: zoomInUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes zoomInUp {
+  from {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+/* line 603, ../sass/style.scss */
+.zoomOut {
+  animation-name: zoomOut;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 0;
+  }
+}
+/* line 604, ../sass/style.scss */
+.zoomOutDown {
+  animation-name: zoomOutDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes zoomOutDown {
+  40% {
+    opacity: 1;
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  to {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 2000px, 0);
+    transform-origin: center bottom;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+/* line 605, ../sass/style.scss */
+.zoomOutLeft {
+  animation-name: zoomOutLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes zoomOutLeft {
+  40% {
+    opacity: 1;
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(42px, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.1) translate3d(-2000px, 0, 0);
+    transform-origin: left center;
+  }
+}
+/* line 606, ../sass/style.scss */
+.zoomOutRight {
+  animation-name: zoomOutRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes zoomOutRight {
+  40% {
+    opacity: 1;
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(-42px, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.1) translate3d(2000px, 0, 0);
+    transform-origin: right center;
+  }
+}
+/* line 607, ../sass/style.scss */
+.zoomOutUp {
+  animation-name: zoomOutUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes zoomOutUp {
+  40% {
+    opacity: 1;
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  to {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);
+    transform-origin: center bottom;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+/* line 608, ../sass/style.scss */
+.slideInDown {
+  animation-name: slideInDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* line 609, ../sass/style.scss */
+.slideInLeft {
+  animation-name: slideInLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* line 610, ../sass/style.scss */
+.slideInRight {
+  animation-name: slideInRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* line 611, ../sass/style.scss */
+.slideInUp {
+  animation-name: slideInUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* line 612, ../sass/style.scss */
+.slideOutDown {
+  animation-name: slideOutDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes slideOutDown {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+/* line 613, ../sass/style.scss */
+.slideOutLeft {
+  animation-name: slideOutLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes slideOutLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+/* line 614, ../sass/style.scss */
+.slideOutRight {
+  animation-name: slideOutRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    transform: translate3d(1800%, 0, 0);
+  }
+}
+/* line 615, ../sass/style.scss */
+.slideOutUp {
+  animation-name: slideOutRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+/* line 628, ../sass/style.scss */
+html {
+  box-sizing: border-box;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* line 629, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* line 631, ../sass/style.scss */
+html {
+  font: 100%/1.5 "Roboto", Verdana, sans-serif;
+}
+
+/* line 632, ../sass/style.scss */
+input, select, button, textarea {
+  appearance: none;
+  font: inherit;
+  color: inherit;
+}
+
+/* line 636, ../sass/style.scss */
+html:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
+}
+
+/* line 643, ../sass/style.scss */
+body {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 48rem;
+  padding-bottom: 3rem;
+}
+
+/* line 651, ../sass/style.scss */
+[id="animatethis"] {
+  position: relative;
+}
+
+/* line 652, ../sass/style.scss */
+[id="animatethis"] h1 {
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  backface-visibility: hidden;
+  margin-bottom: 1.5rem;
+  font-size: 3.8rem;
+  font-weight: 100;
+  line-height: 1;
+  letter-spacing: -.05em;
+  color: #f35626;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 60s infinite linear;
+}
+@media (min-width: 650px) {
+  /* line 652, ../sass/style.scss */
+  [id="animatethis"] h1 {
+    font-size: 6rem;
+    line-height: 1;
+  }
+}
+
+/* line 672, ../sass/style.scss */
+.animate-button,
+.animate-select {
+  cursor: pointer;
+  outline: 0;
+  padding: .75rem 1.5rem;
+  margin: .375rem;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 2px solid #f35626;
+  line-height: 1.375;
+  font-weight: 700;
+  color: #f35626;
+  cursor: pointer;
+  -webkit-animation: hue 60s infinite linear;
+}
+@media (max-width: 649px) {
+  /* line 672, ../sass/style.scss */
+  .animate-button,
+  .animate-select {
+    padding: .5rem 1rem;
+    line-height: 1;
+  }
+}
+
+/* line 692, ../sass/style.scss */
+.animate-select {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16'%3E%3Cpath fill='%23C0C8C9' d='M12.333 5l-4.54 5-4.54-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 1.5rem 1rem;
+  background-position: right center;
+}
+
+/* line 699, ../sass/style.scss */
+a {
+  color: #f35626;
+  cursor: pointer;
+  -webkit-animation: hue 60s infinite linear;
+  text-decoration: none;
+  border-radius: 4px;
+  border: 3px solid transparent;
+  font-weight: 700;
+}
+/* line 707, ../sass/style.scss */
+a:hover {
+  background-color: #f35626;
+  color: white;
+  border: 3px solid #f35626;
+}
+
+/* line 714, ../sass/style.scss */
+hr {
+  border: none;
+  margin: 1.5rem 0;
+  height: 1px;
+  background-color: #c0c8c9;
+  background-image: linear-gradient(0deg, #fff, #c0c8c9, #fff);
+}
+
+/* line 722, ../sass/style.scss */
+.output, .mixin {
+  outline: 0;
+  width: 100%;
+  border: 0;
+  white-space: pre-wrap;
+  font: 0.85rem monospace;
+  text-align: center;
+  color: gray;
+}
+
+/* line 723, ../sass/style.scss */
+.mixin {
+  transition: all .5s;
+  text-align: left;
+  display: table;
+  resize: none;
+}
+
+/* line 724, ../sass/style.scss */
+[id=show-mixin]:not(:checked) ~ .mixin {
+  max-height: 0;
+  font-size: 0;
+  overflow: hidden;
+}
+
+/* line 725, ../sass/style.scss */
+[id=show-mixin]:checked ~ .mixin {
+  max-height: 4000px;
+  font-size: 0.85rem;
+  min-height: 300px;
+}
+
+/* line 726, ../sass/style.scss */
+[id=show-mixin]:not(:checked) + label:before {
+  content: 'Show ';
+}
+
+/* line 727, ../sass/style.scss */
+[id=show-mixin]:checked + label:before {
+  content: 'Hide ';
+}
+
+/* line 729, ../sass/style.scss */
+label {
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+/* line 730, ../sass/style.scss */
+.credit {
+  font-size: 0.8rem;
+  position: fixed;
+  top: 5px;
+  right: 5px;
+}
+/* line 730, ../sass/style.scss */
+.credit:before {
+  color: silver;
+  content: "Credits ";
+}
+/* line 730, ../sass/style.scss */
+.credit:hover:before {
+  color: white;
+}
+
+/* line 731, ../sass/style.scss */
+html {
+  font: 100%/1.5 "Roboto", Verdana, sans-serif;
+  color: #3d464d;
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden-x;
+  text-align: center;
+}
+
+@keyframes hue {
+  from {
+    filter: hue-rotate(0);
+  }
+  to {
+    filter: hue-rotate(-360deg);
+  }
+}

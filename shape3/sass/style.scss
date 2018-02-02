@@ -1,0 +1,85 @@
+.box {
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+  
+  .face,
+  .shadow {
+    transition: all 0.6s ease-in-out;
+  }
+  
+  &:hover {
+    .face,
+    .shadow {
+      transform: rotateX(0) rotateZ(0);
+      transition: all 0.6s ease-in-out;      
+    }
+    
+    .shadow {
+      box-shadow: 0 0 15px #ccc;    
+    }
+  }  
+}
+
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  transform: rotateX(45deg) rotateZ(-45deg);
+  transform-style: preserve-3d;  
+  z-index: -1;
+  box-shadow: -60px 60px 15px #eee;    
+}
+
+.face {
+  $thickness: 15px;
+  $color: #ddd;
+  
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  background-color: #ccc;
+  margin: 0 auto;  
+  transform: rotateX(45deg) rotateZ(-45deg);
+  transform-style: preserve-3d;
+  
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: -$thickness / 2;
+    left: 0;
+    background-color: $color;
+    width: 100%;
+    height: $thickness;
+    display: block;
+    transform: rotateX(90deg) translateY(-$thickness / 2);
+  }
+  
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -$thickness / 2;
+    width: $thickness;
+    height: 100%;
+    background-color: darken($color, 10%);
+    transform: rotateY(90deg) translateX($thickness / 2);
+  }
+}
+
+/*
+Demo stuff
+*/
+body {
+  font-size: 100%;
+  text-align: center;
+  font-family: 'La Belle Aurore', cursive;
+  font-size: 35px;
+  
+  img {
+    display: block;
+  }
+}

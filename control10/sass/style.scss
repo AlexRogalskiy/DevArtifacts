@@ -1,0 +1,171 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
+
+$base: red;
+
+@keyframes close-before {
+  0% { margin-top: 0 }
+  100% { margin-top: -10px }
+}
+
+@keyframes close-after {
+  0% { margin-top: -10px }
+  100% { margin-top: 0px }
+}
+
+:root {
+  box-sizing: border-box;
+  font-family: 'Oswald', Arial, sans-serif;
+  font-size: 20px;
+  * {
+    box-sizing: border-box;
+    &:before, &:after {
+      box-sizing: inherit;
+    }
+  }
+}
+
+.vimeo-launch {
+  background: white;
+  border: none;
+  box-shadow: inset 0 0 0 4px white, inset 0 0 0 8px darken($base, 10%);
+  color: darken($base, 20%);
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 30px;
+  position: absolute;
+  text-transform: uppercase;
+  
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &:before,
+  &:after {
+    content: attr(data-label);
+
+    display: block;
+    height: 100%;
+    padding: 30px;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    transition: 250ms top;
+  }
+
+  &:before {
+    background: white;
+    box-shadow: inset 0 0 0 4px white, inset 0 0 0 8px darken($base, 10%);
+    color: darken($base, 20%);
+    top: 0;
+  }
+
+  &:after {
+    background: darken($base, 10%);
+    box-shadow: inset 0 0 0 4px darken($base, 10%), inset 0 0 0 8px white;
+    color: white;
+    top: 100%;
+  }
+
+  &:hover {
+    &:before {
+      top: -100%;
+    }
+
+    &:after {
+      top: 0;
+    }
+  }
+}
+
+#vimeo-pop-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999999;
+
+  background: rgba(black, .75);
+
+  div {
+    height: 450px;
+    width: 800px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .vimeo-close {
+    background-color: transparent;
+    border: 3px solid white;
+    cursor: pointer;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 30px;
+
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    
+    transition: 200ms background-color;
+    &:before,
+    &:after {
+      content: '';
+
+      background: white;
+      border-radius: 3px;
+
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: rotate(45deg);
+      transition: 500ms all;
+    }
+
+    &:before {
+      height: 20px;
+      width: 2px;
+      margin-left: -1px;
+      margin-top: -10px;
+    }
+
+    &:after {
+      height: 2px;
+      width: 20px;
+      margin-left: -10px;
+      margin-top: -1px;
+    }
+    
+    &:hover {
+      background-color: rgba(black, .25);
+    }
+
+    &.closing {
+      &:before {
+        transform: rotate(450deg);
+        margin-left: -2px;
+        margin-top: 0;
+
+        animation: close-before 500ms ease 500ms 1 forwards;
+      }
+
+      &:after {
+        transform: rotate(540deg);
+        margin-left: -11px;
+        margin-top: -10px;
+
+        animation: close-after 500ms ease 500ms 1 forwards;
+      }
+    }
+  }
+
+  iframe {
+    border: 6px solid white;
+    height: 100%;
+    width: 100%;
+  }
+}

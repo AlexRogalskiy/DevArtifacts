@@ -1,0 +1,163 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
+@keyframes close-before {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: -10px;
+  }
+}
+@keyframes close-after {
+  0% {
+    margin-top: -10px;
+  }
+  100% {
+    margin-top: 0px;
+  }
+}
+/* line 15, ../sass/style.scss */
+:root {
+  box-sizing: border-box;
+  font-family: 'Oswald', Arial, sans-serif;
+  font-size: 20px;
+}
+/* line 19, ../sass/style.scss */
+:root * {
+  box-sizing: border-box;
+}
+/* line 21, ../sass/style.scss */
+:root *:before, :root *:after {
+  box-sizing: inherit;
+}
+
+/* line 27, ../sass/style.scss */
+.vimeo-launch {
+  background: white;
+  border: none;
+  box-shadow: inset 0 0 0 4px white, inset 0 0 0 8px #cc0000;
+  color: #990000;
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 30px;
+  position: absolute;
+  text-transform: uppercase;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* line 42, ../sass/style.scss */
+.vimeo-launch:before, .vimeo-launch:after {
+  content: attr(data-label);
+  display: block;
+  height: 100%;
+  padding: 30px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: 250ms top;
+}
+/* line 57, ../sass/style.scss */
+.vimeo-launch:before {
+  background: white;
+  box-shadow: inset 0 0 0 4px white, inset 0 0 0 8px #cc0000;
+  color: #990000;
+  top: 0;
+}
+/* line 64, ../sass/style.scss */
+.vimeo-launch:after {
+  background: #cc0000;
+  box-shadow: inset 0 0 0 4px #cc0000, inset 0 0 0 8px white;
+  color: white;
+  top: 100%;
+}
+/* line 72, ../sass/style.scss */
+.vimeo-launch:hover:before {
+  top: -100%;
+}
+/* line 76, ../sass/style.scss */
+.vimeo-launch:hover:after {
+  top: 0;
+}
+
+/* line 82, ../sass/style.scss */
+#vimeo-pop-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999999;
+  background: rgba(0, 0, 0, 0.75);
+}
+/* line 92, ../sass/style.scss */
+#vimeo-pop-container div {
+  height: 450px;
+  width: 800px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+/* line 102, ../sass/style.scss */
+#vimeo-pop-container .vimeo-close {
+  background-color: transparent;
+  border: 3px solid white;
+  cursor: pointer;
+  margin-bottom: 10px;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  transition: 200ms background-color;
+}
+/* line 115, ../sass/style.scss */
+#vimeo-pop-container .vimeo-close:before, #vimeo-pop-container .vimeo-close:after {
+  content: '';
+  background: white;
+  border-radius: 3px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: rotate(45deg);
+  transition: 500ms all;
+}
+/* line 129, ../sass/style.scss */
+#vimeo-pop-container .vimeo-close:before {
+  height: 20px;
+  width: 2px;
+  margin-left: -1px;
+  margin-top: -10px;
+}
+/* line 136, ../sass/style.scss */
+#vimeo-pop-container .vimeo-close:after {
+  height: 2px;
+  width: 20px;
+  margin-left: -10px;
+  margin-top: -1px;
+}
+/* line 143, ../sass/style.scss */
+#vimeo-pop-container .vimeo-close:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+/* line 148, ../sass/style.scss */
+#vimeo-pop-container .vimeo-close.closing:before {
+  transform: rotate(450deg);
+  margin-left: -2px;
+  margin-top: 0;
+  animation: close-before 500ms ease 500ms 1 forwards;
+}
+/* line 156, ../sass/style.scss */
+#vimeo-pop-container .vimeo-close.closing:after {
+  transform: rotate(540deg);
+  margin-left: -11px;
+  margin-top: -10px;
+  animation: close-after 500ms ease 500ms 1 forwards;
+}
+/* line 166, ../sass/style.scss */
+#vimeo-pop-container iframe {
+  border: 6px solid white;
+  height: 100%;
+  width: 100%;
+}

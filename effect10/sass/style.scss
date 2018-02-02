@@ -1,0 +1,78 @@
+.slide {
+  position: fixed;
+  width: 50%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  background-color: #ddd;
+  
+  &:nth-of-type(even) {
+    right: 0;
+  }
+  
+  &:nth-of-type(odd) {
+    left: 0;
+  }
+}
+
+.slide--text {
+  background-color: white;
+  padding: 30px;
+  color: black;
+  font-family: 'Fjalla One', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.slide__inner {
+  height: 100%;
+  border: 2px dashed black;
+  padding: 20% 5% 5% 5%;
+  font-size: 2em;
+}
+
+.slide--locked,
+.slide--sticky {
+  position: fixed !important;
+  top: 0 !important;
+}
+
+.slide--scrolling {
+  position: absolute;
+}
+
+// Demo stuff and reset
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+}
+
+img {
+  width: 100%;
+}
+
+.demo-instructions {
+  font-size: 0.5em;
+}
+
+.demo-arrow {
+  position: relative;
+  animation: demo-arrow 0.4s ease-in-out infinite alternate;
+}
+
+a {
+  color: inherit;
+}
+
+@keyframes demo-arrow {
+  0% {
+    top: 0;
+  }
+  
+  100% {
+    top: 10px;
+  }
+}

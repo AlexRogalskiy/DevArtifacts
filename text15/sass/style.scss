@@ -1,0 +1,62 @@
+$base: #94c6fd;
+
+@function dynamicColor ($color) {
+  @if ( lightness($color) < 50% ) {
+    @return #eee;
+  } @else {
+    @return #111;
+  }
+}
+
+@mixin centerEl ( $left: 50%, $width: 50%, $align: center ) {
+  position: absolute;
+  top: 50%;
+  left: $left;
+  -ms-transform: translate($left * -1,-50%);
+  -webkit-transform: translate($left * -1,-50%);
+  transform: translate($left * -1,-50%);
+  width: $width;
+  > * {
+    display: block;
+    padding: 0 10px;
+    text-align: $align;
+    width: 100%;
+  }
+}
+
+:root {
+  background: $base;
+  padding: 3em;
+  .contain {
+    background: white;
+    box-shadow: 0 2px 2px darken($base, 15%);
+    color: #111;
+    font-size: 1.3em;
+    height: 300px; max-width: 1000px; width: 100%;
+    margin: 0 auto;
+    text-shadow: 0 1px 2px rgba(black, 0.4);
+    position: relative;
+    + .contain {
+      margin-top: 3em;
+    }
+    a {
+      color: dynamicColor($base);
+    }
+  }
+}
+
+#ponyo, #billmurray {
+  @include centerEl;
+}
+
+#jeffgolenski {
+  @include centerEl($left: 95%, $align: left);
+}
+
+#poppop {
+  @include centerEl($left: 5%, $width: auto, $align: left);
+}
+
+#cred {
+  @include centerEl($width: 80%)
+}

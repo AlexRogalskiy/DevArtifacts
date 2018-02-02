@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+<!--
+        NOTE!  With the exception of the actual mixin everything is shamelessly 
+               ripped from the original Animate.css site.  
+-->
+<div>
+    <div id="animatethis"><h1>Animate.scss</h1></div>
+        <p>SCSS version of <a href="//daneden.github.io/animate.css/" target="_blank">Animate.css</a></p>
+        <form>
+            <select class="animate-select">
+                <optgroup label="Attention Seekers">
+                    <option value="bounce">bounce</option>
+                    <option value="flash">flash</option>
+                    <option value="pulse">pulse</option>
+                    <option value="rubberBand">rubberBand</option>
+                    <option value="shake">shake</option>
+                    <option value="headShake">headShake</option>                
+                    <option value="swing">swing</option>
+                    <option value="tada">tada</option>
+                    <option value="wobble">wobble</option>
+                    <option value="jello">jello</option>
+                </optgroup>
+                <optgroup label="Bouncing Entrances">
+                    <option value="bounceIn">bounceIn</option>
+                    <option value="bounceInDown">bounceInDown</option>
+                    <option value="bounceInLeft">bounceInLeft</option>
+                    <option value="bounceInRight">bounceInRight</option>
+                    <option value="bounceInUp">bounceInUp</option>
+                </optgroup>
+
+                <optgroup label="Bouncing Exits">
+                    <option value="bounceOut">bounceOut</option>
+                    <option value="bounceOutDown">bounceOutDown</option>
+                    <option value="bounceOutLeft">bounceOutLeft</option>
+                    <option value="bounceOutRight">bounceOutRight</option>
+                    <option value="bounceOutUp">bounceOutUp</option>
+                </optgroup>
+
+                <optgroup label="Fading Entrances">
+                    <option value="fadeIn">fadeIn</option>
+                    <option value="fadeInDown">fadeInDown</option>
+                    <option value="fadeInDownBig">fadeInDownBig</option>
+                    <option value="fadeInLeft">fadeInLeft</option>
+                    <option value="fadeInLeftBig">fadeInLeftBig</option>
+                    <option value="fadeInRight">fadeInRight</option>
+                    <option value="fadeInRightBig">fadeInRightBig</option>
+                    <option value="fadeInUp">fadeInUp</option>
+                    <option value="fadeInUpBig">fadeInUpBig</option>
+                </optgroup>
+
+                <optgroup label="Fading Exits">
+                    <option value="fadeOut">fadeOut</option>
+                    <option value="fadeOutDown">fadeOutDown</option>
+                    <option value="fadeOutDownBig">fadeOutDownBig</option>
+                    <option value="fadeOutLeft">fadeOutLeft</option>
+                    <option value="fadeOutLeftBig">fadeOutLeftBig</option>
+                    <option value="fadeOutRight">fadeOutRight</option>
+                    <option value="fadeOutRightBig">fadeOutRightBig</option>
+                    <option value="fadeOutUp">fadeOutUp</option>
+                    <option value="fadeOutUpBig">fadeOutUpBig</option>
+                </optgroup>
+
+                <optgroup label="Flippers">
+                    <option value="flip">flip</option>
+                    <option value="flipInX">flipInX</option>
+                    <option value="flipInY">flipInY</option>
+                    <option value="flipOutX">flipOutX</option>
+                    <option value="flipOutY">flipOutY</option>
+                </optgroup>
+
+                <optgroup label="Lightspeed">
+                    <option value="lightSpeedIn">lightSpeedIn</option>
+                    <option value="lightSpeedOut">lightSpeedOut</option>
+                </optgroup>
+
+                <optgroup label="Rotating Entrances">
+                    <option value="rotateIn">rotateIn</option>
+                    <option value="rotateInDownLeft">rotateInDownLeft</option>
+                    <option value="rotateInDownRight">rotateInDownRight</option>
+                    <option value="rotateInUpLeft">rotateInUpLeft</option>
+                    <option value="rotateInUpRight">rotateInUpRight</option>
+                </optgroup>
+
+                <optgroup label="Rotating Exits">
+                    <option value="rotateOut">rotateOut</option>
+                    <option value="rotateOutDownLeft">rotateOutDownLeft</option>
+                    <option value="rotateOutDownRight">rotateOutDownRight</option>
+                    <option value="rotateOutUpLeft">rotateOutUpLeft</option>
+                    <option value="rotateOutUpRight">rotateOutUpRight</option>
+                </optgroup>
+
+                <optgroup label="Sliding Entrances">
+                    <option value="slideInUp">slideInUp</option>
+                    <option value="slideInDown">slideInDown</option>
+                    <option value="slideInLeft">slideInLeft</option>
+                    <option value="slideInRight">slideInRight</option>
+
+                </optgroup>
+                <optgroup label="Sliding Exits">
+                    <option value="slideOutUp">slideOutUp</option>
+                    <option value="slideOutDown">slideOutDown</option>
+                    <option value="slideOutLeft">slideOutLeft</option>
+                    <option value="slideOutRight">slideOutRight</option>
+
+                </optgroup>
+
+                <optgroup label="Zoom Entrances">
+                    <option value="zoomIn">zoomIn</option>
+                    <option value="zoomInDown">zoomInDown</option>
+                    <option value="zoomInLeft">zoomInLeft</option>
+                    <option value="zoomInRight">zoomInRight</option>
+                    <option value="zoomInUp">zoomInUp</option>
+                </optgroup>
+
+                <optgroup label="Zoom Exits">
+                    <option value="zoomOut">zoomOut</option>
+                    <option value="zoomOutDown">zoomOutDown</option>
+                    <option value="zoomOutLeft">zoomOutLeft</option>
+                    <option value="zoomOutRight">zoomOutRight</option>
+                    <option value="zoomOutUp">zoomOutUp</option>
+                </optgroup>
+
+                <optgroup label="Specials">
+                    <option value="hinge">hinge</option>
+                    <option value="rollIn">rollIn</option>
+                    <option value="rollOut">rollOut</option>
+                </optgroup>
+            </select>
+            <button class="animate-button">Animate it</button>
+            
+            <hr />
+            <input type="tetx" class="output" />
+            <hr />        
+            <input type="checkbox" id="show-mixin" hidden/>
+            <label for="show-mixin">Mixin</label>
+            <textarea class="mixin"></textarea>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/script.js" charset="utf-8"></script>
+</body>
+<!--  footer -->
+</html>
