@@ -1,0 +1,215 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,800);
+
+body {
+    font-size: 16px;
+    line-height: 22px;
+    color: #555;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+
+#section-feature ul {
+    margin: 100px 0 0 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+#section-feature li {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    height: 240px;
+    padding: 2%;
+    float: left;
+    margin-bottom: 40px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#section-feature .sf-wrap {
+    background-repeat: no-repeat;
+    position: absolute;
+    max-width: 280px;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    margin-left: -140px;
+    top: 0;
+    -moz-perspective: 600px;
+    -webkit-perspective: 600px;
+    -ms-perspective: 600px;
+    -o-perspective: 600px;
+    perspective: 600px;
+    cursor: pointer;
+}
+
+.sf-mdl-left,
+.sf-mdl-right,
+.sf-mdl-left-full,
+.sf-mdl-right-full {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+    overflow: hidden;
+}
+
+.sf-icon {
+    position: absolute;
+    top: 30px;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    width: 200%;
+    color: #e4610e;
+}
+
+
+.sf-mdl-left-full .sf-icon,
+.sf-mdl-right-full .sf-icon {
+    color: #fff;
+}
+
+.sf-mdl-right,
+.sf-mdl-right-full {
+    left: auto;
+    right: 0;
+}
+
+.sf-mdl-left-full,
+.sf-mdl-right-full {
+    background-color: #333;
+    z-index: 9;
+    color: #fff;
+}
+
+.sf-wrap a {
+    color: #e4610e;
+    text-decoration: none;
+}
+
+.sf-mdl-left,
+.sf-mdl-right {
+    background-color: #fff;
+    z-index: 10;
+}
+
+.sf-wrap > .sf-mdl-right-full,
+.sf-wrap > .sf-mdl-right {
+    background-position: right -30px;
+}
+
+.sf-wrap > .sf-mdl-right,
+.sf-wrap > .sf-mdl-left-full {
+    -moz-backface-visibility: hidden;
+    -moz-transform-style: preserve-3d;
+    -moz-transform-origin: 0 0;
+    -moz-transform: rotateY(0deg);
+
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: rotateY(0deg);
+
+    -o-backface-visibility: hidden;
+    -o-transform-style: preserve-3d;
+    -o-transform-origin: 0 0;
+    -o-transform: rotateY(0deg);
+
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transform-origin: 0 0;
+    transform: rotateY(0deg);
+}
+
+.sf-wrap.hover > .sf-mdl-right {
+    -webkit-transform: rotateY(-45deg);
+    -moz-transform: rotateY(-45deg);
+    -ms-transform: rotateY(-45deg);
+    -o-transform: rotateY(-45deg);
+    transform: rotateY(-45deg);
+    background-color: #ececec;
+}
+
+.sf-wrap > .sf-mdl-left-full {
+    -moz-transform-origin: 100% 0;
+    -webkit-transform-origin: 100% 0;
+    -o-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -moz-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.sf-wrap.active > .sf-mdl-right,
+.sf-wrap.hover.active > .sf-mdl-right {
+    -moz-transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.sf-wrap.active > .sf-mdl-left-full {
+    -moz-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.active .sf-mdl-left-full,
+.active .sf-mdl-right-full {
+    z-index: 11;
+}
+
+.sf-wrap div h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 22px;
+}
+
+.sf-wrap div h3,
+.sf-wrap div p {
+    width: 200%;
+    position: absolute;
+    text-align: center;
+    left: 0;
+    top: 140px;
+}
+
+.sf-wrap div p {
+    padding: 0 10%;
+    line-height: 18px;
+    font-size: 13px;
+    top: 170px;
+}
+
+.sf-wrap div.sf-mdl-right h3,
+.sf-wrap div.sf-mdl-right-full h3,
+.sf-wrap div.sf-mdl-right p,
+.sf-wrap div.sf-mdl-right-full p,
+.sf-mdl-right .sf-icon,
+.sf-mdl-right-full .sf-icon
+{
+    left: auto;
+    right: 0;
+}
+
+.sf-wrap div.sf-mdl-left-full h3,
+.sf-wrap div.sf-mdl-right-full h3 {
+    top: 115px;
+}
