@@ -1,0 +1,296 @@
+/* line 1, ../sass/style.sass */
+* {
+  position: relative;
+  box-sizing: border-box;
+  font-family: Lato;
+}
+
+/* line 6, ../sass/style.sass */
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+/* line 11, ../sass/style.sass */
+.wrapper {
+  height: 100%;
+  background-color: #625772;
+}
+
+/* line 15, ../sass/style.sass */
+.camera {
+  width: 200px;
+  height: 200px;
+  border: solid 10px #fff;
+  border-radius: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 500px;
+  animation: ballUp 0.5s 1s both, ballDown 0.2s 1.5s ease-in forwards, cameraIn 0.3s 1.7s forwards;
+}
+
+@keyframes ballUp {
+  0% {
+    width: 3px;
+    height: 3px;
+    top: 50%;
+    opacity: 0;
+  }
+  100% {
+    width: 3px;
+    height: 3px;
+    top: 10%;
+  }
+}
+@keyframes ballDown {
+  0% {
+    width: 3px;
+    height: 3px;
+    top: 10%;
+  }
+  100% {
+    width: 3px;
+    height: 3px;
+    top: 50%;
+  }
+}
+@keyframes cameraIn {
+  0% {
+    width: 3px;
+    height: 3px;
+  }
+  80% {
+    width: 240px;
+    height: 240px;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+  }
+}
+/* line 62, ../sass/style.sass */
+.lens {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: solid 10px #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: lensIn 0.3s 2s both;
+}
+
+@keyframes lensIn {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  80% {
+    width: 120px;
+    height: 120px;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+  }
+}
+/* line 86, ../sass/style.sass */
+.flashLight {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  animation: flashLightIn 0.3s 2.4s both;
+}
+
+@keyframes flashLightIn {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* line 106, ../sass/style.sass */
+.flashLight:after {
+  content: " ";
+  width: 200px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: flash 0.3s 2.8s both;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* line 134, ../sass/style.sass */
+.pictureCard {
+  width: 240px;
+  height: 240px;
+  background-color: #ddd;
+  border: solid 10px #fff;
+  border-bottom: solid 20px #fff;
+  border-radius: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pictureCardIn 1s 3.4s backwards, pictureCardFlip 1s 4.4s;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+/* line 153, ../sass/style.sass */
+.pictureCard:hover {
+  width: 424px;
+  height: 424px;
+  border: 0;
+  padding: 20px;
+  background-color: #fff;
+}
+/* line 159, ../sass/style.sass */
+.pictureCard:hover .imgBox {
+  border-radius: 8px;
+}
+
+/* line 162, ../sass/style.sass */
+.pictureCard .imgBox {
+  animation: showImg 0.5s 4.8s both;
+  height: 300px;
+  overflow: hidden;
+}
+
+/* line 169, ../sass/style.sass */
+.pictureCard .imgBox img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* line 174, ../sass/style.sass */
+.pictureCard h1 {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.5;
+}
+
+/* line 179, ../sass/style.sass */
+.pictureCard h2 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* line 185, ../sass/style.sass */
+.pictureCard .text {
+  opacity: 0;
+  transform: translateX(-10%);
+  margin: 16px 0px;
+}
+
+/* line 190, ../sass/style.sass */
+.pictureCard:hover .text {
+  opacity: 1;
+  transform: translateX(0%);
+  margin: 16px 0px;
+  transition: all 0.6s 0.3s;
+}
+
+@keyframes pictureCardIn {
+  0% {
+    width: 120px;
+    height: 0;
+    opacity: 0;
+    top: 100%;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    width: 120px;
+    height: 120px;
+    top: 100%;
+    transform: translate(-50%, 0);
+  }
+}
+@keyframes pictureCardFlip {
+  0% {
+    width: 120px;
+    height: 120px;
+    top: 100%;
+    transform: translate(-50%, 0) rotateX(0deg);
+  }
+  100% {
+    width: 240px;
+    height: 240px;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateX(360deg);
+  }
+}
+@keyframes showImg {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* line 228, ../sass/style.sass */
+.mouse {
+  background: url("https://image.flaticon.com/icons/svg/266/266025.svg");
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: mouseMove 1s 5s both infinite;
+}
+
+@keyframes mouseMove {
+  0% {
+    top: 120%;
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 60%;
+    opacity: 0;
+  }
+}
+/* line 252, ../sass/style.sass */
+.pictureCard:hover ~ .mouse {
+  visibility: hidden;
+}

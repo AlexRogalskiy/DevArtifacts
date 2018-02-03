@@ -1,0 +1,92 @@
+/**
+ * Extending the hit area — with generated content
+ */
+
+/*button {
+  position: relative;
+  padding: .3em .5em;
+  background: #58a;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,.3);
+  box-shadow:  0 .1em .2em -.05em rgba(0,0,0,.5);
+  color: white;
+  font: bold 150%/1 sans-serif;
+  cursor: pointer;
+}
+
+button:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+  left: -10px;
+}*/
+
+* {
+  position: relative;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #364F6B;
+}
+
+.wrapper {
+  background-color: #364F6B;
+  height: 100%;
+}
+
+.btn {
+  color: #FC5185;
+  font-family: Lato;
+  text-decoration: none;
+  width: 56px;
+  line-height: 56px;
+  border: solid 1px #FC5185;
+  background-color: #FC5185;
+  display: inline-block;
+  border-radius: 28px;
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.btn:hover {
+  padding: 0px 25px;
+  border: solid 2px #FC5185;
+  background-color: #364F6B;
+  width: auto;
+}
+
+.btn span {
+  white-space: nowrap;
+  color: #364F6B;
+  opacity: 0;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.btn:hover span {
+  opacity: 1;
+  color: #FC5185;
+}
+
+.btn:after {
+  content: '+';
+  font-size: 40px;
+  line-height: 50px;
+  color: #364F6B;
+  position: absolute;
+  right: 16px;
+  top: 0px;
+  transition: all 0.3s;
+}
+
+.btn:hover:after {
+  opacity: 0;
+}

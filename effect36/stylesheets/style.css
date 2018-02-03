@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css?family=Supermercado+One");
+/* line 3, ../sass/style.scss */
+h1, h2, #sizePicker {
+  text-align: center;
+  font-family: 'Supermercado One', cursive;
+}
+
+/* line 8, ../sass/style.scss */
+p {
+  text-align: center;
+  font-family: 'Supermercado One', cursive;
+}
+
+/* line 15, ../sass/style.scss */
+td {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rbga(0, 0, 0, 0.6);
+  position: relative;
+  border: 1px solid rbga(0, 0, 0, 0.5);
+  cursor: pointer;
+  box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.3);
+  transition: background-color 1s, 150ms;
+}
+/* line 24, ../sass/style.scss */
+td:active {
+  box-shadow: 0px 0px 0px 0px;
+}
+/* line 27, ../sass/style.scss */
+td:hover {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+/* line 32, ../sass/style.scss */
+table {
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+@keyframes move {
+  0% {
+    box-shadow: 4px 2px 2px 3px rgba(0, 0, 0, 0.4);
+  }
+  25% {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 4px 2px 2px 3px rgba(0, 0, 0, 0.4);
+  }
+  75% {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    box-shadow: 4px 2px 2px 3px rgba(0, 0, 0, 0.4);
+  }
+}
+/* line 52, ../sass/style.scss */
+td:nth-child(even) {
+  animation: moveme 3s infinite;
+}
+
+/* line 56, ../sass/style.scss */
+td:nth-child(odd) {
+  animation: move 3s infinite;
+}
+
+@keyframes moveme {
+  0% {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+  }
+  25% {
+    box-shadow: 4px 2px 2px 3px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+  }
+  75% {
+    box-shadow: 4px 2px 2px 3px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+  }
+}
+/* line 70, ../sass/style.scss */
+.middle {
+  display: flex;
+  justify-content: center;
+}
+
+/* line 75, ../sass/style.scss */
+h1, h2, #sizePicker {
+  -webkit-animation: random 5s infinite;
+  animation: random 20s infinite;
+}
+
+@keyframes random {
+  15% {
+    color: wheat;
+  }
+  30% {
+    color: magenta;
+  }
+  45% {
+    color: green;
+  }
+  60% {
+    color: blue;
+  }
+  75% {
+    color: black;
+  }
+}
+/* line 89, ../sass/style.scss */
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+/* line 92, ../sass/style.scss */
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
+
+/* line 96, ../sass/style.scss */
+input[type="color"] {
+  -webkit-appearance: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  -webkit-border-radius: 50%;
+}
