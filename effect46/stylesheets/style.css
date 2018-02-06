@@ -1,0 +1,199 @@
+/* line 24, ../sass/style.scss */
+#start, #end {
+  display: block;
+  width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 98;
+}
+
+/* line 35, ../sass/style.scss */
+#board > span p, .under {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* line 46, ../sass/style.scss */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 50, ../sass/style.scss */
+body {
+  background-color: #080c2b;
+  font-family: 'Raleway', sans-serif;
+  font-size: 5.5vmin;
+  color: #cbcbcb;
+  cursor: default;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* line 59, ../sass/style.scss */
+#start, #end {
+  font-size: 2em;
+}
+
+/* line 63, ../sass/style.scss */
+#start {
+  line-height: 1;
+}
+
+/* line 66, ../sass/style.scss */
+#end {
+  background-color: rgba(3, 5, 17, 0.73);
+  padding: 0.5em;
+  border-radius: 10px;
+}
+
+/* line 71, ../sass/style.scss */
+.sym {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3em;
+  line-height: 1;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* line 79, ../sass/style.scss */
+#X {
+  color: #c30506;
+}
+
+/* line 82, ../sass/style.scss */
+#O {
+  color: #0908c4;
+}
+
+/* line 85, ../sass/style.scss */
+.x {
+  color: #c30506;
+}
+
+/* line 88, ../sass/style.scss */
+.o {
+  color: #0908c4;
+}
+
+/* line 91, ../sass/style.scss */
+#board {
+  font-family: 'Montserrat', sans-serif;
+  color: #1a1f4d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75vmin;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* line 103, ../sass/style.scss */
+#board > span {
+  border: 1px solid #1a1f4d;
+  border-width: 0px calc(75vmin/50) calc(75vmin/50) 0px;
+  font-size: calc(75vmin/3.75);
+  height: calc(75vmin/3);
+  text-align: center;
+  position: relative;
+}
+/* line 110, ../sass/style.scss */
+#board > span:nth-child(3), #board > span:nth-child(6) {
+  border-width: 0px 0px calc(75vmin/50);
+}
+/* line 113, ../sass/style.scss */
+#board > span:nth-child(7), #board > span:nth-child(8) {
+  border-width: 0px calc(75vmin/50) 0px 0px;
+}
+/* line 116, ../sass/style.scss */
+#board > span:last-child {
+  border-width: 0px;
+}
+
+/* line 123, ../sass/style.scss */
+.clickable {
+  cursor: pointer;
+}
+
+/* line 126, ../sass/style.scss */
+#end a {
+  font-family: 'Montserrat', serif;
+  font-weight: 600;
+  display: block;
+  background-color: transparent;
+  border: 0px none transparent;
+  border-radius: 8px;
+  font-size: 3.66667vmin;
+  color: #999a9d;
+  cursor: pointer;
+  margin: auto;
+  transition: all 0.2s ease;
+}
+/* line 138, ../sass/style.scss */
+#end a:hover {
+  color: #3345cc;
+}
+
+/* line 142, ../sass/style.scss */
+.under {
+  z-index: -1;
+}
+
+/* line 146, ../sass/style.scss */
+.highlight {
+  animation: 1.2s winAnimation infinite;
+}
+
+@keyframes pulseAnimation {
+  50% {
+    transform: scale(1.1);
+  }
+}
+@keyframes winAnimation {
+  50% {
+    color: #040616;
+  }
+}
+/* line 159, ../sass/style.scss */
+#menu {
+  font-family: 'Montserrat', serif;
+  color: #192261;
+  font-weight: 600;
+  width: max-content;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px;
+}
+/* line 168, ../sass/style.scss */
+#menu i {
+  border-radius: 10px;
+  font-size: 130%;
+  color: rgba(32, 223, 118, 0.85);
+  display: inline-block;
+  padding: 12px;
+}
+
+/* line 176, ../sass/style.scss */
+#score {
+  display: inline-block;
+  text-indent: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* line 183, ../sass/style.scss */
+.youScore, .pcScore {
+  font-family: monospace;
+  font-size: 110%;
+  font-weight: normal;
+}

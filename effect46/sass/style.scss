@@ -1,0 +1,187 @@
+$bghue: 233;
+$bgsat: 69%;
+$bglit: 10%;
+$mainColor: hsl($bghue,$bgsat,$bglit);
+
+$lightColor: adjust-color($mainColor, $saturation:-19%, $lightness: +10%);
+$accentColor: adjust-color($mainColor, $saturation:-9%, $lightness: +40%);
+$darkColor: darken($mainColor, 6%);
+$darkTextColor: adjust-color($darkColor, $saturation:-10%, $lightness: +20%);
+
+$white:#cbcbcb;
+$x:#c30506;
+$o:#0908c4;
+$green: rgba(32, 223, 118, 0.85);
+
+$boardsize:75vmin;
+$fsize:5.5vmin;
+$thickness: calc(75vmin/50);
+
+%border {
+	border:1px solid red;
+}
+
+%centerFloat {
+	display: block;
+	width: fit-content;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+	z-index:98;
+}
+
+%xyCenter {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+%montserrat {
+	font-family: 'Montserrat', sans-serif;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: $mainColor;
+	font-family: 'Raleway', sans-serif;
+	font-size: $fsize;
+	color: $white;
+	cursor: default;
+	user-select: none;
+	overflow: hidden;
+}
+#start, #end {
+	@extend %centerFloat;
+	font-size: 2em;
+}
+#start {
+	line-height: 1;	
+}
+#end {
+	background-color: transparentize($darkColor, 0.27);
+	padding: 0.5em;
+	border-radius: 10px;
+}
+.sym {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 3em;
+	line-height: 1;
+	font-weight: 600;
+	cursor: pointer;
+	display: inline-block;
+}
+#X {
+	color: $x;	
+}
+#O {
+	color: $o;	
+}
+.x {
+	color:$x;
+}
+.o {
+	color:$o;
+}
+#board {
+	font-family: 'Montserrat', sans-serif;
+	color:$lightColor;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	width:$boardsize;
+	display: grid;
+	grid-template-rows:repeat(3,1fr);
+	grid-template-columns:repeat(3,1fr);
+}
+#board>span {
+	border:1px solid $lightColor;
+	border-width: 0px $thickness $thickness 0px;
+	font-size:calc(75vmin/3.75);
+	height: calc(75vmin/3);
+	text-align: center;
+	position: relative;
+	&:nth-child(3), &:nth-child(6) {
+		border-width: 0px 0px $thickness;
+	}
+	&:nth-child(7), &:nth-child(8) {
+		border-width: 0px $thickness 0px 0px;
+	}
+	&:last-child {
+		border-width: 0px;
+	}
+	p {
+		@extend %xyCenter;
+	}
+}
+.clickable {
+	cursor:pointer;
+}
+#end a {
+	font-family: 'Montserrat', serif;
+	font-weight: 600;
+	display: block;
+	background-color:transparent;
+	border: 0px none transparent;
+	border-radius: 8px;
+	font-size: $fsize/1.5;
+	color: mix($white, $darkColor, 75%);
+	cursor: pointer;
+	margin:auto;
+	transition: all 0.2s ease;
+	&:hover {
+		color:$accentColor;
+	}
+}
+.under {
+	@extend %xyCenter;
+	z-index: -1;
+}
+.highlight {
+	animation: 1.2s winAnimation infinite;	
+}
+@keyframes pulseAnimation {
+	50% {
+		transform: scale(1.1);
+	}
+}
+@keyframes winAnimation {
+	50% {
+		color: darken($mainColor, 5%);
+	}
+}
+#menu {
+	font-family: 'Montserrat', serif;
+	color: $darkTextColor;
+	font-weight: 600;	
+	width: max-content;	
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	padding: 5px;
+	i {
+		border-radius: 10px;
+		font-size: 130%;
+		color: $green;
+		display: inline-block;
+		padding: 12px;
+	}
+}
+#score {
+	display: inline-block;
+	text-indent: 15px;
+	border-radius: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.youScore, .pcScore {
+	font-family: monospace;
+	font-size: 110%;
+	font-weight: normal;
+}

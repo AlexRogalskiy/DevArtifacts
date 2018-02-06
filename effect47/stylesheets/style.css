@@ -1,0 +1,457 @@
+/* line 1, ../sass/style.scss */
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Ubuntu',sans-serif;
+  font-weight: 400;
+  /*font-size:22px;*/
+  font-size: 3vh;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: default;
+  text-align: center;
+}
+
+/* line 13, ../sass/style.scss */
+body {
+  display: flex;
+  background-color: #222;
+}
+
+/* line 17, ../sass/style.scss */
+#container {
+  margin: 0 auto;
+  color: rgba(0, 0, 0, 0.5);
+  align-self: center;
+  display: flex;
+}
+
+/* line 23, ../sass/style.scss */
+.hidden {
+  visibility: hidden;
+}
+
+/* line 28, ../sass/style.scss */
+#aside ul {
+  height: 62vh;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  justify-content: space-around;
+  padding-right: 1em;
+}
+
+/* line 36, ../sass/style.scss */
+#aside i {
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: -webkit-transform 0.2s ease, color 0.2s ease;
+}
+
+/* line 41, ../sass/style.scss */
+#aside .wi-fahrenheit, #aside .wi-celsius {
+  transform: scale(1.6);
+}
+
+/* line 44, ../sass/style.scss */
+#aside .wi-humidity {
+  transform: scale(1.1);
+}
+
+/* line 47, ../sass/style.scss */
+#main {
+  width: 62vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* line 55, ../sass/style.scss */
+#today .day {
+  height: 62vh;
+  width: 100%;
+  border-bottom: 1px solid transparent;
+  padding: 1em 0.5em 0 0.5em;
+}
+
+/* line 61, ../sass/style.scss */
+#today span {
+  display: block;
+  text-align: left;
+}
+
+/* line 65, ../sass/style.scss */
+#today .city {
+  font-size: 1.25em;
+  font-weight: 300;
+}
+
+/* line 69, ../sass/style.scss */
+.date {
+  font-weight: 700;
+}
+
+/* line 72, ../sass/style.scss */
+#today .data {
+  text-align: center;
+  word-wrap: break-word;
+  font-size: 3em;
+  font-weight: 400;
+  /*position:relative;
+  left:50%;
+  transform:translateX(-50%);*/
+}
+
+/* line 81, ../sass/style.scss */
+#today .extra {
+  font-size: 0.5em;
+  font-weight: 300;
+  padding-bottom: 0.5em;
+  text-align: center;
+}
+
+/* line 87, ../sass/style.scss */
+.icon {
+  text-align: center !important;
+}
+
+/* line 90, ../sass/style.scss */
+#today i {
+  font-size: 7.5em;
+  padding: 0.25em 0 0.2em 0;
+}
+
+/* line 94, ../sass/style.scss */
+#future {
+  width: inherit;
+  height: 38vh;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* line 99, ../sass/style.scss */
+#future .day {
+  height: 100%;
+  width: 33.33%;
+  float: left;
+  /*border-left:1px solid rgba(0,0,0,0.3);*/
+  padding: 0.5em;
+  word-wrap: break-word;
+}
+
+/* line 107, ../sass/style.scss */
+#future span {
+  display: block;
+}
+
+/* line 110, ../sass/style.scss */
+#future i {
+  font-size: 2.5em;
+  padding: 0.5em 0;
+}
+
+/* line 114, ../sass/style.scss */
+#future .data {
+  font-size: 1.125em;
+  font-weight: 500;
+  padding: 0;
+}
+
+/* line 119, ../sass/style.scss */
+#future .data span {
+  padding: 0;
+}
+
+/* line 122, ../sass/style.scss */
+#future .extra {
+  font-weight: 500;
+  font-size: 0.8em;
+}
+
+/* line 127, ../sass/style.scss */
+#aside i:hover {
+  transform: scale(1.8);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* line 131, ../sass/style.scss */
+#aside .wi-fahrenheit:hover, #aside .wi-celsius:hover {
+  transform: scale(2.4);
+}
+
+/* line 134, ../sass/style.scss */
+#aside .wi-humidity:hover {
+  transform: scale(1.9);
+}
+
+/* line 137, ../sass/style.scss */
+#aside i:active {
+  color: rgba(0, 0, 0, 0.9);
+  transform: scale(2.25);
+}
+
+/* line 141, ../sass/style.scss */
+#aside .wi-fahrenheit:active, #aside .wi-celsius:active {
+  transform: scale(2.85);
+}
+
+/* line 144, ../sass/style.scss */
+#aside .wi-humidity:active {
+  transform: scale(2.35);
+}
+
+/* line 148, ../sass/style.scss */
+#future .day i {
+  animation: minibob 3s linear infinite;
+}
+
+/* line 151, ../sass/style.scss */
+#future .day:nth-child(2) i {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+/* line 155, ../sass/style.scss */
+#today .day i {
+  animation: bob 4s linear infinite;
+}
+
+@keyframes minibob {
+  25% {
+    transform: translateY(-1px);
+  }
+  75% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@keyframes bob {
+  25% {
+    transform: translateY(-3px);
+  }
+  75% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+/* line 180, ../sass/style.scss */
+.blank {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* line 186, ../sass/style.scss */
+#loader {
+  border: 1px solid transparent;
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  height: 15vh;
+  width: 15vh;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* line 199, ../sass/style.scss */
+.night:hover {
+  color: #e0e0e0 !important;
+}
+
+/* line 202, ../sass/style.scss */
+.night:active, .night:focus {
+  color: #fff !important;
+}
+
+/* line 205, ../sass/style.scss */
+.night:visited {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* line 208, ../sass/style.scss */
+.cloudy {
+  background-color: #bdbdbd;
+  color: #757575;
+}
+
+/* line 212, ../sass/style.scss */
+.mostcloud {
+  /*background-color:#e0e0e0;*/
+  background-color: #e0e0e0;
+  color: #90a4ae;
+}
+
+/* line 217, ../sass/style.scss */
+.sun {
+  /*background-color:#ffe082;
+  color:#ffb74d;*/
+  background-color: #ffe082;
+  color: #ffa726;
+}
+
+/* line 223, ../sass/style.scss */
+.mostsun {
+  /*background-color:#81d4fa;
+  color:#03a9f4;*/
+  background-color: #90caf9;
+  color: #1e88e5;
+}
+
+/* line 229, ../sass/style.scss */
+.fog {
+  background-color: #f5f5f5;
+  color: #bdbdbd;
+}
+
+/* line 233, ../sass/style.scss */
+.rain {
+  /*background-color:#b0bec5;*/
+  background-color: #90a4ae;
+  color: #546e7a;
+}
+
+/* line 238, ../sass/style.scss */
+.snow {
+  background-color: #afbfff;
+  color: #fff;
+}
+
+/* line 242, ../sass/style.scss */
+.storm {
+  /*background-color:#607d8b;*/
+  background-color: #34495e;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* line 248, ../sass/style.scss */
+.nightcloudy {
+  background-color: #273270;
+}
+
+/* line 251, ../sass/style.scss */
+.nightmostcloud {
+  /*background-color:#e0e0e0;*/
+  background-color: #37479f;
+}
+
+/* line 255, ../sass/style.scss */
+.nightsun {
+  background-color: #7e57c2;
+}
+
+/* line 258, ../sass/style.scss */
+.nightmostsun {
+  /*background-color:#81d4fa;*/
+  background-color: #5e35b1;
+}
+
+/* line 262, ../sass/style.scss */
+.nightfog {
+  background-color: #2f3d88;
+}
+
+/* line 265, ../sass/style.scss */
+.nightrain {
+  /*background-color:#b0bec5;*/
+  background-color: #1e2e70;
+}
+
+/* line 269, ../sass/style.scss */
+.nightsnow {
+  background-color: #2b3db5;
+}
+
+/* line 272, ../sass/style.scss */
+.nightstorm {
+  /*background-color:#607d8b;*/
+  background-color: #0d1743;
+}
+
+/*
+.cloudy i {
+  color:#9e9e9e;
+}
+.mostcloud i {
+  color:#bfbfbf;
+}
+.sun i {
+  color:#ffc107;
+}
+.mostsun i {
+  color:#29b6f6;
+}
+.fog i {
+  color:#bfbfbf;
+}
+.rain i {
+  color:#78909e;
+}
+.snow i {
+  color:#afbfff;
+}
+.storm i {
+  color:#34495e;
+}
+*/
+@media only screen and (max-width: 768px) {
+  /* line 303, ../sass/style.scss */
+  * {
+    text-align: center;
+  }
+
+  /* line 306, ../sass/style.scss */
+  #container {
+    flex-direction: column;
+    height: 100vh;
+    /*overflow:hidden;*/
+  }
+
+  /* line 311, ../sass/style.scss */
+  #aside ul {
+    /*height:60vw;*/
+    flex-direction: row;
+    height: 10vh;
+    padding-right: 0;
+    padding: 1em 0;
+  }
+
+  /* line 318, ../sass/style.scss */
+  #aside i {
+    /*font-size:1.75em;*/
+  }
+
+  /* line 321, ../sass/style.scss */
+  #main {
+    /*height:100vh;*/
+    width: 100vw;
+  }
+
+  /* line 325, ../sass/style.scss */
+  #today .day {
+    height: 60vh;
+    /*padding-top:0px;*/
+  }
+
+  /* line 329, ../sass/style.scss */
+  #future {
+    height: 30vh;
+  }
+}
+@media only screen and (max-width: 320px) {
+  /* line 334, ../sass/style.scss */
+  #container {
+    width: 320px;
+  }
+
+  /* line 337, ../sass/style.scss */
+  #main {
+    width: 320px;
+  }
+}
