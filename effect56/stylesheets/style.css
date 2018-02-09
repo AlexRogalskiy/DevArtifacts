@@ -1,0 +1,206 @@
+/* line 1, ../sass/style.scss */
+body {
+  background-color: #030303;
+  overflow: hidden;
+}
+
+/* line 5, ../sass/style.scss */
+#header {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  padding: 20px;
+  color: #69cdd7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* line 17, ../sass/style.scss */
+#title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+/* line 22, ../sass/style.scss */
+#controls {
+  display: flex;
+  padding: 15px;
+}
+/* line 25, ../sass/style.scss */
+#controls .btn {
+  position: relative;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+}
+/* line 30, ../sass/style.scss */
+#controls .btn .fa {
+  width: 16px;
+  pointer-events: none;
+}
+/* line 33, ../sass/style.scss */
+#controls .btn .fa.off {
+  color: #efefef;
+  opacity: 0.4;
+}
+/* line 38, ../sass/style.scss */
+#controls .btn:active {
+  transform: scale(0.9);
+}
+/* line 41, ../sass/style.scss */
+#controls .btn.disabled {
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+/* line 47, ../sass/style.scss */
+#flex-pad {
+  flex: 1;
+}
+
+/* line 51, ../sass/style.scss */
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: radial-gradient(rgba(105, 205, 215, 0.5), rgba(10, 20, 30, 0.5));
+  background-position: 100% 100%;
+  background-size: 200% 200%;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+/* line 64, ../sass/style.scss */
+#background.hidden {
+  opacity: 0;
+}
+/* line 67, ../sass/style.scss */
+#background.loading {
+  opacity: 0.2;
+}
+/* line 70, ../sass/style.scss */
+#background.loading + #loader {
+  opacity: 1;
+}
+/* line 73, ../sass/style.scss */
+#background.loading + #loader #spinner {
+  animation: spinner-anim 2s ease-out infinite;
+}
+/* line 76, ../sass/style.scss */
+#background.loading + #loader #spinner::before {
+  animation: spinner-anim 2s ease-out infinite;
+}
+/* line 79, ../sass/style.scss */
+#background.loading + #loader #spinner::after {
+  animation: spinner-anim 1s ease-out infinite;
+}
+
+/* line 86, ../sass/style.scss */
+#loader {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+/* line 98, ../sass/style.scss */
+#loader #loading-text {
+  font-size: 1.8em;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #69cdd7;
+  transition: all 0.5s ease-in-out;
+}
+/* line 104, ../sass/style.scss */
+#loader #spinner {
+  height: 40px;
+  width: 40px;
+  border: 2px solid #efefef;
+  border-color: transparent transparent #69cdd7 #69cdd7;
+  border-radius: 50%;
+  margin-right: 10px;
+  transform: rotate(0deg);
+}
+/* line 113, ../sass/style.scss */
+#loader #spinner::before, #loader #spinner::after {
+  position: absolute;
+  content: '';
+  display: block;
+  border: 2px solid #efefef;
+  border-color: transparent transparent #69cdd7 #69cdd7;
+  border-radius: 50%;
+}
+/* line 121, ../sass/style.scss */
+#loader #spinner::before {
+  top: 3px;
+  left: 3px;
+  height: 30px;
+  width: 30px;
+}
+/* line 127, ../sass/style.scss */
+#loader #spinner::after {
+  top: 8px;
+  left: 8px;
+  height: 20px;
+  width: 20px;
+}
+
+/* line 135, ../sass/style.scss */
+#canvas {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* line 144, ../sass/style.scss */
+#codepen-link {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  height: 40px;
+  width: 40px;
+  z-index: 10;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/logo.jpg");
+  background-position: center center;
+  background-size: cover;
+  opacity: 0.4;
+  transition: all 0.25s;
+}
+/* line 159, ../sass/style.scss */
+#codepen-link:hover {
+  opacity: 0.8;
+  box-shadow: 0 0 6px #efefef;
+}
+
+@media screen and (min-width: 600px) {
+  /* line 165, ../sass/style.scss */
+  #header {
+    flex-direction: row;
+  }
+
+  /* line 168, ../sass/style.scss */
+  #controls {
+    padding: 0;
+  }
+}
+@keyframes spinner-anim {
+  to {
+    transform: rotate(360deg);
+  }
+}

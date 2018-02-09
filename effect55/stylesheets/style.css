@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
+/* line 3, ../sass/style.scss */
+::selection {
+  background: transparent;
+}
+
+/* line 6, ../sass/style.scss */
+html, body {
+  background: black;
+}
+
+/* line 9, ../sass/style.scss */
+canvas {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* line 14, ../sass/style.scss */
+.dg.main {
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+/* line 17, ../sass/style.scss */
+.dg.main:hover {
+  opacity: 0.75;
+}
+
+/* line 21, ../sass/style.scss */
+.info-panel {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  background-color: rgba(20, 20, 20, 0.7);
+  padding: 20px 60px 20px 30px;
+  color: whitesmoke;
+  font-family: 'Source Sans Pro', sans-serif;
+  border-radius: 0 4px 4px 0;
+  transform: translateX(calc(-100% + 30px));
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0.3;
+}
+/* line 33, ../sass/style.scss */
+.info-panel:hover {
+  opacity: 0.7;
+}
+/* line 36, ../sass/style.scss */
+.info-panel h2 {
+  font-size: 1.4em;
+  margin-bottom: 0.4em;
+}
+/* line 40, ../sass/style.scss */
+.info-panel p {
+  margin-bottom: 0.2;
+}
+/* line 43, ../sass/style.scss */
+.info-panel #lbl-info-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 30px;
+  text-align: center;
+  background: rgba(30, 30, 30, 0.7);
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+/* line 56, ../sass/style.scss */
+.info-panel #lbl-info-toggle .icon-info {
+  font-size: 0.8em;
+  transform: rotate(0);
+  transition: transform 0.3s;
+}
+
+/* line 63, ../sass/style.scss */
+#chk-info-toggle {
+  display: none;
+}
+/* line 66, ../sass/style.scss */
+#chk-info-toggle:checked ~ .info-panel {
+  transform: translateX(0);
+}
+/* line 69, ../sass/style.scss */
+#chk-info-toggle:checked ~ .info-panel #lbl-info-toggle .icon-info {
+  transform: rotate(180deg);
+}
