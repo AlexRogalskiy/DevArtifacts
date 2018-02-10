@@ -1,0 +1,315 @@
+/* line 1, ../sass/style.scss */
+.cat {
+  position: relative;
+  height: 170px;
+  width: 192.1px;
+  /*     background-color: #ccc; */
+}
+
+/* line 7, ../sass/style.scss */
+.ear {
+  position: absolute;
+  top: -25%;
+  height: 60%;
+  width: 25%;
+  background: #ccc;
+}
+
+/* line 14, ../sass/style.scss */
+.ear::before,
+.ear::after {
+  content: '';
+  position: absolute;
+  bottom: 30%;
+  height: 10%;
+  width: 5%;
+  border-radius: 50%;
+  /*     background: #161616; */
+  background-color: #222;
+}
+
+/* line 25, ../sass/style.scss */
+.ear::after {
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+}
+
+/* line 29, ../sass/style.scss */
+.ear_left {
+  left: -6%;
+  border-radius: 70% 30% 0% 0% / 100% 100% 0% 0%;
+  -webkit-transform: rotate(-50deg);
+  transform: rotate(-15deg);
+}
+
+/* line 35, ../sass/style.scss */
+.ear_left::before,
+.ear_left::after {
+  right: 10%;
+}
+
+/* line 39, ../sass/style.scss */
+.ear_left::after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* line 43, ../sass/style.scss */
+.ear_right {
+  right: -6%;
+  border-radius: 30% 70% 0% 0% / 100% 100% 0% 0%;
+  -webkit-transform: rotate(15deg);
+  transform: rotate(15deg);
+}
+
+/* line 49, ../sass/style.scss */
+.ear_right::before,
+.ear_right::after {
+  left: 10%;
+}
+
+/* line 53, ../sass/style.scss */
+.ear_right::after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* line 58, ../sass/style.scss */
+.face {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  /*     background: #161616; */
+  background-color: #222;
+  border-radius: 50%;
+}
+
+/* line 66, ../sass/style.scss */
+.eye {
+  position: absolute;
+  top: 33%;
+  height: 35%;
+  width: 30%;
+  background: #ccc;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+/* line 74, ../sass/style.scss */
+.eye::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  border-radius: 0 0 50% 50% / 0 0 40% 40%;
+  background: #161616;
+  -webkit-animation: blink 4s infinite ease-in;
+  animation: blink 4s infinite ease-in;
+}
+
+/* line 86, ../sass/style.scss */
+.arm {
+  position: absolute;
+  bottom: -100px;
+  left: 10px;
+  width: 50px;
+  height: 100px;
+  background-color: #222;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    height: 0;
+  }
+  90% {
+    height: 0;
+  }
+  92.5% {
+    height: 100%;
+  }
+  95% {
+    height: 0;
+  }
+  97.5% {
+    height: 100%;
+  }
+  100% {
+    height: 0;
+  }
+}
+@keyframes blink {
+  0% {
+    height: 0;
+  }
+  90% {
+    height: 0;
+  }
+  92.5% {
+    height: 100%;
+  }
+  95% {
+    height: 0;
+  }
+  97.5% {
+    height: 100%;
+  }
+  100% {
+    height: 0;
+  }
+}
+/* line 142, ../sass/style.scss */
+.eye::before {
+  content: '';
+  position: absolute;
+  top: 60%;
+  height: 10%;
+  width: 15%;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* line 151, ../sass/style.scss */
+.eye_left {
+  left: 0;
+}
+
+/* line 154, ../sass/style.scss */
+.eye_left::before {
+  right: -5%;
+}
+
+/* line 157, ../sass/style.scss */
+.eye_right {
+  right: 0;
+}
+
+/* line 160, ../sass/style.scss */
+.eye_right::before {
+  left: -5%;
+}
+
+/* line 163, ../sass/style.scss */
+.eye_pupil {
+  position: absolute;
+  top: 25%;
+  height: 50%;
+  width: 20%;
+  background: #161616;
+  border-radius: 50%;
+  -webkit-animation: look-around 4s infinite;
+  animation: look-around 4s infinite;
+}
+
+@-webkit-keyframes look-around {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+  5% {
+    -webkit-transform: translate(50%, -25%);
+    transform: translate(50%, -25%);
+  }
+  10% {
+    -webkit-transform: translate(50%, -25%);
+    transform: translate(50%, -25%);
+  }
+  15% {
+    -webkit-transform: translate(-100%, -25%);
+    transform: translate(-100%, -25%);
+  }
+  20% {
+    -webkit-transform: translate(-100%, -25%);
+    transform: translate(-100%, -25%);
+  }
+  25% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+@keyframes look-around {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+  5% {
+    -webkit-transform: translate(50%, -25%);
+    transform: translate(50%, -25%);
+  }
+  10% {
+    -webkit-transform: translate(50%, -25%);
+    transform: translate(50%, -25%);
+  }
+  15% {
+    -webkit-transform: translate(-100%, -25%);
+    transform: translate(-100%, -25%);
+  }
+  20% {
+    -webkit-transform: translate(-100%, -25%);
+    transform: translate(-100%, -25%);
+  }
+  25% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+/* line 233, ../sass/style.scss */
+.eye_left .eye_pupil {
+  right: 30%;
+}
+
+/* line 236, ../sass/style.scss */
+.eye_right .eye_pupil {
+  left: 30%;
+}
+
+/* line 239, ../sass/style.scss */
+.eye_pupil::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  right: -5%;
+  height: 20%;
+  width: 35%;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* line 250, ../sass/style.scss */
+.nose {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  height: 6%;
+  width: 10%;
+  background: #ccc;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+}
+
+/* General page styling */
+/* line 263, ../sass/style.scss */
+html {
+  background: #161616;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+/* line 269, ../sass/style.scss */
+.cat {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

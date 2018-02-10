@@ -1,0 +1,88 @@
+@mixin presents($size:100px, $rotateDeg: 5deg, $bodyColor: #ff5151, $ribbonColor: yellow) {
+  // $size: 100px;
+  // $rotateDeg: 5deg;
+  // $bodyColor: #ff5151;
+  // $ribbonColor: yellow;
+  width: $size;
+  height: $size;
+  position: relative;
+  background-color: $bodyColor;
+  transform: rotate($rotateDeg);
+  margin: 15px;
+
+  .vribbon, .hribbon {
+    background-color: $ribbonColor;
+  }
+  .cap {
+    background-color: $bodyColor;
+  }
+//($size:100px, $rotateDeg: 5deg, $bodyColor: #ff5151, $ribbonColor: yellow)
+}
+
+html,body {
+  height: 100%;
+  width: 100%;
+  background-color: #222;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.vribbon, .hribbon {
+  box-shadow: 0px 0px  20px rgba(black,0.5);
+}
+.vribbon {
+  width: 15%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hribbon {
+  width: 100%;
+  height: 15%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.cap {
+  height: 15%;
+  width: calc(100% + 10px);
+  transform: translateX(-5px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 0px  20px rgba(black,0.5);
+}
+
+.present {
+  @include presents();
+}
+    
+.present2 {
+  @include presents(200px, -10deg, #ff6600, #fff);
+}
+
+$colorRed: #f24;
+$colorWhite: #fff;
+$colorBlue: #3364f7;
+$colorYelow: #ffd221;
+$colorPurple: #c747ff;
+$colors: ($colorRed, $colorWhite, $colorBlue, $colorYelow, $colorPurple);
+
+@for $i from 1 through 50 {
+    $size: random(50)+50;
+    $rotateDeg: random(20)-10;
+    $bodyColor: nth($colors,random(5));
+    $ribbonColor: nth($colors,random(5));
+    
+    @if ($ribbonColor == $bodyColor) {
+      $ribbonColor: nth($colors,random(5));
+    }
+
+    .present#{$i} {
+      @include presents(#{$size}px, #{$rotateDeg}deg, $bodyColor, $ribbonColor)
+    }
+}
