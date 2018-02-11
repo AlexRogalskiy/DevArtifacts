@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #50 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">50</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./049.html">&lt;</a>
+	            <a class="next" href="./051.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Merge objects with extend</h1>
+			<p class="descr">When it comes to combining properties from multiple projects into one, your best bet is the extend method:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// Combine properties (useful in plugins).
+// The defaults are passed as the first argument.
+
+var supplied = { height: 400 };
+
+var options = $.extend({
+	color	: 'blue',
+	width	: 200,
+	height	: 150
+}, supplied);
+
+log('New options:', options);
+
+// You can also pass more than one object
+
+log('Three parents:', $.extend({a:2}, {b:3}, {c:4}) );
+
+log('-------');
+
+
+// Cloning objects.
+// To clone an object, simply pass an empty one
+// as the first argument
+
+var original = {a:123, b:'#fff'};
+var clone = $.extend({}, original);
+
+log('Clone:', clone);
+
+log('-------');
+
+
+// Extending jQuery.
+// You can define plugins with extend
+
+$.extend($.fn, {
+	plugin1: function(){
+		log('Plugin 1');
+		return this;
+	},
+	plugin2: function(){
+		log('Plugin 2');
+		return this;
+	}
+});
+
+$('body').plugin1().plugin2();
+
+log('-------');
+
+// If you pass only one arguments to $.extend,
+// it will add the properties to the jQuery object
+
+$.extend({ dontDoThis : 123});
+
+log($.dontDoThis);
+
+log('-------');
+
+// Deep cloning.
+// If you have nested objects, you will have to
+// pass one additional argument to extend:
+
+var obj1 = { a: 1, b: 2, c: {d: 3} };
+var obj2 = { c: {e: 4}, f:5};
+
+// This won't work
+// $.extend(obj1, obj2);
+
+// This will
+$.extend(true, obj1,obj2);
+
+log('Deep clone:', obj1);
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40">
+
+				<h3>Result</h3>
+				<div id="result"></div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

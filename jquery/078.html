@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #78 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+		<!-- The alertify styles -->
+		<link rel="stylesheet" href="assets/css/alertify.core.css" />
+		<link rel="stylesheet" href="assets/css/alertify.default.css" />
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">78</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./077.html">&lt;</a>
+	            <a class="next" href="./079.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Enhance your web app with better dialogs</h1>
+			<p class="descr">The default browser dialogs are ugly and horribly non-customizable. You can fix this with Alertify.js:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// Listen for clicks on the buttons
+
+$('#alert').click(function(){
+	
+	// Output a message
+	alertify.alert("Hello!");
+	
+});
+
+
+$('#confirm').click(function(){
+	
+	alertify.confirm("Make your choice",function(choice){
+        log('You chose:', choice);
+	});
+	
+});
+
+
+$('#prompt').click(function(){
+	
+	alertify.prompt("What is your name?",function(choice, name){
+		
+        if(choice){
+        	log('Hello ', name, '!');
+        }
+        else {
+        	log("You are shy arent you!");
+        }
+        
+	});
+	
+});
+
+$('#log').click(function(){
+	
+	alertify.log("This is a log message!");
+	
+});
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40 largeExample">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;button id="alert"&gt;Alert&lt;/button&gt;
+&lt;button id="confirm"&gt;Confirm&lt;/button&gt;
+&lt;button id="prompt"&gt;Prompt&lt;/button&gt;
+&lt;button id="log"&gt;Log&lt;/button&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/alertify.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

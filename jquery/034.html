@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #34 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">34</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./033.html">&lt;</a>
+	            <a class="next" href="./035.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Display file sizes next to download links</h1>
+			<p class="descr">Did you know that you can send a AJAX HEAD request and get the size of a file without downloading it? With jQuery this is very easy. <i class="note">Note: This example wont work if you open the html file directly in the browser as there are security restrictions. To make it work, open it from a locally running webserver through localhost.</i></p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// Loop all .fetchSize links
+$('a.fetchSize').each(function(){
+
+	// Issue an AJAX HEAD request for each one
+	var link = this;
+
+	$.ajax({
+	    type		: 'HEAD',
+	    url			: link.href,
+	    complete	: function(xhr){
+
+	    	// Append the filesize to each
+	        $(link).append(' (' + humanize(xhr.getResponseHeader('Content-Length')) + ')');
+
+	    }
+	});
+
+});
+
+
+function humanize(size){
+    var units = ['bytes','KB','MB','GB','TB','PB'];
+
+    var ord = Math.floor( Math.log(size) / Math.log(1024) );
+    ord = Math.min( Math.max(0,ord), units.length-1);
+
+    var s = Math.round((size / Math.pow(1024,ord))*100)/100;
+    return s + ' ' + units[ord];
+}
+
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;a href="001.html" class="fetchSize"&gt;First Trickshot&lt;/a&gt; &lt;br /&gt;
+&lt;a href="034.html" class="fetchSize"&gt;This Trickshot&lt;/a&gt; &lt;br /&gt;
+&lt;a href="assets/img/ball.png" class="fetchSize"&gt;Ball.png&lt;/a&gt; &lt;br /&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

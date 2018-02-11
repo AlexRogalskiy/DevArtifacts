@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #69 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">69</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./068.html">&lt;</a>
+	            <a class="next" href="./070.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Give jQuery a utility belt</h1>
+			<p class="descr">jQuery is the best choice to manipulate the dom and listen for events. But it comes short when it comes to manipulating data. For this, we have helper libraries like underscore:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// The variables we will be working on
+var arr = [53, 2, 4, 6, 7, 13, 77, -23, 6, 11, 401];
+
+var obj = {
+	name: "Peter Griffin",
+	age: 42,
+	weight: "won't tell"
+};
+
+var func = function(name, message){
+	log(name, 'says', message || this);
+};
+
+log('Odd elements:', _.filter( arr, function(num){ return num % 2 == 0; }) );
+log('Does it contain 401?', _.contains( arr, 401) );
+log('Max number:', _.max(arr) );
+log('Sorted:', arr.sort(function(a,b){ return a-b}) );
+log('Randomized:', _.shuffle(arr) );
+log('Unique values:', _.unique(arr) );
+
+log('---');
+
+log('Object keys:', _.keys(obj) );
+log('Values:', _.values(obj) );
+log('Pick:', _.pick(obj, 'name', 'age') );
+log('Size:', _.size(obj) );
+
+log('---');
+
+// Bind the function to a specific value of this
+
+var binded = _.bind(func, 'hi!');
+
+binded('Brian');
+binded('Stewie');
+
+// Allow the function to run only once
+var throttled = _.once(func, 10);
+
+var dwarfs = 'Bashful Doc Dopey Grumpy Happy Sleepy Sneezy'.split(' ');
+
+for(var i=0; i&lt;7; i++){
+	throttled(dwarfs[i], 'he is hungry');
+}
+
+log('---');
+
+// You can combine methods through chaining
+
+log('Results:');
+
+_.chain(arr).sortBy(function(val){return val})
+			.filter(function(val){ return val%2 != 0})
+			.each(function(val){ log(val) });
+
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40">
+
+				<h3>Result</h3>
+				<div id="result"></div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

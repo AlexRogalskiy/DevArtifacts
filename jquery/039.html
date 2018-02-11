@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #39 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">39</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./038.html">&lt;</a>
+	            <a class="next" href="./040.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Serializing objects</h1>
+			<p class="descr">jQuery provides methods for encoding forms and plain objects into a URL friendly representation. Here is how to use them:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">var form = $('#gform');
+
+// Turn all form fields into a URL friendly key/value string.
+// This can be passed as argument of AJAX requests, or URLs.
+log(form.serialize());
+
+log('---------');
+
+// You can also encode your own objects with the $.param method:
+log($.param({'pet':'cat', 'name':'snowbell'}));
+
+log('---------');
+
+// With $.serializeArray() you can encode the form to an object
+log(form.serializeArray());
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html">&lt;form id="gform"&gt;
+  &lt;input type=&quot;text&quot; name=&quot;performer&quot; value=&quot;Gangnam K. Style&quot; /&gt;
+  &lt;input type=&quot;text&quot; name=&quot;email&quot; value=&quot;psy@w3c.org&quot; /&gt;
+  &lt;textarea name=&quot;lyrics&quot;&gt;Na je nun ta sa ro un in gan jo gin yo ja&lt;/textarea&gt;
+&lt;/form&gt;</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

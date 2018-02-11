@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #58 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">58</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./057.html">&lt;</a>
+	            <a class="next" href="./059.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Make an image black and white</h1>
+			<p class="descr">This trick involves the use of a canvas element. For it to work, you will have to open this example in a locally running webserver like apache. It won't work if you open it directly because of the browser security restrictions.</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				
+				<h3>Code</h3>
+				<div id="code">// Define an image element and listen for the load event
+
+var img = $('&lt;img&gt;');
+
+var canvas = $('#can')[0], 
+	context = canvas.getContext('2d');
+
+img.load(function(){
+	
+	context.drawImage(this, 0, 0);
+	
+});
+
+img.attr('src','assets/img/Katy_Perry.jpg');
+
+
+// When the button is pressed, convert
+// all the pixels to grayscale:
+
+$('#btn').click(function(){
+	
+	var imageData = context.getImageData(0, 0, canvas.width, canvas.height),
+		px = imageData.data, gray = 0;
+    
+    for (var i = 0, n = px.length; i &lt; n; i += 4) {
+    	
+	    gray = (px[i] + px[i+1] + px[i+2]) / 3;
+	    
+	    px[i]	= gray;   // red
+	    px[i+1] = gray;   // green
+	    px[i+2] = gray;   // blue
+    }
+    
+    context.putImageData(imageData, 0, 0);
+
+});
+</div>
+				<button id="run">Run!</button>
+				
+			</div>
+
+			<div class="column40 largeExample">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;button id="btn"&gt;Make it black and white&lt;/button&gt; &lt;br /&gt;
+&lt;canvas id="can" width="220" height="319" /&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+				
+			</div>
+			
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

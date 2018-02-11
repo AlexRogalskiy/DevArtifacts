@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #47 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">47</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./046.html">&lt;</a>
+	            <a class="next" href="./048.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Learn to love the console</h1>
+			<p class="descr">Your browser gives you a set of useful methods you can use to debug your code. Here is an example (open your console to see them).</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// The simple case. Use this instead of alert():
+console.log('This is a console message!');
+
+// It supports embedding of variables as well:
+var a = 'morning', b = 'Miss';
+console.log('Good %s %s! How are you feeling today?', a, b);
+
+// Interactively browse the properties of a method (similar to console.log):
+console.dir(window);
+
+// Information message (in webkit it looks like console.log)
+console.info('Everything is OK');
+
+// Warning message
+console.warn('Something may be wrong');
+
+// Error message (will print a stack trace)
+console.error('Ooops. That was bad.');
+
+// Counting things
+for(var i = 0; i&lt;20; i++){
+	console.count('Counter Name');
+}
+
+// Starts a collapsable group of log messages
+console.group("Preflight check");
+console.info('Fuel is OK');
+console.info('Temperature is normal');
+console.error('Wings are missing');
+console.groupEnd()
+
+// Timing things
+console.time('The million-dollar loop')
+
+var dollars = 0;
+
+for(var i=0;i&lt;100000; i++){
+	dollars+=10;
+}
+
+console.timeEnd('The million-dollar loop');
+
+// Profiling code (it will show up in your console's Profile tab)
+console.profile('My app performance');
+
+var arr = [];
+$.each([0,1,2,3,4,5,6,7,8,9],function(){
+    arr.push(this+1);
+});
+
+console.profileEnd('My app performance');
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

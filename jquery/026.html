@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #26 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">26</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./025.html">&lt;</a>
+	            <a class="next" href="./027.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Listen for events on elements that do not yet exist</h1>
+			<p class="descr">jQuery has an advanced event handling mechanism, exposed through the on() method, that can listen for events on elements that don't event exist yet.</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">var list = $('#testList');
+
+// Binding an event on the list, but listening for events on the li items:
+list.on('click','li',function(){
+	$(this).remove();
+});
+
+
+// This allows us to create li elements at a later time,
+// while keeping the functionality in the event listener
+
+list.append('&lt;li&gt;New item (click me!)&lt;/li&gt;');
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;ul id="testList"&gt;
+	&lt;li&gt;Old&lt;/li&gt;
+	&lt;li&gt;Old&lt;/li&gt;
+	&lt;li&gt;Old&lt;/li&gt;
+	&lt;li&gt;Old&lt;/li&gt;
+&lt;/ul&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

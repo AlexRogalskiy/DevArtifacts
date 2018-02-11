@@ -1,0 +1,1 @@
+var message = "I am include.js and I've come to eat your cookies!";

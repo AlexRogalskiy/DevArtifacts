@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #07 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">07</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./006.html">&lt;</a>
+	            <a class="next" href="./008.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Use the second argument to the $() function</h1>
+			<p class="descr">The jQuery function takes two arguments. Do you know what the second one does?</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// Select an element. The second argument is context to limit the search
+// You can use a selector, jQuery object or dom element
+
+$('li','#firstList').each(function(){
+	log($(this).html());
+});
+
+log('-----');
+
+// Create an element. The second argument is an
+// object with jQuery methods to be called
+
+var div = $('&lt;div&gt;',{
+    "class": "bigBlue",
+    "css": {
+        "background-color":"purple"
+    },
+    "width" : 20,
+    "height": 20,
+    "animate" : {   // You can use any jQuery method as a property!
+        "width": 200,
+        "height":50
+    }
+});
+
+div.appendTo('#result');</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html">&lt;ul id="firstList"&gt;
+	&lt;li&gt;one&lt;/li&gt;
+	&lt;li&gt;two&lt;/li&gt;
+	&lt;li&gt;three&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul id="secondList"&gt;
+	&lt;li&gt;blue&lt;/li&gt;
+	&lt;li&gt;green&lt;/li&gt;
+&lt;/ul&gt;</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>
+
+

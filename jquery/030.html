@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #30 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">30</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./029.html">&lt;</a>
+	            <a class="next" href="./031.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Know your events</h1>
+			<p class="descr">jQuery simplified event handling with version 1.7, when it introduced the <code>on()</code> / <code>off()</code> methods. Do you know how to use them properly?</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// Lets cache some selectors
+
+var button1 = $('#button1'),
+	button2 = $('#button2'),
+	button3 = $('#button3'),
+	button4 = $('#button4'),
+	clear = $('#clear'),
+	holder = $('#holder');
+
+// Case 1: Direct event handling
+button1.on('click',function(){
+	log('Click');
+});
+
+// Case 2: Direct event handling of multiple events
+button2.on('mouseenter mouseleave',function(){
+	log('In/Out');
+});
+
+// Case 3: Data passing
+button3.on('click', Math.round(Math.random()*20), function(e){
+
+	// This will print the same number over and over again,
+	// as the random number above is generated only once:
+	log('Random number: ' + e.data);
+
+});
+
+// Case 4: Events with a namespace
+button4.on('click.temp', function(e){
+	log('Temp event!');
+});
+
+button2.on('click.temp', function(e){
+	log('Temp event!');
+});
+
+// Case 5: Using event delegation
+$('#holder').on('click', '#clear', function(){
+	log.clear();
+});
+
+// Case 6: Passing an event map
+var t; // timer
+
+clear.on({
+
+	'mousedown':function(){
+
+		t = new Date();
+
+	},
+
+	'mouseup':function(){
+
+		if(new Date() - t > 1000){
+
+			// The button has been held pressed
+			// for more than a second. Turn off
+			// the temp events
+
+			$('button').off('.temp');
+			alert('The .temp events were cleared!');
+		}
+
+	}
+});
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;div id="holder"&gt;
+	&lt;button id="button1"&gt;1&lt;/button&gt;
+	&lt;button id="button2"&gt;2&lt;/button&gt;
+	&lt;button id="button3"&gt;3&lt;/button&gt;
+	&lt;button id="button4"&gt;4&lt;/button&gt;
+
+	&lt;button id="clear" style="float: right;"&gt;Clear&lt;/button&gt;
+&lt;/div&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #29 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">29</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./028.html">&lt;</a>
+	            <a class="next" href="./030.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Working with touch events</h1>
+			<p class="descr">Working with Touch events is not much different than the corresponding mouse ones. See the code below for an example. Also be sure to test it on a mobile device if you have one handy.</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// Define some variables
+var ball = $('&lt;div id="ball"&gt;&lt;/div&gt;').appendTo('body'),
+startPosition = {}, elementPosition = {};
+
+// Listen for mouse and touch events
+ball.on('mousedown touchstart',function(e){
+	e.preventDefault();
+
+	// Normalizing the touch event object
+	e = (e.originalEvent.touches) ? e.originalEvent.touches[0] : e;
+
+	// Recording current positions
+	startPosition = {x: e.pageX, y: e.pageY};
+	elementPosition = {x: ball.offset().left, y: ball.offset().top};
+
+	// These event listeners will be removed later
+	ball.on('mousemove.rem touchmove.rem',function(e){
+		e = (e.originalEvent.touches) ? e.originalEvent.touches[0] : e;
+
+		ball.css({
+			top:elementPosition.y + (e.pageY - startPosition.y),
+			left: elementPosition.x + (e.pageX - startPosition.x),
+		});
+
+	});
+});
+
+ball.on('mouseup touchend',function(){
+	// Removing the heavy *move listeners
+	ball.off('.rem');
+});
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

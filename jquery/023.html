@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #23 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+		<script>
+
+			// jQuery is loaded at this point. We can use
+			// event delegation right away to bind events
+			// even before $(document).ready:
+
+			$(document).on('click', '#clickMe', function(){
+				alert('Hit view source and see how this is made');
+			});
+
+			$(document).ready(function(){
+
+				// This is where you would usually bind event handlers,
+				// but as we are using delegation, there is no need to.
+
+				// $('#clickMe').click(function(){ alert('Hey!'); });
+			});
+
+			// Note: You should place your script tags at the bottom of the page.
+			// I have included them in the head only to demonstrate that we can bind
+			// events before document ready and before the elements are created.
+
+		</script>
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">23</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./022.html">&lt;</a>
+	            <a class="next" href="./024.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Don't wait for the load event</h1>
+			<p class="descr">We've grown accustomed to placing all our code in the document ready event handler. However, if you have a heavy page, document ready can be delayed. But there is a trick to work around this, and improve the responsiveness of the page. Click this button for an example.</p>
+
+
+			<button id="clickMe">Click me!</button>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+    </body>
+</html>

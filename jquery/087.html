@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #87 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">87</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./086.html">&lt;</a>
+	            <a class="next" href="./088.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Work with money and currencies</h1>
+			<p class="descr">Many web apps nead to work with and convert between multiple currencies with up-to-date exchange rates. There is an easy micro-library that makes this much easier.</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// First, fetch the exchange rates
+
+$.getJSON('assets/misc/rates.json',function(data){
+	
+	fx.rates = data.rates;
+	fx.base = data.base;
+	
+	// Then, start converting
+	log("100 USD in EUR:", fx(100).from("USD").to("EUR").toFixed(2) );
+	log("2 GBP to USD:", fx(2).from("GBP").to("USD").toFixed(2) );
+	log("123 EUR to RUB:", fx(123).from("EUR").to("RUB").toFixed(2) );
+	
+});
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40">
+
+				<h3>Result</h3>
+				<div id="result"></div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+        <!-- The Money.js library  -->
+        <script src="assets/js/money.js"></script>
+
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>
