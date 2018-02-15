@@ -1,0 +1,201 @@
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+$min_width: 380px;
+$max_width: 600px;
+$min_font: 21px;
+$max_font: 32px;
+
+html {
+	background: #C85910;
+	font: normal 100%/1.5 'Open Sans', sans-serif;
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	@media screen and (min-width: 634px) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+}
+
+img {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+dialog {
+	border: none;
+}
+
+.showcase {
+	max-width: 600px;
+	margin: 0 auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.title {
+	margin-bottom: 0.25rem;
+	font-family: 'Joti One', cursive;
+	@include fluid-type($min_width, $max_width, $min_font, $max_font);
+	line-height: 1;
+	text-align: center;
+	color: white;
+	~ small {
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+		color: #F6F0CC;
+	}
+}
+
+.items-list {
+	display: grid;
+	padding-left: 0; // normalize override
+	list-style-type: none;
+	@media screen and (min-width: 380px) {
+		grid-template-columns: repeat(2, 100fr);
+	}
+	@media screen and (min-width: 634px) {
+		grid-gap: 5px;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: 150px 1fr;
+		grid-template-rows: fit-content(100%);
+	}
+	&__item {
+		@media screen and (min-width: 634px) {
+			box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		}
+	}
+}
+
+.modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	background: rgba(#9E4512, 0.95);
+	transition: 250ms all ease-in-out;
+
+	.details {
+		font-size: 0.875em;
+		transition: 250ms all 380ms ease-in-out;
+		color: rgba(white, 0.9);
+		&:first-of-type {
+			margin-top: 1em;
+		}
+	}
+
+	img {
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		height: auto;
+		max-width: 400px;
+		transition: 250ms all 250ms ease-in-out;
+	}
+}
+
+
+.modal-transition {
+	&-leave-active {
+		transition: opacity 200ms linear,
+								transform 200ms cubic-bezier(.64,.01,.67,.92);  
+	}
+
+	&-enter-active { 
+		transition: opacity 200ms linear,
+								transform 200ms cubic-bezier(.29,.15,.24,.97);
+	}
+
+	&-enter,
+	&-leave-to {
+		opacity: 0;
+		transform: scale(0);
+		img,
+		.details {
+			opacity: 0;
+		}
+	}
+}
+
+
+
+// REQUIRED STYLES
+// ==========================================================
+// Mixin for the stagger fade effect w/the ability to control
+// slide direction, distance, stagger value, delay and speed.
+//
+// @args
+// $dir: 'left, right, top, bottom'
+// $delay: unit value
+// $stagger-unit: unitless number
+// $offset: unit value
+// $speed: unit value
+// $count: unitless value
+
+@mixin staggerFadeIn($delay, $stagger-unit, $speed, $count) {
+  $delay: $delay;
+  $ease: cubic-bezier(0.445, 0.050, 0.550, 0.950);
+  $stagger_delay: $delay + $stagger-unit;
+  transition-property: opacity;
+  transition-duration: $speed;
+  transition-timing-function: $ease;
+  @for $i from 1 through $count {
+    &:nth-of-type(#{$i}) {
+      transition-delay: ($stagger_delay * $i);
+    }
+  }
+}
+
+
+.fadein-stagger > * {
+	opacity: 0;
+	transition: 300ms opacity ease-in 0ms;
+	&.js-animated {
+		opacity: 1;
+	}
+}
+
+.fadein-stagger > * {
+	@include staggerFadeIn(10ms, 50, 300ms, 8);
+}

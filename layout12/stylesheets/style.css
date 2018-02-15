@@ -1,0 +1,211 @@
+/* line 29, ../sass/style.scss */
+html {
+  background: #C85910;
+  font: normal 100%/1.5 'Open Sans', sans-serif;
+}
+
+/* line 34, ../sass/style.scss */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 634px) {
+  /* line 41, ../sass/style.scss */
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+/* line 50, ../sass/style.scss */
+img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+/* line 55, ../sass/style.scss */
+img:hover {
+  cursor: pointer;
+}
+
+/* line 60, ../sass/style.scss */
+dialog {
+  border: none;
+}
+
+/* line 64, ../sass/style.scss */
+.showcase {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* line 71, ../sass/style.scss */
+.title {
+  margin-bottom: 0.25rem;
+  font-family: 'Joti One', cursive;
+  line-height: 1;
+  text-align: center;
+  color: white;
+}
+/* line 12, ../sass/style.scss */
+.title {
+  font-size: 21px;
+}
+@media screen and (min-width: 380px) {
+  /* line 12, ../sass/style.scss */
+  .title {
+    font-size: calc(21px + 11 * ((100vw - 380px) / 220));
+  }
+}
+@media screen and (min-width: 600px) {
+  /* line 12, ../sass/style.scss */
+  .title {
+    font-size: 32px;
+  }
+}
+/* line 78, ../sass/style.scss */
+.title ~ small {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  color: #F6F0CC;
+}
+
+/* line 86, ../sass/style.scss */
+.items-list {
+  display: grid;
+  padding-left: 0;
+  list-style-type: none;
+}
+@media screen and (min-width: 380px) {
+  /* line 86, ../sass/style.scss */
+  .items-list {
+    grid-template-columns: repeat(2, 100fr);
+  }
+}
+@media screen and (min-width: 634px) {
+  /* line 86, ../sass/style.scss */
+  .items-list {
+    grid-gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 150px 1fr;
+    grid-template-rows: fit-content(100%);
+  }
+}
+@media screen and (min-width: 634px) {
+  /* line 99, ../sass/style.scss */
+  .items-list__item {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+}
+
+/* line 106, ../sass/style.scss */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background: rgba(158, 69, 18, 0.95);
+  transition: 250ms all ease-in-out;
+}
+/* line 121, ../sass/style.scss */
+.modal .details {
+  font-size: 0.875em;
+  transition: 250ms all 380ms ease-in-out;
+  color: rgba(255, 255, 255, 0.9);
+}
+/* line 125, ../sass/style.scss */
+.modal .details:first-of-type {
+  margin-top: 1em;
+}
+/* line 130, ../sass/style.scss */
+.modal img {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  height: auto;
+  max-width: 400px;
+  transition: 250ms all 250ms ease-in-out;
+}
+
+/* line 140, ../sass/style.scss */
+.modal-transition-leave-active {
+  transition: opacity 200ms linear, transform 200ms cubic-bezier(0.64, 0.01, 0.67, 0.92);
+}
+/* line 145, ../sass/style.scss */
+.modal-transition-enter-active {
+  transition: opacity 200ms linear, transform 200ms cubic-bezier(0.29, 0.15, 0.24, 0.97);
+}
+/* line 150, ../sass/style.scss */
+.modal-transition-enter, .modal-transition-leave-to {
+  opacity: 0;
+  transform: scale(0);
+}
+/* line 154, ../sass/style.scss */
+.modal-transition-enter img,
+.modal-transition-enter .details, .modal-transition-leave-to img,
+.modal-transition-leave-to .details {
+  opacity: 0;
+}
+
+/* line 191, ../sass/style.scss */
+.fadein-stagger > * {
+  opacity: 0;
+  transition: 300ms opacity ease-in 0ms;
+}
+/* line 194, ../sass/style.scss */
+.fadein-stagger > *.js-animated {
+  opacity: 1;
+}
+
+/* line 199, ../sass/style.scss */
+.fadein-stagger > * {
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+/* line 184, ../sass/style.scss */
+.fadein-stagger > *:nth-of-type(1) {
+  transition-delay: 60ms;
+}
+/* line 184, ../sass/style.scss */
+.fadein-stagger > *:nth-of-type(2) {
+  transition-delay: 120ms;
+}
+/* line 184, ../sass/style.scss */
+.fadein-stagger > *:nth-of-type(3) {
+  transition-delay: 180ms;
+}
+/* line 184, ../sass/style.scss */
+.fadein-stagger > *:nth-of-type(4) {
+  transition-delay: 240ms;
+}
+/* line 184, ../sass/style.scss */
+.fadein-stagger > *:nth-of-type(5) {
+  transition-delay: 300ms;
+}
+/* line 184, ../sass/style.scss */
+.fadein-stagger > *:nth-of-type(6) {
+  transition-delay: 360ms;
+}
+/* line 184, ../sass/style.scss */
+.fadein-stagger > *:nth-of-type(7) {
+  transition-delay: 420ms;
+}
+/* line 184, ../sass/style.scss */
+.fadein-stagger > *:nth-of-type(8) {
+  transition-delay: 480ms;
+}
