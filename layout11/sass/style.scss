@@ -1,0 +1,300 @@
+// ==========================================================
+// DEMO STYLES
+// ==========================================================
+
+$bg: #659683;
+html,body {height: 100%;}body {display:flex;flex-direction:column;align-items:center;justify-content:center;width: 100%;background:$bg;}
+
+
+// ==========================================================
+// REQUIRED STYLES
+// ==========================================================
+
+:root {
+  --primary-color: #2C3942;
+  --secondary-color: #1192FF;
+  --tertiary-color: #997AC0;
+
+  --button-bg: var(--tertiary-color);
+
+  --material-shadow: #{0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)};
+
+  --screen-height: 568px;
+  --screen-width: 320px;
+}
+
+* {
+	&:before,
+	&:after {
+		box-sizing: inherit;
+	}
+}
+
+html,
+input {
+	box-sizing: border-box;
+}
+
+button {
+  appearance: none;
+  border: 2px solid var(--button-bg);
+  border-radius: 100px;
+  margin: 10px 0;
+  padding: 10px 0;
+  transition: 200ms background cubic-bezier(.4, 0, .2, 1);
+  font-weight: 400;
+  background: transparent;
+  color: white;
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background: var(--button-bg);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.screen {
+  position: relative;
+  background: var(--primary-color) !important; // overrides marvelapp device
+	color: white;
+}
+
+.screen-scroll {
+  height: 100%;
+  overflow: scroll;
+}
+
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  text-transform: uppercase;
+	text-align: center;
+  color: white;
+}
+
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    padding: 5px;
+    width: 30%;
+    opacity: 0;
+		text-align: center;
+  }
+
+  img {
+    border-radius: 80%;
+    box-shadow: var(--material-shadow);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.modal {
+  border-radius: 100%;
+  height: var(--screen-height);
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  transform: scale(0) translateZ(0);
+  transition-duration: 320ms;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-property: transform, opacity, border-radius;
+  width: var(--screen-width);
+  background: var(--primary-color);
+  opacity: 0;
+}
+
+.avatar {
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--primary-color) 98%);
+  }
+  img {
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.user-name {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 0.875em;
+  text-transform: capitalize;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  transition: 200ms transform 100ms cubic-bezier(.4, 0, .2, 1);
+  transform: translateY(-100%);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.profile__name {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+
+.profile__email {
+  display: inline-block;
+  margin: 5px 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-decoration: none;
+  color: inherit;
+}
+
+.profile__info {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+
+// ==========================================================
+// LOADER
+// ==========================================================
+
+$loader-count: 6;
+$loader-proportion: 200px;
+$loader-color: #00AABB;
+$stagger: 0.1875s;
+$animation_config: (
+  name: expand-out,
+  duration: 600ms,
+  timing: cubic-bezier(.66,.14,.83,.67),
+  iteration: infinite,
+  direction: alternate,
+  fill-mode: both
+);
+
+@function sh-setup($config) {
+  @return zip(map-values($config)...);
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(-50%);
+}
+
+.loader svg {
+  position: relative;
+  width: $loader-proportion;
+  height: $loader-proportion;
+  circle {
+    animation: sh-setup($animation_config);
+    position: absolute;
+    transform: scale(0);
+    transform-origin: center center;
+    fill: $loader-color;
+  }
+}
+
+@for $i from 1 through $loader-count {
+  .loader circle:nth-of-type(#{$i}) {
+    animation-delay: $i * $stagger;
+    fill: lighten($loader-color, $i * 3%);
+  }
+}
+
+
+// ==========================================================
+// STATES
+// ==========================================================
+
+$user-count: 30;
+$duration: 200ms;
+$stagger_delay: 0.0125s;
+$easing: cubic-bezier(.66, .14, .83, .67);
+
+.loader.hide {
+  display: none;
+}
+
+.users.show {
+  > * {
+    animation-duration: $duration;
+    animation-name: fade-in;
+    animation-fill-mode: both;
+    animation-timing-function: $easing;
+    opacity: 1;
+
+    > * {
+      animation-duration: $duration;
+      animation-name: expand-out;
+      animation-fill-mode: both;
+      animation-timing-function: $easing;
+    }
+
+    @for $i from 1 through $user-count {
+      &:nth-of-type(#{$i}) {
+        animation-delay: ($stagger_delay * $i);
+        > * {
+          animation-delay: ($stagger_delay * $i);
+        }
+      }
+    }
+  }
+}
+
+.screen.active {
+  .screen-scroll {
+    overflow: hidden;
+  }
+
+  .modal {
+    border-radius: 0;
+    pointer-events: auto;
+    transform: scale(1) translateZ(0);
+    opacity: 1;
+  }
+  
+  .profile {
+    transform: translateY(0);
+  }
+}
+
+
+// ==========================================================
+// KEYFRAMES
+// ==========================================================
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes expand-out {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}

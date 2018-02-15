@@ -1,0 +1,548 @@
+/* line 6, ../sass/style.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 6, ../sass/style.scss */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: #659683;
+}
+
+/* line 13, ../sass/style.scss */
+:root {
+  --primary-color: #2C3942;
+  --secondary-color: #1192FF;
+  --tertiary-color: #997AC0;
+  --button-bg: var(--tertiary-color);
+  --material-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --screen-height: 568px;
+  --screen-width: 320px;
+}
+
+/* line 27, ../sass/style.scss */
+*:before, *:after {
+  box-sizing: inherit;
+}
+
+/* line 33, ../sass/style.scss */
+html,
+input {
+  box-sizing: border-box;
+}
+
+/* line 38, ../sass/style.scss */
+button {
+  appearance: none;
+  border: 2px solid var(--button-bg);
+  border-radius: 100px;
+  margin: 10px 0;
+  padding: 10px 0;
+  transition: 200ms background cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 400;
+  background: transparent;
+  color: white;
+}
+/* line 48, ../sass/style.scss */
+button:hover, button:focus {
+  cursor: pointer;
+  background: var(--button-bg);
+}
+/* line 53, ../sass/style.scss */
+button:focus {
+  outline: none;
+}
+
+/* line 58, ../sass/style.scss */
+.screen {
+  position: relative;
+  background: var(--primary-color) !important;
+  color: white;
+}
+
+/* line 64, ../sass/style.scss */
+.screen-scroll {
+  height: 100%;
+  overflow: scroll;
+}
+
+/* line 69, ../sass/style.scss */
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+}
+
+/* line 78, ../sass/style.scss */
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 85, ../sass/style.scss */
+.users li {
+  padding: 5px;
+  width: 30%;
+  opacity: 0;
+  text-align: center;
+}
+/* line 92, ../sass/style.scss */
+.users img {
+  border-radius: 80%;
+  box-shadow: var(--material-shadow);
+}
+/* line 95, ../sass/style.scss */
+.users img:hover {
+  cursor: pointer;
+}
+
+/* line 101, ../sass/style.scss */
+.modal {
+  border-radius: 100%;
+  height: var(--screen-height);
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  transform: scale(0) translateZ(0);
+  transition-duration: 320ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: transform, opacity, border-radius;
+  width: var(--screen-width);
+  background: var(--primary-color);
+  opacity: 0;
+}
+
+/* line 118, ../sass/style.scss */
+.avatar {
+  position: relative;
+}
+/* line 120, ../sass/style.scss */
+.avatar::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--primary-color) 98%);
+}
+/* line 132, ../sass/style.scss */
+.avatar img {
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* line 139, ../sass/style.scss */
+.user-name {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 0.875em;
+  text-transform: capitalize;
+}
+
+/* line 148, ../sass/style.scss */
+.profile {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  transition: 200ms transform 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-100%);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+/* line 158, ../sass/style.scss */
+.profile__name {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+
+/* line 165, ../sass/style.scss */
+.profile__email {
+  display: inline-block;
+  margin: 5px 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* line 174, ../sass/style.scss */
+.profile__info {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+/* line 201, ../sass/style.scss */
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(-50%);
+}
+
+/* line 210, ../sass/style.scss */
+.loader svg {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+/* line 214, ../sass/style.scss */
+.loader svg circle {
+  animation: expand-out 600ms cubic-bezier(0.66, 0.14, 0.83, 0.67) infinite alternate both;
+  position: absolute;
+  transform: scale(0);
+  transform-origin: center center;
+  fill: #00AABB;
+}
+
+/* line 224, ../sass/style.scss */
+.loader circle:nth-of-type(1) {
+  animation-delay: 0.1875s;
+  fill: #00b8ca;
+}
+
+/* line 224, ../sass/style.scss */
+.loader circle:nth-of-type(2) {
+  animation-delay: 0.375s;
+  fill: #00c6da;
+}
+
+/* line 224, ../sass/style.scss */
+.loader circle:nth-of-type(3) {
+  animation-delay: 0.5625s;
+  fill: #00d4e9;
+}
+
+/* line 224, ../sass/style.scss */
+.loader circle:nth-of-type(4) {
+  animation-delay: 0.75s;
+  fill: #00e2f8;
+}
+
+/* line 224, ../sass/style.scss */
+.loader circle:nth-of-type(5) {
+  animation-delay: 0.9375s;
+  fill: #09e9ff;
+}
+
+/* line 224, ../sass/style.scss */
+.loader circle:nth-of-type(6) {
+  animation-delay: 1.125s;
+  fill: #18eaff;
+}
+
+/* line 240, ../sass/style.scss */
+.loader.hide {
+  display: none;
+}
+
+/* line 245, ../sass/style.scss */
+.users.show > * {
+  animation-duration: 200ms;
+  animation-name: fade-in;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.66, 0.14, 0.83, 0.67);
+  opacity: 1;
+}
+/* line 252, ../sass/style.scss */
+.users.show > * > * {
+  animation-duration: 200ms;
+  animation-name: expand-out;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.66, 0.14, 0.83, 0.67);
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(1) {
+  animation-delay: 0.0125s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(1) > * {
+  animation-delay: 0.0125s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(2) {
+  animation-delay: 0.025s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(2) > * {
+  animation-delay: 0.025s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(3) {
+  animation-delay: 0.0375s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(3) > * {
+  animation-delay: 0.0375s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(4) {
+  animation-delay: 0.05s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(4) > * {
+  animation-delay: 0.05s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(5) {
+  animation-delay: 0.0625s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(5) > * {
+  animation-delay: 0.0625s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(6) {
+  animation-delay: 0.075s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(6) > * {
+  animation-delay: 0.075s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(7) {
+  animation-delay: 0.0875s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(7) > * {
+  animation-delay: 0.0875s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(8) {
+  animation-delay: 0.1s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(8) > * {
+  animation-delay: 0.1s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(9) {
+  animation-delay: 0.1125s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(9) > * {
+  animation-delay: 0.1125s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(10) {
+  animation-delay: 0.125s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(10) > * {
+  animation-delay: 0.125s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(11) {
+  animation-delay: 0.1375s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(11) > * {
+  animation-delay: 0.1375s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(12) {
+  animation-delay: 0.15s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(12) > * {
+  animation-delay: 0.15s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(13) {
+  animation-delay: 0.1625s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(13) > * {
+  animation-delay: 0.1625s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(14) {
+  animation-delay: 0.175s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(14) > * {
+  animation-delay: 0.175s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(15) {
+  animation-delay: 0.1875s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(15) > * {
+  animation-delay: 0.1875s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(16) {
+  animation-delay: 0.2s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(16) > * {
+  animation-delay: 0.2s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(17) {
+  animation-delay: 0.2125s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(17) > * {
+  animation-delay: 0.2125s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(18) {
+  animation-delay: 0.225s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(18) > * {
+  animation-delay: 0.225s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(19) {
+  animation-delay: 0.2375s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(19) > * {
+  animation-delay: 0.2375s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(20) {
+  animation-delay: 0.25s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(20) > * {
+  animation-delay: 0.25s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(21) {
+  animation-delay: 0.2625s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(21) > * {
+  animation-delay: 0.2625s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(22) {
+  animation-delay: 0.275s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(22) > * {
+  animation-delay: 0.275s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(23) {
+  animation-delay: 0.2875s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(23) > * {
+  animation-delay: 0.2875s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(24) {
+  animation-delay: 0.3s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(24) > * {
+  animation-delay: 0.3s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(25) {
+  animation-delay: 0.3125s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(25) > * {
+  animation-delay: 0.3125s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(26) {
+  animation-delay: 0.325s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(26) > * {
+  animation-delay: 0.325s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(27) {
+  animation-delay: 0.3375s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(27) > * {
+  animation-delay: 0.3375s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(28) {
+  animation-delay: 0.35s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(28) > * {
+  animation-delay: 0.35s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(29) {
+  animation-delay: 0.3625s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(29) > * {
+  animation-delay: 0.3625s;
+}
+/* line 260, ../sass/style.scss */
+.users.show > *:nth-of-type(30) {
+  animation-delay: 0.375s;
+}
+/* line 262, ../sass/style.scss */
+.users.show > *:nth-of-type(30) > * {
+  animation-delay: 0.375s;
+}
+
+/* line 271, ../sass/style.scss */
+.screen.active .screen-scroll {
+  overflow: hidden;
+}
+/* line 275, ../sass/style.scss */
+.screen.active .modal {
+  border-radius: 0;
+  pointer-events: auto;
+  transform: scale(1) translateZ(0);
+  opacity: 1;
+}
+/* line 282, ../sass/style.scss */
+.screen.active .profile {
+  transform: translateY(0);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes expand-out {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
