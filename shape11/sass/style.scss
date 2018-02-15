@@ -1,0 +1,93 @@
+.wishlist-heart-group {
+	$size: 40px;
+	$heart-color: rgba( 248, 51, 42, 1);
+	display: inline-block;
+	height: $size;
+	position: relative;
+	width: $size;
+	input[type="checkbox"] {
+		// Hide the checkbox, but leave it accessible
+		left: -999999px;
+		position: absolute;
+		top: -999999px;
+		& + label svg { // Set the base rotation
+			transform: rotate(0deg);
+		}
+		&:checked + label svg { // Wiggle Animation on check
+			animation: wishlist-heart-wiggle 400ms 50ms forwards ease-in-out;
+		}
+		&:checked + label svg #heart-path { // SVG animation on check
+			animation: wishlist-heart-add 300ms forwards;
+			stroke: $heart-color;
+		}
+		& + label svg #heart-path { // Transition the fill
+			transition: fill 200ms;
+		}
+		& + label:hover svg #heart-path {
+			transition: stroke 150ms linear;
+			stroke: $heart-color;
+		}
+		& + label:before { // Color Accessibility For Red Deficient
+			align-items: center;
+			background-color: #000;
+			border-radius: 3px;
+			box-sizing: border-box;
+			color: #FFF;
+			content: attr(data-hover-text);
+			display: flex;
+			font-size: 0.8em;
+			height: 25px;
+			justify-content: center;
+			left: 50%;
+			line-height: 1;
+			opacity: 0;
+			padding: 0.5em;
+			position: absolute;
+			text-align: center;
+			top: -2.25em;
+			transform: translateX(-50%);
+			transition:  opacity 100ms linear;
+			white-space: pre;
+		}
+		& + label:hover:before {
+			opacity: 1;
+			transition-delay: 400ms;
+		}
+	}
+	label {
+		display: inline-block;
+		position: relative;
+		width: 100%;
+	}
+	
+	@keyframes wishlist-heart-wiggle {
+		0% {
+			transform: rotate(0deg);
+		}
+		25% {
+			transform: rotate(-10deg);
+		}
+		75% {
+			transform: rotate(8deg);
+		}
+		100% {
+			transform: rotate(0deg);
+		}
+	}
+	
+	@keyframes wishlist-heart-add {
+		0% {
+			stroke-width: 5;
+		}
+		50% {
+			stroke-width: 20;
+		}
+		100% {
+			fill: $heart-color;
+			stroke-width: 5;
+		}
+	}
+}
+
+// Boring Stuff
+body { height: 100vh; width: 100%; display: flex; justify-content: center;align-items: center; }
