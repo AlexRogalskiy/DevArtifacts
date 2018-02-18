@@ -1,0 +1,250 @@
+@charset "UTF-8";
+/* absolute centered 200px width tag */
+/* line 2, ../sass/style.scss */
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  /* Same width and height of the loader to center it */
+  width: 250px;
+  height: 250px;
+}
+
+/* Loader basics */
+/* line 14, ../sass/style.scss */
+.spinner {
+  /* Puedes poner la posici├│n que mas te convenga (absolute, fixed, relative) */
+  /* Can put any kind of position (absolute, fixed, delative, etc...) */
+  position: absolute;
+  display: inline-block;
+  /* El ancho y la altura deben se el mismo valor para que sea circular */
+  /* Width and height of loader must be the same to be circular */
+  width: 250px;
+  height: 250px;
+  /* Evito la selecci├│n con el rat├│n */
+  /* Avoid user selection with mouse */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Before and after defaults */
+/* line 31, ../sass/style.scss */
+.spinner::before, .spinner::after {
+  /* Width / height of each quarter of circle */
+  border: 20px solid transparent;
+  content: '';
+  position: absolute;
+  border-radius: 100%;
+  margin: 0px;
+  /*                box-shadow    : 1px 1px 3px rgba(60, 60, 60, 0.5);*/
+}
+
+/* Before its the exterior circle */
+/* line 41, ../sass/style.scss */
+.spinner::before {
+  top: 8.33%;
+  left: 8.33%;
+  width: 66.66%;
+  height: 66.66%;
+  border-color: #ea504e transparent;
+  animation: spinner-rotation 10s infinite alternate;
+}
+
+/* After its the interior circle */
+/* line 50, ../sass/style.scss */
+.spinner::after {
+  top: 24.99%;
+  left: 24.99%;
+  width: 33.33%;
+  height: 33.33%;
+  border-color: transparent #ea504e;
+  animation: spinner-rotation-inverse 10s infinite alternate;
+}
+
+/* Animaci├│n para el icono de carga (men├║ lateral derecho inferior, semi circulo externo) */
+/* Before animation */
+@keyframes spinner-rotation {
+  0% {
+    transform: rotateZ(0deg) rotateX(0deg);
+    border-color: transparent #86504e;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+  10% {
+    transform: rotateZ(360deg) rotateX(0deg);
+    border-color: transparent #86504e;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+  20% {
+    transform: rotateZ(720deg) rotateX(0deg);
+    border-color: transparent #86504e;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+  30% {
+    transform: rotateZ(1080deg) rotateX(0deg);
+    border-color: transparent #86504e;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+  40% {
+    transform: rotateZ(1440deg) rotateX(0deg);
+    border-color: transparent #86504e;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+  50% {
+    transform: rotateZ(1800deg) rotateX(180deg);
+    border-color: transparent #86504e;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+  60% {
+    transform: rotateZ(1440deg) rotateX(180deg);
+    border-color: #86504e transparent;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+  70% {
+    transform: rotateZ(1080deg) rotateX(180deg);
+    border-color: #86504e transparent;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+  80% {
+    transform: rotateZ(720deg) rotateX(0deg);
+    border-color: #86504e transparent;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+  90% {
+    transform: rotateZ(360deg) rotateX(0deg);
+    border-color: transparent #86504e;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+  100% {
+    transform: rotateZ(0deg) rotateX(0deg);
+    border-color: transparent #86504e;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+}
+/* Animaci├│n para el icono de carga (men├║ lateral derecho inferior, semi circulo interno)*/
+/* After animation */
+@keyframes spinner-rotation-inverse {
+  0% {
+    transform: rotateZ(0deg) rotateX(0deg);
+    border-color: transparent #ea504e;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+  10% {
+    transform: rotateZ(-360deg) rotateX(0deg);
+    border-color: transparent #ea504e;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+  20% {
+    transform: rotateZ(-720deg) rotateX(0deg);
+    border-color: transparent #ea504e;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+  30% {
+    transform: rotateZ(-1080deg) rotateX(0deg);
+    border-color: transparent #ea504e;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+  40% {
+    transform: rotateZ(-1440deg) rotateX(180deg);
+    border-color: #ea504e transparent;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+  50% {
+    transform: rotateZ(-1800deg) rotateX(180deg);
+    border-color: #ea504e transparent;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+  60% {
+    transform: rotateZ(-1440deg) rotateX(180deg);
+    border-color: #ea504e transparent;
+    top: 8.33%;
+    left: 8.33%;
+    width: 66.66%;
+    height: 66.66%;
+  }
+  70% {
+    transform: rotateZ(-1080deg) rotateX(0deg);
+    border-color: transparent #ea504e;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+  80% {
+    transform: rotateZ(-720deg) rotateX(0deg);
+    border-color: transparent #ea504e;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+  90% {
+    transform: rotateZ(-360deg) rotateX(0deg);
+    border-color: transparent #ea504e;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+  100% {
+    transform: rotateZ(0deg) rotateX(0deg);
+    border-color: transparent #ea504e;
+    top: 24.99%;
+    left: 24.99%;
+    width: 33.33%;
+    height: 33.33%;
+  }
+}
