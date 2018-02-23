@@ -1,0 +1,101 @@
+/* line 1, ../sass/style.scss */
+#Contenedor {
+  width: 360px;
+  margin: 0 auto;
+  padding: 50px 0 50px;
+}
+
+/* line 6, ../sass/style.scss */
+#Principal {
+  width: 350px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* line 11, ../sass/style.scss */
+#Atomo {
+  width: 310px;
+  height: 310px;
+  -webkit-perspective: 1000;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* line 18, ../sass/style.scss */
+#Nucleo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background: rgba(192, 192, 192, 0.9);
+}
+
+/* line 27, ../sass/style.scss */
+.Orbita {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 600px;
+  border: 3px solid #32424f;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: rotateX(80deg) rotateY(20deg);
+}
+
+/* line 36, ../sass/style.scss */
+#Atomo .Orbita:nth-child(2) {
+  -webkit-transform: rotateX(80deg) rotateY(70deg);
+}
+
+/* line 37, ../sass/style.scss */
+#Atomo .Orbita:nth-child(3) {
+  -webkit-transform: rotateX(80deg) rotateY(-40deg);
+}
+
+/* line 39, ../sass/style.scss */
+#Atomo .Orbita:nth-child(2) .Ruta, #Atomo .Orbita:nth-child(2) .Electron {
+  -webkit-animation-delay: -0.43s;
+}
+
+/* line 40, ../sass/style.scss */
+#Atomo .Orbita:nth-child(3) .Ruta, #Atomo .Orbita:nth-child(3) .Electron {
+  -webkit-animation-delay: -1.2s;
+}
+
+/* line 42, ../sass/style.scss */
+.Ruta {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  -webkit-animation-name: RotarRuta;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+/* line 53, ../sass/style.scss */
+.Electron {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background: #32424f;
+  -webkit-transform: rotateX(0deg) rotateY(70deg);
+}
+
+@-webkit-keyframes RotarRuta {
+  from {
+    -webkit-transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+  }
+}
