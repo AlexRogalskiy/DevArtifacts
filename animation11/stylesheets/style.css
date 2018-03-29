@@ -1,89 +1,142 @@
-/* --- General Pen Styles --- */
-/* line 2, ../sass/style.scss */
+/* line 1, ../sass/style.scss */
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* line 6, ../sass/style.scss */
 body {
-  font-family: Georgia, serif;
-  color: #333;
-  font-size: 1.4rem;
-  line-height: 2rem;
+  background: linear-gradient(90deg, #b9deed, #efefef);
+  margin: 0;
+  padding: 0;
 }
 
-/* line 8, ../sass/style.scss */
-a {
-  color: #000;
-}
-
-/* line 9, ../sass/style.scss */
-h1 {
-  font-size: 2.6rem;
-  line-height: 2.6rem;
-}
-
-/* line 13, ../sass/style.scss */
-.content {
-  margin: 0 auto;
-  max-width: 90%;
-  width: 720px;
+/* line 12, ../sass/style.scss */
+.main {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  justify-content: center;
 }
 
 /* line 18, ../sass/style.scss */
-main {
-  padding: 1% 0;
+.column {
+  flex-basis: 1 10px;
+  width: calc(100% / 3 - 10px);
+  margin: 5px;
+  padding: 0;
+}
+
+/* line 24, ../sass/style.scss */
+figure {
   position: relative;
-  background: #f5f5f5;
-  box-shadow: 0px -10px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  filter: grayscale(0.8);
+}
+
+/* line 32, ../sass/style.scss */
+figure img {
+  width: 100%;
   height: 100%;
 }
 
-/* line 25, ../sass/style.scss */
-footer p {
-  font-size: .8rem;
-  font-weight: bold;
-  color: #ccc;
-}
-
-/* line 30, ../sass/style.scss */
-footer a {
-  color: #ccc;
-}
-
-/* --- Important Pen Styles --- */
-/* line 33, ../sass/style.scss */
-.zoom {
-  overflow: hidden;
-  padding-bottom: 55%;
-}
-
-/* line 37, ../sass/style.scss */
-.zoom img {
-  position: fixed;
-  top: 0%;
+/* line 36, ../sass/style.scss */
+figure::before {
+  position: absolute;
+  top: 50%;
   left: 50%;
-  max-width: 200%;
-  transform: translateX(-50%);
-  /* Thanks  @bastian_fiessinger. Use when activating blur effect:
-  will-change: -webkit-filter, filter, transform; */
+  z-index: 2;
+  display: block;
+  content: '';
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
 }
 
-@media (max-width: 667px) {
-  /* line 47, ../sass/style.scss */
-  h1 {
-    font-size: 1.8rem;
-    line-height: 2.6rem;
-    text-align: left;
-  }
+/* line 50, ../sass/style.scss */
+figure:hover {
+  animation: bloom ease-in-out .75s forwards;
+}
 
-  /* line 52, ../sass/style.scss */
-  .content {
-    margin: 0 auto;
-    max-width: 90%;
-    width: 100%;
-    height: 100%;
-    text-align: justify;
-  }
+/* line 53, ../sass/style.scss */
+figure:hover::before {
+  animation: circle .75s;
+}
 
-  /* line 59, ../sass/style.scss */
-  .zoom {
-    overflow: hidden;
-    padding-bottom: 75%;
+@keyframes bloom {
+  0% {
+    filter: grayscale(0.8);
   }
+  40% {
+    filter: grayscale(0.5);
+  }
+  100% {
+    filter: grayscale(0);
+  }
+}
+@keyframes circle {
+  0% {
+    opacity: .5;
+    background: rgba(213, 156, 34, 0.2);
+  }
+  40% {
+    opacity: 1;
+    background: rgba(213, 34, 160, 0.2);
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}
+/* General style */
+/* line 85, ../sass/style.scss */
+header {
+  width: 100%;
+  display: block;
+  background: #FFF;
+  height: 40px;
+  margin-bottom: 4%;
+  color: #ccc;
+  font-family: sans-serif;
+  font-weight: bold;
+  box-shadow: 0px 2px 0px 0px rgba(125, 121, 125, 0.3);
+  overflow: hidden;
+}
+
+/* line 97, ../sass/style.scss */
+header h1, header a {
+  display: inline-block;
+  font-size: .8rem;
+  margin: auto 10px;
+  line-height: 40px;
+}
+
+/* line 104, ../sass/style.scss */
+header h1 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* line 108, ../sass/style.scss */
+header a {
+  text-decoration: none;
+  background-color: #eee;
+  color: #999;
+  padding: 0 20px;
+  transition: all ease-in-out .3s;
+}
+
+/* line 115, ../sass/style.scss */
+header a:hover {
+  background-color: #93dfec;
+  color: #eee;
+  margin-left: -3px;
 }

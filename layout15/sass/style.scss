@@ -1,0 +1,202 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: linear-gradient(90deg, #f598a8, #f6edb2);
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  font-family: 'source sans pro', sans-serif;
+}
+.intro{
+  font-size: 1.2rem;
+  display: block;
+  text-align: center;
+  color: #555;
+  font-style: italic;
+}
+.container {
+  width: 80vw;
+  margin: 2vw auto;
+  border: 0.25rem solid rgba(255, 255, 255, 0.1);
+  padding: 2vw;
+  transition: border 0.25s ease;
+}
+.container h2{
+    padding: 0 0 0 1rem;
+    opacity: 0.25;
+    font-size: 2rem;
+    transition: opacity 0.25s ease;
+ }
+.item {
+  position: relative;
+  background-color: white;
+  margin: 1rem;
+  padding: 1rem;
+  min-height: 33vh;
+  overflow: hidden;
+  font-size: 1.25rem;
+  color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.25s ease;
+}
+.item:hover {
+    color: rgba(0, 0, 0, 0.75);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.item p{
+  margin: 0;
+  padding: 0;
+  border: 0.25rem dashed rgba(239, 230, 195, 0.1);
+}
+.item:hover p {
+   border: 0.25rem dashed rgba(239, 230, 195, 0.75);
+}
+.item:hover p:after {
+    opacity: 0.5;
+}
+/* Positioning */
+
+/* Absolute */
+.one p {
+    position:absolute;
+    top: 33%;
+    right:0;
+    bottom:0;
+    left:0;
+    margin: auto;
+    padding: 0 2rem;
+}
+/* table */
+.two{
+  display: table;
+}
+.two p{
+  display: table-cell;
+  vertical-align: middle;
+}
+/* translate */
+.three{
+  height: 33vh;
+}
+.three p{
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+/* line height */
+.four{
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100%;
+  margin: 0 auto;
+  padding: 0;
+  min-height: auto;
+  line-height: 4rem;
+  text-align: center;
+}
+
+
+/* padding */
+.five{
+  padding: 16.5vh 8.25vh;
+  text-align: center;
+}
+
+
+/* flexbox */
+.six{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* flexbox with image */
+.with-image{
+  height: auto;
+  display: flex;
+  flex-direction: row;
+}
+.with-image img, .with-image .content{
+  width: calc(50%);
+}
+.with-image figure img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.content{
+  margin: 0 2rem;
+  align-self: center;
+}
+
+
+/* General style */
+a{
+    font-size: .8rem;
+    text-decoration: none;
+    color: #999;
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+
+header{
+  width: 100%;
+  display: block;
+  background: #FFF;
+  height: 40px;
+  margin-bottom: 4%;
+  color: #ccc;
+  font-family: sans-serif;
+  font-weight: bold;
+  box-shadow: 0px 2px 0px 0px rgba(125,121,125,0.3);
+  overflow: hidden;
+}
+header h1, header a{
+  display: inline-block;
+  font-size: .8rem;
+  margin: auto 10px;
+  line-height: 40px;
+
+}
+header h1{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+header a{
+  text-decoration: none;
+  background-color: #eee;
+  color: #999;
+  padding: 0 20px;
+  transition: all ease-in-out .3s;
+}
+header a:hover{
+  background-color: #93dfec;
+  color: #eee;
+  margin-left: -3px;
+}
+
+@media screen and (max-width: 667px){
+  .item:not(.four){
+    min-height: 50vh;
+  }
+  .item span{
+    font-size: 4vw;
+  }
+  .with-image{
+    flex-direction: column;
+    justify-content: center;
+  }
+ .with-image img, .with-image .content{
+    text-align: center;
+    width: calc(100%);
+    height: calc(100%);
+  }
+}

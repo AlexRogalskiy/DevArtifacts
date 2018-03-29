@@ -1,0 +1,431 @@
+@import url(https://fonts.googleapis.com/css?family=Cabin);
+
+body {
+  font-family: "Cabin";
+  min-width: 320px;
+  padding: 0;
+}
+.full {
+  width: 100%;
+  background: #eee;
+}
+.topbanner {
+  width: 1170px;
+  margin: 20px auto;
+}
+#banner #boxes {
+  height: 500px;
+  position: relative;
+}
+#banner #boxes div {
+  position: absolute;
+}
+.small-box {
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 249px;
+  width: 249px;
+}
+.small-box > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.small-box a {
+  -webkit-transition-duration: .4s;
+  transition-duration: .4s;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -ms-perspective: 1000;
+  -moz-perspective: 1000;
+  perspective: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  overflow: hidden;
+}
+.small-box a:before,
+.big-box a:before {
+  content: "";
+  display: block;
+  background: rgba(0,0,0,0);
+  z-index: 98;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: background .2s;
+  transition: background .2s;
+}
+.small-box a:hover:before,
+.big-box a:hover:before {
+  z-index: 98;
+  background: rgba(0,0,0,.3);
+  -webkit-transition: background .2s;
+  transition: background .2s;
+}
+.big-box .original:hover:before {
+  background: rgba(0,0,0,0);
+}
+
+.original {
+  opacity: .9999;
+}
+.small-box a:not(.original) {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.small-box > div > a:not(.original):hover {
+  cursor: pointer;
+}
+.small-box > div > a.original:hover {
+  cursor: default;
+}
+.small-box a span,
+.big-box a span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 24px;
+  color: #fff;
+  letter-spacing: 1px;
+  z-index: 100;
+  background: rgba(0,0,0,.4);
+  width: 100%;
+  padding: 10px 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-shadow: 0 0 4px rgba(0,0,0,.8), 0 0 30px rgba(0,0,0,.8);
+}
+.small-box .original img {
+  display: none;
+}
+.small-box .original span {
+  height: 100%;
+  text-align: center;
+  /*line-height: 249px;*/
+  padding-top: 135px;
+  background: none;
+  text-shadow: none;
+}
+.big-box a span {
+  font-size: 24px;
+  font-weight: normal;
+}
+.small-box.mountains {
+  top: 0;
+  left: 0;
+}
+.small-box.lakes {
+  top: 251px;
+  left: 0;
+}
+.small-box.forests {
+  top: 0;
+  left: 251px;
+}
+.small-box.beaches {
+  top: 251px;
+  left: 251px;
+}
+.small-box .original span:before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 50px;
+  width: 65px;
+  left: 50%;
+  margin-left: -32px;
+  top: 80px;
+}
+.small-box.mountains .original span:before {
+  background: url("http://www.savorypixel.com/678799/icon_mountains.svg");
+}
+.small-box.lakes .original span:before {
+  background: url("http://www.savorypixel.com/678799/icon_lakes.svg");
+}
+.small-box.forests .original span:before {
+  background: url("http://www.savorypixel.com/678799/icon_forests.svg");
+}
+.small-box.beaches .original span:before {
+  background: url("http://www.savorypixel.com/678799/icon_beaches.svg");
+}
+
+/* spin forward all correct cards (small-box) */
+.mountains-chosen .small-box:not(.mountains) a.mountains-visible,
+.lakes-chosen .small-box:not(.lakes) a.lakes-visible,
+.forests-chosen .small-box:not(.forests) a.forests-visible,
+.beaches-chosen .small-box:not(.beaches) a.beaches-visible {
+  -webkit-transform: rotateY(360deg) translateZ(1px);
+  transform: rotateY(360deg);
+}
+
+/* spin backward all non-correct cards (small-box)*/
+.mountains-chosen .small-box:not(.mountains) a:not(.mountains-visible),
+.lakes-chosen .small-box:not(.lakes) a:not(.lakes-visible),
+.forests-chosen .small-box:not(.forests) a:not(.forests-visible),
+.beaches-chosen .small-box:not(.beaches) a:not(.beaches-visible) {
+  -webkit-transform: rotateY(180deg) translateZ(-2px);
+  transform: rotateY(180deg);
+}
+
+.mountains-chosen .small-box:not(.mountains) a.lakes-visible,
+.lakes-chosen .small-box:not(.lakes) a.mountains-visible,
+.forests-chosen .small-box:not(.forests) a.mountains-visible,
+.beaches-chosen .small-box:not(.beaches) a.mountains-visible,
+.mountains-chosen .small-box.lakes a.mountains-visible,
+.lakes-chosen .small-box.mountains a.lakes-visible,
+.forests-chosen .small-box.mountains a.forests-visible,
+.beaches-chosen .small-box.mountains a.beaches-visible {
+  -webkit-transition-delay: .1s;
+  transition-delay: .1s;
+}
+.mountains-chosen .small-box:not(.mountains) a.forests-visible,
+.lakes-chosen .small-box:not(.lakes) a.forests-visible,
+.forests-chosen .small-box:not(.forests) a.lakes-visible,
+.beaches-chosen .small-box:not(.beaches) a.lakes-visible,
+.mountains-chosen .small-box.forests a.mountains-visible,
+.lakes-chosen .small-box.forests a.lakes-visible,
+.forests-chosen .small-box.lakes a.forests-visible,
+.beaches-chosen .small-box.lakes a.beaches-visible {
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
+}
+.mountains-chosen .small-box:not(.mountains) a.beaches-visible,
+.lakes-chosen .small-box:not(.lakes) a.beaches-visible,
+.forests-chosen .small-box:not(.forests) a.beaches-visible,
+.beaches-chosen .small-box:not(.beaches) a.forests-visible,
+.mountains-chosen .small-box.beaches a.mountains-visible,
+.lakes-chosen .small-box.beaches a.lakes-visible,
+.forests-chosen .small-box.beaches a.forests-visible,
+.beaches-chosen .small-box.forests a.beaches-visible {
+  -webkit-transition-delay: .3s;
+  transition-delay: .3s;
+}
+
+#boxes .big-box {
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 500px;
+  width: 668px;
+  right: 0;
+}
+.big-box > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.big-box > div > a {
+  -webkit-transition-duration: .4s;
+  transition-duration: .4s;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  overflow: hidden;
+}
+.big-box > div > a.original {
+  background-color: #ddd;
+}
+.big-box > div > a:not(.original) {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+  overflow: hidden;
+}
+
+/* spin forward correct card (big-box) */
+.mountains-chosen .big-box a.mountains-visible,
+.lakes-chosen .big-box a.lakes-visible,
+.forests-chosen .big-box a.forests-visible,
+.beaches-chosen .big-box a.beaches-visible {
+  -webkit-transform: rotateX(360deg) translateZ(1px);
+  transform: rotateX(360deg);
+}
+
+/* spin backward all correct cards (big-box) */
+.mountains-chosen .big-box a:not(.mountains-visible),
+.lakes-chosen .big-box a:not(.lakes-visible),
+.forests-chosen .big-box a:not(.forests-visible),
+.beaches-chosen .big-box a:not(.beaches-visible) {
+  -webkit-transform: rotateX(180deg) translateZ(-1px);
+  transform: rotateX(180deg);
+}
+
+.mountains-chosen .big-box a,
+.lakes-chosen .big-box a,
+.forests-chosen .big-box a,
+.beaches-chosen .big-box a {
+  -webkit-transition-delay: .4s;
+  transition-delay: .4s;
+}
+
+.mountains .original {
+  background-color: #ee451a;
+}
+.lakes .original {
+  background-color: #019eeb;
+}
+.forests .original {
+  background-color: #109d69;
+}
+.beaches .original {
+  background-color: #ffb200;
+}
+
+/* Responsive layout still needs a little work */
+/* @media (max-width:1199px) {
+  .topbanner {
+    width: 940px;
+  }
+  #banner #boxes {
+    height: 402px;
+  }
+  #banner #boxes .small-box {
+    height: 200px;
+    width: 200px;
+  }
+  #banner #boxes .small-box.mountains {
+    top: 0;
+    left: 0;
+  }
+  #banner #boxes .small-box.lakes {
+    top: 202px;
+    left: 0;
+  }
+  #banner #boxes .small-box.forests {
+    top: 0;
+    left: 202px;
+  }
+  #banner #boxes .small-box.beaches {
+    top: 202px;
+    left: 202px;
+  }
+  #banner #boxes .big-box {
+    height: 402px;
+    width: 536px;
+  }
+}
+@media (max-width:994px) {
+  .topbanner {
+    width: 720px;
+  }
+  #banner #boxes {
+    height: 400px;
+    overflow: hidden;
+  }
+  #banner #boxes .small-box {
+    height: 25%;
+    width: 25%;
+  }
+  #banner #boxes .small-box.mountains {
+    top: 0;
+    left: 0;
+  }
+  #banner #boxes .small-box.lakes {
+    top: 25%;
+    left: 0;
+  }
+  #banner #boxes .small-box.forests {
+    top: 50%;
+    left: 0;
+  }
+  #banner #boxes .small-box.beaches {
+    top: 75%;
+    left: 0;
+  }
+  #banner #boxes .small-box img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  #banner #boxes .big-box {
+    height: 100%;
+    width: 75%;
+    overflow: hidden;
+  }
+  #banner #boxes .big-box img {
+    width: 100%;
+  }
+  .small-box a span {
+    background: transparent;
+    text-shadow: 0 0 10px rgba(0,0,0,.8), 0 0 4px rgba(0,0,0,.6);
+  }
+}
+@media (max-width:767px) {
+  .topbanner {
+    width: 100%;    
+  }
+  .small-box a span {
+    font-size: 16px;
+  }
+  #banner #boxes .big-box {
+    height: 75%;
+    width: 100%;
+  }
+  #banner #boxes .small-box {
+    bottom: 0;
+  }
+  #banner #boxes .small-box.mountains {
+    top: auto;
+    left: 0;
+  }
+  #banner #boxes .small-box.lakes {
+    top: auto;
+    left: 25%;
+  }
+  #banner #boxes .small-box.forests {
+    top: auto;
+    left: 50%;
+  }
+  #banner #boxes .small-box.beaches {
+    top: auto;
+    left: 75%;
+  }
+}
+@media (max-width:480px) {
+  #banner #boxes {
+    height: 300px;
+  }
+  .small-box a span {
+    display: none;
+  }
+}
+@media (max-width:994px) {
+  #banner {
+    background-color: #fff;
+    margin-top: 20px;
+  }
+}
+*/

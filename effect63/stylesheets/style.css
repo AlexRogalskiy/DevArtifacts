@@ -1,0 +1,128 @@
+/* line 1, ../sass/style.scss */
+:root {
+  --primary-col: #1d252d;
+  --secondary-col: #f05136;
+}
+
+/* line 6, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 10, ../sass/style.scss */
+body {
+  min-height: 100vh;
+  background-color: #e8d057;
+  background: linear-gradient(var(--primary-col) 50%, var(--secondary-col) 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  color: rgba(240, 240, 240, 0.7);
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* line 24, ../sass/style.scss */
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 15rem;
+  padding: 1rem;
+  max-width: 40rem;
+}
+
+/* line 34, ../sass/style.scss */
+.header-p {
+  padding: 0 2rem;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+/* line 40, ../sass/style.scss */
+h1 {
+  background: #fafafa;
+  color: var(--secondary-col);
+  padding: 1rem;
+  position: relative;
+  width: 80%;
+  font-family: 'Yeseva One', cursive;
+  margin: 2rem 0 0;
+}
+
+/* line 50, ../sass/style.scss */
+h1::before,
+h1::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform: rotate(45deg);
+  z-index: -1;
+  border-style: solid;
+}
+
+/* line 61, ../sass/style.scss */
+h1::before {
+  border-color: var(--secondary-col) transparent var(--secondary-col) transparent;
+  border-width: 2.5rem 0 2.5rem 4rem;
+  left: -1.5rem;
+  top: -2rem;
+}
+
+/* line 68, ../sass/style.scss */
+h1::after {
+  border-color: var(--primary-col) transparent var(--primary-col) transparent;
+  border-width: 2.5rem 4rem 2.5rem 0;
+  right: -1.5rem;
+  bottom: -2rem;
+}
+
+/* line 75, ../sass/style.scss */
+.picker-p {
+  margin: 2rem 0 1rem;
+}
+
+/* line 79, ../sass/style.scss */
+.input-row {
+  min-width: 16rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* line 85, ../sass/style.scss */
+.input-box {
+  overflow: hidden;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  border: 0.3rem solid #fafafa;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+/* line 95, ../sass/style.scss */
+input[type="color"] {
+  outline: none;
+  background: transparent;
+  padding: 0;
+  width: 3.75rem;
+  height: 3.75rem;
+  transform: translate(-10%, -10%);
+  cursor: pointer;
+}
+
+/* line 105, ../sass/style.scss */
+.input-box:hover {
+  transform: scale(1.2);
+}
+
+@media screen and (min-width: 600px) {
+  /* line 110, ../sass/style.scss */
+  h1 {
+    font-size: 4rem;
+  }
+}
