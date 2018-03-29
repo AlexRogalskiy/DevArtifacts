@@ -1,0 +1,138 @@
+/* --- Template Styles --- */
+$base-margin: 20px;
+$bp-small: 400px;
+$bp-medium: 600px;
+$bp-large:700px;
+$bp-xlarge: 1200px;
+$bp-menu-shift: 900px;
+$blue: #006CB6;
+$navy: #004987;
+$green: #739849;
+$red: #D8262E;
+$orange: #EB951F;
+$gray-light: #E0E0E0;
+$gray: #BDBDBD;
+$gray-dark: #9E9E9E;
+$primary-text-color: #fff;
+$light-text-color: #fff;
+$primary-button-color: $gray;
+$secondary-button-color: $gray-dark;
+$button-hover-color: darken($gray, 10%);
+
+//Minified stuff I have full versions of locally
+$column-width: 60px;
+$gutter-width: 20px;
+$columns: 12;
+
+@function gridsystem-width($columns:$columns) {
+	@return ($column-width * $columns) + ($gutter-width * $columns);
+}
+$total-width: gridsystem-width($columns);
+@mixin clearfix() {
+	*zoom:1;
+	display: block;
+	&:before,
+	&:after {content:"";display:table;}&:after {clear:both;}}
+body {
+	width: 100%;
+	@include clearfix();}
+@mixin row($columns:$columns) {
+	display: block;
+	width: $total-width*(($gutter-width + gridsystem-width($columns))/gridsystem-width($columns));
+	margin: 0 $total-width*((($gutter-width*.5)/gridsystem-width($columns))*-1);
+	@include clearfix();}
+@mixin column($x,$columns:$columns) {
+	display: inline;
+	float: left;
+	width: $total-width*(((($gutter-width+$column-width)*$x)-$gutter-width) / gridsystem-width($columns));
+	margin: 0 $total-width*(($gutter-width*.5)/gridsystem-width($columns));}
+@mixin push($offset:1) {
+	margin-left: $total-width*((($gutter-width+$column-width)*$offset) / gridsystem-width($columns)) + $total-width*(($gutter-width*.5)/gridsystem-width($columns));}
+@mixin pull($offset:1) {
+	margin-right: $total-width*((($gutter-width+$column-width)*$offset) / gridsystem-width($columns)) + $total-width*(($gutter-width*.5)/gridsystem-width($columns));
+}
+@mixin push-neg($offset:1) {
+	margin-right: -$total-width*((($gutter-width+$column-width)*$offset) / gridsystem-width($columns)) + $total-width*(($gutter-width*.5)/gridsystem-width($columns));
+}
+@mixin pull-neg($offset:1) {
+	margin-left: -$total-width*((($gutter-width+$column-width)*$offset) / gridsystem-width($columns)) + $total-width*(($gutter-width*.5)/gridsystem-width($columns));
+}
+.btn{
+	display: inline-block;
+	padding: $base-margin/3 $base-margin/2;
+	line-height: 1.2;
+	font-weight: normal;
+	background-color: $primary-button-color;
+	border: 0;
+	border-radius: 6px;
+	margin-bottom: 0;
+	color: #fff;
+}
+.btn:hover,a .btn:hover,.btn.active {
+	background-color: $button-hover-color; 
+	border-color: $button-hover-color;
+	text-decoration: none;
+}
+.btn-primary{
+	color: $primary-text-color;
+}
+.btn-secondary {
+	background-color: $secondary-button-color;
+	border-color: $secondary-button-color;
+	color: $light-text-color;
+}
+.btn-secondary:hover,a .btn-secondary:hover,.btn-secondary.active {
+	background-color: darken( $secondary-button-color, 15% );
+	border-color: darken( $secondary-button-color, 15% );
+}
+.btn:active,.btn.active {
+	outline: 0;
+}
+.btn.disabled,.btn[disabled] {
+	pointer-events: none;
+	cursor: not-allowed;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+    box-shadow: none;
+}
+.btn.full{width: 100%;}
+.btn-skinny{
+	padding: 0.5em 1em;
+	font-size: 0.75em;
+	line-height: normal;
+	&.full{width: 100%;}
+}
+.btn-large {
+	padding: 0.75em 2em;
+	font-size: 1em;
+	line-height: normal;
+	&.full{width: 100%;}
+}
+.btn-block,input[type="submit"].btn-block,input[type="reset"].btn-block,input[type="button"].btn-block {
+	display: block;
+	width: 100%;
+	margin-right: 0;
+	padding-right: 0;
+	padding-left: 0;
+}
+button,.btn {
+	cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
+	background-image: none;
+	-webkit-appearance: none;
+}
+.btn:last-child,
+input.btn {
+	margin-right: 0;
+}
+//Grid Setup
+$columns: 12;
+$column-width: 60;
+$gutter-width: 20;
+$total-width: 100%;
+
+img{
+	vertical-align: middle;
+	max-width: 100%;
+}
