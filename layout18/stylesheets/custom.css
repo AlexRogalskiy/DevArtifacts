@@ -1,0 +1,46 @@
+/* **************************
+	Holy Grail Layout with CSS Grid
+************************** */
+/* Define grid areas */
+/* line 6, ../sass/custom.scss */
+.hg-header {
+  grid-area: header;
+}
+
+/* line 7, ../sass/custom.scss */
+.hg-footer {
+  grid-area: footer;
+}
+
+/* line 8, ../sass/custom.scss */
+.hg-main {
+  grid-area: main;
+}
+
+/* line 9, ../sass/custom.scss */
+.hg-left {
+  grid-area: navigation;
+}
+
+/* line 10, ../sass/custom.scss */
+.hg-right {
+  grid-area: ads;
+}
+
+/* line 13, ../sass/custom.scss */
+.hg {
+  display: grid;
+  grid-template-areas: "header header header" "navigation main ads" "footer footer footer";
+  grid-template-columns: 150px 1fr 150px;
+  grid-template-rows: 100px  1fr  30px;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 600px) {
+  /* line 31, ../sass/custom.scss */
+  .hg {
+    grid-template-areas: "header" "navigation" "main" "ads" "footer";
+    grid-template-columns: 100%;
+    grid-template-rows: 100px  50px  1fr 50px  30px;
+  }
+}
