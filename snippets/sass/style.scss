@@ -1,0 +1,126 @@
+// Vertical Align Anything
+.verticalcenter{
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+## Stretch an Element To Full Window Height
+html, 
+body {
+  height: 100%;
+}
+div {
+  height: 100%;
+}
+
+## Applying Different Styles Based on File Format
+a[href^="http://"]{
+    padding-right: 20px;
+    background: url(external.gif) no-repeat center right;
+}
+/* emails */
+a[href^="mailto:"]{
+    padding-right: 20px;
+    background: url(email.png) no-repeat center right;
+}
+   
+/* pdfs */
+a[href$=".pdf"]{
+    padding-right: 20px;
+    background: url(pdf.png) no-repeat center right;
+}
+
+## Cross-Browser Image Grayscale
+img {
+    filter: url(filters.svg#grayscale); /* Firefox 3.5+ */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+}
+
+## Animating A Gradient Background
+button {
+  background-image: linear-gradient(#5187c4, #1c2f45);
+  background-size: auto 200%;
+  background-position: 0 100%;
+  transition: background-position 0.5s;
+}  
+button:hover {
+  background-position: 0 0;
+}
+
+## CSS Table Column Autowidth
+td {
+    white-space: nowrap;
+}
+
+## Showing Box Shadow Only on One or Two Sides
+.box-shadow {
+    background-color: #FF8020;
+    width: 160px;
+    height: 90px;
+    margin-top: -45px;
+    margin-left: -80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.box-shadow:after {
+    content: "";
+    width: 150px;
+    height: 1px;
+    margin-top: 88px;
+    margin-left: -75px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    z-index: -1;
+    -webkit-box-shadow: 0px 0px 8px 2px #000000;
+       -moz-box-shadow: 0px 0px 8px 2px #000000;
+            box-shadow: 0px 0px 8px 2px #000000;
+}
+
+## Wrapping Long Text Context
+pre {
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+
+## Making the Blurry Text
+.blurry-text {
+   color: transparent;
+   text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+## Animating Ellipsis Using CSS Animation
+.loading:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    animation: ellipsis 2s infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+}
+@keyframes ellipsis {
+    from {
+        width: 2px;
+    }
+    to {
+        width: 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
