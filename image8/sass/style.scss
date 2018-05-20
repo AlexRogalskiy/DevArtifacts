@@ -1,0 +1,81 @@
+@import "compass/css3";
+
+// MIXINS
+@mixin keyframes($name) {
+	@-o-keyframes #{$name} { @content };
+	@-moz-keyframes #{$name} { @content };
+	@-webkit-keyframes #{$name} { @content }; 
+	@keyframes #{$name} { @content };
+}
+
+@mixin animation($animation) {
+	-o-animation: $animation;
+	-moz-animation: $animation;
+	-webkit-animation: $animation;
+	animation: $animation;
+}
+
+//CSS
+body {
+  background: lightblue;
+}
+
+svg {
+  height: 50%;
+  max-width: 350px;
+  padding: 3% 10% 0;
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+}
+
+.wing.right {
+  @include animation(wing-right 0.2s infinite);
+  @include transform-origin(0%, 100%);
+}
+
+.wing.left {
+  @include animation(wing-left 0.2s infinite);
+  @include transform-origin(100%, 100%);
+}
+
+.bug-body {
+  @include animation(bug-body 1s infinite);
+}
+
+//ANIMATIONS
+@include keyframes(wing-right) {
+  0% {
+    @include transform(translateX(0));
+  }
+  50% {
+    @include transform(translateX(10px) rotate(15deg));
+  }
+  100% {
+    @include transform(translateX(0px));
+  }
+}
+
+@include keyframes(wing-left) {
+  0% {
+    @include transform(translateX(0));
+  }
+  50% {
+    @include transform(translateX(10px) rotate(-15deg));
+  }
+  100% {
+    @include transform(translateX(0px));
+  }
+}
+
+@include keyframes(bug-body) {
+  0% {
+    @include transform(translateY(0));
+  }
+  50% {
+    @include transform(translateY(-10px));
+  }
+  100% {
+    @include transform(translateY(0px));
+  }
+}

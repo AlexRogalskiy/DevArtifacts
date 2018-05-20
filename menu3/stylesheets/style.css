@@ -1,0 +1,75 @@
+/* line 1, ../sass/style.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 5, ../sass/style.scss */
+nav {
+  font-family: monospace;
+}
+
+/* line 9, ../sass/style.scss */
+ul {
+  background: darkorange;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+/* line 16, ../sass/style.scss */
+li {
+  color: #fff;
+  background: darkorange;
+  display: block;
+  float: left;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+}
+
+/* line 27, ../sass/style.scss */
+li a {
+  color: #fff;
+}
+
+/* line 31, ../sass/style.scss */
+li:hover,
+li:focus-within {
+  background: red;
+  cursor: pointer;
+}
+
+/* line 37, ../sass/style.scss */
+li:focus-within a {
+  outline: none;
+}
+
+/* line 41, ../sass/style.scss */
+ul li ul {
+  background: orange;
+  visibility: hidden;
+  opacity: 0;
+  min-width: 5rem;
+  position: absolute;
+  transition: all 0.5s ease;
+  margin-top: 1rem;
+  left: 0;
+  display: none;
+}
+
+/* line 53, ../sass/style.scss */
+ul li:hover > ul,
+ul li:focus-within > ul,
+ul li ul:hover,
+ul li ul:focus {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+/* line 62, ../sass/style.scss */
+ul li ul li {
+  clear: both;
+  width: 100%;
+}
