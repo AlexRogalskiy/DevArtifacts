@@ -1,0 +1,100 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+/* line 2, ../sass/style.scss */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+/* line 3, ../sass/style.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 4, ../sass/style.scss */
+body {
+  background: #000;
+  overflow: hidden;
+  color: #fff;
+  font-family: 'Roboto',sans-serif;
+}
+
+/* line 5, ../sass/style.scss */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* line 7, ../sass/style.scss */
+.kaleidoscopeContainer {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* line 12, ../sass/style.scss */
+.spaceBackground {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2144/starfield_background_nasa.jpg) center center;
+}
+
+/* line 16, ../sass/style.scss */
+#config {
+  background: rgba(17, 17, 17, 0.5);
+  width: 280px;
+  height: 100%;
+  position: absolute;
+  z-index: 200;
+  padding: 14px 40px 14px 14px;
+  transition: transform 200ms ease-out;
+}
+/* line 25, ../sass/style.scss */
+#config.closed {
+  transform: translateX(-240px);
+}
+/* line 29, ../sass/style.scss */
+#config a.action {
+  position: absolute;
+  right: 8px;
+}
+/* line 36, ../sass/style.scss */
+#config form span {
+  display: block;
+  margin: 4px 0;
+}
+/* line 41, ../sass/style.scss */
+#config form p {
+  margin: 24px 0 8px 0;
+}
+/* line 43, ../sass/style.scss */
+#config form label {
+  text-transform: uppercase;
+  display: inline-block;
+  padding-bottom: 1px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  font-size: 12px;
+  width: 160px;
+  margin-left: 4px;
+}
+/* line 52, ../sass/style.scss */
+#config form input[type=checkbox] + label {
+  border-color: transparent;
+}
+/* line 56, ../sass/style.scss */
+#config form input[type=number] {
+  width: 40px;
+  color: #fff;
+  background: transparent;
+  font-family: 'Roboto';
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 1px;
+  font-size: 16px;
+  margin-left: 4px;
+  vertical-align: 1px;
+}
+/* line 67, ../sass/style.scss */
+#config form input[type=number]:focus {
+  outline: 0;
+  border-color: rgba(255, 255, 255, 0.75);
+}

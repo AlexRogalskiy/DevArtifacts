@@ -1,0 +1,88 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+$g:(
+  sunset:(from:#FF4437,to:#241490),
+  underwater:(from:#1DDD77,to:#1C6FE3),
+  night:(from:#24032B,to:#34789D)
+);
+
+@function gradient($gradient,$key) {
+    @return map-get(map-get($g, $gradient),$key);
+}
+
+@each $class, $gradient in $g {
+  section.#{$class} .button {
+    background:linear-gradient(25deg,gradient(#{$class},from),gradient(#{$class},to));
+    &.inverse {
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      border-image-source:linear-gradient(25deg,gradient(#{$class},from),gradient(#{$class},to));
+    }
+  }
+}
+
+* {margin:0;padding:0;border:0;box-sizing:border-box;}
+html,body {height:100%;}
+
+body {
+  background:#eee;
+  font-family:'Montserrat',sans-serif;
+}
+
+section {
+  width:50em;
+  margin:2em auto;
+  padding:2em;
+  background:#e9e9e9;
+  text-align:center;
+  position:relative;
+  
+  &:before {
+    content:attr(class);
+    position:absolute;
+    top:1em;
+    left:1em;
+    text-transform:uppercase;
+    font-weight:bold;
+    color:#ccc;
+  }  
+}
+
+.button {
+  display:table;
+  background-size:200% 200%!important;
+  color:#fff;
+  text-transform:uppercase;
+  text-decoration:none;
+  letter-spacing:1px;
+  padding:1.3em 1.5em;
+  margin:1.5em auto;
+  border-radius:0.3em;
+  -webkit-transition:all 200ms linear;
+  
+  &:hover {
+    background-size:110% 110%!important;
+    padding:1.3em 2.1em;
+    -webkit-transition:all 200ms linear;
+  }
+  
+  &.inverse {
+    font-weight:bold;
+    padding:1.15em 1.5em;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    border-width:0.25em;
+    border-style:solid;
+    border-image-source:linear-gradient(45deg,#fff,#fff);
+    border-image-slice:30%;
+    border-image-width:1;
+    border-image-repeat:stretch;
+    // i wish i could round these but you just can't mix border-radius with border-image ¯\_(ツ)_/¯ 
+    
+    &:hover {
+      background-size:100% 100%!important;
+      border-image-slice:3%;
+      padding:1.15em 2.1em;
+    }
+  }  
+}

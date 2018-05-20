@@ -1,0 +1,74 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+* {margin:0;padding:0;border:0;box-sizing:border-box;}
+html,body {height:100%;}
+body {background:#000;overflow:hidden;color:#fff;font-family:'Roboto',sans-serif;}
+canvas {position:fixed;top:0;left:50%;transform:translateX(-50%);}
+
+.kaleidoscopeContainer {
+	width:100vw;
+  height:100vh;
+}
+
+.spaceBackground {
+	background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2144/starfield_background_nasa.jpg) center center;
+}
+
+#config {
+	background:rgba(#111, 0.5);
+	width:280px;
+	height:100%;
+	position:absolute;
+	z-index:200;
+	padding:14px 40px 14px 14px;
+	transition:transform 200ms ease-out;
+	
+	&.closed {
+		transform:translateX(-240px);
+	}
+	
+	a.action {
+		position:absolute;
+		right:8px;
+	}
+	
+	form {
+		
+		span {
+			display:block;
+			margin:4px 0;
+		}
+		
+		p {margin:24px 0 8px 0;}
+		
+		label {
+			text-transform:uppercase;
+			display:inline-block;
+			padding-bottom:1px;
+			border-bottom:2px solid rgba(255,255,255,0.25);
+			font-size:12px;
+			width:160px;
+			margin-left:4px;
+		}
+		input[type=checkbox] + label {
+			border-color:transparent;
+		}
+		
+		input[type=number] {
+			width:40px;
+			color:#fff;
+			background:transparent;
+			font-family:'Roboto';
+			border-bottom:2px solid rgba(255,255,255,0.25);
+			padding-bottom:1px;
+			font-size:16px;
+			margin-left:4px;
+			vertical-align:1px;
+			
+			&:focus {
+				outline:0;
+				border-color:rgba(255,255,255,0.75);
+			}
+		}
+		
+	}
+}
