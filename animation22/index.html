@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+    <div id="container"></div>
+
+    <script type="x-shader/x-vertex" id="vertexshader">
+
+        #define M_PI 3.1415926535897932384626433832795
+        
+        attribute vec3 color;
+        varying vec3 vColor;
+        attribute vec3 displacement;
+        attribute float startTime;
+        
+        uniform float time;
+        varying float vTime;
+        
+            void main() {
+            vTime = ( time - startTime ) * 0.05;
+          float xVal = displacement.x * vTime - (10.0 + (0.05*vTime)) * vTime;
+          float yVal = sin(2.0*M_PI*(xVal/400.0))*30.0 + displacement.y * vTime;
+          float zVal = sin(2.0*M_PI*(xVal/300.0))*20.0 + displacement.z * vTime;
+          vec3 newPosition = position + vec3(xVal, yVal, zVal);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+          vColor = color;
+        }
+
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentshader">
+
+        varying vec3 vColor;
+        varying float vTime;
+
+        void main() {
+          gl_FragColor = vec4( vColor.rgb, 1.0 - vTime*0.005 );
+        }
+
+    </script>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
+    
+</body>
+<!--  footer -->
+</html>
