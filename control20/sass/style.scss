@@ -1,0 +1,473 @@
+@import "compass/reset";
+@import "compass/css3";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+$maxScreen: 640px;
+
+$cyan: #57CAF4;
+$red: #EC008C;
+$green: #0FEC00;
+$lime: #ECED52;
+$teal: #00ECE0;
+
+$dark: #424242;
+
+$slowSpeed: 0.8s;
+$hoverSpeed: 0.4s;
+body,
+html {
+    height: 100%;
+}
+
+body {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    background: #d0d0d0;
+    color: #444444;
+}
+
+h1 {
+    font-size: 2.5em;
+  	margin: 1em 0 0.5em;
+}
+
+h2 {
+    margin-bottom: 3em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+strong {
+    font-weight: 700;
+}
+
+div {
+    position: relative;
+}
+
+input {
+    display: none;
+}
+
+article {
+	h3 {
+		font-size: 1.5em;
+		margin-bottom: 1.5em;
+		padding-bottom: 1.5em;
+		border-bottom: 1px solid $dark;
+	}
+	padding: 2em;
+	max-width: 470px;
+	text-align: center;
+	// background-color: $green;
+	margin-bottom: 2em;
+}
+
+.container {
+    height: 100%;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+}
+
+.burger {
+    width: 4em;
+    height: 4em;
+    display: inline-block;
+    position: relative;
+    @include transition(all $hoverSpeed ease-in-out);
+    @include transition-timing-function(cubic-bezier(0.61, 0.04, 0.17, 1.32));
+    .middle {
+        left: -0.25em;
+        top: 50%;
+        width: 4.5em;
+        height: 0.5em;
+        position: absolute;
+        margin-top: -0.25em;
+        display: inline-block;
+        @include border-radius(0.5em);
+        @include transition(all $hoverSpeed ease-in-out);
+        background: $cyan;
+    }
+    &:after,
+    &:before {
+        content: "";
+        width: 4.5em;
+        height: 0.5em;
+        left: -0.25em;
+        position: absolute;
+        @include border-radius(0.5em);
+        background: $cyan;
+        @include transform-origin(50%, 50%, 0);
+        @include transition(all $hoverSpeed ease-in-out);
+    }
+    &:after {
+        bottom: 0;
+    }
+    &:before {
+        top: 0;
+    }
+}
+
+.circle {
+    font-size: 0.5em;
+    width: 4em;
+    height: 4em;
+    line-height: 1em;
+    padding: 5em;
+    margin: 0 auto 0.6em;
+    display: inline-block;
+    position: relative;
+    @include border-radius(50%);
+    background-color: white;
+    @include transition(all $hoverSpeed ease-in-out);
+    &:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        position: absolute;
+        z-index: 0;
+        @include border-radius(50%);
+        background-color: rgba(255,255,255,0.4);
+    }
+    &.active,
+    &:hover {
+        cursor: pointer;
+        &:before {
+            @include animation(pointer-ball ($hoverSpeed * 0.75) ease 1);
+            @include animation-timing-function(cubic-bezier(0.61, 0.04, 0.17, 1.32));
+        }
+        .burger {
+            @include transform(rotateZ(360deg));
+            &.cross {
+            	.middle, &:after, &:before {
+	                background: $red;
+	            }
+	            .middle {
+	                opacity: 0;
+	            }
+	            &:after {
+	                bottom: 1.75em;
+	                @include transform(rotate(135deg));
+	            }
+	            &:before {
+	                top: 1.75em;
+	                @include box-shadow(0 0 0 white);
+	                @include transform(rotate(45deg));
+	            }
+            }
+            &.arrow {
+                .middle, &:after, &:before {
+                    background: $green;
+                }
+                .middle {
+                    opacity: 1;
+                }
+                &:after {
+                    bottom: 0.6em;
+                    width: 3em;
+                    @include transform(translateX(1.7em) rotate(135deg));
+                }
+                &:before {
+                    top: 0.6em;
+                    width: 3em;
+                    @include transform(translateX(1.7em) rotate(-135deg));
+                }
+                &.left {
+                    @include transform(rotateZ(-360deg));
+                    &:after {
+                        @include transform(translateX(-0.2em) rotate(45deg));
+                    }
+                    &:before {
+                        @include transform(translateX(-0.2em) rotate(-45deg));
+                    }
+                }
+            }
+            &.triangle {
+                .middle, &:after, &:before {
+                    background: $red;
+                }
+                .middle {
+                    opacity: 1;
+                    top: 95%;
+                }
+                &:after {
+                	bottom: 1.75em;
+                    @include transform(translateX(1em) rotate(60deg));
+                }
+                &:before {
+                	top: 1.75em;
+                    @include transform(translateX(-1em) rotate(-60deg));
+                }
+            }
+            &.dots {
+                .middle, &:after, &:before {
+                    width: 0.75em;
+                    height: 0.75em;
+                    margin-top: -0.5em;
+                    background: $green;
+                }
+                .middle {
+                    opacity: 1;
+                    left: 1.7em;
+                }
+                &:after {
+                    bottom: 1.7em;
+                    @include transform(translateX(3.7em) rotate(0deg));
+                }
+                &:before {
+                    top: 2em;
+                    @include transform(translateX(0) rotate(0deg));
+                }
+            }
+            &.tick {
+                .middle, &:after, &:before {
+                    background: $dark;
+                }
+                .middle {
+                    opacity: 0;
+                    left: 1.7em;
+                }
+                &:after {
+                	left: 0;
+                    bottom: 0;
+                    width: 2em;
+                    @include transform-origin(100%, 50%, 0);
+                    @include transform(translateX(-0.4em) rotate(45deg));
+                }
+                &:before {
+                    top: 94%;
+                    width: 3.7em;
+                    @include transform-origin(0%, 0%, 0);
+                    @include transform(translateX(1.5em) rotate(-45deg));
+                }
+            }
+            &.wifi {
+                .middle, &:after, &:before {
+                	font-size: 1.2em;
+                	left: -1.4em;
+                    top: 0.5em;
+                    width: 5em;
+                    height: 5em;
+                    border: 0.5em solid $dark;
+                    border-left-color: transparent;
+                    border-right-color: transparent;
+                    border-bottom-color: transparent;
+                    @include border-radius(50%);
+                    background-color: transparent;
+                }
+                .middle {
+                    opacity: 1;
+                }
+                &:after {
+                    left: -0.35em;
+                    top: 1.2em;
+                    width: 3em;
+                    height: 3em;
+                    @include transform(translateX(0) rotate(0deg));
+                }
+                &:before {
+                    left: 0.65em;
+                    top: 2.23em;
+                    width: 1em;
+                    height: 1em;
+                    @include transform(translateX(0) rotate(0deg));
+                }
+            }
+            &.user {
+                .middle, &:after, &:before {
+                    margin-top: -0.5em;
+                    border: 0.5em $dark solid;
+                    background-color: white;
+                    @include border-radius(50%);
+                    @include transition(none);
+                }
+                .middle {
+                    opacity: 1;
+                    top: -0.1em;
+                    left: 0em;
+                    width: 3em;
+                    height: 3em;
+                    margin: 0;
+                    z-index: 1;
+                }
+                &:after {
+                    top: 2.9em;
+                    left: -1em;
+                    width: 5em;
+                    height: 5em;
+                    margin: 0;
+                    z-index: 0;
+                    border-left-color: transparent;
+                    border-right-color: transparent;
+                    border-bottom-color: transparent;
+                    background-color: transparent;
+                    @include transform(translateX(0) rotate(0deg));
+                }
+                &:before {
+                	opacity: 0;
+                    @include transform(translateX(0) rotate(0deg));
+                }
+            }
+            &.mail {
+                .middle, &:after, &:before {
+                    margin-top: -0.5em;
+                    border: 0.5em $dark solid;
+                    background-color: white;
+                    @include border-radius(0.5em);
+                	@include transition(none);
+                }
+                .middle {
+                	text-align: center;
+                	&:before {
+                		content: "5";
+                		// font-weight: 700;
+                		display: inline-block;
+                		color: white;
+                		line-height: 2em;
+                		font-size: 1.5em;
+                	}
+                    top: -2em;
+                    right: -3em;
+                    left: auto;
+                    width: 3em;
+                    height: 3em;
+                    margin: 0;
+                    z-index: 1;
+                    @include border-radius(50%);
+                    border-color: white;
+                    background-color: $red;
+                }
+                &:after {
+                    top: 0em;
+                    left: -0.5em;
+                    width: 4em;
+                    height: 3em;
+                    margin: 0;
+                    z-index: 0;
+                    @include transform(translateX(0) rotate(0deg));
+                }
+                &:before {
+                	top: -1.5em;
+                    left: 0.2em;
+                    width: 2.7em;
+                    height: 2.7em;
+                    margin: 0;
+                    z-index: 1;
+                    border-left-color: transparent;
+                    border-top-color: transparent;
+                    background-color: transparent;
+                    @include transform(translateX(0) rotate(45deg));
+                }
+            }
+            &.cloud {
+                .middle, &:after, &:before {
+                    margin-top: -0.5em;
+                    border: 0.5em $dark solid;
+                    background-color: white;
+                    @include border-radius(0.5em);
+                	@include transition(none);
+                }
+                .middle {
+                    top: 0.6em;
+                    right: -1em;
+                    left: auto;
+                    width: 2.5em;
+                    height: 2.5em;
+                    margin: 0;
+                    z-index: 2;
+					border-left-color: transparent;
+					border-top-color: transparent;
+                    background-color: transparent;
+                    @include border-radius(50%);
+                    @include transform(rotate(-89deg));
+                }
+                &:after {
+                    top: 1em;
+                    left: -1em;
+                    width: 5em;
+                    height: 2em;
+                    margin: 0;
+                    z-index: 0;
+                    border-right-color: transparent;
+  					border-top-color: transparent;
+                    @include border-radius(2em);
+                    @include transform(translateX(0) rotate(0deg));
+                }
+                &:before {
+                	top: -0.3em;
+                    left: -0.7em;
+                    width: 2.5em;
+                    height: 2.5em;
+                    margin: 0;
+                    z-index: 1;
+                    @include border-radius(50%);
+                    border-left-color: transparent;
+					border-top-color: transparent;
+					background-color: transparent;
+                    @include transform(translateX(0) rotate(205deg));
+                }
+            }
+        }
+    }
+}
+
+@-webkit-keyframes pointer-ball {
+    0%, 100% {
+        @include transform(scale(1));
+    }
+    80% {
+        @include transform(scale(2));
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@-moz-keyframes pointer-ball {
+    0%, 100% {
+        @include transform(scale(1));
+    }
+    80% {
+        @include transform(scale(2));
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes pointer-ball {
+    0%, 100% {
+        @include transform(scale(1));
+    }
+    80% {
+        @include transform(scale(2));
+    }
+    100% {
+        opacity: 0;
+    }
+}

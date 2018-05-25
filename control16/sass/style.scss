@@ -1,0 +1,193 @@
+@import "compass/css3";
+
+@import "compass/reset";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+$maxScreen: 480px;
+
+body, html { height: 100%; }
+
+body {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    background: #d0d0d0;
+    color: #444444;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+h2 {
+    margin-bottom: 3em;
+}
+
+p {
+    width: 23em;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+    &:last-of-type {
+        margin-bottom: 2em;
+    }
+}
+
+strong {
+    font-weight: 700;
+}
+
+.container {
+
+    height: 100%;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+}
+
+
+.dropdown {
+
+    height: 3em;
+    width: 1.618em * 10;
+
+    text-align: left;
+    position: relative;
+
+    background-color: #f5f5f5;
+
+    .dropdown_switch {
+        @include transition( all 0.2s ease-in-out );
+        @include transform(scale(0.75));
+        @include border-radius(50%);
+        position: absolute;
+        right: 0.75em;
+        top: 0.75em;
+        z-index: 0;
+        width: 1.5em;
+        height: 1.5em;
+        background-color: #3498db;
+
+        &:focus {
+            @include transform(scale(0.75));
+        }
+    }
+
+    &:focus {
+
+        background-color: transparent;
+
+        .dropdown_list {
+
+            background-color: #f5f5f5;
+
+            input:not(:checked) + label {
+                height: auto;
+                padding: 1em 1.2em;
+            }
+
+            input:checked + label {
+                color: #f0f0f0;
+                background-color: #444444;
+            }
+
+            &+ .dropdown_switch {
+                z-index: 2;
+                background-color: #e74c3c;
+                @include transform(scale(1));
+            }
+
+        }
+    }
+
+    .dropdown_list {
+
+        z-index: 1;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+
+        input {
+            display: none;
+        }
+
+        label {
+            @include transition( all 0.2s ease-in-out );
+            padding: 1em 1.2em;
+            position: relative;
+            display: block;
+        }
+
+        input:not(:checked) + label,
+        li:first-child input:not(:checked) + label {
+            height: 0;
+            padding: 0 1.2em;
+            overflow: hidden;
+        }
+
+        li:first-child input:not(:checked) + label {
+            @include transition-duration(0.6s);
+        }
+
+    }
+}
+
+body {
+
+    @media screen and (max-width: $maxScreen) {
+
+        .dropdown:focus {
+
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+
+            .dropdown_list {
+
+                height: 100%;
+                overflow: auto;
+
+                li:first-child label {
+                    opacity: 0;
+                }
+
+                input:not(:checked) + label {
+                    @include transition(none);
+                    height: auto;
+                    padding: 1em 1.2em;
+                }
+
+                &:focus {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
