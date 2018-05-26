@@ -1,0 +1,128 @@
+/* line 5, ../sass/style.scss */
+.button-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+/* line 13, ../sass/style.scss */
+.button {
+  position: relative;
+  outline: none;
+  background: #6C2EB9;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 100px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), 0 2px 0 rgba(108, 46, 185, 0.2);
+  margin: 0 12px;
+  color: #FFF;
+  cursor: pointer;
+}
+/* line 26, ../sass/style.scss */
+.button--large {
+  z-index: 1;
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+/* line 34, ../sass/style.scss */
+.button:hover .tooltip {
+  top: -100%;
+  opacity: 1;
+}
+
+/* line 42, ../sass/style.scss */
+.icon {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: background 0.3s ease;
+}
+/* line 48, ../sass/style.scss */
+.icon, .icon:before, .icon:after {
+  position: absolute;
+  display: block;
+  background: #FFF;
+  width: 6px;
+  height: 6px;
+  border-radius: 10px;
+}
+/* line 59, ../sass/style.scss */
+.icon:before, .icon:after {
+  content: '';
+  transition: all 100ms ease, right 100ms 100ms ease, left 100ms 100ms ease;
+}
+/* line 67, ../sass/style.scss */
+.icon:before {
+  left: -11px;
+  transform: translateX(-50%);
+}
+/* line 72, ../sass/style.scss */
+.icon:after {
+  right: -11px;
+  transform: translateX(50%);
+}
+/* line 77, ../sass/style.scss */
+.icon.active {
+  background: transparent;
+  transition: background 0.3s ease;
+}
+/* line 81, ../sass/style.scss */
+.icon.active, .icon.active:before, .icon.active:after {
+  height: 3px;
+}
+/* line 87, ../sass/style.scss */
+.icon.active:before, .icon.active:after {
+  width: 20px;
+  transform-origin: 50% 50%;
+  transition: all 100ms ease, width 100ms 100ms ease, transform 300ms 200ms cubic-bezier(0.28, 0.55, 0.385, 1.65);
+}
+/* line 96, ../sass/style.scss */
+.icon.active:before {
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+/* line 101, ../sass/style.scss */
+.icon.active:after {
+  right: 50%;
+  transform: translateX(50%) rotate(-45deg);
+}
+
+/* line 109, ../sass/style.scss */
+.tooltip {
+  position: absolute;
+  top: -80%;
+  left: 50%;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 2px;
+  padding: 4px;
+  box-sizing: border-box;
+  transform: translate(-50%, 50%);
+  color: #FFF;
+  font-size: 10px;
+  opacity: 0;
+  transition: 200ms ease;
+}
+
+/* line 126, ../sass/style.scss */
+body {
+  background: #F3F3F3;
+}
+
+/* line 130, ../sass/style.scss */
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin: 0 auto;
+  transform-origin: center;
+  transform: translate(-50%, -50%) scale(1, 1);
+}
