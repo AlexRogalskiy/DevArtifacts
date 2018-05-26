@@ -1,0 +1,291 @@
+@charset "UTF-8";
+/* line 31, ../sass/style.scss */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 33, ../sass/style.scss */
+html {
+  overflow: hidden;
+}
+
+/* line 35, ../sass/style.scss */
+polygon {
+  fill: rgba(245, 245, 245, 0.35);
+  stroke: currentColor;
+  stroke-width: 20vmin;
+}
+
+/* line 43, ../sass/style.scss */
+[id='ps-0'] {
+  clip-path: url(#cp-0);
+  color: #FAAB00;
+}
+
+/* line 43, ../sass/style.scss */
+[id='ps-1'] {
+  clip-path: url(#cp-1);
+  color: #F90050;
+}
+
+/* line 49, ../sass/style.scss */
+.scene {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  perspective: 20em;
+  background: #000;
+}
+/* line 57, ../sass/style.scss */
+.scene div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+}
+/* line 63, ../sass/style.scss */
+.scene svg {
+  width: inherit;
+  height: inherit;
+}
+
+/* line 66, ../sass/style.scss */
+.s3d {
+  animation: r 20s linear infinite;
+}
+
+@keyframes r {
+  to {
+    transform: rotateY(1turn) rotateX(1turn);
+  }
+}
+/* line 83, ../sass/style.scss */
+.pos:nth-child(1) {
+  transform: rotate(0turn) rotateY(0deg) rotateX(-35.26439deg) translateZ(3.53553em);
+}
+
+/* line 83, ../sass/style.scss */
+.pos:nth-child(2) {
+  transform: rotate(0turn) rotateY(180deg) rotateX(-35.26439deg) translateZ(3.53553em);
+}
+
+/* line 83, ../sass/style.scss */
+.pos:nth-child(3) {
+  transform: rotate(0.5turn) rotateY(-90deg) rotateX(-35.26439deg) translateZ(3.53553em);
+}
+
+/* line 83, ../sass/style.scss */
+.pos:nth-child(4) {
+  transform: rotate(0.5turn) rotateY(90deg) rotateX(-35.26439deg) translateZ(3.53553em);
+}
+
+/* line 83, ../sass/style.scss */
+.pos:nth-child(5) {
+  transform: rotate(0turn) rotateY(90deg) rotateX(-35.26439deg) translateZ(3.53553em);
+}
+
+/* line 83, ../sass/style.scss */
+.pos:nth-child(6) {
+  transform: rotate(0turn) rotateY(270deg) rotateX(-35.26439deg) translateZ(3.53553em);
+}
+
+/* line 83, ../sass/style.scss */
+.pos:nth-child(7) {
+  transform: rotate(0.5turn) rotateY(0deg) rotateX(-35.26439deg) translateZ(3.53553em);
+}
+
+/* line 83, ../sass/style.scss */
+.pos:nth-child(8) {
+  transform: rotate(0.5turn) rotateY(180deg) rotateX(-35.26439deg) translateZ(3.53553em);
+}
+
+/* line 92, ../sass/style.scss */
+.s2d {
+  margin: -10em;
+  width: 20em;
+  height: 20em;
+  -moz-backface-visibility: hidden;
+}
+
+/* line 114, ../sass/style.scss */
+form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 .25em;
+  background: rgba(34, 34, 34, 0.32);
+  text-align: center;
+  font: 1em trebuchet ms, sans-serif;
+}
+
+/* line 123, ../sass/style.scss */
+section {
+  margin: .25em auto;
+  padding: .5em;
+}
+/* line 127, ../sass/style.scss */
+section:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
+/* line 129, ../sass/style.scss */
+section > * {
+  display: block;
+  margin: 0 auto .5em;
+  width: 14em;
+}
+/* line 135, ../sass/style.scss */
+section > label {
+  margin-bottom: 0;
+}
+
+/* line 138, ../sass/style.scss */
+.multi {
+  display: flex;
+  flex-direction: column;
+}
+/* line 142, ../sass/style.scss */
+.multi * {
+  order: 1;
+}
+/* line 144, ../sass/style.scss */
+.multi [type='range'] + label {
+  order: 0;
+}
+
+/* line 147, ../sass/style.scss */
+label {
+  color: #aaa;
+}
+
+/* line 149, ../sass/style.scss */
+[type='checkbox'] {
+  position: absolute;
+  left: -100vw;
+}
+/* line 153, ../sass/style.scss */
+[type='checkbox'] + label {
+  display: block;
+  border: solid 0 transparent;
+  border-width: .125em 1em .25em;
+  color: #aaa;
+  line-height: 2;
+  text-align: left;
+  cursor: pointer;
+}
+/* line 162, ../sass/style.scss */
+[type='checkbox'] + label:before {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  left: 0;
+  margin: -0.625em 0.3125em;
+  border: solid 0.125em #aaa;
+  padding: .25em;
+  width: 1.25em;
+  height: 1.25em;
+  color: transparent;
+  font: 900 1em/.5 sans-serif;
+  text-indent: -.125em;
+  transition: .3s ease-out;
+  content: 'тЬУ';
+}
+/* line 179, ../sass/style.scss */
+[type='checkbox']:focus + label {
+  outline: solid 1px #DAF204;
+}
+/* line 184, ../sass/style.scss */
+[type='checkbox']:checked + label, [type='checkbox']:checked + label:before {
+  color: #DAF204;
+}
+
+/* line 188, ../sass/style.scss */
+[type='range'] {
+  border: solid 0 transparent;
+  border-width: 0 1em;
+  padding: 0;
+  width: 14em;
+  height: 2.25em;
+  background: none;
+  font-size: 1em;
+  cursor: pointer;
+}
+/* line 197, ../sass/style.scss */
+[type='range'], [type='range']::-webkit-slider-runnable-track, [type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+/* line 203, ../sass/style.scss */
+[type='range']::-webkit-slider-runnable-track {
+  width: 14em;
+  height: 0.25em;
+  background: #aaa;
+}
+/* line 206, ../sass/style.scss */
+[type='range']::-moz-range-track {
+  width: 14em;
+  height: 0.25em;
+  background: #aaa;
+}
+/* line 209, ../sass/style.scss */
+[type='range']::-ms-track {
+  border: none;
+  width: 14em;
+  height: 0.25em;
+  background: #aaa;
+  color: transparent;
+}
+/* line 215, ../sass/style.scss */
+[type='range']::-moz-range-progress {
+  background: #DAF204;
+}
+/* line 218, ../sass/style.scss */
+[type='range']::-ms-fill-lower {
+  background: #DAF204;
+}
+/* line 222, ../sass/style.scss */
+[type='range']::-webkit-slider-thumb {
+  margin-top: -0.5em;
+  border: none;
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: 50%;
+  background: #DAF204;
+}
+/* line 226, ../sass/style.scss */
+[type='range']::-moz-range-thumb {
+  border: none;
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: 50%;
+  background: #DAF204;
+}
+/* line 229, ../sass/style.scss */
+[type='range']::-ms-thumb {
+  border: none;
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: 50%;
+  background: #DAF204;
+}
+/* line 233, ../sass/style.scss */
+[type='range']:focus {
+  outline: solid 1px #DAF204;
+}
+/* line 237, ../sass/style.scss */
+[type='range'] + output {
+  order: 0;
+}
+
+/* line 240, ../sass/style.scss */
+output {
+  border-radius: 3px;
+  background: #DAF204;
+}
+/* line 244, ../sass/style.scss */
+output:empty {
+  opacity: 0;
+}

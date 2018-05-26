@@ -1,0 +1,122 @@
+@import 'compass/css3';
+
+$c: #73c8a9 #e1b866 #dee1b6 #bd5532;
+$l: 15em; // length of big tetra edge
+$t: 8s;
+$ncomps: 2;
+$p: 22.5%;
+$pf: .8;
+$hf: .25;
+
+$n3gon: 3;
+$ca3gon: 360deg/$n3gon;
+$rc3gon: .5*$l/sin(.5*$ca3gon);
+$va3gon: ($n3gon - 2)*180deg/$n3gon;
+$h3gon: $l*sin($va3gon);
+
+$n4gon: 4;
+$ca4gon: 360deg/$n4gon;
+$rc4gon: .5*$l/sin(.5*$ca4gon);
+
+$n: $n3gon + 1; // triangles on tetrahedron face
+
+$n4hedron: 4;
+$ax4hedron: asin(.5*$l/$h3gon)*180deg/pi();
+$va4hedron: 90deg - 2*$ax4hedron;
+$ri4hedron: $rc3gon*tan($va4hedron);
+
+body {
+	overflow: hidden;
+	height: 100vh;
+	perspective: 25em;
+	background: #373b44;
+}
+
+div {
+	position: absolute;
+	top: 50%; left: 50%;
+	transform-style: preserve-3d;
+}
+
+.a3d { animation: r $t linear infinite; }
+
+@keyframes r { to { transform: rotateY(1turn - $ca4gon); } }
+
+.s3d { animation: h $t ease-in-out infinite; }
+
+@for $i from 1 through $ncomps {
+	$op: ($i - 1)*50%;
+	$s: pow(-1, $i);
+	
+	%mid#{$i} { color: nth($c, $i + 2); }
+	
+	.s3d:nth-child(#{$i}) {
+		color: nth($c, $i);
+		animation-name: hop#{$i};
+		
+		.rot { animation-name: rh#{$i}; }
+		
+		.s4gon {
+			transform: rotateX($s*90deg);
+			@extend %mid#{$i};
+		}
+	}
+	
+	@keyframes hop#{$i} {
+		#{$op + $pf*$p}, #{$op + 50% - $pf*$p} { transform: none; }
+		#{$op + 25%} { transform: translateY($s*$l*$hf); }
+	}
+	
+	@keyframes rh#{$i} {
+		#{$op + $p} { transform: none; }
+		#{$op + 50% - $p}, 100% { transform: rotateY(-$ca4gon); }
+	}
+}
+
+.rot { animation: a $t cubic-bezier(.68, -.56, .26, 1.56) infinite; }
+
+.s2d {
+	backface-visibility: hidden;
+	background: currentColor;
+}
+
+.s3gon {
+	margin: -.5*$rc3gon;
+	width: $rc3gon; height: $rc3gon;
+	-webkit-clip-path: url(#o3);
+					clip-path: url(#o3);
+	
+	@for $i from 0 to $n4hedron {
+		$k1: $i%2;
+		$k2: floor($i/2);
+		$k3: min($i, 2);
+		$k4: $k2*($i - 2);
+		
+		@for $j from 0 to $n {
+			$f: $j%$n3gon - .5*$n3gon;
+			$idx: $k3*$n3gon + (1 - $k2)*$j + $k4 + 1;
+			$ci: 1;
+			
+			@if ($k2 < 1 and $j == $n3gon) or ($k2 > 0 and $j != $n3gon) {
+				$idx: $k3 + $k4*$n3gon + $k2*$j + 1;
+				$ci: 2;
+			}
+			
+			.s3d:nth-child(#{$ci}) &:nth-child(#{$idx}) {
+				transform: if($k2 > 0, rotate(.5turn), ()) 
+					rotateY((2*$k1 + $k2 - 1)*90deg) 
+					rotateX($ax4hedron) translateZ($ri4hedron) 
+					if($j > 0, rotate($f*$ca3gon) translateY(-.5*$rc3gon), ());
+				
+				@if $j == 0 { @extend %mid#{$ci}; } //later
+			}
+		}
+	}
+}
+
+.s4gon {
+	margin: -.5*$rc4gon;
+	width: $rc4gon; height: $rc4gon;
+	-webkit-clip-path: url(#o4);
+					clip-path: url(#o4);
+}

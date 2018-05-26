@@ -1,0 +1,106 @@
+- var dim = 2500; //- svg dimension
+- var tl = -.5*dim; //- top left coord
+- var ei = .02*dim; //- inner edge length
+- var th = ei; //-tooth height
+- var hei = .5*ei; //- half edge length
+- var twr = .8; //-tooth width ratio
+- var b = twr*hei;
+- var t2 = Math.pow(b, 2);
+- var data = [];
+
+- data.push({'n': 16, 'x': .5*tl, 'y': .25*tl});
+- data.push({'n': 13, 'j': 2});
+- data.push({'n': 12, 'j': 6});
+- data.push({'n': 9, 'j': 3});
+- data.push({'n': 8, 'j': 3, 'r': .35});
+
+- data.push({'n': 14, 'r': .45, 'm': 1, 'p': -60});
+- data.push({'n': 9, 'j': -6});
+- data.push({'n': 15, 'j': 2});
+
+- var n = data.length;
+
+mixin cog(i)
+	- var np = 2*data[i].n;
+	- data[i].ba = Math.PI/data[i].n;
+	- var hba = .5*data[i].ba;
+	- var rii = hei/Math.tan(hba);
+	- var rio = rii + th;
+	- var li = Math.sqrt(t2 + Math.pow(rii, 2));
+	- var lo = Math.sqrt(t2 + Math.pow(rio, 2));
+	- var ai = Math.atan(b/rii);
+	- var ao = Math.atan(b/rio);
+	- var v = []; //-array of vertices
+	- for(var j = 0; j < np; j++) {
+		- var j1 = j%2;
+		- var r = j1?lo:li;
+		- for(var k = 0; k < 2; k++) {
+			- var a = j*data[i].ba - Math.pow(-1, k)*(j1?ao:ai);
+			- var x = r*Math.cos(a);
+			- var y = r*Math.sin(a);
+			- v.push([x, y]);
+		- }
+	- }
+	//- compute position of cog
+	- data[i].rco = rio/Math.cos(hba);
+	- data[i].a = 0;
+	- data[i].badg = 180/data[i].n;
+	- var a = 0;
+	- var r = 0;
+	- if(i) {
+		- if(data[i].j) {
+			- data[i].a = data[i - 1].a + (2*data[i].j + 1)*data[i - 1].badg + 180;
+			- a = (data[i].a/180 - 1)*Math.PI;
+			- r = data[i].rco + data[i - 1].rco - th;
+		- }
+		
+		-if(data[i].m) {
+			- a = (data[i].p*Math.PI/180) || 0;
+			- r = data[i].rco + data[i - 1].rco + data[i].m*th;
+		- }
+		
+		- data[i].x = data[i - 1].x + r*Math.cos(a);
+		- data[i].y = data[i - 1].y + r*Math.sin(a);
+	- }
+	- var t = 'translate(' + data[i].x + ' ' + data[i].y + ')rotate(' + data[i].a + ')'
+	g.pos(transform=t)
+		polygon(points=v.join(' '))
+		- if(data[i].r) {
+			- data[i].ra = data[i].r*data[i].rco;
+			circle(r=data[i].ra)
+			- if(data[i - 1].r) {
+				- var dr = data[i].ra - data[i - 1].ra;
+				- var beta = Math.acos(dr/r);
+				- var gamma = Math.PI - beta;
+				- var a2 = data[i].p + 180;
+				- var f = (beta > .5*Math.PI)*1;
+				- var x = data[i].ra*Math.cos(beta);
+				- var y = data[i].ra*Math.sin(beta);
+				- var d = 'M' + x + ',' + -y + 'A' + data[i].ra + ' ' + data[i].ra + ' 0 1 ' + f + ' ' + x + ' ' + y;
+				- var x = r + data[i - 1].ra*Math.cos(gamma);
+				- var y = data[i - 1].ra*Math.sin(gamma);
+				- d += 'L' + x + ' ' + y + 'A' + data[i - 1].ra + ' ' + data[i - 1].ra + ' 0 1 ' + f + ' ' + x + ' ' + -y + 'z';
+				path(d=d transform=`rotate(${a2})`)
+			- }
+		- }
+
+mixin heart()
+	- var ymm = .225*tl;
+	- var yum = .625*tl;
+	- var xo = -.625*tl;
+	- var yuo = .625*tl;
+	- var ymo = .2*tl;
+	- var ylo = -.25*tl;
+	- var ylm = -.5625*tl;
+	- var d = 'M0,' + ymm + 'C0 ' + yum + ' ' + xo + ' ' + yuo + ' ' + xo + ' ' + ymo + 'Q' + xo + ' ' + ylo + ' 0 ' + ylm + 'Q' + -xo + ' ' + ylo + ' ' + -xo + ' ' + ymo + 'C' + -xo + ' ' + yuo + ' 0 ' + yum + ' 0 ' + ymm;
+	mask#heart
+		rect.w(x=tl y=tl width=dim height=dim)
+		path(d=d)
+	rect.cover(x=tl y=tl width=dim height=dim mask='url(#heart)')
+	
+
+svg(viewBox=`${tl} ${tl} ${dim} ${dim}`)
+	g.train
+		- for(var i = 0; i < n; i++)
+			+cog(i)
+	+heart

@@ -1,0 +1,54 @@
+$c: #d3ed30 #ffcf23 #ff8729 #0fe3ff #a4e425 
+	  #00a9ff #ff961e #ff7d35 #92e208 #ff4f23;
+$n: length($c);
+
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+
+body {
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	height: 100vh;
+	background: #111;
+}
+
+svg {
+	align-self: center;
+	width: 80vmin; height: 80vmin;
+	box-shadow: 1px 1px 2px #000;
+	background: #444;
+	
+	> g {/**
+		filter: drop-shadow(2px 1px 1px #000) 
+						drop-shadow(2px 1px 2px #000);/**/
+	}
+}
+
+polygon { fill: currentColor; }
+
+mask {
+	* { fill: #fff; }
+	circle:nth-of-type(odd), 
+	circle[transform] { fill: #000; }
+}
+
+@for $i from 1 through $n {
+	.cog:nth-of-type(#{$i}) { color: nth($c, $i); }
+}
+
+use {
+	animation: r 7.5s linear infinite;
+	
+	g:nth-of-type(even):not(:nth-of-type(8)) &, 
+	g:nth-of-type(7) & {
+		animation-direction: reverse;
+	}
+}
+
+@keyframes r { to { transform: rotate(1turn); } }
+
+text {
+	fill: #ef3123;
+	font-family: 'Indie Flower', cursive;
+	text-shadow: 1px 1px 1px #fff;
+}

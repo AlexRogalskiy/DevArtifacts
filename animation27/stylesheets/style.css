@@ -1,0 +1,120 @@
+@import url(https://fonts.googleapis.com/css?family=League+Script);
+/* line 8, ../sass/style.scss */
+html {
+  background: #111;
+}
+
+/* line 10, ../sass/style.scss */
+body {
+  margin: 0;
+}
+
+/* line 12, ../sass/style.scss */
+svg {
+  display: block;
+  margin: 0 auto;
+  width: 100vmin;
+  height: 100vmin;
+  background: #000;
+}
+
+/* line 19, ../sass/style.scss */
+[id='spark'] {
+  stroke: #fa733e;
+  stroke-dasharray: 64px;
+  stroke-linecap: round;
+  stroke-width: 10px;
+  animation: spark 2s ease-in-out infinite;
+}
+
+/* line 27, ../sass/style.scss */
+circle {
+  fill: none;
+  stroke: #ffac33;
+  stroke-width: 204px;
+  animation: circ 2s ease-in-out infinite;
+}
+
+/* line 34, ../sass/style.scss */
+[id='star'] {
+  fill: #dee0e0;
+  stroke: #dee0e0;
+  stroke-linejoin: round;
+  stroke-width: 25px;
+  animation: star 2s cubic-bezier(0.7, -0.7, 0.3, 1.7) infinite;
+}
+
+@keyframes spark {
+  0%, 19% {
+    stroke-dashoffset: 64px;
+  }
+  50%, 100% {
+    stroke-dashoffset: -64px;
+    transform: translate(20vmin);
+  }
+}
+@keyframes circ {
+  0%, 16.66% {
+    transform: scale(0);
+  }
+  16.67% {
+    stroke-width: 204px;
+  }
+  22.5% {
+    stroke-width: 204px;
+    transform: scale(1);
+  }
+  29.5%, 100% {
+    stroke-width: 0;
+    transform: scale(2);
+  }
+}
+@keyframes star {
+  0%, 5% {
+    fill: #dee0e0;
+    stroke: #dee0e0;
+    opacity: .999;
+    transform: scale(1);
+  }
+  16.66% {
+    fill: #dee0e0;
+    stroke: #dee0e0;
+    opacity: .001;
+    transform: scale(0);
+  }
+  23.5%, 100% {
+    fill: #ffac33;
+    stroke: #ffac33;
+  }
+  24% {
+    opacity: .001;
+    transform: scale(0);
+  }
+  33.333% {
+    opacity: .999;
+    transform: scale(1.25);
+  }
+  50%, 75%, 95%, 100% {
+    transform: scale(1);
+  }
+  62.5% {
+    transform: scale(1.17);
+  }
+  85% {
+    transform: scale(1.05);
+  }
+}
+/* line 95, ../sass/style.scss */
+p {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font: 900 2em league script, sans-serif;
+  text-align: center;
+}
+
+/* line 102, ../sass/style.scss */
+a {
+  color: #fff;
+}

@@ -1,0 +1,28 @@
+- var n8hedron = 8, n4hedron = 4, n_opts = 2;
+
+svg(width='0' height='0')
+	defs
+		while n_opts--
+			clipPath(id=`cp-${n_opts}`)
+				polygon(id=`pc-${n_opts}`)
+			symbol(id=`s-${n_opts}`)
+				polygon(id=`ps-${n_opts}`)
+
+.scene
+	.manual-rotor
+		.s3d
+			while n8hedron--
+				- var i = ~~(n8hedron/n4hedron);
+				.pos
+					.s2d(class=`type-${i}`)
+						svg
+							use(xlink:href=`#s-${i}`)
+
+form
+	section
+		input#auto(type='checkbox' checked)
+		label(for='auto') autorun truncation
+	section.multi
+		input#prog(type='range' value='0')
+		label(for='prog') truncation sequence progress
+		output#out(for='prog')

@@ -1,0 +1,75 @@
+@import 'compass/css3';
+
+$bg: #000;
+$svg-dim: 100vmin;
+$g0: radial-gradient($bg 14%, transparent 17%);
+$g1: radial-gradient(#999 15%, transparent 20%);
+$bs: 1.5em;
+$off: .05*$bs;
+$data: 16 #fbd047, 13 #fb7c6d, 12 #f561ca, 9 #dd7aef, 8 #c4a6dd .35, 14 #62b6f2 .45, 9 #84d2ba, 15 #b8ed83;
+$nc: length($data);
+$t: .5s;
+$k: 1;
+$f: 0;
+$dir: normal reverse;
+
+body {
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	height: 100vh;
+	background: $bg;
+}
+
+svg {
+	align-self: center;
+	width: $svg-dim; height: $svg-dim;
+	box-shadow: inset 0 0 0 .125em $bg;
+	background: 
+		$g0, $g0 .5*$bs .5*$bs, 
+		$g1 0 $off, $g1 .5*$bs .5*$bs + $off
+		#666;
+	background-size: $bs $bs;
+}
+
+@for $i from 0 to $nc {
+	$cdata: nth($data, $i + 1);
+	$c: nth($cdata, 2);
+	$nt: nth($cdata, 1);
+	
+	@if $i > 0 and length($cdata) > 2 {
+		$pdata: nth($data, $i);
+		
+		@if length($pdata) > 2 {
+			$hap: .5*180deg/nth($pdata, 1);
+			$hac: .5*180deg/$nt;
+			$f: 1 - $f;
+			$k: $k*nth($cdata, 3)/nth($pdata, 3)*(.5/sin($hac) + 1/cos($hac))/(.5/sin($hap) + 1/cos($hap));
+		}
+	}
+	
+	.pos:nth-child(#{$i + 1}) {
+		polygon {
+			fill: $c;
+			animation-duration: $nt*$k*$t;
+			animation-direction: nth($dir, ($i + $f)%2 + 1);
+		}
+		
+		circle { fill: darken($c, 20%) }
+	}
+}
+
+polygon { animation: r 0s linear infinite; }
+
+@keyframes r { to { transform: rotate(1turn); } }
+
+.pos path {
+	fill: none;
+	stroke: #fff;
+	stroke-width: 3;
+	vector-effect: non-scaling-stroke;
+}
+
+mask .w { fill: #fff; }
+
+.cover { fill: $bg; }
