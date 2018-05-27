@@ -1,0 +1,174 @@
+//=====================
+// GENERAL
+//=====================
+
+body
+  background: #ecebd7
+  text-align: center
+  
+a
+  position: absolute
+  right: 10px
+  top: 10px
+  font-size: 10px
+  color: #999
+  text-decoration: none
+
+//=====================
+// FLAG
+//=====================
+
+flag = {
+  xs: {
+    width: 25px,
+    height: 17.5px,
+    stripes: 7,
+    radius: 2px,
+    star-rows: 0,
+    star-cols: 0,
+    star-size: 3px
+  },
+  sm: {
+    width: 45px,
+    height: 35px,
+    stripes: 7,
+    radius: 3px,
+    star-rows: 3,
+    star-cols: 3,
+    star-size: 2px
+  },
+  md: {
+    width: 120px,
+    height: 81px,
+    stripes: 9,
+    radius: 3px,
+    star-rows: 3,
+    star-cols: 4,
+    star-size: 5px
+  },
+  lg: {
+    width: 200px,
+    height: 130px,
+    stripes: 13,
+    radius: 5px
+    star-rows: 5,
+    star-cols: 6,
+    star-size: 6px
+  },
+  xl: {
+    width: 300px,
+    height: 195px,
+    stripes: 13,
+    radius: 5px
+    star-rows: 5,
+    star-cols: 6,
+    star-size: 8px
+  }
+}
+  
+.flag
+  position: relative
+  display: block
+  margin: 50px auto
+  background: #ccc
+  cursor: pointer
+  overflow: hidden
+  
+  for key, value in flag
+    &--{key}
+      width: value.width
+      height: value.height
+      border-radius: value.radius
+      
+  &::after
+    position: absolute
+    top: -110%
+    left: -210%
+    width: 200%
+    height: 200%
+    content: ''
+    opacity: 0
+    transform: rotate(30deg)
+    background: alpha(white, 10%)
+    background: linear-gradient(
+      to right, 
+      alpha(white, 10%) 0%,
+      alpha(white, 10%) 77%,
+      alpha(white, 50%) 93%,
+      alpha(white, 0%) 100%
+    )
+
+  &:hover
+    &::after
+      top: -60%
+      left: -60%
+      opacity: 1
+      transition-property: left, top, opacity
+      transition-duration: 0.7s, 0.7s, 0.15s
+      transition-timing-function: ease
+      
+  &:active
+    &::after
+      opacity: 0
+  
+  &--usa
+    color-white = #fff
+    color-blue = #345bcc
+    color-red = #f94141
+    
+    background-color: color-white
+    background: linear-gradient(
+      to bottom,
+      color-red,
+      color-red 50%,
+      color-white 50%,
+      color-white
+    );
+    
+    &::before
+      text-align: left
+      // position: absolute
+      display: block
+      background: color-blue
+      width: 50%
+      content: '★'
+      color: transparent
+      box-sizing: border-box
+      
+    for key, value in flag
+      &.flag--{key}
+        background-size: 100% (value.height/(value.stripes/2) * 1px)
+
+        &::before
+          ssize = value.star-size
+          heightProp = (ceil(value.stripes/2)/value.stripes)
+          font-size: value.star-size
+          height: heightProp * 100%
+          border-top-left-radius: value.radius
+          
+          unless key is 'xs'
+            starsAreaMarginX = (value.width * 0.5) * .05
+            starsAreaWidth = (value.width * 0.5) - (2 * starsAreaMarginX)
+            starsAreaMarginY = (value.height * heightProp) * .05
+            starsAreaHeight = (value.height * heightProp) - (2 * starsAreaMarginY)
+
+            stars = ()
+            colWidth = starsAreaWidth / value.star-cols
+            colHeight = starsAreaHeight / value.star-rows
+            //calculating star positions
+            for i in (0..(value.star-rows - 1))
+              for j in (0..(value.star-cols - 1))
+                push(stars, s('%s %s %s',
+                  j*colWidth + colWidth/2 - ssize/1.5 + starsAreaMarginX,
+                  i*colHeight + colHeight/2 - ssize/1.5 + starsAreaMarginY,
+                  color-white
+                ))
+            for i in (0..(value.star-rows - 2))
+              for j in (0..(value.star-cols - 2))
+                push(stars, s('%s %s %s',
+                  j*colWidth + colWidth/2 - ssize/1.5 + starsAreaMarginX + colWidth/2,
+                  i*colHeight + colHeight/2 - ssize/1.5 + starsAreaMarginY + colHeight/2,
+                  color-white
+                ))
+            //add stars
+            text-shadow: unquote(join(', ', stars))

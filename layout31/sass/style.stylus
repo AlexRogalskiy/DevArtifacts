@@ -1,0 +1,44 @@
+color-bg = #263238
+color-text = #eeffff
+color-numbers = #50646D
+color-outline = #50646D
+
+body
+  background: lighten(color-bg, 90%)
+  display: flex
+  width: 100vw
+  height: 100vh
+  align-items: center
+  justify-content: center
+
+code
+  max-width: 20rem
+  background: color-bg
+  color: color-text
+  padding: 1rem 3rem
+  margin: 1rem
+  position: relative
+  border-radius: .25rem
+  counter-reset: step
+  counter-increment: step 0
+  transition: background .3s
+  outline: none
+  
+  &:focus
+    background: lighten(color-bg, 5%)
+
+  p
+    position: relative
+    margin: 0.2rem
+    font-family: monospace
+    display: block
+    white-space: pre
+
+    &::before
+      position: absolute
+      top: 0
+      left: -1.75rem
+      color: color-numbers
+      user-select: none
+      content: counter(step)
+      counter-increment: step      

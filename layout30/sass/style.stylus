@@ -1,0 +1,210 @@
+$width: 650px
+$height: 500px
+
+body
+  background-color: #76DAFF
+
+.browser
+  background-color: #EBEBEB
+  border-radius: 4px
+  margin: 50px auto
+  width: $width
+  height: $height
+  box-shadow: 0px 3px 30px 0px rgba(0,0,0,0.2)
+  overflow: hidden
+  display: flex
+  flex-direction: column
+  
+.browser-header
+  flex-basis: auto
+  height: 35px
+  background: #ebebeb
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebebeb), color-stop(100%,#d9d9d9))
+  border-bottom: 1px solid #969696
+  display: flex
+  
+.browser-btns
+  height: 35px
+  display: inline-block
+  padding: 0 10px
+  line-height: 38px
+  width: 55px
+  flex-basis: auto
+
+.browser-btn
+  width: 10px
+  height: 10px
+  border: 1px solid rgba(0,0,0,0.15)
+  border-radius: 6px
+  display: inline-block
+  margin: 1px
+  
+  &.close
+    background-color: #FD615B
+  &.retract
+    background-color: #FDBC40
+  &.expand
+    background-color: #33C84A
+
+$tab-active: #EBEEEB
+$tab-inactive: #CBCCCC
+
+.tabs
+  flex: 1
+  margin: 0
+  padding: 0
+  list-style-type : none
+  line-height : 35px
+  max-height: 35px
+  display: inline-block
+  padding: 0 12px
+  
+  .tab
+    color: #333
+    float : left
+    margin : 10px -10px 0
+    border-top-right-radius: 25px 170px
+    border-top-left-radius: 20px 90px
+    padding : 0 30px 0 25px
+    height: 170px
+    background: $tab-inactive
+    position : relative
+    box-shadow: 0 10px 10px rgba(0,0,0,.5)
+    width : 100px
+    border: 1px solid #B4B4B4
+    font-size: 11px
+    font-family: Verdana, sans-serif
+    line-height: 25px
+    cursor: pointer
+    
+    &:before, &:after
+      content : ''
+      background : transparent
+      height: 20px
+      width: 20px
+      border-radius: 100%
+      border-width: 10px
+      top: 0px
+      border-style : solid
+      position : absolute
+    
+    &:before
+      border-color : transparent $tab-inactive transparent transparent
+      -webkit-transform : rotate(50deg)
+      left: -23px
+    
+    &:after
+      border-color : transparent transparent transparent $tab-inactive
+      -webkit-transform : rotate(-50deg)
+      right: -17px
+    
+    .fa
+      font-size: 13px
+      
+      &.fa-apple
+        color: #666
+      
+    .close
+      position: absolute
+      right: 25px
+      top: 0px
+      display: inline-block
+      color: #888
+      margin-left: 5px
+      
+      &:after
+        position: absolute
+        content: ''
+        width: 139px
+        display: block
+        height: 1px
+        background: #969696
+        z-index: 3
+        top: 24px
+        right: -15px
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.8)
+        
+    
+    &.active
+      background: $tab-active
+      
+      &:before
+        border-color : transparent $tab-active transparent transparent
+        z-index: 2
+
+      &:after
+        border-color : transparent transparent transparent $tab-active
+        z-index: 2
+      
+      .close
+        &:after
+          display: none
+
+.browser-bar
+  flex-basis: auto
+  height: 28px
+  background: $tab-active
+  z-index: 15
+  padding: 6px
+  border-bottom: 1px solid #aaa
+  display: flex
+  
+  .button
+    flex-basis: auto
+    text-align: center
+    font-size: 17px
+    color: #6D6D6E
+    padding: 3px
+    display: inline-block
+    width: 20px
+    border: 1px solid $tab-active
+    
+    &:not(.inactive):hover
+      border: 1px solid darken($tab-active, 20%)
+      cursor: pointer
+      border-radius: 3px
+      
+    &.inactive
+      opacity: 0.3
+      
+  .address
+    flex: 1
+    background: #fff
+    border-radius: 3px
+    margin: 0px 3px
+    border: 1px solid #ccc
+    padding: 5px
+    font-size: 14px
+    color: #555
+
+.page
+  flex: 1
+  background: white
+  z-index: 10
+  text-align: center
+  overflow-y: auto
+  position: relative
+  
+  h1
+    font-size: 3em
+    font-family: 'Abril Fatface', cursive
+    margin-bottom: 0
+    color: rgba(255,0,0,0.3)
+    
+    span
+      color: rgba(255,0,0,0.5)
+    
+  h2
+    font-family: 'Roboto', sans-serif
+    padding: 0
+    margin: 0
+    color: rgba(#47CF73, 0.8)
+  
+  .lines 
+    padding: 30px
+    
+  .line
+    background-color: #ededed
+    height: 10px
+    margin: 15px 0px
+    border-radius: 3px

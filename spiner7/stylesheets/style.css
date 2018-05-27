@@ -1,0 +1,194 @@
+/* line 1, ../sass/style.scss */
+body {
+  background-color: white;
+  font-family: 'Lato', Arial, sans-serif;
+  text-align: center;
+  padding-top: 50px;
+}
+
+/* line 8, ../sass/style.scss */
+h1 {
+  font-size: 1.5em;
+  color: #666;
+}
+
+/* line 13, ../sass/style.scss */
+h2, a {
+  font-size: 0.8em;
+  color: #00B285;
+}
+
+/* line 18, ../sass/style.scss */
+.spinners {
+  margin: 60px auto;
+}
+/* line 20, ../sass/style.scss */
+.spinners .row {
+  height: 50px;
+  padding: 10px 0;
+}
+
+/* ============================ */
+/* VARIABLES                    */
+/* ============================ */
+/* ============================ */
+/* SPINNER GENERAL              */
+/* ============================ */
+/* line 39, ../sass/style.scss */
+.spinner, .spinner:before, .spinner:after {
+  width: 4px;
+  height: 20px;
+  background-color: #00B285;
+  border-radius: 2px;
+}
+
+/* line 45, ../sass/style.scss */
+.spinner {
+  display: inline-block;
+  position: relative;
+}
+/* line 49, ../sass/style.scss */
+.spinner:before, .spinner:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0px;
+}
+/* line 57, ../sass/style.scss */
+.spinner:before {
+  left: -6px;
+}
+/* line 60, ../sass/style.scss */
+.spinner:after {
+  left: 6px;
+}
+
+/* ============================ */
+/* SPINNER BOUNCE BOTTOM        */
+/* ============================ */
+@keyframes bounce-bottom {
+  0% {
+    height: 5px;
+    margin-top: 15px;
+  }
+  50% {
+    height: 20px;
+    margin-top: 0px;
+  }
+  100% {
+    height: 5px;
+    margin-top: 15px;
+  }
+}
+/* line 87, ../sass/style.scss */
+.spinner-bounce-bottom {
+  animation: bounce-bottom 0.6s ease 0.1s infinite;
+}
+/* line 89, ../sass/style.scss */
+.spinner-bounce-bottom:before, .spinner-bounce-bottom:after {
+  top: auto;
+  bottom: 0px;
+}
+/* line 94, ../sass/style.scss */
+.spinner-bounce-bottom:before {
+  animation: bounce-bottom 0.6s ease 0s infinite;
+}
+/* line 97, ../sass/style.scss */
+.spinner-bounce-bottom:after {
+  animation: bounce-bottom 0.6s ease 0.2s infinite;
+}
+
+/* ============================ */
+/* SPINNER BOUNCE TOP        */
+/* ============================ */
+@keyframes bounce-top {
+  0% {
+    height: 5px;
+    margin-bottom: 15px;
+  }
+  50% {
+    height: 20px;
+    margin-bottom: 0px;
+  }
+  100% {
+    height: 5px;
+    margin-bottom: 15px;
+  }
+}
+/* line 122, ../sass/style.scss */
+.spinner-bounce-top {
+  animation: bounce-top 0.6s ease 0.1s infinite;
+}
+/* line 124, ../sass/style.scss */
+.spinner-bounce-top:before {
+  animation: bounce-top 0.6s ease 0s infinite;
+}
+/* line 127, ../sass/style.scss */
+.spinner-bounce-top:after {
+  animation: bounce-top 0.6s ease 0.2s infinite;
+}
+
+/* ============================ */
+/* SPINNER BOUNCE MIDDLE        */
+/* ============================ */
+@keyframes bounce-middle {
+  0% {
+    height: 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  50% {
+    height: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  100% {
+    height: 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+/* line 156, ../sass/style.scss */
+.spinner-bounce-middle {
+  animation: bounce-middle 0.6s ease 0.1s infinite;
+}
+/* line 158, ../sass/style.scss */
+.spinner-bounce-middle:before, .spinner-bounce-middle:after {
+  top: 50%;
+  transform: translateY(-10px) translateZ(0);
+}
+/* line 163, ../sass/style.scss */
+.spinner-bounce-middle:before {
+  animation: bounce-middle 0.6s ease 0s infinite;
+}
+/* line 166, ../sass/style.scss */
+.spinner-bounce-middle:after {
+  animation: bounce-middle 0.6s ease 0.2s infinite;
+}
+
+/* ============================ */
+/* SPINNER BLINK                */
+/* ============================ */
+@keyframes glow {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: #00B285;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+/* line 190, ../sass/style.scss */
+.spinner-blink {
+  animation: glow 0.6s 0.1s infinite;
+}
+/* line 192, ../sass/style.scss */
+.spinner-blink:before {
+  animation: glow 0.6s 0s infinite;
+}
+/* line 195, ../sass/style.scss */
+.spinner-blink:after {
+  animation: glow 0.6s 0.2s infinite;
+}
