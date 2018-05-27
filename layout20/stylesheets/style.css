@@ -1,0 +1,159 @@
+/* line 1, ../sass/style.scss */
+body {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.375em;
+}
+
+/* line 5, ../sass/style.scss */
+h1 {
+  text-align: center;
+  color: Teal;
+  padding-top: 2.5%;
+  line-height: 1.25em;
+}
+
+/* line 11, ../sass/style.scss */
+h4 {
+  text-align: center;
+  color: grey;
+  line-height: 1.25em;
+}
+
+/* line 16, ../sass/style.scss */
+div {
+  box-sizing: border-box;
+}
+
+/* line 19, ../sass/style.scss */
+.grid_items {
+  margin: 7.5% 5%;
+  color: #ffffff;
+  background-color: Teal;
+}
+
+/* line 24, ../sass/style.scss */
+.grid_item {
+  position: relative;
+}
+
+/* line 27, ../sass/style.scss */
+.grid_item img {
+  width: 100%;
+}
+
+/* line 30, ../sass/style.scss */
+.grid_item > div {
+  padding: 20px 30px;
+}
+
+/* line 33, ../sass/style.scss */
+.grid_item > .title {
+  position: absolute;
+  top: 0;
+  padding-top: 52.5%;
+  width: 100%;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* line 41, ../sass/style.scss */
+.grid_item button {
+  display: none;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 786px) {
+  /* line 47, ../sass/style.scss */
+  .grid_items {
+    display: grid;
+    grid-template-columns: 33.333333% 33.333333% 33.333333%;
+    grid-column-gap: 0;
+  }
+
+  /* line 52, ../sass/style.scss */
+  .grid_item button {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 36px;
+    margin-top: -6px;
+    background-color: #ffffff;
+    border: none;
+  }
+
+  /* line 61, ../sass/style.scss */
+  .grid_item button > span {
+    display: none;
+  }
+
+  /* line 64, ../sass/style.scss */
+  .grid_item button::before {
+    content: "+";
+    font-size: 3em;
+    line-height: 0.625em;
+    color: Teal;
+  }
+
+  /* line 70, ../sass/style.scss */
+  .grid_item.active button::before {
+    content: "-";
+  }
+
+  /* line 73, ../sass/style.scss */
+  .grid_item > .content {
+    transform: translatex(-2000px);
+    opacity: 0;
+    width: 300%;
+    transition: transform 0.3s ease-in-out 0s, opacity 0.3s ease-in-out 0.3s;
+  }
+
+  /* line 79, ../sass/style.scss */
+  .grid_item:nth-child(3n + 2) > .content {
+    margin-left: -100%;
+  }
+
+  /* line 82, ../sass/style.scss */
+  .grid_item:nth-child(3n) > .content {
+    margin-left: -200%;
+  }
+
+  /* line 85, ../sass/style.scss */
+  .grid_item.active {
+    z-index: 1;
+  }
+
+  /* line 88, ../sass/style.scss */
+  .grid_item.active > .content {
+    transform: translatey(0);
+    opacity: 1;
+  }
+
+  /* line 92, ../sass/style.scss */
+  .grid_item img {
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* line 96, ../sass/style.scss */
+  .grid_item.active img {
+    opacity: 1;
+    transform: translatey(-20%);
+  }
+
+  /* line 100, ../sass/style.scss */
+  .grid_item > .title {
+    font-size: 1.125em;
+    transition: margin 0.3s ease-in-out;
+  }
+
+  /* line 104, ../sass/style.scss */
+  .grid_item.active > .title {
+    margin-top: 10%;
+  }
+}
+@media only screen and (min-width: 981px) {
+  /* line 109, ../sass/style.scss */
+  .grid_item > .title {
+    font-size: 1.5em;
+  }
+}

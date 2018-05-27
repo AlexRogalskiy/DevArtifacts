@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+        <link rel="stylesheet prefetch" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+	
+	<div id="app">
+		  <h2>CSS3 Perspective Playground</h2>
+		  <main>
+			<section class="settings">
+			  <div class="settings-container">
+				<label for="">
+				   perspective: {{perspective}}px;<br>
+				   <input type="range" min="0" max="999"
+						  v-model="perspective"/>
+				   </label>
+				<br>
+				<label for="">
+				   rotateX: {{rotateX}}deg; <br>
+				   <input type="range" min="-180" max="180"
+						  v-model="rotateX"/>
+				 </label>
+				<br>
+				<label for="">
+				   rotateY: {{rotateY}}deg; <br>
+				   <input type="range" min="-180" max="180"
+						  v-model="rotateY"/>
+				 </label>
+				<br>
+				<label for="">
+				   rotateZ: {{rotateZ}}deg; <br>
+				   <input type="range" min="-180" max="180"
+						  v-model="rotateZ"/>
+				 </label>
+				<br>
+				<label for="">
+				  transform-origin:{{transformOriginX }} {{transformOriginY}}; <br>
+				  <div class="transform-origin-radio-buttons">
+					<div class="transform-origin-x">
+				  <label for="t-left">
+					<input type="radio" name="transform-left" 
+						   value="left" 
+						   v-model="transformOriginX" id="t-left"/> left
+				  </label>
+				<br>
+				<label for="t-right">
+					<input type="radio" name="transform-left" 
+						   value="right" 
+						   v-model="transformOriginX" id="t-right"/> right
+				  </label>
+				<br>
+				<label for="t-center">
+					<input type="radio" name="transform-left" 
+						   value="center" 
+						   v-model="transformOriginX" id="t-center"/> center
+				  </label>
+			  </div>
+
+			  <div class="transform-origin-y">
+				<label for="t-top">
+					<input type="radio" name="transform-right" 
+						   value="top" 
+						   v-model="transformOriginY" id="t-top"/> top
+				  </label>
+				<br>
+				<label for="t-bottom">
+					<input type="radio" name="transform-right" 
+						   value="bottom" 
+						   v-model="transformOriginY" id="t-bottom"/> bottom
+				  </label>
+				<br>
+				<label for="t-center2">
+					<input type="radio" name="transform-right" 
+						   value="center" 
+						   v-model="transformOriginY" id="t-center2"/> center
+				  </label>
+			  </div>
+		</div>
+
+		</label>
+		</div>
+		</section>
+		<section class="output">
+		  <div class="box-container">
+			<div class="box" :style="{ 
+					transform: `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`,
+					transformOrigin:`${transformOriginX} ${transformOriginY}`
+					
+					}"></div>
+		  </div>
+		</section>
+		</main>
+	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
+	
+</body>
+<!--  footer -->
+</html>

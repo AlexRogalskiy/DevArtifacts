@@ -1,0 +1,123 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  font-family: arial;
+  background: #2A2C2E;
+}
+
+#app {
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  width: 400px;
+  height: 250px;
+  border: 1px solid #333;
+  overflow: hidden;
+  border-radius: 4px !important;
+}
+
+.slider {
+  width: 2000px;
+}
+
+.slider-item {
+  float: left;
+  position: relative;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 250px;
+  font-size: 20px;
+  background: #383838;
+  text-align: center;
+  border-radius: 4px !important;
+  transition: all .2s linear;
+}
+
+.hide {
+  @extend .slider-item
+}
+
+.buttons-wrapper {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+}
+
+.buttons-wrapper .prev-button {
+  background-image: url(http://static.birgun.net/static/images/slider-arrow-left.svg);
+  background-size: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 30px;
+  width: 30px;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s linear;
+}
+
+.buttons-wrapper .next-button {
+  background-image: url(http://static.birgun.net/static/images/slider-arrow-right.svg);
+  @extend .prev-button;
+}
+
+.buttons-wrapper button:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+/* indicators */
+
+.indicators {
+  width: 400px;
+  position: absolute;
+  bottom: -4px;
+  z-index: 2 !important;
+  text-align: center;
+}
+
+.indicators li {
+  display: inline-block;
+  margin-right: 5px;
+  width: 12px;
+  height: 12px;
+  font-size: 16px;
+  line-height: 30px;
+  border-radius: 100%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  text-indent: -9999px;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.indicators li:last-child {
+  margin-right: 0;
+}
+
+.active-indicator {
+  background: rgba(0, 0, 0, 0.3) !important;
+  color: #fff !important;
+}
+
+
+/* indicators */

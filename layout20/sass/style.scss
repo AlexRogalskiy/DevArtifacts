@@ -1,0 +1,112 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.375em;
+}
+h1 {
+  text-align: center;
+  color: Teal;
+  padding-top: 2.5%;
+  line-height: 1.25em;
+}
+h4 {
+  text-align: center;
+  color:grey; 
+  line-height: 1.25em;
+}
+div {
+  box-sizing: border-box;
+}
+.grid_items {
+  margin: 7.5% 5%;
+  color: #ffffff;
+  background-color: Teal;
+}
+.grid_item {
+  position: relative;
+}
+.grid_item img {
+  width: 100%;
+}
+.grid_item > div {
+  padding: 20px 30px;
+}
+.grid_item > .title {
+  position: absolute;
+  top: 0;
+  padding-top: 52.5%;
+  width: 100%;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.grid_item button {
+  display: none;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 786px) {
+  .grid_items {
+    display: grid;
+    grid-template-columns: 33.333333% 33.333333% 33.333333%;
+    grid-column-gap: 0;
+  }
+  .grid_item button {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 36px;
+    margin-top: -6px;
+    background-color: #ffffff;
+    border: none;
+  }
+  .grid_item button > span {
+    display: none;
+  }
+  .grid_item button::before {
+    content: "+";
+    font-size: 3em;
+    line-height: 0.625em;
+    color: Teal;
+  }
+  .grid_item.active button::before {
+    content: "-";
+  }
+  .grid_item > .content {
+    transform: translatex(-2000px);
+    opacity: 0;
+    width: 300%;
+    transition: transform 0.3s ease-in-out 0s, opacity 0.3s ease-in-out 0.3s;
+  }
+  .grid_item:nth-child(3n + 2) > .content {
+    margin-left: -100%;
+  }
+  .grid_item:nth-child(3n) > .content {
+    margin-left: -200%;
+  }
+  .grid_item.active {
+    z-index: 1;
+  }
+  .grid_item.active > .content {
+    transform: translatey(0);
+    opacity: 1;
+  }
+  .grid_item img {
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+  }
+  .grid_item.active img {
+    opacity: 1;
+    transform: translatey(-20%);
+  }
+  .grid_item > .title {
+    font-size:1.125em;
+    transition: margin 0.3s ease-in-out;
+  }
+  .grid_item.active > .title {
+    margin-top: 10%;
+  }
+}
+@media only screen and (min-width: 981px) {
+  .grid_item > .title {
+    font-size:1.5em;
+  }
+}

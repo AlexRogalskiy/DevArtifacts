@@ -1,0 +1,450 @@
+/*
+
+All grid code is placed in a 'supports' rule (feature query) at the bottom of the CSS (Line 378). 
+    
+The 'supports' rule will only run if your browser supports CSS grid.
+
+Flexbox is used as a fallback so that browsers which don't support grid will still recieve an identical layout.
+
+*/
+
+/* Fonts */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+@import url(https://use.fontawesome.com/releases/v5.0.6/css/all.css);
+
+/* Base styles */
+
+:root {
+	/* Base font size */
+	font-size: 10px;
+}
+
+body {
+	font-family: "Open Sans", Arial, sans-serif;
+	display: flex;
+	min-height: 100vh;
+	background-color: #fafafa;
+	position: relative;
+}
+
+.main-content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	order: 1;
+}
+
+.btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+/* Top bar */
+
+.top-bar {
+	display: flex;
+	align-items: center;
+	flex-basis: 6rem;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	background-color: #d12f2e;
+	color: #fff;
+	padding: 0 5rem;
+}
+
+.logo h1 {
+	font-size: 2.5rem;
+	font-weight: 600;
+	letter-spacing: -0.1rem;
+	white-space: nowrap;
+}
+
+.logo-icon {
+	padding-left: 0.5rem;
+	vertical-align: middle;
+}
+
+.vault-search {
+	flex: 1 0 19.2rem;
+	margin: 0 1.6rem;
+	position: relative;
+}
+
+.search-input {
+	font-size: 1.8rem;
+	font-weight: 400;
+	height: 4.4rem;
+	width: 98%;
+	background-color: rgba(255, 255, 255, 0.2);
+	color: #fff;
+	caret-color: #fff;
+	padding-left: 4.4rem;
+	border: none;
+}
+
+.search-input:hover,
+.search-input:focus {
+	background-color: rgba(255, 255, 255, 0.3);
+	outline: none;
+}
+
+.search-input::-webkit-input-placeholder {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.search-input:-ms-input-placeholder {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.search-input::-ms-input-placeholder {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.search-input::placeholder {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.search-icon {
+	font-size: 1.7rem;
+	position: absolute;
+	top: 2.2rem;
+	left: 2.2rem;
+	transform: translate(-50%, -50%);
+}
+
+.user-settings {
+	display: flex;
+	align-items: center;
+	font-weight: 400;
+	line-height: 1.2;
+	height: 100%;
+	padding: 0 0.8rem;
+	cursor: pointer;
+}
+
+.user-settings:hover {
+	background-color: #f14f4e;
+}
+
+.user-image {
+	font-size: 3.2rem;
+}
+
+.user-info {
+	margin: 0 1rem;
+}
+
+.user-email {
+	font-size: 1.3rem;
+}
+
+.user-type {
+	font-size: 1.1rem;
+	color: #f1c1c0;
+}
+
+.user-arrow-btn {
+	font-size: 1.5rem;
+}
+
+/* Vault items controls */
+
+.vault-items-controls {
+	display: flex;
+	align-items: center;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 6rem;
+	padding: 1.8rem 5rem;
+	background-color: #fafafa;
+}
+
+.vault-items-controls h2 {
+	flex: 1;
+	font-size: 1.9rem;
+	font-weight: 700;
+	color: #000;
+}
+
+.vault-items-controls-group {
+	display: flex;
+}
+
+.vault-items-controls-group .vault-items-controls-btn {
+	flex: 1;
+}
+
+.vault-items-controls-btn {
+	font-size: 2rem;
+	width: 4.8rem;
+	height: 4rem;
+	background-color: #fff;
+	color: #888;
+	box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+	border-radius: 0.2rem;
+	margin-right: 1rem;
+}
+
+.vault-items-controls-btn.current,
+.vault-items-controls-btn:nth-child(5) {
+	margin-right: 0;
+}
+
+.vault-items-controls-btn:hover {
+	background-color: #ddd;
+}
+
+.vault-items-controls-btn.current {
+	background-color: #888;
+	color: #fff;
+}
+
+/* Vault items */
+
+.vault-items-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex: 1;
+	padding: 0 5rem 1.5rem;
+}
+
+.vault-item {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 27rem;
+	height: 12.8rem;
+	margin-right: 1.5rem;
+	margin-bottom: 3rem;
+	border-radius: 0.2rem;
+	box-shadow: 0 0.1rem 0.3rem rgba(0, 24, 48, 0.2);
+	cursor: pointer;
+}
+
+.vault-item-info {
+	flex-basis: 5rem;	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;	
+	background-color: #fff;
+	padding: 0 0.9rem;
+	line-height: 1.2;
+}
+
+.vault-item-name {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #465e7b;
+}
+
+.vault-item-summary {
+	font-size: 1.2rem;
+	font-weight: 400;
+	color: #666;
+}
+
+.vault-item-thumbnail {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+	font-size: 4.5rem;
+	color: #fff;
+}
+
+.address-item .vault-item-thumbnail {
+	background-color: #0a6353;
+}
+
+.bank-account-item .vault-item-thumbnail {
+	background-color: #4fa553;
+}
+
+.drivers-licence-item .vault-item-thumbnail {
+	background-color: #424f9f;
+}
+
+.medical-item .vault-item-thumbnail {
+	background-color: #e1403f;
+}
+
+.note-item .vault-item-thumbnail {
+	background-color: #9838b0;
+}
+
+.passport-item .vault-item-thumbnail {
+	background-color: #17a0e5;
+}
+
+.password-item .vault-item-thumbnail {
+	background-color: #4e8ff1;
+}
+
+.payment-card-item .vault-item-thumbnail {
+	background-color: #84b750;
+}
+
+.social-security-item .vault-item-thumbnail {
+	background-color: #fcd23e;
+}
+
+.wifi-item .vault-item-thumbnail {
+	background-color: #f25d2d;
+}
+
+.add-vault-item-btn {
+	position: fixed;
+	right: 2rem;
+	bottom: 2rem;
+	height: 5.8rem;
+	width: 5.8rem;
+	font-size: 2.8rem;
+	background-color: #d32d27;
+	color: #fff;
+	border-radius: 50%;
+	box-shadow: 0.4rem 0.4rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+/* Side-bar */
+
+.side-bar {
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 6rem;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	font-size: 2rem;
+	background-color: #3c4a54;
+	color: #88959e;
+}
+
+.vault-controls-menu {
+	display: flex;
+	flex-direction: column;
+	flex: 1 0 0;
+	overflow-y: auto;
+}
+
+.vault-controls-menu::-webkit-scrollbar {
+	width: 1.2rem;
+}
+
+.vault-controls-menu::-webkit-scrollbar-track {
+	background-color: #3c4a54;
+}
+
+.vault-controls-menu::-webkit-scrollbar-thumb {
+	background-color: #22313b;
+	border-radius: 0.5rem;
+	border: 0.2rem solid #3c4a54;
+}
+
+.vault-menu-group {
+	margin-bottom: 1.8rem;
+}
+
+.vault-menu-group:last-of-type {
+	margin-bottom: 1.8rem;
+}
+
+.vault-settings-menu {
+	font-size: 2.4rem;
+	box-shadow: 0 -0.2rem 0.2rem #36424b;
+	z-index: 1;
+}
+
+.menu-btn {
+	height: 4rem;
+	flex-shrink: 0;
+}
+
+.menu-btn:hover {
+	background-color: #36424b;
+}
+
+.menu-btn.current {
+	background-color: #22313b;
+	color: #fff;
+}
+
+.collapse-btn {
+	height: 6rem;
+}
+
+/*
+
+The following code will only run if your browser supports CSS grid.
+
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox styling. 
+
+*/
+
+@supports (display: grid) {
+	body {
+		display: grid;
+		grid-template-columns: 6rem 1fr;
+	}
+
+	.main-content {
+		display: grid;
+		grid-template-rows: 6rem auto 1fr;
+	}
+
+	.top-bar {
+		display: grid;
+		grid-template-columns: auto minmax(19.2rem, 1fr) auto;
+		grid-column-gap: 1.6rem;
+	}
+
+	.vault-items-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 27rem);
+		grid-gap: 3rem 1.5rem;
+	}
+
+	.vault-items-controls {
+		display: grid;
+		grid-template-columns: 1fr repeat(4, auto);
+		grid-column-gap: 1rem;
+	}
+
+	.vault-items-controls-group {
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+	}
+
+	.vault-item {
+		display: grid;
+		grid-template-rows: 1fr 5rem;
+	}
+
+	.side-bar {
+		display: grid;
+		grid-template-rows: auto minmax(auto, 1fr) auto;
+	}
+
+	.vault-controls-menu {
+		display: grid;
+		grid-row-gap: 1.8rem;
+		align-content: start;
+	}
+
+	.user-settings {
+		display: grid;
+		grid-template-columns: repeat(3, auto);
+		grid-column-gap: 1rem;
+	}
+
+	.user-info,
+	.vault-item,
+	.vault-search,
+	.vault-menu-group,
+	.vault-items-controls-btn {
+		margin: 0;
+	}
+}

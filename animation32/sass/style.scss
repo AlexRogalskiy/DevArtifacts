@@ -1,0 +1,55 @@
+.webmadewell {
+  background-color: #7364ff;
+}
+.w-logo-holder {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -100px;
+  margin-left: -100px;
+}
+.w-logo {
+  position: relative;
+  width: 200px;
+  margin: auto;
+  transform: rotatey(60deg);
+  transform-style: preserve-3d;
+}
+.w-logo > div {
+  position: absolute;
+  width: 100px;
+  height: 200px;
+  box-sizing: border-box;
+}
+.w-logo > .first-left {
+  transform: rotate3d(1, 0, 0, -15deg) translate3d(50px, -28px, 102px);
+  background-color: #373737;
+}
+.w-logo > .first-right {
+  transform: rotate3d(1, 0, 0, 15deg) translate3d(50px, 13px, 51px);
+  background-color: #ffffff;
+}
+.w-logo > .second-left {
+  transform: rotate3d(1, 0, 0, -15deg) translate3d(50px, 0, 0);
+  background-color: #373737;
+}
+.w-logo > .second-right {
+  transform: rotate3d(1, 0, 0, 15deg) translate3d(50px, -13px, -51px);
+  background-color: #ffffff;
+}
+.w-logo > .third-left {
+  transform: rotate3d(1, 0, 0, -15deg) translate3d(50px, 28px, -102px);
+  background-color: #373737;
+}
+
+@keyframes w-rotate {
+  0% {
+    transform: rotatey(60deg);
+  }
+  100% {
+    transform: rotatey(420deg);
+  }
+}
+.w-logo {
+  animation: w-rotate 10s linear infinite;
+}

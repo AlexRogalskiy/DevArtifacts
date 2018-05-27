@@ -1,0 +1,127 @@
+.webmadewell {
+  font-family: "montserrat", san-serif;
+  background-color: AliceBlue;
+}
+body {
+  margin: 0;
+  font-size: 0.875em;
+  color: DimGray;
+}
+div {
+  box-sizing: border-box;
+}
+button {
+  font-size: 1em;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  outline: none;
+}
+button::before {
+  content: "More ";
+}
+.page-about {
+  position: relative;
+  overflow: hidden;
+  width: 90%;
+  min-width: 600px;
+  max-width: 1000px;
+  margin: 40px auto;
+  background-color: white;
+  box-shadow: 1px 1px 20px 0 rgba(0, 0, 0, 0.1);
+}
+.left-side {
+  position: absolute;
+  width: 50%;
+  padding: 40px;
+}
+.profile-photo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background-image: url("http://webmadewell.com/wp-content/uploads/2018/02/img-bg-about.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.right-side-info {
+  position: relative;
+  padding: 40px;
+  width: 50%;
+  margin-left: 100%;
+  color: white;
+  background-color: DimGray;
+}
+.show-info .left-side {
+  padding-top: 220px;
+}
+.show-info button {
+  background-color: MediumTurquoise;
+}
+.show-info button::before {
+  content: "Less ";
+}
+.show-info .right-side-info {
+  margin-left: 50%;
+}
+.left-side,
+.right-side-info,
+button {
+  transition: all 0.5s ease-in-out;
+}
+.profile-photo {
+  animation: right_frame 1s ease-in-out 1 forwards;
+}
+.show-info .profile-photo {
+  animation: left_frame 1s ease-in-out 1 forwards;
+}
+@keyframes right_frame {
+  0% {
+    top: 40px;
+    left: 40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+  }
+  50% {
+    top: 40px;
+    left: 50%;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+  }
+  100% {
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+@keyframes left_frame {
+  0% {
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    border-radius: 0;
+  }
+  50% {
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 0;
+  }
+  100% {
+    top: 40px;
+    left: 40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+  }
+}

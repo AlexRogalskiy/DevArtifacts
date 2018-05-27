@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700");
+/* line 3, ../sass/style.scss */
+:root {
+  /* Base font size */
+  font-size: 10px;
+  /* Full grid area variable */
+  --fullGrid: 1 / 1 / -1 / -1;
+}
+
+/* line 11, ../sass/style.scss */
+body {
+  font-family: "Montserrat", Arial, sans-serif;
+  background-color: #fcfcfc;
+}
+
+/* line 16, ../sass/style.scss */
+header {
+  /* Create grid spanning viewport width & height */
+  display: grid;
+  grid-template-rows: 100vh;
+  overflow: hidden;
+  box-shadow: 0 0.5em 0.5em rgba(0, 0, 0, 0.7);
+}
+
+/* line 24, ../sass/style.scss */
+.video-bg {
+  /* Span the full grid */
+  grid-area: var(--fullGrid);
+  /* Re-size video to cover full screen while maintaining aspect ratio */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Display video below overlay */
+  z-index: -1;
+}
+
+/* line 37, ../sass/style.scss */
+.video-bg::-webkit-media-controls {
+  display: none !important;
+}
+
+/* line 41, ../sass/style.scss */
+.video-overlay {
+  /* Span the full grid */
+  grid-area: var(--fullGrid);
+  /* Center Content */
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+/* line 55, ../sass/style.scss */
+h1 {
+  font-size: calc(1.8em + 2.5vw);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-shadow: 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.4);
+}
+
+/* line 64, ../sass/style.scss */
+main {
+  padding: 5em 2em;
+  max-width: 94em;
+  margin: 0 auto;
+}
+
+/* line 70, ../sass/style.scss */
+h2 {
+  font-size: calc(3em + 0.2vw);
+  font-weight: 600;
+  text-align: center;
+  margin: 1.2em 0;
+  color: #111;
+}
+
+/* line 78, ../sass/style.scss */
+p {
+  font-size: calc(2em + 0.2vw);
+  font-weight: 400;
+  line-height: 2;
+  color: #222;
+}
+
+/* line 85, ../sass/style.scss */
+::-moz-selection {
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+}
+
+/* line 90, ../sass/style.scss */
+::selection {
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+}

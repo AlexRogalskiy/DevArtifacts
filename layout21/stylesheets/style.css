@@ -1,0 +1,159 @@
+/* line 1, ../sass/style.scss */
+.webmadewell {
+  font-family: "montserrat", san-serif;
+  background-color: AliceBlue;
+}
+
+/* line 5, ../sass/style.scss */
+body {
+  margin: 0;
+  font-size: 0.875em;
+  color: DimGray;
+}
+
+/* line 10, ../sass/style.scss */
+div {
+  box-sizing: border-box;
+}
+
+/* line 13, ../sass/style.scss */
+button {
+  font-size: 1em;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  outline: none;
+}
+
+/* line 22, ../sass/style.scss */
+button::before {
+  content: "More ";
+}
+
+/* line 25, ../sass/style.scss */
+.page-about {
+  position: relative;
+  overflow: hidden;
+  width: 90%;
+  min-width: 600px;
+  max-width: 1000px;
+  margin: 40px auto;
+  background-color: white;
+  box-shadow: 1px 1px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* line 35, ../sass/style.scss */
+.left-side {
+  position: absolute;
+  width: 50%;
+  padding: 40px;
+}
+
+/* line 40, ../sass/style.scss */
+.profile-photo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background-image: url("http://webmadewell.com/wp-content/uploads/2018/02/img-bg-about.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* line 51, ../sass/style.scss */
+.right-side-info {
+  position: relative;
+  padding: 40px;
+  width: 50%;
+  margin-left: 100%;
+  color: white;
+  background-color: DimGray;
+}
+
+/* line 59, ../sass/style.scss */
+.show-info .left-side {
+  padding-top: 220px;
+}
+
+/* line 62, ../sass/style.scss */
+.show-info button {
+  background-color: MediumTurquoise;
+}
+
+/* line 65, ../sass/style.scss */
+.show-info button::before {
+  content: "Less ";
+}
+
+/* line 68, ../sass/style.scss */
+.show-info .right-side-info {
+  margin-left: 50%;
+}
+
+/* line 71, ../sass/style.scss */
+.left-side,
+.right-side-info,
+button {
+  transition: all 0.5s ease-in-out;
+}
+
+/* line 76, ../sass/style.scss */
+.profile-photo {
+  animation: right_frame 1s ease-in-out 1 forwards;
+}
+
+/* line 79, ../sass/style.scss */
+.show-info .profile-photo {
+  animation: left_frame 1s ease-in-out 1 forwards;
+}
+
+@keyframes right_frame {
+  0% {
+    top: 40px;
+    left: 40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+  }
+  50% {
+    top: 40px;
+    left: 50%;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+  }
+  100% {
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+@keyframes left_frame {
+  0% {
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    border-radius: 0;
+  }
+  50% {
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 0;
+  }
+  100% {
+    top: 40px;
+    left: 40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+  }
+}

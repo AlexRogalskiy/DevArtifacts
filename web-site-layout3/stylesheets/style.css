@@ -1,0 +1,691 @@
+/*
+
+All grid code is placed in a 'supports' rule (feature query) at the bottom of the CSS (Line 474). 
+        
+The 'supports' rule will only run if your browser supports CSS grid.
+
+Flexbox is used as a fallback so that browsers which don't support grid will still recieve an identical layout.
+
+*/
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,600);
+@import url(https://fonts.googleapis.com/css?family=Oswald:600);
+@import url(https://use.fontawesome.com/releases/v5.0.6/css/all.css);
+/* Base styles */
+/* line 19, ../sass/style.scss */
+:root {
+  /* Base font size */
+  font-size: 10px;
+  /* Text color variables */
+  --grey-text: #828282;
+  --black-text: #111;
+}
+
+/* line 28, ../sass/style.scss */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* line 34, ../sass/style.scss */
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* line 41, ../sass/style.scss */
+.container {
+  max-width: 138rem;
+  margin: 0 auto;
+  padding: 0 2vw;
+}
+
+/* line 47, ../sass/style.scss */
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* line 55, ../sass/style.scss */
+::-webkit-scrollbar {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* line 60, ../sass/style.scss */
+::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+/* line 64, ../sass/style.scss */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 0.5rem;
+  border: 0.2rem solid #fff;
+}
+
+/* line 70, ../sass/style.scss */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
+}
+
+/* Masthead */
+/* line 76, ../sass/style.scss */
+.masthead {
+  display: flex;
+  flex-basis: 5.6rem;
+  align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  padding: 0 2.2rem;
+  box-shadow: 0 0.2rem 0.2rem rgba(17, 17, 17, 0.2);
+  z-index: 1;
+}
+
+/* line 89, ../sass/style.scss */
+.logo {
+  flex: 0 0 15rem;
+  margin-left: 2.5rem;
+}
+
+/* line 94, ../sass/style.scss */
+.site-search {
+  flex-grow: 1;
+  margin: 0 2.5rem;
+}
+
+/* line 99, ../sass/style.scss */
+.menu-btn {
+  font-size: 1.6rem;
+  color: #888;
+  padding: 0 0.5rem;
+}
+
+/* line 105, ../sass/style.scss */
+.logo h1 {
+  font-family: "Oswald", Arial, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: -0.12rem;
+  color: #282828;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* line 115, ../sass/style.scss */
+.logo-icon {
+  color: #f00;
+  padding-right: 0.5rem;
+}
+
+/* line 120, ../sass/style.scss */
+.site-search {
+  display: flex;
+  height: 3.2rem;
+}
+
+/* line 125, ../sass/style.scss */
+.search-input,
+.search-btn {
+  border: 0.1rem solid #ccc;
+}
+
+/* line 130, ../sass/style.scss */
+.search-input {
+  flex-basis: 60rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+  border-right: none;
+  padding-left: 1rem;
+  color: var(--black-text);
+}
+
+/* line 141, ../sass/style.scss */
+.search-input::-webkit-input-placeholder {
+  color: var(--grey-text);
+}
+
+/* line 145, ../sass/style.scss */
+.search-input:-ms-input-placeholder {
+  color: var(--grey-text);
+}
+
+/* line 149, ../sass/style.scss */
+.search-input::-ms-input-placeholder {
+  color: var(--grey-text);
+}
+
+/* line 153, ../sass/style.scss */
+.search-input::placeholder {
+  color: var(--grey-text);
+}
+
+/* line 157, ../sass/style.scss */
+.search-btn {
+  flex: 0 0 6.5rem;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+  background-color: #f8f8f8;
+  color: var(--black-text);
+  cursor: pointer;
+}
+
+/* line 166, ../sass/style.scss */
+.search-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* line 170, ../sass/style.scss */
+.user-menu {
+  flex-basis: 16rem;
+  display: flex;
+  font-size: 1.6rem;
+  color: var(--grey-text);
+}
+
+/* line 177, ../sass/style.scss */
+.user-menu .btn {
+  flex: 0 0 4rem;
+}
+
+/* Channel banner */
+/* line 183, ../sass/style.scss */
+.channel-banner {
+  flex-basis: 16vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background: url("https://images.unsplash.com/photo-1486597622250-f997d79907f8?w=1400&h=600&fit=crop") no-repeat center 35%;
+  background-size: cover;
+  padding: 1.6rem;
+}
+
+/* line 194, ../sass/style.scss */
+.channel-social-links {
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* line 199, ../sass/style.scss */
+.channel-social-links li {
+  display: inline-block;
+  font-size: 1.8rem;
+  padding-right: 1rem;
+}
+
+/* line 205, ../sass/style.scss */
+.channel-social-links li:last-of-type {
+  padding-right: 0;
+}
+
+/* line 209, ../sass/style.scss */
+.google-plus {
+  color: #dd4d40;
+}
+
+/* line 213, ../sass/style.scss */
+.twitter {
+  color: #1da1f3;
+}
+
+/* line 217, ../sass/style.scss */
+.facebook {
+  color: #3b5999;
+}
+
+/* Channel info */
+/* line 223, ../sass/style.scss */
+.channel-info {
+  background-color: #fafafa;
+  padding-top: 1.6rem;
+}
+
+/* line 228, ../sass/style.scss */
+.channel-info .container {
+  display: flex;
+  align-items: center;
+}
+
+/* line 233, ../sass/style.scss */
+.channel-icon {
+  flex-basis: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* line 240, ../sass/style.scss */
+.channel-title {
+  flex: 1 1 auto;
+  margin: 0 2rem;
+}
+
+/* line 245, ../sass/style.scss */
+.channel-title h1 {
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--black-text);
+  white-space: nowrap;
+}
+
+/* line 252, ../sass/style.scss */
+.channel-title i {
+  font-size: 1.4rem;
+  color: #6e6e6e;
+}
+
+/* line 257, ../sass/style.scss */
+.channel-subscriber-count {
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--grey-text);
+}
+
+/* line 264, ../sass/style.scss */
+.channel-subscribe {
+  display: flex;
+  height: 3.7rem;
+  color: var(--grey-text);
+}
+
+/* line 270, ../sass/style.scss */
+.subscribe-btn {
+  width: 14.2rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  background-color: #eee;
+  margin-right: 0.4rem;
+}
+
+/* line 278, ../sass/style.scss */
+.notification-btn {
+  width: 4rem;
+  font-size: 2rem;
+}
+
+/* Channel navigation */
+/* line 285, ../sass/style.scss */
+.channel-nav {
+  background-color: #fafafa;
+  padding-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+/* line 292, ../sass/style.scss */
+.channel-nav ul {
+  display: flex;
+}
+
+/* line 296, ../sass/style.scss */
+.nav-item a {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--grey-text);
+  padding: 1.5rem 3.2rem;
+}
+
+/* line 306, ../sass/style.scss */
+.nav-item a.current {
+  color: var(--black-text);
+  border-bottom: 0.3rem solid #6e6e6e;
+}
+
+/* line 311, ../sass/style.scss */
+.nav-item a:hover {
+  color: var(--black-text);
+}
+
+/* Channel content */
+/* line 317, ../sass/style.scss */
+.channel-content .container {
+  display: flex;
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+  color: var(--grey-text);
+}
+
+/* line 324, ../sass/style.scss */
+.channel-videos {
+  display: flex;
+  flex-direction: column;
+  min-width: 42.5rem;
+  max-width: 107rem;
+}
+
+/* line 331, ../sass/style.scss */
+.video-title {
+  color: var(--black-text);
+}
+
+/* line 335, ../sass/style.scss */
+.video-meta-data,
+.video-description {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+/* line 341, ../sass/style.scss */
+.video-description {
+  max-width: 60rem;
+  line-height: 1.4;
+}
+
+/* line 346, ../sass/style.scss */
+.video-meta-data li {
+  display: inline-block;
+}
+
+/* line 350, ../sass/style.scss */
+.video-creator {
+  padding-right: 0.4rem;
+}
+
+/* line 354, ../sass/style.scss */
+.video-views::after {
+  content: "\00B7";
+  font-size: 2.2rem;
+  padding-left: 0.4rem;
+  vertical-align: middle;
+}
+
+/* Featured video */
+/* line 363, ../sass/style.scss */
+.featured-video {
+  display: flex;
+  cursor: pointer;
+}
+
+/* line 368, ../sass/style.scss */
+.featured-video .video-info {
+  flex: 1;
+}
+
+/* line 372, ../sass/style.scss */
+.featured-video .video-thumbnail {
+  margin-right: 1.5rem;
+}
+
+/* line 376, ../sass/style.scss */
+.featured-video .video-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+/* Video playlists */
+/* line 383, ../sass/style.scss */
+.playlist {
+  position: relative;
+  padding-bottom: 1rem;
+  overflow-x: auto;
+  margin-top: 2rem;
+}
+
+/* line 390, ../sass/style.scss */
+.playlist-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  border-top: 0.1rem solid #eee;
+  padding: 2rem 0;
+  color: var(--black-text);
+}
+
+/* line 401, ../sass/style.scss */
+.playlist-videos {
+  display: flex;
+}
+
+/* line 405, ../sass/style.scss */
+.playlist-video {
+  flex-basis: 21rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+/* line 411, ../sass/style.scss */
+.playlist-video .video-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+}
+
+/* line 417, ../sass/style.scss */
+.playlist-video .video-creator {
+  display: block;
+}
+
+/* Recommended channels */
+/* line 423, ../sass/style.scss */
+.recommended-channels {
+  margin-left: 2rem;
+}
+
+/* line 427, ../sass/style.scss */
+.recommended-channels-heading {
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--grey-text);
+  margin-bottom: 2rem;
+}
+
+/* line 435, ../sass/style.scss */
+.recommended-channels-group:first-of-type {
+  margin-bottom: 2rem;
+  border-bottom: 0.1rem solid #eee;
+}
+
+/* line 440, ../sass/style.scss */
+.recommended-channel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-bottom: 2rem;
+  cursor: pointer;
+}
+
+/* line 448, ../sass/style.scss */
+.recommended-channel-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 0.8rem;
+}
+
+/* line 456, ../sass/style.scss */
+.recommended-channel-title {
+  flex: 1 0 50%;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--black-text);
+}
+
+/* line 463, ../sass/style.scss */
+.recommended-channel-subscribe {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--grey-text);
+  background-color: #eee;
+  width: 10rem;
+  height: 2.4rem;
+  margin-top: 0.8rem;
+}
+
+/*
+
+The following rule will only run if your browser supports CSS grid.
+
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox styling. 
+
+*/
+@supports (display: grid) {
+  /* line 482, ../sass/style.scss */
+  body {
+    display: grid;
+    grid-template-rows: 5.6rem 16vw repeat(3, auto);
+  }
+
+  /* line 487, ../sass/style.scss */
+  .masthead {
+    display: grid;
+    grid-template-columns: auto 15rem 1fr 16rem;
+    grid-column-gap: 2.5rem;
+  }
+
+  /* line 493, ../sass/style.scss */
+  .site-search {
+    display: grid;
+    grid-template-columns: minmax(0, 60rem) 6.5rem;
+  }
+
+  /* line 498, ../sass/style.scss */
+  .user-menu {
+    display: grid;
+    grid-template-columns: repeat(4, 4rem);
+  }
+
+  /* line 503, ../sass/style.scss */
+  .channel-info .container {
+    display: grid;
+    grid-template-columns: 8rem minmax(auto, 1fr) auto;
+    grid-column-gap: 2rem;
+  }
+
+  /* line 509, ../sass/style.scss */
+  .channel-subscribe {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-column-gap: 0.4rem;
+  }
+
+  /* line 515, ../sass/style.scss */
+  .channel-content .container {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-gap: 2rem;
+  }
+
+  /* line 521, ../sass/style.scss */
+  .channel-videos {
+    display: grid;
+    grid-row-gap: 2rem;
+    max-width: 100%;
+  }
+
+  /* line 527, ../sass/style.scss */
+  .featured-video {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 1.5rem;
+  }
+
+  /* line 533, ../sass/style.scss */
+  .playlist-videos {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 21rem;
+    grid-column-gap: 0.5rem;
+  }
+
+  /* line 540, ../sass/style.scss */
+  .recommended-channel {
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    grid-gap: 0.8rem;
+  }
+
+  /* line 546, ../sass/style.scss */
+  .recommended-channel-subscribe {
+    grid-column: 1 / -1;
+  }
+
+  /* line 550, ../sass/style.scss */
+  .logo,
+  .site-search,
+  .channel-title,
+  .subscribe-btn,
+  .playlist,
+  .featured-video .video-thumbnail,
+  .playlist-video,
+  .recommended-channels,
+  .recommended-channel-icon,
+  .recommended-channel-subscribe {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 60rem) {
+    /* line 564, ../sass/style.scss */
+    .masthead {
+      grid-template-columns: auto 1fr 16rem;
+    }
+
+    /* line 568, ../sass/style.scss */
+    .channel-info .container {
+      grid-template-columns: repeat(2, auto);
+    }
+
+    /* line 572, ../sass/style.scss */
+    .channel-content .container {
+      grid-template-columns: minmax(42.5rem, 1fr);
+    }
+  }
+}
+/* Media queries */
+@media screen and (max-width: 60rem) {
+  /* line 581, ../sass/style.scss */
+  .logo {
+    flex-grow: 1;
+  }
+
+  /* line 585, ../sass/style.scss */
+  .channel-info {
+    padding-bottom: 1.6rem;
+  }
+
+  /* line 589, ../sass/style.scss */
+  .channel-info .container {
+    justify-content: space-around;
+  }
+
+  /* line 593, ../sass/style.scss */
+  .channel-title,
+  .channel-subscribe {
+    flex: 0 0 auto;
+    margin: 0;
+  }
+
+  /* line 599, ../sass/style.scss */
+  .channel-title h1 {
+    font-size: 1.8rem;
+  }
+
+  /* line 603, ../sass/style.scss */
+  .channel-videos {
+    max-width: 100%;
+  }
+
+  /* line 607, ../sass/style.scss */
+  .recommended-channels,
+  .channel-icon,
+  .site-search {
+    display: none;
+  }
+}
