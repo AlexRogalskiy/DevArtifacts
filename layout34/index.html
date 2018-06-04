@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+		<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700" rel="stylesheet">
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+    
+<!--  header -->
+<body>
+
+<div id="content"></div>
+
+<script id="main-tweet-template" type="text/x-handlebars-template">
+  <div class="tweet">
+    <div class="user">
+      <img src="https://api.adorable.io/avatars/{{avatar}}" alt="" class="user-avatar">
+      <div class="user-fullname">{{user-fullname}}</div>
+      <div class="user-username">{{user-username}}</div>
+    </div>
+    <div class="tweet-text">
+      {{tweet-text}} {{tweet-number}}/{{tweet-total}}
+    </div>
+    <time class="tweet-time">
+      {{tweet-time}}
+    </time>
+    <div class="tweet-stats">
+      <div class="retweets-and-likes">
+        <strong>{{retweets}}</strong>
+        <span>Retweet</span>
+        <strong>{{loves}}</strong>
+        <span>Likes</span>
+      </div>
+      <div class="tweet-stat-avatars">
+        <img src="https://api.adorable.io/avatars/80/abott@adorable.png" alt="">
+        <img src="https://api.adorable.io/avatars/80/bob@adorable.png" alt="">
+        <img src="https://api.adorable.io/avatars/80/jimmy@adorable.png" alt="">
+        <img src="https://api.adorable.io/avatars/80/bill@adorable.png" alt="">
+        <img src="https://api.adorable.io/avatars/80/blaine@adorable.png" alt="">
+        <img src="https://api.adorable.io/avatars/80/dee@adorable.png" alt="">
+      </div>
+    </div>
+    <div class="tweet-actions">
+      <span>🗯</span>
+      <strong>{{comments}}</strong>
+      
+      <span>♽</span>
+      <strong>{{retweets}}</strong>
+      
+      <span>♥︎</span>
+      <strong>{{loves}}</strong>
+      
+      <span>✉️</span>
+    </div>
+  </div>
+</script>
+
+<script id="sub-tweet-template" type="text/x-handlebars-template">
+  <div class="tweet thread-tweet">
+    <div class="user">
+      <img src="https://api.adorable.io/avatars/{{avatar}}" alt="" class="user-avatar">
+      <div class="user-fullname">
+        {{user-fullname}}
+        <span class="user-username">{{user-username}}</span>
+        <time class="time-ago">
+          &middot;
+          1h
+        </time>
+      </div>
+      <div class="replying-to">
+        Replying to <a href="#0" class="user-username">{{user-username}}</a>
+      </div>
+    </div>
+    <div class="tweet-text">
+      {{tweet-text}} {{tweet-number}}/{{tweet-total}}
+    </div>
+    
+    <div class="tweet-actions">
+      <span>🗯</span>
+      <strong>{{comments}}</strong>
+      
+      <span>♽</span>
+      <strong>{{retweets}}</strong>
+      
+      <span>♥︎</span>
+      <strong>{{loves}}</strong>
+      
+      <span>✉️</span>
+    </div>
+  </div>
+</script>
+
+<main id="text">
+<p><strong>A front end developer is aware of design.</strong> If they aren't a designer themselves, they know how important design is. They have good taste in design. They know about the tools involved. They know where the design role fits into the process.</p>
+<p><strong>A front end developer is aware of the back end.</strong> If they aren't a back end coder themselves, they know how important the back end is. They know what the back end is capable of delivering and what it isn't. They know the responsibilities
+  back end developers have. They know the languages involved. They know how to ask for what they need on the front end. </p>
+<p><strong>A front end developer is aware of the network.</strong> They know that websites are delivered over the internet, a network, and that that network is a wild and sometimes unpredictable place. They know networks can be on or off, fast or slow, and
+  reliable or unreliable. </p>
+<p><strong>A front end developer is aware of performance.</strong> If they aren't entirely performance focused themselves, they know that performance is vital to a website's success. They know performance is a complex world onto itself. They know there are
+  quick wins and long term struggles. They know that so long as the back end is fast, the other 80% of the time a website is loading is a front end concern.</p>
+<p><strong>A front end developer is aware of content strategy.</strong> If they aren't a content strategist themselves, they know that websites live and die by the content on them. They know that the lack of a content plan can cause problems that you may
+  not be able to develop your way out of. They know that the people that use the website is what matters and those people need to find what they need and expect it to be in good shape.</p>
+<p><strong>A front end developer is aware of databases.</strong> The content lives there. The content must be in good shape. The front end developer can only work with what comes out of those databases. The front end developer needs to combine what comes
+  out of those databases with templates to make the website happen.</p>
+<p><strong>A front end developer is aware of testing.</strong> So many kinds! Integration testing. Regression testing. User testing! </p>
+<p><strong>A front end developer is aware of systems.</strong> They might be responsible for implementing a design system, or an icon system, or a coding style guide. They might have to create those systems themselves. They might need to document those systems.</p>
+<p><strong>A front end developer is aware of devops.</strong> They are writing and committing code along with every other coder on the project, so they need to adhere to the same setup as everyone else. If they didn't write the build system themselves, they
+  know what it is, what it does, and what it is capable of. If they didn't set up deployment themselves, they know how to use it.</p>
+<p><strong>A front end developer is aware of servers.</strong> Without them, there is no website. </p>
+<p><strong>A front end developer is aware of accessibility.</strong> If they aren't well versed in building for accessibility themselves, they know that it's important. They know how to test for it. They know who to talk to about it. They know there is quick
+  wins and long term struggles regarding it.</p>
+<p><strong>A front end developer is aware of the device landscape.</strong> They know the web is everywhere these days and a good website needs to meet users there. Big screens, little screens, touch screens, far away screens, black and white screens. The front end developer is aware of the unknown.</p>
+</main>
+
+<button id="make-readable">Ughkgh. I can't read this.<br>Make it readable!</button>
+ 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+<!--  footer -->
+</html>

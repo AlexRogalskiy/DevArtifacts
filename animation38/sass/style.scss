@@ -1,0 +1,82 @@
+/* addons */
+@use postcss-cssnext;
+
+/* reset */
+@import '//codepen.io/chrisdothtml/pen/ojLzJK.css';
+
+:root {
+  --bg-color: #2980b9;
+  --fg-color: #ecf0f1;
+  --stage-size: 35vw;
+  --circle-size: calc(var(--stage-size) / 2);
+  --circle-gutter: calc((var(--circle-size) / 4) / 2);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  align-items: center;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.stage {
+  --adjusted-size: calc(var(--stage-size) + (var(--circle-gutter) * 4));
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  height: var(--adjusted-size);
+  justify-content: center;
+  position: relative;
+  width: var(--adjusted-size);
+}
+
+.middle-square {
+  --adjusted-size: calc(var(--circle-size) + (var(--circle-gutter) * 2));
+  background-color: var(--bg-color);
+  height: var(--adjusted-size);
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--adjusted-size);
+  z-index: 2;
+}
+
+.circle {
+  background-color: var(--fg-color);
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, .1);
+  height: var(--circle-size);
+  margin: var(--circle-gutter);
+  position: relative;
+  width: var(--circle-size);
+  z-index: 1;
+}
+
+.circle:nth-of-type(1) { transform: rotate(180deg) }
+.circle:nth-of-type(2) { transform: rotate(270deg) }
+.circle:nth-of-type(3) { transform: rotate(90deg) }
+
+.circle > .square {
+  background-color: var(--bg-color);
+  height: 50%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 50%;
+}
+
+/* states */
+.stage:not(.middle-moving) .middle-square {
+  display: none;
+}
+
+.stage.middle-moving .circle > .square {
+  display: none;
+}

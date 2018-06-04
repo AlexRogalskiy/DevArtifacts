@@ -1,0 +1,130 @@
+// reset
+@import '//codepen.io/chrisdothtml/pen/ojLzJK.css'
+
+// settings
+clock-size = 500px
+clock-gutter = 65px
+rivet-size = 17px
+rivet-margin = 10px
+dot-size = 15px
+dot-margin = 15px
+
+// general reference
+line-count = 7
+dot-count = 4
+
+$rivet
+  background-color: #efefef
+  width: rivet-size
+  height: rivet-size
+  position: absolute
+  border-radius: 50%
+  box-shadow: -3px -3px 5px 0 rgba(0, 0, 0, .4) inset
+
+$item
+  opacity: .2
+  transition: all 0.3s
+
+  &.active
+    opacity: 1
+
+$word
+  @extends $item
+  font-family: 'Titillium Web', sans-serif
+  font-size: 43px
+  color: #fff
+  text-transform: uppercase
+  
+  &.active
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, .4)
+
+$dot
+  @extends $item
+  background-color: #fff
+  width: dot-size
+  height: dot-size
+
+html
+  width: 100%
+  min-width: clock-size + 50px
+  height: 100%
+  min-height: clock-size + 70px
+  position: relative
+
+body
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/216995/wood_pattern.png)
+
+.clock
+  background-color: #212121
+  width: clock-size
+  height: clock-size
+  margin: 20px auto 0
+  position: relative
+  z-index: 2
+  border-radius: 8px
+  box-shadow: 5px 5px 15px 2px rgba(0, 0, 0, .4)
+
+  .content
+    width: 100%
+    height: 100%
+    padding: clock-gutter
+    position: absolute
+
+    .line
+      display: flex
+      justify-content: space-between
+
+      .word
+        @extends $word
+        display: block
+        line-height: ((clock-size - (clock-gutter * 2)) / line-count)
+
+    .dots
+      	display: flex
+      	justify-content: space-between
+      	width: (dot-size * dot-count) + (dot-margin * (dot-count - 1))
+      	position: absolute
+      	bottom: (clock-gutter / 2)
+      	left: 50%
+      	transform: translate(-50%, 50%)
+
+      .dot
+        @extends $dot
+        display: block
+        // hide text
+        text-indent: 100%
+        white-space: nowrap
+        overflow: hidden
+
+  .rivets
+    &:before,
+    &:after
+      @extends $rivet
+      content: ''
+
+    &:before
+      left: rivet-margin
+
+    &:after
+      right: rivet-margin
+
+    &.top
+      &:before,
+      &:after
+        top: rivet-margin
+
+    &.bottom
+      &:before,
+      &:after
+        bottom: rivet-margin
+
+.ticker
+  width: 100%
+  line-height: 1
+  font-size: 25px
+  color: #c59e62
+  text-align: center
+  position: absolute
+  bottom: 5px
+  z-index: 1
+  text-shadow: -1px -1px 1px #2b2418

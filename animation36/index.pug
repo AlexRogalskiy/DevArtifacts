@@ -1,0 +1,23 @@
+-var lines = [
+-  ["it's", 'quarter', 'half'],
+-  ['ten', 'twenty', 'five'],
+-  ['to', 'past', 'one', 'two'],
+-  ['three', 'four', 'five'],
+-  ['six', 'seven', 'eight'],
+-  ['nine', 'ten', 'eleven'],
+-  ['twelve', "o'clock"]
+-]
+
+.clock
+  .rivets.top
+  .content
+    each line in lines
+      .line
+        each word in line
+          span.word= word
+    .dots
+      each index in [1, 2, 3, 4]
+        span.dot= index
+  .rivets.bottom
+
+#ticker.ticker
