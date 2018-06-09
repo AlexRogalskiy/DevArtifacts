@@ -1,0 +1,221 @@
+html,
+body {
+  background: #2f3238;
+  font-family: 'Raleway', Arial, sans-serif;
+  text-align: center;
+  padding: 15px;
+}
+.title {
+  color: #ffffff;
+  text-transform: uppercase;
+}
+.box {
+  position: relative;
+  text-align: left;
+  display: inline-block;
+  width: 480px;
+  height: 300px;
+  overflow: hidden;
+  background: #eeeeee;
+  cursor: pointer;
+  margin: 15px;
+  border: 3px solid #666;
+}
+.box:before {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 100%;
+  bottom: 100%;
+  border-bottom: 0px solid #666;
+  transition: opacity 0.5s ease, border-bottom 0.3s ease;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b2c9ff+1,830989+100&0.4+0,0.3+100 */
+  background: -moz-linear-gradient(-45deg, rgba(178, 201, 255, 0.4) 0%, rgba(178, 201, 255, 0.4) 1%, rgba(131, 9, 137, 0.3) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, rgba(178, 201, 255, 0.4) 0%, rgba(178, 201, 255, 0.4) 1%, rgba(131, 9, 137, 0.3) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, rgba(178, 201, 255, 0.4) 0%, rgba(178, 201, 255, 0.4) 1%, rgba(131, 9, 137, 0.3) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66b2c9ff', endColorstr='#4d830989', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  content: "";
+}
+.box:hover img {
+  height: 310px;
+}
+.box:hover:before {
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+  border-bottom: 8px solid #ffffff;
+  transition: opacity 0.5s ease, border-bottom 0.3s ease;
+}
+.box:hover .like {
+  opacity: 1;
+}
+.box:hover .caption h1,
+.box:hover .caption p {
+  transform: translate(0, 0);
+  width: auto;
+  opacity: 1;
+}
+.box:hover .caption h1 {
+  transition: transform .6s ease, opacity .5s ease;
+}
+.box:hover .caption p {
+  transition: transform .6s ease .2s, opacity .5s ease .2s;
+}
+.box:hover .pictos i:hover:after {
+  transition: all .3s ease;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  opacity: 0.2;
+}
+.box:hover .pictos i.quatre {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: transform .6s ease 1s, opacity .5s ease 1s;
+}
+.box:hover .pictos i.trois {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: transform .6s ease .7s, opacity .5s ease .7s;
+}
+.box:hover .pictos i.deux {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: transform .6s ease .5s, opacity .5s ease .5s;
+}
+.box:hover .pictos i.un {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: transform .6s ease .3s, opacity .5s ease .3s;
+}
+.box img {
+  display: inline-block;
+  height: 300px;
+  transition: height 1s ease;
+}
+.box .caption {
+  position: absolute;
+  z-index: 2;
+  color: #666666;
+  padding: 15px;
+}
+.box .caption h1 {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  background: #ffffff;
+  padding: 5px 10px;
+  margin: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translate(0, -30%);
+  transition: transform .6s ease, opacity .5s ease;
+}
+.box .caption h1 span {
+  font-weight: 200;
+}
+.box .caption p {
+  background: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+  padding: 5px 10px;
+  opacity: 0;
+  margin: 2px 0;
+  overflow: hidden;
+  transform: translate(0, -30%);
+  transition: transform .6s ease .1s, opacity .5s ease .1s;
+}
+.box .like {
+  opacity: .6;
+  position: absolute;
+  display: block;
+  color: #ffffff;
+  padding: 10px;
+  bottom: 10px;
+  left: 5px;
+  transition: opacity .5s ease;
+}
+.box .like i {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+.box .like span {
+  position: absolute;
+  right: 8px;
+  transform: translate(100%, 0);
+  font-family: 'Raleway', Arial, sans-serif;
+  background: #ffffff;
+  font-size: 12px;
+  line-height: 16px;
+  color: #222222;
+  height: 16px;
+  padding: 2px 8px;
+  border-radius: 15px;
+  top: 50%;
+  margin-top: -10px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.box .like .normal:before {
+  content: "\f08a";
+}
+.box .like .normal:hover:before {
+  content: "\f004";
+}
+.box .like .hover {
+  display: none;
+}
+.box .pictos {
+  position: absolute;
+  display: block;
+  color: #ffffff;
+  padding: 10px;
+  bottom: 10px;
+  right: 5px;
+}
+.box .pictos i {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+.box .pictos i:after {
+  transition: all 0 ease;
+  position: absolute;
+  background: #ffffff;
+  opacity: 1;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%;
+  border-radius: 100%;
+  content: "";
+}
+.box .pictos i.quatre {
+  position: relative;
+  opacity: 0;
+  transform: translate(30%, 0);
+  transition: transform .6s ease, opacity .5s ease;
+}
+.box .pictos i.trois {
+  opacity: 0;
+  transform: translate(30%, 0);
+  transition: transform .6s ease, opacity .5s ease;
+}
+.box .pictos i.deux {
+  opacity: 0;
+  transform: translate(30%, 0);
+  transition: transform .6s ease, opacity .5s ease;
+}
+.box .pictos i.un {
+  opacity: 0;
+  transform: translate(30%, 0);
+  transition: transform .6s ease, opacity .5s ease;
+}
