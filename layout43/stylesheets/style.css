@@ -1,0 +1,241 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900);
+/* lazy man's reset */
+/* line 7, ../sass/style.scss */
+* {
+  /*box sizing should be border box on .as-frame and .as-screen otherwise js calculations will need to change to include padding*/
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* cross-browser prevent user select: http://stackoverflow.com/a/4358620 */
+/* line 16, ../sass/style.scss */
+.preventSelect {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* line 23, ../sass/style.scss */
+body {
+  background: #F0E9DD url("../images/02.jpg") repeat;
+  background-size: 100% 100%;
+  color: #000;
+  font: 300 1.2em "Source Sans Pro", sans-serif;
+  overflow-x: hidden;
+}
+
+/* line 30, ../sass/style.scss */
+header {
+  padding: 8px 30px;
+  min-height: 45px;
+  background-color: #fff;
+  color: #aaa;
+  z-index: 90;
+}
+
+/* line 37, ../sass/style.scss */
+header a {
+  float: right;
+  text-decoration: none;
+  color: inherit;
+  margin-top: 3px;
+}
+
+/* line 43, ../sass/style.scss */
+header h1 {
+  font: 300 1.2em "Source Sans Pro", sans-serif;
+  float: left;
+}
+
+/* line 49, ../sass/style.scss */
+.as-wrapper {
+  width: 95%;
+  margin: 0 auto;
+  min-height: 550px;
+  position: relative;
+}
+
+/* line 55, ../sass/style.scss */
+.as-container {
+  position: relative;
+  height: 550px;
+  width: 1300px;
+  overflow: hidden;
+  margin: 20px auto;
+  transition: width .6s ease;
+}
+
+/* line 63, ../sass/style.scss */
+.shrink {
+  width: 297px;
+}
+
+/* line 66, ../sass/style.scss */
+.as-screen {
+  height: 75.6%;
+  width: 1190px;
+  top: 8.5%;
+  left: 0;
+  position: absolute;
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  z-index: 1;
+  overflow: hidden;
+  background-color: #B63D42;
+  transition: all .5s ease-out;
+}
+
+/*app screenshot*/
+/* line 82, ../sass/style.scss */
+.as-screen img {
+  pointer-events: none;
+  /*to prevent image being dragged and interfering with the screen drag*/
+}
+
+/* line 86, ../sass/style.scss */
+.as-frame {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  width: 300px;
+  height: 550px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* line 95, ../sass/style.scss */
+.as-frame img {
+  width: 100%;
+  pointer-events: none;
+}
+
+/* line 99, ../sass/style.scss */
+.as-instructions {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  width: 200px;
+  padding: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* line 110, ../sass/style.scss */
+.as-instructions button {
+  background: none;
+  border: none;
+  background-color: #B33E41;
+  color: white;
+  padding: 5px 10px;
+  margin-top: 15px;
+}
+
+/* line 118, ../sass/style.scss */
+.as-slide-button, .as-reset-button, .as-focus-button {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 48px;
+  left: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 20;
+}
+
+/* line 129, ../sass/style.scss */
+.as-reset-button {
+  left: 130px;
+}
+
+/* line 132, ../sass/style.scss */
+.as-focus-button {
+  left: 225px;
+}
+
+/* line 135, ../sass/style.scss */
+.as-nav-buttons {
+  height: 30px;
+  position: absolute;
+  bottom: 30px;
+  left: 320px;
+  z-index: 20;
+}
+
+/* line 142, ../sass/style.scss */
+.as-nav-button {
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  color: black;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* line 152, ../sass/style.scss */
+.as-app-description {
+  opacity: 0;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 5% 0;
+  padding: 0 50px 0 450px;
+  transition: opacity .3s ease-out;
+}
+
+/* line 163, ../sass/style.scss */
+.as-app-description h2 {
+  margin-bottom: 1em;
+}
+
+/* line 166, ../sass/style.scss */
+.visible-description {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+/* line 170, ../sass/style.scss */
+.download-button {
+  margin: 30px 0;
+}
+
+@media screen and (max-width: 64em) {
+  /*1024px*/
+  /* line 176, ../sass/style.scss */
+  .as-app-description {
+    padding-left: 380px;
+  }
+}
+@media screen and (max-width: 50em) {
+  /* line 181, ../sass/style.scss */
+  .as-wrapper {
+    padding: 1%;
+  }
+
+  /* line 184, ../sass/style.scss */
+  .as-app-description {
+    position: static;
+    margin-top: 100px;
+    padding: 0;
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 30em) {
+  /* line 193, ../sass/style.scss */
+  .as-container {
+    width: 297px;
+    margin: 30px auto;
+  }
+}
