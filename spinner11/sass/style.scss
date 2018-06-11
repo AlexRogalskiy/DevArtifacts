@@ -1,0 +1,115 @@
+$colors: #EC2471, #B91C8D, #FDDA01, #EC894F, #9F1E6D;
+$go: unnest 1s infinite ease-in-out;
+$delay: 100ms;
+$stroke1: 400px;
+$stroke2: 110px;
+$width: 20px;
+
+@mixin dashing($stroke) {
+  stroke-dashoffset: $stroke;
+  stroke-dasharray: $stroke;
+}
+
+body {
+  background: #241034;
+}
+
+.contain {
+  position: relative;
+  margin: 150px auto;
+  width: 130px;
+}
+
+svg {
+  position: absolute;
+  
+  circle {
+  animation: $go;
+  transform-origin: center;
+  }
+}
+
+svg:nth-of-type(1) circle {
+  stroke: nth($colors, 1);
+  @include dashing($stroke1);
+  animation: $go;
+  stroke-width: $width;
+}
+
+svg:nth-of-type(2) circle {
+  @include dashing($stroke1);
+  stroke: nth($colors, 2);
+  animation: $go;
+  animation-delay: $delay;
+  stroke-width: $width + 10;
+}
+
+svg:nth-of-type(3) circle {
+  @include dashing($stroke1);
+  stroke: nth($colors, 3);
+  animation: $go;
+  animation-delay: $delay + 100;
+  stroke-width: $width + 20;
+}
+
+svg:nth-of-type(4) circle {
+  @include dashing($stroke1);
+  stroke: nth($colors, 4);
+  animation: $go;
+  animation-delay: $delay + 200;
+  stroke-width: $width + 30;
+}
+
+svg:nth-of-type(5) circle {
+  @include dashing($stroke1);
+  stroke: nth($colors, 5);
+  animation: $go;
+  animation-delay: $delay + 300;
+  stroke-width: $width + 40;
+}
+
+svg:nth-of-type(6) circle {
+  @include dashing($stroke1);
+  stroke: nth($colors, 1);
+  animation: $go;
+  animation-delay: $delay + 400;
+  stroke-width: $width + 30;
+}
+
+svg:nth-of-type(7) circle {
+  @include dashing($stroke1);
+  stroke: nth($colors, 2);
+  animation: $go;
+  animation-delay: $delay + 500;
+  stroke-width: $width + 20;
+}
+
+svg:nth-of-type(8) circle {
+  @include dashing($stroke1);
+  stroke: nth($colors, 3);
+  animation: $go;
+  animation-delay: $delay + 600;
+  stroke-width: $width + 10;
+}
+
+svg:nth-of-type(9) circle {
+  @include dashing($stroke1);
+  stroke: nth($colors, 4);
+  animation: $go;
+  animation-delay: $delay + 700;
+  stroke-width: $width;
+}
+
+svg:nth-of-type(10) circle {
+  @include dashing($stroke1);
+  stroke: nth($colors, 5);
+  animation: $go;
+  animation-delay: $delay + 800;
+  stroke-width: $width - 10;
+}
+
+@keyframes unnest {
+  47%, 53% {
+    @include dashing($stroke2);
+  }
+}

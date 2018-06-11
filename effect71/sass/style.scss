@@ -1,0 +1,54 @@
+$colors: #A32D70, #6E32A0, #DBD3D9, #D64369, #7A7DE0;
+$num: 20;
+
+body {
+  background: #20191F;
+  overflow: hidden;
+}
+
+@for $i from 1 through $num {
+  .bubble:nth-of-type(#{$i}) {
+    position: absolute;
+    margin: 80px auto;
+    background: mix(nth($colors, random(length($colors))), nth($colors, random(length($colors))), 60%);
+    box-shadow: inset 3px 3px 60px 6px #A32D70;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    animation: float 6s infinite linear;
+    opacity: .3;
+    top: random(300) + px;
+    left: random(900) + px;
+    animation: float#{$i} 20s infinite linear;
+    
+    &:after {
+      position: absolute;
+      top: 20px;
+      left: 15px;
+      border-right: 10px solid white;
+      border-radius: 50%;
+      opacitY: .06;
+      width: 110px;
+      height: 110px;
+      content: '';
+    }
+  }
+}
+
+@for $i from 1 through $num {
+  $movex: random(500) - 200 + px;
+  $movey: random(400) - 300 + px;
+  $movex2: random(200) - 50 + px;
+  $movey2: random(400) - 100 + px;
+  @keyframes float#{$i} {
+    40% {
+      transform: translateX($movex) translateY($movey);
+    }
+    50% {
+      background: desaturate(nth($colors, random(length($colors))), 50%);
+    }
+    80% {
+      transform: translateX($movex2) translateY($movey2);
+    }
+  }
+}

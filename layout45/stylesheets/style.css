@@ -1,0 +1,733 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+/* line 21, ../sass/style.scss */
+#app {
+  height: 555px;
+  width: 315px;
+  font-family: Open Sans, sans-serif;
+  background-image: linear-gradient(to right, #5D3384, #335679);
+  background-size: cover;
+  overflow: hidden;
+  --not-panning: calc(1 + -1 * var(--panning));
+  z-index: 1;
+  box-shadow: 0 0 8rem rgba(0, 0, 0, 0.3);
+}
+/* line 32, ../sass/style.scss */
+#app[data-state="START"]:not([data-pending]):after {
+  content: '';
+  position: absolute;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 100;
+  bottom: 30%;
+  right: 30%;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+  animation: hint 2s 5s cubic-bezier(0.6, 0, 0.2, 1) both infinite;
+}
+@keyframes hint {
+  from {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50%, 80% {
+    opacity: 1;
+    transform: translateY(-15rem);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-15rem);
+  }
+}
+/* line 65, ../sass/style.scss */
+svg.ui-gradient {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100vmax;
+  height: 100vmax;
+  transform: scale(3, 2);
+}
+/* line 74, ../sass/style.scss */
+svg.ui-gradient stop {
+  transition: stop-color 0.6s ease-out;
+}
+
+/* line 79, ../sass/style.scss */
+.ui-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  will-change: transform;
+}
+
+/* line 88, ../sass/style.scss */
+.ui-nav-buttons {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* line 100, ../sass/style.scss */
+.ui-icon {
+  width: 2rem;
+  height: 2rem;
+}
+/* line 104, ../sass/style.scss */
+.ui-icon.-search {
+  border: 3px solid white;
+  border-radius: 50%;
+  transform: scale(0.65) rotate(-45deg);
+}
+/* line 105, ../sass/style.scss */
+.ui-icon.-search:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  width: 3px;
+  height: 75%;
+  background-color: white;
+  left: calc(50% - 1px);
+}
+/* line 119, ../sass/style.scss */
+.ui-icon.-menu {
+  width: 1.5rem;
+  height: 2px;
+  background-color: #fff;
+  transform: scaleX(0.8);
+}
+/* line 125, ../sass/style.scss */
+.ui-icon.-menu, .ui-icon.-menu:before, .ui-icon.-menu:after {
+  transition: transform .6s ease;
+}
+/* line 129, ../sass/style.scss */
+.ui-icon.-menu:before, .ui-icon.-menu:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  height: 100%;
+  width: 120%;
+}
+/* line 139, ../sass/style.scss */
+.ui-icon.-menu:before {
+  transform: translateY(-0.5rem);
+  transform-origin: bottom left;
+}
+/* line 144, ../sass/style.scss */
+.ui-icon.-menu:after {
+  transform: translateY(0.5rem);
+  transform-origin: top left;
+}
+/* line 149, ../sass/style.scss */
+#app:not([data-state="START"]) .ui-icon.-menu {
+  transform: scaleX(1);
+}
+/* line 152, ../sass/style.scss */
+#app:not([data-state="START"]) .ui-icon.-menu:before {
+  transform: rotate(-45deg) scaleX(0.5);
+}
+/* line 155, ../sass/style.scss */
+#app:not([data-state="START"]) .ui-icon.-menu:after {
+  transform: rotate(45deg) scaleX(0.5);
+}
+
+/* line 162, ../sass/style.scss */
+.ui-nav-items {
+  position: absolute;
+  bottom: 1rem;
+  left: 60px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  transform-style: preserve-3d;
+  transition: transform calc(var(--not-panning) * .6s) ease;
+  will-change: transform;
+}
+
+/* line 179, ../sass/style.scss */
+.ui-nav-item {
+  display: inline-block;
+  height: 250px;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  transform-style: preserve-3d;
+  transform: translate3d(calc((var(--delta-left) + var(--py) * var(--delta-left)) * 1px), calc((var(--delta-top) + var(--py) * var(--delta-top)) * 1px), 0);
+  transition: transform calc(var(--not-panning) * .6s) ease;
+  will-change: transform;
+  pointer-events: none;
+}
+/* line 200, ../sass/style.scss */
+.ui-nav-item:before {
+  pointer-events: auto;
+}
+/* line 202, ../sass/style.scss */
+.ui-nav-item:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+@-moz-document url-prefix() {
+  /* line 202, ../sass/style.scss */
+  .ui-nav-item:before {
+    top: 0;
+    left: 0;
+  }
+}
+/* line 215, ../sass/style.scss */
+.ui-nav-item[data-key="1"]::before {
+  background-image: linear-gradient(to bottom right, var(--colors-1-0), var(--colors-1-1));
+}
+/* line 215, ../sass/style.scss */
+.ui-nav-item[data-key="2"]::before {
+  background-image: linear-gradient(to bottom right, var(--colors-2-0), var(--colors-2-1));
+}
+/* line 215, ../sass/style.scss */
+.ui-nav-item[data-key="3"]::before {
+  background-image: linear-gradient(to bottom right, var(--colors-3-0), var(--colors-3-1));
+}
+/* line 215, ../sass/style.scss */
+.ui-nav-item[data-key="4"]::before {
+  background-image: linear-gradient(to bottom right, var(--colors-4-0), var(--colors-4-1));
+}
+
+/* line 221, ../sass/style.scss */
+.ui-nav-item-title {
+  transition: transform calc(var(--not-panning) * 0.6s) ease-out;
+  transition-property: transform, opacity;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.25ch;
+  width: 100%;
+  text-align: left;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+/* line 232, ../sass/style.scss */
+.ui-nav-item-title > span {
+  transition: inherit;
+  display: inline-block;
+  transform: translateX(-2rem);
+}
+
+/* line 240, ../sass/style.scss */
+#app[data-state="START"] .ui-nav-item {
+  margin-top: -70px;
+  margin-bottom: -70px;
+}
+/* line 244, ../sass/style.scss */
+#app[data-state="START"] .ui-nav-item:before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: scaleY(0.44);
+}
+
+/* line 255, ../sass/style.scss */
+#app[data-state="NAV2"][data-prev-state="NAV1"][data-pending]:not(#important) .ui-nav-items {
+  transform: translateX(var(--x)) translateY(calc(var(--dy) * .25px)) !important;
+}
+/* line 260, ../sass/style.scss */
+#app[data-state="NAV2"][data-prev-state="NAV1"][data-pending]:not(#important) .ui-nav-item.prev-active .ui-nav-item-title {
+  transform: translateZ(2px) translateX(calc(100%)) !important;
+  opacity: calc(1 + 2 * var(--py)) !important;
+}
+/* line 264, ../sass/style.scss */
+#app[data-state="NAV2"][data-prev-state="NAV1"][data-pending]:not(#important) .ui-nav-item.prev-active .ui-nav-item-title > span {
+  transform: translateZ(2px) translateX(calc(-50% - 100% * var(--py)));
+}
+/* line 272, ../sass/style.scss */
+#app[data-state="NAV2"][data-prev-state="NAV1"][data-pending]:not(#important) .ui-nav-item.active + .ui-nav-item > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(0) !important;
+  opacity: calc(1 + 2 * var(--py)) !important;
+}
+/* line 276, ../sass/style.scss */
+#app[data-state="NAV2"][data-prev-state="NAV1"][data-pending]:not(#important) .ui-nav-item.active + .ui-nav-item > .ui-nav-item-title > span {
+  transform: translateZ(2px) translateX(calc(-50% + 100% * var(--py)));
+}
+
+/* line 285, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="NAV2"][data-pending]:not(#important) .ui-nav-items {
+  transform: translateX(var(--x)) translateY(calc(var(--dy) * 1px)) !important;
+}
+/* line 290, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="NAV2"][data-pending]:not(#important) .ui-nav-item.prev-active .ui-nav-item-title {
+  transform: translateZ(2px) translateX(calc(150%)) !important;
+  opacity: calc(-1 * var(--py)) !important;
+}
+/* line 294, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="NAV2"][data-pending]:not(#important) .ui-nav-item.prev-active .ui-nav-item-title > span {
+  transform: translateZ(2px) translateX(calc(-50% + 100% * var(--py))) !important;
+}
+/* line 302, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="NAV2"][data-pending]:not(#important) .ui-nav-item.active + .ui-nav-item > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(-50%) !important;
+  opacity: calc(-1 * var(--py)) !important;
+}
+/* line 306, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="NAV2"][data-pending]:not(#important) .ui-nav-item.active + .ui-nav-item > .ui-nav-item-title > span {
+  transform: translateZ(2px) translateX(calc(-50% - 100% * var(--py))) !important;
+}
+
+/* line 315, ../sass/style.scss */
+#app[data-state="NAV2"]:not(#important) .ui-nav-items {
+  top: -92.5px;
+}
+/* line 320, ../sass/style.scss */
+#app[data-state="NAV2"]:not(#important) .ui-nav-item-title {
+  opacity: 0;
+}
+/* line 323, ../sass/style.scss */
+#app[data-state="NAV2"]:not(#important) .ui-nav-item-title > span {
+  transform: translateX(-50%);
+}
+/* line 329, ../sass/style.scss */
+#app[data-state="NAV2"]:not(#important) .ui-nav-item.prev-active .ui-nav-item-title {
+  transform: translateZ(2px) translateX(calc(150% - var(--dx) * 1px));
+  opacity: calc(var(--px));
+}
+/* line 333, ../sass/style.scss */
+#app[data-state="NAV2"]:not(#important) .ui-nav-item.prev-active .ui-nav-item-title > span {
+  transform: translateZ(2px) translateX(calc(-100% + 50% * var(--px)));
+}
+/* line 340, ../sass/style.scss */
+#app[data-state="NAV2"]:not(#important) .ui-nav-item.active > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(calc(50% - var(--dx) * 1px));
+  opacity: calc(1 - var(--px-abs));
+}
+/* line 344, ../sass/style.scss */
+#app[data-state="NAV2"]:not(#important) .ui-nav-item.active > .ui-nav-item-title > span {
+  transform: translateZ(2px) translateX(calc(-50% + 50% * var(--px)));
+}
+/* line 350, ../sass/style.scss */
+#app[data-state="NAV2"]:not(#important) .ui-nav-item.active + .ui-nav-item > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(calc(-50% - var(--dx) * 1px));
+  opacity: calc(-1 * var(--px));
+}
+/* line 354, ../sass/style.scss */
+#app[data-state="NAV2"]:not(#important) .ui-nav-item.active + .ui-nav-item > .ui-nav-item-title > span {
+  transform: translateZ(2px) translateX(calc(50% * var(--px)));
+}
+
+/* line 363, ../sass/style.scss */
+#app[data-state="START"][data-pending]:not(#important) .ui-nav-item::before {
+  transform: scaleY(calc((250 + (140 * var(--py))) / 250));
+}
+/* line 367, ../sass/style.scss */
+#app[data-state="START"][data-pending]:not(#important) .ui-nav-item.active > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(calc(50% + 50% * var(--py)));
+}
+/* line 372, ../sass/style.scss */
+#app[data-state="START"][data-pending]:not(#important) .ui-nav-item.active + .ui-nav-item > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(0);
+}
+/* line 378, ../sass/style.scss */
+#app[data-state="START"][data-pending]:not(#important) .ui-nav-item.prev-active > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(calc(100% + 100% * var(--py)));
+}
+/* line 382, ../sass/style.scss */
+#app[data-state="START"][data-pending]:not(#important) .ui-nav-item-title {
+  opacity: 1;
+  transform: translateZ(2px) translateX(calc(50% + 50% * var(--py)));
+}
+
+/* line 389, ../sass/style.scss */
+#app[data-state="START"]:not([data-pending]) stop:first-child {
+  stop-color: #231133;
+}
+/* line 392, ../sass/style.scss */
+#app[data-state="START"]:not([data-pending]) stop:last-child {
+  stop-color: #2F6692;
+}
+
+/* line 399, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="NAV2"][data-pending] .ui-nav-items {
+  transform: translateX(var(--x)) translateY(calc(var(--dy) * 1px)) !important;
+}
+/* line 403, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="NAV2"][data-pending] .ui-nav-item.active > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(50%);
+}
+
+/* line 412, ../sass/style.scss */
+#app[data-state="NAV1"]:not([data-pending]) .ui-nav-item::before,
+#app[data-state="NAV2"] .ui-nav-item::before {
+  width: 300%;
+}
+
+/* line 418, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="START"][data-pending] .ui-nav-item.prev-active::before {
+  opacity: 1;
+}
+
+/* line 425, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.active > .ui-nav-item-title {
+  opacity: calc(1 - var(--px-abs));
+  transform: translateZ(2px) translateX(calc(50% - var(--px) * 50%));
+}
+/* line 429, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.active > .ui-nav-item-title > span {
+  transform: translateZ(2px) translateX(-50%) scale(1.1);
+}
+/* line 435, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.active + .ui-nav-item > .ui-nav-item-title {
+  opacity: calc(-1 * var(--px) + .5);
+  transform: translateZ(2px) translateX(calc(-50% * var(--px)));
+}
+/* line 442, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.active + * ~ .ui-nav-item > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(calc(-50% - var(--px) * 50%));
+}
+/* line 448, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.prev-active > .ui-nav-item-title {
+  opacity: calc(var(--px) + .5);
+  transform: translateZ(2px) translateX(calc(100% - 50% * var(--px)));
+}
+/* line 453, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item-title {
+  opacity: .5;
+  transform: translateZ(2px) translateX(calc(150% - var(--px) * 50%));
+}
+/* line 457, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item-title > span {
+  transform: translateZ(2px) translateX(-50%);
+}
+
+/* line 464, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="START"][data-pending]:not(#important) .ui-nav-item::before {
+  transform: scaleY(calc((110 - (140 * var(--py))) / 250));
+}
+/* line 468, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="START"][data-pending]:not(#important) .ui-nav-item.active > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(calc(-50% * var(--py)));
+}
+/* line 473, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="START"][data-pending]:not(#important) .ui-nav-item.active + .ui-nav-item > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(0);
+}
+/* line 479, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="START"][data-pending]:not(#important) .ui-nav-item.prev-active > .ui-nav-item-title {
+  transform: translateZ(2px) translateX(calc(-100% * var(--py)));
+}
+/* line 483, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="START"][data-pending]:not(#important) .ui-nav-item-title {
+  opacity: 1;
+  transform: translateZ(2px) translateX(calc(-50% * var(--py)));
+}
+
+/* line 491, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-items,
+#app[data-state="NAV2"] .ui-nav-items {
+  left: 0;
+  transform: translateX(calc(-1 * var(--x) * var(--py) + var(--dx) * 1px));
+  transition: transform calc(var(--not-panning) * 0.6s) ease-out;
+}
+/* line 498, ../sass/style.scss */
+#app[data-state="NAV1"]:not([data-pending]) .ui-nav-items,
+#app[data-state="NAV2"]:not([data-pending]) .ui-nav-items {
+  transform: translateX(calc(var(--x) + var(--dx) * 1px));
+}
+/* line 504, ../sass/style.scss */
+#app[data-state="NAV1"][data-pending] .ui-nav-item.active,
+#app[data-state="NAV2"][data-pending] .ui-nav-item.active {
+  z-index: 1;
+}
+/* line 509, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-items,
+#app[data-state="NAV2"] .ui-nav-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 250px;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+/* line 519, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item,
+#app[data-state="NAV2"] .ui-nav-item {
+  height: 100%;
+  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 315px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -2;
+}
+/* line 530, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item:before,
+#app[data-state="NAV2"] .ui-nav-item:before {
+  transform: scaleY(1);
+  opacity: 0;
+  transition: opacity calc(var(--not-panning) * .6s) ease-out, transform calc(var(--not-panning) * .6s), width 0s 0.6s, z-index 0s 0.6s;
+}
+/* line 541, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item:last-child::before,
+#app[data-state="NAV2"] .ui-nav-item:last-child::before {
+  opacity: 1 !important;
+}
+/* line 545, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.active,
+#app[data-state="NAV2"] .ui-nav-item.active {
+  z-index: 0;
+}
+/* line 548, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.active:before,
+#app[data-state="NAV2"] .ui-nav-item.active:before {
+  opacity: calc(1 + var(--px));
+}
+/* line 552, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.active + .ui-nav-item,
+#app[data-state="NAV2"] .ui-nav-item.active + .ui-nav-item {
+  z-index: -1;
+}
+/* line 555, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.active + .ui-nav-item:before,
+#app[data-state="NAV2"] .ui-nav-item.active + .ui-nav-item:before {
+  opacity: 1;
+}
+/* line 560, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.prev-active,
+#app[data-state="NAV2"] .ui-nav-item.prev-active {
+  z-index: 1;
+}
+/* line 563, ../sass/style.scss */
+#app[data-state="NAV1"] .ui-nav-item.prev-active:before,
+#app[data-state="NAV2"] .ui-nav-item.prev-active:before {
+  opacity: calc(var(--px));
+}
+
+/* line 569, ../sass/style.scss */
+.ui-main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 100%;
+  background-color: white;
+  transition: transform 0.6s ease-out;
+  will-change: transform;
+}
+/* line 578, ../sass/style.scss */
+#app[data-state="START"][data-pending] .ui-main {
+  transform: translateY(calc((-100% + 250px) - (100% - 250px) * var(--py)));
+  transition-duration: 0s;
+}
+/* line 583, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="START"][data-pending] .ui-main {
+  transition-duration: 0s;
+  transform: translateY(calc((-100% + 250px) * -1 * var(--py)));
+}
+/* line 587, ../sass/style.scss */
+#app[data-state="NAV1"][data-prev-state="NAV2"][data-pending] .ui-main {
+  transition-duration: 0s;
+  transform: translateY(calc((-100% + 65px) + 4px * var(--dy)));
+}
+/* line 591, ../sass/style.scss */
+#app[data-state="NAV1"]:not([data-pending]) .ui-main {
+  transition-duration: 0.6s;
+  transform: translateY(calc((-100% + 250px)));
+}
+/* line 596, ../sass/style.scss */
+#app[data-state="NAV2"][data-pending] .ui-main {
+  transition-duration: 0s;
+  transform: translateY(calc((-100% + 250px) + (-100% + 65px) * -.5 * var(--py)));
+}
+/* line 600, ../sass/style.scss */
+#app[data-state="NAV2"]:not([data-pending]) .ui-main {
+  transition-duration: 0.6s;
+  transform: translateY(calc((-100% + 65px)));
+}
+/* line 605, ../sass/style.scss */
+.ui-main > .ui-header {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+/* line 616, ../sass/style.scss */
+.ui-filter {
+  color: var(--gradient-1);
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0 1rem;
+  transition: color 0.6s ease;
+}
+/* line 625, ../sass/style.scss */
+.ui-filter:after {
+  content: '';
+  display: inline-block;
+  border: .3rem solid transparent;
+  top: .15rem;
+  border-top-color: #CCC;
+  margin-left: 1ch;
+}
+/* line 634, ../sass/style.scss */
+.ui-filter + .ui-filter {
+  border-left: 1px solid #DDD;
+}
+
+/* line 639, ../sass/style.scss */
+.ui-articles {
+  display: flex;
+  flex-direction: row;
+  transform: translateX(calc(var(--x) + var(--dx) * 1px));
+  transition: transform calc(var(--not-panning) * 0.6s) ease-out;
+  transition-property: transform, opacity;
+}
+/* line 646, ../sass/style.scss */
+.ui-articles > .ui-article {
+  flex-basis: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+/* line 653, ../sass/style.scss */
+.ui-article {
+  padding: 1rem;
+}
+/* line 656, ../sass/style.scss */
+.ui-article, .ui-article * {
+  user-select: none;
+}
+/* line 660, ../sass/style.scss */
+.ui-article > .ui-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+/* line 667, ../sass/style.scss */
+.ui-article .ui-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.2rem;
+  font-weight: 500;
+}
+/* line 673, ../sass/style.scss */
+.ui-article .ui-title:after {
+  font-size: 0.75rem;
+  line-height: 1.2rem;
+  content: attr(data-views) " views ┬╖ " attr(data-days) " days";
+  display: block;
+  color: #BABABA;
+}
+
+/* line 683, ../sass/style.scss */
+.ui-header {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #DADADA;
+}
+
+/* line 688, ../sass/style.scss */
+.ui-content {
+  margin: 1rem 0;
+  overflow: hidden;
+  height: 12rem;
+}
+
+/* line 694, ../sass/style.scss */
+.ui-photo {
+  width: 100%;
+  min-height: 5rem;
+}
+
+/* line 699, ../sass/style.scss */
+.ui-thumbnail {
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-right: 1rem;
+  background-color: #DDD;
+  border-radius: 2px;
+}
+
+/* line 707, ../sass/style.scss */
+.ui-fab {
+  height: 4rem;
+  width: 4rem;
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
+  background-color: var(--gradient-1);
+  z-index: 10;
+  transform: translateY(150%);
+  border-radius: .1rem;
+  transition: .6s ease;
+  transition-property: transform, background-color;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+/* line 722, ../sass/style.scss */
+.ui-fab:before {
+  content: '+';
+  display: inline-block;
+  font-size: 3rem;
+  line-height: 4rem;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+/* line 733, ../sass/style.scss */
+#app:not([data-state="START"]) .ui-fab {
+  transform: translateY(0);
+}
+
+/* line 738, ../sass/style.scss */
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* line 745, ../sass/style.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+/* line 754, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: border-box;
+  position: relative;
+}

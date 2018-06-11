@@ -1,0 +1,1101 @@
+/* line 13, ../sass/style.scss */
+.fox {
+  width: 470px;
+  height: 335px;
+  min-width: 470px;
+  min-height: 335px;
+}
+/* line 19, ../sass/style.scss */
+.fox * {
+  position: absolute;
+}
+/* line 23, ../sass/style.scss */
+.fox:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 80%;
+  height: 20px;
+  border-radius: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  bottom: -10px;
+  left: 10%;
+  z-index: -1;
+}
+
+@keyframes log {
+  from, to {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(25deg);
+  }
+}
+@keyframes log-inner {
+  from, to {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(-15deg);
+  }
+}
+@keyframes hind-log {
+  from, to {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+@keyframes hind-log-inner {
+  from, to {
+    transform: rotate(50deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+}
+/* line 65, ../sass/style.scss */
+.leg-outer {
+  bottom: 0;
+  right: 127px;
+  animation: leg-outer 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  z-index: 1;
+}
+@keyframes leg-outer {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-76px);
+  }
+}
+/* line 80, ../sass/style.scss */
+.hind-leg-outer {
+  bottom: 0;
+  right: 263px;
+  animation: leg-outer 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+  z-index: 1;
+}
+
+/* line 88, ../sass/style.scss */
+.leg {
+  bottom: 0;
+  animation: leg 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+}
+@keyframes leg {
+  75% {
+    transform: translateY(-20px);
+  }
+  from, 40%, to {
+    transform: translateY(0);
+  }
+}
+/* line 101, ../sass/style.scss */
+.hind-leg-outer2 {
+  bottom: 0;
+  animation: leg 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+}
+
+/* line 107, ../sass/style.scss */
+.paw, .hind-paw {
+  bottom: 100%;
+  width: 10px;
+  height: 12px;
+  transform-origin: bottom center;
+  border-radius: 5px;
+  background: #000;
+}
+/* line 115, ../sass/style.scss */
+.paw:after, .hind-paw:after {
+  animation: paw 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  content: '';
+  position: absolute;
+  display: block;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 200%;
+  background: #000;
+  border-radius: 100px;
+  transform-origin: 5px center;
+}
+@keyframes paw {
+  10%, to {
+    transform: rotate(10deg);
+  }
+  20%, 40% {
+    transform: rotate(10deg);
+  }
+  70% {
+    transform: rotate(120deg);
+  }
+}
+/* line 141, ../sass/style.scss */
+.hind-paw {
+  animation-delay: -0.225s;
+}
+
+/* line 145, ../sass/style.scss */
+.log, .hind-log {
+  bottom: calc(100% - 5px);
+  width: 10px;
+  height: 44px;
+  transform-origin: bottom center;
+  transform: rotate(5deg);
+  background: black;
+  border-bottom-right-radius: 50% 100%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+/* line 156, ../sass/style.scss */
+.log:after, .hind-log:after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 75%;
+  right: 0;
+  background: black;
+  transform-origin: right bottom;
+  transform: rotate(9deg);
+  border-top-right-radius: 8px;
+}
+
+/* line 169, ../sass/style.scss */
+.log {
+  animation: log 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+}
+
+/* line 172, ../sass/style.scss */
+.hind-log {
+  animation: hind-log 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+}
+
+/* line 177, ../sass/style.scss */
+.log-inner, .hind-log-inner {
+  z-index: 1;
+}
+
+/* line 180, ../sass/style.scss */
+.log-inner {
+  bottom: calc(100% - 8px);
+  width: 15px;
+  height: 65px;
+  transform-origin: bottom center;
+  animation: log-inner 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  background-color: #E2DEE8;
+  background-image: linear-gradient(to top, #000000, #000000 10px, rgba(0, 0, 0, 0) 11px, rgba(0, 0, 0, 0));
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+/* line 197, ../sass/style.scss */
+.leg-outer + .leg-outer .log-inner, .leg-outer + .leg-outer .log-inner:after {
+  background-color: #C7C3D0;
+}
+/* line 201, ../sass/style.scss */
+.leg-outer + .leg-outer .log-inner:before {
+  background: radial-gradient(farthest-side at bottom left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 99%, #c7c3d0);
+}
+/* line 209, ../sass/style.scss */
+.log-inner:before, .log-inner:after {
+  content: '';
+  display: block;
+  position: absolute;
+}
+/* line 214, ../sass/style.scss */
+.log-inner:before {
+  right: 100%;
+  background: radial-gradient(farthest-side at bottom left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 99%, #e2dee8);
+  height: 90%;
+  bottom: 0;
+  width: 240%;
+  border-top-left-radius: 100%;
+}
+/* line 225, ../sass/style.scss */
+.log-inner:after {
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #E2DEE8;
+  transform-origin: bottom right;
+  transform: rotate(15deg);
+  border-bottom-left-radius: 50% 100%;
+  border-bottom-right-radius: 5px;
+  background-image: linear-gradient(-15deg, #000000, #000000 9.5px, rgba(0, 0, 0, 0) 9.5px, rgba(0, 0, 0, 0));
+}
+
+/* line 243, ../sass/style.scss */
+.hind-log-inner {
+  bottom: calc(100% - 7px);
+  width: 15px;
+  left: -1px;
+  height: 80px;
+  transform-origin: bottom center;
+  animation: hind-log-inner 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+  background-color: #E2DEE8;
+  background-image: linear-gradient(to top, #000000, #000000 12px, rgba(0, 0, 0, 0) 12px, rgba(0, 0, 0, 0));
+}
+/* line 258, ../sass/style.scss */
+.hind-log-inner:before, .hind-log-inner:after {
+  content: '';
+  display: block;
+  position: absolute;
+}
+/* line 263, ../sass/style.scss */
+.hind-log-inner:before {
+  right: 100%;
+  background: radial-gradient(farthest-side at bottom left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 99%, #e2dee8);
+  height: 90%;
+  bottom: 0;
+  width: 240%;
+  border-top-left-radius: 100%;
+}
+/* line 274, ../sass/style.scss */
+.hind-log-inner:after {
+  left: 100%;
+  left: 100%;
+  height: 100%;
+  width: 34px;
+  background-color: #E2DEE8;
+  border-bottom-right-radius: 100% 100%;
+  transform-origin: bottom left;
+  transform: skewY(-38deg);
+  background-image: linear-gradient(38deg, #000000, #000000 10px, rgba(0, 0, 0, 0) 10px, rgba(0, 0, 0, 0));
+}
+/* line 290, ../sass/style.scss */
+.hind-leg-outer + .hind-leg-outer .hind-log-inner:before {
+  background: radial-gradient(farthest-side at bottom left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 99%, #c7c3d0);
+}
+
+/* line 298, ../sass/style.scss */
+.leg-outer + .leg-outer {
+  z-index: 0;
+}
+/* line 301, ../sass/style.scss */
+.leg-outer + .leg-outer, .leg-outer + .leg-outer *, .leg-outer + .leg-outer *:after {
+  animation-delay: -0.45s !important;
+}
+
+/* line 306, ../sass/style.scss */
+.hind-paw:after {
+  animation-delay: -0.225s;
+}
+
+/* line 310, ../sass/style.scss */
+.hind-leg-outer + .hind-leg-outer {
+  z-index: 0;
+}
+/* line 313, ../sass/style.scss */
+.hind-leg-outer + .hind-leg-outer, .hind-leg-outer + .hind-leg-outer *, .hind-leg-outer + .hind-leg-outer *:after {
+  animation-delay: -0.675s;
+}
+/* line 318, ../sass/style.scss */
+.hind-leg-outer + .hind-leg-outer .hind-log-inner, .hind-leg-outer + .hind-leg-outer .hind-log-inner:after {
+  background-color: #C7C3D0;
+}
+
+/* line 324, ../sass/style.scss */
+.body {
+  top: 50%;
+  left: 170px;
+  height: 90px;
+  width: 173px;
+  background: #E2DEE8;
+  border-top-left-radius: 25% 50%;
+  border-bottom-left-radius: 25% 50%;
+  border-bottom-right-radius: 25% 50%;
+  transform-origin: right center;
+  animation: body 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-duration: 0.45s;
+  animation-delay: -0.225s;
+}
+@keyframes body {
+  from, to {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+}
+/* line 348, ../sass/style.scss */
+.body:before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  background: #E2DEE8;
+  z-index: 1;
+  border-top-right-radius: 10px;
+  right: 3px;
+  top: -3px;
+  transform: rotate(15deg);
+}
+
+/* line 363, ../sass/style.scss */
+.head {
+  position: absolute;
+  height: 87px;
+  width: 112px;
+  bottom: 89%;
+  left: 65%;
+  border-top-left-radius: 40% 60%;
+  border-top-right-radius: 60% 20%;
+  background: #E2DEE8;
+  animation: head 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-duration: 0.45s;
+  animation-delay: -0.225s;
+  transform-origin: center bottom;
+  z-index: 0;
+  transform-style: preserve-3d;
+}
+@keyframes head {
+  from, to {
+    transform: rotate(0);
+  }
+  50% {
+    transform: translateY(2px) rotate(-2deg);
+  }
+}
+/* line 388, ../sass/style.scss */
+.head:before, .head:after {
+  content: '';
+  display: block;
+  position: absolute;
+}
+/* line 394, ../sass/style.scss */
+.head:before {
+  width: 15px;
+  height: 15px;
+  right: 100%;
+  bottom: 9px;
+  background-image: radial-gradient(ellipse farthest-side at top left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 99%, #e2dee8 99.1%);
+}
+/* line 407, ../sass/style.scss */
+.head:after {
+  width: 50px;
+  height: 40px;
+  top: calc(100% - 1px);
+  left: 50%;
+  background-image: radial-gradient(ellipse farthest-side at bottom right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 99%, #f0e9ec 99.1%);
+}
+
+/* line 421, ../sass/style.scss */
+.face {
+  width: 84px;
+  height: 72px;
+  bottom: 0;
+  right: 5px;
+  background: #F0E9EC;
+  border-top-left-radius: 60% 100%;
+  border-top-right-radius: 40% 10%;
+  z-index: 2;
+  animation: face 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+}
+@keyframes face {
+  from, to {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+}
+/* line 441, ../sass/style.scss */
+.face:before, .face:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background: black;
+  animation: eye 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+}
+@keyframes eye {
+  from, to {
+    transform: rotate(-12deg);
+  }
+  50% {
+    transform: translateX(-2px) rotate(-12deg);
+  }
+}
+/* line 458, ../sass/style.scss */
+.face:before {
+  height: 4px;
+  width: 25px;
+  border-radius: 2px;
+  top: 13px;
+  right: 10px;
+}
+/* line 466, ../sass/style.scss */
+.face:after {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  top: 23px;
+  right: 15px;
+}
+
+/* line 475, ../sass/style.scss */
+.snout {
+  width: 36px;
+  height: 24px;
+  left: calc(100% - 5px);
+  bottom: 0;
+  border-bottom-right-radius: 100%;
+  background-color: #F0E9EC;
+  background-image: radial-gradient(circle 6px at top right, #000000, #000000 99%, rgba(0, 0, 0, 0) 99%);
+  transform-origin: right;
+  animation: snout 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+}
+@keyframes snout {
+  from, to {
+    transform: scale(1);
+  }
+  50% {
+    transform: scaleX(1.05);
+  }
+}
+/* line 495, ../sass/style.scss */
+.snout:before, .snout:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 100%;
+  left: 5px;
+  width: calc(100% - 5px);
+  height: 40px;
+  background-image: radial-gradient(ellipse farthest-side at top right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 99%, #e2dee8 99.1%);
+}
+/* line 510, ../sass/style.scss */
+.snout:before {
+  animation: snout-outer 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+}
+@keyframes snout-outer {
+  50% {
+    transform: scaleX(0.93);
+  }
+}
+/* line 519, ../sass/style.scss */
+.snout:after {
+  background-image: radial-gradient(ellipse farthest-side at top right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 99%, #f0e9ec 99.1%);
+  left: 0;
+}
+
+/* line 577, ../sass/style.scss */
+.tail {
+  border-radius: 50%;
+  background: #E2DEE8;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* line 603, ../sass/style.scss */
+.body > .tail {
+  height: 20;
+  width: 20;
+  left: 10px;
+  transform: rotate(58deg);
+}
+/* line 610, ../sass/style.scss */
+.body > .tail .tail {
+  right: 100%;
+  border-color: green;
+  z-index: -1;
+}
+/* line 545, ../sass/style.scss */
+.body > .tail > .tail {
+  height: 36px;
+  width: 36px;
+  top: -8px;
+  animation: tail-2 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+  transform-origin: calc(100% + 10px);
+  transform: rotate(0);
+}
+@keyframes tail-2 {
+  from, to {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(0);
+  }
+}
+/* line 555, ../sass/style.scss */
+.body > .tail > .tail:before, .body > .tail > .tail:after {
+  content: '';
+  left: 50%;
+  position: absolute;
+  height: 50%;
+  width: 26.83282px;
+  display: block;
+  background: #E2DEE8;
+}
+/* line 565, ../sass/style.scss */
+.body > .tail > .tail:after {
+  bottom: 0;
+  transform-origin: top left;
+  transform: rotate(-16.60156deg);
+}
+/* line 570, ../sass/style.scss */
+.body > .tail > .tail:before {
+  transform-origin: bottom left;
+  transform: rotate(16.60156deg);
+}
+/* line 545, ../sass/style.scss */
+.body > .tail > .tail2 > .tail {
+  height: 70px;
+  width: 70px;
+  top: -25px;
+  animation: tail2-2 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+  transform-origin: calc(100% + 10px);
+  transform: rotate(-30deg);
+}
+@keyframes tail2-2 {
+  from, to {
+    transform: rotate(-33deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+}
+/* line 555, ../sass/style.scss */
+.body > .tail > .tail2 > .tail:before, .body > .tail > .tail2 > .tail:after {
+  content: '';
+  left: 50%;
+  position: absolute;
+  height: 50%;
+  width: 37.41657px;
+  display: block;
+  background: #E2DEE8;
+}
+/* line 565, ../sass/style.scss */
+.body > .tail > .tail2 > .tail:after {
+  bottom: 0;
+  transform-origin: top left;
+  transform: rotate(-33.74902deg);
+}
+/* line 570, ../sass/style.scss */
+.body > .tail > .tail2 > .tail:before {
+  transform-origin: bottom left;
+  transform: rotate(33.74902deg);
+}
+/* line 545, ../sass/style.scss */
+.body > .tail > .tail > .tail {
+  height: 93px;
+  width: 93px;
+  top: -28.5px;
+  animation: tail-3 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+  transform-origin: calc(100% + 18px);
+  transform: rotate(-24deg);
+}
+@keyframes tail-3 {
+  from, to {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(-24deg);
+  }
+}
+/* line 555, ../sass/style.scss */
+.body > .tail > .tail > .tail:before, .body > .tail > .tail > .tail:after {
+  content: '';
+  left: 50%;
+  position: absolute;
+  height: 50%;
+  width: 57.8619px;
+  display: block;
+  background: #E2DEE8;
+}
+/* line 565, ../sass/style.scss */
+.body > .tail > .tail > .tail:after {
+  bottom: 0;
+  transform-origin: top left;
+  transform: rotate(-26.22267deg);
+}
+/* line 570, ../sass/style.scss */
+.body > .tail > .tail > .tail:before {
+  transform-origin: bottom left;
+  transform: rotate(26.22267deg);
+}
+/* line 545, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail {
+  height: 120px;
+  width: 120px;
+  top: -25px;
+  animation: tail2-3 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -425ms;
+  background: linear-gradient(45deg, #f0e9ec 25%, rgba(0, 0, 0, 0) 25%), linear-gradient(135deg, #f0e9ec 25%, rgba(0, 0, 0, 0) 25%) 0 0, linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 66%, #f0e9ec 66%);
+  background-size: 40px 40px, 40px 40px, 100%;
+  background-position: center;
+  background-color: #E2DEE8;
+  background-repeat: repeat-y;
+  transform-origin: calc(100% + 35px);
+  transform: rotate(-30deg);
+}
+@keyframes tail2-3 {
+  from, to {
+    transform: rotate(-35deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+}
+/* line 555, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail:before, .body > .tail > .tail2 > .tail > .tail:after {
+  content: '';
+  left: 50%;
+  position: absolute;
+  height: 50%;
+  width: 91.65151px;
+  display: block;
+  background: #E2DEE8;
+}
+/* line 565, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail:after {
+  bottom: 0;
+  transform-origin: top left;
+  transform: rotate(-15.25754deg);
+}
+/* line 570, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail:before {
+  transform-origin: bottom left;
+  transform: rotate(15.25754deg);
+}
+/* line 545, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail {
+  height: 98px;
+  width: 98px;
+  top: -2.5px;
+  animation: tail-4 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -425ms;
+  background: #F0E9EC !important;
+  transform-origin: calc(100% + 46.5px);
+  transform: rotate(-17deg);
+}
+/* line 628, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail:before {
+  background: linear-gradient(to right, #f0e9ec, #e2dee8) !important;
+}
+@keyframes tail-4 {
+  from, to {
+    transform: rotate(-24deg);
+  }
+  50% {
+    transform: rotate(-17deg);
+  }
+}
+/* line 555, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail:before, .body > .tail > .tail > .tail > .tail:after {
+  content: '';
+  left: 50%;
+  position: absolute;
+  height: 50%;
+  width: 95.46727px;
+  display: block;
+  background: #E2DEE8;
+}
+/* line 565, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail:after {
+  bottom: 0;
+  transform-origin: top left;
+  transform: rotate(-1.50006deg);
+}
+/* line 570, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail:before {
+  transform-origin: bottom left;
+  transform: rotate(1.50006deg);
+}
+/* line 545, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail {
+  height: 50px;
+  width: 50px;
+  top: 35px;
+  animation: tail2-4 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+  transform-origin: calc(100% + 60px);
+  transform: rotate(27deg);
+}
+/* line 670, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail:before {
+  display: none !important;
+}
+/* line 676, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail, .body > .tail > .tail2 > .tail > .tail > .tail:before, .body > .tail > .tail2 > .tail > .tail > .tail:after {
+  background: #F0E9EC !important;
+}
+@keyframes tail2-4 {
+  from, to {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(27deg);
+  }
+}
+/* line 555, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail:before, .body > .tail > .tail2 > .tail > .tail > .tail:after {
+  content: '';
+  left: 50%;
+  position: absolute;
+  height: 50%;
+  width: 77.45967px;
+  display: block;
+  background: #E2DEE8;
+}
+/* line 565, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail:after {
+  bottom: 0;
+  transform-origin: top left;
+  transform: rotate(24.31576deg);
+}
+/* line 570, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail:before {
+  transform-origin: bottom left;
+  transform: rotate(-24.31576deg);
+}
+/* line 545, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail > .tail {
+  height: 36px;
+  width: 36px;
+  top: 31px;
+  animation: tail-5 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+  transform-origin: calc(100% + 49px);
+  transform: rotate(41deg);
+}
+/* line 633, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail > .tail, .body > .tail > .tail > .tail > .tail > .tail:before, .body > .tail > .tail > .tail > .tail > .tail:after {
+  background: #F0E9EC !important;
+}
+@keyframes tail-5 {
+  from, to {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(41deg);
+  }
+}
+/* line 555, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail > .tail:before, .body > .tail > .tail > .tail > .tail > .tail:after {
+  content: '';
+  left: 50%;
+  position: absolute;
+  height: 50%;
+  width: 59.39697px;
+  display: block;
+  background: #E2DEE8;
+}
+/* line 565, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail > .tail:after {
+  bottom: 0;
+  transform-origin: top left;
+  transform: rotate(27.56063deg);
+}
+/* line 570, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail > .tail:before {
+  transform-origin: bottom left;
+  transform: rotate(-27.56063deg);
+}
+/* line 545, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail > .tail {
+  height: 20px;
+  width: 20px;
+  top: 15px;
+  animation: tail2-5 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+  transform-origin: calc(100% + 25px);
+  transform: rotate(23deg);
+}
+/* line 676, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail > .tail, .body > .tail > .tail2 > .tail > .tail > .tail > .tail:before, .body > .tail > .tail2 > .tail > .tail > .tail > .tail:after {
+  background: #F0E9EC !important;
+}
+@keyframes tail2-5 {
+  from, to {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(23deg);
+  }
+}
+/* line 555, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail > .tail:before, .body > .tail > .tail2 > .tail > .tail > .tail > .tail:after {
+  content: '';
+  left: 50%;
+  position: absolute;
+  height: 50%;
+  width: 31.62278px;
+  display: block;
+  background: #E2DEE8;
+}
+/* line 565, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail > .tail:after {
+  bottom: 0;
+  transform-origin: top left;
+  transform: rotate(25.37695deg);
+}
+/* line 570, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail > .tail:before {
+  transform-origin: bottom left;
+  transform: rotate(-25.37695deg);
+}
+/* line 545, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail > .tail > .tail {
+  height: 15px;
+  width: 15px;
+  top: 10.5px;
+  animation: tail-6 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+  transform-origin: calc(100% + 18px);
+  transform: rotate(10deg);
+}
+/* line 633, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail > .tail > .tail, .body > .tail > .tail > .tail > .tail > .tail > .tail:before, .body > .tail > .tail > .tail > .tail > .tail > .tail:after {
+  background: #F0E9EC !important;
+}
+@keyframes tail-6 {
+  from, to {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+/* line 555, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail > .tail > .tail:before, .body > .tail > .tail > .tail > .tail > .tail > .tail:after {
+  content: '';
+  left: 50%;
+  position: absolute;
+  height: 50%;
+  width: 23.2379px;
+  display: block;
+  background: #E2DEE8;
+}
+/* line 565, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail > .tail > .tail:after {
+  bottom: 0;
+  transform-origin: top left;
+  transform: rotate(24.31576deg);
+}
+/* line 570, ../sass/style.scss */
+.body > .tail > .tail > .tail > .tail > .tail > .tail:before {
+  transform-origin: bottom left;
+  transform: rotate(-24.31576deg);
+}
+/* line 545, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail > .tail > .tail {
+  height: 10px;
+  width: 10px;
+  top: 5px;
+  animation: tail2-6 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.225s;
+  transform-origin: calc(100% + 10px);
+  transform: rotate(10deg);
+}
+/* line 676, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail > .tail > .tail, .body > .tail > .tail2 > .tail > .tail > .tail > .tail > .tail:before, .body > .tail > .tail2 > .tail > .tail > .tail > .tail > .tail:after {
+  background: #F0E9EC !important;
+}
+@keyframes tail2-6 {
+  from, to {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+/* line 555, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail > .tail > .tail:before, .body > .tail > .tail2 > .tail > .tail > .tail > .tail > .tail:after {
+  content: '';
+  left: 50%;
+  position: absolute;
+  height: 50%;
+  width: 14.14214px;
+  display: block;
+  background: #E2DEE8;
+}
+/* line 565, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail > .tail > .tail:after {
+  bottom: 0;
+  transform-origin: top left;
+  transform: rotate(19.47124deg);
+}
+/* line 570, ../sass/style.scss */
+.body > .tail > .tail2 > .tail > .tail > .tail > .tail > .tail:before {
+  transform-origin: bottom left;
+  transform: rotate(-19.47124deg);
+}
+/* line 693, ../sass/style.scss */
+.body > .tail > .tail2 {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  position: absolute;
+  right: 50%;
+  transform-origin: right center;
+  transform: rotate(18deg);
+}
+/* line 702, ../sass/style.scss */
+.body > .tail > .tail2 .tail {
+  border-color: blue;
+  z-index: -1;
+}
+
+/* line 709, ../sass/style.scss */
+.ears {
+  top: 10px;
+  left: 35px;
+  width: 60px;
+  transform: rotateY(20deg);
+  transform-origin: bottom left;
+}
+/* line 716, ../sass/style.scss */
+.ears:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  background: #E2DEE8;
+  border-top-left-radius: 100%;
+  left: -36px;
+  top: -16px;
+  transform: rotate(-18deg) skewX(-20deg);
+}
+
+/* line 730, ../sass/style.scss */
+.ear {
+  width: 40px;
+  height: 46px;
+  bottom: 0;
+  transform: skewY(-10deg);
+  transform-origin: right bottom;
+}
+/* line 737, ../sass/style.scss */
+.ear:before, .ear:after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-top-left-radius: 100%;
+}
+/* line 745, ../sass/style.scss */
+.ear:before {
+  background: #E2DEE8;
+}
+/* line 748, ../sass/style.scss */
+.ear:after {
+  background: #D5D1DC;
+  width: 60%;
+  right: 0;
+  animation: ear-inner 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+  animation-delay: -0.45s;
+  transform-origin: right;
+}
+@keyframes ear-inner {
+  50% {
+    transform: scaleX(0.9);
+  }
+}
+/* line 763, ../sass/style.scss */
+.ear:nth-child(1) {
+  right: 0;
+  animation: ear-back 0.9s cubic-bezier(0.445, 0, 0.55, 1) both infinite;
+}
+@keyframes ear-back {
+  from, to {
+    transform: rotate(5deg) skewY(-10deg);
+  }
+  50% {
+    transform: translateX(-1px) rotate(5deg) skewY(-10deg);
+  }
+}
+/* line 776, ../sass/style.scss */
+.ear:nth-child(2) {
+  left: 0;
+  transform: skewY(-10deg);
+}
+
+/* line 782, ../sass/style.scss */
+.snow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.445, 0, 0.55, 1);
+  animation: snow-x cubic-bezier(0.445, 0, 0.55, 1) 4s both alternate infinite;
+}
+@keyframes snow-x {
+  from {
+    transform: translateX(-10%);
+  }
+  to {
+    transform: translateX(10%);
+  }
+}
+/* line 805, ../sass/style.scss */
+.fox:hover + .snow {
+  opacity: 1;
+}
+/* line 809, ../sass/style.scss */
+.snow:before, .snow:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 1vmin;
+  height: 1vmin;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: snow 7s linear infinite;
+  box-shadow: 90.87619vw 26.5114vh rgba(255, 255, 255, 0.8), 90.87619vw 326.5114vh rgba(255, 255, 255, 0.8), 9.06836vw 248.49773vh rgba(255, 255, 255, 0.8), 9.06836vw 548.49773vh rgba(255, 255, 255, 0.8), 42.37754vw 78.34957vh rgba(255, 255, 255, 0.8), 42.37754vw 378.34957vh rgba(255, 255, 255, 0.8), 45.86388vw 225.3329vh rgba(255, 255, 255, 0.8), 45.86388vw 525.3329vh rgba(255, 255, 255, 0.8), 33.09729vw 59.8548vh rgba(255, 255, 255, 0.8), 33.09729vw 359.8548vh rgba(255, 255, 255, 0.8), 5.72604vw 13.75141vh rgba(255, 255, 255, 0.8), 5.72604vw 313.75141vh rgba(255, 255, 255, 0.8), 68.81978vw 262.84803vh rgba(255, 255, 255, 0.8), 68.81978vw 562.84803vh rgba(255, 255, 255, 0.8), 77.58089vw 246.81719vh rgba(255, 255, 255, 0.8), 77.58089vw 546.81719vh rgba(255, 255, 255, 0.8), 66.99211vw 252.55343vh rgba(255, 255, 255, 0.8), 66.99211vw 552.55343vh rgba(255, 255, 255, 0.8), 44.31529vw 171.88608vh rgba(255, 255, 255, 0.8), 44.31529vw 471.88608vh rgba(255, 255, 255, 0.8), 81.1676vw 146.96032vh rgba(255, 255, 255, 0.8), 81.1676vw 446.96032vh rgba(255, 255, 255, 0.8), 24.10728vw 270.98273vh rgba(255, 255, 255, 0.8), 24.10728vw 570.98273vh rgba(255, 255, 255, 0.8), 44.85232vw 99.8795vh rgba(255, 255, 255, 0.8), 44.85232vw 399.8795vh rgba(255, 255, 255, 0.8), 21.96741vw 112.67442vh rgba(255, 255, 255, 0.8), 21.96741vw 412.67442vh rgba(255, 255, 255, 0.8), 47.16351vw 181.74479vh rgba(255, 255, 255, 0.8), 47.16351vw 481.74479vh rgba(255, 255, 255, 0.8), 95.30086vw 23.14444vh rgba(255, 255, 255, 0.8), 95.30086vw 323.14444vh rgba(255, 255, 255, 0.8), 67.03311vw 152.0455vh rgba(255, 255, 255, 0.8), 67.03311vw 452.0455vh rgba(255, 255, 255, 0.8), 6.51844vw 243.91102vh rgba(255, 255, 255, 0.8), 6.51844vw 543.91102vh rgba(255, 255, 255, 0.8), 27.91096vw 133.93779vh rgba(255, 255, 255, 0.8), 27.91096vw 433.93779vh rgba(255, 255, 255, 0.8), 56.4661vw 272.28771vh rgba(255, 255, 255, 0.8), 56.4661vw 572.28771vh rgba(255, 255, 255, 0.8), 65.95542vw 142.92359vh rgba(255, 255, 255, 0.8), 65.95542vw 442.92359vh rgba(255, 255, 255, 0.8), 10.75184vw 95.28533vh rgba(255, 255, 255, 0.8), 10.75184vw 395.28533vh rgba(255, 255, 255, 0.8), 69.01483vw 115.06599vh rgba(255, 255, 255, 0.8), 69.01483vw 415.06599vh rgba(255, 255, 255, 0.8), 85.30928vw 67.68208vh rgba(255, 255, 255, 0.8), 85.30928vw 367.68208vh rgba(255, 255, 255, 0.8), 57.34254vw 157.6945vh rgba(255, 255, 255, 0.8), 57.34254vw 457.6945vh rgba(255, 255, 255, 0.8), 97.56728vw 221.28176vh rgba(255, 255, 255, 0.8), 97.56728vw 521.28176vh rgba(255, 255, 255, 0.8), 66.18753vw 91.52431vh rgba(255, 255, 255, 0.8), 66.18753vw 391.52431vh rgba(255, 255, 255, 0.8), 25.95255vw 3.73234vh rgba(255, 255, 255, 0.8), 25.95255vw 303.73234vh rgba(255, 255, 255, 0.8), 49.99143vw 125.89776vh rgba(255, 255, 255, 0.8), 49.99143vw 425.89776vh rgba(255, 255, 255, 0.8), 94.86196vw 233.46813vh rgba(255, 255, 255, 0.8), 94.86196vw 533.46813vh rgba(255, 255, 255, 0.8), 41.66265vw 287.71237vh rgba(255, 255, 255, 0.8), 41.66265vw 587.71237vh rgba(255, 255, 255, 0.8), 49.3345vw 245.55315vh rgba(255, 255, 255, 0.8), 49.3345vw 545.55315vh rgba(255, 255, 255, 0.8), 19.49278vw 29.86223vh rgba(255, 255, 255, 0.8), 19.49278vw 329.86223vh rgba(255, 255, 255, 0.8), 83.37229vw 213.92832vh rgba(255, 255, 255, 0.8), 83.37229vw 513.92832vh rgba(255, 255, 255, 0.8), 66.65826vw 204.97027vh rgba(255, 255, 255, 0.8), 66.65826vw 504.97027vh rgba(255, 255, 255, 0.8), 22.36347vw 124.69554vh rgba(255, 255, 255, 0.8), 22.36347vw 424.69554vh rgba(255, 255, 255, 0.8), 20.87313vw 260.38627vh rgba(255, 255, 255, 0.8), 20.87313vw 560.38627vh rgba(255, 255, 255, 0.8), 73.79943vw 34.35939vh rgba(255, 255, 255, 0.8), 73.79943vw 334.35939vh rgba(255, 255, 255, 0.8), 31.2239vw 184.16106vh rgba(255, 255, 255, 0.8), 31.2239vw 484.16106vh rgba(255, 255, 255, 0.8), 54.35883vw 120.05457vh rgba(255, 255, 255, 0.8), 54.35883vw 420.05457vh rgba(255, 255, 255, 0.8);
+}
+/* line 842, ../sass/style.scss */
+.snow:after {
+  width: 1.1vmin;
+  height: 8px;
+  animation-duration: 6s;
+}
+@keyframes snow {
+  from {
+    transform: rotate(10deg) translateY(-300vh);
+  }
+  to {
+    transform: rotate(10deg) translateY(0);
+  }
+}
+/* line 860, ../sass/style.scss */
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #9095B9;
+}
+
+/* line 868, ../sass/style.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* line 876, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: border-box;
+  position: relative;
+}

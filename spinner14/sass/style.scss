@@ -1,0 +1,133 @@
+@import "addons";
+
+$COLOR_BOOK_COVER1: #FF5420;
+$COLOR_BOOK_COVER2: #4D4D4D;
+$COLOR_BOOK_COVER3: #2BA7FF;
+$COLOR_BOOK_PAPER: #f1f1f1;
+
+body {
+    background-color: lighten($gray, 25%);
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    &:after {
+        content: '';
+        position: absolute;
+        right: -19px;
+        bottom: -6px;
+        left: -5px;
+        height: 9px;
+        border-radius: 50%;
+        background-color: rgba(black, 0.25);
+        z-index: -1;
+        transition: background-color 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+}
+
+.book {
+    position: relative;
+    width: 120px;
+    height: 30px;
+    margin-left: 6px;
+    background-color: $COLOR_BOOK_COVER1;
+    border-radius: 5px;
+    box-shadow: inset 0 -5px darken($COLOR_BOOK_COVER1, 5%);
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    &:before,
+    &:after {
+        content: '';
+        width: 12px;
+        height: 5px;
+        position: absolute;
+        left: -6px;
+        border-radius: 5px;
+        background-color: $COLOR_BOOK_COVER1;
+    }
+    &:after {
+        bottom: 0;
+        background-color: darken($COLOR_BOOK_COVER1, 5%);
+    }
+}
+
+.book-paper {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    width: 40px;
+    background-color: $COLOR_BOOK_PAPER;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 20px;
+        height: 6px;
+        background-color: darken($COLOR_BOOK_PAPER, 8%);
+        border-radius: 3px;
+    }
+    &:before {
+        border-bottom-right-radius: 0;
+    }
+    &:after {
+        bottom: 0;
+        border-top-right-radius: 0;
+    }
+}
+
+.book-paper-shadow {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    width: 13px;
+    height: 8px;
+    background-color: darken($COLOR_BOOK_PAPER, 8%);
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -3px;
+        width: 8px;
+        border-radius: 3px;
+        background-color: $COLOR_BOOK_PAPER;
+    }
+}
+
+.book:nth-child(1) {
+    left: 6px;
+}
+
+.book:nth-child(2) {
+    background-color: $COLOR_BOOK_COVER2;
+    box-shadow: inset 0 -5px darken($COLOR_BOOK_COVER2, 5%);
+    &:before { background-color: $COLOR_BOOK_COVER2; }
+    &:after { background-color: darken($COLOR_BOOK_COVER2, 5%); }
+}
+
+.book:nth-child(3) {
+    left: 8px;
+    background-color: $COLOR_BOOK_COVER3;
+    box-shadow: inset 0 -5px darken($COLOR_BOOK_COVER3, 5%);
+    &:before { background-color: $COLOR_BOOK_COVER3; }
+    &:after { background-color: darken($COLOR_BOOK_COVER3, 5%); }
+}
+
+.container:hover,
+.container:focus {
+    &:after {
+        background-color: rgba(black, 0.18);
+    }
+    .book:nth-child(1) {
+        transform: translate(6px, -37px) rotateZ(-13deg);
+    }
+    .book:nth-child(2) {
+        transform: translate(9px, -11px) rotateZ(11deg);
+    }
+}

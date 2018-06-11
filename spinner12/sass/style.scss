@@ -1,0 +1,80 @@
+ /* 
+    keyframe @ percentage of animation
+    1 = end of animation
+    0.5 = middle of animation
+    0 = start of animation
+*/
+@import 'addons';
+
+$TIMLINE_POS: 0.5;
+$ANIMATION_DURATION: 2000ms;
+$EASING: cubic-bezier(0.77, 0, 0.175, 1);
+
+// Set to pause to debug animation
+$PLAY_STATE: play; //play|paused|running|initial|inherit
+
+$TIMLINE_DELAY_CALC: (-1 * $ANIMATION_DURATION) * $TIMLINE_POS;
+
+// for seeing variable calc in console
+@debug $TIMLINE_DELAY_CALC;
+
+body {
+    overflow: hidden;
+}
+
+.boxFloor {
+    position: relative;
+    height: 100px;
+    width: 500px;
+    border-bottom: 2px solid $COLOR_BRAND;
+    @include abs-center(500px, 100px);
+}
+
+.box {
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    border: 2px solid $COLOR_BRAND;
+    transform-origin: 100% 100%;
+    animation: turnMove $ANIMATION_DURATION $EASING infinite alternate;
+    animation-play-state: $PLAY_STATE;
+    animation-delay: $TIMLINE_DELAY_CALC; // Adjust 25% through animation
+}
+
+@keyframes turnMove {
+    0% {
+        transform: translate(0, 0) rotate(0.0turn);
+        transform-origin: 100% 100%;
+    }
+    25% {
+        transform: translate(0, 0) rotate(0.25turn);
+        transform-origin: 100% 100%;
+        animation-timing-function: step-end;
+    }
+    25.01% {
+        transform: translate(100px, 100px) rotate(0.25turn);
+        transform-origin: 100% 0;
+    }
+    50% {
+        transform: translate(100px, 100px) rotate(0.5turn);
+        transform-origin: 100% 0;
+        animation-timing-function: step-end;
+    }
+    50.01% {
+        transform: translate(300px, 100px) rotate(0.5turn);
+        transform-origin: 0 0;
+    }
+    75% {
+        transform: translate(300px, 100px) rotate(0.75turn);
+        transform-origin: 0 0;
+        animation-timing-function: step-end;
+    }
+    75.01% {
+        transform: translate(400px, 0) rotate(0.75turn);
+        transform-origin: 0 100%;
+    }
+    100% {
+        transform: translate(400px, 0) rotate(1turn);
+        transform-origin: 0 100%;
+    }
+}
