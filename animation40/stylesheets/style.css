@@ -1,0 +1,523 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300);
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
+/* line 4, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 8, ../sass/style.scss */
+body {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+}
+
+/* line 22, ../sass/style.scss */
+h1 {
+  color: #0845A2;
+  font-size: 3.5em;
+  position: relative;
+  text-align: center;
+  margin-top: 1em;
+  font-weight: 700;
+  z-index: 999;
+}
+
+/* line 32, ../sass/style.scss */
+.css-wrapper {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #F7D568;
+  border-right: 1px solid #fff;
+  z-index: 0;
+}
+/* line 42, ../sass/style.scss */
+.css-wrapper .drinking-man {
+  margin: 25% auto;
+  position: relative;
+  width: 100px;
+}
+/* line 47, ../sass/style.scss */
+.css-wrapper .head {
+  width: 50px;
+  height: 125px;
+  background: #E79E8A;
+  position: relative;
+  margin-top: 0px;
+  margin-left: 25px;
+  border-radius: 30px 30px 30px 25px;
+  z-index: 10;
+  transform-origin: bottom center;
+  animation: move 4.5s linear infinite;
+  animation-delay: 2s;
+}
+/* line 59, ../sass/style.scss */
+.css-wrapper .head::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  background: #E79E8A;
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 22px;
+  margin-left: -7px;
+  box-shadow: 52px 0 0 #E79E8A;
+}
+/* line 70, ../sass/style.scss */
+.css-wrapper .head::after {
+  content: "";
+  width: 25px;
+  height: 10px;
+  background: #612410;
+  position: absolute;
+  margin-left: 12px;
+  margin-top: 0px;
+  border-radius: 0px 0 10px 10px;
+  box-shadow: inset 0 -3px 0 #4E1C0C;
+  z-index: 100;
+}
+/* line 84, ../sass/style.scss */
+.css-wrapper .hair {
+  width: 54px;
+  height: 35px;
+  background: #612410;
+  position: absolute;
+  border-radius: 20px 20px 0px 0px;
+  margin-left: 23px;
+  margin-top: -4px;
+  animation: hair 4.5s linear infinite;
+  animation-delay: 2s;
+}
+/* line 95, ../sass/style.scss */
+.css-wrapper .glasses {
+  width: 23px;
+  height: 13px;
+  position: absolute;
+  background: rgba(52, 67, 115, 0.8);
+  margin-top: 20px;
+  margin-left: 0px;
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 28px 0 0 rgba(52, 67, 115, 0.8);
+}
+/* line 104, ../sass/style.scss */
+.css-wrapper .glasses::after {
+  content: "";
+  width: 5px;
+  height: 2px;
+  background: #354E72;
+  position: absolute;
+  margin-left: 23px;
+}
+/* line 113, ../sass/style.scss */
+.css-wrapper .bear {
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+  background: #612410;
+  box-shadow: inset 0px -13px 0 #4E1C0C;
+  border: 2px solid #4E1C0C;
+  position: absolute;
+  margin-top: 38px;
+  margin-left: -4px;
+}
+/* line 124, ../sass/style.scss */
+.css-wrapper .right-arm {
+  width: 20px;
+  height: 150px;
+  position: absolute;
+  background: linear-gradient(top, #E7AE9A, #E79E8A);
+  background: -moz-linear-gradient(top, #E7AE9A, #E79E8A);
+  margin-left: 80px;
+  margin-top: -55px;
+  transform: rotate(-15deg);
+  transform-origin: 0 0;
+  z-index: -1;
+  transform-origin: top center;
+  animation: rightarm 4.5s linear infinite;
+  animation-delay: 2s;
+}
+/* line 138, ../sass/style.scss */
+.css-wrapper .right-arm::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #E79E8A;
+  position: absolute;
+  margin-top: 140px;
+  margin-left: -10px;
+  box-shadow: inset 5px 0 0 #e38c75;
+}
+/* line 150, ../sass/style.scss */
+.css-wrapper .arm {
+  width: 20px;
+  height: 80px;
+  background: #E7AE9A;
+  position: absolute;
+  margin-top: -65px;
+  margin-left: 3px;
+  border-radius: 0px 0px 30px 30px;
+  transform: rotate(55deg);
+  transform-origin: top center;
+  z-index: 20;
+  animation: arm 4.5s linear infinite;
+  animation-delay: 2s;
+}
+/* line 164, ../sass/style.scss */
+.css-wrapper .left-arm {
+  width: 95px;
+  height: 20px;
+  position: absolute;
+  background: #E79E8A;
+  margin-left: 0px;
+  margin-top: 60px;
+  border-radius: 30px 0px 0px 30px;
+  transform: rotate(0deg);
+  transform-origin: 0;
+  animation: drink 4.5s linear infinite;
+  animation-delay: 2s;
+  z-index: 10;
+}
+/* line 177, ../sass/style.scss */
+.css-wrapper .left-arm::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #E79E8A;
+  position: absolute;
+  margin-top: -8px;
+  margin-left: 85px;
+  box-shadow: inset -5px 0 0 #e38c75;
+}
+/* line 188, ../sass/style.scss */
+.css-wrapper .left-arm::before {
+  content: "";
+  width: 25px;
+  height: 42px;
+  background: linear-gradient(left, #FFD02D 20%, #FFE270 80%);
+  background: -moz-linear-gradient(left, #FFD02D 20%, #FFE270 80%);
+  position: absolute;
+  margin-left: 95px;
+  margin-top: -30px;
+  border-radius: 5px 5px 10px 10px;
+  border-top: 8px solid white;
+  border-bottom: 2px solid #F3D7C9;
+  border-left: 2px solid #F3D7C9;
+  border-right: 2px solid #F3D7C9;
+  transform: rotate(-40deg);
+  animation: beer 4.5s linear infinite;
+  animation-delay: 2s;
+}
+/* line 208, ../sass/style.scss */
+.css-wrapper .body {
+  position: relative;
+  width: 55px;
+  height: 70px;
+  background: #EFBAAA;
+  top: 40px;
+  left: 22px;
+  z-index: 1;
+  box-shadow: inset 20px 0 0 #E7AE9A;
+}
+/* line 217, ../sass/style.scss */
+.css-wrapper .body::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #E79A9A;
+  border-radius: 50%;
+  top: -20px;
+  left: 4px;
+  box-shadow: 40px 0 0 #E79A9A;
+}
+/* line 228, ../sass/style.scss */
+.css-wrapper .body::before {
+  content: "";
+  width: 100px;
+  height: 100px;
+  background: #E7AE9A;
+  border-radius: 50%;
+  position: absolute;
+  margin-bottom: -30px;
+  bottom: 100%;
+  left: -21px;
+  box-shadow: inset -10px 0px 0px #EFBAAA;
+  transform-origin: bottom center;
+  animation: move 4.5s linear infinite;
+  animation-delay: 2s;
+}
+/* line 245, ../sass/style.scss */
+.css-wrapper .pants {
+  width: 55px;
+  height: 30px;
+  background: #3D5E8C;
+  border-radius: 0px 0px 30px 30px;
+  margin-top: 38px;
+  margin-left: 22px;
+  box-shadow: inset -11px -5px 0 #2E4A72;
+  position: relative;
+  z-index: 10;
+}
+/* line 255, ../sass/style.scss */
+.css-wrapper .pants::before {
+  content: "";
+  width: 15px;
+  height: 50px;
+  position: absolute;
+  background: #3D5E8C;
+  margin-left: 3px;
+  margin-top: 15px;
+  box-shadow: 34px 0 0 #2E4A72;
+}
+/* line 266, ../sass/style.scss */
+.css-wrapper .legs {
+  width: 12px;
+  height: 175px;
+  background: #E7AE9A;
+  position: absolute;
+  margin-top: 65px;
+  margin-left: 4px;
+  box-shadow: 34px 0 0 #EFBAAA;
+}
+/* line 274, ../sass/style.scss */
+.css-wrapper .legs::before {
+  content: "";
+  width: 32px;
+  height: 10px;
+  background: #E7AE9A;
+  position: absolute;
+  margin-top: 175px;
+  margin-left: -20px;
+  box-shadow: 0 2px 0 #e29d85;
+  border-radius: 10px 0px 0px 10px;
+}
+/* line 285, ../sass/style.scss */
+.css-wrapper .legs::after {
+  content: "";
+  width: 32px;
+  height: 10px;
+  background: #EFBAAA;
+  position: absolute;
+  margin-top: 175px;
+  margin-left: 34px;
+  box-shadow: 0 2px 0 #eba995;
+  border-radius: 0px 10px 10px 0px;
+}
+
+/* line 305, ../sass/style.scss */
+.svg-wrapper {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  background: #F7D568;
+  z-index: 0;
+}
+
+/* line 315, ../sass/style.scss */
+#drinkingMan {
+  margin: 24% auto;
+  display: block;
+}
+
+/* line 320, ../sass/style.scss */
+#chest-area {
+  position: relative;
+}
+
+/* line 323, ../sass/style.scss */
+.foot-shadow2 {
+  fill: #E29D85;
+}
+
+/* line 324, ../sass/style.scss */
+.hand-shadow {
+  fill: #E38C75;
+}
+
+/* line 325, ../sass/style.scss */
+.nipple {
+  fill: #E79A9A;
+}
+
+/* line 326, ../sass/style.scss */
+.skinDark {
+  fill: #E79E8A;
+}
+
+/* line 327, ../sass/style.scss */
+.skin {
+  fill: #E7AE9A;
+}
+
+/* line 328, ../sass/style.scss */
+.hair-shadow {
+  fill: #4E1C0C;
+}
+
+/* line 329, ../sass/style.scss */
+.foot-shadow {
+  fill: #EBA995;
+}
+
+/* line 330, ../sass/style.scss */
+.skinShadow {
+  fill: #EFBAAA;
+}
+
+/* line 331, ../sass/style.scss */
+.pants-shadow {
+  fill: #2E4A72;
+}
+
+/* line 332, ../sass/style.scss */
+.hair {
+  fill: #612410;
+}
+
+/* line 333, ../sass/style.scss */
+.beer-foam {
+  fill: #FFFFFF;
+}
+
+/* line 334, ../sass/style.scss */
+.glasses {
+  fill: #354E72;
+}
+
+/* line 335, ../sass/style.scss */
+.bear-shadow {
+  fill: #4E1C0C;
+  stroke: #4E1C0C;
+}
+
+/* line 336, ../sass/style.scss */
+.bear-hair {
+  fill: #612410;
+  stroke: #4E1C0C;
+}
+
+/* line 337, ../sass/style.scss */
+.pants {
+  fill: #3D5E8C;
+}
+
+/* line 338, ../sass/style.scss */
+.beer {
+  fill: url(#SVGID_1_);
+  stroke: #F3D7BF;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+}
+
+@keyframes arm {
+  0% {
+    transform: rotate(55deg) translateY(-8px);
+  }
+  12% {
+    transform: rotate(110deg) translateY(-12px);
+  }
+  30% {
+    transform: rotate(110deg) translateY(-12px);
+  }
+  55% {
+    transform: rotate(55deg) translateY(-5px);
+  }
+}
+@keyframes drink {
+  0% {
+    transform: rotate(0deg);
+  }
+  12% {
+    transform: rotate(-90deg) translateX(-10px) translateY(10px);
+  }
+  30% {
+    transform: rotate(-110deg) translateX(-10px) translateY(10px);
+  }
+  55% {
+    transform: rotate(0deg) translateX(0px) translateY(8px);
+  }
+}
+@keyframes beer {
+  0% {
+    transform: rotate(-40deg) translateX(0);
+  }
+  20% {
+    transform: rotate(3deg) translateX(6px);
+  }
+  30% {
+    transform: rotate(3deg) translateX(6px);
+  }
+  50% {
+    transform: rotate(-40deg) translateX(0);
+  }
+}
+@keyframes move {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(3deg);
+  }
+  30% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes hair {
+  0% {
+    transform: translateX(0px);
+  }
+  20% {
+    transform: translateX(5px);
+  }
+  30% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+}
+@keyframes rightarm {
+  0% {
+    transform: rotate(-15deg);
+  }
+  20% {
+    transform: rotate(-12deg);
+  }
+  30% {
+    transform: rotate(-12deg);
+  }
+  50% {
+    transform: rotate(-15deg);
+  }
+}
+/* line 398, ../sass/style.scss */
+.footer--love {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 2.5rem;
+  font-size: 0.85rem;
+  font-family: 'Lato', sans-serif;
+  z-index: 9999;
+}
+/* line 405, ../sass/style.scss */
+.footer--love .love-heart {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/42764/heart-smil.svg);
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin: 0 5px 0 0;
+  vertical-align: middle;
+}
+/* line 413, ../sass/style.scss */
+.footer--love a {
+  color: #43abf0;
+}

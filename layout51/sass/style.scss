@@ -1,0 +1,311 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat';
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.hide {display:none}
+
+*, *::after,*::before{
+  box-sizing:border-box;
+}
+
+body, html{
+  background: white;
+  font-size:6px;
+   padding:4rem 2rem;
+   -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  font-family: 'Montserrat', sans-serif;
+  
+   @media (min-width: 860px) {
+      font-size:8px;
+      padding:3rem 5rem;
+  }
+
+  @media (min-width: 1200px) {
+      font-size:10px;
+      padding:2rem 3rem;
+  }
+}
+
+
+.header-wrapper {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  padding:4rem 3rem 2rem;
+  z-index:20;
+  
+  .header {
+    position:relative;
+    display:block;
+    width:100%;
+    height:6rem;
+  }
+  
+  .menu-wrapper {
+    position:relative;
+    float:right;
+    display:block;
+    cursor:pointer;
+    width:2.5rem;
+    height:3rem;
+    right:0;
+    margin:0;
+    text-align:right;
+     
+    
+    @include clearfix;
+  }
+  
+  .menu-hamburger {
+    position:relative;
+    width:1.4rem;
+    display:inline-block;
+    vertical-align:middle;
+    background:white;
+    height:1px;
+    cursor:pointer;
+    right:0;
+    top:1rem;
+    
+    &::before {
+      content:"";
+      width:2.5rem;
+      height:1px;
+      background:white;
+      position:absolute;
+      top:-0.8rem;
+      right:0;
+    }
+    
+    &::after {
+      content:"";
+      width:1.8rem;
+      height:1px;
+      background:white;
+      position:absolute;
+      top:0.8rem;
+      right:0;
+    }
+  }
+  
+  .logo-wrapper {
+    position:relative;
+    float:left;
+  }
+  
+  .logo {
+    display:block;
+    font-size:3rem;
+    font-weight:bold;
+    line-height:1;
+    font-weight:700;
+    color:white;
+    
+    span {font-weight:100;}
+  }
+}
+
+
+.slider-content {
+  position:relative;
+  max-width: 112rem;
+  min-width: 480px;
+  background:#fff;
+  margin: 0 auto;
+  overflow:hidden;
+  box-shadow: 0 0 35px 20px rgba(79,69,66,0.2);
+  
+  .slider-container {
+    position:relative;
+    height: 70rem;
+    overflow:hidden;
+
+  }
+  
+  .slide-content {
+    position:relative;
+    width:100%;
+    height:100%;
+  }
+  
+  .slide {
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    
+    
+    @include clearfix;
+    
+    &.active {
+      opacity:1;
+    }
+    
+    &.active .clip-svg{
+      clip-path: circle(120% at 90%);
+    } 
+    
+  }
+  
+  img {
+    position:absolute;
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  
+  .title-wrapper {
+    position:absolute;
+    color:white;
+    left:3rem;
+    bottom:5rem;
+    width: 40%;
+    
+    &.bigger {
+      width: 48%;
+    }
+    
+    h1 {
+      font-size:9rem;
+      margin:0;
+      line-height:1;
+      margin-bottom: 1rem;
+      font-weight:900;
+    }
+    h2 {
+      font-size:2rem;
+      margin:0;
+    }
+  }
+}
+
+.control-nav{
+  position:absolute;
+  left:3rem;
+  top:18rem;
+  z-index:999;
+  
+  ul {
+    position:relative;
+    list-style:none;
+    padding:0;
+  }
+  
+  li {
+    position:relative;
+    width:0.4rem;
+    height:1.5rem;
+    margin:1.5rem 0;
+    background:white;
+    opacity:0.5;
+    border-radius:3rem;
+    
+    &.active {
+      opacity:1;
+    }
+  }
+}
+
+.nav-wrapper {
+  position:absolute;
+  right: 5%;
+  top:42%;
+  text-align:right;
+  cursor:pointer;
+  z-index:999;
+  
+  .next-color {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    color:white;
+    font-size:2rem;
+    margin-right:1rem;
+    overflow:hidden;
+    
+    span {
+      display:block;
+      &:last-child {
+        font-weight:bold;
+        text-transform:uppercase;
+      }
+    }
+  }
+  .next-button {
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    width:10rem;
+    height:10rem;
+    background:#f59600;
+    border-radius:50%;
+    
+    svg {
+      width: 100%;
+      height: 100%;
+      padding: 2rem;
+      padding-left: 3rem;
+    }
+  }
+}
+
+.footer-wrapper {
+  position:absolute;
+  color:white;
+  bottom: 5rem;
+  right:4rem;
+  z-index:10;
+  
+  ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    
+    @include clearfix;
+  }
+  
+  li {
+    position:relative;
+    float:left;
+    margin:0 1rem;
+  }
+  
+  a {
+    text-decoration:none;
+    color:white;
+    font-size:1.8rem;
+    font-weight:700;
+  }
+}
+
+svg.mask {
+  position:absolute;
+  top:0;
+  right:0;
+  width:100%;
+  height:100%;
+  
+}
+
+.clip-svg {
+  clip-path: circle(25px at 90%);
+  width:100%;
+  height:100%;
+  transition-property:all;
+  transition-duration: 0.5s;
+  transition-timing-function:ease;
+  
+  
+}
+
+
+

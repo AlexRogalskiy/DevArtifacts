@@ -1,0 +1,124 @@
+/* line 6, ../sass/style.scss */
+.bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #111;
+}
+/* line 14, ../sass/style.scss */
+.bg .logo-box {
+  position: absolute;
+  height: 192px;
+  width: 192px;
+  left: 50%;
+  top: 50%;
+  margin-left: -96px;
+  margin-top: -96px;
+  background: #f06423;
+  overflow: hidden;
+}
+/* line 25, ../sass/style.scss */
+.bg .logo-box .arrow {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  transition: transform .3s;
+}
+/* line 31, ../sass/style.scss */
+.bg .logo-box .arrow:after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  border: 16px solid #fff;
+  box-shadow: inset -6px 6px 0 rgba(0, 0, 0, 0.1), -6px 6px 0 rgba(0, 0, 0, 0.1);
+  transform: rotate(-45deg) skew(15deg, 15deg);
+}
+/* line 42, ../sass/style.scss */
+.bg .logo-box .left {
+  clip: rect(-10px, 140px, 105px, 54px);
+  top: 30px;
+  left: 13px;
+  transform: translate(-160px, 0);
+  animation: left-arrow 7.5s infinite;
+}
+/* line 49, ../sass/style.scss */
+.bg .logo-box .right {
+  clip: rect(-10px, 26px, 105px, -32px);
+  bottom: 30px;
+  right: 13px;
+  transform: translate(160px, 0);
+  animation: right-arrow 7.5s infinite;
+}
+/* line 56, ../sass/style.scss */
+.bg .logo-box .left.one {
+  animation: left-arrow 7.5s 2.5s infinite;
+}
+/* line 59, ../sass/style.scss */
+.bg .logo-box .right.one {
+  animation: right-arrow 7.5s 2.5s infinite;
+}
+/* line 62, ../sass/style.scss */
+.bg .logo-box .left.two {
+  animation: left-arrow 7.5s 5s infinite;
+}
+/* line 65, ../sass/style.scss */
+.bg .logo-box .right.two {
+  animation: right-arrow 7.5s 5s infinite;
+}
+
+@keyframes left-arrow {
+  0% {
+    transform: translate(-160px, 0);
+  }
+  20% {
+    transform: translate(-160px, 0);
+  }
+  23% {
+    transform: translate(5px, 0);
+  }
+  24% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  52% {
+    transform: translate(-15px, 0);
+  }
+  55% {
+    transform: translate(160px, 0);
+  }
+  100% {
+    transform: translate(160px, 0);
+  }
+}
+@keyframes right-arrow {
+  0% {
+    transform: translate(160px, 0);
+  }
+  20% {
+    transform: translate(160px, 0);
+  }
+  23% {
+    transform: translate(-5px, 0);
+  }
+  24% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  52% {
+    transform: translate(15px, 0);
+  }
+  55% {
+    transform: translate(-160px, 0);
+  }
+  100% {
+    transform: translate(-160px, 0);
+  }
+}
