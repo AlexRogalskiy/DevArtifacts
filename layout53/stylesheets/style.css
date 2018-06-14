@@ -1,0 +1,178 @@
+@charset "UTF-8";
+/* line 1, ../sass/addons.scss */
+body {
+  background: #f2f2f2;
+}
+
+/* line 5, ../sass/addons.scss */
+[class^="support-"]::after {
+  display: block;
+  color: #afafaf;
+  background: #19212a;
+  margin-bottom: 5px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* CSS Flexbox */
+/* line 15, ../sass/addons.scss */
+.support-flexbox::after {
+  content: "ЁЯТкЁЯП╝ Stop flexing; flexbox is unsupported in your browser.";
+}
+
+@supports (display: flex) {
+  /* line 20, ../sass/addons.scss */
+  .support-flexbox::after {
+    display: none;
+  }
+}
+/* CSS Grid */
+/* line 27, ../sass/addons.scss */
+.support-grid::after {
+  content: "ЁЯШв Sorry, CSS Grid is unsupported in your browser.";
+}
+
+@supports (display: grid) {
+  /* line 32, ../sass/addons.scss */
+  .support-grid::after {
+    display: none;
+  }
+}
+/* initial-letter */
+/* line 38, ../sass/addons.scss */
+.support-initial-letter::after {
+  content: "тЬЛЁЯП╝ Hold on there cowboy; initial-letter is unsupported in your browser.";
+}
+
+@supports (initial-letter: 1) or (-webkit-initial-letter: 1) {
+  /* line 43, ../sass/addons.scss */
+  .support-initial-letter::after {
+    display: none;
+  }
+}
+/* backdrop-filter */
+/* line 49, ../sass/addons.scss */
+.support-backdrop-filter::after {
+  content: "ЁЯТА No good, backdrop-filter is unsupported in your browser.";
+}
+
+@supports (backdrop-filter: blur()) or (-webkit-backdrop-filter: blur()) {
+  /* line 54, ../sass/addons.scss */
+  .support-backdrop-filter::after {
+    display: none;
+  }
+}
+/* css shapes */
+/* line 60, ../sass/addons.scss */
+.support-css-shapes::after {
+  content: "ЁЯдв Sorry mate, CSS shapes are unsupported in your browser.";
+}
+
+@supports (shape-margin: 0px) or (-webkit-shape-margin: 0px) {
+  /* line 65, ../sass/addons.scss */
+  .support-css-shapes::after {
+    display: none;
+  }
+}
+/* line 3, ../sass/style.scss */
+html {
+  background: #f5f7f8;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: 20px 0;
+}
+
+/* line 10, ../sass/style.scss */
+.band {
+  width: 90%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+}
+
+@media only screen and (min-width: 500px) {
+  /* line 24, ../sass/style.scss */
+  .band {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* line 27, ../sass/style.scss */
+  .item-1 {
+    grid-column: 1/ span 2;
+  }
+
+  /* line 30, ../sass/style.scss */
+  .item-1 h1 {
+    font-size: 30px;
+  }
+}
+@media only screen and (min-width: 850px) {
+  /* line 36, ../sass/style.scss */
+  .band {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+/* card */
+/* line 43, ../sass/style.scss */
+.card {
+  min-height: 100%;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #444;
+  position: relative;
+  top: 0;
+  transition: all .1s ease-in;
+}
+
+/* line 56, ../sass/style.scss */
+.card:hover {
+  top: -2px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* line 61, ../sass/style.scss */
+.card article {
+  padding: 20px;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+/* line 70, ../sass/style.scss */
+.card .thumb {
+  padding-bottom: 60%;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* line 76, ../sass/style.scss */
+.card p {
+  flex: 1;
+  /* make p grow to fill available space*/
+  line-height: 1.4;
+}
+
+/* typography */
+/* line 82, ../sass/style.scss */
+h1 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+}
+
+/* line 88, ../sass/style.scss */
+.card span {
+  font-size: 12px;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin: 2em 0 0 0;
+}

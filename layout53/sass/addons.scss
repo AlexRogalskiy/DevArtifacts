@@ -1,0 +1,69 @@
+body {
+background: #f2f2f2;  
+}
+
+[class^="support-"]::after {
+    display: block;
+    color: #afafaf;
+    background: #19212a;
+    margin-bottom: 5px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* CSS Flexbox */
+.support-flexbox::after {
+    content: "💪🏼 Stop flexing; flexbox is unsupported in your browser.";
+}
+
+@supports (display: flex) {
+  .support-flexbox::after {
+    display: none;
+  }
+}
+
+
+/* CSS Grid */
+.support-grid::after {
+    content: "😢 Sorry, CSS Grid is unsupported in your browser.";
+}
+
+@supports (display: grid) {
+  .support-grid::after {
+    display: none;
+  }
+}
+
+/* initial-letter */
+.support-initial-letter::after {
+    content: "✋🏼 Hold on there cowboy; initial-letter is unsupported in your browser.";
+}
+
+@supports (initial-letter: 1) or (-webkit-initial-letter: 1) {
+  .support-initial-letter::after {
+    display: none;
+  }
+}
+
+/* backdrop-filter */
+.support-backdrop-filter::after {
+    content: "💀 No good, backdrop-filter is unsupported in your browser.";
+}
+
+@supports (backdrop-filter: blur()) or (-webkit-backdrop-filter: blur()) {
+  .support-backdrop-filter::after {
+    display: none;
+  }
+}
+
+/* css shapes */
+.support-css-shapes::after {
+    content: "🤢 Sorry mate, CSS shapes are unsupported in your browser.";
+}
+
+@supports (shape-margin: 0px) or (-webkit-shape-margin: 0px) {
+  .support-css-shapes::after {
+    display: none;
+  }
+}
+

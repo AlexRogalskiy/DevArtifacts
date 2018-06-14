@@ -1,0 +1,266 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto";
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(#5eafe7, #257bb7);
+  color: #fff;
+}
+h1 {
+  font-weight: 400;
+  line-height: 1.618em;
+}
+p {
+  font-weight: 300;
+  line-height: 1.618em;
+}
+a {
+  text-decoration: none;
+}
+.navigation {
+  position: absolute;
+  z-index: 5;
+  bottom: 3vw;
+  right: 15vw;
+  font-size: 4vw;
+}
+.next,
+.prev {
+  color: #7dbeeb;
+}
+.disabled {
+  color: #0a629f;
+}
+.next::after,
+.prev::after {
+  font-family: 'FontAwesome';
+}
+.next::after {
+  content: "\f0a9";
+}
+.prev {
+  margin-right: 0.3em;
+}
+.prev::after {
+  content: "\f0a8";
+}
+.slide {
+  width: 100%;
+  height: 100%;
+}
+.content {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  animation-fill-mode: both;
+}
+.navigation {
+  display: none;
+}
+#one .navigation {
+  display: block;
+}
+.content {
+  opacity: 0;
+}
+#one .content {
+  opacity: 1;
+}
+img.stretch {
+  width: auto;
+  height: 100%;
+}
+#one .content h1,
+#one .content p {
+  background: rgba(14,108,173,0.8);
+  color: #fff;
+  width: 100vw;
+  padding: 1em 0.5em;
+  border-left: 4vw solid rgba(10,98,159,0.5);
+  border-right: 4vw solid rgba(10,98,159,0.5);
+}
+#two .content {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/fox.jpg");
+  background-size: cover;
+  align-items: flex-start;
+}
+#two .content h1,
+#two .content p {
+  background: rgba(0,0,0,0.75);
+  padding: 0.5rem 1rem;
+}
+#three .content {
+  background-color: white;
+}
+#four .content::before {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  top: calc(50% - 45vh);
+  left: calc(50% - 45vh);
+  width: 90vh;
+  height: 90vh;
+  background: #1b6ea8;
+  border-radius: 50%;
+}
+#five .logo {
+  width: 50vh;
+  height: 50vh;
+  background: #fff;
+  border: 5px solid #7dbeeb;
+}
+#five .logo #back_triangles {
+  transform: rotate(-38deg);
+}
+#five .logo #front_triangles {
+  transform: rotate(-38deg);
+}
+.slideswitch:target ~ .slide .navigation {
+  display: none !important;
+}
+.slideswitch:target ~ .slide#one .content,
+.slideswitch:target ~ .slide#two .content,
+.slideswitch:target ~ .slide#three .content,
+.slideswitch:target ~ .slide#four .content,
+.slideswitch:target ~ .slide#five .content {
+  opacity: 0;
+}
+.slideswitch[ id="one"]:target ~ .slide#one .navigation,
+.slideswitch[ id="two"]:target ~ .slide#two .navigation,
+.slideswitch[ id="three"]:target ~ .slide#three .navigation,
+.slideswitch[ id="four"]:target ~ .slide#four .navigation,
+.slideswitch[ id="five"]:target ~ .slide#five .navigation {
+  display: block !important;
+}
+.slideswitch[ id="one"]:target ~ .slide#one .content,
+.slideswitch[ id="two"]:target ~ .slide#two .content,
+.slideswitch[ id="three"]:target ~ .slide#three .content,
+.slideswitch[ id="four"]:target ~ .slide#four .content,
+.slideswitch[ id="five"]:target ~ .slide#five .content {
+  animation-name: fade_in;
+  animation-duration: 0.5s;
+}
+.slideswitch[ id="one"]:target ~ #one .slide_from_left,
+.slideswitch[ id="two"]:target ~ #two .slide_from_left,
+.slideswitch[ id="three"]:target ~ #three .slide_from_left,
+.slideswitch[ id="four"]:target ~ #four .slide_from_left,
+.slideswitch[ id="five"]:target ~ #five .slide_from_left {
+  animation-name: slide_from_left !important;
+  animation-duration: 0.5s;
+}
+.slideswitch[ id="one"]:target ~ #one .flip,
+.slideswitch[ id="two"]:target ~ #two .flip,
+.slideswitch[ id="three"]:target ~ #three .flip,
+.slideswitch[ id="four"]:target ~ #four .flip,
+.slideswitch[ id="five"]:target ~ #five .flip {
+  animation-name: flip !important;
+  animation-duration: 0.5s;
+  backface-visibility: hidden;
+}
+.slideswitch[ id="one"]:target ~ #one .grow,
+.slideswitch[ id="two"]:target ~ #two .grow,
+.slideswitch[ id="three"]:target ~ #three .grow,
+.slideswitch[ id="four"]:target ~ #four .grow,
+.slideswitch[ id="five"]:target ~ #five .grow {
+  animation-name: grow !important;
+  animation-duration: 0.5s;
+}
+.slideswitch[ id="five"]:target ~ #five #back_triangles {
+  animation: back_triangles 2.5s ease-out;
+}
+.slideswitch[ id="five"]:target ~ #five #front_triangles {
+  animation: front_triangles 2.5s ease-out;
+}
+.slideswitch[ id="five"]:target ~ #five #letter_a {
+  animation: letter_a 2.5s linear;
+}
+path {
+  transform-origin: 250px 250px;
+}
+@keyframes fade_in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide_from_left {
+  from {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes flip {
+  0% {
+    opacity: 0;
+    transform: rotateY(180deg) translateX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg) translateX(0);
+  }
+}
+@keyframes grow {
+  0% {
+    opacity: 0;
+    transform: scale(0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+@keyframes back_triangles {
+  0% {
+    transform: scale(0, 0) rotate(322deg);
+  }
+  100% {
+    transform: scale(1, 1) rotate(-38deg);
+  }
+}
+@keyframes front_triangles {
+  0% {
+    opacity: 0;
+    transform: scale(0, 0) rotate(-38deg);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(0, 0) rotate(-38deg);
+  }
+  100% {
+    transform: scale(1, 1) rotate(322deg);
+  }
+}
+@keyframes letter_a {
+  0% {
+    opacity: 0;
+    transform: scale(0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(0, 0);
+  }
+  90% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
