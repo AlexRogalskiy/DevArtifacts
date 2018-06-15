@@ -1,0 +1,84 @@
+// Variables
+$red: #e74c3c;
+
+// Placeholder selector
+%transition {transition: all .3s;}
+
+/*Typography*/
+body {font: 16px sans-serif;}
+/*Layout*/
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+/*Section*/
+section,
+.overlay {
+  width: 100%;
+  height: 100%;
+}
+section {
+  background: url(https://i.imgur.com/8oqmNEx.jpg) no-repeat center center;
+  background-size: cover;
+}
+input {display: none;}
+input:checked + label {&:before {content: "\f00d";}}
+input:checked ~ .overlay {
+  visibility: visible;
+  opacity: 1;
+}
+label {
+  position: fixed;
+  top: 0.625em;
+  right: 0.625em;
+  z-index: 99;
+  padding: .72em 0;
+  width: 3em;
+  text-align: center;
+  background: $red;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  @extend %transition;
+  &:before {
+    content: "\f0c9";
+    font: 1.55em fontAwesome;
+  }
+  &:hover {background: darken($red, 10%);}
+}
+.overlay {
+  position: relative;
+  z-index: 2;
+  background: #333;
+  background: rgba(51,51,51,.8);
+  opacity: 0;
+  @extend %transition;
+  visibility: hidden;
+}
+.nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  padding: 0;
+  width: 10em;
+  height: 12em;
+  list-style-type: none;
+}
+.nav a {
+  display: block;
+  padding: .25em 0;
+  color: #fff;
+  font-size: 1.85em;
+  text-align: center;
+  text-decoration: none;
+  @extend %transition;
+  &:focus,
+  &:hover {color: $red;}
+  &:active {color: darken($red, 10%);}
+}

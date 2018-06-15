@@ -1,0 +1,116 @@
+// Function
+@function remy($value, $base: 16px) {
+  @return ($value / $base) * 1rem;
+}
+
+// Variables
+$boxshadow-0: 0 1px 3px rgba(0,0,0,.13), 0 1px 3px rgba(0,0,0,.23);
+$boxshadow-1: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+$boxshadow-2: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23);
+$boxshadow-3: 0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
+$color-green: #04a257;
+$color-grey: #e2e5eC;
+$radius: remy(2px);
+
+// Mixins
+@mixin transition($prop: all, $duration: .25s, $timing: cubic-bezier(.4,0,1,1)) {
+  transition: $prop $duration $timing;
+}
+
+// Base
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Open Sans', 'Trebuchet MS', Arial, sans-serif;
+  line-height: 1.5;
+  background: $color-grey;
+}
+
+// Email newsletter
+.email-container {
+  margin-top: 2rem;
+  margin-right: auto;
+  margin-left: auto;
+  overflow: hidden;
+  max-width: remy(600px);
+  background: #fff;
+  border-radius: $radius;
+  box-shadow: $boxshadow-1;
+  
+  @include transition(box-shadow);
+  
+  &:focus,
+  &:hover {
+    //box-shadow: $boxshadow-2;
+  }
+}
+
+.header__thumbnail {
+  max-width: 100%;
+  object-fit: fill;
+}
+
+.email__body {
+  padding-top: 1rem;
+  padding-right: 3rem;
+  padding-bottom: 1rem;
+  padding-left: 3rem;
+}
+
+.body__heading {
+  margin-bottom: remy(8px);
+  font-size: remy(21px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  //text-align: center;
+  text-transform: uppercase;
+  color: rgba(20,20,20,1);
+}
+
+.body__meta {
+  display: inline-block;
+  margin-bottom: .728rem;
+  font-size: remy(13px);
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(20,20,20,.4);
+}
+
+.body__text {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-size: remy(14px);
+  font-weight: 600;
+  letter-spacing: remy(.25px);
+  color: rgba(20,20,20,.85);
+}
+
+.email__footer {
+  padding-right: 3rem;
+  padding-bottom: 2rem;
+  padding-left: 3rem;
+  text-align: center;
+}
+
+.footer__button {
+  display: inline-block;
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  background: $color-green;
+  border: 0;
+  border-radius: $radius;
+  box-shadow: $boxshadow-1;
+  white-space: nowrap;
+  
+  @include transition;
+  
+  &:focus,
+  &:hover {
+    background: darken($color-green, 8%);
+    box-shadow: $boxshadow-0;
+  }
+}

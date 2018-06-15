@@ -1,0 +1,199 @@
+// Function
+@function remy($value, $base: 16px) {
+  @return ($value / $base) * 1rem;
+}
+
+// Mixin for box-shadow
+@mixin boxshadow($level) {
+  @if $level == 1 {
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+  }
+  @else if $level == 2 {
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+  }
+  @else if $level == 3 {
+    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23);
+  }
+  @else if $level == 4 {
+    box-shadow: 0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
+  }
+  @else if $level == 5 {
+    box-shadow: 0 19px 38px rgba(0,0,0,.30), 0 15px 12px rgba(0,0,0,.22);
+  }
+}
+
+// Mixin for transition
+@mixin transition($prop: all, $duration: .25s, $timing: cubic-bezier(.4,0,1,1)) {
+  transition: $prop $duration $timing;
+}
+
+// Variables
+$color-blue: #2196f3;
+$color-green: #17bebb;
+
+// Base
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+}
+
+html {
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Raleway', Arial, Verdana, sans-serif;
+  background: $color-green;
+}
+
+// Typography
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  margin-bottom: 1.618rem;
+}
+
+h1 {
+  font-size: 2.236rem;
+}
+
+h2 {
+  font-size: 1.618rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: 1.618rem;
+}
+
+// Layout
+main {
+  position: relative;
+  padding: 2rem;
+  min-height: 100%;
+}
+
+section {
+  position: relative;
+}
+
+.content {
+  padding: 1.5rem 2rem .15rem;
+  background: #fff;
+  border-radius: 2px;
+  opacity: 0;
+
+  @include boxshadow(2);
+  
+  @include transition(.5s);
+}
+
+.menu-open,
+.menu-close {
+  display: block;
+  font-size: 1.5rem;
+  color: #212121;
+  cursor: pointer;
+}
+
+.menu-open {
+  padding: 1rem;
+  margin-top: -1rem;
+  margin-right: 5rem;
+  float: right;
+  background: #fff;
+  border-radius: 50%;
+  
+  @include boxshadow(2);
+  
+  @include transition;
+  
+  &:focus,
+  &:hover,
+  &.hover {
+    color: lighten(#212121, 21%);
+    
+    @include boxshadow(1);
+  }
+}
+
+.menu-close {
+  line-height: 29px;
+  text-align: center;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: remy(280px);
+  height: 100%;
+  background: #212121;
+  box-shadow: -4px 0px 6px rgba(0,0,0,.16), -4px 0px 6px rgba(0,0,0,.23);
+  
+  @include transition(right, .45s);
+}
+
+.sidebar-hidden {
+  right: remy(-286px);
+}
+
+.nav-list,
+.nav-media {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.nav-list li {
+  border-bottom: 1px solid lighten(#212121, 13%);
+}
+
+.nav-link,
+.nav-media a {
+  display: block;
+  color: #fff;
+
+  @include transition;
+  
+  &:focus,
+  &:hover,
+  &:active {
+    text-decoration: none;
+    color: $color-blue;
+  }
+}
+
+.nav-link {
+  display: block;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  padding-left: 1.5rem;
+  font-size: 1.2rem;
+  
+  &:focus,
+  &:hover,
+  &:active {
+    background: lighten(#212121, 13%);
+  }
+}
+
+.nav-media {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.nav-media li:nth-of-type(n+2) {
+  margin-left: 1.5rem;
+}

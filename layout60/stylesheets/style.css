@@ -1,0 +1,172 @@
+/* line 5, ../sass/style.scss */
+body {
+  margin-top: 2rem;
+  font: 100% "Open sans", "Trebuchet MS", sans-serif;
+}
+
+/* line 9, ../sass/style.scss */
+a {
+  text-decoration: none;
+}
+
+/**
+ * Hidden fallback
+ */
+/* line 13, ../sass/style.scss */
+[hidden] {
+  display: none;
+  visibility: hidden;
+}
+
+/**
+ * Styling navigation
+ */
+/* line 20, ../sass/style.scss */
+header {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 22.5rem;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+/**
+ * Styling top level items
+ */
+/* line 29, ../sass/style.scss */
+.nav a,
+.nav label {
+  display: block;
+  padding: .85rem;
+  color: #fff;
+  background-color: #151515;
+  box-shadow: inset 0 -1px #1d1d1d;
+  transition: all .25s ease-in;
+}
+/* line 37, ../sass/style.scss */
+.nav a:focus, .nav a:hover,
+.nav label:focus,
+.nav label:hover {
+  color: rgba(255, 255, 255, 0.5);
+  background: #030303;
+}
+
+/* line 43, ../sass/style.scss */
+.nav label {
+  cursor: pointer;
+}
+
+/**
+ * Styling first level lists items
+ */
+/* line 47, ../sass/style.scss */
+.group-list a,
+.group-list label {
+  padding-left: 2rem;
+  background: #252525;
+  box-shadow: inset 0 -1px #373737;
+}
+/* line 52, ../sass/style.scss */
+.group-list a:focus, .group-list a:hover,
+.group-list label:focus,
+.group-list label:hover {
+  background: #131313;
+}
+
+/**
+ * Styling second level list items
+ */
+/* line 58, ../sass/style.scss */
+.sub-group-list a,
+.sub-group-list label {
+  padding-left: 4rem;
+  background: #353535;
+  box-shadow: inset 0 -1px #474747;
+}
+/* line 63, ../sass/style.scss */
+.sub-group-list a:focus, .sub-group-list a:hover,
+.sub-group-list label:focus,
+.sub-group-list label:hover {
+  background: #232323;
+}
+
+/**
+ * Styling third level list items
+ */
+/* line 69, ../sass/style.scss */
+.sub-sub-group-list a,
+.sub-sub-group-list label {
+  padding-left: 6rem;
+  background: #454545;
+  box-shadow: inset 0 -1px #575757;
+}
+/* line 74, ../sass/style.scss */
+.sub-sub-group-list a:focus, .sub-sub-group-list a:hover,
+.sub-sub-group-list label:focus,
+.sub-sub-group-list label:hover {
+  background: #333333;
+}
+
+/**
+ * Hide nested lists
+ */
+/* line 80, ../sass/style.scss */
+.group-list,
+.sub-group-list,
+.sub-sub-group-list {
+  height: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s ease-in-out;
+}
+
+/* line 89, ../sass/style.scss */
+.nav__list input[type=checkbox]:checked + label + ul {
+  /* reset the height when checkbox is checked */
+  max-height: 1000px;
+}
+
+/**
+ * Rotating chevron icon
+ */
+/* line 96, ../sass/style.scss */
+label > span {
+  float: right;
+  transition: transform .65s ease;
+}
+
+/* line 100, ../sass/style.scss */
+.nav__list input[type=checkbox]:checked + label > span {
+  transform: rotate(90deg);
+}
+
+/**
+ * Styling footer
+ */
+/* line 104, ../sass/style.scss */
+footer {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #050505;
+}
+
+/* line 109, ../sass/style.scss */
+.soc-media {
+  display: flex;
+  justify-content: center;
+}
+
+/* line 113, ../sass/style.scss */
+.soc-media li:nth-child(n+2) {
+  margin-left: 1rem;
+}
+
+/* line 114, ../sass/style.scss */
+.soc-media a {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.65);
+  transition: color .25s ease-in;
+}
+/* line 118, ../sass/style.scss */
+.soc-media a:focus, .soc-media a:hover {
+  color: rgba(255, 255, 255, 0.2);
+}

@@ -1,0 +1,239 @@
+// Variables
+$red: #ad0000;
+$lightBlack: #333;
+$darkGrey: #a9a9a9;
+$ghostWhite: #f8f8ff;
+$lightGrey: #d3d3d3;
+
+// Mixins
+@mixin transition($property) {transition: $property .25s;}
+
+/*Typography*/
+html {font: 16px 'Open Sans Condensed', 'Roboto Condensed', Verdana, sans-serif;}
+h1 {font-size: 2.25em;}
+h2 {font-size: 2em;}
+h3 {font-size: 1.75em;}
+h4 {font-size: 1.5em;}
+p {font-size: 1.25em;}
+/*Layout*/
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {color: #333;}
+*,
+*:before,
+*:after {box-sizing: border-box;}
+.line {
+  float: left;
+  width: 100%;
+  border-top: .25em solid $lightBlack;
+}
+.wrapper {
+  margin: auto;
+  width: 60em;/*960px*/
+  //min-height: 100%;
+}
+header,
+nav,
+section,
+footer {
+  float: left;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+  transition: color .25s;
+}
+.button {
+  display: block;
+  padding: .75em 1.25em;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: $red;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  &:focus,
+  &:hover {background: darken($red, 7%);}
+  &:active {background: #c10000;}
+}
+.link {
+  font-weight: bold;
+  color: $red;
+  &:focus,
+  &:hover {color: darken($red, 10%);}
+  &:active {color: lighten($red, 5%);}
+}
+/*Navigation*/
+nav h1 {
+  float: left;
+  padding: .25em .25em 0 0;
+  font-size: 4.5em;
+  text-transform: uppercase;
+}
+nav h1 a {color: $red;}
+.nav-ul {
+  display: flex;
+}
+header li {width: 20%;}
+header li:not(:first-child) {margin-left: 2%;}
+header .nav-ul a {
+  display: block;
+  padding: 1.75em .5em;
+  font-size: 1.5em;
+  text-align: center;
+  text-transform: uppercase;
+  color: $lightBlack;
+  &:focus,
+  &:hover {color: $red;}
+  &:active {color: lighten($red, 5%);}
+}
+header li:first-child a {
+  background: $red;
+  color: #fff;
+  &:hover {color: #fff;}
+}
+/*Sections*/
+section {margin: 1em 0;}
+section h1 {text-transform: uppercase;}
+hr {
+  border-color: $lightGrey;
+  border-style: dashed;
+}
+.vertical {
+  width: 0;
+  height: 10px;
+}
+/*Intro*/
+.sec-intro {position: relative;}
+.sec-intro img {
+  width: 100%;
+}
+.sec-intro h1 {
+  position: absolute;
+  bottom: .5em;
+  left: .5em;
+  padding: .5em;
+  background: rgba(0,0,0,.5);
+  color: #fff;
+}
+/*Boxes*/
+.box {
+  float: left;
+  padding: 1.5em 1em;
+  width: 25%;
+  height: 400px;
+  border-top: .1em solid $lightGrey;
+  border-bottom: .1em solid $lightGrey;
+  border-left: .1em solid $lightGrey;
+  @include transition(background);
+  &:focus,
+  &:hover {background: #f5f5f5;}
+}
+.box:last-child {border-right: .1em solid $lightGrey;}
+.box h1 {text-align: center;}
+.box p {
+  margin-top: 4em;
+  height: 6em;
+  text-align: justify;
+}
+.box .button {
+  margin: 4em auto;
+}
+/*Events*/
+.sec-events > h1 {margin-top: 1em;}
+.sec-events article {
+  float: left;
+  padding: 0 .25em;
+  width: 25%;
+  text-align: justify;
+}
+.sec-events article h1,
+.sec-events article p {
+  display: block;
+  margin: .5em 0;
+  padding: .25em 1em;
+  font-size: 110%;
+}
+.sec-events article a {float: right;padding-right: 1em;}
+.sec-events article h1 {font-weight: bold;text-align: center;}
+/*Projects*/
+.sec-projects {width: 60%;}
+.sec-projects > h1 {
+  margin-top: 1em;
+  text-align: center;
+}
+.sec-projects article {
+  padding: .5em 0;
+  width: 100%;
+}
+.sec-projects article h1,
+.sec-projects article p {font-size: 110%;}
+.sec-projects article h1 {font-weight: bold;}
+.sec-projects article p {
+  margin: .5em .5em .5em 0;
+  text-align: justify;
+}
+.sec-projects p a {float: right;}
+.sec-projects button {
+  position: relative;
+  left: 80%;
+}
+/*Standards*/
+.sec-standards {width: 40%;}
+.sec-standards > h1 {
+  margin-top: 1em;
+  text-align: center;
+}
+.sec-standards article {
+  float: left;
+  padding: .5em 1em;
+  width: 50%;
+  text-align: justify;
+}
+.sec-standards article:last-child {padding: .5em 0;}
+.sec-standards article h1 {text-align: center;}
+/*Partners*/
+.sec-partners h1 {margin-top: 1em;}
+.sec-partners .row {
+  float: left;
+  margin: 2em 0;
+  width: 100%;
+}
+.logo-container {
+  float: left;
+  width: 16%;
+  width: 100px;
+}
+.logo-container:not(:first-child) {margin-left: 7.5%;}
+.logo-container:first-child {margin-top: .2em;}
+.logo-container:nth-of-type(2) img {margin-top: 1.2em}
+.logo-container:nth-of-type(3) img {margin-top: 1.8em;}
+.logo-container:nth-of-type(4) img {margin-top: 2.35em;}
+.logo-container:nth-of-type(5) img {margin-top: .35em;}
+.logo-container:last-of-type img {margin-top: .65em;}
+.sec-partners img {
+  float: left;
+  width: 100%;
+}
+/*Footer*/
+footer {
+  padding: 2em 0;
+  width: 100%;
+  text-align: center;
+  background: $lightGrey;
+}
+footer .nav-ul {justify-content: center;margin-bottom: 1em;}
+footer li:not(:first-child) {margin-left: .75em;}
+footer li:first-child a {color: $lightBlack;}
+footer a {
+  font-size: 1.25em;
+  font-weight: bold;
+  color: $darkGrey;
+  &:focus,
+  &:hover {color: $lightBlack;}
+}
+.copy {font-size: .85em;}
