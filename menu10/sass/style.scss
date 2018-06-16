@@ -1,0 +1,194 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #fff;
+  background-image: linear-gradient(to left bottom, #F2E3C6 0%, #A7A1A5 100%);
+  overflow: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+$itemBg: #2c8fb5;
+
+$menu1AnimSpeed: 300ms;
+$menu2AnimSpeed: 175ms;
+$menu3AnimSpeed: 200ms;
+$menu4AnimSpeed: 300ms;
+$menu5AnimSpeed: 300ms;
+
+ul {
+  list-style-type: none;
+}
+
+.nav {
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+  &__list {
+    display: inline-block;
+  }
+  &__menu {
+    float: left;
+    width: 140px;
+    height: 65px;
+    line-height: 65px;
+    text-transform: uppercase;
+    background-color: $itemBg;
+    cursor: pointer;
+    &:hover {
+      background-color: darken($itemBg, 10%);
+    }
+    &:hover > .nav__menu-lists li {
+      display: block;
+    }
+    // Menu 1
+    @for $i from 1 through 5 {
+      &:hover > .nav__menu--1-lists li:nth-child(#{$i}) {
+        opacity: 0;
+        animation: menu1 ease-in-out forwards;
+        animation-duration: $menu1AnimSpeed;
+        animation-delay: ($menu5AnimSpeed / 2) * ($i - 1);
+        @keyframes menu1 {
+          from {
+            opacity: 0;
+            transform: rotateX(-180deg);
+          }
+          to {
+            opacity: 1;
+            transform: rotateX(0deg);
+          }
+        }
+      }
+    }
+    // Menu 2
+    @for $i from 1 through 5 {
+      &:hover > .nav__menu--2-lists li:nth-child(#{$i}) {
+        opacity: 0;
+        transform: translateY(-100%);
+        animation: menu2 ease-in-out forwards;
+        animation-duration: $menu2AnimSpeed;
+        animation-delay: ($menu2AnimSpeed / 1.2) * ($i - 1);
+        @keyframes menu2 {
+          0% {
+            opacity: 0;
+            transform: translateY(-100%) scale(.3);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+      }
+    }
+    // Menu 3
+    @for $i from 1 through 5 {
+      &:hover > .nav__menu--3-lists li:nth-child(#{$i}) {
+        opacity: 0;
+        transform-origin: top center;
+        animation: menu3 ease-in-out forwards;
+        animation-duration: $menu3AnimSpeed;
+        animation-delay: ($menu3AnimSpeed / 1.3) * ($i - 1);
+        @keyframes menu3 {
+          0% {
+            opacity: 0;
+            transform: rotate(-45deg) translateX(50%);
+          }
+          100% {
+            opacity: 1;
+            transform: rotate(0) translateX(0);
+          }
+        }
+      }
+    }
+    // Menu 4
+    @for $i from 1 through 5 {
+      &:hover > .nav__menu--4-lists li:nth-child(#{$i}) {
+        opacity: 0;
+        transform-origin: top center;
+        animation: menu4 ease-in-out forwards;
+        animation-duration: $menu4AnimSpeed;
+        animation-delay: ($menu4AnimSpeed / 2.4) * ($i - 1);
+        @keyframes menu4 {
+          0% {
+            opacity: 0;
+            transform: rotateY(-90deg) rotateX(-90deg);
+          }
+          100% {
+            opacity: 1;
+            transform: rotateY(0) rotateX(0);
+          }
+        }
+      }
+    }
+    // Menu 5
+    @for $i from 1 through 5 {
+      &:hover > .nav__menu--5-lists li:nth-child(#{$i}) {
+        opacity: 0;
+        animation: menu5 ease-in-out forwards;
+        animation-duration: $menu5AnimSpeed;
+        animation-delay: ($menu5AnimSpeed / 2.4) * ($i - 1);
+        @keyframes menu5 {
+          0% {
+            opacity: 0;
+            transform:  rotateY(90deg);
+          }
+          100% {
+            opacity: 1;
+            transform:  rotateY(0);
+          }
+        }
+      }
+    }
+    &-lists {
+      perspective: 5000px;
+    }
+    &-items {
+      display: none;
+      width: 140px;
+      height: 65px;
+      background-color: $itemBg;
+      &:hover {
+        background-color: darken($itemBg, 10%);
+      }
+    }
+  }
+  &__menu:nth-child(1) {
+    border-top-left-radius: 10px;
+  }
+  &__menu:last-child {
+    border-top-right-radius: 10px;
+  }
+}
+
+.stuff {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  text-align: center;
+  .pens {
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #333;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .fa-twitter {
+    position: relative;
+    top: 8px;
+    color: #1DA1F2;
+    font-size: 50px;
+  }
+}
