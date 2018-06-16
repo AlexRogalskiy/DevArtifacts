@@ -1,0 +1,52 @@
+$theme: #319f90;
+$bk: #222;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: $bk;
+  padding: 30px;
+}
+
+svg {
+  max-width: 900px;
+  width: 100%;
+}
+
+@for $i from 1 through 10 {
+    .#{interpolate}-#{$i} {
+        $randomNumber: 50 + random(900);
+        animation: fading #{2000 + random(3000) + ms} ease alternate infinite;
+        transform: 1.2;
+        stroke-dasharray: $randomNumber;
+        stroke-dashoffset: $randomNumber;
+    }
+}
+
+@keyframes fading {
+    0% {
+        opacity: random(1);
+        stroke: rgba(255,255,255,.3);
+        fill: #eee;
+    }
+    100% {
+        opacity: .2;
+        transform: scale(1);
+        stroke: $theme;
+        fill: transparent;
+        stroke-dashoffset: 0;
+        background-color: #eee;
+    }
+}
+
+.svg-interpolate {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: block;
+}
