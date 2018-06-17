@@ -1,0 +1,153 @@
+/* line 1, ../sass/style.scss */
+:root {
+  --br: 15px;
+  text-align: center;
+  color: white;
+  background: #f06d06;
+  padding: 1rem;
+}
+
+/* line 8, ../sass/style.scss */
+body {
+  background: #222;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+/* line 14, ../sass/style.scss */
+h1 {
+  font-family: 'Spectral', serif;
+  font-size: calc(1rem + 3.3vw);
+}
+
+/* line 19, ../sass/style.scss */
+input {
+  width: 100%;
+  margin: 0 0 1rem 0;
+}
+
+/* line 24, ../sass/style.scss */
+.br-all {
+  border-radius: var(--br);
+}
+
+/* line 27, ../sass/style.scss */
+.br-top-left {
+  border-top-left-radius: var(--br);
+}
+
+/* line 30, ../sass/style.scss */
+.br-top-right {
+  border-top-right-radius: var(--br);
+}
+
+/* line 33, ../sass/style.scss */
+.br-bottom-left {
+  border-bottom-left-radius: var(--br);
+}
+
+/* line 36, ../sass/style.scss */
+.br-bottom-right {
+  border-bottom-right-radius: var(--br);
+}
+
+/* line 40, ../sass/style.scss */
+.br-four-value {
+  border-radius: var(--br) calc(var(--br)*2) calc(var(--br)*3) calc(var(--br)/2);
+}
+
+/* line 43, ../sass/style.scss */
+.br-three-value {
+  border-radius: var(--br) calc(var(--br)*2) calc(var(--br)*3);
+}
+
+/* line 46, ../sass/style.scss */
+.br-two-value {
+  border-radius: var(--br) calc(var(--br)*2);
+}
+
+/* line 49, ../sass/style.scss */
+.br-slash-one {
+  border-radius: var(--br)/calc(var(--br)*3);
+}
+
+/* line 52, ../sass/style.scss */
+.br-slash-two {
+  border-radius: calc(var(--br)*3)/var(--br);
+}
+
+/* line 55, ../sass/style.scss */
+.br-slash-three {
+  border-radius: calc(var(--br)*4) calc(var(--br)*3) calc(var(--br)*2) calc(var(--br)*1)/calc(var(--br)*1) calc(var(--br)*2) calc(var(--br)*3) calc(var(--br)*4);
+}
+
+/* line 59, ../sass/style.scss */
+.box {
+  background: white;
+  color: #222;
+  height: 100px;
+  font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 1rem;
+}
+@media (max-width: 550px) {
+  /* line 59, ../sass/style.scss */
+  .box {
+    margin-bottom: 2rem;
+  }
+}
+
+/* line 74, ../sass/style.scss */
+.allBoxes {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 3rem;
+}
+/* line 79, ../sass/style.scss */
+.allBoxes .br-four-value {
+  grid-column-start: 3;
+  grid-column-end: -1;
+  grid-row-start: 1;
+}
+/* line 84, ../sass/style.scss */
+.allBoxes .br-all {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+}
+/* line 89, ../sass/style.scss */
+.allBoxes .br-slash-three {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+@media (max-width: 1000px) {
+  /* line 74, ../sass/style.scss */
+  .allBoxes {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+  }
+  /* line 96, ../sass/style.scss */
+  .allBoxes .br-four-value {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    grid-row-start: auto;
+  }
+  /* line 101, ../sass/style.scss */
+  .allBoxes .br-all {
+    grid-column-end: 1;
+    grid-column-end: -1;
+    grid-row-start: auto;
+  }
+}
+@media (max-width: 550px) {
+  /* line 74, ../sass/style.scss */
+  .allBoxes {
+    display: block;
+  }
+}
