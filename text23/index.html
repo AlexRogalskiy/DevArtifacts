@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Text Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+<h1>Responsive Typography</h1>
+<p>It appears that by using calc() and vw we can get responsive typography that scales perfectly between specific pixel values within a specific viewport range.</p>
+<p>The problem with the common approach to responsive typography is that it is jumpy and requires a lot of media queries.</p>
+<p>Viewport units are fluid but lack precise control over font-size.</p>
+<p>Typically you might use a table like this to work out the range of font sizes across different resolutions.</p>
+<table>
+  <tbody>
+    <tr>
+      <th>Viewport units:</th><th>1vw</th><th>2vw</th><th>3vw</th><th>4vw</th><th>5vw</th>
+    </tr>
+    <tr>
+      <th>Viewport size</th><th colspan="5">font-size in pixels</th>
+    </tr>
+    <tr>
+      <th>400px</th><td>4px</td><td>8px</td><td>12px</td><td>16px</td><td>20px</td>
+    </tr>
+    <tr>
+      <th>500px</th><td>5px</td><td>10px</td><td>15px</td><td>20px</td><td>25px</td>
+    </tr>
+    <tr>
+      <th>600px</th><td>6px</td><td>12px</td><td>18px</td><td>24px</td><td>30px</td>
+    </tr>
+    <tr>
+      <th>700px</th><td>7px</td><td>14px</td><td>21px</td><td>28px</td><td>35px</td>
+    </tr>
+    <tr>
+      <th>800px</th><td>8px</td><td>16px</td><td>24px</td><td>32px</td><td>40px</td>
+    </tr>
+    <tr>
+      <th>900px</th><td>9px</td><td>18px</td><td>27px</td><td>36px</td><td>45px</td>
+    </tr>
+    <tr>
+      <th>1000px</th><td>10px</td><td>20px</td><td>30px</td><td>40px</td><td>50px</td>
+    </tr>
+    <tr>
+      <th>1100px</th><td>11px</td><td>22px</td><td>33px</td><td>44px</td><td>55px</td>
+    </tr>
+    <tr>
+      <th>1200px</th><td>12px</td><td>24px</td><td>36px</td><td>48px</td><td>60px</td>
+    </tr>
+  </tbody>
+</table>
+<p>Looking at the table you can see there are many limitations. There is no way to scale between 16px and 36px for example over the given viewport sizes. That is a shame because this is the type of control designers expect (and should expect).</p>
+<p>Imagine you want the smallest font-size to be 12 pixels and then once the device width is greater than 400px you want the font-size to gradually increase to 24px and stop scaling by the time the viewport reaches 800px. That is exactly what this demo does!</p>
+<p>This is achieved by using viewport units in combination with calc().</p>
+<p>More details here: <a target="blank" href="https://madebymike.com.au/writing/precise-control-responsive-typography/">https://madebymike.com.au/writing/precise-control-responsive-typography/</a></p>
+
+
+</body>
+<!--  footer -->
+</html>

@@ -1,0 +1,325 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
+@keyframes fade-scale {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes anim-effect-sonar {
+  0% {
+    transform: scale3d(0, 0, 1);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+/* line 51, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 55, ../sass/style.scss */
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* line 59, ../sass/style.scss */
+html {
+  height: 100%;
+}
+
+/* line 62, ../sass/style.scss */
+body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(45deg, #f44236 0%, #f58c54 30%, #f44236 100%);
+  color: #333;
+}
+
+/* line 69, ../sass/style.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 73, ../sass/style.scss */
+h3 {
+  font-weight: normal;
+}
+
+/* line 77, ../sass/style.scss */
+.modal {
+  opacity: 0;
+  visibility: hidden;
+  position: relative;
+  width: 800px;
+  padding-bottom: 0;
+  border-radius: 3px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  background-color: white;
+  transition: visibility 0s ease-in-out 300ms, opacity 300ms ease-in-out;
+  margin: 10% auto 0 auto;
+}
+/* line 12, ../sass/style.scss */
+.modal::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+/* line 91, ../sass/style.scss */
+.modal-body {
+  padding-top: 30px;
+  padding-bottom: 40px;
+}
+/* line 12, ../sass/style.scss */
+.modal-body::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+/* line 97, ../sass/style.scss */
+.modal-header {
+  text-align: center;
+}
+
+/* line 101, ../sass/style.scss */
+.modal-title {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+/* line 106, ../sass/style.scss */
+.modal-label {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+/* line 114, ../sass/style.scss */
+.modal-image {
+  width: 50%;
+  float: left;
+}
+
+/* line 119, ../sass/style.scss */
+.modal-info {
+  float: left;
+  width: 50%;
+}
+
+/* line 124, ../sass/style.scss */
+.modal-actions {
+  width: 100%;
+}
+
+/* line 128, ../sass/style.scss */
+.colors-list li {
+  display: inline-block;
+  margin-right: 50px;
+  cursor: pointer;
+}
+
+/* line 134, ../sass/style.scss */
+.item-color {
+  position: relative;
+}
+/* line 136, ../sass/style.scss */
+.item-color:before {
+  content: '';
+  position: absolute;
+  background: #ddd;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  z-index: 99;
+}
+/* line 145, ../sass/style.scss */
+.item-color:after {
+  content: '';
+  border: 2px solid #333;
+  height: 50px;
+  width: 50px;
+  top: -7px;
+  left: -7px;
+  position: absolute;
+  border-radius: 50%;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+}
+/* line 158, ../sass/style.scss */
+.item-color:last-child {
+  margin-right: 0;
+}
+
+/* line 164, ../sass/style.scss */
+.color-selected .item-color:after {
+  visibility: visible !important;
+  opacity: 1 !important;
+  animation: anim-effect-sonar 250ms ease-out forwards;
+}
+
+/* line 171, ../sass/style.scss */
+.size-selected {
+  background: #ddd;
+  transition: background 250ms ease-in-out;
+}
+
+/* line 177, ../sass/style.scss */
+.purple .item-color:before {
+  background: #9c27b0;
+}
+
+/* line 183, ../sass/style.scss */
+.red .item-color:before {
+  background: #EA3023;
+}
+
+/* line 189, ../sass/style.scss */
+.orange .item-color:before {
+  background: #ff5722;
+}
+
+/* line 195, ../sass/style.scss */
+.green .item-color:before {
+  background: #91C519;
+}
+
+/* line 200, ../sass/style.scss */
+.color {
+  position: relative;
+}
+
+/* line 204, ../sass/style.scss */
+.color input[type=radio] {
+  visibility: hidden;
+}
+
+/* line 12, ../sass/style.scss */
+.size::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+/* line 212, ../sass/style.scss */
+.item-size {
+  float: left;
+  display: block;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 3px 20px;
+  cursor: pointer;
+}
+/* line 220, ../sass/style.scss */
+.item-size:first-child {
+  border-left: 1px solid #ddd;
+}
+
+/* line 225, ../sass/style.scss */
+.item-price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* line 230, ../sass/style.scss */
+.item-description {
+  opacity: 0.5;
+}
+
+/* line 234, ../sass/style.scss */
+.modal-close {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+/* line 241, ../sass/style.scss */
+.modal-close:after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 2px;
+  width: 15px;
+  height: 2px;
+  background-color: #333;
+  transform: rotate(45deg);
+}
+/* line 251, ../sass/style.scss */
+.modal-close:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 2px;
+  width: 15px;
+  height: 2px;
+  background-color: #333;
+  transform: rotate(-45deg);
+}
+/* line 261, ../sass/style.scss */
+.modal-close:hover {
+  opacity: 0.5;
+}
+
+/* line 266, ../sass/style.scss */
+.button-modal, .button-cart, .button-wishlist {
+  background-color: #ddd;
+  border: none;
+  padding: 10px 15px;
+  color: white;
+}
+
+/* line 273, ../sass/style.scss */
+.button-modal {
+  background-color: white;
+  float: left;
+  color: #333;
+  border-radius: 3px;
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+/* line 282, ../sass/style.scss */
+.button-cart {
+  background-color: #242E3A;
+  float: left;
+  width: 50%;
+  height: 50px;
+  border-bottom-left-radius: 3px;
+}
+
+/* line 291, ../sass/style.scss */
+.button-wishlist {
+  float: left;
+  color: #333;
+  width: 50%;
+  height: 50px;
+  border-bottom-right-radius: 3px;
+}
+
+/* line 300, ../sass/style.scss */
+.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+  animation: fade-scale 250ms ease-out;
+}

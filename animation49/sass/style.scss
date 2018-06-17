@@ -1,0 +1,92 @@
+$PLAY_STATE: running; // paused
+$RADIUS: 150px;
+$NUM_RINGS: 12;
+$COLOR_BG: #fff;
+$COLOR_STROKE: $COLOR_BG; //transparent is cool
+$COLOR_1: #222;
+$COLOR_2: #fff;
+$DURATION: 5000ms; 
+$DIRECTION: forwards; //reverse
+
+html, body { height: 100%; }
+body { background: $COLOR_BG; }
+
+#stage {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  display: block;
+  margin: auto;
+  width: $RADIUS * 2; height: $RADIUS * 2;
+  border-radius: 50%;
+  perspective: 9999px;  
+  transform-style: preserve-3d;
+}
+
+#stage:before {
+  content: '';
+  position: absolute;
+  left: 43px;
+  width: calc(70% + #{$RADIUS * .06}); 
+  height: 15%;
+  top: $RADIUS * 2.5;
+  border-radius: 50%;
+  background: hsla(0, 0%, 0%, .1);
+}
+
+#stage:after {
+  content: '';
+  display: block;
+  box-sizing: border-box;
+  width: 100%; 
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 (-$RADIUS*.125) 0 hsla(0,0%,0%,.15) inset,
+              0 (-$RADIUS/2) ($RADIUS/2) hsla(0,0%,0%,.25) inset;
+  border: ($RADIUS * .05) solid $COLOR_STROKE;
+  transform: translateZ($RADIUS * 2);
+}
+
+#ball {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  display: block;
+  margin: auto;
+  width: $RADIUS * 2; height: $RADIUS * 2;
+  transform: rotateY(45deg);
+  transform-style: preserve-3d;
+}
+
+.ring {
+  display: block;
+  width: 100%; 
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transform: translateZ($RADIUS * 1.2);
+  animation: doit $DURATION infinite ease-in-out $DIRECTION; // ease-in-out is the key along with...
+}
+
+.ring:after {
+  width: 100%; 
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  background: $COLOR_1;
+  content: '';
+  transform: scale(0);
+  animation: toit $DURATION/2 infinite ease-in-out alternate;
+}
+
+.ring:nth-child(even):after { background: $COLOR_2; }
+
+@for $i from 1 through $NUM_RINGS {
+  .ring:nth-child(#{$i}),
+  .ring:nth-child(#{$i}):after{
+    animation-delay: -$DURATION / $NUM_RINGS * $i; // ... animation delay!
+  }
+}
+
+@keyframes doit { 100% { transform: translateZ(-$RADIUS * 1.15); } }
+@keyframes toit { 100% { transform: scale(1); } }
+
+*, *:after  { animation-play-state: $PLAY_STATE !important; }

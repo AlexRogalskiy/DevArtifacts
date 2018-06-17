@@ -1,0 +1,305 @@
+$silver       : #ddd;
+$red          : #EA3023;
+$purple       : #9c27b0;
+$orange       : #ff5722;
+$black        : #333;
+$green        : #91C519;
+$midnight     : #242E3A;
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+@mixin center {
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+}
+@keyframes fade-scale {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes anim-effect-sonar {
+  0% {
+    transform: scale3d(0, 0, 1);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(45deg, rgba(244,66,54,1) 0%, rgba(245,140,84,1) 30%, rgba(244,66,54,1) 100%);
+  color: $black;
+}
+
+img {
+  max-width: 100%;
+}
+
+h3 { 
+ font-weight: normal;
+}
+
+.modal {
+  opacity: 0;
+  visibility: hidden;
+  position: relative;
+  width: 800px;
+  padding-bottom: 0;
+  border-radius: 3px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  background-color: white;
+  transition: visibility 0s ease-in-out 300ms, opacity 300ms ease-in-out;
+  margin: 10% auto 0 auto;
+  @include clearfix;
+}
+
+.modal-body {
+  padding-top: 30px;
+  padding-bottom: 40px;
+  @include clearfix;
+}
+
+.modal-header {
+  text-align: center;
+}
+
+.modal-title {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.modal-label {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.modal-image {
+  width: 50%;
+  float: left;
+}
+
+.modal-info {
+  float: left;
+  width: 50%;
+}
+
+.modal-actions {
+  width: 100%;
+}
+
+.colors-list li {
+  display: inline-block; 
+  margin-right: 50px;
+  cursor: pointer;
+}
+
+.item-color {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    background: $silver;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    z-index: 99;
+  }
+  &:after {
+    content: '';
+    border: 2px solid #333;    
+    height: 50px;
+    width: 50px;
+    top: -7px;
+    left: -7px;
+    position: absolute;
+    border-radius: 50%;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.color-selected {
+  .item-color:after {
+    visibility: visible!important;
+    opacity: 1!important;
+    animation: anim-effect-sonar 250ms ease-out forwards;
+  }
+}
+
+.size-selected {
+  background: $silver;
+  transition: background 250ms ease-in-out;
+}
+
+.purple { 
+  .item-color:before {
+    background: $purple; 
+  }
+}
+
+.red { 
+  .item-color:before {
+    background: $red; 
+  }
+}
+
+.orange { 
+  .item-color:before {
+    background: $orange; 
+  }
+}
+
+.green { 
+  .item-color:before {
+    background: $green; 
+  }
+}
+
+.color {
+  position: relative;
+}
+
+.color input[type=radio] {
+  visibility: hidden;
+}
+
+.size {
+  @include clearfix;
+}
+
+.item-size {
+  float: left;
+  display: block;
+  border-right: 1px solid $silver;
+  border-top: 1px solid $silver;
+  border-bottom: 1px solid $silver;
+  padding: 3px 20px;
+  cursor: pointer;
+  &:first-child {
+    border-left: 1px solid $silver;
+  }
+}
+
+.item-price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.item-description {
+  opacity: 0.5;
+}
+
+.modal-close {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 2px;
+    width: 15px;
+    height: 2px;
+    background-color: $black;
+    transform: rotate(45deg);
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 2px;
+    width: 15px;
+    height: 2px;
+    background-color: $black;
+    transform: rotate(-45deg);
+  }
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+%button {
+  background-color: $silver;
+  border: none;
+  padding: 10px 15px;
+  color: white;
+}
+
+.button-modal {
+  background-color: white;
+  float: left;
+  color: $black;
+  border-radius: 3px;
+  @include center;
+  @extend %button;
+}
+
+.button-cart {
+  background-color: $midnight;
+  float: left;
+  width: 50%;
+  height: 50px;
+  border-bottom-left-radius: 3px;
+  @extend %button;
+}
+
+.button-wishlist {
+  float: left;
+  color: $black;
+  width: 50%;
+  height: 50px;
+  border-bottom-right-radius: 3px;
+  @extend %button;
+}
+
+.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+  animation: fade-scale 250ms ease-out;
+}
