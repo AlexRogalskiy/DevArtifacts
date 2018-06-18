@@ -1,0 +1,48 @@
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Custom Events Support - Thanks to Tushar Sonawane </title>
+
+    <!-- 2- Incluir AniCollection.css library -->
+    <link rel="stylesheet" href="https://anijs.github.io/lib/anicollection/anicollection.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    
+</head>
+
+<body>
+
+  <body>
+	<div class="question">
+		<div class="question-screen" data-anijs="if: answerSuccess, on: $Security, do: rubberBand animated, after: removeAnim">
+			<div class="app-title">
+				<h2 id="loadajax">Answer Please :)</h2>
+			</div>
+
+			<div class="question-form">
+				<div class="control-group">
+				<input type="text" class="question-field" id="questionfield" value="8 + 6 * 3 ?" placeholder="How much is 8 + 6 * 3 ?" id="question-name">
+				<label class="question-field-icon fui-user" for="question-name"></label>
+				</div>
+
+				<div class="control-group">
+				<input data-anijs="if: answerError, on: $Security, do: bad, after: removeAnim" id="answerfield" class="question-field" value="" placeholder="Answer here" id="question-pass">
+				<label class="question-field-icon fui-lock" for="question-pass"></label>
+				</div>
+
+				<a id="questionButton" data-anijs="if: animationend, on: input, do: rollOut animated, to: div.question-screen, after: removeAnim; if: click, do: pulse animated, to: .question-screen, after: removeAnim" class="btn btn-primary btn-large btn-block" href="#">Answer me!</a>
+				<a class="question-link" href="https://anijs.github.io/">Discover AniJS</a>
+			</div>
+		</div>
+	</div>
+	
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+	<script src="https://anijs.github.io/lib/anijs/anijs.js" type="text/javascript"></script>
+	<script src="https://anijs.github.io/lib/anijs/event_systems/jquery/anijs-jquery-event-system.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
+	
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang='en' class=''>
+<html>
+<title>AniJS Modal</title>
+<head>
+
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://anijs.github.io/lib/anicollection/anicollection.css" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+
+</head>
+<body>
+  
+  <!-- The example -->
+ <div class="wrap">
+   <a href="#modal-one" class="btn btn-big" data-anijs=
+      "if:click, do: $addClass open, to:.modal;
+       if: click, on: .close, do: $removeClass open, to: $closest target | .modal">
+     Click me!!
+   </a>
+ </div>
+ 
+<!-- Modal -->
+  <div class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2>Are you creative?</h2>
+        <a href="#" class="btn-close close" aria-hidden="true">x</a>
+      </div>
+      <div class="modal-body">
+        <p>You need to try <a href="https://anijs.github.io/" target="_blanck">AniJS</a>  :D</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn close">Nice!</a>
+      </div>
+    </div>
+  </div>
+<!-- /Modal -->
+  <!-- End example -->
+
+ <div class="sentences center" data-anijs="if:mouseover, do: bounce animated, to: .learn">
+   <p>
+     *
+    <span class="anijs-if anijs-reserved-word">If</span>
+    <span>click,</span>
+    <span class="anijs-on anijs-reserved-word">On</span>
+    <span>.btn-big,</span>
+    <span class="anijs-do anijs-reserved-word">Do</span>
+    <span class="do-value">$addClass open</span>
+    <span class="anijs-to anijs-reserved-word">To</span>
+    <span class="to-value">.modal</span>
+     <br><br>
+     *
+    <span class="anijs-if anijs-reserved-word">If</span>
+    <span>click,</span>
+    <span class="anijs-on anijs-reserved-word">On</span>
+    <span>.close,</span>
+    <span class="anijs-do anijs-reserved-word">Do</span>
+    <span class="do-value">$removeClass open</span>
+    <span class="anijs-to anijs-reserved-word">To</span>
+    <span class="to-value">$closest target | .modal</span>
+   </p>
+ 
+ </div> 
+  
+  
+  
+<footer>
+  <div class="pull-left margin-left">
+    <a class="pure-button primary" href="https://codepen.io/darielnoel/pen/xHpvF?editors=110" target="_blank">
+       <i class="fa fa-edit"></i> Edit
+    </a>
+    <a class="pure-button primary" href="https://codepen.io/darielnoel/share/zip/xHpvF/">
+       <i class="fa fa-download"></i> Download
+    </a>   
+  </div>
+  <span class="discover" data-anijs="if: mouseover,on: .tab-bar, do: bounceIn animated, after: $holdAnimClass" >
+    Made using            <img src="https://anijs.github.io/assets/img/favicon.png" alt="" />
+    <a href="https://anijs.github.io/" target="_blanck">AniJS</a>
+  </span>
+  <div class="pull-right margin-right">
+   <a class="pure-button primary" href="https://codepen.io/collection/DFmkq" target="_blanck">
+   <i class="fa fa-external-link"></i> More!!!
+    </a> 
+   </div>
+ </footer>
+ 
+  <div class="sticky learn">
+    <h4>
+      <i class="fa fa-mortar-board"></i>
+      Learn AniJS
+    </h4>
+    <ul>
+      <li><a href="https://github.com/anijs/anijs/wiki/Sentence-Definitions#if" target="_blanck">click</a></li>
+      <li><a href="https://github.com/anijs/anijs/wiki/Refer-to-the-current-element" target="_blanck">target</a></li>
+      <li><a href="https://github.com/anijs/anijs/wiki/Playing-with-CSS-classes" target="_blanck">$addClass</a></li>
+      <li><a href="https://github.com/anijs/anijs/wiki/Playing-with-CSS-classes" target="_blanck">$removeClass</a></li>
+      <li><a href="https://github.com/anijs/anijs/wiki/Selecting-html-elements#closest" target="_blanck">$closest</a></li>
+    </ul>  
+  </div>
+  
+
+<script src="https://anijs.github.io/lib/anijs/anijs.js"></script>
+<script src="https://anijs.github.io/lib/anijs/helpers/dom/anijs-helper-dom.js"></script>
+ </body>

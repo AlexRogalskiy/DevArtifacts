@@ -1,0 +1,124 @@
+@import "compass/css3";
+
+* {
+ @include box-sizing(border-box); 
+}
+html, body {
+  width: 100%;
+  height: 100%;
+}
+.nodes {
+  position: absolute; 
+  width: 100%;
+  height: 100%;
+  @include backface-visibility(hidden);
+}
+.labels {
+  position: absolute; 
+}
+
+.label {
+  position: absolute; 
+  padding: .5em;
+}
+
+.label-curiosity {
+  right: 0; 
+  bottom: 0;
+}
+
+.label-influence {
+  left: 0; 
+  bottom: 0;
+}
+
+.label-expertise {
+  left: 0%;
+  width: 100%;
+  text-align: center;
+}
+
+
+.node {
+  position: absolute; 
+  left: 50%;
+  top: 100%;
+  @include transform(translate(0,0));
+  text-align: center;
+  opacity: 0;
+  @include transition(.5s all ease-out);
+  width: 20px;
+  height: 20px;
+}
+
+.node:hover {
+  z-index: 999;
+}
+
+.node-shape {
+  position: absolute; 
+  @include border-radius(100%); 
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  top: -10px;
+  left: -10px;
+  @include transition(.2s all ease-out);
+  cursor: pointer;
+  font-size: .75em;
+  white-space: nowrap;
+}
+
+.node-shape:hover {
+  @include transform(scale(2));
+  color: #000;
+}
+
+
+.category-tech {
+  background: cornflowerblue;
+}
+
+.category-design {
+  background: orange;
+}
+
+.category-other {
+  background: teal;
+}
+
+
+
+.axis {
+  position: absolute; 
+  padding: .25em;
+  
+}
+.axis-x {
+  top: 100%;
+  width: 100%;
+  border-top: 1px solid #ccc;
+}
+.axis-y {
+  height: 100%;
+  width: 1px;
+  left: 50%;
+  text-align: center;
+  border-left: 1px solid #ccc;
+}
+
+
+.container {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  margin: 2rem auto;
+}
+
+.left {
+  float: left; 
+}
+
+.right {
+  float: right; 
+}
