@@ -1,0 +1,102 @@
+@import url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/library.less");
+@import url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/variables.less");
+@body: #252830;
+@whiteSmoke: #f4f4f4;
+
+body {
+	background-color: @whiteSmoke;
+	color: white;
+	font-family: "Lato";
+}
+
+.container-fluid {
+	.center;
+	width: 100%;
+	
+	@media (max-width: 530px) {
+		left: 0;
+		margin: 10px 0;
+		position: relative;
+		top: 0;
+		transform: none;
+	}
+}
+
+.blog-card {
+	background-color: white;
+	border-radius: 1px;
+	box-shadow: 0 0 2px -1px rgba(0, 0, 0, 0.75);
+	height: 450px;
+	margin: 0 auto;
+	max-width: 600px;
+	overflow: hidden;
+	
+	@media (max-width: 580px) {
+		height: 350px;
+		overflow: visible;
+	}
+}
+
+.media {
+	background-position: center;
+	background-size: cover;
+	height: 100%;
+}
+
+.card-body {
+	color: @grey;
+	height: 100%;
+	padding: 30px 20px 50px;
+	
+	@media (max-width: 530px) {
+		background-color: white;
+	}
+}
+
+.tagline {
+	font-size: 8px;
+	text-transform: uppercase;
+}
+
+.title {
+	color: @body;
+	font-family: "Playfair Display SC";
+	font-size: 30px;
+	font-weight: 400;
+}
+
+.divider {
+	background: @grey;
+	height: 2px;
+	margin: 25px auto;
+	width: 40px;
+}
+
+.paragraph {
+	font-weight: 300;
+}
+
+.read-more {
+	bottom: 25px;
+	color: @grey;
+	cursor: pointer;
+	left: 50%;
+	padding: 5px;
+	position: absolute;
+	text-decoration: none;
+	top: auto;
+	transform: translateX(-50%);
+	
+	&:hover,
+	&:focus,
+	&:visited {
+		color: @body;
+		text-decoration: none;
+	}
+}
+
+@media (max-width: 530px) {
+	.col-xs-6 {
+		width: 100%;
+	}
+}

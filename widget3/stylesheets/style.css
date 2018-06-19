@@ -1,0 +1,124 @@
+/* line 1, ../sass/style.scss */
+.container {
+  max-width: 800px;
+}
+
+/* line 5, ../sass/style.scss */
+.box {
+  background-color: white;
+  cursor: pointer;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  transition: all .3s ease;
+  z-index: 1;
+}
+/* line 14, ../sass/style.scss */
+.box .zmdi {
+  font-size: 3em;
+}
+/* line 18, ../sass/style.scss */
+.box.box-1 .ripple {
+  background-color: #7eae34;
+}
+/* line 22, ../sass/style.scss */
+.box.box-2 .ripple {
+  background-color: #10a2fe;
+}
+/* line 26, ../sass/style.scss */
+.box.box-3 .ripple {
+  background-color: #FE2929;
+}
+/* line 30, ../sass/style.scss */
+.box.box-4 .ripple {
+  background-color: #6434ae;
+}
+
+/* line 35, ../sass/style.scss */
+.toggle {
+  left: -999px;
+  opacity: 0;
+  position: absolute;
+  visibility: hidden;
+}
+/* line 41, ../sass/style.scss */
+.toggle:checked + .box {
+  color: white;
+}
+/* line 45, ../sass/style.scss */
+.toggle:checked + .box .input-helper:before {
+  background-color: transparent;
+}
+/* line 49, ../sass/style.scss */
+.toggle:checked + .box .input-helper:after {
+  transform: translateX(30px);
+}
+/* line 54, ../sass/style.scss */
+.toggle:checked + .box .ripple {
+  transform: scale(35);
+}
+
+/* line 60, ../sass/style.scss */
+.toggle-wrapper {
+  height: 24px;
+}
+
+/* line 64, ../sass/style.scss */
+.input-helper {
+  position: relative;
+}
+/* line 67, ../sass/style.scss */
+.input-helper:before {
+  background-color: #F2F3F4;
+  border: 1px solid white;
+  border-radius: 20px;
+  box-shadow: inset 0px 0px 5px -2px black;
+  content: "";
+  height: 30px;
+  position: absolute;
+  width: 60px;
+}
+/* line 77, ../sass/style.scss */
+.input-helper:after {
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  content: "";
+  height: 24px;
+  margin: 3px;
+  position: absolute;
+  transition: all 0.5s ease;
+  transform: translateX(0);
+  width: 24px;
+}
+
+/* line 91, ../sass/style.scss */
+.ripple {
+  border-radius: 50%;
+  height: 24px;
+  margin: 3px;
+  position: absolute;
+  transform: scale(1);
+  transition: all 0.5s ease;
+  width: 24px;
+  z-index: -1;
+}
+
+/* line 103, ../sass/style.scss */
+* {
+  user-select: none;
+}
+
+/* line 107, ../sass/style.scss */
+body {
+  background-color: #252830;
+  color: #303030;
+  font-family: 'Montserrat', 'Helvetica Neue', 'Arial';
+  font-size: 20px;
+}
+
+/* line 114, ../sass/style.scss */
+label {
+  display: block;
+  margin: 0;
+}

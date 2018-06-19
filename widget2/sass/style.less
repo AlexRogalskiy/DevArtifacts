@@ -1,0 +1,82 @@
+@import url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/library.less");
+@import url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/variables.less");
+@body: #252830;
+@green: #36caa7;
+
+body {
+	background-color: @green;
+	color: white;
+	font-family: "Lato";
+}
+
+.container-fluid {
+	.center;
+	width: 100%;
+}
+
+.customer-card {
+	background-color: white;
+	border-radius: 4px;
+	box-shadow: 1px 1px 3px -1px rgba(0, 0, 0, 0.5);
+	color: @grey;
+	height: 230px;
+	margin: 0 auto;
+	width: 460px;
+}
+
+.card-body {
+	letter-spacing: 0.9px;
+	padding: 25px;
+	position: relative;
+}
+
+.approved {
+	border-radius: 50%;
+	background-color: @green;
+	border: 3px solid white;
+	height: 40px;
+	position: absolute;
+	left: 0;
+	transform: translateX(-50%);
+	width: 40px;
+	z-index: 1;
+	
+	&:before {
+		.center;
+		color: white;
+		content: "\e013";
+		font-family: "Glyphicons Halflings";
+		font-size: 13px;
+	}
+}
+
+.customer-name {
+	color: @body;
+	font-size: 24px;
+}
+
+.category {
+	font-size: 12px;
+	font-weight: 700;
+	margin: 5px 0 20px;
+	.value {
+		color: @green;
+	}
+	
+	.key {
+		margin-left: 4px;
+		text-transform: uppercase;
+	}
+}
+
+.customer-info li + li {
+	margin-top: 3px;
+}
+
+.media {
+	background-position: center;
+	background-size: cover;
+	border-bottom-left-radius: 4px;
+	border-top-left-radius: 4px;
+	height: 100%;
+}
