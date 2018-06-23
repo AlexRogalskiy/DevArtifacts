@@ -1,0 +1,78 @@
+$dot-color: #C5EFF7;
+$dot-size: 22px;
+$dots-step: 28px;
+
+$animation-time: .7s;
+
+body {
+	background: #253645;
+}
+
+.dots {
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}
+
+.dot {
+	width: 0;
+	height: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	&:before,
+	&:after {
+		content: '';
+		width: $dot-size;
+		height: $dot-size;
+		border-radius: 50px;
+		background: $dot-color;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-($dots-step / 2));
+		margin-left: -($dot-size/2);
+		margin-top: -($dot-size/2);
+	}
+
+	&:after {
+		transform: translateX($dots-step / 2);
+	}
+
+	@for $i from 0 to 2 {
+
+		@keyframes dots-move-#{$i} {
+			0% {
+				transform: translateX(($i*2 - 1) * $dots-step / 2) rotate(0deg + $i* 180deg);
+			}
+
+			50%, 100% {
+				transform: translateX(($i*2 - 1) * $dots-step / 2) rotate(($i*2-1) * -180deg + $i* 180deg);
+			}
+		}
+
+		@keyframes dots-visibility-#{$i} {
+			0% {
+				visibility: visible;
+			}
+
+			50%, 100% {
+				visibility: hidden;
+			}
+		}
+
+		&:nth-child(#{$i + 1}) {
+			transform: translateX(($i*2 - 1) * $dots-step / 2) rotate(0deg);
+			animation: dots-move-#{$i} $animation-time -#{$i * $animation-time / 2} ease-in infinite;
+
+			&:before {
+				animation: dots-visibility-#{$i} $animation-time -#{$i * $animation-time / 2} infinite;
+			}
+		}
+	}
+}

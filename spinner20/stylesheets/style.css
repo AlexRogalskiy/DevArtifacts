@@ -1,0 +1,92 @@
+/* line 7, ../sass/style.scss */
+body {
+  background: #253645;
+}
+
+/* line 11, ../sass/style.scss */
+.dots {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+/* line 22, ../sass/style.scss */
+.dot {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+/* line 29, ../sass/style.scss */
+.dot:before, .dot:after {
+  content: '';
+  width: 22px;
+  height: 22px;
+  border-radius: 50px;
+  background: #C5EFF7;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-14px);
+  margin-left: -11px;
+  margin-top: -11px;
+}
+/* line 43, ../sass/style.scss */
+.dot:after {
+  transform: translateX(14px);
+}
+@keyframes dots-move-0 {
+  0% {
+    transform: translateX(-14px) rotate(0deg);
+  }
+  50%, 100% {
+    transform: translateX(-14px) rotate(180deg);
+  }
+}
+@keyframes dots-visibility-0 {
+  0% {
+    visibility: visible;
+  }
+  50%, 100% {
+    visibility: hidden;
+  }
+}
+/* line 69, ../sass/style.scss */
+.dot:nth-child(1) {
+  transform: translateX(-14px) rotate(0deg);
+  animation: dots-move-0 0.7s -0s ease-in infinite;
+}
+/* line 73, ../sass/style.scss */
+.dot:nth-child(1):before {
+  animation: dots-visibility-0 0.7s -0s infinite;
+}
+@keyframes dots-move-1 {
+  0% {
+    transform: translateX(14px) rotate(180deg);
+  }
+  50%, 100% {
+    transform: translateX(14px) rotate(0deg);
+  }
+}
+@keyframes dots-visibility-1 {
+  0% {
+    visibility: visible;
+  }
+  50%, 100% {
+    visibility: hidden;
+  }
+}
+/* line 69, ../sass/style.scss */
+.dot:nth-child(2) {
+  transform: translateX(14px) rotate(0deg);
+  animation: dots-move-1 0.7s -0.35s ease-in infinite;
+}
+/* line 73, ../sass/style.scss */
+.dot:nth-child(2):before {
+  animation: dots-visibility-1 0.7s -0.35s infinite;
+}
