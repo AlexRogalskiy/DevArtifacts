@@ -1,0 +1,467 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$clrPagesDark: #F3F1E5;
+$clrPagedLight: linear-gradient(to top, #F8EBE3 0%, #FFFFFF 100%);
+body {
+  height: 100vh;
+  background-image: linear-gradient(to left bottom, #F2E3C6 0%, #A7A1A5 100%);
+  overflow: hidden;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.stuff {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  text-align: center;
+  .pens {
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #333;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .fa-twitter {
+    position: relative;
+    top: 8px;
+    color: #1DA1F2;
+    font-size: 50px;
+  }
+}
+
+@mixin pseudo {
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+@mixin mediaMaxW($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+.brochure {
+  display: flex;
+  position: absolute;
+  left: 100px;
+  right: 0;
+  bottom: 0;
+  top: -200px;
+  margin: auto;
+  justify-content: center;
+  height: 250px;
+  width: 1280px;
+  perspective: 2000px;
+  @include mediaMaxW(1228px) {
+    width: 960px;
+  }
+  ////////////// Pages ////////////////
+  &__pages {
+    position: relative;
+    height: 250px;
+    width: calc(100% / 6);
+    overflow: hidden;
+    &--page1 {
+      transform: rotateY(-30deg);
+      background-image: linear-gradient(to right top, #7A302B 0%, #A74131 84%);
+      box-shadow: 0 0 2px rgba(0,0,0,.1);
+      z-index: 10;
+      .page1-logo {
+        position: relative;
+        margin: 30px 0 0 20px;
+        width: 35px;
+        height: 35px;
+        border: 8px solid #191919;
+        &:after {
+          @include pseudo;
+          top: -15px;
+          right: -8px;
+          width: 8px;
+          height: 22px;
+          background-color: #CFCDC3;
+        }
+        &:before {
+          @include pseudo;
+          top: -8px;
+          right: -15px;
+          width: 22px;
+          height: 8px;
+          background-color: #CFCDC3;
+        }
+      }
+      .page1-heading {
+        margin: 15px 0 0 20px;
+        text-transform: uppercase;
+        color: #afafaf;
+        font: {
+          size: 7px;
+        }
+      }
+      .page1-text {
+        margin: 3px 20px;
+        text-transform: uppercase;
+        color: #afafaf;
+        font: {
+          size: 4px;
+        }
+      }
+      .page1-footer {
+        margin: 125px 0 0 20px;
+        text-transform: uppercase;
+        color: #afafaf;
+        font: {
+          size: 4px;
+        }
+      }
+    }
+    &--page2 {
+      transform: rotateY(30deg);
+      left: -2.20%;
+      background-image: $clrPagedLight;
+      box-shadow: -110px 65px 180px -38px rgba(0, 0, 0, 0.5), 25px 40px 180px -38px rgba(0, 0, 0, 0.5), 160px 20px 180px -38px rgba(0, 0, 0, 0.5);
+      @include mediaMaxW(1228px) {
+        box-shadow: -100px 50px 180px -38px rgba(0, 0, 0, 1), 25px 40px 180px -38px rgba(0, 0, 0, 0.5), 160px 20px 180px -38px rgba(0, 0, 0, 0.5);
+      }
+      .page2-heading {
+        margin: 20px 0 0 20px;
+        text-transform: uppercase;
+        color: #afafaf;
+        font: {
+          size: 7px;
+        }
+      }
+      &:after {
+        @include pseudo;
+        top: 0;
+        right: -43px;
+        bottom: -108px;
+        transform: skew(-20deg);
+        height: 170px;
+        width: 75px;
+        background-color: rgba(0, 0, 0, .2);
+        transition: .55s;
+      }
+      &:before {
+        @include pseudo;
+        bottom: 0px;
+        right: -12px;
+        height: 80px;
+        width: 75px;
+        background-color: rgba(0, 0, 0, .2);
+        box-shadow: -2px 3px 3px 0px rgba(0, 0, 0, .2);
+        transition: .55s;
+      }
+    }
+    &--page3 {
+      background-color: $clrPagesDark;
+      left: -4.5%;
+      transform: rotateY(-30deg);
+      box-shadow: 80px 51px 215px -38px rgba(0, 0, 0, 0.75);
+      overflow: initial;
+      &:after {
+        @include pseudo;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, .15);
+        box-shadow: -3px 0px 5px -2px rgba(0, 0, 0, 0.2), inset 3px 0px 5px -2px rgba(0, 0, 0, 0.2);
+      }
+    }
+    &--page4 {
+      @extend .brochure__pages--page2;
+      box-shadow: 0 0 2px rgba(0,0,0,.1);
+      left: -6.80%;
+      z-index: 1;
+    }
+    &--page5 {
+      left: -9.05%;
+      transform: translate3d(0, 0, 0);
+      transform: rotateY(-30deg);
+      background-color: $clrPagesDark;
+      box-shadow: -100px 65px 75px -38px rgba(188, 180, 173, .5);
+      overflow: initial;
+      &:after {
+        @include pseudo;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, .15);
+        box-shadow: -3px 0px 5px -2px rgba(0, 0, 0, 0.2), inset 3px 0px 5px -2px rgba(0, 0, 0, 0.2);
+      }
+    }
+    &--page6 {
+      left: -11.3%;
+      transform: rotateY(30deg);
+      background-image: linear-gradient(to right top, #C46041 18%, #FF8059 65%);
+      box-shadow: -100px 40px 215px -38px rgba(0, 0, 0, 0.75);
+      overflow: initial;
+      z-index: -3;
+      .page6-heading {
+        margin: 20px 0 0 20px;
+        text-transform: uppercase;
+        color: #fff;
+        font: {
+          size: 7px;
+        }
+      }
+      .page6-text {
+        margin: 20px 20px;
+        text-transform: uppercase;
+        color: #fff;
+        font: {
+          size: 4px;
+        }
+      }
+      .page6-text-footer {
+        margin: 5px 20px;
+        text-transform: uppercase;
+        color: #fff;
+        font: {
+          size: 4px;
+        }
+      }
+      .page6-logo {
+        position: relative;
+        margin: 135px 0 0 20px;
+        width: 10px;
+        height: 10px;
+        border: 3px solid #191919;
+        &:after {
+          @include pseudo;
+          top: -6px;
+          right: -3px;
+          width: 3px;
+          height: 9px;
+          background-color: #fff;
+        }
+        &:before {
+          @include pseudo;
+          top: -3px;
+          right: -7px;
+          width: 11px;
+          height: 3px;
+          background-color: #fff;
+        }
+      }
+    }
+  }
+  ////////////// Icons ///////////////
+
+  .icons {
+    margin-top: 5px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+  .page3-icons,
+  .page4-icons,
+  .page5-icons {
+    margin-top: 35px;
+  }
+  
+  .fa {
+    margin-top: 20px;
+    width: 30%;
+    font-size: 20px;
+  }
+  .fa-envira {
+    color: #41db81;
+  }
+  .fa-wpbeginner {
+    color: #fd583f;
+  }
+  .fa-sign-language {
+    color: #48d1cc;
+  }
+  .fa-glide-g {
+    color: #ff95da;
+  }
+  .fa-braille {
+    color: #98a1a5;
+  }
+  .fa-briefcase {
+    color: #a20932;
+  }
+  .fa-camera-retro {
+    color: #70321b;
+  }
+  .fa-cubes,
+  .fa-motorcycle {
+    color: #373e36;
+  }
+  .fa-heartbeat {
+    color: #fd583f;
+  }
+  .fa-toggle-off {
+    color: #192fda;
+  }
+  .fa-tree {
+    color: #055910;
+  }
+  .fa-page3,
+  .fa-page5 {
+    color: #333;
+  }
+  //////////////// Shadows //////////////  
+  &__bg-shadows {
+    .shadow-edge {
+      position: absolute;
+      top: 320px;
+      right: -112px;
+      transform: rotate(-19.9deg);
+      width: 560px;
+      height: 1px;
+      background-color: rgba(164, 156, 151, 1);
+      box-shadow: 0 0 8px 5px rgba(164, 156, 151, 1);
+      z-index: -99999;
+    }
+  }
+  &__bg-shadows:first-child {
+    position: absolute;
+    top: 25px;
+    left: 10%;
+    height: 225px;
+    width: 260px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 200px 10px rgba(0, 0, 0, 0.65);
+    z-index: -9999;
+    transition: .67s;
+    .shadow-wrapper--1 {
+      top: 100px;
+      right: 125px;
+      height: 275px;
+      width: 500px;
+      overflow: initial;
+      .shadow {
+        box-shadow: -50px 20px 75px 0px #A49C97;
+        &:after {
+          @include pseudo;
+          top: -65px;
+          right: 225px;
+          transform: skewY(20deg) rotate(-38deg);
+          width: 300px;
+          height: 150px;
+          background: rgb(164, 156, 151);
+          box-shadow: -50px -35px 100px 0px rgb(164, 156, 151), -80px -60px 30px -60px rgb(164, 156, 151);
+          @include mediaMaxW(1228px) {
+            top: -80px;
+            right: 170px;
+            transform: skewY(20deg) rotate(-29deg);
+            height: 94px;
+            width: 300px;
+          }
+        }
+        @include mediaMaxW(1228px) {
+          top: 0px;
+          left: 0;
+          right: 0;
+          height: 240px;
+        }
+      }
+    }
+    .shadow-edge {
+      top: 310px;
+      transform: rotate(-19deg);
+      width: 600px;
+      @include mediaMaxW(1228px) {
+        top: 272px;
+      }
+    }
+    .shadow-edge:last-child {
+      top: 32px;
+      right: 345px;
+      width: 150px;
+      transform: rotate(-38deg);
+      @include mediaMaxW(1228px) {
+        top: 58px;
+        right: 320px;
+        transform: rotate(-28deg);
+        width: 315px;
+      }
+    }
+  }
+  &__bg-shadows:nth-child(2) {
+    position: absolute;
+    top: 20px;
+    left: 37%;
+    height: 225px;
+    width: 225px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 200px 10px rgba(0, 0, 0, .55);
+    z-index: -9998;
+    .shadow-wrapper--2 {
+      right: -50px;
+      box-shadow: 150px 140px 120px -100px rgba(142, 135, 129, 1);
+      overflow: hidden;
+      @include mediaMaxW(1228px) {
+        top: 69px;
+        right: 20px;
+        width: 480px;
+      }
+    }
+    .shadow-edge {
+      top: 316px;
+      right: -75px;
+      transform: rotate(-19.9deg);
+      box-shadow: 0 0 8px 5px rgba(164, 156, 151, .75);
+      @include mediaMaxW(1228px) {
+        top: 290px;
+      }
+    }
+  }
+  &__bg-shadows:nth-child(3) {
+    position: absolute;
+    top: 20px;
+    left: 61%;
+    height: 225px;
+    width: 225px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 200px 10px rgba(0, 0, 0, .4);
+    z-index: -9997;
+    transition: .67s;
+    .shadow-edge {
+      @include mediaMaxW(1228px) {
+        top: 298px;
+        right: -27px;
+        transform: rotate(-20deg);
+        width: 420px;
+      }
+    }
+    .shadow-wrapper {
+      overflow: hidden;
+      @include mediaMaxW(1228px) {
+        top: 66px;
+      }
+    }
+  }
+  .shadow-wrapper {
+    position: absolute;
+    top: 88px;
+    right: -102px;
+    transform: skewY(-20deg);
+    height: 244px;
+    width: 580px;
+    .shadow {
+      position: absolute;
+      left: 70px;
+      height: 100%;
+      width: 100%;
+      background: #A49C97;
+      box-shadow: -40px 30px 50px 1px rgb(164, 156, 151);
+    }
+    @include mediaMaxW(1228px) {
+      top: 68px;
+      right: -22px;
+      width: 450px;
+    }
+  }
+}
