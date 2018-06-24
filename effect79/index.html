@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Effect Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="floating" height="0" width="0">
+  <filter id="colormatrix" filterUnits="userSpaceOnUse" x="0" y="0" width="500" height="800">
+    <feGaussianBlur stdDeviation="20" />
+    <feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="cutoff" />
+    <feComposite operator="atop" in="SourceGraphic" in2="cutoff" />
+  </filter>
+  <filter id="component-linear" filterUnits="userSpaceOnUse" x="0" y="0" width="500" height="800">
+    <feGaussianBlur stdDeviation="20" />
+    <feComponentTransfer result="cutoff">
+      <feFuncA type="linear" slope="19" intercept="-9" />
+    </feComponentTransfer>
+    <feComposite operator="atop" in="SourceG forraphic" in2="cutoff" />
+  </filter>
+  <filter id="component-discrete" filterUnits="userSpaceOnUse" x="0" y="0" width="500" height="800">
+    <feGaussianBlur stdDeviation="20" />
+    <feComponentTransfer>
+      <feFuncA type="discrete" tableValues="0 1" />
+    </feComponentTransfer>
+    <feGaussianBlur id="post-blur" stdDeviation="1" result="cutoff" />
+    <feComposite operator="atop" in="SourceGraphic" in2="cutoff" />
+  </filter>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="floating example" viewBox="0 0 500 800">
+  <g class="goo fcd">
+    <circle class="primitive" r="100" cx="150" cy="400" fill="#ff0000" />
+    <circle class="primitive" r="100" cx="350" cy="400" fill="#00ff00" />
+    <rect class="primitive move" x="170" y="70" width="160" height="160" fill="#0000ff" />
+  </g>
+</svg>
+
+<div class="floating example hide">
+<div class="goo fcd">
+  <div class="primitive" style="background:#ff0000;left:50px;top:300px"></div>
+  <div class="primitive" style="background:#00ff00;right:50px;top:300px"></div>
+  <div class="primitive move" style="background:#0000ff;left:170px;top:70px"></div>
+</div>
+</div>
+
+<div id="controls">
+  <p>Filtered Objects
+  <input name="variant" id="svg" type="radio" checked="checked"></input><label>SVG primitives</label>
+  <input name="variant" id="div" type="radio"></input><label>HTML divs</label></p>
+
+  <p><input id="color" type="checkbox"></input>
+  <label>Set black and white</label></p>
+
+  <p><label>Blur value</label><br/>
+  <input id="deviation" type="range" min="5" max="50" step="5" value="20"></input>
+  <span id="devNum">20</span></p>
+
+  <p><label>Cutoff Filter</label><br/>
+  <select id="filter-select">
+    <option value="fcd" selected="selected">Component/discrete</option>
+    <option value="fcl">Component/linear</option>
+    <option value="fmx">ColorMatrix</option>
+  </select></p>
+
+  <p id="blur-select"><input type="checkbox" checked="checked"></input>
+  <label>Post-Blur for discrete</label></p>
+
+  <p id="linear-select"><label>slope</label> <input id="slope" type="number" min="2" step="1" value="19"></input>
+  <label>intercept</label> <input id="intercept" type="number" min="-18" max="0" step="1" value="-9"></input> for linear
+  <svg id="vis" width="100" height="20">
+    <rect x="0.5" y="0.5" width="99" height="19" />
+    <line x1="50" y1="20" x2="50" y2="0" style="stroke:red;opacity:0.7" />
+    <line id="visSlope" x1="50" y1="20" x2="50" y2="0" />
+  </svg></p>
+
+  <p><label>Combining Filter</label><br/>
+  <select id="combine-select">
+    <option value="atop" selected="selected">Composite atop</option>
+    <option value="over">Composite over</option>
+    <option value="blend">Blend normal</option>
+    <option value="merge">Merge</option>
+    <option value="none">none</option>
+  </select></p>
+</div>
+
+<pre></pre>
+
+
+<script src="https://d3js.org/d3.v4.min.js" type="text/javascript"></script>
+<script src="js/script.js" type="text/javascript"></script>
+
+</body>
+<!--  footer -->
+</html>
