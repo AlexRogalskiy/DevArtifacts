@@ -1,0 +1,409 @@
+*{
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+body{
+	font-family: 'Love Ya Like A Sister', cursive;
+	background: #111;
+}
+a{
+	text-decoration: none;
+}
+input{
+	display: none;
+}
+footer, header{
+	width: 100%;
+	display: inline-block;
+	float: left;
+	text-align: center;
+	color: #fff;
+}
+footer{
+	margin-top: 10%;
+}
+header{
+	text-transform: uppercase;
+	padding: 2% 0;
+	font-size: 3em;
+}
+header b{
+	color: #F76F6F;
+}
+
+.wrapper{
+	position: absolute;
+	width: 50.01%;
+	height: 60%;
+	margin: 10% 25%;
+	border: 2px solid #000;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-o-user-select:none;
+	user-select:none;
+}
+.sideleft{
+	display: inline-block;
+	float: left;
+	width: 20%;
+	height: 100%;
+	background: #333;
+		-webkit-transform: translate3d(0,0,0);
+}
+.vertical{
+	width: 90%;
+	height: 86%;
+	margin: 0 5%;
+	overflow: hidden;
+}
+.vslide{
+	display: inline-block;
+	float: left;
+	height: 100%;
+	width: 100%;
+	background: #333;
+	-webkit-transform: translateZ(0);
+}
+.up, .down{
+	display: inline-block;
+	float: left;
+	display: none;
+	width: 100%;
+	height: 7%;
+	cursor: pointer;
+}
+.up{
+	background: #333 url(http://s003.radikal.ru/i203/1311/e2/83418699f309.png) 50% 50% no-repeat;
+	background-size: 50%;
+}
+.down{
+	background: #333 url(http://s017.radikal.ru/i405/1311/b9/ad8657f014b8.png) 50% 50% no-repeat;
+	background-size: 50%;
+}
+.up:hover{
+	background-color: rgba(0,0,0,.4);
+}
+.down:hover{
+	background-color: rgba(0,0,0,.4);
+}
+.vslide label{
+	display: inline-block;
+	float: left;
+	width: 100%;
+	height: 50%;
+	cursor: pointer;
+}
+.vslide.one label:first-child{
+	background: url(https://cdn1.iconfinder.com/data/icons/ballicons-free/128/imac.png) 50% 50% no-repeat;
+	background-size: 75%;
+}
+.vslide.one label:last-child{
+	background: url(https://cdn1.iconfinder.com/data/icons/ballicons-free/128/joypad.png) 50% 50% no-repeat;
+	background-size: 75%;
+}
+.vslide.two label:first-child{
+	background: url(https://cdn1.iconfinder.com/data/icons/ballicons-free/128/speakers.png) 50% 50% no-repeat;
+	background-size: 75%;
+}
+.vslide.two label:last-child{
+	background: url(https://cdn1.iconfinder.com/data/icons/ballicons-free/128/package.png) 50% 50% no-repeat;
+	background-size: 75%;
+}
+.vslide.three label:first-child{
+	background: url(https://cdn1.iconfinder.com/data/icons/ballicons-free/128/clock.png) 50% 50% no-repeat;
+	background-size: 75%;
+}
+.vslide.three label:last-child{
+	background: url(https://cdn1.iconfinder.com/data/icons/ballicons-free/128/diamond.png) 50% 50% no-repeat;
+	background-size: 75%;
+}
+.vslide label:nth-child(n):hover{
+	background-color: rgba(204,204,204,.2);
+}
+.cont, .cont1, .cont2, .cont3, .cont4, .cont5{
+	display: none;
+	float: left;
+	width: 80%;
+	height: 100%;
+	overflow: hidden;
+}
+.image img{
+	width: 25%;
+	height: 100%;
+	display: inline-block;
+	float: left;
+}
+.image{
+	display: block;
+	width: 400%;
+	height: 100%;
+}
+.but {
+	position: relative;
+	width: 100%;
+	height: 20px;
+	margin-top: -21px;
+	float: left;
+	text-align: center;
+	z-index: 100;
+}
+.select_but{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	background: rgba(0,0,0,.8);
+	z-index: 5;
+}
+.select_but > div{
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	background: #fff;
+	margin: 3px;
+	display: none;
+}
+.select_but:hover{
+	background: rgba(255,255,255,.6);
+	cursor: pointer;
+}
+
+/*SLIDE MANAGE*/
+.lefts, .rights{
+	position: absolute;
+	width: 5%;
+	height: 100%;
+}
+.rights{
+	right: 0;
+	top: 0;
+}
+.right, .left{
+	width: 100%;
+	height: 100%;
+    display: inline-block;
+    float: left;
+    background: rgba(255,255,255,.4);
+	cursor: pointer;
+}
+.left p{
+	width: 100%;
+	height: 100%;
+	background: url(https://cdn1.iconfinder.com/data/icons/brightmix/128/monotone_arrow_left_small.png) 50% 50% no-repeat;
+	background-size: 100%;
+}
+.right p{
+	width: 100%;
+	height: 100%;
+	background: url(https://cdn1.iconfinder.com/data/icons/brightmix/128/monotone_arrow_right.png) 50% 50% no-repeat;
+	background-size: 100%;
+}
+.right:hover{
+	background-color: rgba(0,0,0,.2);
+	-webkit-animation: anim-right ease .3s;
+	animation: anim-right ease .5s;
+}
+.left:hover{
+	background-color: rgba(0,0,0,.2);
+	-webkit-animation: anim-left ease .5s;
+	animation: anim-left ease .5s;
+}
+.int{
+	display: none;
+}
+#one:checked ~ .wrapper .sideleft label:nth-child(2){
+	display: block;
+}
+#one:checked ~ .wrapper .sideleft label:nth-child(6){
+	display: block;
+}
+
+#two:checked ~ .wrapper .sideleft .vertical .vslide{
+	-webkit-transform: translateY(-200%) translateZ(0);
+	transform: translateY(-200%);
+}
+#two:checked ~ .wrapper .sideleft label:nth-child(3){
+	display: block;
+}
+#two:checked ~ .wrapper .sideleft label:nth-child(8){
+	display: block;
+}
+
+#three:checked ~ .wrapper .sideleft .vertical .vslide{
+	-webkit-transform: translateY(-100%) translateZ(0);
+	transform: translateY(-100%);
+}
+#three:checked ~ .wrapper .sideleft label:nth-child(1){
+	display: block;
+}
+#three:checked ~ .wrapper .sideleft label:nth-child(7){
+	display: block;
+}
+
+
+#firstslider:checked ~ .wrapper .cont{
+	display: inline-block;
+}
+#firstslider:checked ~ .wrapper .sideleft .vertical .one label:first-child{
+	background-color: rgba(204,204,204,.6);
+}
+#secondslider:checked ~ .wrapper .cont1{
+	display: inline-block;
+}
+#secondslider:checked ~ .wrapper .sideleft .vertical .one label:last-child{
+	background-color: rgba(204,204,204,.6);
+}
+#threeslider:checked ~ .wrapper .cont2{
+	display: inline-block;
+}
+#threeslider:checked ~ .wrapper .sideleft .vertical .two label:first-child{
+	background-color: rgba(204,204,204,.6);
+}
+#fourslider:checked ~ .wrapper .cont3{
+	display: inline-block;
+}
+#fourslider:checked ~ .wrapper .sideleft .vertical .two label:last-child{
+	background-color: rgba(204,204,204,.6);
+}
+#fiveslider:checked ~ .wrapper .cont4{
+	display: inline-block;
+}
+#fiveslider:checked ~ .wrapper .sideleft .vertical .three label:first-child{
+	background-color: rgba(204,204,204,.6);
+}
+#sixslider:checked ~ .wrapper .cont5{
+	display: inline-block;
+}
+#sixslider:checked ~ .wrapper .sideleft .vertical .three label:last-child{
+	background-color: rgba(204,204,204,.6);
+}
+
+/*INPUT MANAGE&PAGINATION CHECKED*/
+#slide1:checked ~ .wrapper .cont .but .select1 > div{display: block;}
+#slide1:checked ~ .wrapper .manage_one{display: inline-block;}
+
+#slide2:checked ~ .wrapper .cont .image{ margin-left:-100%;}
+#slide2:checked ~ .wrapper .manage_two{display: inline-block;}
+#slide2:checked ~ .wrapper .cont .but .select2 > div{display: block;}
+
+#slide3:checked ~ .wrapper .cont .image{ margin-left:-200%;}
+#slide3:checked ~ .wrapper .manage_tre{display: inline-block;}
+#slide3:checked ~ .wrapper .cont .but .select3 > div{display: block;}
+
+#slide4:checked ~ .wrapper .cont .image{ margin-left:-300%;}
+#slide4:checked ~ .wrapper .manage_for{display: inline-block;}
+#slide4:checked ~ .wrapper .cont .but .select4 > div{display: block;}
+
+
+#slide1:checked ~ .wrapper .cont1 .but .select1 > div{display: block;}
+#slide1:checked ~ .wrapper .manage_one{display: inline-block;}
+
+#slide2:checked ~ .wrapper .cont1 .image{ margin-left:-100%;}
+#slide2:checked ~ .wrapper .manage_two{display: inline-block;}
+#slide2:checked ~ .wrapper .cont1 .but .select2 > div{display: block;}
+
+#slide3:checked ~ .wrapper .cont1 .image{ margin-left:-200%;}
+#slide3:checked ~ .wrapper .manage_tre{display: inline-block;}
+#slide3:checked ~ .wrapper .cont1 .but .select3 > div{display: block;}
+
+#slide4:checked ~ .wrapper .cont1 .image{ margin-left:-300%;}
+#slide4:checked ~ .wrapper .manage_for{display: inline-block;}
+#slide4:checked ~ .wrapper .cont1 .but .select4 > div{display: block;}
+
+
+#slide1:checked ~ .wrapper .cont2 .but .select1 > div{display: block;}
+#slide1:checked ~ .wrapper .manage_one{display: inline-block;}
+
+#slide2:checked ~ .wrapper .cont2 .image{ margin-left:-100%;}
+#slide2:checked ~ .wrapper .manage_two{display: inline-block;}
+#slide2:checked ~ .wrapper .cont2 .but .select2 > div{display: block;}
+
+#slide3:checked ~ .wrapper .cont2 .image{ margin-left:-200%;}
+#slide3:checked ~ .wrapper .manage_tre{display: inline-block;}
+#slide3:checked ~ .wrapper .cont2 .but .select3 > div{display: block;}
+
+#slide4:checked ~ .wrapper .cont2 .image{ margin-left:-300%;}
+#slide4:checked ~ .wrapper .manage_for{display: inline-block;}
+#slide4:checked ~ .wrapper .cont2 .but .select4 > div{display: block;}
+
+
+#slide1:checked ~ .wrapper .cont3 .but .select1 > div{display: block;}
+#slide1:checked ~ .wrapper .manage_one{display: inline-block;}
+
+#slide2:checked ~ .wrapper .cont3 .image{ margin-left:-100%;}
+#slide2:checked ~ .wrapper .manage_two{display: inline-block;}
+#slide2:checked ~ .wrapper .cont3 .but .select2 > div{display: block;}
+
+#slide3:checked ~ .wrapper .cont3 .image{ margin-left:-200%;}
+#slide3:checked ~ .wrapper .manage_tre{display: inline-block;}
+#slide3:checked ~ .wrapper .cont3 .but .select3 > div{display: block;}
+
+#slide4:checked ~ .wrapper .cont3 .image{ margin-left:-300%;}
+#slide4:checked ~ .wrapper .manage_for{display: inline-block;}
+#slide4:checked ~ .wrapper .cont3 .but .select4 > div{display: block;}
+
+
+#slide1:checked ~ .wrapper .cont4 .but .select1 > div{display: block;}
+#slide1:checked ~ .wrapper .manage_one{display: inline-block;}
+
+#slide2:checked ~ .wrapper .cont4 .image{ margin-left:-100%;}
+#slide2:checked ~ .wrapper .manage_two{display: inline-block;}
+#slide2:checked ~ .wrapper .cont4 .but .select2 > div{display: block;}
+
+#slide3:checked ~ .wrapper .cont4 .image{ margin-left:-200%;}
+#slide3:checked ~ .wrapper .manage_tre{display: inline-block;}
+#slide3:checked ~ .wrapper .cont4 .but .select3 > div{display: block;}
+
+#slide4:checked ~ .wrapper .cont4 .image{ margin-left:-300%;}
+#slide4:checked ~ .wrapper .manage_for{display: inline-block;}
+#slide4:checked ~ .wrapper .cont4 .but .select4 > div{display: block;}
+
+
+#slide1:checked ~ .wrapper .cont5 .but .select1 > div{display: block;}
+#slide1:checked ~ .wrapper .manage_one{display: inline-block;}
+
+#slide2:checked ~ .wrapper .cont5 .image{ margin-left:-100%;}
+#slide2:checked ~ .wrapper .manage_two{display: inline-block;}
+#slide2:checked ~ .wrapper .cont5 .but .select2 > div{display: block;}
+
+#slide3:checked ~ .wrapper .cont5 .image{ margin-left:-200%;}
+#slide3:checked ~ .wrapper .manage_tre{display: inline-block;}
+#slide3:checked ~ .wrapper .cont5 .but .select3 > div{display: block;}
+
+#slide4:checked ~ .wrapper .cont5 .image{ margin-left:-300%;}
+#slide4:checked ~ .wrapper .manage_for{display: inline-block;}
+#slide4:checked ~ .wrapper .cont5 .but .select4 > div{display: block;}
+
+.vslide, .image, .vslide label:nth-child(n), .left, .right, .up, .down, .select_but{
+	-webkit-transition: all 300ms ease-in-out;
+   	-moz-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
+@media screen and (max-width: 880px) {
+	header{
+		font-size: 2em;
+	}
+}
+@media screen and (max-width: 600px) {
+	header{
+		font-size: .9em;
+		font-weight: bolder;
+	}
+}
+@media screen and (max-width: 430px) {
+	.select_but{
+		width: 10px;
+		height: 10px;
+		border-radius: 5px;
+	}
+	.select_but > div{
+		width: 6px;
+		height: 6px;
+		border-radius: 3px;
+		margin: 2px;
+	}
+}

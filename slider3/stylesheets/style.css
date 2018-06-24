@@ -1,0 +1,1059 @@
+/* line 1, ../sass/style.scss */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* line 6, ../sass/style.scss */
+body {
+  background-color: #333;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* line 13, ../sass/style.scss */
+input {
+  display: none;
+}
+
+/* line 16, ../sass/style.scss */
+h1 {
+  margin: 10px auto;
+  text-align: center;
+  font-family: 'Boogaloo', cursive;
+  font-size: 3em;
+  color: #fff;
+  text-shadow: 3px 3px 0px #196597;
+}
+
+/* line 24, ../sass/style.scss */
+p {
+  font-family: Calibri;
+  text-align: center;
+  font-size: .8em;
+}
+
+/* line 29, ../sass/style.scss */
+a {
+  color: #FC8570;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* line 34, ../sass/style.scss */
+strong {
+  color: #FFE000;
+}
+
+/* line 38, ../sass/style.scss */
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 42, ../sass/style.scss */
+.brain {
+  text-align: center;
+  margin: 0 auto;
+}
+
+/*CONTAINER*/
+/* line 47, ../sass/style.scss */
+.cont {
+  margin: 20px auto;
+  display: block;
+  width: 60%;
+  height: 40%;
+  border: solid 2px #e0e0e0;
+  overflow: hidden;
+}
+
+/* line 56, ../sass/style.scss */
+img {
+  width: 25%;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  display: inline-block;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 66, ../sass/style.scss */
+.image {
+  display: block;
+  width: 400%;
+  height: 40%;
+}
+
+/*BUTTON PLAY&STOP*/
+/* line 73, ../sass/style.scss */
+.menu {
+  position: absolute;
+  width: 94px;
+  height: 30px;
+  margin: 2px;
+  z-index: 1;
+}
+
+/* line 80, ../sass/style.scss */
+.tooltip {
+  width: 80px;
+  height: 40px;
+  margin-top: -34px;
+  margin-left: -94px;
+  display: inline-block;
+  float: left;
+  border-radius: 2px;
+  background: #fff;
+  z-index: -10;
+  opacity: .8;
+  -webkit-animation: tool ease-in 6s;
+  -webkit-animation-fill-mode: forwards;
+  animation: tool ease-in 6s;
+  animation-fill-mode: forwards;
+}
+
+/* line 96, ../sass/style.scss */
+.tooltip > p {
+  font-size: 1em;
+  font-weight: bolder;
+  color: #F00;
+}
+
+/* line 101, ../sass/style.scss */
+.tooltip:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-left: 10px solid #fff;
+  border-bottom: 5px solid transparent;
+  margin: -24px 40px;
+}
+
+/* line 111, ../sass/style.scss */
+.hideStop, .hidePlay, .hidePause {
+  width: 30px;
+  height: 30px;
+  margin-top: -30px;
+  border-radius: 15px;
+  display: inline-block;
+  float: left;
+  z-index: 999;
+  opacity: .3;
+}
+
+/* line 121, ../sass/style.scss */
+.hideStop {
+  background: transparent url(https://cdn3.iconfinder.com/data/icons/eightyshades/512/24_Stop-48.png) 0 0 no-repeat;
+  background-size: 100%;
+  visibility: hidden;
+}
+
+/* line 126, ../sass/style.scss */
+.hidePlay {
+  margin-left: 32px;
+  background: transparent url(https://cdn3.iconfinder.com/data/icons/eightyshades/512/23_Play-48.png) 0 0 no-repeat;
+  background-size: 100%;
+  visibility: hidden;
+}
+
+/* line 132, ../sass/style.scss */
+.hidePause {
+  margin-left: 64px;
+  background: transparent url(https://cdn3.iconfinder.com/data/icons/eightyshades/512/25_Pause-48.png) 0 0 no-repeat;
+  background-size: 100%;
+}
+
+/* line 138, ../sass/style.scss */
+.butPlay, .butStop, .butPause {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  z-index: 2;
+  margin-left: 2px;
+  background: rgba(75, 78, 67, 0.6);
+  display: inline-block;
+  float: left;
+}
+
+/* line 148, ../sass/style.scss */
+.butPlay {
+  background: transparent url(https://cdn3.iconfinder.com/data/icons/eightyshades/512/23_Play-48.png) 0 0 no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+}
+
+/* line 153, ../sass/style.scss */
+.butStop {
+  margin-left: 0;
+  background: transparent url(https://cdn3.iconfinder.com/data/icons/eightyshades/512/24_Stop-48.png) 0 0 no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+}
+
+/* line 159, ../sass/style.scss */
+.butPause {
+  background: transparent url(https://cdn3.iconfinder.com/data/icons/eightyshades/512/25_Pause-48.png) 0 0 no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+}
+
+/* line 164, ../sass/style.scss */
+.butPlay:hover {
+  background: transparent url(http://s45.radikal.ru/i109/1310/98/4834faaaa287.png) 0 0 no-repeat;
+  background-size: 100%;
+}
+
+/* line 168, ../sass/style.scss */
+.butStop:hover {
+  background: transparent url(http://i021.radikal.ru/1310/2f/d8b2c38314ff.png) 0 0 no-repeat;
+  background-size: 100%;
+}
+
+/* line 172, ../sass/style.scss */
+.butPause:hover {
+  background: transparent url(http://s019.radikal.ru/i621/1310/ed/b9bfce7c1a1a.png) 0 0 no-repeat;
+  background-size: 100%;
+}
+
+/*BOTTOM LINE*/
+/* line 177, ../sass/style.scss */
+.aline {
+  position: absolute;
+  visibility: hidden;
+  width: 60%;
+  height: 10px;
+}
+
+/* line 183, ../sass/style.scss */
+.line {
+  position: absolute;
+  height: 10px;
+  background: #222;
+  opacity: .3;
+  z-index: 1;
+}
+
+/* line 190, ../sass/style.scss */
+.aline > .bord {
+  display: inline-block;
+  float: left;
+  width: 25%;
+  height: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* line 197, ../sass/style.scss */
+.bord > span {
+  width: 2px;
+  height: 10px;
+  display: inline-block;
+  float: right;
+  background-color: #e0e0e0;
+}
+
+/* line 204, ../sass/style.scss */
+.bord:last-child > span {
+  width: 0;
+  height: 0;
+}
+
+/*PAGGINATION*/
+/* line 210, ../sass/style.scss */
+.but {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  margin-top: -21px;
+  float: left;
+  text-align: center;
+  z-index: 100;
+}
+
+/* line 219, ../sass/style.scss */
+.select_but {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 5;
+}
+
+/* line 227, ../sass/style.scss */
+.select_but > div {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: #fff;
+  margin: 3px;
+  display: none;
+}
+
+/* line 235, ../sass/style.scss */
+.select_but:hover {
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+/*SLIDE MANAGE*/
+/* line 241, ../sass/style.scss */
+.right, .left {
+  width: 64px;
+  height: 64px;
+  margin-top: 15%;
+  display: inline-block;
+  opacity: .9;
+  cursor: pointer;
+}
+
+/* line 249, ../sass/style.scss */
+.left {
+  background: #ccc url(http://heartofgloucestercounty.org/wp-content/uploads/2013/12/leftarrow.png) 0 0 no-repeat;
+  background-size: 100%;
+  border-radius: 32px;
+  margin-left: 12%;
+  float: left;
+}
+
+/* line 256, ../sass/style.scss */
+.right {
+  background: #ccc url(http://heartofgloucestercounty.org/wp-content/uploads/2013/12/monotone_arrow_right.png) 0 0 no-repeat;
+  background-size: 100%;
+  border-radius: 32px;
+  margin-right: 12%;
+  float: right;
+}
+
+/* line 263, ../sass/style.scss */
+.right:hover {
+  background-color: #68D9EE;
+  -webkit-animation: anim-right ease .3s;
+  animation: anim-right ease .5s;
+}
+
+/* line 268, ../sass/style.scss */
+.left:hover {
+  background-color: #68D9EE;
+  -webkit-animation: anim-left ease .5s;
+  animation: anim-left ease .5s;
+}
+
+/* line 273, ../sass/style.scss */
+.int {
+  display: none;
+}
+
+/*FOOTER*/
+/* line 278, ../sass/style.scss */
+.browser {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+/* line 284, ../sass/style.scss */
+.icon {
+  display: inline-block;
+}
+
+/* line 287, ../sass/style.scss */
+.icon > img {
+  width: 48px;
+  height: 48px;
+  margin: 10px 10px;
+}
+
+/* line 292, ../sass/style.scss */
+footer > p {
+  color: #fff;
+}
+
+/* line 295, ../sass/style.scss */
+.icon > p {
+  display: inline-block;
+  float: left;
+  font-size: 1.2em;
+  margin: 22px 0;
+}
+
+/*INPUT PLAY&STOP&PAUSE CHECKED*/
+/* line 303, ../sass/style.scss */
+#play:checked ~ .brain .cont .menu {
+  margin-top: 16px;
+}
+
+/* line 306, ../sass/style.scss */
+#play:checked ~ .brain .cont .menu .hidePause {
+  visibility: hidden;
+}
+
+/* line 309, ../sass/style.scss */
+#play:checked ~ .brain .cont .menu .butPlay {
+  visibility: hidden;
+}
+
+/* line 312, ../sass/style.scss */
+#play:checked ~ .brain .cont .menu .hidePlay {
+  visibility: visible;
+}
+
+/* line 315, ../sass/style.scss */
+#play:checked ~ .brain .cont .aline {
+  visibility: visible;
+}
+
+/* line 318, ../sass/style.scss */
+#play:checked ~ .brain .cont .but .select_but > div {
+  display: block;
+}
+
+/* line 321, ../sass/style.scss */
+#play:checked ~ .brain .cont .aline .line {
+  -webkit-animation: linew 16s ease-out infinite;
+  animation: linew 16s ease-out infinite;
+}
+
+/* line 325, ../sass/style.scss */
+#play:checked ~ .brain .cont .image {
+  -webkit-animation: alls 16s linear infinite;
+  animation: alls 16s linear infinite;
+}
+
+/* line 329, ../sass/style.scss */
+#play:checked ~ .brain .cont .but .select1 > div {
+  -webkit-animation: sel1 16s linear infinite;
+  animation: sel1 16s linear infinite;
+}
+
+/* line 333, ../sass/style.scss */
+#play:checked ~ .brain .cont .but .select2 > div {
+  -webkit-animation: sel2 16s linear infinite;
+  animation: sel2 16s linear infinite;
+}
+
+/* line 337, ../sass/style.scss */
+#play:checked ~ .brain .cont .but .select3 > div {
+  -webkit-animation: sel3 16s linear infinite;
+  animation: sel3 16s linear infinite;
+}
+
+/* line 341, ../sass/style.scss */
+#play:checked ~ .brain .cont .but .select4 > div {
+  -webkit-animation: sel4 16s linear infinite;
+  animation: sel4 16s linear infinite;
+}
+
+/* line 346, ../sass/style.scss */
+#stop:checked ~ .brain .cont .menu .butPause {
+  visibility: hidden;
+}
+
+/* line 349, ../sass/style.scss */
+#stop:checked ~ .brain .cont .menu .butStop {
+  visibility: hidden;
+}
+
+/* line 352, ../sass/style.scss */
+#stop:checked ~ .brain .cont .menu .hideStop {
+  visibility: visible;
+}
+
+/*#stop:checked ~ .brain .cont .aline .line{
+	width: 0px;
+	-webkit-animation:none;
+	animation:none;
+}*/
+/* line 360, ../sass/style.scss */
+#pause:checked ~ .brain .cont .menu .butPause {
+  visibility: hidden;
+}
+
+/* line 363, ../sass/style.scss */
+#pause:checked ~ .brain .cont .but .select_but > div {
+  display: block;
+}
+
+/* line 366, ../sass/style.scss */
+#pause:checked ~ .brain .cont .aline {
+  visibility: visible;
+}
+
+/* line 369, ../sass/style.scss */
+#pause:checked ~ .brain .cont .menu {
+  margin-top: 16px;
+}
+
+/* line 372, ../sass/style.scss */
+#pause:checked ~ .brain .cont .line {
+  -webkit-animation: linew 16s linear infinite;
+  animation: linew 16s linear infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+/* line 378, ../sass/style.scss */
+#pause:checked ~ .brain .cont .image {
+  -webkit-animation: alls 16s linear infinite;
+  animation: alls 16s linear infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+/* line 384, ../sass/style.scss */
+#pause:checked ~ .brain .cont .but .select1 > div {
+  -webkit-animation: sel1 16s linear infinite;
+  animation: sel1 16s linear infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+/* line 390, ../sass/style.scss */
+#pause:checked ~ .brain .cont .but .select2 > div {
+  -webkit-animation: sel2 16s linear infinite;
+  animation: sel2 16s linear infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+/* line 396, ../sass/style.scss */
+#pause:checked ~ .brain .cont .but .select3 > div {
+  -webkit-animation: sel3 16s linear infinite;
+  animation: sel3 16s linear infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+/* line 402, ../sass/style.scss */
+#pause:checked ~ .brain .cont .but .select4 > div {
+  -webkit-animation: sel4 16s linear infinite;
+  animation: sel4 16s linear infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+/*INPUT MANAGE&PAGINATION CHECKED*/
+/* line 409, ../sass/style.scss */
+#slide1:checked ~ .brain .cont .but .select1 > div {
+  display: block;
+}
+
+/* line 410, ../sass/style.scss */
+#slide1:checked ~ .brain .manage_one {
+  display: inline-block;
+}
+
+/* line 412, ../sass/style.scss */
+#slide2:checked ~ .brain .cont .image {
+  margin-left: -100%;
+}
+
+/* line 413, ../sass/style.scss */
+#slide2:checked ~ .brain .manage_two {
+  display: inline-block;
+}
+
+/* line 414, ../sass/style.scss */
+#slide2:checked ~ .brain .cont .but .select2 > div {
+  display: block;
+}
+
+/* line 416, ../sass/style.scss */
+#slide3:checked ~ .brain .cont .image {
+  margin-left: -200%;
+}
+
+/* line 417, ../sass/style.scss */
+#slide3:checked ~ .brain .manage_tre {
+  display: inline-block;
+}
+
+/* line 418, ../sass/style.scss */
+#slide3:checked ~ .brain .cont .but .select3 > div {
+  display: block;
+}
+
+/* line 420, ../sass/style.scss */
+#slide4:checked ~ .brain .cont .image {
+  margin-left: -300%;
+}
+
+/* line 421, ../sass/style.scss */
+#slide4:checked ~ .brain .manage_for {
+  display: inline-block;
+}
+
+/* line 422, ../sass/style.scss */
+#slide4:checked ~ .brain .cont .but .select4 > div {
+  display: block;
+}
+
+/*ANIMATION*/
+/*ANIMATION TOOLTIP*/
+@-webkit-keyframes tool {
+  0% {
+    opacity: 0;
+    margin-left: -400%;
+  }
+  15% {
+    opacity: .8;
+    margin-left: -94px;
+  }
+  17% {
+    margin-left: -126px;
+  }
+  19% {
+    margin-left: -94px;
+  }
+  21% {
+    margin-left: -104px;
+  }
+  23% {
+    margin-left: -94px;
+  }
+  95% {
+    opacity: .8;
+  }
+  100% {
+    opacity: .0;
+    margin-left: -94px;
+    visibility: hidden;
+  }
+}
+@keyframes tool {
+  0% {
+    opacity: 0;
+    margin-left: -400%;
+  }
+  15% {
+    opacity: .8;
+    margin-left: -94px;
+  }
+  17% {
+    margin-left: -126px;
+  }
+  19% {
+    margin-left: -94px;
+  }
+  21% {
+    margin-left: -104px;
+  }
+  23% {
+    margin-left: -94px;
+  }
+  95% {
+    opacity: .8;
+  }
+  100% {
+    opacity: .0;
+    margin-left: -94px;
+    visibility: hidden;
+  }
+}
+/*ANIMATION SLIDE&LINE*/
+@-webkit-keyframes linew {
+  0% {
+    width: 0px;
+  }
+  25% {
+    width: 25%;
+  }
+  50% {
+    width: 50%;
+  }
+  75% {
+    width: 75%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-webkit-keyframes alls {
+  0% {
+    margin-left: 0px;
+  }
+  23% {
+    margin-left: 0px;
+    -webkit-filter: blur(0px);
+  }
+  24% {
+    -webkit-filter: blur(10px);
+  }
+  25% {
+    margin-left: -100%;
+    -webkit-filter: blur(0px);
+  }
+  48% {
+    margin-left: -100%;
+    -webkit-filter: blur(0px);
+  }
+  49% {
+    -webkit-filter: blur(10px);
+  }
+  50% {
+    margin-left: -200%;
+    -webkit-filter: blur(0px);
+  }
+  73% {
+    margin-left: -200%;
+    -webkit-filter: blur(0px);
+  }
+  74% {
+    -webkit-filter: blur(10px);
+  }
+  75% {
+    margin-left: -300%;
+    -webkit-filter: blur(0px);
+  }
+  98% {
+    margin-left: -300%;
+    -webkit-filter: blur(0px);
+  }
+  99% {
+    -webkit-filter: blur(10px);
+  }
+  100% {
+    margin-left: 0px;
+    -webkit-filter: blur(0px);
+  }
+}
+/*ANIMATION PAGINATION*/
+@-webkit-keyframes sel1 {
+  0% {
+    opacity: 1;
+  }
+  24.9% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes sel2 {
+  0% {
+    opacity: 0;
+  }
+  24.9% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  49.9% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes sel3 {
+  0% {
+    opacity: 0;
+  }
+  49.9% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  74.9% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes sel4 {
+  0% {
+    opacity: 0;
+  }
+  74.9% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  99.9% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/*ANIMATION MANAGE*/
+@-webkit-keyframes anim-right {
+  0% {
+    background-position: 0px 0px;
+  }
+  49.9% {
+    background-position: 64px 0px;
+  }
+  50% {
+    display: none;
+    background-position: -64px;
+  }
+  50.1% {
+    background-position: -64px;
+  }
+  100% {
+    background-position: 0px 0px;
+  }
+}
+@-webkit-keyframes anim-left {
+  0% {
+    background-position: 0px 0px;
+  }
+  49.9% {
+    background-position: -64px 0px;
+  }
+  50% {
+    display: none;
+    background-position: 64px;
+  }
+  50.1% {
+    background-position: 64px;
+  }
+  100% {
+    background-position: 0px 0px;
+  }
+}
+@keyframes linew {
+  0% {
+    width: 0px;
+  }
+  25% {
+    width: 25%;
+  }
+  50% {
+    width: 50%;
+  }
+  75% {
+    width: 75%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes alls {
+  0% {
+    margin-left: 0px;
+  }
+  23% {
+    margin-left: 0px;
+  }
+  25% {
+    margin-left: -100%;
+  }
+  48% {
+    margin-left: -100%;
+  }
+  50% {
+    margin-left: -200%;
+  }
+  73% {
+    margin-left: -200%;
+  }
+  75% {
+    margin-left: -300%;
+  }
+  98% {
+    margin-left: -300%;
+  }
+  100% {
+    margin-left: 0px;
+  }
+}
+@keyframes sel1 {
+  0% {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+  }
+  24.9% {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes sel2 {
+  0% {
+    opacity: 0;
+  }
+  24.9% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+  }
+  49.9% {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes sel3 {
+  0% {
+    opacity: 0;
+  }
+  49.9% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+  }
+  74.9% {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes sel4 {
+  0% {
+    opacity: 0;
+  }
+  74.9% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+  }
+  99.9% {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes anim-right {
+  0% {
+    background-position: 0px 0px;
+  }
+  49.9% {
+    background-position: 64px 0px;
+  }
+  50% {
+    display: none;
+    background-position: -64px;
+  }
+  50.1% {
+    background-position: -64px;
+  }
+  100% {
+    background-position: 0px 0px;
+  }
+}
+@keyframes anim-left {
+  0% {
+    background-position: 0px 0px;
+  }
+  49.9% {
+    background-position: -64px 0px;
+  }
+  50% {
+    display: none;
+    background-position: 64px;
+  }
+  50.1% {
+    background-position: 64px;
+  }
+  100% {
+    background-position: 0px 0px;
+  }
+}
+/*TRANSITION*/
+/* line 577, ../sass/style.scss */
+.image, .menu {
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -ms-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+/* line 584, ../sass/style.scss */
+.int {
+  -webkit-transition: background-color 300ms ease-in-out;
+  -moz-transition: background-color 300ms ease-in-out;
+  -ms-transition: background-color 300ms ease-in-out;
+  -o-transition: background-color 300ms ease-in-out;
+  transition: background-color 300ms ease-in-out;
+}
+
+@media screen and (max-width: 900px) {
+  /* line 592, ../sass/style.scss */
+  .right, .left {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media screen and (max-width: 700px) {
+  /* line 598, ../sass/style.scss */
+  .right, .left {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media screen and (max-width: 430px) {
+  /* line 604, ../sass/style.scss */
+  .right, .left {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* line 608, ../sass/style.scss */
+  .icon > img {
+    width: 34px;
+    height: 34px;
+  }
+}
