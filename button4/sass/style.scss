@@ -1,0 +1,73 @@
+@import "compass/css3";
+
+$seafoam : rgb(30,205,151);
+$white : white;
+$gray : rgb(200,200,200);
+
+body {
+  text-align:center;
+}
+
+.center-component {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+
+button.colins-submit {
+  background:transparent;
+  border:none;
+  &.is-active {
+    cursor:default;
+  }
+  &:focus {
+    outline: none; 
+  }
+  &::-moz-focus-inner {
+    border: 0;
+  }
+  
+  //RESTING STATE
+  svg {
+    text {
+      font-family: 'Montserrat', sans-serif;
+      &.textNode {
+        fill:$seafoam;
+      }
+      &.checkNode {
+        fill-opacity:0;
+      }
+    }
+    rect {
+      &.btn-shape {
+        &.btn-bg {
+          stroke:$gray;
+          fill:$white;
+        }
+        &.btn-color {
+          stroke:$seafoam;
+          fill:$white;
+          stroke-dasharray:453;//Magic number :/
+          stroke-dashoffset:0;
+        }
+      }
+    }
+  }
+}
+
+p {
+  font-family: Montserrat, sans-serif;
+  color: #575757;
+  font-size: 1rem;
+  max-width:330px;
+  a {
+    color:$seafoam;
+    &:hover, &:active{
+      color:saturate($seafoam, 20%);      
+    }
+    &:visited {
+      color:desaturate($seafoam, 20%);   
+    }
+  }
+}
