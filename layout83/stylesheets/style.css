@@ -1,0 +1,365 @@
+/* line 3, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 10, ../sass/style.scss */
+html, body {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+/* line 14, ../sass/style.scss */
+button, input {
+  border: 0;
+  outline: none;
+}
+
+/* line 18, ../sass/style.scss */
+body {
+  background: linear-gradient(45deg, #636f85, #6960a0);
+}
+
+/* line 21, ../sass/style.scss */
+.demo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -25rem;
+  margin-left: -15rem;
+  width: 30rem;
+  height: 50rem;
+  box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.3);
+}
+
+/* line 31, ../sass/style.scss */
+.static {
+  height: 100%;
+  font-size: 1.8rem;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  background: #6D7ADA;
+}
+/* line 37, ../sass/style.scss */
+.static:before, .static:after {
+  content: "";
+  position: absolute;
+  left: 7rem;
+  width: 2rem;
+  height: 2rem;
+  margin-left: -1rem;
+  margin-top: -1rem;
+  border: 2px solid #fff;
+  border-left: none;
+  border-bottom: none;
+  transform: rotate(45deg);
+  animation: arrows 1.5s infinite;
+}
+/* line 52, ../sass/style.scss */
+.static:before {
+  top: 15rem;
+}
+/* line 55, ../sass/style.scss */
+.static:after {
+  top: 35rem;
+}
+/* line 59, ../sass/style.scss */
+.static__text {
+  width: 9rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -5rem;
+  transform: translate3d(0, -50%, 0);
+  color: #fff;
+  perspective: 1px;
+  backface-visibility: hidden;
+}
+
+/* line 71, ../sass/style.scss */
+.sidebar-content {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 100%;
+  padding-top: 1rem;
+  opacity: 0;
+  transition: opacity 200ms, z-index 0s 0s;
+  background-color: #E9EAF3;
+  overflow: hidden;
+}
+/* line 84, ../sass/style.scss */
+.sidebar-content.active {
+  z-index: 2;
+  opacity: 1;
+}
+
+/* line 89, ../sass/style.scss */
+.contact {
+  position: relative;
+  width: 100%;
+  height: 5rem;
+  padding-left: 1.7rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+/* line 99, ../sass/style.scss */
+.contact__photo {
+  border-radius: 50%;
+  margin-right: 1.5rem;
+}
+/* line 103, ../sass/style.scss */
+.contact__name {
+  font-size: 1.2rem;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+/* line 107, ../sass/style.scss */
+.contact__status {
+  position: absolute;
+  top: 2.1rem;
+  right: 1.5rem;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #00B570;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+/* line 118, ../sass/style.scss */
+.contact__status.online {
+  opacity: 1;
+}
+
+/* line 123, ../sass/style.scss */
+.search {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5.5rem;
+  padding-left: 1.5rem;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+
+/* line 134, ../sass/style.scss */
+svg {
+  overflow: visible;
+}
+
+/* line 137, ../sass/style.scss */
+.sidebar {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 146, ../sass/style.scss */
+.s-path {
+  cursor: grab;
+}
+
+/* line 149, ../sass/style.scss */
+.cloned {
+  position: absolute;
+  z-index: 10;
+  transition: top 0.3s, left 0.3s;
+  transition-delay: 0.2s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+/* line 156, ../sass/style.scss */
+.cloned.removed {
+  transition: opacity 0.2s 0;
+  opacity: 0;
+}
+
+/* line 161, ../sass/style.scss */
+.chat {
+  display: none;
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2.5rem 0 5.5rem 2.5rem;
+  transition: opacity 200ms;
+  opacity: 0;
+}
+/* line 173, ../sass/style.scss */
+.chat.active {
+  opacity: 1;
+}
+/* line 176, ../sass/style.scss */
+.chat.active:before {
+  width: 100%;
+}
+/* line 181, ../sass/style.scss */
+.chat:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.5rem;
+  background: #1CC6AE;
+  width: 0;
+  transition: width 0.2s;
+}
+/* line 193, ../sass/style.scss */
+.chat__back {
+  position: relative;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.5rem;
+  margin-left: -0.6rem;
+  cursor: pointer;
+}
+/* line 202, ../sass/style.scss */
+.chat__back:hover:before {
+  transform: translateX(-0.3rem) rotate(-45deg);
+}
+/* line 206, ../sass/style.scss */
+.chat__back:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0.4rem;
+  left: 0.6rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid #545675;
+  border-right: none;
+  border-bottom: none;
+  transform: rotate(-45deg);
+  transition: transform 0.3s;
+}
+/* line 221, ../sass/style.scss */
+.chat__status {
+  position: absolute;
+  top: 2rem;
+  right: 6.5rem;
+  font-size: 1.2rem;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  color: #B1A9A9;
+}
+/* line 230, ../sass/style.scss */
+.chat__person {
+  display: inline-block;
+  position: absolute;
+  top: 3rem;
+  right: 6.5rem;
+  font-size: 2rem;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  color: #36343D;
+}
+/* line 239, ../sass/style.scss */
+.chat__online {
+  position: absolute;
+  top: 50%;
+  left: -1.5rem;
+  margin-top: -3px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #00B570;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+/* line 251, ../sass/style.scss */
+.chat__online.active {
+  opacity: 1;
+}
+/* line 255, ../sass/style.scss */
+.chat__messages {
+  position: absolute;
+  top: 7.5rem;
+  left: 2.5rem;
+  width: 27.5rem;
+  height: 37rem;
+  padding-right: 2.5rem;
+  overflow-y: auto;
+}
+/* line 264, ../sass/style.scss */
+.chat__msgRow {
+  margin-bottom: 0.5rem;
+}
+/* line 267, ../sass/style.scss */
+.chat__msgRow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 273, ../sass/style.scss */
+.chat__message {
+  display: inline-block;
+  max-width: 60%;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+/* line 280, ../sass/style.scss */
+.chat__message.mine {
+  color: #2B2342;
+  border: 1px solid #DFDFDF;
+}
+/* line 284, ../sass/style.scss */
+.chat__message.notMine {
+  float: right;
+  color: #23244E;
+  background: #E9EAF3;
+}
+/* line 290, ../sass/style.scss */
+.chat__input {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5.5rem;
+  padding: 1rem 1rem 1rem 4rem;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/elastic-search.png");
+  background-repeat: no-repeat;
+  background-position: 1rem 1.5rem;
+  background-color: #E9EAF3;
+  color: #2B2342;
+  font-size: 1.4rem;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+/* line 306, ../sass/style.scss */
+.ripple {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  margin-left: -5rem;
+  margin-top: -5rem;
+  background: rgba(0, 0, 0, 0.4);
+  transform: scale(0);
+  animation: animRipple 0.3s;
+  border-radius: 50%;
+}
+
+@keyframes animRipple {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+@keyframes arrows {
+  to {
+    transform: translateX(100%) rotate(45deg);
+    opacity: 0;
+  }
+}

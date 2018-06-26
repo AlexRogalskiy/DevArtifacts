@@ -1,0 +1,1119 @@
+/* line 1, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 7, ../sass/style.scss */
+body {
+  background: #222;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+/* line 19, ../sass/style.scss */
+.card__text__heading, .card__sender__heading {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #B5B5B5;
+}
+
+/* line 25, ../sass/style.scss */
+.phone {
+  position: relative;
+  width: 423px;
+  height: 879px;
+  margin: 2rem auto 2rem;
+  padding: 106px 24px;
+  background-color: #f8f8f8;
+  border-radius: 56px;
+}
+@media (max-width: 480px) {
+  /* line 25, ../sass/style.scss */
+  .phone {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+}
+/* line 43, ../sass/style.scss */
+.phone__screen {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #525A75;
+}
+/* line 51, ../sass/style.scss */
+.phone__scroll-cont {
+  overflow-y: auto;
+  position: absolute;
+  left: 0;
+  top: -21px;
+  width: calc(100% + 15px);
+  height: calc(100% + 42px);
+  padding: 21px 0;
+}
+@media (max-width: 480px) {
+  /* line 51, ../sass/style.scss */
+  .phone__scroll-cont {
+    width: 100%;
+    height: 100%;
+  }
+}
+/* line 66, ../sass/style.scss */
+.phone__content {
+  position: relative;
+  padding-top: 30px;
+}
+
+/* line 124, ../sass/style.scss */
+.card {
+  z-index: 1;
+  position: relative;
+  width: 90%;
+  height: 160px;
+  margin-left: 18px;
+  margin-bottom: 15px;
+  perspective: 2000px;
+  transition: margin 0.4s 0.1s;
+}
+/* line 134, ../sass/style.scss */
+.card.active {
+  transition: margin 0.4s;
+}
+/* line 138, ../sass/style.scss */
+.card.flip-step1 {
+  margin-bottom: 175px;
+}
+/* line 142, ../sass/style.scss */
+.card.flip-step2 {
+  margin-bottom: 245px;
+}
+/* line 146, ../sass/style.scss */
+.card.flip-step3 {
+  margin-bottom: 330px;
+}
+/* line 150, ../sass/style.scss */
+.card.req-active1 {
+  transition: margin 0.6s cubic-bezier(0.77, 0.03, 0.83, 0.67);
+  margin-bottom: 55px;
+}
+/* line 155, ../sass/style.scss */
+.card.req-active2 {
+  transition: margin 0.6s cubic-bezier(0.31, 0.14, 0.48, 1.52);
+  margin-bottom: 477px;
+}
+/* line 160, ../sass/style.scss */
+.card.req-closing1 {
+  transition: margin 0.5s;
+  margin-bottom: 175px;
+}
+/* line 165, ../sass/style.scss */
+.card.req-closing2 {
+  transition: margin 0.5s;
+  margin-bottom: 15px;
+}
+/* line 171, ../sass/style.scss */
+.card.hidden-hack .card__part-2 > .m--front {
+  display: none;
+}
+/* line 176, ../sass/style.scss */
+.card.no-transition {
+  transition: all 0s 0s !important;
+}
+/* line 179, ../sass/style.scss */
+.card.no-transition * {
+  transition: all 0s 0s !important;
+}
+/* line 105, ../sass/style.scss */
+.card.theme-purple .card__face__colored-side {
+  background: #BA68C8;
+}
+/* line 108, ../sass/style.scss */
+.card.theme-purple .card__face__path {
+  background: repeating-linear-gradient(#BA68C8, #BA68C8 3px, transparent 3px, transparent 6px);
+  border-color: #BA68C8;
+}
+/* line 112, ../sass/style.scss */
+.card.theme-purple .card__header {
+  background: #BA68C8;
+}
+/* line 115, ../sass/style.scss */
+.card.theme-purple .card__sender__rating__star {
+  color: #BA68C8;
+}
+/* line 118, ../sass/style.scss */
+.card.theme-purple .card__path-big {
+  background: repeating-linear-gradient(#BA68C8, #BA68C8 3px, transparent 3px, transparent 6px);
+  border-color: #BA68C8;
+}
+/* line 105, ../sass/style.scss */
+.card.theme-green .card__face__colored-side {
+  background: #52A43A;
+}
+/* line 108, ../sass/style.scss */
+.card.theme-green .card__face__path {
+  background: repeating-linear-gradient(#52A43A, #52A43A 3px, transparent 3px, transparent 6px);
+  border-color: #52A43A;
+}
+/* line 112, ../sass/style.scss */
+.card.theme-green .card__header {
+  background: #52A43A;
+}
+/* line 115, ../sass/style.scss */
+.card.theme-green .card__sender__rating__star {
+  color: #52A43A;
+}
+/* line 118, ../sass/style.scss */
+.card.theme-green .card__path-big {
+  background: repeating-linear-gradient(#52A43A, #52A43A 3px, transparent 3px, transparent 6px);
+  border-color: #52A43A;
+}
+/* line 105, ../sass/style.scss */
+.card.theme-orange .card__face__colored-side {
+  background: #F7AA17;
+}
+/* line 108, ../sass/style.scss */
+.card.theme-orange .card__face__path {
+  background: repeating-linear-gradient(#F7AA17, #F7AA17 3px, transparent 3px, transparent 6px);
+  border-color: #F7AA17;
+}
+/* line 112, ../sass/style.scss */
+.card.theme-orange .card__header {
+  background: #F7AA17;
+}
+/* line 115, ../sass/style.scss */
+.card.theme-orange .card__sender__rating__star {
+  color: #F7AA17;
+}
+/* line 118, ../sass/style.scss */
+.card.theme-orange .card__path-big {
+  background: repeating-linear-gradient(#F7AA17, #F7AA17 3px, transparent 3px, transparent 6px);
+  border-color: #F7AA17;
+}
+/* line 105, ../sass/style.scss */
+.card.theme-red .card__face__colored-side {
+  background: #EF5350;
+}
+/* line 108, ../sass/style.scss */
+.card.theme-red .card__face__path {
+  background: repeating-linear-gradient(#EF5350, #EF5350 3px, transparent 3px, transparent 6px);
+  border-color: #EF5350;
+}
+/* line 112, ../sass/style.scss */
+.card.theme-red .card__header {
+  background: #EF5350;
+}
+/* line 115, ../sass/style.scss */
+.card.theme-red .card__sender__rating__star {
+  color: #EF5350;
+}
+/* line 118, ../sass/style.scss */
+.card.theme-red .card__path-big {
+  background: repeating-linear-gradient(#EF5350, #EF5350 3px, transparent 3px, transparent 6px);
+  border-color: #EF5350;
+}
+/* line 197, ../sass/style.scss */
+.card__part {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-radius: 11px;
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+}
+/* line 206, ../sass/style.scss */
+.card__part__side {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: #fff;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+/* line 218, ../sass/style.scss */
+.card__part__side.m--back {
+  transform: rotateX(180deg);
+}
+/* line 221, ../sass/style.scss */
+.card__part__side.m--front {
+  background: #fff;
+}
+/* line 226, ../sass/style.scss */
+.card__part-1 {
+  top: 0;
+  height: 100%;
+  transition: all 0.25s;
+  transform: translateZ(-3px);
+}
+/* line 232, ../sass/style.scss */
+.card.flip-step1 .card__part-1 {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  transform: translateZ(0);
+}
+/* line 238, ../sass/style.scss */
+.card.req-closing2 .card__part-1 {
+  border-radius: 11px;
+}
+/* line 243, ../sass/style.scss */
+.card__part-2 {
+  z-index: 6;
+  top: 100%;
+  height: 100%;
+  transform: rotateX(179deg) translateZ(3px);
+  transition: transform 0.5s ease-out, border-radius 0.25s;
+}
+/* line 250, ../sass/style.scss */
+.card__part-2 > .m--back {
+  overflow: hidden;
+  cursor: pointer;
+}
+/* line 255, ../sass/style.scss */
+.card.flip-step1 .card__part-2 {
+  transform: translateZ(0);
+  border-radius: 0;
+}
+/* line 260, ../sass/style.scss */
+.card.req-active1 .card__part-2 {
+  transition: transform 0.6s;
+  transform: translate3d(0, -120px, 0);
+}
+/* line 265, ../sass/style.scss */
+.card.req-active2 .card__part-2 {
+  transition: transform 0.6s cubic-bezier(0.61, 0.14, 0.18, 1.52);
+  transform: translate3d(0, 140px, 0);
+}
+/* line 270, ../sass/style.scss */
+.card.req-closing1 .card__part-2 {
+  transition: transform 0.5s;
+  transform: translate3d(0, 0, 0);
+}
+/* line 275, ../sass/style.scss */
+.card.req-closing2 .card__part-2 {
+  transition: transform, border-radius;
+  transition-duration: 0.5s;
+  transform: rotateX(179deg) translateZ(3px);
+  border-radius: 11px;
+}
+/* line 283, ../sass/style.scss */
+.card__part-3 {
+  top: 100%;
+  height: 70px;
+  transform: rotateX(179deg) translateZ(-3px);
+  transition: transform 0.5s, border-radius 0s 0.5s;
+}
+/* line 289, ../sass/style.scss */
+.card__part-3 > .m--back {
+  background: #F7EFF7;
+}
+/* line 293, ../sass/style.scss */
+.card.flip-step2 .card__part-3 {
+  transition: transform 0.5s, border-radius 0s 0s;
+  border-radius: 0;
+  transform: translateZ(0);
+}
+/* line 299, ../sass/style.scss */
+.card.req-active1 .card__part-3 {
+  transition: transform, height;
+  transition-duration: 0.6s;
+  transform: translate3d(0, -70px, 0);
+  height: 0;
+}
+/* line 306, ../sass/style.scss */
+.card.req-active2 .card__part-3 {
+  transition: transform, height;
+  transition-duration: 0.6s;
+  transform: translate3d(0, 0, 0);
+  height: 75px;
+}
+/* line 313, ../sass/style.scss */
+.card.req-closing1 .card__part-3 {
+  transition: transform 0.5s;
+  transform: rotateX(179deg) translateZ(-3px);
+}
+/* line 318, ../sass/style.scss */
+.card.req-closing2 .card__part-3 {
+  transition: border-radius 0.5s;
+  border-radius: 11px;
+}
+/* line 324, ../sass/style.scss */
+.card__part-4 {
+  top: 100%;
+  height: 70px;
+  transform: rotateX(179deg) translateZ(0);
+  transition: transform 0.5s, border-radius 0s 0s, height 0.5s;
+}
+/* line 330, ../sass/style.scss */
+.card__part-4 > .m--back {
+  background: #F7EFF7;
+}
+/* line 334, ../sass/style.scss */
+.card__part-4 > .m--front {
+  padding: 10px 20px;
+  opacity: 0;
+  transition: opacity 0s 0.5s;
+}
+/* line 340, ../sass/style.scss */
+.card.flip-step2 .card__part-4 {
+  transition: transform 0.5s, border-radius 0s 0s, height 0.33s 0.165s;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+/* line 346, ../sass/style.scss */
+.card.flip-step3 .card__part-4 {
+  transition: transform 0.5s, border-radius 0s 0s, height 0.33s;
+  height: 85px;
+  transform: translateZ(0);
+}
+/* line 351, ../sass/style.scss */
+.card.flip-step3 .card__part-4 > .m--front {
+  opacity: 1;
+  transition: opacity 0s 0s;
+}
+/* line 357, ../sass/style.scss */
+.card.req-closing1 .card__part-4 {
+  transition: border-radius 0.5s;
+  border-radius: 0;
+}
+/* line 362, ../sass/style.scss */
+.card.req-closing2 .card__part-4 {
+  transition: border-radius 0.5s;
+  border-radius: 11px;
+}
+/* line 368, ../sass/style.scss */
+.card__part__inner {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  border-radius: inherit;
+}
+/* line 377, ../sass/style.scss */
+.card__text {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+}
+/* line 384, ../sass/style.scss */
+.card__text:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff);
+}
+/* line 394, ../sass/style.scss */
+.card__text p {
+  width: 200%;
+}
+/* line 398, ../sass/style.scss */
+.card__text--left {
+  left: 0;
+}
+/* line 401, ../sass/style.scss */
+.card__text--right {
+  left: 50%;
+}
+/* line 405, ../sass/style.scss */
+.card__text__heading {
+  line-height: 1;
+  margin-bottom: 3px;
+}
+/* line 411, ../sass/style.scss */
+.card__text__middle {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: bold;
+  color: #4B4D52;
+}
+/* line 418, ../sass/style.scss */
+.card__text__bottom {
+  font-size: 14px;
+  color: #555A5F;
+}
+/* line 424, ../sass/style.scss */
+.card__face {
+  padding: 20px 20px 15px;
+}
+/* line 427, ../sass/style.scss */
+.card__face:after {
+  content: "";
+  z-index: 5;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), white 60%, white 100%);
+}
+/* line 438, ../sass/style.scss */
+.card__face__colored-side {
+  z-index: -1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 100%;
+  border-top-left-radius: 11px;
+  border-bottom-left-radius: 11px;
+  transition: width 0.3s;
+}
+/* line 449, ../sass/style.scss */
+.card__face:hover .card__face__colored-side {
+  width: 80px;
+}
+/* line 454, ../sass/style.scss */
+.card__face__price {
+  margin-top: -3px;
+  font-weight: normal;
+  font-size: 22px;
+  color: #555A5F;
+  transition: color 0.3s;
+}
+/* line 461, ../sass/style.scss */
+.card__face:hover .card__face__price {
+  color: #fff;
+}
+/* line 466, ../sass/style.scss */
+.card__face__divider {
+  position: absolute;
+  left: 80px;
+  top: 10px;
+  width: 1px;
+  height: calc(100% - 20px);
+  background: #ECECEC;
+}
+/* line 475, ../sass/style.scss */
+.card__face__path {
+  position: absolute;
+  left: 105px;
+  top: 36px;
+  width: 2px;
+  height: 23px;
+}
+/* line 482, ../sass/style.scss */
+.card__face__path:before, .card__face__path:after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid;
+  border-color: inherit;
+}
+/* line 494, ../sass/style.scss */
+.card__face__path:before {
+  top: -11px;
+}
+/* line 497, ../sass/style.scss */
+.card__face__path:after {
+  bottom: -9px;
+}
+/* line 502, ../sass/style.scss */
+.card__face__from-to {
+  position: absolute;
+  left: 120px;
+  top: 20px;
+  width: 300px;
+  color: #555A5F;
+  font-size: 13px;
+}
+/* line 510, ../sass/style.scss */
+.card__face__from-to:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: #ECECEC;
+}
+/* line 520, ../sass/style.scss */
+.card__face__from-to p:first-child {
+  margin-bottom: 15px;
+}
+/* line 525, ../sass/style.scss */
+.card__face__deliv-date {
+  position: absolute;
+  left: 20px;
+  top: 105px;
+  color: #9A9E9E;
+  text-transform: uppercase;
+  font-size: 12px;
+  transition: color 0.3s;
+}
+/* line 534, ../sass/style.scss */
+.card__face__deliv-date p {
+  color: #606568;
+  transition: color 0.3s;
+}
+/* line 539, ../sass/style.scss */
+.card__face:hover .card__face__deliv-date {
+  color: rgba(255, 255, 255, 0.8);
+}
+/* line 542, ../sass/style.scss */
+.card__face:hover .card__face__deliv-date p {
+  color: #fff;
+}
+/* line 548, ../sass/style.scss */
+.card__face__stats {
+  position: absolute;
+  top: 105px;
+  color: #B5B5B5;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+/* line 555, ../sass/style.scss */
+.card__face__stats p {
+  font-size: 15px;
+  color: #ADADAD;
+  font-weight: bold;
+}
+/* line 561, ../sass/style.scss */
+.card__face__stats--req {
+  left: 100px;
+}
+/* line 565, ../sass/style.scss */
+.card__face__stats--pledge {
+  left: 190px;
+}
+/* line 569, ../sass/style.scss */
+.card__face__stats--weight {
+  left: 270px;
+}
+/* line 571, ../sass/style.scss */
+.card__face__stats--weight p {
+  text-transform: lowercase;
+}
+/* line 579, ../sass/style.scss */
+.card__header {
+  position: relative;
+  height: 40px;
+  color: rgba(255, 255, 255, 0.8);
+}
+/* line 584, ../sass/style.scss */
+.card__header__close-btn {
+  z-index: 2;
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+/* line 594, ../sass/style.scss */
+.card__header__close-btn:hover {
+  transform: rotate(90deg);
+}
+/* line 598, ../sass/style.scss */
+.card__header__close-btn:before, .card__header__close-btn:after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 7px;
+  width: 23px;
+  height: 2px;
+  background: #fff;
+}
+/* line 608, ../sass/style.scss */
+.card__header__close-btn:before {
+  transform: rotate(45deg);
+}
+/* line 611, ../sass/style.scss */
+.card__header__close-btn:after {
+  transform: rotate(-45deg);
+}
+/* line 616, ../sass/style.scss */
+.card__header__id {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  line-height: 40px;
+  text-align: center;
+}
+/* line 625, ../sass/style.scss */
+.card__header__price {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  line-height: 40px;
+}
+/* line 633, ../sass/style.scss */
+.card__stats {
+  position: relative;
+  height: 120px;
+  background-size: cover;
+  background-position: center center;
+  transition: opacity 0.6s;
+}
+/* line 640, ../sass/style.scss */
+.card__stats:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+/* line 650, ../sass/style.scss */
+.card.req-active1 .card__stats {
+  opacity: 0;
+}
+/* line 654, ../sass/style.scss */
+.card.req-active2 .card__stats {
+  display: none;
+}
+/* line 658, ../sass/style.scss */
+.card__stats__item {
+  position: absolute;
+  bottom: 10px;
+}
+/* line 662, ../sass/style.scss */
+.card__stats__item--req {
+  z-index: 2;
+  left: 20px;
+}
+/* line 667, ../sass/style.scss */
+.card__stats__item--pledge {
+  z-index: 1;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+/* line 674, ../sass/style.scss */
+.card__stats__item--weight {
+  z-index: 2;
+  right: 20px;
+  text-align: right;
+}
+/* line 681, ../sass/style.scss */
+.card__stats__type {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+/* line 687, ../sass/style.scss */
+.card__stats__value {
+  font-size: 19px;
+  font-weight: bold;
+  color: #fff;
+}
+/* line 695, ../sass/style.scss */
+.card__map {
+  display: none;
+  overflow: hidden;
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 100%;
+  height: 110px;
+  opacity: 0;
+}
+/* line 706, ../sass/style.scss */
+.card.map-active .card__map {
+  display: block;
+}
+/* line 710, ../sass/style.scss */
+.card.req-active2 .card__map {
+  transition: height 0.48s;
+  height: 310px;
+  z-index: 5;
+  opacity: 1;
+}
+/* line 717, ../sass/style.scss */
+.card.req-closing1 .card__map {
+  transition: height 0.5s;
+  height: 120px;
+}
+/* line 722, ../sass/style.scss */
+.card.req-closing2 .card__map {
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+/* line 727, ../sass/style.scss */
+.card__map__inner {
+  position: absolute;
+  left: -5%;
+  top: -5%;
+  width: 110%;
+  height: 341px;
+  transform: scale(1);
+  transition: transform 0.6s cubic-bezier(0.8, -1.4, 0.8, 1.4);
+}
+/* line 736, ../sass/style.scss */
+.card.req-active2 .card__map__inner {
+  transform: scale(1.1) !important;
+}
+/* line 742, ../sass/style.scss */
+.card__sender {
+  position: relative;
+  height: 90px;
+  padding: 10px 20px 0;
+}
+/* line 747, ../sass/style.scss */
+.card.req-active2 .card__sender {
+  height: 160px;
+}
+/* line 751, ../sass/style.scss */
+.card__sender:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: #ECECEC;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+/* line 762, ../sass/style.scss */
+.card.req-active2 .card__sender:after {
+  opacity: 1;
+}
+/* line 767, ../sass/style.scss */
+.card__sender__heading {
+  margin-bottom: 5px;
+}
+/* line 771, ../sass/style.scss */
+.card.req-active1 .card__sender__heading {
+  transition: opacity, margin;
+  transition-duration: 0.48s;
+  opacity: 0;
+  margin-top: -9px;
+}
+/* line 778, ../sass/style.scss */
+.card.req-active2 .card__sender__heading {
+  pointer-events: none;
+}
+/* line 783, ../sass/style.scss */
+.card__sender__img-cont {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+  border-radius: 8px;
+}
+/* line 792, ../sass/style.scss */
+.card__sender__img-cont__inner {
+  height: 100%;
+  filter: grayscale(100%);
+}
+/* line 798, ../sass/style.scss */
+.card__sender__img {
+  width: 100%;
+  min-height: 100%;
+}
+/* line 803, ../sass/style.scss */
+.card__sender__name-and-rating {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  max-width: 180px;
+  height: 55px;
+  margin-top: -5px;
+  margin-bottom: 20px;
+}
+/* line 813, ../sass/style.scss */
+.card__sender__name {
+  font-size: 18px;
+  color: #3B424A;
+}
+/* line 818, ../sass/style.scss */
+.card__sender__rating {
+  font-size: 14px;
+}
+/* line 821, ../sass/style.scss */
+.card.req-active1 .card__sender__rating {
+  transition: opacity 0.48s;
+  opacity: 0;
+}
+/* line 826, ../sass/style.scss */
+.card.req-active2 .card__sender__rating {
+  display: none;
+}
+/* line 830, ../sass/style.scss */
+.card__sender__rating__star {
+  opacity: 0.3;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-1 .card__sender__rating__star:nth-child(1) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-2 .card__sender__rating__star:nth-child(1) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-2 .card__sender__rating__star:nth-child(2) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-3 .card__sender__rating__star:nth-child(1) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-3 .card__sender__rating__star:nth-child(2) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-3 .card__sender__rating__star:nth-child(3) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-4 .card__sender__rating__star:nth-child(1) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-4 .card__sender__rating__star:nth-child(2) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-4 .card__sender__rating__star:nth-child(3) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-4 .card__sender__rating__star:nth-child(4) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-5 .card__sender__rating__star:nth-child(1) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-5 .card__sender__rating__star:nth-child(2) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-5 .card__sender__rating__star:nth-child(3) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-5 .card__sender__rating__star:nth-child(4) {
+  opacity: 1;
+}
+/* line 837, ../sass/style.scss */
+.card__sender__rating-5 .card__sender__rating__star:nth-child(5) {
+  opacity: 1;
+}
+/* line 844, ../sass/style.scss */
+.card__sender__rating__count {
+  font-size: 12px;
+  color: #8C9093;
+}
+/* line 850, ../sass/style.scss */
+.card__sender__address {
+  font-size: 12px;
+  color: #8C9093;
+  opacity: 0;
+  pointer-events: none;
+}
+/* line 856, ../sass/style.scss */
+.card.req-active2 .card__sender__address {
+  transition: opacity 0.6s;
+  opacity: 1;
+  pointer-events: auto;
+}
+/* line 864, ../sass/style.scss */
+.card__receiver {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 0;
+}
+/* line 870, ../sass/style.scss */
+.card.req-active2 .card__receiver {
+  transition: height 0.6s;
+  height: 65px;
+}
+/* line 875, ../sass/style.scss */
+.card__receiver__inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 65px;
+}
+/* line 885, ../sass/style.scss */
+.card__path-big {
+  position: absolute;
+  right: 26px;
+  top: 55px;
+  width: 2px;
+  height: 57px;
+  opacity: 0;
+}
+/* line 893, ../sass/style.scss */
+.card.req-active2 .card__path-big {
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+/* line 898, ../sass/style.scss */
+.card__path-big:before, .card__path-big:after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid;
+  border-color: inherit;
+}
+/* line 910, ../sass/style.scss */
+.card__path-big:before {
+  top: -13px;
+}
+/* line 913, ../sass/style.scss */
+.card__path-big:after {
+  bottom: -11px;
+}
+/* line 918, ../sass/style.scss */
+.card__from-to {
+  position: relative;
+  height: 70px;
+  padding: 10px 20px 0;
+}
+/* line 923, ../sass/style.scss */
+.card.req-active1 .card__from-to {
+  transition: opacity 0.48s;
+  opacity: 0;
+}
+/* line 928, ../sass/style.scss */
+.card.req-active2 .card__from-to {
+  display: none;
+}
+/* line 932, ../sass/style.scss */
+.card__from-to__inner {
+  position: relative;
+  height: 100%;
+}
+/* line 936, ../sass/style.scss */
+.card__from-to__inner:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -10px;
+  width: 100%;
+  height: 1px;
+  background: #ECECEC;
+}
+/* line 949, ../sass/style.scss */
+.card__timings {
+  position: relative;
+  height: 100%;
+  padding: 10px 20px 0;
+}
+/* line 954, ../sass/style.scss */
+.card.req-active1 .card__timings {
+  transition: opacity 0.48s;
+  opacity: 0;
+}
+/* line 959, ../sass/style.scss */
+.card.req-active2 .card__timings {
+  display: none;
+}
+/* line 963, ../sass/style.scss */
+.card__timings__inner {
+  position: relative;
+  height: 100%;
+}
+/* line 969, ../sass/style.scss */
+.card__timer {
+  display: none;
+  margin-top: 22px;
+  font-size: 30px;
+  color: #A4ADAD;
+  text-align: center;
+}
+/* line 976, ../sass/style.scss */
+.card.req-active2 .card__timer {
+  display: block;
+}
+/* line 981, ../sass/style.scss */
+.card__request-btn {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  background-color: #FFBD18;
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #3F2F1F;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 0;
+  transition: letter-spacing 0.3s;
+}
+/* line 996, ../sass/style.scss */
+.card__request-btn__text-1 {
+  transition: opacity 0.48s;
+}
+/* line 999, ../sass/style.scss */
+.card.req-active1 .card__request-btn__text-1 {
+  opacity: 0;
+}
+/* line 1003, ../sass/style.scss */
+.card.req-active2 .card__request-btn__text-1 {
+  display: none;
+}
+/* line 1008, ../sass/style.scss */
+.card__request-btn__text-2 {
+  z-index: -5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+/* line 1020, ../sass/style.scss */
+.card.req-active2 .card__request-btn__text-2 {
+  z-index: 1;
+  opacity: 1;
+}
+/* line 1026, ../sass/style.scss */
+.card__request-btn:hover {
+  letter-spacing: 5px;
+}
+/* line 1031, ../sass/style.scss */
+.card__counter {
+  position: absolute;
+  left: 0;
+  top: 57px;
+  width: 100%;
+  font-size: 14px;
+  color: #A2A2A5;
+  text-align: center;
+  transition: opacity 0.48s;
+}
+/* line 1042, ../sass/style.scss */
+.card.req-active1 .card__counter {
+  opacity: 0;
+}
+/* line 1046, ../sass/style.scss */
+.card.req-active2 .card__counter {
+  display: none;
+}

@@ -1,0 +1,90 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+  background: #000;
+}
+
+$numOfPages: 5;
+$textHeight: 50px;
+
+.ws {
+
+  &-pages {
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+  }
+
+  &-bgs {
+    position: relative;
+    height: 100%;
+  }
+
+  &-bg {
+    display: flex;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+
+    .ws-pages.s--ready & {
+      background: none;
+    }
+
+    &__part {
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+      cursor: grab;
+      user-select: none;
+
+      &-inner {
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: 100%;
+        background-size: cover;
+        background-position: center center;
+      }
+
+    }
+
+    @for $i from 1 through $numOfPages {
+      $img: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-#{$i + 3}.jpg);
+
+      &:nth-child(#{$i}) {
+        background-image: $img;
+
+        .ws-bg__part-inner {
+          background-image: $img;
+        }
+      }
+    }
+
+  }
+
+  &-text {
+    overflow: hidden;
+    position: absolute;
+    left: 15%;
+    top: 50%;
+    width: 70%;
+    height: $textHeight;
+    margin-top: $textHeight / -2;
+    pointer-events: none;
+
+    &__heading {
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+      font-size: 30px;
+      line-height: $textHeight;
+      color: #fff;
+    }
+  }
+
+}

@@ -1,0 +1,135 @@
+/* line 7, ../sass/style.scss */
+.link-style-1 a {
+  color: rgba(0, 0, 0, 0.9);
+  text-decoration: none;
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+/* line 13, ../sass/style.scss */
+.link-style-1 a:after, .link-style-1 a:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -0.125em;
+  right: -0.125em;
+  z-index: -1;
+}
+/* line 23, ../sass/style.scss */
+.link-style-1 a:before {
+  background-color: rgba(0, 0, 0, 0.9);
+  bottom: -0.0625em;
+  height: 1px;
+}
+/* line 28, ../sass/style.scss */
+.link-style-1 a:after {
+  background-color: blue;
+  animation: linkUnderlineOut 0.3s forwards;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  transform-origin: bottom left;
+  transform: scaleY(0);
+}
+/* line 39, ../sass/style.scss */
+.link-style-1 a:hover {
+  color: white;
+}
+/* line 43, ../sass/style.scss */
+.link-style-1 a:hover:before {
+  background-color: blue;
+}
+/* line 49, ../sass/style.scss */
+.link-style-1 a:hover:after {
+  animation: linkUnderlineIn 0.3s forwards;
+}
+@keyframes linkUnderlineIn {
+  0% {
+    transform: scaleY(0);
+  }
+  50% {
+    transform: scaleY(1.1);
+  }
+  63% {
+    transform: scaleY(0.9);
+  }
+  88% {
+    transform: scaleY(1.05);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+@keyframes linkUnderlineOut {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+  }
+}
+/* line 87, ../sass/style.scss */
+.link-style-2 a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+  color: rgba(0, 0, 0, 0.9);
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  background-size: 100% 200%;
+  background-image: linear-gradient(to top, transparent 0%, transparent 50%, blue 50%, blue 100%);
+  background-position: 0 100%;
+  will-change: background-position;
+}
+/* line 102, ../sass/style.scss */
+.link-style-2 a:hover {
+  animation: backgroundAnimateIn 0.3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes backgroundAnimateIn {
+  0% {
+    background-position: 0 -100%;
+  }
+  63% {
+    background-position: 0 -95%;
+  }
+  86% {
+    background-position: 0 2.5%;
+  }
+  100% {
+    color: white;
+    background-position: 0 0%;
+  }
+}
+/* line 126, ../sass/style.scss */
+body {
+  padding: 2vw;
+  margin: 0;
+}
+
+/* line 130, ../sass/style.scss */
+section {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 540px;
+}
+
+/* line 136, ../sass/style.scss */
+p {
+  line-height: 1.6;
+}
+
+/* line 140, ../sass/style.scss */
+ul {
+  font-size: 0.8125rem;
+}
+/* line 142, ../sass/style.scss */
+ul li {
+  margin-bottom: 0.75em;
+}
+
+/* line 147, ../sass/style.scss */
+code {
+  background-color: #363636;
+  color: white;
+  font-size: 0.8125em;
+}

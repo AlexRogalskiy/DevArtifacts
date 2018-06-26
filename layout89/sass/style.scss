@@ -1,0 +1,243 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  font-size: 62.5%;
+  
+  @media (max-width: 320px) {
+    font-size: 45%;
+  }
+}
+body {
+  background: #393A56;
+}
+
+$screenW: 37.5rem;
+$screenH: 66.7rem;
+$padSide: 2.4rem;
+$padVert: 10.6rem;
+$phoneW: $screenW + $padSide*2;
+$phoneH: $screenH + $padVert*2;
+$phoneBorderW: 0.4rem;
+$topH: 9rem;
+
+$lineColor: #4EDDC8;
+
+$totalLen: 285.53px;
+$lineLen: 187px;
+$circleLen: $totalLen - $lineLen;
+
+$resetAT: 0.5s;
+$releaseStep1AT: 0.5s;
+$releaseStep2AT: 0.3s;
+
+.phone {
+  position: relative;
+  width: $phoneW;
+  height: $phoneH;
+  padding: $padVert - $phoneBorderW $padSide - $phoneBorderW;
+  margin: 3rem auto 3rem;
+  background: #000000;
+  border-radius: 5.6rem;
+  border: $phoneBorderW solid #B5B5B5;
+  
+  @media (max-width: 320px) {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+  } 
+
+  &__screen {
+    overflow: hidden;
+    position: relative;
+    width: $screenW;
+    height: $screenH;
+    background: #39425A;
+    
+    @media (max-width: 320px) {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.demo {
+  position: relative;
+  height: 100%;
+
+  &__top {
+    position: relative;
+    height: $topH;
+    padding-top: 3rem;
+    text-align: center;
+    font-size: 0;
+    color: #CECED6;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    font-size: 1.2rem;
+    margin-bottom: 1.6rem;
+
+    &.half {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+    }
+  }
+
+  &__body {
+    position: relative;
+    min-height: $screenH;
+    padding: 1.5rem;
+    transform: translate3d(0,0,0);
+    user-select: none;
+
+    &.reset {
+      transition: transform $resetAT;
+      transform: translate3d(0,0,0) !important;
+    }
+
+    &.waiting {
+      transition: transform $releaseStep2AT;
+      transform: translate3d(0,5rem,0) !important;
+    }
+    
+    @media (max-width: 320px) {
+      height: 500px;
+      padding: 0;
+    }
+  }
+
+  &__svg-bg {
+    overflow: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    @media (max-width: 320px) {
+      height: 390px;
+    }
+
+    &__path {
+      fill: #FAFAFB;
+      stroke: transparent;
+    }
+  }
+
+  &__content {
+
+    &.reset {
+      transition: transform $resetAT;
+      transform: translate3d(0,0,0) !important;
+    }
+  }
+
+  &__el {
+    position: relative;
+    height: 16rem;
+    margin-bottom: 2rem;
+    background: #ffffff;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 1.5rem;
+      top: 1.5rem;
+      width: 9rem;
+      height: 9rem;
+      border-radius: 1.5rem;
+      background: #5A534F;
+      
+      @media (max-width: 320px) {
+        left: 4.5rem;
+      }
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 12rem;
+      top: 1.5rem;
+      width: $screenW - 16.5rem;
+      height: 1.5rem;
+      border-radius: 0.7rem;
+      background: #5A534F;
+      color: #5A534F;
+      box-shadow: 0 3rem, 0 6rem;
+      
+      @media (max-width: 320px) {
+        left: 16rem;
+        width: 24rem;
+      }
+    }
+  }
+
+  &__svg {
+    overflow: visible;
+    position: absolute;
+    left: 0;
+    top: $topH - 0.3rem;
+    width: 100%;
+    height: 3.7rem;
+
+    &__line {
+      stroke: $lineColor;
+      stroke-dashoffset: $circleLen;
+      stroke-dasharray: $totalLen, $totalLen;
+      transform-origin: 187px 19px;
+
+      &.show-circle {
+        transition: stroke-dashoffset $releaseStep1AT*0.65;
+        stroke-dashoffset: -$lineLen !important;
+      }
+
+      &.rotating {
+        animation: rotating 0.5s infinite linear;
+      }
+
+      &.reset {
+        transition: stroke-dashoffset $resetAT;
+        stroke-dashoffset: $circleLen !important;
+        transform: rotate(0);
+      }
+    }
+
+    &__smile {
+      stroke: $lineColor;
+      stroke-dashoffset: 30px;
+      stroke-dasharray: 30px, 30px;
+      transform-origin: 187px 19px;
+      opacity: 0;
+      transition: opacity 0.1s, stroke-dashoffset 0.5s;
+      transition-delay: 0.2s;
+      transform: rotate(0);
+
+      &.active {
+        opacity: 1;
+        stroke-dashoffset: 0;
+      }
+
+      &.minified {
+        transition: stroke-dashoffset 0.5s 0.85s, opacity 0.1s 1.25s;
+        stroke-dashoffset: 25px;
+        opacity: 0;
+        animation: rotating 0.5s 0.35s infinite linear;
+      }
+    }
+  }
+}
+
+@keyframes rotating {
+  to {
+    transform: rotate(360deg);
+  }
+}

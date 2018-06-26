@@ -1,0 +1,151 @@
+$link-color: blue;
+$linkAnimationSpeed: 0.3s;
+$text-color: rgba(0,0,0,0.9);
+//Style one
+//Psuedoelements for before and after
+.link-style-1 {
+	a {
+		color: $text-color;
+		text-decoration: none;
+		position: relative;
+		white-space: nowrap;
+		transition: color $linkAnimationSpeed;
+		&:after,
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			//width:100%;
+			left: (-2/16) * 1em;
+			right: (-2/16) * 1em;
+			z-index: -1;
+		}
+		&:before {
+			background-color: $text-color;
+			bottom: (-1/16) * 1em;
+			height: 1px;
+		}
+		&:after {
+			background-color: $link-color;
+			animation: linkUnderlineOut $linkAnimationSpeed forwards;		
+			top:0;
+			bottom: 0;
+			height: 100%;
+			transform-origin: bottom left;
+			transform: scaleY(0);
+		}
+	}
+
+	a:hover {
+
+		color: white;
+
+		&:before {
+
+			background-color: $link-color;
+
+		}
+
+		&:after {
+
+			animation: linkUnderlineIn $linkAnimationSpeed forwards;
+
+		}
+	}
+
+	@keyframes linkUnderlineIn {
+		0% {
+			transform: scaleY(0);
+		}
+		50% {
+			transform: scaleY(1.1);
+		}
+		63% {
+			transform: scaleY(0.9);
+		}
+		88% {
+			transform: scaleY(1.05);
+		}
+		100% {
+			transform: scaleY(1);
+		}
+	}
+
+	@keyframes linkUnderlineOut {
+		0% {
+			transform: scaleY(1);
+		}
+		100% {
+			transform: scaleY(0);
+		}
+	}
+}
+
+//Style two
+//Animated background image
+.link-style-2 {
+	a {
+		border-bottom: 1px solid $text-color;
+		color: $text-color;
+		text-decoration: none;
+		transition: color $linkAnimationSpeed ease-in-out;
+		//transition: background-image $linkAnimationSpeed ease-in-out;
+		background-size: 100% 200%;
+		background-image: linear-gradient(to top, 
+			transparent 0%, 
+			transparent 50%,
+			$link-color 50%, 
+			$link-color 100%);
+		background-position: 0 100%;
+		will-change: background-position;
+		
+		&:hover {
+			animation: backgroundAnimateIn $linkAnimationSpeed;
+			// animation-play-state : running;
+			animation-fill-mode: forwards;
+		}
+	}
+}
+
+@keyframes backgroundAnimateIn {
+	0% {
+		background-position: 0 -100%;
+	}
+	63% {
+		background-position: 0 -95%;		
+	}
+	86% {
+		background-position: 0 2.5%;
+	}
+	100% {
+		color: white;
+		background-position: 0 0%;
+	}
+}
+
+body {
+	padding: 2vw;
+	margin:0;
+}
+section {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 540px;	
+}
+
+p {
+	line-height: 1.6;
+}
+
+ul {
+	font-size: 0.8125rem;
+	li {
+		margin-bottom: 0.75em;
+	}
+}
+
+code {
+	background-color: #363636;
+	color: white;
+	font-size: 0.8125em;
+}

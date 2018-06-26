@@ -1,0 +1,450 @@
+/* line 1, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 7, ../sass/style.scss */
+body {
+  background: #1f1f1f;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+/* line 56, ../sass/style.scss */
+.cont {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  padding: 80px 70px;
+}
+/* line 62, ../sass/style.scss */
+.cont__inner {
+  position: relative;
+  height: 100%;
+}
+/* line 66, ../sass/style.scss */
+.cont__inner:hover .el__bg:after {
+  opacity: 1;
+}
+
+/* line 72, ../sass/style.scss */
+.el {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 19.2%;
+  height: 100%;
+  background: #252525;
+  transition: transform 0.6s 0.7s, width 0.7s, opacity 0.6s 0.7s, z-index 0s 1.3s;
+  will-change: transform, width, opacity;
+}
+/* line 85, ../sass/style.scss */
+.el:not(.s--active) {
+  cursor: pointer;
+}
+/* line 89, ../sass/style.scss */
+.el__overflow {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+/* line 95, ../sass/style.scss */
+.el__inner {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  transition: transform 1s;
+}
+/* line 45, ../sass/style.scss */
+.cont.s--inactive .el__inner {
+  transform: translate3d(0, 100%, 0);
+}
+/* line 106, ../sass/style.scss */
+.el__bg {
+  position: relative;
+  width: calc(100vw - 140px);
+  height: 100%;
+  transition: transform 0.6s 0.7s;
+  will-change: transform;
+}
+/* line 113, ../sass/style.scss */
+.el__bg:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -5%;
+  width: 100%;
+  height: 110%;
+  background-size: cover;
+  background-position: center center;
+  transition: transform 1s;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+/* line 45, ../sass/style.scss */
+.cont.s--inactive .el__bg:before {
+  transform: translate3d(0, -100%, 0) scale(1.2);
+}
+/* line 39, ../sass/style.scss */
+.el.s--active .el__bg:before {
+  transition: transform 0.8s;
+}
+/* line 134, ../sass/style.scss */
+.el__bg:after {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+/* line 51, ../sass/style.scss */
+.cont.s--el-active .el__bg:after {
+  transition: opacity 0.5s 1.4s;
+  opacity: 1 !important;
+}
+/* line 155, ../sass/style.scss */
+.el__preview-cont {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s 1.2s;
+}
+/* line 45, ../sass/style.scss */
+.cont.s--inactive .el__preview-cont {
+  opacity: 0;
+  transform: translateY(10px);
+}
+/* line 51, ../sass/style.scss */
+.cont.s--el-active .el__preview-cont {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s;
+}
+/* line 179, ../sass/style.scss */
+.el__heading {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+/* line 185, ../sass/style.scss */
+.el__content {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.1s;
+}
+/* line 39, ../sass/style.scss */
+.el.s--active .el__content {
+  z-index: 2;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.5s 1.4s;
+}
+/* line 205, ../sass/style.scss */
+.el__text {
+  text-transform: uppercase;
+  font-size: 40px;
+  color: #fff;
+}
+/* line 211, ../sass/style.scss */
+.el__close-btn {
+  z-index: -1;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0s 0.45s;
+  cursor: pointer;
+}
+/* line 39, ../sass/style.scss */
+.el.s--active .el__close-btn {
+  z-index: 5;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0s 1.4s;
+}
+/* line 231, ../sass/style.scss */
+.el__close-btn:before, .el__close-btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 8px;
+  margin-top: -4px;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 0s;
+}
+/* line 39, ../sass/style.scss */
+.el.s--active .el__close-btn:before, .el.s--active .el__close-btn:after {
+  opacity: 1;
+}
+/* line 249, ../sass/style.scss */
+.el__close-btn:before {
+  transform: rotate(45deg) translateX(100%);
+}
+/* line 39, ../sass/style.scss */
+.el.s--active .el__close-btn:before {
+  transition: all 0.3s 1.4s cubic-bezier(0.72, 0.09, 0.32, 1.57);
+  transform: rotate(45deg) translateX(0);
+}
+/* line 258, ../sass/style.scss */
+.el__close-btn:after {
+  transform: rotate(-45deg) translateX(100%);
+}
+/* line 39, ../sass/style.scss */
+.el.s--active .el__close-btn:after {
+  transition: all 0.3s 1.55s cubic-bezier(0.72, 0.09, 0.32, 1.57);
+  transform: rotate(-45deg) translateX(0);
+}
+/* line 268, ../sass/style.scss */
+.el__index {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  bottom: -80px;
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  text-align: center;
+  font-size: 20vw;
+  line-height: 0.85;
+  font-weight: bold;
+  transition: transform 0.5s, opacity 0.3s 1.4s;
+  transform: translate3d(0, 1vw, 0);
+}
+/* line 33, ../sass/style.scss */
+.el:hover .el__index {
+  transform: translate3d(0, 0, 0);
+}
+/* line 51, ../sass/style.scss */
+.cont.s--el-active .el__index {
+  transition: transform 0.5s, opacity 0.3s;
+  opacity: 0;
+}
+/* line 292, ../sass/style.scss */
+.el__index-back, .el__index-front {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+/* line 300, ../sass/style.scss */
+.el__index-back {
+  color: #2f3840;
+  opacity: 0;
+  transition: opacity 0.25s 0.25s;
+}
+/* line 33, ../sass/style.scss */
+.el:hover .el__index-back {
+  transition: opacity 0.25s;
+  opacity: 1;
+}
+/* line 311, ../sass/style.scss */
+.el__index-overlay {
+  overflow: hidden;
+  position: relative;
+  transform: translate3d(0, 100%, 0);
+  transition: transform 0.5s 0.1s;
+  color: transparent;
+}
+/* line 318, ../sass/style.scss */
+.el__index-overlay:before {
+  content: attr(data-index);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  transform: translate3d(0, -100%, 0);
+  transition: transform 0.5s 0.1s;
+}
+/* line 33, ../sass/style.scss */
+.el:hover .el__index-overlay {
+  transform: translate3d(0, 0, 0);
+}
+/* line 333, ../sass/style.scss */
+.el:hover .el__index-overlay:before {
+  transform: translate3d(0, 0, 0);
+}
+/* line 341, ../sass/style.scss */
+.el:nth-child(1) {
+  transform: translate3d(0%, 0, 0);
+  transform-origin: 50% 50%;
+}
+/* line 348, ../sass/style.scss */
+.cont.s--el-active .el:nth-child(1):not(.s--active) {
+  transform: scale(0.5) translate3d(0%, 0, 0);
+  opacity: 0;
+  transition: transform 0.95s, opacity 0.95s;
+}
+/* line 355, ../sass/style.scss */
+.el:nth-child(1) .el__inner {
+  transition-delay: 0s;
+}
+/* line 359, ../sass/style.scss */
+.el:nth-child(1) .el__bg {
+  transform: translate3d(0%, 0, 0);
+}
+/* line 362, ../sass/style.scss */
+.el:nth-child(1) .el__bg:before {
+  transition-delay: 0s;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-3.jpg");
+}
+/* line 341, ../sass/style.scss */
+.el:nth-child(2) {
+  transform: translate3d(105.20833%, 0, 0);
+  transform-origin: 155.20833% 50%;
+}
+/* line 348, ../sass/style.scss */
+.cont.s--el-active .el:nth-child(2):not(.s--active) {
+  transform: scale(0.5) translate3d(105.20833%, 0, 0);
+  opacity: 0;
+  transition: transform 0.95s, opacity 0.95s;
+}
+/* line 355, ../sass/style.scss */
+.el:nth-child(2) .el__inner {
+  transition-delay: 0.1s;
+}
+/* line 359, ../sass/style.scss */
+.el:nth-child(2) .el__bg {
+  transform: translate3d(-19.2%, 0, 0);
+}
+/* line 362, ../sass/style.scss */
+.el:nth-child(2) .el__bg:before {
+  transition-delay: 0.1s;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-4.jpg");
+}
+/* line 341, ../sass/style.scss */
+.el:nth-child(3) {
+  transform: translate3d(210.41667%, 0, 0);
+  transform-origin: 260.41667% 50%;
+}
+/* line 348, ../sass/style.scss */
+.cont.s--el-active .el:nth-child(3):not(.s--active) {
+  transform: scale(0.5) translate3d(210.41667%, 0, 0);
+  opacity: 0;
+  transition: transform 0.95s, opacity 0.95s;
+}
+/* line 355, ../sass/style.scss */
+.el:nth-child(3) .el__inner {
+  transition-delay: 0.2s;
+}
+/* line 359, ../sass/style.scss */
+.el:nth-child(3) .el__bg {
+  transform: translate3d(-38.4%, 0, 0);
+}
+/* line 362, ../sass/style.scss */
+.el:nth-child(3) .el__bg:before {
+  transition-delay: 0.2s;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-5.jpg");
+}
+/* line 341, ../sass/style.scss */
+.el:nth-child(4) {
+  transform: translate3d(315.625%, 0, 0);
+  transform-origin: 365.625% 50%;
+}
+/* line 348, ../sass/style.scss */
+.cont.s--el-active .el:nth-child(4):not(.s--active) {
+  transform: scale(0.5) translate3d(315.625%, 0, 0);
+  opacity: 0;
+  transition: transform 0.95s, opacity 0.95s;
+}
+/* line 355, ../sass/style.scss */
+.el:nth-child(4) .el__inner {
+  transition-delay: 0.3s;
+}
+/* line 359, ../sass/style.scss */
+.el:nth-child(4) .el__bg {
+  transform: translate3d(-57.6%, 0, 0);
+}
+/* line 362, ../sass/style.scss */
+.el:nth-child(4) .el__bg:before {
+  transition-delay: 0.3s;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-6.jpg");
+}
+/* line 341, ../sass/style.scss */
+.el:nth-child(5) {
+  transform: translate3d(420.83333%, 0, 0);
+  transform-origin: 470.83333% 50%;
+}
+/* line 348, ../sass/style.scss */
+.cont.s--el-active .el:nth-child(5):not(.s--active) {
+  transform: scale(0.5) translate3d(420.83333%, 0, 0);
+  opacity: 0;
+  transition: transform 0.95s, opacity 0.95s;
+}
+/* line 355, ../sass/style.scss */
+.el:nth-child(5) .el__inner {
+  transition-delay: 0.4s;
+}
+/* line 359, ../sass/style.scss */
+.el:nth-child(5) .el__bg {
+  transform: translate3d(-76.8%, 0, 0);
+}
+/* line 362, ../sass/style.scss */
+.el:nth-child(5) .el__bg:before {
+  transition-delay: 0.4s;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-7.jpg");
+}
+/* line 372, ../sass/style.scss */
+.el:hover .el__bg:after {
+  opacity: 0;
+}
+/* line 377, ../sass/style.scss */
+.el.s--active {
+  z-index: 1;
+  width: 100%;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.6s, width 0.7s 0.7s, z-index 0s;
+}
+/* line 383, ../sass/style.scss */
+.el.s--active .el__bg {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.6s;
+}
+/* line 387, ../sass/style.scss */
+.el.s--active .el__bg:before {
+  transition-delay: 0.6s;
+  transform: scale(1.1);
+}
+
+/* line 395, ../sass/style.scss */
+.icon-link {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  width: 32px;
+}
+/* line 401, ../sass/style.scss */
+.icon-link img {
+  width: 100%;
+  vertical-align: top;
+}
+/* line 406, ../sass/style.scss */
+.icon-link--twitter {
+  left: auto;
+  right: 5px;
+}

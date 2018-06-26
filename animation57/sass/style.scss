@@ -1,0 +1,45 @@
+%digitStyle {
+	display: block;
+	height: 4vw;
+	flex-basis: 5vw;
+	margin:0.5vw 0.25vw;
+}
+
+body {
+	background: rgba(0,0,0,0.95);
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	flex-basis: 100%;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.BinaryClock {
+	background-color: #dedede;	
+	width: 100vw;
+	.BinaryClock-digits {
+		display: flex;
+		margin-left: 0.25vw;
+		margin-right: 0.25vw;
+		div {
+			@extend %digitStyle;
+			&.zero, &.one {
+				flex-grow: 10;
+				transition: background-color 0.2s ease-out;
+			}
+			&.zero {
+				background: #fefefe;
+			}
+			&.one {
+				background: #333;
+			}
+			&.divider {
+				flex-grow: 1;
+				flex-basis: 1.25vw;
+				background: transparent;
+				//border-color: #999;
+			}			
+		}
+	}
+}
