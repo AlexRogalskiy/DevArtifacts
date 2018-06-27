@@ -1,0 +1,224 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Lato Hairline'), local('Lato-Hairline'), url(https://fonts.gstatic.com/s/lato/v14/S6u8w4BMUTPHh30AXC-v.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light'), url(https://fonts.gstatic.com/s/lato/v14/S6u9w4BMUTPHh7USSwiPHA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wWw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v14/S6u9w4BMUTPHh6UVSwiPHA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Lato Black'), local('Lato-Black'), url(https://fonts.gstatic.com/s/lato/v14/S6u9w4BMUTPHh50XSwiPHA.ttf) format('truetype');
+}
+html {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background: #222222;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', Helvetica, Arial;
+}
+html body {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+html body #copy {
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 14px;
+  font-size: 10px;
+  font-weight: 400;
+}
+html body #copy a {
+  color: #898989;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out 0s;
+}
+html body #copy a b {
+  font-weight: 700;
+}
+html body #copy a:hover {
+  color: #fff;
+}
+html body #wrapper {
+  position: absolute;
+  height: 80%;
+  top: 50%;
+  width: 80%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  background: #000;
+  box-shadow: 0 0 3px #000;
+  max-width: 700px;
+  min-width: 450px;
+}
+html body #wrapper #slideshow {
+  height: 100%;
+  width: 100%;
+}
+html body #wrapper #slideshow .slide-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  outline: 1px rgba(0, 0, 0, 0.2) solid;
+}
+html body #wrapper #slideshow .slide-wrapper ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 400%;
+  height: 100%;
+}
+html body #wrapper #slideshow .slide-wrapper ul li {
+  position: relative;
+  display: block;
+  float: left;
+  width: 25%;
+  height: 100%;
+  background: #000;
+}
+html body #wrapper #slideshow .slide-wrapper ul li:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  opacity: 0.5;
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.6)), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#99ffffff', endColorstr='#00ffffff', GradientType=0);
+}
+html body #wrapper #slideshow .slide-wrapper ul li > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 1px 1px rgba(255, 255, 225, 0.25) inset;
+  height: 100%;
+  width: 100%;
+  background-image: url('http://lorempixel.com/1000/800/nature/');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  text-align: center;
+}
+html body #wrapper #slideshow .slide-wrapper ul li > div div {
+  font-size: 30px;
+  font-weight: 300;
+}
+html body #wrapper #slideshow .slide-wrapper ul li > div.bgimage0 {
+  z-index: 1;
+}
+html body #wrapper #slideshow .slide-wrapper ul li > div.bgglass1 {
+  z-index: 2;
+  transform: scale(1.05);
+  opacity: 0;
+  visibility: hidden;
+}
+html body #wrapper #slideshow .slide-wrapper ul li > div.bgglass2 {
+  z-index: 3;
+  transform: scale(1.06);
+  -webkit-filter: blur(1px);
+  opacity: 0;
+}
+html body #wrapper #slideshow .slide-wrapper ul li > div.bgblury1 {
+  z-index: 4;
+  transform: scale(1.08);
+  -webkit-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+}
+html body #wrapper #slideshow .slide-wrapper ul li > div .content {
+  cursor: default;
+  font-size: 60px;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  height: auto;
+  top: 50%;
+  width: 80%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.5);
+}
+#sliderWrapper {
+  z-index: 9999999;
+  position: absolute;
+  bottom: 50px;
+  width: 580px;
+  left: 50%;
+  margin-left: -280px;
+}
+#sliderWrapper .play {
+  cursor: pointer;
+  text-align: center;
+  position: absolute;
+  margin-top: 0;
+  left: 0;
+  margin-left: -75px;
+  font-size: 11px;
+}
+#sliderWrapper .stop {
+  cursor: pointer;
+  text-align: center;
+  position: absolute;
+  margin-top: 0;
+  left: 0;
+  margin-left: -35px;
+  font-size: 11px;
+}
+#sliderWrapper #slider {
+  width: 580px;
+  margin: 10px;
+  box-shadow: none;
+  border: 0 none;
+  height: 1px;
+  background: #000000;
+}
+#sliderWrapper span {
+  cursor: pointer;
+  background: #141414;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(20, 20, 20, 0.5);
+  margin-top: -5px;
+  border: 0 none;
+  outline: none;
+}
+#sliderWrapper span:focus {
+  border: 0 none;
+  outline: none;
+}
