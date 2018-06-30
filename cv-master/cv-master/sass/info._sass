@@ -1,0 +1,156 @@
+// !:sass [.]
+
+@import compass/reset
+@import compass/css3
+
+@font-face
+  font-family: "garamond-premier-pro"
+  src: url(./fonts/Garamond-Premier-Pro.ttf)
+
+$font-default: 'garamond-premier-pro',Serif
+$font-serif:   'PT Sans',serif
+$font-sans:    'Open Sans',sans-serif
+
+$accent-color: #ed4040
+$faded-color: #a0a0a0
+$general-bg: #fafafa
+$general-fg: #101010
+$head-bg: #343434
+$head-fg: #c3c3c0
+$name-fg: #ffffff
+
+// $baseline: 11px // 10.6667px
+$baseline: 1em
+
+*
+  +box-sizing(border-box)
+
+body
+  font-family:           $font-default
+  text-rendering:        optimizeLegibility
+  font-feature-settings: "liga","dlig"
+  // line-height: 15px
+  color:            $general-fg
+  background-color: $general-bg
+
+.page
+  width: 21cm
+  max-width: 21cm
+  min-height: 29.7cm
+  max-height: 29.7cm
+  offset: hidden
+  background: white
+
+=accent
+  color: $accent-color
+
+hr
+  border: 0
+  height: 1px
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))
+
+
+a
+  color: $faded-color
+
+.item
+  // font: 12px $font-sans
+  a
+    // font: 12px $font-sans
+    color: $faded-color
+
+.header
+  display: table
+  margin: 0
+  padding: 1em 1cm
+  width: 100%
+  color: $head-fg             !important
+  background-color: $head-bg  !important
+  //background: url(bg.png)
+  .desc
+    display: table-cell
+  .name
+    font: 900 20px $font-serif
+    color: #333     !important
+    color: $name-fg !important
+    padding-right: 0.5em
+  // .git
+  //   font-size: 14px
+  .contact
+    display: table-cell
+    // font-size: 14px
+    // line-height: 16px
+    padding: 0
+    //font: 10pt "Verdana"
+    //vertical-align:
+    //text-align: right
+
+.content
+  padding: 2em 1cm
+  // line-height: 15px
+
+.section
+  display: inline-block
+  margin-bottom: 15px
+  &.sm
+    width: 30%
+  &.md
+    width: 50%
+  &.lg
+    width: 70%
+  > .title
+    display: block
+    font-family: $font-serif
+    font-size: 20px
+    &::before
+      color: $faded-color
+      padding-right: 5px
+
+.experience
+  .date
+    font-family: $font-serif
+    font-weight: bold
+    +accent
+
+.training
+  color: $general-fg
+  .date
+    float: right
+    // font-weight: bold
+    +accent
+
+.languages
+  float: right
+ul
+  //&::before
+    //content: 'ABC'
+    //font-weight: bolder
+    //font-size: 16px
+    //color: #2d2d2d
+    //text-shadow: 1px 1px rgba(255,255,255,0.2), -1px -1px rgba(0,0,0,0.5)
+  b
+    font-size: bolder
+  //margin: 0.2em
+  padding: 1em
+  line-height: 15px
+  color: $general-bg
+  //background: url(bg.png)
+  background-color: $head-bg
+  background-repeat: repeat
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4)
+  border-radius: 5px
+  list-style: none
+
+@page
+  size: A4
+  margin: 0
+
+//@media print
+  //.page
+    //margin: 0
+    //border: initial
+    //border-radius: initial
+    //width: initial
+    //min-height: initial
+    //background: initial
+    //page-break-after: always

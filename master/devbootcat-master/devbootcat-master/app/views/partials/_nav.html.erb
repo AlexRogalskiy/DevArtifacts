@@ -1,0 +1,27 @@
+<nav role="navigation">
+
+    <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+            <input type="hidden" name="q" value="site:carolinartz.me">
+            <input class="search" type="text" name="q" results="0" placeholder="Search">
+        </fieldset>
+        <fieldset class="mobile-nav">
+            <select>
+                <option value="">Navigate…</option>
+                <option value="">» New Post</option>
+                <option value="">» Sign Out</option>
+            </select>
+        </fieldset>
+    </form>
+
+    <ul class="main-navigation">
+        <% if user_signed_in? %>
+        <li><%= link_to "My Posts", posts_user_path(current_user.id) %></li>
+        <li><%= link_to "New Post", new_post_path, class: "new_post" %></li>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        <% end %>
+
+
+    </ul>
+
+</nav>

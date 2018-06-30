@@ -1,0 +1,414 @@
+$primary: #a1d36e;
+$secondary: #6ad1dd;
+$tertiary: #fc6e51;
+$quaternary: #48cfad;
+
+a {
+   text-decoration: none;
+   color: rgba(105, 105, 105, 0.88);
+   transition: color .3s ease;
+   &:hover {
+      color: #fc6e51;
+   }
+}
+
+.btn {
+   display: inline-block;
+   padding: 6px 14px;
+   background: #f2f2f2;
+   border-radius: 3px;
+   font-size: 13 / 16 + em;
+   color: #b9bcbc;
+   transition: background .3s ease, color .3s ease;
+   &:hover {
+      background: darken(#f2f2f2, 5%);
+      color: darken(#b9bcbc, 15%);
+   }
+   &.btn-primary {
+      background: $primary;
+      color: #fff;
+      &:hover, &.active {
+         background: darken($primary, 5%);
+      }
+   }
+   &.btn-secondary {
+      background: $secondary;
+      color: #fff;
+      &:hover, &.active {
+         background: darken($secondary, 5%);
+      }
+   }
+   &.btn-tertiary {
+      background: $tertiary;
+      color: #fff;
+      &:hover, &.active {
+         background: darken($tertiary, 5%);
+      }
+   }
+   &.btn-quaternary {
+      background: $quaternary;
+      color: #fff;
+      &:hover, &.active {
+         background: darken($quaternary, 5%);
+      }
+   }
+   &.btn-white {
+      background: #fff;
+      &:hover {
+         background: #fafafa;
+      }
+   }
+   &.btn-grey {
+      background: #dddddd;
+      &:hover {
+         background: #cccccc;
+      }
+   }
+   &.btn-large {
+      padding: 12px 28px;
+   }
+   &.btn-caps {
+      text-transform: uppercase;
+   }
+   &.btn-block {
+      display: block;
+      width: 100%;
+      text-align: center;
+   }
+}
+
+.btn-group {
+   position: relative;
+   display: inline-block;
+   margin: 10px 0;
+   &:before {
+      content: attr(data-grouptype);
+      color: #999;
+      display: block;
+      font-size: 13 / 16 + em;
+      width: 19px;
+      height: 19px;
+      padding: 5px;
+      border-radius: 50%;
+      background: #fff;
+      position: absolute;
+      left: 50%;
+      top: 6px;
+      margin-left: -18px;
+   }
+   a + a {
+      margin-left: 5px;
+   }
+}
+
+.btn-navbar {
+   .btn {
+      font-size: 11 / 16 + em;
+   }
+   .active {
+      background: #6ad1dd;
+      color: #fff;
+      &:hover {
+         background: darken(#6ad1dd, 5%);
+      }
+   }
+}
+
+.post {
+   // font-family: 'Source Sans Pro', sans-serif;
+   box-shadow: 0 2px 0 rgba(204, 204, 204, 0.15);
+   margin-bottom: 20px;
+   .post-image {
+      display: block;
+   }
+   .icon-attachment {
+      color: #fff;
+   }
+   .details {
+      position: relative;
+      background: #fff;
+      text-align: center;
+      padding: 0 10px 10px;
+      h2 {
+         // font-size: 14.5 / 16 + em;
+         font-weight: 600;
+         color: #696969;
+         margin: 0;
+         padding: 5px 0;
+      }
+      p {
+         // font-size: 13 / 16 + em;
+         color: #aaaaaa;
+         margin: 0 0 5px;
+         padding: 0;
+      }
+      .intents {
+         text-align: right;
+         position: absolute;
+         top: 10px;
+         right: 10px;
+         font-size: 11 / 16 + em;
+         color: #aaaaaa;
+         line-height: 14px;
+         [class*="icon-"] {
+            font-size: 14px;
+         }
+         .count {
+            line-height: 14px;
+            display: inline-block;
+            position: relative;
+            top: -3px;
+            margin: 0 5px;
+         }
+         .icon-star {
+            color: $tertiary;
+         }
+      }
+   }
+   .actions {
+      height: 20px;
+      [class*="icon-"] {
+         font-size: 18px;
+         font-weight: normal;
+      }
+      .btn-round {
+         position: relative;
+         border-radius: 50%;
+         padding: 10px 0;
+         width: 38px;
+         height: 38px;
+         top: -19px;
+         text-align: center;
+      }
+   }
+   &.post-blog {
+      .details {
+         font-family: 'Open Sans', sans-serif;
+         padding: 10px 20px;
+         text-align: left;
+         h2 {
+            // font-size: 22 / 16 + em;
+            font-weight: 300;
+         }
+         strong {
+            color: #888888;
+         }
+      }
+   }
+   &.post-product {
+      .details {
+         text-align: left;
+         padding: 0 20px 20px;
+      }
+      .product-actions {
+         margin: 20px 0 0;
+      }
+      .download-count {
+         margin: 0 20px;
+      }
+   }
+}
+
+.widget, .post {
+   box-shadow: 0 2px 0 rgba(204, 204, 204, 0.15);
+   margin-bottom: 20px;
+   border-radius: 0 0 3px 3px;
+   background: #fff;
+   position: relative;
+   .header {
+      border-radius: 3px 3px 0 0;
+      font-size: 20 / 16 + em;
+      font-weight: 600;
+      color: #fff;
+      padding: 0 20px;
+      overflow: hidden;
+      position: relative;
+      h2 {
+         margin: 0;
+      }
+      h3 {
+         font-size: 11 / 16 + em;
+         text-transform: uppercase;
+         margin: 0;
+         text-align: center;
+         font-weight: 300;
+         padding-bottom: 10px;
+         color: white;
+      }
+      a {
+         color: white;
+      }
+      &.header-tertiary {
+         background: $tertiary;
+      }
+      &.header-quaternary {
+         background: $quaternary;
+      }
+      &.header-twitter {
+         background: #55acee;
+      }
+      &.header-last {
+         background: #55acee;
+      }
+      &.header-primary {
+         background: $primary;
+      }
+      &.header-secondary {
+         background: $secondary;
+      }
+      .background-icon {
+         [class*="icon-"] {
+            color: rgba(0, 0, 0, 0.05);
+            position: absolute;
+            top: -20px;
+            left: -40px;
+            font-size: 120 / 16 + em;
+         }
+      }
+      p {
+         overflow: hidden;
+         line-height: 1.8em;
+      }
+   }
+   .actions {
+      height: 20px;
+      text-align: center;
+      [class*="icon-"] {
+         font-size: 18px;
+         font-weight: normal;
+      }
+      .btn-round {
+         position: relative;
+         border-radius: 50%;
+         padding: 10px 0;
+         width: 38px;
+         height: 38px;
+         top: -19px;
+         text-align: center;
+      }
+      .btn-twitter {
+         background: #55acee;
+         color: #fff;
+         &:hover {
+            background: darken(#55acee, 5%);
+         }
+      }
+   }
+}
+
+.tags {
+   margin: 10px 0;
+}
+
+.social {
+   margin-bottom: 10px;
+   [class*="icon-"] {
+      margin-left: 10px;
+      display: inline-block;
+   }
+   .btn {
+      color: #fff;
+   }
+   .btn-facebook {
+      background: #3b5998;
+      color: #fff;
+      &:hover, &.active {
+         background: darken(#3b5998, 5%);
+      }
+   }
+   .btn-twitter {
+      background: #55acee;
+      color: #fff;
+      &:hover, &.active {
+         background: darken(#55acee, 5%);
+      }
+   }
+   .btn-dribbble {
+      background: #ea4c89;
+      color: #fff;
+      &:hover, &.active {
+         background: darken(#ea4c89, 5%);
+      }
+   }
+}
+
+.feedback {
+   .details {
+      padding: 20px;
+      text-align: left;
+      p {
+         font-size: 14 / 16 + em;
+      }
+      .image {
+         float: left;
+         margin-right: 10px;
+      }
+      .meta {
+         text-align: right;
+         color: #cccccc;
+         font-size: 20 / 16 + em;
+         .icon-star {
+            color: #fecd5f;
+         }
+      }
+   }
+}
+
+.alert, {
+   background: #FCF8E3;
+   padding: 15px 0 15px 15px;
+   margin-bottom: 10px;
+   font-size: 13 / 16 + em;
+   color: #888;
+   border-radius: 3px;
+   position: relative;
+   .icon-checkmark, .icon-exclamation {
+      display: inline-block;
+      margin-right: 10px;
+   }
+   .close {
+      background: rgba(0, 0, 0, 0.1);
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: 0 3px 3px 0;
+      padding: 10px 30px;
+      [class*="icon-"] {
+         font-size: 30 / 16 + em;
+         color: #fff;
+      }
+   }
+   &.alert-success {
+      background: $primary;
+      color: #fff;
+   }
+   &.alert-info {
+      background: $secondary;
+      color: #fff;
+   }
+}
+
+.verified {
+   &:before {
+      content: '\e60c';
+      font-family: icomoon;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 10px;
+      background: $primary;
+      color: #fff;
+      box-sizing: border-box;
+      padding: 3px;
+   }
+   &.active {
+      &:before {}
+   }
+}
+
+footer {
+   height: 100px;
+}

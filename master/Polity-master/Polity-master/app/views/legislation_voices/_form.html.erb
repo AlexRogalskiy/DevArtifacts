@@ -1,0 +1,28 @@
+
+<%= form_for(@legislation_voice) do |f| %>
+  <% if @legislation_voice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@legislation_voice.errors.count, "error") %> prohibited this legislation_voice from being saved:</h2>
+      <ul>
+      <% @legislation_voice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.hidden_field :legislation_id, :value => @legislation.id %>
+    <%= f.label :support, "I support my alderman's decision" %><br>
+    <%= f.check_box :support %>
+  </div>
+  <div class="field">
+    <%= f.label :feedback %><br>
+    <%= f.text_area :feedback %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

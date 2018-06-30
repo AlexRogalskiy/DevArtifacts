@@ -1,0 +1,45 @@
+
+<h2>My Posts</h2>
+
+<div id="post-container">
+  <% @user_posts.each do |post| %>
+
+
+  <div class="box <%= "size#{col_span}#{col_span}" %> post">
+  <div class="box-contents">
+    <div class="header header-<%="#{header_color}"%>">
+      <h3><%= link_to post.title, post, class: "post-title" %></h3>
+    </div>
+    <div>
+    <div class="inner">
+      <div><%= markdown(post.body) %></div>
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+  <% end %>
+</div>
+
+
+
+
+
+<script>
+  $("#post-container").nested({
+    minWidth: 230,
+    gutter: 15,
+    animate: true,
+    animationOptions: {
+      speed: 200,
+      duration: 300,
+      queue: false
+    },
+    resizeToFit: true,
+    resizeToFitOptions: {
+      resizeAny: true
+    }
+  });
+</script>
+

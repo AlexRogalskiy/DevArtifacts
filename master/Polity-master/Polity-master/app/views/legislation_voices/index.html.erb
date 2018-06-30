@@ -1,0 +1,31 @@
+<h1>Listing legislation_voices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Legislation</th>
+      <th>Support</th>
+      <th>Feedback</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @legislation_voices.each do |legislation_voice| %>
+      <tr>
+        <td><%= legislation_voice.user %></td>
+        <td><%= legislation_voice.legislation %></td>
+        <td><%= legislation_voice.support %></td>
+        <td><%= legislation_voice.feedback %></td>
+        <td><%= link_to 'Show', legislation_voice %></td>
+        <td><%= link_to 'Edit', edit_legislation_voice_path(legislation_voice) %></td>
+        <td><%= link_to 'Destroy', legislation_voice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Legislation voice', new_legislation_voice_path %>

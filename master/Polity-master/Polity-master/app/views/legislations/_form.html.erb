@@ -1,0 +1,37 @@
+<%= form_for(@legislation) do |f| %>
+  <% if @legislation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@legislation.errors.count, "error") %> prohibited this legislation from being saved:</h2>
+
+      <ul>
+      <% @legislation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :city_identifier %><br>
+    <%= f.text_field :city_identifier %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :kind %><br>
+    <%= f.text_field :kind %>
+  </div>
+  <div class="field">
+    <%= f.label :opened_date %><br>
+    <%= f.date_select :opened_date %>
+  </div>
+  <div class="field">
+    <%= f.label :closed_date %><br>
+    <%= f.date_select :closed_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

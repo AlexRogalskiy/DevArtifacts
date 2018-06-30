@@ -1,0 +1,72 @@
+
+<section class="first">
+  <h1 class="block-title">Ward <%= @ward.ward_number %> <span class="script">Community Engagement</span></h1>
+  <hr>
+</section>
+<section class="community fold-content">
+	<h3 class="sub-head">Community Meetings</h3>
+	<% if current_user.ward_number == @ward.ward_number %>
+	<div id="link">
+		<button class="btn btn-blue">
+			<%=link_to "Add A Meeting", new_community_meeting_path %>
+		</button>
+	</div>
+	<% end %>
+	<div class="meetings">
+	 <table class="small-friendly">
+			<th> Topic </th>
+			<th> Where </th>
+			<th> When </th>
+			<th> Meeting Leader </th>
+			<% @community_meetings.each do |meeting| %>
+			<tr>
+				<td> <%= link_to meeting.topic, meeting%> </td>
+				<td> <%= meeting.address %> </td>
+				<td> <%= meeting.date_at %> </td>
+				<% if meeting.creator.twitter_handle %>
+					<td> <%= link_to meeting.creator.name, "https://twitter.com/intent/tweet?text=#{meeting.creator.twitter_handle}", :target => "_blank"  %> </td>
+				<% else %>
+					<td><%= meeting.creator.name %></td>
+				<% end %>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</section>
+
+	<!-- <div id="map-canvas" style="width: 25em; height: 25em"> -->
+	<!-- </div> -->
+
+<section class="alderman fold-content">
+	<div class="alderman-votes">
+		<h3 class="sub-head">Alderman <%= @ward.alderman.last_name %>'s Recent Votes</h3>
+	 <table>
+			<th> Issue </th>
+			<th> Alderman <span class="capitalize"><%= @ward.alderman.last_name %></span>'s Vote </th>
+			<th> Support </th>
+			<% @legislator_votes.each do |vote| %>
+			<tr>
+				<td> <%= vote.legislation.title %> </td>
+				<td>
+					<% if vote.vote == "Y" %>
+					Pass
+					<% else %>
+					Do Not Pass
+					<% end %>
+				</td>
+				<td>
+
+					<div class="bar-graph-indication">
+						<span id="support" class="meter ward-legislation-support" style="width:<%= vote.ward_support_percent(@ward.id) %>%">
+							<p><%= vote.ward_support_percent(@ward.id) %></p>
+						</span>
+						<span id="oppose" class = "meter ward-legislation-opposition" style="width: <%= vote.ward_opposition_percent(@ward.id) %>%">
+							<p><%= vote.ward_opposition_percent(@ward.id) %></p>
+						</span>
+					</div>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</section>

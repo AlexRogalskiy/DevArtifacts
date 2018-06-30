@@ -1,0 +1,92 @@
+@import "compass/css3";
+
+//colors
+$witch_haze: #fff893;
+$pale_prim: #fffbbc;
+$white: #fff;
+$broom: #f8e81c;
+$bull_shot: #73462d;
+$lights_on_stroke: $white;
+$lights_on_fill: $broom;
+$letter_stroke: $bull_shot;
+//urls: background pattern, also svg
+$page_bg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 150 150"><filter id="a" x="0" y="0"><feTurbulence baseFrequency=".7" result="fuzz" numOctaves="2" stitchTiles="stitch"/><feComposite in="SourceGraphic" in2="fuzz" operator="arithmetic" k2="1" k3="-.15" k4=".01"/></filter><rect width="102%" height="102%"/><rect x="-1%" y="-1%" width="102%" height="102%" filter="url(#a)"/></svg>');
+//urls: filters and gradients
+$filter_rusty: url("#rusty");
+$radial_gradient3_on: url("#r-grad3-on");
+$radial_gradient2_on: url("#r-grad2-on");
+$linear_gradient4_on: url("#l-grad4-on");
+$linear_gradient1_on: url("#l-grad1-on");
+$radial_gradient2_on: url("#r-grad2-on");
+$radial_gradient4_on: url("#r-grad4-on");
+$filter_lights_on: url("#lights");
+$linear_gradient1_off: url("#l-grad1-off");
+$filter_lights_off: url("#lights-off");
+$radial_gradient_lights_off: url("#r-grad-lights-off");
+// letter fill assignments
+$R1_fill_on: $radial_gradient3_on;
+$E1_fill_on: $linear_gradient1_on;
+$V_fill_on: $linear_gradient4_on;
+$E2_fill_on: $radial_gradient2_on;
+$R2_fill_on: $radial_gradient2_on;
+$B_fill_on: $radial_gradient4_on;
+$E1_fill_off: $linear_gradient1_off;
+body {
+  background: $page_bg;
+  width: 100%;
+}
+.svg-container {
+  margin: 0 auto;
+  padding: 30px;
+  svg {
+    width: 100%;
+  }
+}
+#r1,
+#e1,
+#v,
+#e2,
+#r2,
+#b {
+  stroke: $letter_stroke;
+  stroke-width: 2;
+  filter: $filter_rusty;
+}
+#R1 {
+  fill: $R1_fill_on;
+}
+#E1 {
+  fill: $E1_fill_on;
+}
+#V {
+  fill: $V_fill_on;
+}
+#E2 {
+  fill: $E2_fill_on;
+}
+#R2 {
+  fill: $R2_fill_on;
+}
+#B {
+  fill: $B_fill_on;
+}
+.lights {
+  filter: $filter_lights_on;
+  fill: $lights_on_fill;
+  stroke: $lights_on_stroke;
+  stroke-width: 0.5;
+}
+.off {
+  .lights {
+    filter: $filter_lights_off;
+    fill-opacity: 0.550000429;
+    stroke-opacity: 0.143936821;
+    stroke-width: 0.25;
+    circle {
+      fill: $radial_gradient_lights_off;
+    }
+  }
+  &#E1 {
+    fill: $E1_fill_off;
+  }
+}

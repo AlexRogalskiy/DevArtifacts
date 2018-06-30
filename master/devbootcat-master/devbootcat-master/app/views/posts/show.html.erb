@@ -1,0 +1,32 @@
+
+	<h1 class="post-title"><%= @post.title %></h1>
+	<h5>By <%= @post.author.email %></h5>
+	<p><%= markdown(@post.body) %></p>
+
+
+<% if current_user.id == @post.author_id %>
+	<%= link_to "Edit Post", edit_post_path(@post), class: 'button-link' %>
+	<%= link_to "Delete Post", post_path(@post), class: 'button-link', method: :delete  %>
+<% end %>
+
+
+<hr />
+<h4> Comments </h4>
+
+<div class="new-comment">
+	<%= form_tag('/comments') do %>
+		<%= text_area_tag(:text) %>
+		<%= hidden_field_tag 'post_id', @post[:id] %>
+		<%= submit_tag("Submit") %>
+	<% end %>
+</div>
+
+<% if @post.comments %>
+	<% @post.comments.each do |comment| %>
+
+		<div>
+			<p><%= markdown(comment.text) %></p>
+			<h5>Posted by: <%= comment.author.email %></h5>
+		</div>
+	<% end %>
+<% end %>

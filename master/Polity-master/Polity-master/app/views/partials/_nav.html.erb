@@ -1,0 +1,24 @@
+
+<header class="navigation">
+  <div class="menu-wrapper">
+    <%= link_to image_tag("/assets/logos/polity_logo_bg.png"), root_path, class: "logo" %>
+    <p class="navigation-menu-button nav-menu" id="js-mobile-menu">MENU</p>
+      <% if user_signed_in? %>
+        <%= link_to "Log Out", destroy_user_session_path, remote: true, method: :delete, class: "navigation-menu-button" %>
+      <% else %>
+        <%= link_to "Register", new_user_registration_path, class: "navigation-menu-button" %>
+        <%= link_to "Sign In", new_user_session_path, class: "navigation-menu-button" %>
+      <% end %>
+    <div class="nav">
+      <% if current_user && current_user.street_address1 %>
+        <ul id="navigation-menu">
+          <li class="nav-link"><a href="/users/<%= current_user.id %>">Dashboard</a></li>
+          <li class="nav-link"><a href="/legislators/<%= current_user.alderman.id %>">Your Alderman</a></li>
+          <li class="nav-link"><a href="/legislations">Speak Out</a></li>
+          <li class="nav-link more"><a href="/wards/<%= current_user.ward.id %>">Community</a>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</header>

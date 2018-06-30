@@ -1,0 +1,57 @@
+<div class="ui blue error inverted form segment">
+  <%= form_for(@community_meeting) do |f| %>
+  <% if @community_meeting.errors.any? %>
+  <div class="ui error message">
+    <div class="header"><%= pluralize(@community_meeting.errors.count, "error") %> prohibited this community_meeting from being saved:</div>
+    <ul><% @community_meeting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<div class="field">
+<%= f.label :topic %>
+    <%= f.text_field :topic, value: @community_meeting.topic, placeholder: "" %>
+</div>
+<div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, value: @community_meeting.description, placeholder: ""  %>
+</div>
+
+<div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address, value: @community_meeting.address, placeholder: "" %>
+</div>
+<div class="three fields">
+    <div class="field">
+      <%= f.label :city %>
+      <%= f.text_field :city, value: @community_meeting.city %>
+  </div>
+  <div class="field">
+      <%= f.label :state %>
+      <%= f.text_field :state, value: @community_meeting.state %>
+  </div>
+  <div class="field">
+      <%= f.label :zip %>
+      <%= f.text_field :zip, value: @community_meeting.zip, placeholder: "" %>
+  </div>
+</div>
+<div class="three fields">
+    <div class="field">
+      <%= f.label :date_at, "Date" %>
+      <%= f.date_field :date_at, value: @community_meeting.date_at %>
+  </div>
+  <div class="field">
+    <%= f.label :start_at, "Start Time" %>
+    <%= f.time_field :start_at, required: true, ampm: true, value: @community_meeting.start_at %>
+</div>
+<div class="field">
+    <%= f.label :end_at, "End Time" %>
+    <%= f.time_field :end_at, required: true, ampm: true, value: @community_meeting.end_at %>
+</div>
+</div>
+<div class="ui blue submit button"><%= f.submit %></div>
+<% end %>
+</div>
+
+

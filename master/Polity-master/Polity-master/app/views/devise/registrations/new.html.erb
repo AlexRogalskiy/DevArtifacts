@@ -1,0 +1,24 @@
+<section class="first registrations">
+
+<div class="ui blue error inverted form segment">
+<h3>Sign up</h3>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+ <div class="ui error message">
+  <%= devise_error_messages! %>
+  </div>
+
+  <div clas="field"><%= f.label :email %>
+  <%= f.email_field :email, autofocus: true, placeholder: "" %></div>
+
+  <div clas="field"><%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: "" %></div>
+
+  <div clas="field"><%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "" %></div>
+
+  <div class="ui blue submit button"><%= f.submit "Sign up" %></div>
+<% end %>
+</div>
+
+<%= render "devise/shared/links" %>
+</section>

@@ -1,0 +1,607 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+
+@import 'import-bourbon-neat';
+@import 'import-sassline';
+@import 'mixins';
+
+$color-margin: #DE6A63;
+$color-padding: #C5D936;
+$color-content: #63BCF8;
+$color-border: #F8CC63;
+$color-box-sizing: #8ADFE0;
+
+$color-bg: #242930;
+$color-dark-light: #343434;
+$color-dark-lighter: #444;
+$color-dark-lightest: #777;
+$color-body: #808386;
+$color-white: #FFFFFF;
+
+
+$knob-size: 20px;
+$knob-border-width: 3px;
+
+$boxes: (content: $color-content,
+         padding: $color-padding,
+         border: $color-border,
+         margin: $color-margin,
+         box-sizing: $color-box-sizing,
+         generated-size: $color-content);
+
+$sliders: content, padding, border, margin;
+
+$lg: new-breakpoint(min-width 1245px 7);
+$md: new-breakpoint(min-width 950px);
+$sm: new-breakpoint(min-width 790px 6);
+$xxs: new-breakpoint(max-width 550px);
+
+// Site-wide base styles.
+// Setting root sizes and base styles.
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  @include rootsize;
+}
+
+body {
+  background-color: $color-bg;
+  color: $color-body;
+  overflow-x: hidden;
+  font-family: unquote(map-get($bodytype, font-family));
+  font-style: normal;
+  font-weight: map-get($bodytype, regular);
+  line-height: 2rem;
+  @include fontsize(zeta, all);
+}
+
+main {
+  margin: 20px auto;
+  padding: 0 20px;
+  @include outer-container;
+  @include media($xxs) {
+    padding: 0;
+    margin-top: 10px;
+  }
+}
+
+.box-model {
+  @include media($sm) {
+    @include span-columns(6);
+  }
+  @include media($md) {
+    @include span-columns(7);
+  }
+  #content, #generated-size {
+    @include media($lg) {
+      @include span-columns(4 of 7);
+    }
+  }
+  #generated-size {
+    @include media($lg) {
+      @include span-columns(3 of 7);
+      @include omega;
+    }
+  }
+}
+
+.controls {
+  @include media($sm) {
+    @include span-columns(6);
+  }
+  @include media($md) {
+    @include span-columns(5);
+  }
+}
+
+
+/* ************************************************************ */
+
+// BOX Style mixins
+// --------------------------------------
+
+@mixin box-property-labels($position) {
+  .box-property-vertical {
+    left: $position;
+  }
+  .box-property-horizontal {
+    top: $position;
+  }
+}
+
+@mixin stagger-labels($position) {
+  .box-property-vertical {
+    left: $position;
+  }
+  .box-property-horizontal {
+    top: $position;
+  }
+}
+
+%hover-opacity {
+  opacity: 1;
+}
+
+@mixin box-styles($color, $border-style, $position-outer:false, $position:0) {
+  background: $color;
+  border: 1px $border-style lighten($color-body, 45%);
+  text-shadow: 0px 1px 1px transparentize(lighten($color, 20%), 0.3);
+  span::before,
+  span::after {
+    color: darken($color, 40%);
+  }
+  &:hover {
+    background-color: $color !important;
+    @if position-outer {
+      .box-property-vertical,
+      .box-property-horizontal {
+        @extend %hover-opacity;
+        opacity: 1;
+      }
+    }
+  }
+  @if $position-outer {
+    @include stagger-labels($position);
+  }
+}
+
+
+
+/*****************************************
+* CONTROL STYLES
+******************************************/
+
+// Fieldset/Legend
+// ---------------------------------------
+
+fieldset {
+  border: 1px solid $color-dark-light;
+  padding: 0 10px 5px;
+}
+
+#generated-size fieldset {
+  min-height: 114px;
+}
+
+legend {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1.3em;
+}
+
+@each $property, $color in $boxes {
+  ##{$property} {
+    legend {
+      color: $color;
+    }
+  }
+}
+
+label, .value, .toggle-text {
+  font-size: 60%;
+  display: inline-block;
+  white-space: nowrap;
+  font-family: unquote(map-get($bodytype, font-family));
+  letter-spacing: 1.5px;
+}
+
+.control-set {
+  margin-top: 20px;
+  width: 100%;
+  label, .toggle-text {
+    width: 25%;
+    text-transform: uppercase;
+  }
+  .slider {
+    width: 65%;
+    @include media($md) {
+      width: 55%;
+    }
+    @include media($lg) {
+      width: 63%;
+    }
+  }
+  .value {
+    width: 7%;
+    text-align: right;
+  }
+}
+
+.box-model #content label {
+  width: 25%;
+  @include media($md) {
+    width: 22%;
+  }
+}
+
+#box-sizing  label {
+  width: 40%;
+}
+
+
+
+// Radio Button
+// ---------------------------------------
+.radio {
+  position: relative;
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+  &::before,
+  &::after {
+    @include transition(all 0.3s ease-in-out);
+    content: "";
+    position: absolute;
+    top: -0.2rem;
+    left: -0.2rem;
+    z-index: 1;
+    width: $knob-size;
+    height: $knob-size;
+    background: $color-dark-light !important;
+    border-radius: 50%;
+  }
+  &:checked,
+  &.ng-valid-parse {
+    &::before {
+      @include transform(scale(0, 0));
+      border-color: $color-box-sizing !important;
+      border-width: $knob-border-width !important;
+    }
+    &::after {
+      border: $knob-border-width solid $color-box-sizing !important;
+      background: $color-bg !important;
+    }
+  }
+}
+
+// Range Sliders
+// ---------------------------------------
+slider, [slider] {
+  display: inline-block;
+  position: relative;
+  height: 7px;
+  width: 63%;
+  vertical-align: middle;
+  margin: 5px;
+  div {
+    white-space: nowrap;
+    position: absolute;
+    &.handle {
+      border: $knob-border-width solid;
+      cursor: pointer;
+      width: $knob-size;
+      height: $knob-size;
+      top: -8px;
+      background-color: $color-bg;
+      z-index: 2;
+      border-radius: 100%;
+      &::after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        left: 6px;
+        border-radius: 100%;
+        background-color: transparent;
+      }
+      &.active::after {
+        background-color: transparent;
+      }
+    }
+    &.bar {
+      width: 100%;
+      height: 100%;
+      border-radius: 7px;
+      background: $color-dark-lighter;
+      overflow: hidden;
+      .selection {
+        width: 0;
+        height: 100%;
+      }
+    }
+    // TODO: remove Bubble functionality from slider directive
+    &.bubble {
+      display: none;
+      cursor: default;
+      top: -22px;
+      padding: 1px 3px;
+      font-size: 0.7em;
+      &.active {
+        display: inline-block;
+      }
+      &.limit {
+        color: $color-dark-lightest;
+      }
+    }
+  }
+}
+
+.bubble.value.low.ng-binding.active {
+  display: none;
+}
+
+.bar-color {
+  height: 20px;
+  border-right: 3px solid;
+  box-sizing: content-box;
+}
+
+@each $property in $sliders {
+  ##{$property} {
+    .slider-selection, .bar-color {
+      background-color: unquote(map-get($boxes, #{$property}));
+    }
+    .bar-color,
+    .handle {
+      border-color: unquote(map-get($boxes, #{$property}));
+    }
+  }
+}
+
+@media (min-width: 951px) and (max-width: 1244px) {
+  .controls {
+    .sliders label {
+      display: block;
+      line-height: 1rem;
+      &:first-of-type {
+          margin-top: 8px;
+      }
+    }
+    slider, [slider]  {
+      width: 87%;
+     }
+  }
+}
+
+// Toggle
+// ---------------------------------------
+.toggle {
+    display: none;
+    &, &::after, &::before, & *, & *::after, & *::before, & + .toggle-control {
+        box-sizing: border-box;
+        &::selection {
+            background: none;
+        }
+    }
+    + .toggle-control {
+        outline: 0;
+        top: 10px;
+        margin-bottom: 8px;
+        width: 52px;
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+        padding: 3px;
+        @include transition(all 0.3s ease-in-out);
+        background: $color-bg;
+        border: $knob-border-width/2 solid $color-dark-lighter;
+        border-radius: 2em;
+        &::after, &::before {
+            position: relative;
+            display: block;
+            content:"";
+            width: $knob-size;
+            height: $knob-size;
+        }
+        &::after {
+            left: 0;
+            @include transition(all 0.3s ease-in-out);
+            background: $color-dark-light;
+            border-radius: 50%;
+        }
+        &::before {
+            display: none;
+        }
+    }
+    &:checked {
+        + .toggle-control {
+            border: $knob-border-width/2 solid $color-dark-lighter;
+            &::after {
+                left: 50%;
+                height: $knob-size;
+                width: $knob-size;
+                background: $color-bg;
+                border: $knob-border-width solid $color-content;
+            }
+        }
+    }
+}
+.toggle-text {
+    vertical-align: text-bottom;
+    margin-left: 5px;
+}
+
+
+// Generated Size Change Animation (ng-animate)
+// ---------------------------------------
+.generated-direction {
+  display: inline-block;
+  width: 150px;
+}
+
+.generated-width,
+.generated-height {
+  font-size: 60%;
+  white-space: nowrap;
+  font-family: unquote(map-get($bodytype, font-family));
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 3rem;
+  @include media($sm) {
+    line-height: 2rem;
+  }
+  .changes {
+    text-transform: none;
+    display: inline-block;
+    line-height: 25px;
+    padding: 0 5px;
+    background: #2F353E;
+    border-radius: 3px;
+    color: $color-content;
+    @include transition(color 0.4s ease-in-out);
+    @include transition(background 0.4s ease-in-out);
+    &[class*="-add"] {
+      color: darken($color-content, 45%);
+      background: $color-content;
+    }
+    &.highlight {
+      &.ng-enter {
+        background: #2F353E;
+        color: $color-content;
+        &.ng-enter-active {
+          color: darken($color-content, 45%);
+          background: $color-content;
+        }
+      }
+      &.ng-leave {
+        color: darken($color-content, 45%);
+        background: $color-content;
+        &.ng-leave-active {
+          background: #2F353E;
+          color: $color-content;
+        }
+      }
+    }
+  }
+}
+/*****************************************
+* DIAGRAM STYLES
+******************************************/
+
+#diagram {
+  margin-left: 5px;
+  clear: left;
+  padding-top: $gutter;
+}
+
+.box {
+  position: relative;
+  &:hover {
+    .box-property {
+      background: $color-white;
+    }
+    .box-property-vertical,
+    .box-property-horizontal {
+      opacity: 0;
+    }
+  }
+}
+
+.box-property {
+  font-family: unquote(map-get($monospacetype, font-family));
+  @include transition(width 0.3s linear);
+  @include transition(height 0.3s linear);
+  position: absolute;
+}
+
+.box-padding {
+  @include box-styles($color-padding, dashed, true, 40%);
+}
+.box-border {
+  @include box-styles($color-border, solid, true, 50%);
+}
+.box-margin {
+  @include box-styles($color-margin, dashed, true, 60%);
+/** To Decode this SVG image, paste the css here: www.svgeneration.com/tools/base-64-decoder */
+
+background-color: #de6a63;
+background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc3JyBoZWlnaHQ9JzE0JyB2aWV3Qm94PScwIDAgNSAxMCc+Cgk8cmVjdCB3aWR0aD0nMTEwJScgeD0nLTUlJyB5PSctNSUnIGhlaWdodD0nMTEwJScgZmlsbD0nI2RlNmE2MycvPgoJPGxpbmUgeDE9JzcnIHkxPScxJyB4Mj0nLTInIHkyPScxMCcgc3Ryb2tlPScjZWVhYWE1JyBzdHJva2Utd2lkdGg9JzAuMjknLz4KCTxsaW5lIHgxPSc3JyB5MT0nNicgeDI9Jy0yJyB5Mj0nMTUnIHN0cm9rZT0nI2VlYWFhNScgc3Ryb2tlLXdpZHRoPScwLjI5Jy8+Cgk8bGluZSB4MT0nNycgeTE9Jy00JyB4Mj0nLTInIHkyPSc1JyBzdHJva2U9JyNlZWFhYTUnIHN0cm9rZS13aWR0aD0nMC4yOScvPgo8L3N2Zz4=');
+
+}
+
+.box-inner {
+  @include box-styles($color-content, solid);
+  text-align: center;
+  &::before {
+    color: darken($color-content, 35%);
+    content: attr(data-width) " x " attr(data-height);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: .5em;
+    width: 100%;
+    font-size: .75em;
+    white-space: nowrap;
+  }
+}
+
+
+
+// Box-Property Main Labels
+// ---------------------------------------
+.property-label {
+  font-family: unquote(map-get($headingtype, font-family));
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 11px;
+  top: -6px;
+  @include media($sm) {
+    top: -12px;
+  }
+
+  left: 5px;
+  position: relative;
+  &#property-label-padding {
+    color: darken($color-padding, 15%);
+  }
+  &#property-label-border {
+    color: darken($color-border, 28%);
+  }
+  &#property-label-margin {
+    color: darken($color-margin, 20%);
+  }
+  &#property-label-content {
+    color: darken($color-content, 20%);
+    float: left;
+    top: -6px;
+    @include media($sm) {
+    top: -8px;
+    }
+  }
+}
+
+#padding-v::before {
+  top: -8px;
+}
+
+%box-property-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  &::before, &::after {
+    position: absolute;
+    font-size: 0.75em;
+    text-align: center;
+  }
+}
+
+%property-vertical {
+  left: -0.5em;
+  width: 100%;
+}
+
+%property-horizontal {
+  margin-top: -0.65em;
+  width: 2em;
+  height: 100%;
+}
+
+$properties: zip(vertical horizontal, height width, top left, bottom right, -0.5em -1em);
+
+@each $direction, $dimension, $offset-before, $offset-after, $amount in $properties {
+  .box-property-#{$direction} {
+     @extend %box-property-position;
+    #{$dimension}: 100%;
+    &::before {
+      content:attr(data-#{$offset-before});
+      @extend %property-#{$direction};
+      #{$offset-before}: $amount;
+    }
+    &::after {
+      content: attr(data-#{$offset-after});
+      @extend %property-#{$direction};
+      #{$offset-after}: $amount;
+    }
+  }
+}
