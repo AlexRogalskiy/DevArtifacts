@@ -1,0 +1,91 @@
+
+.contenedor
+	form
+		- var pageTitle=['Home', 'Features', 'Adding pages', '+More', 'About', 'Dummy page', 'Dummy page'] //Add pages by adding title here
+		- var content = [
+		- 'Pure CSS One page Vertical navigation',
+		- 'two',
+		- 'three',
+		- 'four',
+		- 'five'
+		- ]
+		- for( var n = 0; n < pageTitle.length; n++)
+			if n==0
+				input(type="radio" id="Slide1" name="slider" titulo=""+pageTitle[0] autofocus checked)
+			else
+				input(type="radio" id="Slide"+[n+1] name="slider" titulo=""+pageTitle[n])
+			
+		.labels
+			- for( var n = 0; n < pageTitle.length; n++ )
+				if n==0
+					label(for="Slide"+[n+1] id="Slide"+[n+1] class="Slide")
+						.content: h1 <strong>Pure CSS</strong> one page vertical navigation
+						.icon
+							span: img(src="http://codecase.work/codepen/keyboard-icon.png")
+							span Use keyboard
+				else if n==1
+					label(for="Slide"+[n+1] id="Slide"+[n+1] class="Slide")
+						.content
+							h1 #{pageTitle[n]}
+							.block
+								span 
+									i.fa.fa-hashtag
+									br
+									| <strong>No JS</strong>
+									br
+									| CSS Rules!
+								span 
+									i.fa.fa-keyboard-o
+									br
+									| <strong>Keyboard navigation</strong>
+									br
+									| Yep, no kidding
+								span
+									i.fa.fa-bars
+									br
+									| <strong>Lateral menu</strong>
+								span
+									i.fa.fa-codepen
+									br
+									| <strong>Autogenerate pages</strong>
+									br
+									| Using Jade & SASS
+									
+				else if n==2
+					label(for="Slide"+[n+1] id="Slide"+[n+1] class="Slide")
+						.content
+							h1 #{pageTitle[n]}
+							.block: ol
+									li Add the pages title in the pageTitle array in the HTML editor to generate pages
+									li Add the number of pages in the $npages variable in the CSS editor
+				else if n==3
+					label(for="Slide"+[n+1] id="Slide"+[n+1] class="Slide")
+						.content
+							h1 #{pageTitle[n]}
+							.block
+								span: a(href="https://codepen.io/hrtzt/pen/NPZKRN" target="_blank") One Page Navigation CSS Menu
+								span: a(href="https://codepen.io/hrtzt/pen/YPoeWd" target="_blank") The simplest CSS switch
+								span: a(href="https://codepen.io/hrtzt/pen/JdYaEZ" target="_blank") Animated cube slider CSS only
+								span: a(href="https://codepen.io/hrtzt/pen/vGqEJO" target="_blank") Google photos album view with only CSS
+				
+				else if n==4
+					label(for="Slide"+[n+1] id="Slide"+[n+1] class="Slide")
+						.content
+							h1 #{pageTitle[n]}
+							.block
+								span
+									a(href="https://dribbble.com/albertohartzet" target="_blank")
+										i.fa.fa-dribbble  
+										| Dribbble me
+								span
+									a(href="https://twitter.com/hrtzt" target="_blank")
+										i.fa.fa-twitter
+										| Tweet me
+									
+				else
+					label(for="Slide"+[n+1] id="Slide"+[n+1])
+						.content
+							h1 #{pageTitle[n]}
+							.block Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis
+		
+		

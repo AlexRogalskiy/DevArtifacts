@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+		<script src="https://use.typekit.net/fhy1soz.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+        <link rel="stylesheet prefetch" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+<div id="app" v-on:mousemove="handleMousemove" v-on:mouseup="handleMouseup">
+  <div id="toolbar">
+    <div class="toolbar">
+      <div class="control-group" v-on:mouseover="showMax = false">
+        <h3>Minimum</h3>
+
+        <div class="control">
+          <h4>Width</h4>
+          <scrubber :min='320' :max='480' :steps='10' :value.sync='settings.minWidth' :change='onMinWidthChange'></scrubber>
+        </div>
+
+        <div class="control">
+          <h4>Base font size</h4>
+          <scrubber :min='13' :max='22' :steps='1' :value.sync='settings.minBase'></scrubber>
+        </div>
+
+        <div class="control">
+          <h4>Contrast</h4>
+          <scrubber :min='1' :max='2' :steps='0.01' :value.sync='settings.minContrast'></scrubber>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="control-group" v-on:mouseover="showMax = true">
+        <h3>Maximum</h3>
+        
+        <div class="control">
+          <h4>Width</h4>
+          <scrubber :min='480' :max='1800' :steps='10' :value.sync='settings.maxWidth' :change='onMaxWidthChange'></scrubber>
+        </div>
+
+        <div class="control">
+          <h4>Base font size</h4>
+          <scrubber :min='settings.minBase' :max='32' :steps='1' :value.sync='settings.maxBase'></scrubber>
+        </div>
+
+        <div class="control">
+          <h4>Contrast</h4>
+          <scrubber :min='settings.minContrast' :max='2' :steps='0.01' :value.sync='settings.maxContrast'></scrubber>
+        </div>
+
+      </div>
+    </div>
+
+    <hr /> More information: <a href="https://medium.com/@getflourish/designing-with-intent-be6664b10ac#.ihuhmfasg">Designing with intent</a> by Florian Schulz
+
+  </div>
+
+  <div class="side-by-side" v-if="lock">
+    <div class="with-controls" v-if="!showMax || splitView">
+      <div class="handle" v-on:mousedown="handleMinMousedown" v-bind:class="{'js-active': mousedown && willChange == 'min' }"></div>
+      <div class="demo" v-bind:style="{'width': minWidth + 'px', 'padding': scaleMin[3] + 'px', 'transitionDuration': settings.transitionDuration }">
+        <div v-for="item in content">
+          <div class="item" v-bind:class="item.class" v-bind:style="{'font-size': scaleMin[item.size] + 'px', 'transitionDuration': settings.transitionDuration }">
+            {{ item.text }}
+            <input class="size-input" type="number" max="9" min="0" v-model="item.size" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="with-controls" v-if="showMax || splitView">
+      <div class="handle" v-on:mousedown="handleMousedown" v-bind:class="{'js-active': mousedown && willChange == 'max' }"></div>
+      <div class="demo demo--big" v-bind:style="{'width': maxWidth + 'px', 'padding': scale[3] + 'px', 'transitionDuration': settings.transitionDuration }">
+        <div v-for="item in content">
+          <div class="item" v-bind:class="item.class" v-bind:style="{'font-size': scale[item.size] + 'px', 'transitionDuration': settings.transitionDuration}">
+            {{ item.text }}
+            <input class="size-input" type="number" max="9" min="0" v-model="item.size" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
+	
+</body>
+<!--  footer -->
+</html>
