@@ -1,0 +1,32 @@
+<table id="legislation-table">
+  <thead>
+    <tr>
+      <th><%= "title" %></th>
+      <th id="select-status"><%= "status" %></th>
+      <th>Support</th>
+      <th>Oppose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @legislations.each do |legislation| %>
+    <tr id=<%= legislation.id %> >
+      <td><%= link_to legislation.title, "http://www.google.com/search?q=%22#{legislation.city_identifier}%22", target: "_blank" %></td>
+      <td><%= legislation.status %></td>
+      <% if user_voice(legislation) %>
+      <td>Your Voice:</td>
+      <td>
+        <% if user_voice(legislation).support %>
+          <%= image_tag "icons/like.svg", :style => "width: 25px", alt: "support"%>
+        <% else %>
+          <%= image_tag "icons/like.svg", :style => "width: 25px", alt: "oppose"%>
+        <% end %>
+      </td>
+      <% else %>
+      <td class="support"><%= image_tag "icons/like.svg", :style => "width: 25px", class: "voice#{legislation.id}", alt: "support"%></td>
+      <td class="oppose"><%= image_tag "icons/like.svg", :style => "width: 25px", class: "voice#{legislation.id}", alt: "oppose"%></td>
+      <% end %>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,187 @@
+// Place all the styles related to the legislators controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+th:first-child {
+  width: 40%;
+}
+
+// @import url('http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+@import url(http://fonts.googleapis.com/css?family=Oswald:700);
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+
+// Fonts
+$serif: 'Droid Serif', serif;
+// $sans: 'Oswald', sans-serif;
+$icon: fontawesome;
+$open-sans: 'Open Sans', sans-serif;
+
+// Table
+$tblTxt: #555;
+$tblBg: white;
+$tblOddBg: #eee;
+$tblHoverBg: #ddd;
+$tblBorder: #ccc;
+$tblActiveBg: tomato;
+$tblActiveTxt: white;
+
+.pcs,
+.cur,
+.per {white-space:nowrap;}
+.pcs:after { content: " pcs"; }
+.cur:before { content: "$"; }
+.per:after { content: "%"; }
+// --------------------------
+* { box-sizing: border-box; }
+// Table
+
+.legislator-activity {
+  @include span-columns(12);
+  margin: auto;
+  float: none;
+  .legislator-votes {
+    @include span-columns(8 of 12);
+    @include media(max-width 769px) {
+      @include span-columns(12 of 12);
+    }
+  }
+  .legislator-sponsored {
+    @include span-columns(4 of 12);
+    @include media(max-width 769px) {
+      @include span-columns(12 of 12);
+    }
+  }
+
+
+table {
+  // position: relative;
+  width: 100%;
+  th {
+    text-align: left;
+    vertical-align: bottom;
+    border-bottom: 1px solid $tblBorder;
+    text-transform: uppercase;
+    font: 1em $sans;
+  }
+  th, td { padding: .4em; }
+}
+
+// fold table
+table.fold-table {
+  background: $tblBg;
+  color: $tblTxt;
+  > tbody {
+    // view segment
+    > tr.view {
+      font-family: $open-sans !important;
+      transition: all .3s ease;
+      td, th {cursor: pointer;}
+      td:first-child,
+      th:first-child {
+        position: relative;
+        padding-left:20px;
+        &:before {
+          position: absolute;
+          top:50%; left:5px;
+          width: 9px; height: 16px;
+          margin-top: -8px;
+          font: 16px $icon;
+          content: "\f0d7";
+          transition: all .3s ease;
+        }
+      }
+      &:nth-child(4n-1) { background: $tblOddBg; }
+      &:hover { background: $tblHoverBg; }
+      &#opposed.open {
+        background: #fc3822;
+        color: $tblActiveTxt;
+        td:first-child, th:first-child {
+          &:before {
+            transform: rotate(-180deg);
+            color: $tblActiveTxt;
+          }
+        }
+      }
+      &#supported.open {
+        background: #a0db09;
+        color: $tblActiveTxt;
+        td:first-child, th:first-child {
+          &:before {
+            transform: rotate(-180deg);
+            color: $tblActiveTxt;
+          }
+        }
+      }
+    }
+
+    // fold segment
+    > tr.fold {
+      display: none;
+      &.open { display:table-row; }
+    }
+  }
+}
+
+// fold content
+.fold-content {
+  padding: .5em;
+  h3 { margin-top:0; }
+  > table {
+    background: $tblBg;
+    color: $tblTxt;
+    //border: 2px solid $tblBorder;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.2);
+    > tbody {
+      > tr {
+        font-family: $open-sans;
+        cursor: pointer;
+        &:nth-child(even) { background: $tblOddBg; }
+        &:hover { background: $tblHoverBg; }
+      }
+    }
+  }
+}
+
+.visible-small { display: none; }
+.visible-big { display: block; }
+@media (max-width: 700px) {
+  body { font-size: .8em; padding: 0 10px;}
+  table {
+    th, td { padding: 1em .2em; }
+    th { vertical-align: bottom; padding-bottom: 0; }
+  }
+
+  table.small-friendly {
+    > thead { display: none; }
+    > tbody {
+      > tr {
+        > td,
+        > th {
+          position: relative;
+          padding: 0;
+          padding-left: 50%;
+          display:block;
+          vertical-align: top;
+          border-bottom: 1px solid rgba(0,0,0,.05);
+          &:before {
+            position: absolute;
+            top:0; left:.5em;
+            max-width: 50%;
+            content: attr(data-th)": ";
+            display:block;
+            font-weight: bold;
+          }
+          &:first-child { margin-top:1em; }
+          &:last-child { margin-bottom:1em; border:0; }
+        }
+      }
+    }
+  }
+
+  .visible-small { display: block; }
+  .visible-big { display: none; }
+}
+}
+
+
+

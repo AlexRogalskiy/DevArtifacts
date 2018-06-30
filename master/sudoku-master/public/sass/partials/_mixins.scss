@@ -1,0 +1,65 @@
+@mixin respond-to($media) {
+  @if $media == phone {
+    @media (max-width: 480px) {
+      @content;
+    }
+  }
+  @else if $media == tablet-portrait {
+    @media (min-width: 481px) and (max-width: 768px) {
+      @content;
+    }
+  }
+  @else if $media == tablet-landscape {
+    @media (min-width: 769px) and (max-width: 1024px) {
+      @content;
+    }
+  }
+  @else if $media == desktop {
+    @media (min-width: 1025px) and (max-width: 1440px) {
+      @content;
+    }
+  }
+  @else if $media == large-desktop {
+    @media (min-width: 1441px) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (max-width: #{$media}px) {
+      @content;
+    }
+  }
+}
+
+@mixin respondto($media...) {
+  @each $mediatype in $media {
+    @include respond-to($mediatype) {
+      @content;
+    }
+  }
+}
+
+/*
+NEON TEXT MIXINS
+*/
+
+@mixin neon-text($color, $size) {
+  $glow-sizes1: 0 0 3px, 0 0 12px, 0 0 18px, 4px 3px 2px;
+  $glow-sizes2: 0 0 30px, 0 0 10px, 0 0 100px, 0 0 500px, 5px 9px 5px;
+  @if $size == small {
+    @include text-shadow(zip($glow-sizes1, get-neon-glow-colors($color, $size)));
+  }
+  @if $size == large {
+    @include text-shadow(zip($glow-sizes2, get-neon-glow-colors($color, $size)));
+  }
+  color: map-get($colors, $color);
+}
+
+@mixin neon-text-off {
+  color: map-get($colors, dark-alpha);
+  @include text-shadow(4px 7px 3px map-get($colors, darkest-alpha));
+}
+
+@mixin green-glow {
+  @include box-shadow(0 0 10px $green, 0 0 30px $green-glow-alpha, 0 0 80px $green-light-alpha, 5px 9px 5px map-get($colors, darkest-alpha), inset 0 0 38px $green-inset-shadow);
+}

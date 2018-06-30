@@ -1,0 +1,435 @@
+@import "compass/reset";
+@import "compass";
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "partials/variables";
+@import "partials/utilities";
+@import "partials/fonts";
+@import "partials/mixins";
+@import "partials/animations";
+
+$pink: pink;
+$blue: blue;
+$large: large;
+$small: small;
+
+body {
+  background: url(img/twinkle_twinkle_@2X.png);
+  // overflow-x: hidden;
+}
+
+.container {
+  @include outer-container;
+  margin-top: 60px;
+}
+
+main {
+  margin-top: 100px;
+}
+
+section {
+  position: relative;
+  @include row;
+}
+
+header {
+  padding: 10px;
+  text-align: center;
+}
+
+/*
+*
+*
+*
+*/
+/*=========================================
+=            Heading Neon Text            =
+=========================================*/
+
+h1 {
+  font: normal 170px / 85px $font-headings;
+  @include respondto(tablet-portrait) {
+    font-size: 130px;
+    line-height: 55px;
+  }
+
+  @include respondto(phone) {
+    font-size: 90px;
+    line-height: 45px;
+  }
+
+  span {
+    @include neon-text($pink, $large);
+    &:nth-child(1) {
+      @include animation(blink1 step-start 3s -6s infinite backwards, blink2 step-start 5s infinite alternate, blink3 linear 5s -2s infinite alternate-reverse);
+    }
+    &:nth-child(2) {
+      @include animation(blink1 step-start 15s 0s infinite forwards);
+    }
+    &:nth-child(10) {
+      @include animation(blink1 step-start 5s -2s infinite alternate-reverse, blink3 linear 5s infinite alternate);
+    }
+  }
+}
+
+/*-----  End of Heading Neon Text  ------*/
+/*
+*
+*
+*
+*/
+/*======================================================
+=            Outer Board & Neon Green Cover            =
+======================================================*/
+
+@mixin scale-neon-cover($height: 511px, $width: 511px, $border-width: 5px, $bottom: 4px) {
+  #display, #cover {
+    height: $height;
+    width: $width;
+  }
+  #cover {
+    border-width: $border-width !important;
+    bottom: $bottom;
+  }
+}
+
+#board {
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  @include span-columns(8);
+  @include respondto(phone, tablet-portrait, tablet-landscape, small-desktop) {
+    @include span-columns(12);
+  }
+
+  #display, #cover {
+    margin: 0 auto;
+    background-color: transparent;
+    border-radius: 10px;
+    text-align: center;
+    table {
+      @include box-shadow(inset 0 0 38px $green-inset-shadow);
+    }
+  }
+  #cover {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    border: 5px solid $green-light;
+    border-radius: 10px;
+    pointer-events: none;
+    @include green-glow;
+  }
+}
+
+// default
+@include scale-neon-cover;
+
+/*
+*/
+//media queries
+// 1025-1440
+@include respondto(desktop) {
+  @include scale-neon-cover($height: 511px, $width: 511px, $border-width: 5px, $bottom: 4px);
+}
+
+
+// 769-1024
+@include respondto(tablet-landscape) {
+  @include scale-neon-cover($height: 511px, $width: 511px, $border-width: 5px, $bottom: 4px);
+}
+
+
+// 481-768
+@include respondto(tablet-portrait) {
+  @include scale-neon-cover($height: 385px, $width: 385px, $border-width: 4px, $bottom: 9px);
+}
+
+
+// <480
+@include respondto(phone) {
+  @include scale-neon-cover($height: 283px, $width: 285px, $border-width: 2.7px, $bottom: 4px);
+}
+
+
+/*-----  End of Outer Board & Neon Green Cover  ------*/
+/*
+*
+*
+*
+*/
+/*=============================
+=            Cells            =
+=============================*/
+
+input[type="text"], input[type="number"] {
+  @include appearance(none);
+  -moz-appearance: textfield;
+  height: 55px;
+  width: 55px;
+  font-size: 2em;
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  text-align: center;
+  font-family: $font-numbers;
+  @include transition(height 0.1s ease, width 0.1s ease);
+  color: map-get($colors, pink-light);
+  @include text-shadow(0 0 6px map-get($colors, pink-pastel));
+  &:focus {
+    outline: none;
+  }
+  @include respondto(tablet-portrait) {
+    height: 40px;
+    width: 40px;
+    font-size: 1.6em;
+  }
+
+  @include respondto(phone) {
+    height: 30px;
+    width: 30px;
+    font-size: 1.1em;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+$sq-dim: 55px;
+$sq-dim-sm: 30px;
+$sq-dim-md: 40px;
+
+.table {
+  display: table;
+  border: none;
+  table-layout: auto;
+  .row {
+    display: table-row;
+    .cell {
+      display: table-cell;
+      border: 0;
+      padding: 0;
+      height: 55px;
+      width: 55px;
+      font-family: $font-numbers;
+      color: map-get($colors, pink-light);
+      border-right: 2px $dark-grey inset;
+      border-bottom: 2px $dark-grey inset;
+      // @include box-shadow(inset 0 0 1px 1px $grey-indent, inset 0 0 1px 1px $grey-indent);
+      @include transition(height 0.25s ease, width 0.25s ease);
+      @include respondto(tablet-portrait) {
+        height: 40px;
+        width: 40px;
+        border-right: 1px $dark-grey inset;
+        border-bottom: 1px $dark-grey inset;
+      }
+
+      @include respondto(phone) {
+        height: 30px;
+        width: 30px;
+        border-right: 1px $dark-grey inset;
+        border-bottom: 1px $dark-grey inset;
+      }
+
+      &:nth-child(3n+3) {
+        width: $sq-dim + 2px;
+        height: $sq-dim;
+        border-right: 2px $green-inset-shadow inset;
+        // this is the green border that marks the squares, vertical
+        @include respondto(tablet-portrait) {
+          height: $sq-dim-md;
+          width: $sq-dim-md + 2px;
+          border-right: 1px $green-inset-shadow inset;
+          // this is the green border that marks the squares, vertical
+        }
+
+        @include respondto(phone) {
+          height: $sq-dim-sm;
+          width: $sq-dim-sm + 2px;
+          border-right: 1px $green-inset-shadow inset;
+          // this is the green border that marks the squares, vertical
+        }
+      }
+      &:last-child {
+        width: $sq-dim;
+        height: $sq-dim;
+        border-right: 0;
+        @include respondto(tablet-portrait) {
+          height: $sq-dim-md;
+          width: $sq-dim-md;
+        }
+
+        @include respondto(phone) {
+          height: $sq-dim-sm;
+          width: $sq-dim-sm;
+        }
+      }
+    }
+    &:nth-child(3n+3) {
+      > .cell {
+        border-bottom: 2px $green-inset-shadow inset;
+        // @include box-shadow(0 3px 3px -2px $green-inset-shadow, 2px 0 2px -1px $grey-indent, 0 2px 2px -1px $grey-indent);
+        height: $sq-dim + 2px;
+        width: $sq-dim;
+        @include respondto(phone) {
+          border-bottom: 1px $green-inset-shadow inset;
+          width: $sq-dim-sm;
+          height: $sq-dim-sm + 2px;
+        }
+
+        @include respondto(tablet-portrait) {
+          border-bottom: 1px $green-inset-shadow inset;
+          width: $sq-dim-md;
+          height: $sq-dim-md + 2px;
+        }
+      }
+    }
+    &:last-child {
+      > .cell {
+        height: $sq-dim;
+        width: $sq-dim;
+        // @include box-shadow(2px 0 2px -1px $grey-indent, 0 2px 2px -1px $grey-indent);
+        @include respondto(tablet-portrait) {
+          height: $sq-dim-md;
+          width: $sq-dim-md;
+        }
+
+        @include respondto(phone) {
+          height: $sq-dim-sm;
+          width: $sq-dim-sm;
+        }
+      }
+    }
+  }
+}
+
+/*-----  End of Cells  ------*/
+/*
+*
+*
+*
+*/
+/*===============================
+=            Buttons            =
+===============================*/
+
+#submit {
+  @include span-columns(4);
+  text-align: center;
+  @include respondto(tablet-landscape, tablet-portrait, phone) {
+    // bottom: 380px;
+    // @include row;
+    @include span-columns(12);
+    margin-top: 25px;
+  }
+}
+
+// override bourbon & user-agent
+.button, button {
+  // @include span-columns(6);
+  @include appearance(none);
+  overflow: visible;
+  background: none;
+  vertical-align: bottom;
+  border-radius: 0;
+  border: none;
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1;
+  font-family: $font-script;
+  text-decoration: none;
+  -webkit-background-origin: content-box;
+  margin: 0;
+  cursor: pointer;
+  font-size: 60px;
+  @include neon-text($blue, $small);
+  &:hover {
+    background: none;
+  }
+  &:focus, &:active {
+    outline: none !important;
+  }
+  @include respondto(tablet-portrait) {
+    font-size: 60px;
+    line-height: 50px;
+    padding: 30px 50px;
+  }
+
+  @include respondto(phone) {
+    font-size: 35px;
+    line-height: 55px;
+    padding: 20px 10px;
+  }
+}
+
+button {
+  min-width: 240px;
+  min-height: 75px;
+  @include respondto(phone) {
+    min-width: 140px;
+  }
+
+  @include respondto(desktop, large-desktop) {
+    margin-bottom: 20px;
+  }
+}
+
+/*-----  End of Buttons  ------*/
+/*
+*
+*
+*
+*/
+/*==============================
+=            Footer            =
+==============================*/
+
+.info {
+  @include row;
+  text-align: center;
+  margin-top: 20px;
+  padding: 30px;
+}
+
+.authors, .links {
+  @include neon-text($blue, $small);
+  font-family: $font-numbers;
+  font-size: 40px;
+  @include respondto(phone, tablet-portrait) {
+    font-size: 30px;
+  }
+
+  span {
+    color: map-get($colors, pink-pastel);
+    @include text-shadow(0 0 6px map-get($colors, pink-pastel));
+    white-space: nowrap;
+  }
+  a {
+    color: map-get($colors, pink-pastel);
+    @include text-shadow(0 0 6px map-get($colors, pink-pastel));
+    font-family: $font-script;
+    text-decoration: none;
+  }
+}
+
+.links {
+  margin-top: 15px;
+}
+
+/*-----  End of Footer  ------*/
+/*
+*
+*
+*
+*/
+
+.no-jump {
+  width: 1px;
+  height: 1px;
+  @include transform(translate3d(0, 0, 0));
+  float: right;
+}

@@ -1,0 +1,74 @@
+a  <script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfqOZUGR6ejmHezySTCVgPJdOTr1UDTUw">
+</script>
+<script type="text/javascript">
+  function initialize() {
+    var mapOptions = {
+      zoom: 15,
+      center: new google.maps.LatLng(<%= @community_meeting.latitude %>, <%= @community_meeting.longitude %>)
+    };
+
+    var map = new google.maps.Map(document.getElementById('map-canvas'),
+                                  mapOptions);
+    var meeting_location = new google.maps.LatLng(<%= @community_meeting.latitude %>, <%= @community_meeting.longitude %>)
+    var content = "Hiiiiiii"
+    function createMarker(location, content){
+      new google.maps.Marker({
+       position: location,
+       map: map,
+       title: content
+     });
+    }
+    createMarker(meeting_location, content);
+
+
+    // #TODOS: Determine what to do with this or delete it
+
+	    // tam's notes
+
+	    // function createMultipleMarkers (arrayOfMeetings) {
+	    // 	arrayOfMeetings.forEach(mtg, function( ){
+	    // 		createMarker(mtg.location, mtg.content);
+	    // 	})
+	    // }
+	    // var allMeetings = (<%@all_community_meetings%>)
+	    // createMultipleMarkers();
+
+// 	    createMarker(meeting_location, '<div class="bike_shop">' +
+//         '<h3 id="firstHeading">' + <%= @community_meeting.topic %> + '</h3>'+
+//         '<div id="bodyContent">'+ '<p>' + <%= @community_meeting.creator.name %> + '</p>' + '<p>Address: ' + <%= @community_meeting.address %> + '</p>' +'</div>')
+}
+
+
+function loadScript() {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
+  'callback=initialize';
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+</script>
+<section class="first">
+
+  <div class="meeting-details">
+    <h1><%= @community_meeting.topic %></h1>
+    <h3>Organizer: <%= @community_meeting.creator.name %></h3>
+    <div>
+      <h4><%= @community_meeting.date_at.strftime("%B %d %Y") %></h4>
+      <h4><%= @community_meeting.start_at.strftime("%I:%M %p") %> - <%= @community_meeting.end_at.strftime("%I:%M %p") %></h4>
+      <p><%= @community_meeting.description %></p>
+    </div>
+
+    <h3><%= @community_meeting.address %></h3>
+    <% if current_user.id == @community_meeting.creator_id %>
+    <%= link_to "Edit This Meeting", edit_community_meeting_path, id: "edit" %>
+    <%= button_to "Delete This Meeting", community_meeting_path, method: :delete, id: "delete" %>
+    <% end %>
+  </div>
+
+
+  <div id="map-canvas" style="width: 25em; height: 25em"></div>
+
+</section>

@@ -1,0 +1,234 @@
+// @import url(http://weloveiconfonts.com/api/?family=entypo|fontawesome);
+
+/* entypo */
+[class*="entypo-"]:before {
+   font-family: 'entypo', sans-serif;
+}
+
+/* fontawesome */
+[class*="fontawesome-"]:before {
+   font-family: 'FontAwesome', sans-serif;
+}
+
+// Base Font
+$base-font-family: "Source Serif Pro", "gandhi_serifregular", "Helvetica Neue", "Open Sans", Helvetica, Arial, sans-serif;
+$base-font-size: 18px;
+$base-line-height: 1.4;
+
+$header-fontface-thin: "Oswald", "benchnineregular", "Helvetica Neue", "Open Sans", Helvetica, Arial, sans-serif;
+$header-fontface-thick: "Oswald", "Helvetica Neue", Arial, sans-serif;
+$icons: "WebHostingHub-Glyphs";
+
+$block-title: saturate(darken($base-accent-color, 30), 30);
+
+//Font weights
+$light: 300;
+$regular: 400;
+
+// $bold: 700;
+
+$sans: "Source Sans Pro";
+$sans-serif: "Source Serif Pro";
+$font-all-caps: "Novecento sans wide";
+$h1-script: "Dustismo Roman";
+
+// #09336f
+
+//Chicago Colors
+$dark-grey: #2a3145;
+$chicago-red: #fa0d1b;
+$chicago-blue: #477dca;
+$peach: #fd7c54;
+$champaign: #f0ece4;
+$lightblue: #bad4e0;
+$brightblue: #4648ff;
+
+//accents
+$body-grey: #798291;
+$electric-blue: #4a93f3;
+$orange: #f3a828;
+$green: #4dc049;
+$purple: #ac61d0;
+$medium-blue: #2c5999;
+
+$base-border-radius: em(0.5);
+
+@mixin alpha-attribute($attribute, $color, $background) {
+   $percent: alpha($color) * 100%;
+   $opaque: opacify($color, 1);
+   $solid-color: mix($opaque, $background, $percent);
+   #{$attribute}: $solid-color;
+   #{$attribute}: $color;
+}
+
+.capitalize {
+   text-transform: capitalize;
+}
+
+.lowercase {
+   text-transform: lowercase;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   font-weight: 400;
+   text-transform: uppercase;
+   font-family: $header-fontface-thick;
+}
+
+h2 {
+   font-size: 2em !important;
+}
+
+.alderman-top h2 {
+   font-size: 90%;
+}
+
+header.navigation .navigation-menu-button.nav-menu {
+   color: #e06063;
+}
+
+.block-title {
+   text-align: left;
+   margin: .5em 0 .5em;
+   color: $block-title;
+   font-weight: 400;
+   font-size: 270%;
+   margin-left: .5em;
+}
+
+body {
+   margin: 0;
+}
+
+th {
+   font-family: "Fjalla One";
+   font-size: 160%;
+   text-transform: uppercase;
+}
+
+.first, .hero {
+   padding-top: 60px;
+}
+
+@media screen and (min-width: 53.75em) {
+   header.navigation a.navigation-menu-button {
+      display: block !important;
+   }
+}
+
+header.navigation {
+   height: 90px;
+}
+
+.navigation .menu-wrapper {
+   height: 90px;
+}
+
+.location-pin {
+   width: 30px;
+   height: 36px !important;
+}
+
+.address-pin {
+   float: left;
+}
+
+.alderman-info img {
+   width: 200px;
+}
+
+.voice_up {
+   background: $electric-blue;
+   margin: 3em 0;
+}
+
+.voice_up a {
+   font-family: $header-fontface-thin;
+   color: white;
+   font-size: 24px;
+}
+
+.voice_up a:hover {
+   color: $electric-blue;
+}
+
+td {
+   // font-weight:300;
+}
+
+tr td:first-child, .tab-header-and-content a {
+   text-align: left;
+   text-transform: none;
+   // font-family: $base-font-family;
+}
+
+th {
+   text-align: left;
+}
+
+.alderman-bottom > div, .vote-feedback > div {
+   display: inline-block;
+   float: left;
+}
+
+header.navigation, header.navigation a {
+   font-family: $font-all-caps;
+   text-transform: uppercase;
+}
+
+.bullet-content {
+   position: relative;
+   bottom: 2em;
+}
+
+.fa-lg {
+   font-size: 2em;
+}
+
+.bullet-content h2 {
+   font-size: 1.8em !important;
+}
+
+.display-icon {
+   font-family: $icons;
+}
+
+footer {
+   clear: both;
+}
+
+.sidebar-blue {
+   background: $lightblue;
+}
+
+.sub-head {
+   // border-bottom: 4px solid #fd7c54;
+   line-height: 1.1em;
+   margin-bottom: .3em;
+   color: $chicago-blue;
+   // font-weight: 300;
+   font-size: 1.6em;
+   font-family: $font-all-caps;
+   text-transform: lowercase;
+}
+
+h1 .script {
+   font-size: .6em;
+   font-style: italic;
+   font-family: $h1-script;
+   text-transform: none;
+}
+
+label {
+   font-family: $sans;
+   font-weight: normal;
+}
+
+input {
+   font-size: 15px !important;
+}
+
+.form-container {
+   margin-bottom: 0;
+   padding-bottom: 30px;
+}

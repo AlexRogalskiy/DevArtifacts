@@ -1,0 +1,168 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+/* line 11, ../sass/style.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  user-select: none;
+}
+
+/* line 18, ../sass/style.scss */
+body {
+  display: flex;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  perspective: 1000px;
+  background-color: #f5f5f5;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* line 29, ../sass/style.scss */
+.description {
+  margin-top: 50px;
+  text-align: center;
+  color: #999;
+  transition: opacity 0.3s ease;
+}
+
+/* line 36, ../sass/style.scss */
+.description a {
+  color: #4A9DF6;
+  text-decoration: none;
+}
+
+/* line 41, ../sass/style.scss */
+.btn.is-open ~ .description {
+  opacity: 0;
+}
+
+/* line 45, ../sass/style.scss */
+.btn {
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 80px;
+  transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1), height 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  text-align: center;
+}
+
+/* line 58, ../sass/style.scss */
+.btn-front {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 80px;
+  background-color: #F44336;
+  color: #fff;
+  cursor: pointer;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease, line-height 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* line 72, ../sass/style.scss */
+.btn-front:hover {
+  background-color: #f77066;
+}
+
+/* line 75, ../sass/style.scss */
+.btn.is-open .btn-front {
+  pointer-events: none;
+  line-height: 160px;
+}
+
+/* line 80, ../sass/style.scss */
+.btn-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+  color: #222;
+  transform: translateZ(-2px) rotateX(180deg);
+  overflow: hidden;
+  transition: box-shadow 0.8s ease;
+}
+
+/* line 90, ../sass/style.scss */
+.btn-back p {
+  margin-top: 27px;
+  margin-bottom: 25px;
+}
+
+/* line 94, ../sass/style.scss */
+.btn-back button {
+  padding: 12px 20px;
+  width: 30%;
+  margin: 0 5px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 2px;
+  font-size: 1em;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease;
+}
+/* line 107, ../sass/style.scss */
+.btn-back button:focus {
+  outline: 0;
+}
+/* line 111, ../sass/style.scss */
+.btn-back button.yes {
+  background-color: #2196F3;
+  color: #fff;
+}
+/* line 115, ../sass/style.scss */
+.btn-back button.yes:hover {
+  background-color: #51adf6;
+}
+/* line 120, ../sass/style.scss */
+.btn-back button.no {
+  color: #2196F3;
+}
+/* line 123, ../sass/style.scss */
+.btn-back button.no:hover {
+  background-color: #ddd;
+}
+
+/* line 129, ../sass/style.scss */
+.btn.is-open .btn-back {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* line 133, ../sass/style.scss */
+.btn[data-direction="left"] .btn-back,
+.btn[data-direction="right"] .btn-back {
+  transform: translateZ(-2px) rotateY(180deg);
+}
+
+/* line 138, ../sass/style.scss */
+.btn.is-open {
+  width: 400px;
+  height: 160px;
+}
+
+/* line 143, ../sass/style.scss */
+.btn[data-direction="top"].is-open {
+  transform: rotateX(180deg);
+}
+
+/* line 147, ../sass/style.scss */
+.btn[data-direction="right"].is-open {
+  transform: rotateY(180deg);
+}
+
+/* line 151, ../sass/style.scss */
+.btn[data-direction="bottom"].is-open {
+  transform: rotateX(-180deg);
+}
+
+/* line 155, ../sass/style.scss */
+.btn[data-direction="left"].is-open {
+  transform: rotateY(-180deg);
+}

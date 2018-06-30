@@ -1,0 +1,33 @@
+<section>
+<h1 class="block-title">Listing wards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ward number</th>
+      <th>Address1</th>
+      <th>Address2</th>
+      <th>Zip</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wards.each do |ward| %>
+      <tr>
+        <td><%= ward.ward_number %></td>
+        <td><%= ward.address1 %></td>
+        <td><%= ward.address2 %></td>
+        <td><%= ward.zip %></td>
+        <td><%= link_to 'Show', ward %></td>
+        <td><%= link_to 'Edit', edit_ward_path(ward) %></td>
+        <td><%= link_to 'Destroy', ward, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ward', new_ward_path %>
+</section>

@@ -1,0 +1,31 @@
+<h1>Listing legislator_votes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Legislation</th>
+      <th>Legislator</th>
+      <th>Vote date</th>
+      <th>Vote</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @legislator_votes.each do |legislator_vote| %>
+      <tr>
+        <td><%= legislator_vote.legislation %></td>
+        <td><%= legislator_vote.legislator %></td>
+        <td><%= legislator_vote.vote_date %></td>
+        <td><%= legislator_vote.vote %></td>
+        <td><%= link_to 'Show', legislator_vote %></td>
+        <td><%= link_to 'Edit', edit_legislator_vote_path(legislator_vote) %></td>
+        <td><%= link_to 'Destroy', legislator_vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Legislator vote', new_legislator_vote_path %>

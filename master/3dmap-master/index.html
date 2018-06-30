@@ -1,0 +1,151 @@
+<html>
+	<head>
+		<title>My first Three.js app</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+		
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="js/three.min.js"></script>
+		<script src="js/utm-converter/src/converter.js"></script>
+	</head>
+	<body>
+		<script>
+		    var threeObjects=[];
+		    var renderer=null;
+		    var scene=null;
+		    var camera=null;
+		    
+		    populateMap();
+		
+		    function setup(){
+		        scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 100000 );
+
+                renderer = new THREE.WebGLRenderer();
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                renderer.setClearColor(0xdddddd);
+              //  renderer.setFaceCulling(false);
+                document.body.appendChild( renderer.domElement );
+            
+                //var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+                //var material = new THREE.MeshLambertMaterial( {color: 0x00ff00} );
+                //var cube = new THREE.Mesh( geometry, material );
+                //cube.position.x= threeObjects[threeObjects.lenght/2].geometry.vertices[0].x;
+                //cube.position.y= threeObjects[threeObjects.lenght/2].geometry.vertices[0].y;
+                //cube.position.z=0;
+                //scene.add( cube );
+
+                camera.position.z = 200;
+                camera.position.x = 200;//threeObjects[threeObjects.length/2].geometry.vertices[0].x;
+                camera.position.y = 100;//threeObjects[threeObjects.length/2].geometry.vertices[0].z;
+                //camera.lookAt(threeObjects[0].position);
+                camera.lookAt(threeObjects[threeObjects.length/2].position);
+            
+            
+                // add spotlight for the shadows
+                /*var spotLight = new THREE.SpotLight(0xffffff);
+                spotLight.position.set(-10, 60, 60);
+                spotLight.castShadow = true;
+                scene.add(spotLight);*/
+            
+                hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+                hemiLight.color.setHSL( 0.6, 1, 0.6 );
+                hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+                hemiLight.position.set( 0, 500, 0 );
+                scene.add( hemiLight );
+                
+                $.each(threeObjects, function(i, item){
+                    scene.add(item);
+                });
+                
+                render();
+            
+                /*var planeGeo = new THREE.PlaneGeometry(300,300);
+                var planeMat = new THREE.MeshLambertMaterial({color: 0x666699});
+                var plane = new THREE.Mesh(planeGeo, planeMat);
+ 
+                // rotate it to correct position
+                plane.rotation.x = -Math.PI/2;
+                scene.add(plane);*/
+		    }
+            
+
+			var render = function () {
+				requestAnimationFrame( render );
+				renderer.render(scene, camera);
+			};
+			
+			
+			/*****************************/
+			/*                           */
+			/*         Geo data          */	
+			/*                           */
+			/*****************************/
+			
+			// get the data
+			function populateMap(){
+                jQuery.getJSON('data/testdata.json', function(data) {
+                    var converter = new UtmConverter();
+                    var minX=0;
+                    var minY=0;
+                    
+                    $.each(data.features,function(i, item){
+                        var rectShape = new THREE.Shape();
+                        var height=0;
+                        
+                        $.each(item.geometry.coordinates, function(j, itemTwo){
+                            var utmResult= converter.toUtm({coord: [itemTwo[0], itemTwo[1]]});
+                            
+                            //Calculate bounding box
+                            if(minX==0 || utmResult.coord.x<minX)
+                                minX=utmResult.coord.x;
+                            if(minY==0 || utmResult.coord.y<minY)
+                                minY=utmResult.coord.y;
+                            
+                            if (j==0){
+                                height=itemTwo[2];
+                                rectShape.moveTo(utmResult.coord.x, utmResult.coord.y);
+                            }else{
+                                rectShape.lineTo(utmResult.coord.x, utmResult.coord.y); 
+                            }
+                        });
+
+                        var geometry = new THREE.ExtrudeGeometry(rectShape, { amount: height, bevelEnabled: true, bevelSegments: 1, steps: 1, bevelSize: 0.1, bevelThickness: 0.1 });
+       
+                        //Converting the 2D mapping to 3D mapping (shifting z and y coordinates)         
+                        for( var i = 0; i < geometry.vertices.length; i++ ) {
+                            var fZ =  geometry.vertices[i].z;
+                            geometry.vertices[i].x -= minX; 
+                            geometry.vertices[i].z = geometry.vertices[i].y-minY;
+                            geometry.vertices[i].y = fZ;
+                           // console.log(geometry.vertices[i]);
+                        }
+                        
+                        
+                        
+                         /*for( var i = 0; i < geometry.vertices.length-3;) 
+                         {
+                            var temp = geometry.vertices[i+0];
+                            geometry.vertices[i+0]=geometry.vertices[i+2];
+                            geometry.vertices[i+2]=temp;
+                            i += 3;
+                        }*/
+                        
+                        
+                        
+                        var material = new THREE.MeshLambertMaterial({color: 0x777777});
+                        var rectMesh = new THREE.Mesh(geometry, material) ;		
+
+                       threeObjects.push(rectMesh);
+                    });
+                    
+                    setup();
+                    
+                });
+            }
+					
+		</script>
+	</body>
+</html>

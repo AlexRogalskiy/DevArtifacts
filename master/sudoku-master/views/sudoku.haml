@@ -1,0 +1,23 @@
+- if @string
+  #solution_string{:style => "display:none"}= @solution_string
+%header
+  %h1
+    <span>S</span><span>u</span><span>d</span><span>o</span><span>k</span><span>u</span> <span>S</span><span>o</span><span>l</span><span>v</span><span>e</span><span>r</span>
+%main
+  %section
+    #board
+      #display
+        .no-jump
+        %div.table
+          - (1..81).each_slice(9) do |row|
+            %div.row
+              -row.each do |i|
+                %div.cell{:id => "#{i}"}
+                  %input{:type => "number", :maxlength => "1", :size => "1"}
+      #cover
+    #submit
+      %button{:onclick => "go();", :type => "button"} Submit!
+      %a{:href => "/", :class => "button"} Clear
+%section.info
+  .authors made with <span class="icon-heart"></span> by <span> <a target="_blank" href="https://github.com/zmitton">Zac Mitton </a></span> &nbsp;&amp; <span><a href="http://www.carolineartz.me" target="_blank">Caroline Artz</a>
+  .links code on a <a href="https://github.com/zmitton/sudoku" target="_blank"><span class="icon-social-github-outline"></span></a>

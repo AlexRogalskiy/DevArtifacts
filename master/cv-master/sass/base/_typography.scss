@@ -1,0 +1,315 @@
+// Typography
+// -----------------------------------------------------------------------------
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,700,900");
+// @font-face {
+//   font-family: 'Romana BT';
+//   src: url(../fonts/romana-bt.ttf)
+// }
+
+// Add typefaces here, add weight and style details too.
+// ! Set cap height to set to the baseline.
+$bodytype: (
+  font-family: 'Proxima Nova',
+  regular: 300,
+  bold: 700,
+  italic: italic,
+  cap-height: 0.66
+) !default;
+
+$robototype: (
+  font-family: 'Roboto Medium',
+  regular: 400,
+  bold:    700,
+  bolder:  900,
+  cap-height: 0.67
+);
+
+$sanstype: (
+  font-family: 'Open Sans',
+  regular: 400,
+  bold: 700,
+  bolder: 900,
+  cap-height: 0.69
+);
+
+$slabtype: (
+  font-family: 'Museo Slab',
+  regular: 500,
+  bold: 700,
+  bolder: 900,
+  cap-height: 0.65
+);
+
+$romanabt: (
+  font-family: 'Romana BT',
+  regular: 500,
+  bold: 800,
+  cap-height: 0.67
+);
+
+$garamondtype: (
+  font-family: 'Adobe Garamond Pro',
+  regular: regular,
+  bold: bold,
+  cap-height: 0.67
+);
+
+$monospacetype: (
+  font-family: 'Source Code Pro',
+  regular: 300,
+  bold: 700,
+  bolder: 900,
+  cap-height: 0.66
+);
+
+$seriftype:   $garamondtype;
+$titletype:   $robototype;
+$headingtype: $sanstype;
+
+html { // Setting root sizes and base styles.
+  -webkit-text-size-adjust: 100%;
+  @include rootsize;
+}
+
+// Site-wide base styles.
+body {
+  font-family: map-get($bodytype, font-family);
+  font-weight: map-get($bodytype, regular);
+  font-style: normal;
+  line-height: 2rem;
+  @include fontsize(zeta);
+}
+
+h1.title {
+  font-family: map-get($titletype, font-family);
+  font-weight: map-get($titletype, bolder);
+}
+
+nav.bar {
+  font-family:    map-get($sanstype, font-family);
+  font-weight:    map-get($sanstype, regular);
+}
+
+p {
+  @include baseline(zeta, $bodytype, 2, 1);
+}
+
+// Styles for typeset text.
+.typeset {
+  // Paragraphs. OpenType ligatures and oldstyle figures enabled if available.
+  p { font-feature-settings: 'kern' 1, 'onum' 0, 'dlig' 1, 'liga' 1; }
+
+  // Headings. OpenType ligatures, discretionary ligatures and lining figures enabled if available.
+  h1, h2, h3, h4 {
+    font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+    font-style: normal;
+  }
+
+  hr {
+    background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 50%,$captionColor 50%);
+    background-position: 0 50%;
+    background-repeat: repeat-x;
+    background-size: 100% 0.15rem;
+    border: 0;
+    margin: 0;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+
+  code pre {
+    background-color: $codeBackgroundColor;
+  }
+
+  pre {
+    display: block;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+  // Letter space those capitals people, Jan Tschichold would be proud.
+  .upper {
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+  }
+  // Real small caps.
+  .small-caps {
+    font-feature-settings: 'smcp' 1, 'kern' 1;
+    letter-spacing: 0.1rem;
+  }
+  // Consistent height numbers with OpenType.
+  .lining-numerals {
+    font-feature-settings: 'lnum' 1, 'kern' 1;
+  }
+  // Ascending and descending numbers with OpenType.
+  .oldstyle-numerals {
+    font-feature-settings: 'onum' 1, 'kern' 1;
+  }
+
+  // Bold.
+  b, strong, .bold {
+    font-weight: map-get($bodytype, bold);
+  }
+
+  // Italic.
+  em, i, .italic {
+    font-style: map-get($bodytype, italic);
+  }
+
+  // Lists.
+  ul, ol {
+    @include baseline(zeta, $bodytype, 1, 2, all);
+
+    li {
+
+      ol, ul {
+        @include baseline(iota, $bodytype, 1, 0.5, all);
+        @include fontsize(iota, all);
+        list-style-type: none;
+        padding-top:   0.5rem;
+        margin-bottom: 1rem;
+        margin-left:   1rem;
+      }
+    }
+  }
+
+  // Ordered lists.
+  ol {
+    list-style-type: none;
+
+    li {
+      counter-increment: top-level;
+      &:before {
+        font-feature-settings: 'lnum' 1, 'tnum' 1;
+        content: counter(top-level) '.';
+        margin-left: -3rem;
+        position: absolute;
+        text-align: right;
+        width: 2em;
+      }
+
+      ul {
+        li {
+          &:before {
+            content: '';
+          }
+          ol {
+            li {
+              counter-increment: alt-level;
+              &:before {
+                content: counter(alt-level) '.';
+              }
+            }
+          }
+        }
+      }
+
+      ol {
+        li {
+          counter-increment: sub-level;
+          &:before {
+            content: counter(top-level) '.' counter(sub-level);
+          }
+          ul {
+            li {
+              &:before {
+                content: '';
+              }
+            }
+          }
+
+          ol {
+
+            li {
+              counter-increment: sub-sub-level;
+
+              &:before {
+                content: counter(top-level) '.' counter(sub-level) '.' counter(sub-sub-level);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // UNUSED
+
+  // Quotes.
+  blockquote {
+    p {
+      border-left: 0.15rem solid $linkColor;
+      font-style: map-get($bodytype, italic);
+      padding-left: 1rem;
+
+      // Add spacing below blockquote paragraphs to align to baseline grid.
+      $get-scale: map-get($modular-scale, scale-0);
+      $get-size: map-get($get-scale, zeta);
+      $rootsize: nth($sizes, 1);
+      $baseline-shift: #{($get-size / 2 * ((2 * $rootsize / $get-size) - map-get($bodytype, cap-height))) / $rootsize + 0.00001};
+      $baseline-push: #{3 - (($get-size * ((2 * $rootsize / $get-size) - map-get($bodytype, cap-height))) / $rootsize + 0.00001)};
+
+      margin-bottom: #{$baseline-push}rem;
+      padding-bottom: #{$baseline-shift}rem;
+
+      @for $i from 2 through $breakpoints-limit {
+        $get-scale: map-get($modular-scale, scale-#{$i - 1});
+        $get-size: map-get($get-scale, zeta);
+        $rootsize: nth($sizes, $i);
+        $baseline-shift: #{($get-size / 2 * ((2 * $rootsize / $get-size) - map-get($bodytype, cap-height))) / $rootsize + 0.00001};
+        $baseline-push: #{3 - (($get-size * ((2 * $rootsize / $get-size) - map-get($bodytype, cap-height))) / $rootsize + 0.00001)};
+
+        @media screen and (min-width: nth($points, $i) / 16 * 1em ) {
+          margin-bottom: #{$baseline-push}rem;
+          padding-bottom: #{$baseline-shift}rem;
+        }
+      }
+    }
+  }
+
+  // Definition lists.
+  /*dl {*/
+    /*@include baseline(zeta, $bodytype, 2, 2, all);*/
+
+    /*dt, dd {*/
+      /*font-feature-settings: 'kern' 1, 'onum' 1, 'liga' 1;*/
+
+      /*margin-left: 2rem;*/
+
+      /*@include breakpoint(break-1) {*/
+        /*margin-left: 0;*/
+      /*}*/
+    /*}*/
+
+    /*dt {*/
+      /*font-weight: map-get($bodytype, bold);*/
+    /*}*/
+
+    /*dd + dt {*/
+      /*padding-top: 1rem;*/
+    /*}*/
+  /*}*/
+  // Tables.
+  /*table {*/
+    /*font-feature-settings: 'liga' 1, 'lnum' 1, 'tnum' 1, 'kern' 1;*/
+
+    /*font-family: unquote(map-get($headingtype, font-family));*/
+    /*font-style: normal;*/
+    /*font-weight: map-get($headingtype, regular);*/
+    /*width: 100%;*/
+
+    /*@include sassline(eta, $headingtype, 2, 0, all);*/
+
+    /*thead {*/
+
+      /*th {*/
+        /*@include sassline(zeta, $headingtype, 2, 0, all);*/
+        /*padding-bottom: 1px;*/
+      /*}*/
+    /*}*/
+  /*}*/
+
+}

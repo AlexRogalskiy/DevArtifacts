@@ -1,0 +1,118 @@
+
+
+<section class="first">
+  <h1 class="block-title"><%= @legislator.alderman.name %><span class="script"> Alderman Ward <%= @legislator.represented_ward_id %></span></h1>
+  <hr>
+  <div class="alderman-info">
+    <%= image_tag @legislator.alderman.img_url %>
+  </div>
+
+</section>
+
+
+<section class="legislator-activity">
+  <div class="legislator-votes">
+    <table class="fold-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="supported" class="view">
+          <td>Supported</td>
+          <td class="">Amount: <%= @legislations_supported.length %></td>
+        </tr>
+        <tr class="fold">
+          <td colspan="2">
+            <div class="fold-content">
+              <p>Recently Supported Legislations by Ward <%= @legislator.represented_ward_id %></p>
+              <table class="small-friendly">
+                <thead>
+                  <tr>
+                    <th><span class="visible-small" title="Title">Title</span><span class="visible-big">Title</span></th>
+                    <th><span class="visible-small" title="Type">Type></span><span class="visible-big">Type</span></th>
+                    <th><span class="visible-small" title="Your Voice">You</span><span class="visible-big">Your Voice</span></th>
+                    <th><span class="visible-small" title="Agree With You">Agree</span><span class="visible-big">Agree With You</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @legislations_supported.each do |l| %>
+                  <tr>
+                    <td data-th="Title"> <%= l.title %></td>
+                    <td data-th="Type"> <%= l.kind %></td>
+                    <td data-th="Your Voice">
+                      <% if current_user.legislation_voicer(l) %>
+                      <% if current_user.return_legislation_voice(l) == 'Y' %>
+                      <span style="color: #a0db09" class="display-icon"></span>
+                      <% else %>
+                      <span style="color: #fc3822" class="display-icon"></span>
+                      <% end %>
+                      <% else %>
+                      <%= link_to "Learn More Now", legislations_path %>
+                      <% end %></td>
+                      <td data-th="Overall City Voice"><%= l.overall_legislation_voices(current_user) %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+          <tr id="opposed" class="view">
+            <td>Opposed</td>
+            <td class="">Amount: <%= @legislations_opposed.length %></td>
+          </tr>
+          <tr class="fold">
+            <td colspan="2">
+              <div class="fold-content">
+                <p>Recently Opposed Legislations: Ward <%= @legislator.represented_ward_id %></p>
+                <table class="small-friendly">
+                  <thead>
+                    <tr>
+                      <th><span class="visible-small" title="Title">Title</span><span class="visible-big">Title</span></th>
+                      <th><span class="visible-small" title="Type">Type></span><span class="visible-big">Type</span></th>
+                      <th><span class="visible-small" title="Your Voice">You</span><span class="visible-big">Your Voice</span></th>
+                      <th><span class="visible-small" title="Agree With You">Agree</span><span class="visible-big">Agree With You</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @legislations_opposed.each do |l| %>
+                    <tr>
+                      <td data-th="Title"> <%= l.title %></td>
+                      <td data-th="Type"> <%= l.kind %></td>
+                      <td data-th="Your Voice"><% if current_user.legislation_voicer(l) %>
+                        <%= current_user.return_legislation_voice(l) %>
+                        <% else %>
+                        <%= link_to "Learn More Now", legislations_path %>
+                        <% end %></td>
+                        <td data-th="Agree With You"><%= l.overall_legislation_voices(current_user) %></td>
+                      </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="legislator-sponsored">
+        <h3>Recently Sponsored</h3>
+        <table>
+          <% @recently_sponsored.each do |issue| %>
+          <tr>
+            <td>
+              <%= issue.title %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </section>
+
+
+
+
+

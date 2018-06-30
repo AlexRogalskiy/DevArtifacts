@@ -1,0 +1,86 @@
+<section class="first">
+  <h1 class="block-title">Ward <%= @user.ward.id %> <span class="script">City of Chicago</span></h1>
+  <hr>
+</section>
+
+<section class="main-content">
+  <aside class="user-info">
+    <div class="user-photo"><%= image_tag @user.img_url %></div>
+    <h3 class="sub-head"><%= @user.first_name %> <%= @user.last_name %></h3>
+    <div class="user-address">
+      <%= @user.street_address1.titleize %><br>
+      Chicago, IL<br>
+      <%= @user.zip %>
+    </div>
+    <div class="update-info">
+      Recently move? Update <%= link_to "your information", edit_user_path(@user) %> and connect with your new alderman.
+    </div>
+    <div class="voice-support">
+      <h5>Voice Your Opinion</h5>
+      <% if current_user && current_user.ward.id == @legislator.represented_ward_id %>
+        <div class="legislation-content">
+           <%= @user_feedback.title %>
+        </div>
+          <div class="support"><%= image_tag "icons/like.svg", :style => "width: 25px", class: "voice#{@user_feedback.id}", alt: "support"%></div>
+          <div class="oppose"><%= image_tag "icons/like.svg", :style => "width: 25px", class: "voice#{@user_feedback.id}", alt: "oppose"%></div>
+        <div class="alderman-position">
+          Your Alderman voted <%= @legislator.issue_vote(@user_feedback.id) %>
+        </div>
+        <div>
+          <%= link_to "Leave detailed feedback", new_legislation_voice_path(legislation: @user_feedback.id) %>
+        </div>
+      <% else %>
+       <div>You must live in this ward to leave feedback!
+      </div>
+    <% end %>
+  </div>
+
+</aside>
+<div class="alderman">
+  <div class="alderman-info">
+    <div class="address">
+      <div class="user-photo"><%= image_tag @alderman.img_url %></div>
+      <h3 class="sub-head">Alderman <%= @user.alderman.first_name %> <%= @user.alderman.last_name %></h3>
+      <div class="user-address">
+        <%= @ward.address1.titleize %><br>
+        Chicago, IL<br>
+        <%= @ward.zip %><br>
+        <%= @ward.phone_number %>
+      </div>
+
+      <div class="links">
+        <h5>Links</h5>
+        <%= link_to "Give Your Feedback on Legislation", legislations_path %><br>
+        <%= link_to "More about your Legislator", legislator_path(@alderman) %><br>
+        <%= link_to "See What's Happening in Your Ward...", ward_path(@ward) %><br>
+      </div>
+    </div>
+  </div>
+  <div class="alderman-connect">
+    <div class="social-links">
+      <div>
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x" style="color: #477dca"><a href="https://twitter.com/intent/tweet?text=<%= @alderman.twitter_handle %>" target="_blank"></a></i>
+          <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+        </span>
+      </div>
+      <div>
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x" style="color: #477dca"><a href="#"></a></i>
+          <i class="fa fa-mail fa-stack-1x fa-inverse"></i>
+        </span>
+      </div>
+      <div>
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x" style="color: #477dca"> <a href="#"></a></i>
+          <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+        </span>
+      </div>
+    </div>
+    <div class="twitter-activity">
+     <a class="twitter-timeline" href="https://twitter.com/PolityChi/lists/chicago" data-widget-id="479470480403857408">Tweets from https://twitter.com/PolityChi/lists/chicago</a>
+     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+   </div>
+ </div>
+</div>
+</section>

@@ -1,0 +1,18 @@
+
+//returns a list of text shadow  colors
+@function get-neon-glow-colors($color, $size) {
+  $result: ();
+  $variants: ();
+  $variants-small: glow, wrap-shadow, glow, shadow;
+  $variants-large: bright, light-alpha, pastel-bright, darkest-alpha;
+  @if $size == small {
+    $variants: $variants-small;
+  }
+  @else if $size == large {
+    $variants: $variants-large;
+  }
+  @each $variant in $variants {
+    $result: append($result, map-get($colors, unquote($color + "-" + $variant)));
+  }
+  @return $result;
+}

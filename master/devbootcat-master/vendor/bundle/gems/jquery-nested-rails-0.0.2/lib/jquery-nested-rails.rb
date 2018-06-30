@@ -1,0 +1,1 @@
+require 'jquery-nested-rails/rails'

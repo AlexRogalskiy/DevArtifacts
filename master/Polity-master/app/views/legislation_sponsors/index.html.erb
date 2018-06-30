@@ -1,0 +1,27 @@
+<h1>Listing legislation_sponsors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sponsor</th>
+      <th>Legislation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @legislation_sponsors.each do |legislation_sponsor| %>
+      <tr>
+        <td><%= legislation_sponsor.sponsor_id %></td>
+        <td><%= legislation_sponsor.legislation %></td>
+        <td><%= link_to 'Show', legislation_sponsor %></td>
+        <td><%= link_to 'Edit', edit_legislation_sponsor_path(legislation_sponsor) %></td>
+        <td><%= link_to 'Destroy', legislation_sponsor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Legislation sponsor', new_legislation_sponsor_path %>

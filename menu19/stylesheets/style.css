@@ -1,0 +1,546 @@
+@charset "UTF-8";
+/*	RADIO-MENU STUFF
+   тИЮтИЮ STARTS HERE тИЮтИЮ
+*/
+/* line 4, ../sass/style.scss */
+body {
+  background-image: linear-gradient(to bottom right, #ba532e, #ff934c 90%);
+}
+
+/* line 5, ../sass/style.scss */
+main {
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-weight: 300;
+}
+/* line 10, ../sass/style.scss */
+main input[name='menu'] {
+  display: none;
+}
+
+/* sections */
+/* keep them off canvas */
+/* line 14, ../sass/style.scss */
+section {
+  transition: bottom 0ms linear 900ms, opacity 900ms cubic-bezier(0.4, 0.25, 0.3, 1);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  opacity: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+/* line 28, ../sass/style.scss */
+section:first-of-type {
+  justify-content: center;
+}
+/* line 29, ../sass/style.scss */
+section article {
+  min-height: 740px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+/* line 35, ../sass/style.scss */
+section article span {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  white-space: nowrap;
+}
+
+/* menu */
+/* this goes off canvas as well */
+/* line 46, ../sass/style.scss */
+menu {
+  transition: bottom 0ms linear 1000ms, background-color 1000ms cubic-bezier(0.4, 0.25, 0.3, 1);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  bottom: 100%;
+  left: 0;
+  color: #3f3f37;
+  background-color: rgba(255, 255, 255, 0);
+}
+/* line 55, ../sass/style.scss */
+menu nav {
+  transition: all 500ms cubic-bezier(0.4, 0.25, 0.3, 1) 250ms;
+  width: 100%;
+  height: 250%;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .5rem;
+}
+/* line 67, ../sass/style.scss */
+menu nav label {
+  line-height: 40px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+/* line 71, ../sass/style.scss */
+menu nav label::before, menu nav label::after {
+  content: '';
+  transition: all 300ms cubic-bezier(0.4, 0.25, 0.3, 1);
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  background-color: #f7b37f;
+  opacity: 0;
+}
+/* line 83, ../sass/style.scss */
+menu nav label::before {
+  top: -.5rem;
+}
+/* line 84, ../sass/style.scss */
+menu nav label::after {
+  bottom: -.5rem;
+}
+/* line 85, ../sass/style.scss */
+menu nav label:hover::before, menu nav label:hover::after {
+  opacity: 1;
+}
+/* line 87, ../sass/style.scss */
+menu nav label:hover::before {
+  top: 0;
+}
+/* line 88, ../sass/style.scss */
+menu nav label:hover::after {
+  bottom: 0;
+}
+
+/* menu button */
+/* line 95, ../sass/style.scss */
+label[for='menu'] {
+  transition: opacity 300ms cubic-bezier(0.4, 0.25, 0.3, 1) 900ms;
+  display: inline-block;
+  position: fixed;
+  top: 30px;
+  left: 100px;
+  line-height: 40px;
+  font-size: 1.3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+/* line 106, ../sass/style.scss */
+label[for='menu']::before, label[for='menu']::after {
+  content: '';
+  transition: all 300ms cubic-bezier(0.4, 0.25, 0.3, 1);
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  background-color: white;
+}
+/* line 117, ../sass/style.scss */
+label[for='menu']::before {
+  top: 0;
+}
+/* line 118, ../sass/style.scss */
+label[for='menu']::after {
+  bottom: 0;
+}
+/* line 119, ../sass/style.scss */
+label[for='menu']:hover::before {
+  top: -.25rem;
+}
+/* line 120, ../sass/style.scss */
+label[for='menu']:hover::after {
+  bottom: -.25rem;
+}
+
+/* menu toggle */
+/* click the label > checks the radio > toggles the menu */
+/* line 124, ../sass/style.scss */
+#menu:checked + menu {
+  transition: background-color 800ms cubic-bezier(0.4, 0.25, 0.3, 1);
+  bottom: 0;
+  background-color: white;
+}
+/* line 128, ../sass/style.scss */
+#menu:checked + menu nav {
+  transition: all 500ms cubic-bezier(0.4, 0.25, 0.3, 1) 250ms;
+  height: 70%;
+  bottom: 15%;
+  font-size: 1.7rem;
+}
+
+/* section change */
+/* click the label > check the radio > change the section */
+/* line 137, ../sass/style.scss */
+input[name="menu"]:checked + section {
+  transition: opacity 900ms cubic-bezier(0.4, 0.25, 0.3, 1);
+  bottom: 0;
+  opacity: 1;
+}
+
+/*	RADIO-MENU STUFF
+    тИЮтИЮ ENDS HERE тИЮтИЮ
+*/
+/* the rest is just content */
+/* line 147, ../sass/style.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+em,
+p,
+b {
+  font-weight: 900;
+}
+
+/* line 156, ../sass/style.scss */
+h1,
+h4,
+h6,
+b {
+  text-transform: uppercase;
+}
+
+/* line 161, ../sass/style.scss */
+h2,
+h6,
+b {
+  color: #3f3f37;
+}
+
+/* line 165, ../sass/style.scss */
+h1,
+h5 {
+  color: #f7b37f;
+}
+
+/* line 168, ../sass/style.scss */
+h5,
+h6 {
+  font-size: 2.2rem;
+}
+
+/* line 171, ../sass/style.scss */
+em {
+  font-size: 1.2em;
+}
+
+/* line 172, ../sass/style.scss */
+h1 {
+  font-size: 6.9rem;
+}
+
+/* line 173, ../sass/style.scss */
+h2 {
+  font-size: 6.4rem;
+}
+
+/* line 174, ../sass/style.scss */
+h4 {
+  font-size: 2.45rem;
+}
+
+/* line 175, ../sass/style.scss */
+p {
+  font-size: 1.5rem;
+}
+
+/* line 177, ../sass/style.scss */
+h3 {
+  font-size: 3.25rem;
+  text-decoration: underline;
+}
+
+/* line 182, ../sass/style.scss */
+s {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1em;
+}
+
+/* landing */
+/* line 190, ../sass/style.scss */
+section:first-of-type h1 {
+  margin-top: -12px;
+}
+/* line 191, ../sass/style.scss */
+section:first-of-type h2 {
+  margin-top: -38px;
+}
+/* line 192, ../sass/style.scss */
+section:first-of-type h4 {
+  margin-top: -5px;
+}
+/* line 193, ../sass/style.scss */
+section:first-of-type h4::after {
+  content: '';
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+
+/* how */
+/* line 207, ../sass/style.scss */
+section:nth-of-type(2) h4 {
+  margin-bottom: -2px;
+}
+/* line 208, ../sass/style.scss */
+section:nth-of-type(2) span:nth-child(2) h1 {
+  margin-left: -5px;
+  line-height: .79;
+}
+/* line 211, ../sass/style.scss */
+section:nth-of-type(2) span:nth-child(2) h1::after {
+  content: '';
+  width: 99%;
+  height: 4px;
+  position: absolute;
+  bottom: -10px;
+  left: 5px;
+  background-color: white;
+}
+/* line 222, ../sass/style.scss */
+section:nth-of-type(2) span:nth-child(3) {
+  margin: -20px 0 15px;
+}
+/* line 224, ../sass/style.scss */
+section:nth-of-type(2) span:nth-child(3) h2 {
+  margin-bottom: 13px;
+}
+/* line 225, ../sass/style.scss */
+section:nth-of-type(2) span:nth-child(3) h4 {
+  margin-bottom: 20px;
+  line-height: .79;
+}
+/* line 231, ../sass/style.scss */
+section:nth-of-type(2) span:nth-child(5) {
+  margin-bottom: 35px;
+}
+/* line 233, ../sass/style.scss */
+section:nth-of-type(2) span:nth-child(5) h5 {
+  margin-bottom: -2px;
+}
+/* line 236, ../sass/style.scss */
+section:nth-of-type(2) span:nth-child(6) {
+  margin: -10px 0 5px;
+}
+/* line 238, ../sass/style.scss */
+section:nth-of-type(2) span:nth-child(6) h4 {
+  margin-bottom: 13px;
+}
+/* line 241, ../sass/style.scss */
+section:nth-of-type(2) span:nth-last-child(2) {
+  margin-top: -13px;
+}
+/* line 243, ../sass/style.scss */
+section:nth-of-type(2) span:last-child {
+  margin-top: -15px;
+}
+/* line 245, ../sass/style.scss */
+section:nth-of-type(2) span:last-child h4 {
+  margin-bottom: 10px;
+}
+
+/* why */
+/* line 251, ../sass/style.scss */
+section:nth-of-type(3) h1,
+section:nth-of-type(3) h4,
+section:nth-of-type(3) h5 {
+  line-height: .79;
+}
+/* line 254, ../sass/style.scss */
+section:nth-of-type(3) h1 {
+  margin-left: -5px;
+}
+/* line 255, ../sass/style.scss */
+section:nth-of-type(3) h2 {
+  margin-bottom: -10px;
+}
+/* line 256, ../sass/style.scss */
+section:nth-of-type(3) h5 {
+  margin-bottom: 5px;
+}
+/* line 257, ../sass/style.scss */
+section:nth-of-type(3) h6 {
+  margin: 0 0 -2px -3px;
+}
+/* line 258, ../sass/style.scss */
+section:nth-of-type(3) span:nth-child(3) {
+  margin-top: -13px;
+}
+/* line 259, ../sass/style.scss */
+section:nth-of-type(3) span:nth-child(4) {
+  margin-top: 15px;
+}
+/* line 260, ../sass/style.scss */
+section:nth-of-type(3) span:nth-child(5) {
+  margin-top: 20px;
+}
+/* line 262, ../sass/style.scss */
+section:nth-of-type(3) span:nth-child(5) h1::after {
+  content: '';
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  top: -3px;
+  left: 0;
+  background-color: white;
+}
+/* line 273, ../sass/style.scss */
+section:nth-of-type(3) span:nth-child(6) {
+  margin-top: -25px;
+}
+/* line 274, ../sass/style.scss */
+section:nth-of-type(3) span:last-child {
+  margin: -20px -28px 0 0;
+  justify-content: center;
+}
+/* line 277, ../sass/style.scss */
+section:nth-of-type(3) span:last-child p {
+  margin: 0 0 -3px -3px;
+  font-size: 3.8rem;
+}
+
+/* semantics */
+/* line 286, ../sass/style.scss */
+section:nth-of-type(4) span:first-child {
+  margin-bottom: -10px;
+}
+/* line 287, ../sass/style.scss */
+section:nth-of-type(4) h1 {
+  margin-left: -30px;
+}
+/* line 288, ../sass/style.scss */
+section:nth-of-type(4) span:nth-child(2) h4 {
+  margin-bottom: 8px;
+  line-height: .9;
+}
+/* line 293, ../sass/style.scss */
+section:nth-of-type(4) span:last-of-type h6 {
+  transform: translateY(-125%);
+}
+/* line 294, ../sass/style.scss */
+section:nth-of-type(4) p:last-child {
+  margin-right: 30px;
+}
+/* line 296, ../sass/style.scss */
+section:nth-of-type(4) svg {
+  width: 300px;
+  height: auto;
+  margin-top: 20px;
+}
+/* line 300, ../sass/style.scss */
+section:nth-of-type(4) svg path {
+  animation-play-state: paused;
+}
+/* line 302, ../sass/style.scss */
+section:nth-of-type(4) svg path.black {
+  animation: draw 5s cubic-bezier(0.4, 0.25, 0.3, 1) infinite;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 1569.27294921875;
+}
+/* line 307, ../sass/style.scss */
+section:nth-of-type(4) svg path.orange {
+  animation: pathA 20s linear infinite;
+  opacity: 0;
+}
+/* line 311, ../sass/style.scss */
+section:nth-of-type(4) svg path.white {
+  animation: pathB 20s linear infinite;
+  opacity: 0;
+}
+
+/* line 319, ../sass/style.scss */
+input[name="menu"]:checked + section path {
+  animation-play-state: running;
+}
+
+/* udy */
+/* line 323, ../sass/style.scss */
+section:last-of-type span:nth-child(3) {
+  margin-top: -15px;
+}
+/* line 325, ../sass/style.scss */
+section:last-of-type span:nth-child(3) h2 {
+  margin-left: 8px;
+}
+/* line 326, ../sass/style.scss */
+section:last-of-type span:nth-child(3) h5 {
+  margin: 0 240px 10px 0;
+  line-height: .8;
+}
+/* line 333, ../sass/style.scss */
+section:last-of-type span:nth-child(4) h4 {
+  margin: 0 0 7px 15px;
+  line-height: 1.2;
+}
+/* line 339, ../sass/style.scss */
+section:last-of-type span:nth-child(6) {
+  margin-top: 35px;
+}
+/* line 341, ../sass/style.scss */
+section:last-of-type span:nth-child(6) u {
+  margin-bottom: 4px;
+}
+
+/* animations */
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 3138.54589844;
+  }
+}
+@keyframes pathA {
+  0% {
+    opacity: 0;
+  }
+  24% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pathB {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  74% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}

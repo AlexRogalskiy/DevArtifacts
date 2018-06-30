@@ -1,0 +1,77 @@
+/Users/carolineartz/.rbenv/versions/2.1.1/bin/ruby extconf.rb 
+extconf.rb:44:in `<main>': Use RbConfig instead of obsolete and deprecated Config.
+extconf.rb:44:in `<main>': Use RbConfig instead of obsolete and deprecated Config.
+create /Users/carolineartz/Polity/Polity/vendor/bundle/gems/rb-appscript-0.6.1/src/osx_ruby.h ...
+create /Users/carolineartz/Polity/Polity/vendor/bundle/gems/rb-appscript-0.6.1/src/osx_intern.h ...
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling src/rbae.c
+src/rbae.c:501:8: warning: 'FSRefMakePath' is deprecated: first deprecated in OS X 10.8 [-Wdeprecated-declarations]
+        err = FSRefMakePath(&outAppRef, path, PATH_MAX);
+              ^
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:4086:18: note: 'FSRefMakePath' declared here
+extern OSStatus  FSRefMakePath(const FSRef *ref, UInt8 *path, UInt32 pathBufferSize)     __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_8, __IPHONE_NA, __IPHONE_NA);
+                 ^
+src/rbae.c:514:8: warning: 'FSPathMakeRef' is deprecated: first deprecated in OS X 10.8 [-Wdeprecated-declarations]
+        err = FSPathMakeRef((UInt8 *)StringValuePtr(path), &appRef, NULL);
+              ^
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:4115:18: note: 'FSPathMakeRef' declared here
+extern OSStatus  FSPathMakeRef(const UInt8 *path, FSRef *ref, Boolean *isDirectory)        __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_8, __IPHONE_NA, __IPHONE_NA);
+                 ^
+src/rbae.c:517:9: warning: 'GetNextProcess' is deprecated: first deprecated in OS X 10.9 [-Wdeprecated-declarations]
+                err = GetNextProcess(&psn);
+                      ^
+/System/Library/Frameworks/ApplicationServices.framework/Frameworks/HIServices.framework/Headers/Processes.h:452:1: note: 'GetNextProcess' declared here
+GetNextProcess(ProcessSerialNumber * PSN)                     AVAILABLE_MAC_OS_X_VERSION_10_0_AND_LATER_BUT_DEPRECATED_IN_MAC_OS_X_VERSION_10_9;
+^
+src/rbae.c:519:9: warning: 'GetProcessBundleLocation' is deprecated: first deprecated in OS X 10.9 [-Wdeprecated-declarations]
+                err = GetProcessBundleLocation(&psn, &foundRef);
+                      ^
+/System/Library/Frameworks/ApplicationServices.framework/Frameworks/HIServices.framework/Headers/Processes.h:815:1: note: 'GetProcessBundleLocation' declared here
+GetProcessBundleLocation(
+^
+src/rbae.c:521:7: warning: 'FSCompareFSRefs' is deprecated: first deprecated in OS X 10.8 [-Wdeprecated-declarations]
+                if (FSCompareFSRefs(&appRef, &foundRef) == noErr) 
+                    ^
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:1850:15: note: 'FSCompareFSRefs' declared here
+extern OSErr  FSCompareFSRefs(const FSRef *ref1, const FSRef *ref2)                     __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_8, __IPHONE_NA, __IPHONE_NA);
+              ^
+src/rbae.c:533:8: warning: 'GetProcessForPID' is deprecated: first deprecated in OS X 10.9 [-Wdeprecated-declarations]
+        err = GetProcessForPID(NUM2INT(pid), &psn);
+              ^
+/System/Library/Frameworks/ApplicationServices.framework/Frameworks/HIServices.framework/Headers/Processes.h:930:1: note: 'GetProcessForPID' declared here
+GetProcessForPID(
+^
+src/rbae.c:546:8: warning: 'FSPathMakeRef' is deprecated: first deprecated in OS X 10.8 [-Wdeprecated-declarations]
+        err = FSPathMakeRef((UInt8 *)StringValuePtr(path), &appRef, NULL);
+              ^
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:4115:18: note: 'FSPathMakeRef' declared here
+extern OSStatus  FSPathMakeRef(const UInt8 *path, FSRef *ref, Boolean *isDirectory)        __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_8, __IPHONE_NA, __IPHONE_NA);
+                 ^
+src/rbae.c:709:8: warning: 'FSPathMakeRef' is deprecated: first deprecated in OS X 10.8 [-Wdeprecated-declarations]
+        err = FSPathMakeRef((UInt8 *)StringValuePtr(path), &fsRef, NULL);
+              ^
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Files.h:4115:18: note: 'FSPathMakeRef' declared here
+extern OSStatus  FSPathMakeRef(const UInt8 *path, FSRef *ref, Boolean *isDirectory)        __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_8, __IPHONE_NA, __IPHONE_NA);
+                 ^
+8 warnings generated.
+compiling src/SendThreadSafe.c
+src/SendThreadSafe.c:362:15: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
+        if (sendMode && kAEWaitReply) {
+                     ^  ~~~~~~~~~~~~
+src/SendThreadSafe.c:362:15: note: use '&' for a bitwise operation
+        if (sendMode && kAEWaitReply) {
+                     ^~
+                     &
+src/SendThreadSafe.c:362:15: note: remove constant to silence this warning
+        if (sendMode && kAEWaitReply) {
+                    ~^~~~~~~~~~~~~~~
+1 warning generated.
+linking shared-object ae.bundle
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 ae.bundle ./.gem.20140613-15972-157dv7b
+installing default ae libraries

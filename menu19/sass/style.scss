@@ -1,0 +1,366 @@
+/*	RADIO-MENU STUFF
+   ∞∞ STARTS HERE ∞∞
+*/
+body {background-image: linear-gradient(to bottom right, #ba532e, #ff934c 90%)}
+main {
+	width: 100%;
+	height: 100%;
+	color: white;
+	font-weight: 300;
+	input[name='menu'] {display: none}
+}
+
+/* sections *//* keep them off canvas */
+section {
+	transition: bottom 0ms linear 900ms, opacity 900ms cubic-bezier(.4,.25,.3,1);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	opacity: 0;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	&:first-of-type {justify-content: center}
+	article {
+		min-height: 740px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-end;
+		span {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			white-space: nowrap;
+		}
+	}
+}
+
+/* menu *//* this goes off canvas as well */
+menu {
+	transition: bottom 0ms linear 1000ms, background-color 1000ms cubic-bezier(.4,.25,.3,1);
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	bottom: 100%;
+	left: 0;
+	color: #3f3f37;
+	background-color: hsla(0,0%,100%,0);
+	nav {
+		transition: all 500ms cubic-bezier(.4,.25,.3,1) 250ms;
+		width: 100%;
+		height: 250%;
+		position: absolute;
+		bottom: 100%;
+		left: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		font-size: .5rem;
+		label {
+			line-height: 40px;
+			text-transform: uppercase;
+			cursor: pointer;
+			&::before,
+			&::after {
+				content: '';
+				transition: all 300ms cubic-bezier(.4,.25,.3,1);
+				width: 100%;
+				height: 2px;
+				position: absolute;
+				left: 0;
+				background-color: #f7b37f;
+				opacity: 0;
+			}
+
+			&::before {top: -.5rem}
+			&::after {bottom: -.5rem}
+			&:hover::before,
+			&:hover::after {opacity: 1}
+			&:hover::before {top: 0}
+			&:hover::after {bottom: 0}
+		}
+	}
+}
+
+
+/* menu button */
+label[for='menu'] {
+	transition: opacity 300ms cubic-bezier(.4,.25,.3,1) 900ms;
+	display: inline-block;
+	position: fixed;
+	top: 30px;
+	left: 100px;
+	line-height: 40px;
+	font-size: 1.3rem;
+	font-weight: 900;
+	text-transform: uppercase;
+	cursor: pointer;
+	&::before,
+	&::after {
+		content: '';
+		transition: all 300ms cubic-bezier(.4,.25,.3,1);
+		width: 100%;
+		height: 2px;
+		position: absolute;
+		left: 0;
+		background-color: white;
+	}
+
+	&::before {top: 0}
+	&::after {bottom: 0}
+	&:hover::before {top: -.25rem}
+	&:hover::after {bottom: -.25rem}
+}
+
+/* menu toggle *//* click the label > checks the radio > toggles the menu */
+#menu:checked + menu {
+	transition: background-color 800ms cubic-bezier(.4,.25,.3,1);
+	bottom: 0;
+	background-color: hsla(0,0%,100%,1);
+	nav {
+		transition: all 500ms cubic-bezier(.4,.25,.3,1) 250ms;
+		height: 70%;
+		bottom: 15%;
+		font-size: 1.7rem;
+	}
+}
+
+/* section change *//* click the label > check the radio > change the section */
+input[name="menu"]:checked + section {
+	transition: opacity 900ms cubic-bezier(.4,.25,.3,1);
+	bottom: 0;
+	opacity: 1;
+}
+/*	RADIO-MENU STUFF
+    ∞∞ ENDS HERE ∞∞
+*/
+
+/* the rest is just content */
+h1,
+h2,
+h3,
+h4,
+h5,
+em,
+p,
+b {font-weight: 900}
+
+h1,
+h4,
+h6,
+b {text-transform: uppercase}
+
+h2,
+h6,
+b {color: #3f3f37}
+
+h1,
+h5 {color: #f7b37f}
+
+h5,
+h6 {font-size: 2.2rem}
+
+em {font-size: 1.2em}
+h1 {font-size: 6.9rem}
+h2 {font-size: 6.4rem}
+h4 {font-size: 2.45rem}
+p {font-size: 1.5rem}
+
+h3 {
+	font-size: 3.25rem;
+	text-decoration: underline;
+}
+
+s {
+	text-decoration: none;
+	color: white;
+	font-size: 1.1em;
+}
+
+/* landing */
+section:first-of-type {
+	h1 {margin-top: -12px}
+	h2 {margin-top: -38px}
+	h4 {margin-top: -5px;
+		&::after {
+			content: '';
+			width: 100%;
+			height: 4px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: white;
+		}
+	}
+}
+
+/* how */
+section:nth-of-type(2) {
+	h4 {margin-bottom: -2px}
+	span:nth-child(2) h1 {
+		margin-left: -5px;
+		line-height: .79;
+		&::after {
+			content: '';
+			width: 99%;
+			height: 4px;
+			position: absolute;
+			bottom: -10px;
+			left: 5px;
+			background-color: white;
+		}
+	}
+	
+	span:nth-child(3) {
+		margin: -20px 0 15px;
+		h2 {margin-bottom: 13px}
+		h4 {
+			margin-bottom: 20px;
+			line-height: .79;
+		}
+	}
+	
+	span:nth-child(5) {
+		margin-bottom: 35px;
+		h5 {margin-bottom: -2px}
+	}
+	
+	span:nth-child(6) {
+		margin: -10px 0 5px;
+		h4 {margin-bottom: 13px}
+	}
+	
+	span:nth-last-child(2) {margin-top: -13px}
+	
+	span:last-child {
+		margin-top: -15px;
+		h4 {margin-bottom: 10px}
+	}
+}
+
+/* why */
+section:nth-of-type(3) {
+	h1,
+	h4,
+	h5 {line-height: .79}
+	h1 {margin-left: -5px}
+	h2 {margin-bottom: -10px}
+	h5 {margin-bottom: 5px}
+	h6 {margin: 0 0 -2px -3px}
+	span:nth-child(3) {margin-top: -13px}
+	span:nth-child(4) {margin-top: 15px}
+	span:nth-child(5) {
+		margin-top: 20px;
+		h1::after {
+			content: '';
+			width: 100%;
+			height: 3px;
+			position: absolute;
+			top: -3px;
+			left: 0;
+			background-color: white;
+		}
+	}
+
+	span:nth-child(6) {margin-top: -25px}
+	span:last-child {
+		margin: -20px -28px 0 0;
+		justify-content: center;
+		p {
+			margin: 0 0 -3px -3px;
+			font-size: 3.8rem;
+		}
+	}
+}
+
+/* semantics */
+section:nth-of-type(4) {
+	span:first-child {margin-bottom: -10px}
+	h1 {margin-left: -30px}
+	span:nth-child(2) h4 {
+		margin-bottom: 8px;
+		line-height: .9;
+	}
+	
+	span:last-of-type h6 {transform: translateY(-125%)}
+	p:last-child {margin-right: 30px}
+	
+	svg {
+		width: 300px;
+		height: auto;
+		margin-top: 20px;
+		path {
+			animation-play-state: paused;
+			&.black {
+				animation: draw 5s cubic-bezier(.4,.25,.3,1) infinite;
+				stroke-dashoffset: 0;
+				stroke-dasharray: 1569.27294921875;
+			}
+			&.orange {
+				animation: pathA 20s linear infinite;
+				opacity: 0;
+			}
+			&.white {
+				animation: pathB 20s linear infinite;
+				opacity: 0;
+			}
+		}
+	}
+}
+
+input[name="menu"]:checked + section path {animation-play-state: running}
+
+/* udy */
+section:last-of-type {
+	span:nth-child(3){
+		margin-top: -15px;
+		h2 {margin-left: 8px}
+		h5 {
+			margin: 0 240px 10px 0;
+			line-height: .8;
+		}
+	}
+	
+	span:nth-child(4) {
+		h4 {
+			margin: 0 0 7px 15px;
+			line-height: 1.2;
+		}
+	}
+	
+	span:nth-child(6) {
+		margin-top: 35px;
+		u {margin-bottom: 4px}
+	}
+}
+
+/* animations */
+@keyframes draw {
+	0% {stroke-dashoffset: 0}
+	100% {stroke-dashoffset: 3138.54589844}
+}
+
+@keyframes pathA {
+	0% {opacity: 0}
+	24% {opacity: 0}
+	25% {opacity: 1}
+	99% {opacity: 1}
+	100% {opacity: 0}
+}
+
+@keyframes pathB {
+	0% {opacity: 0}
+	49% {opacity: 0}
+	50% {opacity: 1}
+	74% {opacity: 1}
+	75% {opacity: 0}
+	100% {opacity: 0}
+}

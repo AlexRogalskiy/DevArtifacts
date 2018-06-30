@@ -1,0 +1,97 @@
+.main-content {
+   @include outer-container;
+   .user-info {
+      @include span-columns(4 of 12);
+      @include pad(0 0 0 25.45313px);
+      @include media(max-width 769px) {
+         @include span-columns(12 of 12);
+      }
+
+      .user-address {
+         line-height: 1.4em;
+      }
+      .user-photo, .sub-head, .user-address {
+         @include span-columns(2 of 4);
+      }
+      .sub-head, .user-address {
+         @include omega;
+      }
+      .update-info {
+         clear: both;
+         font-size: 90%;
+         line-height: 1.3em;
+         font-style: italic;
+         color: #7a7f92;
+      }
+      .voice-support {
+         border: 2px solid #4eb2e0;
+         padding: 10px;
+         margin-top: 20px;
+         h5 {
+            margin-bottom: 10px;
+         }
+         .legislation-content {
+            font-family: $sans;
+            line-height: 1.4em;
+         }
+         .vote {
+            text-align: center;
+            #vote-up, #vote-down {
+               font-family: $icons;
+               color: #a0db09;
+               font-size: 40px;
+            }
+            #vote-down {
+               color: #fc3822;
+               margin-left: 10px;
+            }
+         }
+      }
+   }
+   .alderman {
+      @include span-columns(8 of 12);
+      @include omega;
+      @include pad(0 0 0 25.45313px);
+      @include media(max-width 769px) {
+         @include span-columns(12 of 12);
+         border: none;
+      }
+
+      border-left: 1px solid #dddddd;
+      .alderman-info {
+         .address {
+            @include span-columns(4 of 8);
+            line-height: 1.4em;
+            .user-photo, .sub-head, .user-address {
+               @include span-columns(2 of 4);
+            }
+            .sub-head, .user-address {
+               @include omega;
+            }
+            .links {
+               clear: both;
+               padding: 10px;
+               border: 2px solid #4eb2e0;
+               top: 2em;
+               display: block;
+               position: relative;
+               font-family: $sans;
+               h5 {
+                  margin-bottom: 10px;
+               }
+            }
+         }
+      }
+      .alderman-connect {
+         @include span-columns(4 of 8);
+         @include omega;
+         .social-links {
+            @include span-columns(1 of 4);
+         }
+         .twitter-activity {
+            @include span-columns(3 of 4);
+            @include omega;
+         }
+      }
+   }
+}

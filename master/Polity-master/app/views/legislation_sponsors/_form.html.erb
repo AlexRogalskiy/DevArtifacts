@@ -1,0 +1,24 @@
+<%= form_for(@legislation_sponsor) do |f| %>
+  <% if @legislation_sponsor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@legislation_sponsor.errors.count, "error") %> prohibited this legislation_sponsor from being saved:</h2>
+      <ul>
+      <% @legislation_sponsor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sponsor_id %><br>
+    <%= f.number_field :sponsor_id %>
+  </div>
+  <div class="field">
+    <%= f.label :legislation_id %><br>
+    <%= f.text_field :legislation_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
