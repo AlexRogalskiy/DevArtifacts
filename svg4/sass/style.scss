@@ -1,0 +1,200 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Karla', sans-serif;
+    padding: 0 5vw;
+    background: #ebebeb;
+    border: 20px solid #fff;
+    width: 100%;
+    height: 100vh;
+}
+
+p,
+a {
+    line-height: 150%;
+    color: #000;
+}
+
+h1 {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+    text-align: center;
+    margin: 50px 0;
+}
+
+h1.title {
+    position: absolute;
+    writing-mode: vertical-lr;
+    margin-left: -80px;
+    margin-top: 250px;
+}
+
+.wrapper::after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+.container {
+    margin-top: 100px;
+    display: inline-block;
+    position: relative;
+    float: left;
+    left: 20px;
+    width: 30vw;
+}
+
+.container:before {
+    content: '';
+    width: 35vw;
+    height: 35vw;
+    background: linear-gradient(to bottom right, #fd6193, rgba(0, 0, 0, 0));
+    border-radius: 50%;
+    position: absolute;
+    left: -100px;
+}
+
+.circle {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    background: #ff9595;
+    z-index: -100;
+    left: 200px;
+    border-radius: 50%;
+    top: 0px;
+    box-shadow: inset -1px 4px 13px 0px #ff4484;
+    animation: shadow 3.5s infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: linear;
+}
+
+.water {
+    position: absolute;
+    background-image: url(../images/water.png);
+    width: 170px;
+    height: 170px;
+    background-color: #333;
+    top: 70px;
+    border-radius: 50%;
+    animation: rotate 5.5s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+.photo {
+    width: 900px;
+    height: 600px;
+    background-image: url(../images/plants.jpg);
+    background-size: cover;
+    z-index: 20;
+    position: relative;
+    background-size: 1172px;
+    background-repeat: no-repeat;
+    background-position: -325px -61px;
+    -webkit-clip-path: url("#clip-plant");
+    clip-path: url("#clip-plant");
+}
+
+.photo.clip-path {
+    -webkit-filter: saturate(1.5);
+    filter: saturate(1.5);
+    animation: move 1s infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: linear;
+}
+
+.photo.below {
+    clip-path: none;
+    z-index: -1000;
+    background-color: salmon;
+    background-blend-mode: lighten;
+    width: 800px;
+    opacity: 1;
+    position: fixed;
+}
+
+.photo-shadow {
+    width: 550px;
+    height: 600px;
+    position: absolute;
+    z-index: 10;
+    background-color: salmon;
+    -webkit-clip-path: url(#clip-plant);
+    clip-path: url(#clip-plant);
+    left: -8px;
+    top: 8px;
+    animation: changeBg 1.5s infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: linear;
+}
+
+.text-container {
+    display: inline-block;
+    float: right;
+    position: relative;
+    width: 45%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes changeBg {
+    0% {
+        background-color: rgba(236, 49, 27, 0.49)
+    }
+    100% {
+        background-color: rgba(236, 27, 85, 0.49)
+    }
+}
+
+@keyframes move {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shadow {
+    0% {
+        box-shadow: inset -1px 4px 13px 0px #ff4484;
+    }
+    10% {
+        box-shadow: inset -3px 4px 10px 0px #ff4484;
+    }
+    20% {
+        box-shadow: inset -6px 4px 7px 0px #ff4484;
+    }
+    30% {
+        box-shadow: inset -9px 4px 4px 0px #ff4484;
+    }
+    40% {
+        box-shadow: inset -12px 4px 1px 0px #ff4484;
+    }
+    50% {
+        box-shadow: inset -14px 4px -3px 0px #ff4484;
+    }
+    60% {
+        box-shadow: inset -12px 4px -6px 0px #ff4484;
+    }
+    70% {
+        box-shadow: inset -11px 4px -9px 0px #ff4484;
+    }
+    80% {
+        box-shadow: inset -9px 4px -12px 0px #ff4484;
+    }
+}

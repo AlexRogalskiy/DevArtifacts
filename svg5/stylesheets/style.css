@@ -1,0 +1,200 @@
+/* line 1, ../sass/style.scss */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* line 7, ../sass/style.scss */
+body {
+  margin: 0;
+  font-family: 'Karla', sans-serif;
+  border: 20px solid #e8d5ff;
+  animation: borderColor 2s linear infinite alternate-reverse;
+}
+
+/* line 14, ../sass/style.scss */
+p,
+a {
+  line-height: 150%;
+  color: #000;
+}
+
+/* line 20, ../sass/style.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Heebo', sans-serif;
+}
+
+/* line 29, ../sass/style.scss */
+h1 {
+  text-transform: lowercase;
+  font-size: 20px;
+  margin: 50px 0;
+  letter-spacing: -6px;
+  font-size: 120px;
+  line-height: 80%;
+  color: #9dc5fd;
+  margin-top: 70px;
+}
+
+/* line 40, ../sass/style.scss */
+h2.subtitle {
+  color: #fff;
+}
+
+/* line 44, ../sass/style.scss */
+.image-text {
+  position: relative;
+  top: -80px;
+  left: 25px;
+  width: 300px;
+}
+
+/* line 51, ../sass/style.scss */
+.image-text-right {
+  position: absolute;
+  width: 240px;
+  right: 40px;
+  text-align: right;
+  top: 20px;
+}
+
+/* line 59, ../sass/style.scss */
+.container {
+  width: 40vw;
+  height: 90vh;
+  display: inline-block;
+  float: right;
+  position: relative;
+  border: 14px solid #fff;
+  margin: 50px;
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+}
+
+/* line 70, ../sass/style.scss */
+.container::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #bde9ff, #4646f3);
+  -webkit-clip-path: url(#clip-water);
+  clip-path: url(#clip-water);
+  bottom: -100px;
+  left: -10px;
+}
+
+/* line 82, ../sass/style.scss */
+.clearfix::before,
+.clearfix::after {
+  content: ' ';
+  display: table;
+}
+
+/* line 88, ../sass/style.scss */
+.clearfix::after {
+  clear: both;
+}
+
+/* line 92, ../sass/style.scss */
+.water {
+  margin-top: 80px;
+  position: relative;
+  float: left;
+  width: 540px;
+  height: 50vh;
+  -webkit-clip-path: url(#clip-water);
+  clip-path: url(#clip-water);
+  background-image: url(../images/cosmic.jpg);
+  background-attachment: fixed;
+  background-size: 100%;
+  animation: backgroundScroll 20s linear infinite;
+  animation-direction: alternate-reverse;
+  shape-outside: url(#clip-water);
+}
+
+/* line 108, ../sass/style.scss */
+.person {
+  position: absolute;
+  top: 65px;
+  left: 95px;
+}
+
+/* line 114, ../sass/style.scss */
+.person-2nd {
+  position: absolute;
+  bottom: 100px;
+  right: 45px;
+}
+
+/* line 120, ../sass/style.scss */
+.person img {
+  height: 250px;
+}
+
+/* line 124, ../sass/style.scss */
+.person-2nd img {
+  height: 140px;
+}
+
+/* line 128, ../sass/style.scss */
+.text-container {
+  display: inline-block;
+  float: left;
+  position: relative;
+  top: 0;
+  width: 40vw;
+  left: 8vw;
+}
+
+/* line 137, ../sass/style.scss */
+.water-2nd {
+  display: inline-block;
+  position: absolute;
+  height: 260px;
+  -webkit-clip-path: url(#clip-water-2nd);
+  clip-path: url(#clip-water-2nd);
+  background-image: url(../images/water.jpg);
+  background-attachment: fixed;
+  background-size: 1500px;
+  background-position-y: -400px;
+  background-position-x: 0;
+  display: inline-block;
+  bottom: -90px;
+  right: 0px;
+  background-color: #818dd5;
+  background-blend-mode: overlay;
+  background-size: 750px;
+  animation: backgroundScrollTop 18s linear infinite alternate-reverse;
+  width: 480px;
+}
+
+@keyframes backgroundScroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -400px 0;
+  }
+}
+@keyframes backgroundScrollTop {
+  from {
+    background-position: 0 -400px;
+  }
+  to {
+    background-position: 0 -100px;
+  }
+}
+@keyframes borderColor {
+  from {
+    border-color: #e8d5ff;
+  }
+  to {
+    border-color: #9dc5fd;
+  }
+}
