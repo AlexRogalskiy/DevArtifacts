@@ -1,0 +1,142 @@
+{
+  "name": "react-head-start",
+  "version": "0.9.0",
+  "description": "React App bootstrap with Server Side Rendering, Code Splitting, Hot Reloading, Redux and React Router",
+  "author": "Greg Tillbrook",
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "npm-run-all --parallel dev:build dev:serve",
+    "prod": "npm run prod:build && npm run prod:serve",
+    "clean": "rimraf dist",
+    "dev:build": "npm run clean && cross-env NODE_ENV=development parcel watch src/client/index.js --out-dir dist/bundles",
+    "dev:build:css": "npm run clean && cross-env NODE_ENV=development parcel watch src/client/index.scss --out-dir dist/bundles",
+    "dev:serve": "cross-env NODE_ENV=development npx nodemon --exec babel-node --ext js,jsx --delay 0.5 --watch src --watch test src/server/",
+    "prod:build": "npm run clean && npm run prod:copy-files && npm run prod:build-server && npm run prod:build-client ",
+    "prod:build-client": "cross-env NODE_ENV=production parcel build src/client/index.js --public-url / --out-dir dist/bundles --detailed-report",
+    "prod:build-server": "cd src/ && cross-env npx babel '**/*.{js,jsx}' --no-babelrc --presets react,node8 --plugins transform-class-properties,syntax-dynamic-import --out-dir '../dist' --ignore test.js",
+    "prod:copy-files": "cross-env npx copyfiles -u 1 'src/static/**/*' dist",
+    "prod:serve": "cross-env NODE_ENV=production node dist/server/",
+    "test": "npm run lint && npm run test:unit && npm run test:e2e",
+    "lint": "npx eslint --ext jsx,js src test",
+    "test:unit": "npx jest --config test/unit-test/jest.config.js",
+    "test:e2e": "npm run prod:build && cross-env NODE_ENV=test node-while -s dist/server/index.js -r \"node node_modules/cypress/bin/cypress run\"",
+    "test:e2e:dev": "npx cypress open --env env=production",
+    "test:watch": "npm-watch",
+    "test:quick": "npm run lint && npm run test:unit",
+    "todo": "npx fixme -i 'node_modules/**' -i '.git/**' -i 'dist/**' --skip note",
+    "storybook": "npm-run-all --parallel dev:build:css storybook:serve",
+    "storybook:serve": "wait-on ./dist/bundles/index.css && start-storybook -p 6006",
+    "storybook:build": "build-storybook"
+  },
+  "browser": {
+    "./src/client/codeSplitMappingsSync.js": "./src/client/codeSplitMappingsAsync.js",
+    "config": "./src/client/utils/clientConfig.js"
+  },
+  "watch": {
+    "test:quick": {
+      "patterns": [
+        "src",
+        "test"
+      ],
+      "extensions": "js,jsx",
+      "quiet": false
+    }
+  },
+  "postcss": {
+    "modules": false,
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          ">1%",
+          "last 4 versions",
+          "Firefox ESR",
+          "not ie < 9"
+        ],
+        "flexbox": "no-2009"
+      }
+    }
+  },
+  "dependencies": {
+    "caller-callsite": "^2.0.0",
+    "compression": "^1.7.1",
+    "config": "^1.28.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "serve-favicon": "^2.4.5",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.3.12",
+    "@storybook/addon-links": "^3.3.12",
+    "@storybook/addon-notes": "^3.3.12",
+    "@storybook/addon-options": "^3.3.12",
+    "@storybook/addons": "^3.3.12",
+    "@storybook/react": "^3.3.12",
+    "autoprefixer": "^7.2.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-node8": "^1.2.0",
+    "babel-preset-react": "^6.24.1",
+    "cheerio": "^1.0.0-rc.2",
+    "copyfiles": "^1.2.0",
+    "core-js": "^2.5.3",
+    "cross-env": "^5.1.1",
+    "cypress": "^1.4.0",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "eslint": "^4.13.1",
+    "eslint-plugin-jest": "^21.5.0",
+    "eslint-plugin-react": "^7.5.1",
+    "fixme": "^0.4.4",
+    "github-markdown-css": "^2.10.0",
+    "jest": "^21.2.1",
+    "node-sass": "^4.7.2",
+    "node-while": "^1.0.1",
+    "nodemon": "^1.12.7",
+    "npm-run-all": "^4.1.2",
+    "npm-watch": "^0.3.0",
+    "parcel-bundler": "^1.6.2",
+    "parcel-plugin-bundle-visualiser": "^1.0.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-async-component": "^1.0.2",
+    "react-dom": "^16.2.0",
+    "react-helmet": "^5.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-config": "^1.0.0-beta.4",
+    "react-router-dom": "^4.2.2",
+    "react-router-test-context": "^0.1.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "regenerator-runtime": "^0.11.1",
+    "rimraf": "^2.6.2",
+    "storybook-router": "^0.3.2",
+    "wait-on": "^2.1.0"
+  },
+  "keywords": [
+    "react",
+    "bootstrap",
+    "head start",
+    "redux",
+    "react-router",
+    "express",
+    "ssr",
+    "server side render",
+    "code splitting",
+    "hot loading",
+    "boilerplate"
+  ],
+  "repository": "gregtillbrook/react-head-start",
+  "license": "MIT"
+}

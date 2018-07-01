@@ -1,0 +1,21 @@
+{
+  "name": "map",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Grafikart/dev-map.git",
+  "author": "Jonathan Boyer <contact@grafikart.fr>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npx parcel src/index.html --out-dir docs/",
+    "build": "rm -rf dist && npx parcel build src/index.html --no-source-maps --public-url /dev-map/ --log-level 2 && cp src/technologies.json dist/technologies.json"
+  },
+  "devDependencies": {
+    "node-sass": "^4.9.0",
+    "parcel-bundler": "^1.9.1",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "@types/d3": "^5.0.0",
+    "d3": "^5.5.0"
+  }
+}

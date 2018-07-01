@@ -1,0 +1,35 @@
+# allow tinymce
+location = /wp-includes/js/tinymce/wp-tinymce.php {
+	include _php_fastcgi.conf;
+}
+
+# wp-content, wp-includes php files
+location ~* ^/(?:wp-content|wp-includes)/.*\.php$ {
+	deny all;
+}
+
+# wp-content/uploads nasty stuff
+location ~* ^/wp-content/uploads/.*\.(?:s?html?|php|js|swf)$ {
+	deny all;
+}
+
+# wp-content/plugins nasty stuff
+location ~* ^/wp-content/plugins/.*\.(?!{{ extensions.assets }}|{{ extensions.fonts }}|{{ extensions.svg }}|{{ extensions.images }}|{{ extensions.audio }}|{{ extensions.video }}|{{ extensions.docs }}) {
+	deny all;
+}
+
+# disable scripts and styles concat
+location ~* \/wp-admin\/load-(?:scripts|styles)\.php {
+	deny all;
+}
+
+# WordPress stuff
+location ~* ^/(?:xmlrpc\.php|wp-links-opml\.php|wp-config\.php|wp-config-sample\.php|wp-comments-post\.php|readme\.html|license\.txt)$ {
+	deny all;
+}<span ng-if="isLimitReq()">
+
+# wp-login.php throttle
+location = /wp-login.php {
+	limit_req zone=login burst=2 nodelay;
+	include _php_fastcgi.conf;
+}</span>
