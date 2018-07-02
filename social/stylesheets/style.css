@@ -1,0 +1,135 @@
+/* line 1, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 7, ../sass/style.scss */
+.demo-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(farthest-corner at 50%, #ffffff, #67989a);
+}
+
+/* line 16, ../sass/style.scss */
+.button, .soc-but {
+  width: 7rem;
+  height: 7rem;
+}
+
+/* line 21, ../sass/style.scss */
+.button {
+  background: #042037;
+  position: relative;
+  perspective: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: white;
+}
+/* line 31, ../sass/style.scss */
+.button:hover .fb {
+  transform: rotateY(180deg);
+}
+/* line 35, ../sass/style.scss */
+.button:hover .tw {
+  transform: rotateY(-180deg);
+}
+/* line 39, ../sass/style.scss */
+.button:hover .gp {
+  transform: rotateX(180deg);
+}
+/* line 43, ../sass/style.scss */
+.button:hover .vk {
+  transform: rotateX(-180deg);
+}
+
+/* line 48, ../sass/style.scss */
+.soc-but {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: transform 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+/* line 56, ../sass/style.scss */
+.back {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  color: white;
+  text-decoration: none;
+}
+
+/* line 68, ../sass/style.scss */
+.vk .back, .gp .back {
+  transform: rotateX(180deg);
+}
+
+/* line 72, ../sass/style.scss */
+.tw .back, .fb .back {
+  transform: rotateY(180deg);
+}
+
+/* line 76, ../sass/style.scss */
+.fb .back {
+  background: #3b5998;
+}
+
+/* line 80, ../sass/style.scss */
+.vk .back {
+  background: #45668e;
+}
+
+/* line 84, ../sass/style.scss */
+.tw .back {
+  background: #00aced;
+}
+
+/* line 88, ../sass/style.scss */
+.gp .back {
+  background: #dd4b39;
+}
+
+/* line 92, ../sass/style.scss */
+.fb, .vk {
+  transform-origin: 0% 0%;
+}
+
+/* line 96, ../sass/style.scss */
+.gp, .tw {
+  transform-origin: 100% 100%;
+}
+
+/* line 100, ../sass/style.scss */
+.tw {
+  transition-delay: 0.1s;
+  transform: rotateY(-90deg);
+}
+
+/* line 105, ../sass/style.scss */
+.gp {
+  transition-delay: 0.2s;
+  transform: rotateX(90deg);
+}
+
+/* line 110, ../sass/style.scss */
+.vk {
+  transform: rotateX(-90deg);
+}
+
+/* line 114, ../sass/style.scss */
+.fb {
+  transition-delay: 0.3s;
+  transform: rotateY(90deg);
+}

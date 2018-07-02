@@ -1,0 +1,131 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+.nunito
+  font-family: 'Nunito', sans-serif;
+$animation-name = slide-over
+$dark-bg = #444
+$button-bg = #1a75ae
+$button-color = #fafdfe
+
+$desaturate-by = 25
+$spin-by = 24
+
+.no-select
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+.tab-show
+  width 37.5rem
+  height 18.75
+  margin .75rem auto 1.5rem
+  overflow hidden
+  position relative
+  &__inner
+    position relative
+    &--button-container
+      display block
+    &--hidden-checkbox
+      position absolute
+      width 0
+      height 0
+      left -10000px
+      &:checked
+        transform scale(1.1)
+        border-radius 0 0 .3rem .3rem
+        & + .tab-show__inner--image-container
+          display block
+          .tab-show__inner--image-container__image-floor
+            animation $animation-name 1.125s forwards ease-out
+          
+    &--image-container
+      position relative
+      z-index 1
+      display none
+      // This margin will set height of the animated bar and still keep gap
+      margin-bottom .175rem
+      &__image-floor
+        position absolute
+        left 0
+        top 99.25%
+        bottom -3%
+        right 100%
+        transition 11s ease-in
+        background-color #DA8754
+      
+// Make the bottom same color as active menu item
+.tab-show__inner
+  for i in 1..8
+    .tab-show__inner--image-container:nth-of-type({i})
+      .tab-show__inner--image-container__image-floor
+        background-color spin(desaturate($button-bg, $desaturate-by), i * $spin-by)
+
+        
+.tab-show__inner__button-container
+  width 100%
+  display flex
+  flex-wrap nowrap
+  align-items stretch
+  align-content space-between
+  background $dark-bg
+  position relative
+  transform translateY(.5rem)
+  z-index 2
+  &--button
+    flex-basis 100%
+    box-sizing border-box
+    display inline-block
+    text-align center
+    for i in 1..8
+      &:nth-of-type({i})
+        background-color #DA8754
+        background-color spin(desaturate($button-bg, $desaturate-by), i * $spin-by)
+    &__label
+      @extend .nunito
+      @extend .no-select
+      font-size 1.2rem
+      display block
+      cursor pointer
+      padding .6rem
+      background-color inherit
+      color $button-color
+      transform-origin center center
+      transition .3s ease-out transform
+      &:hover
+        transform scale(1.075)
+        border-radius 0 0 .3rem .3rem
+
+        
+        
+@keyframes {$animation-name}
+  0%
+    right 100%
+  100%
+    right 0%
+      
+// Just Page Stuff
+html, html *
+  box-sizing border-box
+body
+  background: #eee
+  width 100%
+  height 100%
+.container
+  height 100%
+  max-width 42.5rem
+  margin 0 auto
+  .content
+    height 100%
+    background #fff
+    padding 1rem
+    &--article
+      height 100%
+      margin 1.45rem
+      &__h2
+        @extend .nunito
+        font-size 1.85rem
+        margin .75rem auto .75rem auto
+      &__p
+        text-indent 1.5rem
+        margin-top .75rem
+        

@@ -1,0 +1,36 @@
+- imgList = ['//unsplash.it/600/320/?random', '//unsplash.it/600/320/?random', '//unsplash.it/600/320/?random', '//unsplash.it/600/320/?random', '//unsplash.it/600/320/?random', '//unsplash.it/600/320/?random']
+
+
+.container
+  .content
+    article.content--article
+      h2.content--article__h2 NoScript Tabs with CSS Menu
+      
+      .tab-show
+        .tab-show__inner
+        
+          // Button Container
+          div.tab-show__inner__button-container
+            // Loop: Create the Buttons  
+            each val, index in imgList
+              .tab-show__inner__button-container--button
+                label.tab-show__inner__button-container--button__label(for="tab-show-item-"+index)= "Item: " + index
+
+          // Loop: Create the Checkboxes + Images
+          each val, index in imgList
+            input.tab-show__inner--hidden-checkbox(type="radio", name="tab-show", id="tab-show-item-"+index, checked= !index ? 'checked' : '')
+            .tab-show__inner--image-container
+              img.tab-show__inner--image-container__image(src=val+'&'+index)
+              .tab-show__inner--image-container__image-floor
+      
+      
+      p.content--article__p.
+        I am writing an article which requires sets of similar photos. Rather than
+        take up too much vertical space I throught I might add slider/tabs into the 
+        article so I don't have to display so many images between blocks of text.
+      p.content--article__p.
+        Next thing I had known I was creating this CSS Tab widget. The bar on the 
+        bottom of the images correspondss to the menu item that should be active.
+        When I deploy this on my blog I'll more than likely use a line of JavaScript
+        to give an "active" class on menu labels and use scale(1.075) as a visual 
+        aid as to which menu item is active.

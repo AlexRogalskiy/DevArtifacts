@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Raleway");
+/* line 7, ../sass/style.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 11, ../sass/style.scss */
+body {
+  color: #333;
+  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
+  overflow: hidden;
+}
+
+/* line 18, ../sass/style.scss */
+h1, h2, h3, h4, h4, h6 {
+  font-family: 'Monsterrat', sans-serif;
+  font-weight: normal;
+}
+
+/* line 23, ../sass/style.scss */
+#root, #container {
+  height: 100%;
+  min-width: 320px;
+}
+
+/* line 28, ../sass/style.scss */
+#editor, #output {
+  width: 50%;
+  height: 100%;
+}
+@media screen and (max-width: 640px) {
+  /* line 28, ../sass/style.scss */
+  #editor, #output {
+    width: 100%;
+  }
+}
+
+/* line 36, ../sass/style.scss */
+#editor {
+  float: left;
+}
+/* line 37, ../sass/style.scss */
+#editor > textarea {
+  resize: none;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 1em;
+}
+
+/* line 50, ../sass/style.scss */
+#output {
+  background-color: #EEE;
+  box-sizing: border-box;
+  float: right;
+  padding: 1em;
+  overflow: auto;
+}
+@media screen and (max-width: 640px) {
+  /* line 50, ../sass/style.scss */
+  #output {
+    position: absolute;
+    right: -100%;
+    z-index: 1;
+  }
+}
+
+/* line 64, ../sass/style.scss */
+#preview-collapse {
+  display: none;
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #EEE;
+  border-left: 1px solid #333;
+  border-bottom: 1px solid #333;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+/* line 79, ../sass/style.scss */
+#preview-collapse:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+@media screen and (max-width: 640px) {
+  /* line 64, ../sass/style.scss */
+  #preview-collapse {
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  /* line 92, ../sass/style.scss */
+  #editor > textarea, #output {
+    padding-top: 56px;
+  }
+}

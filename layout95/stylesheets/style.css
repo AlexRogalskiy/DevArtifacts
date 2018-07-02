@@ -1,0 +1,174 @@
+/* line 1, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 12, ../sass/style.scss */
+.property-hack {
+  display: none;
+  width: 200px;
+  height: 500px;
+  margin-left: 8000px;
+}
+
+/* line 19, ../sass/style.scss */
+.demo-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+  cursor: grab;
+  background: #333;
+}
+
+/* line 28, ../sass/style.scss */
+.slides {
+  width: 500%;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 34, ../sass/style.scss */
+.slide {
+  width: 100vw;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+}
+
+/* line 42, ../sass/style.scss */
+.bg {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+/* line 49, ../sass/style.scss */
+.bg-2 {
+  transform: translate3d(-50vw, 0, 0);
+}
+
+/* line 53, ../sass/style.scss */
+.animation {
+  transition: transform 0.5s ease;
+}
+
+/* line 58, ../sass/style.scss */
+.bg-1 {
+  background-image: url("https://kiyutink.github.io/nyc/nyc1.jpg");
+}
+
+/* line 58, ../sass/style.scss */
+.bg-2 {
+  background-image: url("https://kiyutink.github.io/nyc/nyc2.jpg");
+}
+
+/* line 58, ../sass/style.scss */
+.bg-3 {
+  background-image: url("https://kiyutink.github.io/nyc/nyc3.jpg");
+}
+
+/* line 58, ../sass/style.scss */
+.bg-4 {
+  background-image: url("https://kiyutink.github.io/nyc/nyc4.jpg");
+}
+
+/* line 58, ../sass/style.scss */
+.bg-5 {
+  background-image: url("https://kiyutink.github.io/nyc/nyc5.jpg");
+}
+
+/* line 63, ../sass/style.scss */
+.grabbing {
+  cursor: grabbing;
+}
+
+/* line 67, ../sass/style.scss */
+.slide-indicator {
+  position: fixed;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 34px;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 5;
+  padding: 10px;
+  cursor: default;
+}
+
+/* line 80, ../sass/style.scss */
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 2px;
+  float: left;
+  background: white;
+  opacity: 0.3;
+  transition: opacity 0.5s ease;
+  cursor: pointer;
+}
+
+/* line 92, ../sass/style.scss */
+.dot-1 {
+  opacity: 1;
+}
+
+/* line 96, ../sass/style.scss */
+.overlay {
+  width: 100vw;
+  height: 75px;
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-family: "Bad Script", sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  transform: translate3d(0, 100%, 0);
+  will-change: transform;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transition-delay: 0.5s;
+  opacity: 0;
+}
+
+/* line 113, ../sass/style.scss */
+.overlay-active {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+/* line 118, ../sass/style.scss */
+.hint {
+  background: transparent;
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  font-family: "Bad Script", sans-serif;
+  color: white;
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+/* line 130, ../sass/style.scss */
+a {
+  color: white;
+}
+
+@media (max-width: 360px) {
+  /* line 135, ../sass/style.scss */
+  .slide-indicator {
+    display: none;
+  }
+
+  /* line 139, ../sass/style.scss */
+  .overlay {
+    font-size: 1rem;
+  }
+}

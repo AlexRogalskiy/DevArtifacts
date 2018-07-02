@@ -1,0 +1,97 @@
+$strokeTime: 1s;
+$fillTime: 0.3s;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.demo {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  background-color: #3A3276;
+  
+  overflow: hidden;
+  
+  &__svg {
+    flex-shrink: 0;
+    
+    fill: transparent;
+    stroke: white;
+    stroke-width: 2px;
+  }
+  
+  &__rerun {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    
+    width: 80px;
+    height: 35px;
+    border: none;
+    
+    font-size: 22px;
+    font-family: "Montserrat", sans-serif;
+    
+    color: #3A3276;
+    background-color: white;
+    
+    cursor: pointer;
+    outline: none!important;
+    z-index: 1;
+    
+    &:hover {
+      transform: translateY(-1px);
+    }
+    
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+}
+
+.me {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  
+  display: block;
+  width: 100%;
+  
+  text-align: center;
+  font-family: "Montserrat";
+  font-size: 18px;
+  
+  color: white;
+    
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  
+  & a {
+    color: white;
+    
+    &:hover {  
+      color: yellow;
+    }
+  }
+}
+
+.animatable {
+  transition: stroke-dashoffset $strokeTime ease, fill $fillTime ease $strokeTime - $fillTime - 0.1s;
+}
+
+.shown {
+  transform: none;
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}

@@ -1,0 +1,171 @@
+/* line 1, ../sass/style.scss */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 6, ../sass/style.scss */
+body, section {
+  background: #111;
+}
+
+/* line 12, ../sass/style.scss */
+div.trydebug {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  z-index: 10;
+  padding: 4rem;
+  width: 400px;
+  max-width: 95%;
+  transform: translate(-50%, -50%);
+  background: black;
+  color: white;
+  text-align: center;
+  border: 2px solid tomato;
+}
+/* line 26, ../sass/style.scss */
+div.trydebug a {
+  color: tomato;
+}
+/* line 29, ../sass/style.scss */
+div.trydebug.hide {
+  display: none;
+}
+
+/* line 34, ../sass/style.scss */
+section {
+  height: 600px;
+  width: 300px;
+  position: absolute;
+  left: calc(50% - 150px);
+  top: calc(50% - 300px);
+  flex-direction: column;
+  display: flex;
+  box-shadow: 0px 4px 24px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+/* line 45, ../sass/style.scss */
+section div, section canvas {
+  height: 300px;
+  width: 300px;
+  display: block;
+}
+/* line 50, ../sass/style.scss */
+section div {
+  overflow: hidden;
+  position: relative;
+}
+/* line 53, ../sass/style.scss */
+section div video {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 100%;
+}
+/* line 64, ../sass/style.scss */
+section canvas {
+  image-rendering: pixelated;
+}
+
+/* line 70, ../sass/style.scss */
+header {
+  position: fixed;
+  font-family: system, Helvetica, Arial, sans-serif;
+  color: white;
+  width: 300px;
+  left: calc(50% - 150px);
+  top: calc(50% + 310px);
+  display: flex;
+}
+/* line 78, ../sass/style.scss */
+header > div {
+  flex: 1;
+  height: 20px;
+  position: relative;
+  display: flex;
+  border-radius: 4px;
+  box-shadow: 0px 4px 24px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+/* line 86, ../sass/style.scss */
+header > div > span {
+  flex: 1;
+}
+/* line 89, ../sass/style.scss */
+header > div > span:last-child {
+  position: absolute;
+  display: block;
+  top: 0;
+  width: 2px;
+  height: 20px;
+  background: white;
+  transform: translateX(-50%);
+}
+
+/* line 101, ../sass/style.scss */
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  transform: translateX(-50%);
+  max-width: 600px;
+  color: white;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* line 115, ../sass/style.scss */
+footer button {
+  appearance: none;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 0px 1px rgba(0, 0, 0, 0.3);
+  background: black;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+}
+/* line 127, ../sass/style.scss */
+footer button.active {
+  background: white;
+  color: black;
+}
+/* line 131, ../sass/style.scss */
+footer button:active {
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.3);
+  transform: translateY(2px);
+}
+/* line 135, ../sass/style.scss */
+footer button:not(.active) span:last-child, footer button.active span:first-child {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  /* line 143, ../sass/style.scss */
+  section {
+    width: 600px;
+    height: 300px;
+    flex-direction: row;
+    left: calc(50% - 300px);
+    top: calc(50% - 150px);
+  }
+
+  /* line 150, ../sass/style.scss */
+  header {
+    top: calc(50% + 160px);
+    width: 600px;
+    left: calc(50% - 300px);
+  }
+}

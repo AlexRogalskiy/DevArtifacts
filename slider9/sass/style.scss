@@ -1,0 +1,121 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+html {
+  background-color: #444;
+  font-family: 'Droid Sans', sans-serif;
+  b {
+    font-weight: 700;
+  }
+  u {
+    text-decoration: underline;
+  }
+}
+
+.carrosel {
+  position: relative;
+  overflow: hidden;
+  background-color: #ccc;
+  height: 450px;
+  width: 960px;
+  border: 1px solid #111;
+  margin: 0 auto;
+  padding: 0;
+  
+  
+  h2{
+    font-size: 1.2em;
+    font-size: 1.2rem;
+  }
+  h3{
+    font-size: 1em;
+    font-size: 1rem;
+  }
+  p{
+    font-size: .8em;
+    font-size: .8rem;
+  }
+  
+  #controls {
+    position: relative;
+    bottom:0px;
+    left: 18px;
+    top: 430px;
+    z-index: 1000;
+    
+    #buttonBox {
+      position: absolute;
+      left: 642px;
+      top: -12px;
+    }
+  }
+  
+  figure {
+    display: block;
+    position: absolute;
+    height: 450px;
+    width: 960px;
+    border: 1px solid red;
+    top: -17px;
+    left: -41px;
+
+    .information{
+      position: absolute;
+      margin-top: -.5%;
+      padding: .7em;
+      background: #FFD1AA;
+      position: absolute;
+      z-index: 200;
+      
+      &.left {
+        height: 101%;
+        left: 0;
+        top: 0;
+        right: 600px;
+        bottom: 0;
+        border-right: 64px double #D49A6A;
+      }
+      &.right{
+        height: 101%;
+        left: 600px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border-left: 64px double #D49A6A;
+      }
+      &.bubble {
+        border: 2px double #D49A6A;
+        top: .6em;
+        left: .6em;
+        border-radius: 12px 24px 36px 48px;
+      }
+    }
+    img{
+      position: absolute;
+      z-index: 100;
+    
+      &.right {
+        left: 360px;
+      }
+    }
+    .caption {
+      color: #ccc;
+      background: rgba(20,20,20,.9);
+      position: absolute;
+      padding: 1em;
+      top: 360px;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      z-index:300;
+      display: none;
+    }
+  }
+  
+  .frameMarker {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background: #D49A6A;
+    cursor: pointer;
+  }
+}

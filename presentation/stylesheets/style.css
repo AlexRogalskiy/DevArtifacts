@@ -1,0 +1,876 @@
+@import url(https://fonts.googleapis.com/css?family=Merriweather:300,300italic|Inconsolata);
+/* line 13, ../sass/style.scss */
+main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  transition: left 500ms;
+}
+
+/* line 22, ../sass/style.scss */
+section {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  opacity: 0;
+  box-sizing: border-box;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: opacity 250ms ease-in-out;
+}
+/* line 32, ../sass/style.scss */
+section:first-child {
+  opacity: 1;
+}
+/* line 38, ../sass/style.scss */
+section article {
+  width: calc(90% - 90px);
+  max-width: 800px;
+  padding: 4rem 0 4rem 5%;
+  color: #fff;
+}
+/* line 45, ../sass/style.scss */
+section code, section pre {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+/* line 52, ../sass/style.scss */
+section code {
+  padding: 0.25rem 0.5rem;
+}
+/* line 56, ../sass/style.scss */
+section pre {
+  padding: 1rem;
+  margin: 1rem auto;
+}
+
+/* line 63, ../sass/style.scss */
+.s {
+  position: absolute;
+}
+
+/* line 100, ../sass/style.scss */
+nav {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  user-select: none;
+}
+/* line 106, ../sass/style.scss */
+nav.thumbs {
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 90px;
+  display: block;
+}
+/* line 113, ../sass/style.scss */
+nav.thumbs ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 117, ../sass/style.scss */
+nav.thumbs li {
+  display: block;
+  margin: 0 auto 0.5rem;
+}
+/* line 121, ../sass/style.scss */
+nav.thumbs li:first-child a {
+  opacity: 1;
+  width: 80px;
+  height: 60px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+}
+/* line 125, ../sass/style.scss */
+nav.thumbs li a {
+  opacity: 0.5;
+  width: 40px;
+  height: 30px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+  margin: 0 auto;
+  display: block;
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  border-radius: 2px;
+  position: relative;
+  transition: height 250ms ease-in-out, width 250ms ease-in-out, opacity 250ms ease-in-out,           box-shadow 250ms ease-in-out;
+}
+/* line 126, ../sass/style.scss */
+nav.thumbs li a:hover {
+  opacity: 1;
+}
+/* line 142, ../sass/style.scss */
+nav.thumbs li a:active {
+  transform: translateY(1px);
+}
+/* line 149, ../sass/style.scss */
+nav.prevnext {
+  left: 0;
+  top: 1rem;
+}
+/* line 152, ../sass/style.scss */
+nav.prevnext ul {
+  list-style: none;
+  margin: 0.5rem auto;
+  padding: 0;
+  width: 220px;
+  position: relative;
+}
+/* line 158, ../sass/style.scss */
+nav.prevnext ul:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 163, ../sass/style.scss */
+nav.prevnext ul li {
+  display: none;
+  width: 100px;
+}
+/* line 166, ../sass/style.scss */
+nav.prevnext ul li.starter {
+  display: block;
+  float: right;
+}
+/* line 75, ../sass/style.scss */
+nav.prevnext ul li.starter a:after {
+  content: "Next";
+}
+/* line 170, ../sass/style.scss */
+nav.prevnext ul a {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: background 200ms ease-in-out 200ms, box-shadow 200ms ease-in-out;
+}
+/* line 183, ../sass/style.scss */
+nav.prevnext ul a:hover, nav.prevnext ul a:active {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* line 186, ../sass/style.scss */
+nav.prevnext ul a:hover {
+  box-shadow: 0px -2px 0px 0px rgba(255, 255, 255, 0.1);
+}
+/* line 189, ../sass/style.scss */
+nav.prevnext ul a:active {
+  box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.1);
+  transform: translateY(1px);
+}
+/* line 197, ../sass/style.scss */
+nav a {
+  text-decoration: none;
+}
+
+@media (min-width: 600px) {
+  /* line 207, ../sass/style.scss */
+  main {
+    height: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 215, ../sass/style.scss */
+  main article {
+    padding-left: 0;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 600px) {
+  /* line 224, ../sass/style.scss */
+  nav.prevnext {
+    top: auto;
+    bottom: 1rem;
+  }
+}
+/* line 233, ../sass/style.scss */
+#progress {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  width: 0%;
+  border-bottom: 12px solid rgba(255, 255, 255, 0.2);
+  transition: width 1250ms linear;
+}
+
+/* line 250, ../sass/style.scss */
+#s1:target ~ main section {
+  opacity: 0;
+}
+/* line 252, ../sass/style.scss */
+#s1:target ~ main section:nth-child(1) {
+  opacity: 1;
+}
+
+@media (max-width: 599px) {
+  /* line 260, ../sass/style.scss */
+  #s1:target ~ main section {
+    top: 50%;
+  }
+  /* line 262, ../sass/style.scss */
+  #s1:target ~ main section:nth-child(1) {
+    top: 0;
+  }
+}
+@media (min-width: 600px) {
+  /* line 272, ../sass/style.scss */
+  #s1:target ~ main {
+    left: 0%;
+  }
+
+  /* line 276, ../sass/style.scss */
+  section:nth-child(1) {
+    left: 0%;
+  }
+}
+/* line 281, ../sass/style.scss */
+.thumbs li:nth-child(1) a {
+  background-image: url(http://lorempixel.com/g/400/150/city/1/);
+  background-color: #736826;
+}
+
+/* line 286, ../sass/style.scss */
+#s1:target ~ #background {
+  background-image: url(http://lorempixel.com/g/400/150/city/1/);
+  background-color: #736826;
+}
+
+/* line 291, ../sass/style.scss */
+#s1:target ~ #progress {
+  width: 0%;
+}
+
+/* line 295, ../sass/style.scss */
+#s1:target ~ .thumbs li:first-child a {
+  opacity: 0.5;
+  width: 40px;
+  height: 30px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+}
+
+/* line 298, ../sass/style.scss */
+#s1:target ~ .thumbs li:nth-child(1) a {
+  opacity: 1;
+  width: 80px;
+  height: 60px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* line 301, ../sass/style.scss */
+#s1:target ~ .prevnext li.starter {
+  display: none;
+}
+
+/* line 304, ../sass/style.scss */
+#s1:target ~ .prevnext li[class*="p1"] {
+  display: block;
+  float: left;
+}
+/* line 81, ../sass/style.scss */
+#s1:target ~ .prevnext li[class*="p1"] a:after {
+  content: "Prev";
+}
+
+/* line 307, ../sass/style.scss */
+#s1:target ~ .prevnext li[class*="n1"] {
+  display: block;
+  float: right;
+}
+/* line 75, ../sass/style.scss */
+#s1:target ~ .prevnext li[class*="n1"] a:after {
+  content: "Next";
+}
+
+/* line 250, ../sass/style.scss */
+#s2:target ~ main section {
+  opacity: 0;
+}
+/* line 252, ../sass/style.scss */
+#s2:target ~ main section:nth-child(2) {
+  opacity: 1;
+}
+
+@media (max-width: 599px) {
+  /* line 260, ../sass/style.scss */
+  #s2:target ~ main section {
+    top: 50%;
+  }
+  /* line 262, ../sass/style.scss */
+  #s2:target ~ main section:nth-child(2) {
+    top: 0;
+  }
+}
+@media (min-width: 600px) {
+  /* line 272, ../sass/style.scss */
+  #s2:target ~ main {
+    left: -100%;
+  }
+
+  /* line 276, ../sass/style.scss */
+  section:nth-child(2) {
+    left: 100%;
+  }
+}
+/* line 281, ../sass/style.scss */
+.thumbs li:nth-child(2) a {
+  background-image: url(http://lorempixel.com/g/400/150/city/2/);
+  background-color: #3c7326;
+}
+
+/* line 286, ../sass/style.scss */
+#s2:target ~ #background {
+  background-image: url(http://lorempixel.com/g/400/150/city/2/);
+  background-color: #3c7326;
+}
+
+/* line 291, ../sass/style.scss */
+#s2:target ~ #progress {
+  width: 16.66667%;
+}
+
+/* line 295, ../sass/style.scss */
+#s2:target ~ .thumbs li:first-child a {
+  opacity: 0.5;
+  width: 40px;
+  height: 30px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+}
+
+/* line 298, ../sass/style.scss */
+#s2:target ~ .thumbs li:nth-child(2) a {
+  opacity: 1;
+  width: 80px;
+  height: 60px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* line 301, ../sass/style.scss */
+#s2:target ~ .prevnext li.starter {
+  display: none;
+}
+
+/* line 304, ../sass/style.scss */
+#s2:target ~ .prevnext li[class*="p2"] {
+  display: block;
+  float: left;
+}
+/* line 81, ../sass/style.scss */
+#s2:target ~ .prevnext li[class*="p2"] a:after {
+  content: "Prev";
+}
+
+/* line 307, ../sass/style.scss */
+#s2:target ~ .prevnext li[class*="n2"] {
+  display: block;
+  float: right;
+}
+/* line 75, ../sass/style.scss */
+#s2:target ~ .prevnext li[class*="n2"] a:after {
+  content: "Next";
+}
+
+/* line 250, ../sass/style.scss */
+#s3:target ~ main section {
+  opacity: 0;
+}
+/* line 252, ../sass/style.scss */
+#s3:target ~ main section:nth-child(3) {
+  opacity: 1;
+}
+
+@media (max-width: 599px) {
+  /* line 260, ../sass/style.scss */
+  #s3:target ~ main section {
+    top: 50%;
+  }
+  /* line 262, ../sass/style.scss */
+  #s3:target ~ main section:nth-child(3) {
+    top: 0;
+  }
+}
+@media (min-width: 600px) {
+  /* line 272, ../sass/style.scss */
+  #s3:target ~ main {
+    left: -200%;
+  }
+
+  /* line 276, ../sass/style.scss */
+  section:nth-child(3) {
+    left: 200%;
+  }
+}
+/* line 281, ../sass/style.scss */
+.thumbs li:nth-child(3) a {
+  background-image: url(http://lorempixel.com/g/400/150/city/3/);
+  background-color: #267352;
+}
+
+/* line 286, ../sass/style.scss */
+#s3:target ~ #background {
+  background-image: url(http://lorempixel.com/g/400/150/city/3/);
+  background-color: #267352;
+}
+
+/* line 291, ../sass/style.scss */
+#s3:target ~ #progress {
+  width: 33.33333%;
+}
+
+/* line 295, ../sass/style.scss */
+#s3:target ~ .thumbs li:first-child a {
+  opacity: 0.5;
+  width: 40px;
+  height: 30px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+}
+
+/* line 298, ../sass/style.scss */
+#s3:target ~ .thumbs li:nth-child(3) a {
+  opacity: 1;
+  width: 80px;
+  height: 60px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* line 301, ../sass/style.scss */
+#s3:target ~ .prevnext li.starter {
+  display: none;
+}
+
+/* line 304, ../sass/style.scss */
+#s3:target ~ .prevnext li[class*="p3"] {
+  display: block;
+  float: left;
+}
+/* line 81, ../sass/style.scss */
+#s3:target ~ .prevnext li[class*="p3"] a:after {
+  content: "Prev";
+}
+
+/* line 307, ../sass/style.scss */
+#s3:target ~ .prevnext li[class*="n3"] {
+  display: block;
+  float: right;
+}
+/* line 75, ../sass/style.scss */
+#s3:target ~ .prevnext li[class*="n3"] a:after {
+  content: "Next";
+}
+
+/* line 250, ../sass/style.scss */
+#s4:target ~ main section {
+  opacity: 0;
+}
+/* line 252, ../sass/style.scss */
+#s4:target ~ main section:nth-child(4) {
+  opacity: 1;
+}
+
+@media (max-width: 599px) {
+  /* line 260, ../sass/style.scss */
+  #s4:target ~ main section {
+    top: 50%;
+  }
+  /* line 262, ../sass/style.scss */
+  #s4:target ~ main section:nth-child(4) {
+    top: 0;
+  }
+}
+@media (min-width: 600px) {
+  /* line 272, ../sass/style.scss */
+  #s4:target ~ main {
+    left: -300%;
+  }
+
+  /* line 276, ../sass/style.scss */
+  section:nth-child(4) {
+    left: 300%;
+  }
+}
+/* line 281, ../sass/style.scss */
+.thumbs li:nth-child(4) a {
+  background-image: url(http://lorempixel.com/g/400/150/city/4/);
+  background-color: #265273;
+}
+
+/* line 286, ../sass/style.scss */
+#s4:target ~ #background {
+  background-image: url(http://lorempixel.com/g/400/150/city/4/);
+  background-color: #265273;
+}
+
+/* line 291, ../sass/style.scss */
+#s4:target ~ #progress {
+  width: 50%;
+}
+
+/* line 295, ../sass/style.scss */
+#s4:target ~ .thumbs li:first-child a {
+  opacity: 0.5;
+  width: 40px;
+  height: 30px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+}
+
+/* line 298, ../sass/style.scss */
+#s4:target ~ .thumbs li:nth-child(4) a {
+  opacity: 1;
+  width: 80px;
+  height: 60px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* line 301, ../sass/style.scss */
+#s4:target ~ .prevnext li.starter {
+  display: none;
+}
+
+/* line 304, ../sass/style.scss */
+#s4:target ~ .prevnext li[class*="p4"] {
+  display: block;
+  float: left;
+}
+/* line 81, ../sass/style.scss */
+#s4:target ~ .prevnext li[class*="p4"] a:after {
+  content: "Prev";
+}
+
+/* line 307, ../sass/style.scss */
+#s4:target ~ .prevnext li[class*="n4"] {
+  display: block;
+  float: right;
+}
+/* line 75, ../sass/style.scss */
+#s4:target ~ .prevnext li[class*="n4"] a:after {
+  content: "Next";
+}
+
+/* line 250, ../sass/style.scss */
+#s5:target ~ main section {
+  opacity: 0;
+}
+/* line 252, ../sass/style.scss */
+#s5:target ~ main section:nth-child(5) {
+  opacity: 1;
+}
+
+@media (max-width: 599px) {
+  /* line 260, ../sass/style.scss */
+  #s5:target ~ main section {
+    top: 50%;
+  }
+  /* line 262, ../sass/style.scss */
+  #s5:target ~ main section:nth-child(5) {
+    top: 0;
+  }
+}
+@media (min-width: 600px) {
+  /* line 272, ../sass/style.scss */
+  #s5:target ~ main {
+    left: -400%;
+  }
+
+  /* line 276, ../sass/style.scss */
+  section:nth-child(5) {
+    left: 400%;
+  }
+}
+/* line 281, ../sass/style.scss */
+.thumbs li:nth-child(5) a {
+  background-image: url(http://lorempixel.com/g/400/150/city/5/);
+  background-color: #3c2673;
+}
+
+/* line 286, ../sass/style.scss */
+#s5:target ~ #background {
+  background-image: url(http://lorempixel.com/g/400/150/city/5/);
+  background-color: #3c2673;
+}
+
+/* line 291, ../sass/style.scss */
+#s5:target ~ #progress {
+  width: 66.66667%;
+}
+
+/* line 295, ../sass/style.scss */
+#s5:target ~ .thumbs li:first-child a {
+  opacity: 0.5;
+  width: 40px;
+  height: 30px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+}
+
+/* line 298, ../sass/style.scss */
+#s5:target ~ .thumbs li:nth-child(5) a {
+  opacity: 1;
+  width: 80px;
+  height: 60px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* line 301, ../sass/style.scss */
+#s5:target ~ .prevnext li.starter {
+  display: none;
+}
+
+/* line 304, ../sass/style.scss */
+#s5:target ~ .prevnext li[class*="p5"] {
+  display: block;
+  float: left;
+}
+/* line 81, ../sass/style.scss */
+#s5:target ~ .prevnext li[class*="p5"] a:after {
+  content: "Prev";
+}
+
+/* line 307, ../sass/style.scss */
+#s5:target ~ .prevnext li[class*="n5"] {
+  display: block;
+  float: right;
+}
+/* line 75, ../sass/style.scss */
+#s5:target ~ .prevnext li[class*="n5"] a:after {
+  content: "Next";
+}
+
+/* line 250, ../sass/style.scss */
+#s6:target ~ main section {
+  opacity: 0;
+}
+/* line 252, ../sass/style.scss */
+#s6:target ~ main section:nth-child(6) {
+  opacity: 1;
+}
+
+@media (max-width: 599px) {
+  /* line 260, ../sass/style.scss */
+  #s6:target ~ main section {
+    top: 50%;
+  }
+  /* line 262, ../sass/style.scss */
+  #s6:target ~ main section:nth-child(6) {
+    top: 0;
+  }
+}
+@media (min-width: 600px) {
+  /* line 272, ../sass/style.scss */
+  #s6:target ~ main {
+    left: -500%;
+  }
+
+  /* line 276, ../sass/style.scss */
+  section:nth-child(6) {
+    left: 500%;
+  }
+}
+/* line 281, ../sass/style.scss */
+.thumbs li:nth-child(6) a {
+  background-image: url(http://lorempixel.com/g/400/150/city/6/);
+  background-color: #732668;
+}
+
+/* line 286, ../sass/style.scss */
+#s6:target ~ #background {
+  background-image: url(http://lorempixel.com/g/400/150/city/6/);
+  background-color: #732668;
+}
+
+/* line 291, ../sass/style.scss */
+#s6:target ~ #progress {
+  width: 83.33333%;
+}
+
+/* line 295, ../sass/style.scss */
+#s6:target ~ .thumbs li:first-child a {
+  opacity: 0.5;
+  width: 40px;
+  height: 30px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+}
+
+/* line 298, ../sass/style.scss */
+#s6:target ~ .thumbs li:nth-child(6) a {
+  opacity: 1;
+  width: 80px;
+  height: 60px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* line 301, ../sass/style.scss */
+#s6:target ~ .prevnext li.starter {
+  display: none;
+}
+
+/* line 304, ../sass/style.scss */
+#s6:target ~ .prevnext li[class*="p6"] {
+  display: block;
+  float: left;
+}
+/* line 81, ../sass/style.scss */
+#s6:target ~ .prevnext li[class*="p6"] a:after {
+  content: "Prev";
+}
+
+/* line 307, ../sass/style.scss */
+#s6:target ~ .prevnext li[class*="n6"] {
+  display: block;
+  float: right;
+}
+/* line 75, ../sass/style.scss */
+#s6:target ~ .prevnext li[class*="n6"] a:after {
+  content: "Next";
+}
+
+/* line 250, ../sass/style.scss */
+#s7:target ~ main section {
+  opacity: 0;
+}
+/* line 252, ../sass/style.scss */
+#s7:target ~ main section:nth-child(7) {
+  opacity: 1;
+}
+
+@media (max-width: 599px) {
+  /* line 260, ../sass/style.scss */
+  #s7:target ~ main section {
+    top: 50%;
+  }
+  /* line 262, ../sass/style.scss */
+  #s7:target ~ main section:nth-child(7) {
+    top: 0;
+  }
+}
+@media (min-width: 600px) {
+  /* line 272, ../sass/style.scss */
+  #s7:target ~ main {
+    left: -600%;
+  }
+
+  /* line 276, ../sass/style.scss */
+  section:nth-child(7) {
+    left: 600%;
+  }
+}
+/* line 281, ../sass/style.scss */
+.thumbs li:nth-child(7) a {
+  background-image: url(http://lorempixel.com/g/400/150/city/7/);
+  background-color: #732626;
+}
+
+/* line 286, ../sass/style.scss */
+#s7:target ~ #background {
+  background-image: url(http://lorempixel.com/g/400/150/city/7/);
+  background-color: #732626;
+}
+
+/* line 291, ../sass/style.scss */
+#s7:target ~ #progress {
+  width: 100%;
+}
+
+/* line 295, ../sass/style.scss */
+#s7:target ~ .thumbs li:first-child a {
+  opacity: 0.5;
+  width: 40px;
+  height: 30px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0);
+}
+
+/* line 298, ../sass/style.scss */
+#s7:target ~ .thumbs li:nth-child(7) a {
+  opacity: 1;
+  width: 80px;
+  height: 60px;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* line 301, ../sass/style.scss */
+#s7:target ~ .prevnext li.starter {
+  display: none;
+}
+
+/* line 304, ../sass/style.scss */
+#s7:target ~ .prevnext li[class*="p7"] {
+  display: block;
+  float: left;
+}
+/* line 81, ../sass/style.scss */
+#s7:target ~ .prevnext li[class*="p7"] a:after {
+  content: "Prev";
+}
+
+/* line 307, ../sass/style.scss */
+#s7:target ~ .prevnext li[class*="n7"] {
+  display: block;
+  float: right;
+}
+/* line 75, ../sass/style.scss */
+#s7:target ~ .prevnext li[class*="n7"] a:after {
+  content: "Next";
+}
+
+/* line 315, ../sass/style.scss */
+#background {
+  background-image: url(http://lorempixel.com/g/400/150/city/1/);
+  background-color: #637326;
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  filter: blur(10px);
+  position: fixed;
+  z-index: -1;
+  transition: background-image 500ms ease-in-out 500ms, background-color 500ms ease-in-out 1000ms;
+  top: -20px;
+  right: -20px;
+  bottom: -20px;
+  left: -20px;
+}
+
+/* line 334, ../sass/style.scss */
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  color: #FFF;
+  font-family: Merriweather, Georgia, serif;
+  font-weight: 300;
+}
+
+/* line 343, ../sass/style.scss */
+pre, code {
+  font-family: Inconsolata, monospace;
+}
+
+/* line 347, ../sass/style.scss */
+a {
+  color: #EEE;
+}
+
+/* line 351, ../sass/style.scss */
+h1, p {
+  font-weight: 300;
+}
+
+/* line 354, ../sass/style.scss */
+p, ul {
+  line-height: 1.6;
+}
+
+/* line 357, ../sass/style.scss */
+.right {
+  text-align: right;
+}

@@ -1,0 +1,142 @@
+$partSize: 110px;
+$margins: 2px;
+$rows: 4; //change this also in js
+$cols: 6; //change this also in js
+$perspective: 700px;
+$transTime: 0.3s;
+$border-radius: 5px;
+$shadow-size: 10px;
+$demo-bg: linear-gradient(60deg, #5B5893, darken(#6A66A6, 30%));
+$gallery-bg: #eee;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.demo {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+  background: $demo-bg;
+  
+  &__gallery {
+    width: $cols * $partSize + 2 * $cols * $margins + 2 * $margins;
+    padding: $margins;
+    flex-shrink: 0;
+    
+    background: $gallery-bg;
+    
+    perspective: $perspective;
+    border-radius: $border-radius;    
+  }
+  
+  &__part {
+    position: relative;
+    float: left;
+    
+    width: $partSize;
+    height: $partSize;
+    margin: $margins;
+  
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    transition: all $transTime ease-in-out;
+   
+    &:hover .demo__part-front {
+      box-shadow: 0 0 $shadow-size black;
+      transform: scale(0.96);
+      
+      &:after {
+        opacity: 0;
+      }
+    }    
+  }
+  
+  &__part-front, &__part-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    overflow: hidden;    
+    backface-visibility: hidden;
+    border-radius: $border-radius;
+    cursor: pointer;
+    
+    
+  }
+  
+  &__part-front {
+    background-color: lightslategrey;
+    background-size: cover;
+    background-position: center;
+    
+    transform: rotateX(0deg);
+    transition: all $transTime / 1.5 ease;
+    
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      
+      width: 100%;
+      height: 100%;
+      
+      background-color: black;
+      
+      content: "";
+      opacity: 0.5;      
+      transition: all $transTime / 1.5 ease;
+    }
+  }
+  
+  &__part-back {
+    transform: rotateY(180deg) rotateX(0deg);
+  }
+  
+  &__part-back-inner {
+    width: $partSize * $cols + $margins * ($cols - 1) * 2;
+    height: $partSize * $rows + $margins * ($rows - 1) * 2;    
+    
+    background-image: url(http://kirillkiyutin.com/img/nyc/nyc1.jpg);
+    background-size: cover;
+    background-position: center;
+    
+    backface-visibility: hidden;
+  }
+  
+  &__help {
+    margin-bottom: 7px;
+    font-size: 30px;
+    font-family: "Yanone Kaffeesatz", sans-serif;
+    
+    color: white;
+    
+    & a {
+      color: white;
+      
+      &:hover {
+        color: #E39999;
+      }
+    }
+  }
+}
+
+@for $row from 1 through $rows {
+  @for $col from 1 through $cols {
+    .demo__part-#{$row}-#{$col} .demo__part-back-inner {
+      transform: translate( -($col - 1) * ($partSize + $margins * 2), -($row - 1) * ($partSize + $margins * 2) );
+    }
+  }
+}
+
+.show-front {
+  transform: none;
+}

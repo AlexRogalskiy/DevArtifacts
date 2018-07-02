@@ -1,0 +1,300 @@
+$resX: 1125px;
+$resY: 2436px;
+$notch-height: 90px;
+$notch-width: 627px;
+$notch-border-radius: 60px;
+$bezels: 48px;
+$screen-border-radius: 120px;
+$phone-border-radius: 160px;
+$scale: 4;
+$indicator-top-margin: 10px;
+$margins: 36px;
+
+$iphone-color: #120d30;
+$notch-color: $iphone-color;
+$screen-background: linear-gradient(#4a3972, #5e4a9d);
+$indicators-color: white;
+$background:  #FECA45;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+  
+  font-family: 'Open Sans', sans-serif;
+  
+  background-color: $background;
+  
+  &__description {
+    font-size: 80px / $scale;
+    padding-bottom: 20px;
+  }
+  
+  &__phone {
+    position: relative;
+    
+    width: ($resX + $bezels * 2) / $scale;
+    height: ($resY + $bezels * 2) / $scale;    
+    padding-top: 1px;   
+    
+    background-color: $iphone-color;
+    
+    border-radius: $phone-border-radius / $scale;    
+  }
+  
+  &__notch {
+    position: absolute;
+    top: $bezels / $scale;
+    left: (($resX - $notch-width) / 2 + $bezels) / $scale;
+    
+    height: $notch-height / $scale;
+    width: $notch-width / $scale;
+    
+    background-color: $notch-color;
+    
+    border-radius: 0 0 $notch-border-radius / $scale $notch-border-radius / $scale;
+  }
+  
+  &__screen {
+    position: relative;
+    
+    height: $resY / $scale;
+    width: $resX / $scale;
+    
+    padding-top: 100px / $scale;    
+      
+    background: $screen-background;
+    
+    border-radius: $screen-border-radius / $scale;
+    cursor: grab;
+    user-select: none;
+    perspective: 700px;
+  }
+  
+  &__screen-wrapper {  
+    position: relative;    
+    
+    height: $resY / $scale;
+    width: $resX / $scale;
+    margin-top: $bezels / $scale - 1px;
+    margin-left: $bezels / $scale;    
+    overflow: hidden;
+    
+    border-radius: $screen-border-radius / $scale;
+  }
+  
+  &__indicator {
+    position: absolute;
+    top: $indicator-top-margin / $scale;
+    font-size: 54px / $scale;
+    color: $indicators-color;
+    
+    &--time {
+      left: 75px / $scale;
+    }
+    
+    &--signal {
+      right: 180px / $scale;
+    }  
+    
+    &--battery {
+      font-size: 57px / $scale;
+      right: 66px / $scale;
+    }
+  }
+  
+  &__controls {
+    position: relative;    
+    display: flex;
+    justify-content: center;
+    
+    padding: 25px / $scale 0;
+    
+    font-size: 75px / $scale;
+    
+    color: $indicators-color;
+  }
+  
+  &__arrow {
+    position: absolute;
+    left: 50px / $scale;
+  }  
+  
+  &__card {
+    position: relative;
+    
+    margin: $margins / $scale;
+    height: 570px / $scale;
+    width: calc(100% - #{$margins / $scale * 2});
+    
+    font-size: 70px / $scale;    
+    
+    border-radius: 20px / $scale;
+    transform-style: preserve-3d;
+    
+    &--notched {
+      position: absolute;
+      top: 0;
+      
+      transform: rotateX(180deg) scale(0.6) translateY(700px / $scale);
+    }
+    
+    &--processing {
+      position: absolute;
+      top: 0;
+      
+      transform: translateY(250px / $scale);     
+    }
+  }
+  
+  &__card-frontside {
+    position: absolute;
+    top: 0;
+    
+    width: 100%;
+    height: 100%;
+    padding-top: $margins / $scale;
+    padding-bottom: $margins / 2 / $scale;
+    
+    background-color: white;
+    
+    border-radius: 20px / $scale;
+    backface-visibility: hidden;
+  }
+  
+  
+  &__card-backside {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    top: 0;
+    
+    width: 100%;
+    height: 100%;
+    
+    color: white;
+    background: linear-gradient($notch-color 50%, lighten($notch-color, 10%));
+    
+    border-radius: $notch-border-radius / $scale / 0.6;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+  }
+  
+  &__card-release {
+    padding: 20px / $scale;
+    opacity: 0;
+    
+    transition: opacity 0.2s ease;
+  }
+  
+  &__card-type {
+    padding-left: $margins * 2 / $scale;   
+   
+    font-size: 50px / $scale;
+    
+    color: #aaa;
+  }
+ 
+  &__card-body {
+    display: flex;
+    align-items: center;  
+    padding-left: $margins * 2 / $scale;
+    padding-right: $margins * 2 / $scale;
+    padding-top: $margins / $scale;
+    padding-bottom: $margins / $scale;
+  }
+  
+  &__card-picture {
+    width: 200px / $scale;
+    height: 200px / $scale;
+    flex-shrink: 0;
+    
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    &--starbucks {
+      background-image: url(https://kiyutink.github.io/logos/starbucks.svg);
+    }
+    
+    &--citi {
+      background-image: url(https://kiyutink.github.io/logos/citi.png);
+      
+    }
+    
+    &--paypal {
+      background-image: url(https://kiyutink.github.io/logos/paypal.svg);
+    }
+    
+    &--apple {
+      background-image: url(https://kiyutink.github.io/logos/apple.png);
+    }
+  }
+  
+  &__card-info {
+    width: 70%;
+    
+    margin-left: $margins / $scale;
+    margin-right: $margins / $scale;
+  }
+  
+  &__card-caption {
+    width: 100%;    
+    
+    font-weight: 700;
+  }
+  
+  &__card-description {
+    min-height: 150px / $scale;
+    
+    font-size: 55px / $scale;
+  }
+  
+  &__card-money {
+    font-size: 70px / $scale;
+    font-weight: 700;
+  }
+  
+  &__card-bottom {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ddd;
+  }
+  
+  &__card-button {    
+    padding-top: $margins / 2 / $scale;
+    padding-left: $margins * 2 / $scale;
+    
+    color: #6b6281;
+    
+    cursor: pointer;
+  }
+  
+  &__card-time {
+    padding-top: $margins / $scale;
+    padding-right: $margins * 2 / $scale;
+    
+    font-size: 50px / $scale;
+    
+    color: #ddd;
+  }
+}
+
+.animation {
+  transition: transform 0.5s cubic-bezier(.55,.26,.12,1.19);
+}
+
+.short-animation {
+  transition: transform .2s ease;
+}

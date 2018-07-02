@@ -1,0 +1,357 @@
+@import url(https://fonts.googleapis.com/css?family=Merriweather:300,300italic|Inconsolata);
+
+$border-color: rgba(#FFF,0.1);
+
+$mobile-w: 600px;
+$large-w: 1200px;
+
+$thumb-w: 80px;
+$thumb-h: 60px;
+$thumb-pad: 10px;
+$s-count: 7;
+
+main {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 100%;
+  transition: left 500ms;
+}
+
+//
+// each section
+section {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 100%;
+  margin: 0;
+  opacity: 0;
+  box-sizing: border-box;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;  
+  
+  &:first-child {
+    opacity: 1;
+  }
+  
+  transition: opacity 250ms ease-in-out;
+  
+  article {
+    width: calc(90% - #{$thumb-w + $thumb-pad});
+    max-width: 800px; 
+    padding: 4rem 0 4rem 5%;
+    color: #fff;
+  } 
+  
+  code, pre {
+    background: rgba(#000,0.5);
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  code {
+    padding: 0.25rem 0.5rem;
+  }
+
+  pre {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+}
+
+// main nav ids
+.s {
+  position: absolute;
+}
+
+
+
+// 
+// navigation mixin styles
+
+@mixin active-next() {
+  display: block;
+  float: right;
+  a:after { content: "Next"; }  
+}
+
+@mixin active-prev() {
+  display: block;  
+  float: left;
+  a:after { content: "Prev"; }  
+}
+
+@mixin active-thumb {
+  opacity: 1;
+  width: $thumb-w;
+  height: $thumb-h;
+  box-shadow: 0px 0px 0px 1px $border-color;
+}
+
+@mixin inactive-thumb {
+  opacity: 0.5;
+  width: $thumb-w / 2;
+  height: $thumb-h / 2;
+  box-shadow: 0px 0px 0px 1px rgba(#FFF,0);
+}
+
+//
+// navigation thumbs and buttons
+nav {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  user-select: none;
+  
+  &.thumbs {
+    right: $thumb-pad;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $thumb-w + $thumb-pad;
+    display: block;
+        
+    ul {
+      margin: 0; padding: 0;
+    }
+    
+    li {
+      display: block;
+      margin: 0 auto 0.5rem;
+      
+      &:first-child a {
+        @include active-thumb();
+      }
+      
+      a { 
+        &:hover {
+          opacity: 1;
+        }
+        @include inactive-thumb();
+        margin: 0 auto;
+        display: block;
+        background-blend-mode: multiply;
+        background-position: center;
+        background-size: cover;
+        border-radius: 2px;
+        position: relative;
+        transition: 
+          height 250ms ease-in-out,
+          width 250ms ease-in-out,
+          opacity 250ms ease-in-out,          
+          box-shadow 250ms ease-in-out;
+        &:active {
+          transform: translateY(1px);
+        }
+      }
+    }
+  }
+  
+  &.prevnext {
+    left: 0;
+    top: 1rem;
+    ul {
+      list-style: none;
+      margin: 0.5rem auto;
+      padding: 0;
+      width: 220px;
+      position: relative;
+      &:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      li {
+        display: none;
+        width: 100px;
+        &.starter {
+          @include active-next();
+        }
+      }
+      a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-align: center;
+        box-shadow: 0px 0px 0px 0px $border-color;
+        border: 1px solid $border-color;
+        color: #FFFFFF;
+        background-color: rgba(#000,0.4);
+        transition: background 200ms ease-in-out 200ms,
+          box-shadow 200ms ease-in-out;
+        &:hover, &:active {
+          background-color: rgba(#000,0.5);
+        }
+        &:hover {
+          box-shadow: 0px -2px 0px 0px $border-color;
+        }          
+        &:active {
+          box-shadow: 0px 0px 0px 0px $border-color;
+          transform: translateY(1px);
+        }
+      }
+    }
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+}
+
+
+//
+// slider experience on non mobile
+@media (min-width: $mobile-w) {
+  main {
+    height: 100%;
+  }
+}
+
+//
+// content position on large
+@media (min-width: $large-w) {
+  main article {
+    padding-left: 0;
+    margin: 0 auto;
+  }
+}
+
+//
+// prevnext buttons on non mobile
+@media (min-width: $mobile-w) {
+  nav.prevnext {
+    top: auto;
+    bottom: 1rem;
+  }  
+}
+
+
+//
+// progress indicator at top of page
+#progress {
+  position: fixed;
+  z-index: 9;  
+  top: 0;
+  left: 0;
+  width: 0%;
+  border-bottom: 12px solid rgba(#FFF,0.2);
+  transition: width 1250ms linear;
+}
+
+
+//
+// :target and other iterative styles
+@for $i from 1 through $s-count {
+  
+  //
+  // adjusting section opacity on all screens
+  #s#{$i}:target ~ main section {
+    opacity: 0;
+    &:nth-child(#{$i}) {
+      opacity: 1;
+    }
+  }
+  
+  //
+  // adjusting section position on mobile screens
+  @media (max-width: $mobile-w - 1) {
+    #s#{$i}:target ~ main section {
+      top: 50%;      
+      &:nth-child(#{$i}) {
+        top: 0;
+      }
+    }
+  }
+  
+  //
+  // adjusting left position on big screens
+  @media (min-width: $mobile-w) {
+    // parent shift on target
+    #s#{$i}:target ~ main {
+      left: -100% * ($i - 1);
+    }
+    // individual
+    section:nth-child(#{$i}) {
+      left: 100% * ($i - 1);
+    }
+  }  
+  
+  .thumbs li:nth-child(#{$i}) a {
+    background-image: url(http://lorempixel.com/g/400/150/city/#{$i}/);
+    background-color: hsl($i / $s-count * 360, 50, 30);
+  }
+  
+  #s#{$i}:target ~ #background {
+    background-image: url(http://lorempixel.com/g/400/150/city/#{$i}/);
+    background-color: hsl($i / $s-count * 360, 50, 30);
+  }
+  
+  #s#{$i}:target ~ #progress {
+    width: ($i - 1) / ($s-count - 1) * 100%;    
+  }
+  
+  #s#{$i}:target ~ .thumbs li:first-child a {
+    @include inactive-thumb();
+  }
+  #s#{$i}:target ~ .thumbs li:nth-child(#{$i}) a {
+    @include active-thumb();
+  }
+  #s#{$i}:target ~ .prevnext li.starter {
+    display: none;
+  }
+  #s#{$i}:target ~ .prevnext li[class*="p#{$i}"] {
+    @include active-prev();
+  }
+  #s#{$i}:target ~ .prevnext li[class*="n#{$i}"] {
+    @include active-next();
+  }
+}
+
+
+//
+// background image
+#background {
+  background-image: url(http://lorempixel.com/g/400/150/city/1/);
+  background-color: hsl(1 / 5 * 360, 50, 30);  
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  $blur: 10px;
+  filter: blur($blur);
+  position: fixed;
+  z-index: -1;
+  transition: 
+    background-image 500ms ease-in-out 500ms,
+    background-color 500ms ease-in-out 1000ms;
+  top: $blur * -2; right: $blur * -2; bottom: $blur * -2; left: $blur * -2;
+}
+
+
+//
+// global non-essential styles
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  color: #FFF;
+  font-family: Merriweather, Georgia, serif;  
+  font-weight: 300;
+}
+
+pre, code {
+  font-family: Inconsolata, monospace;
+}
+
+a {
+  color: #EEE;
+}
+
+h1, p {
+  font-weight: 300;
+}
+p, ul {
+  line-height: 1.6;
+}
+.right { text-align: right; }   

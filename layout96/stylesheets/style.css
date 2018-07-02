@@ -1,0 +1,231 @@
+/* line 12, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 18, ../sass/style.scss */
+.demo {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(60deg, #5B5893, #2c2a49);
+}
+/* line 28, ../sass/style.scss */
+.demo__gallery {
+  width: 688px;
+  padding: 2px;
+  flex-shrink: 0;
+  background: #eee;
+  perspective: 700px;
+  border-radius: 5px;
+}
+/* line 39, ../sass/style.scss */
+.demo__part {
+  position: relative;
+  float: left;
+  width: 110px;
+  height: 110px;
+  margin: 2px;
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+  transition: all 0.3s ease-in-out;
+}
+/* line 51, ../sass/style.scss */
+.demo__part:hover .demo__part-front {
+  box-shadow: 0 0 10px black;
+  transform: scale(0.96);
+}
+/* line 55, ../sass/style.scss */
+.demo__part:hover .demo__part-front:after {
+  opacity: 0;
+}
+/* line 61, ../sass/style.scss */
+.demo__part-front, .demo__part-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* line 76, ../sass/style.scss */
+.demo__part-front {
+  background-color: lightslategrey;
+  background-size: cover;
+  background-position: center;
+  transform: rotateX(0deg);
+  transition: all 0.2s ease;
+}
+/* line 84, ../sass/style.scss */
+.demo__part-front:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  content: "";
+  opacity: 0.5;
+  transition: all 0.2s ease;
+}
+/* line 100, ../sass/style.scss */
+.demo__part-back {
+  transform: rotateY(180deg) rotateX(0deg);
+}
+/* line 104, ../sass/style.scss */
+.demo__part-back-inner {
+  width: 680px;
+  height: 452px;
+  background-image: url(http://kirillkiyutin.com/img/nyc/nyc1.jpg);
+  background-size: cover;
+  background-position: center;
+  backface-visibility: hidden;
+}
+/* line 115, ../sass/style.scss */
+.demo__help {
+  margin-bottom: 7px;
+  font-size: 30px;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  color: white;
+}
+/* line 122, ../sass/style.scss */
+.demo__help a {
+  color: white;
+}
+/* line 125, ../sass/style.scss */
+.demo__help a:hover {
+  color: #E39999;
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-1-1 .demo__part-back-inner {
+  transform: translate(0px, 0px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-1-2 .demo__part-back-inner {
+  transform: translate(-114px, 0px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-1-3 .demo__part-back-inner {
+  transform: translate(-228px, 0px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-1-4 .demo__part-back-inner {
+  transform: translate(-342px, 0px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-1-5 .demo__part-back-inner {
+  transform: translate(-456px, 0px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-1-6 .demo__part-back-inner {
+  transform: translate(-570px, 0px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-2-1 .demo__part-back-inner {
+  transform: translate(0px, -114px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-2-2 .demo__part-back-inner {
+  transform: translate(-114px, -114px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-2-3 .demo__part-back-inner {
+  transform: translate(-228px, -114px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-2-4 .demo__part-back-inner {
+  transform: translate(-342px, -114px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-2-5 .demo__part-back-inner {
+  transform: translate(-456px, -114px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-2-6 .demo__part-back-inner {
+  transform: translate(-570px, -114px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-3-1 .demo__part-back-inner {
+  transform: translate(0px, -228px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-3-2 .demo__part-back-inner {
+  transform: translate(-114px, -228px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-3-3 .demo__part-back-inner {
+  transform: translate(-228px, -228px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-3-4 .demo__part-back-inner {
+  transform: translate(-342px, -228px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-3-5 .demo__part-back-inner {
+  transform: translate(-456px, -228px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-3-6 .demo__part-back-inner {
+  transform: translate(-570px, -228px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-4-1 .demo__part-back-inner {
+  transform: translate(0px, -342px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-4-2 .demo__part-back-inner {
+  transform: translate(-114px, -342px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-4-3 .demo__part-back-inner {
+  transform: translate(-228px, -342px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-4-4 .demo__part-back-inner {
+  transform: translate(-342px, -342px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-4-5 .demo__part-back-inner {
+  transform: translate(-456px, -342px);
+}
+
+/* line 134, ../sass/style.scss */
+.demo__part-4-6 .demo__part-back-inner {
+  transform: translate(-570px, -342px);
+}
+
+/* line 140, ../sass/style.scss */
+.show-front {
+  transform: none;
+}

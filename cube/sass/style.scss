@@ -1,0 +1,83 @@
+$main : #345;
+
+#controls {
+  width:17vw;
+  position: absolute;
+  left: 80vw;
+}
+.container {
+  transform-style: preserve-3d;
+  perspective: 1700px;
+  width: 80vw;
+
+  #cubicle {
+    width: 10em;
+    height: 10em;
+    margin: 0 auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateX(20em) translateY(5em) rotateX(123deg);
+    transition-origin: 50% 50%;
+    transition: all 4s;
+      p{
+        font-size: 6em;
+        margin: .25em .5em;
+      }
+    figure {
+      margin: 0 auto;
+      width: 10em;
+      height: 10em;
+      border: 1px solid black;
+      position: absolute;
+
+      &.front {
+        transform: rotateY(0deg) translateZ(-5em);
+        background-color: $main;
+      }
+      &.back {
+        transform: rotateX(180deg) translateZ(-5em);
+        background-color: saturate($main,15%);
+      }
+      &.left {
+        transform:  rotateY(90deg) translateZ(-5em);
+        background-color: saturate($main,30%);
+      }
+      &.right {
+        transform: rotateY(-90deg) translateZ(-5em);
+        background-color: saturate($main,45%);
+      }
+      &.top {
+        transform: rotateX(90deg) translateZ(-5em);
+        background-color: saturate($main,60%);
+      }
+      &.bottom {
+        transform: rotateX(-90deg) translateZ(-5em);
+        background-color: saturate($main,75%);
+      }
+    }
+  }
+}
+
+//Controls
+html {
+  background-color: #da8;
+  #controls {
+    background: #fef;
+    padding: .75rem;
+    width: 8.2em;
+    border: 1px solid #667;
+  }
+  label, input {
+    display: block;
+    margin-top: 1rem;
+  }
+  input {
+    margin-top: .4rem;
+  }
+  button {
+    width: 8em;
+    height: 1.75em;
+    margin-top: .4em;
+    background: #ededed;
+  }
+}

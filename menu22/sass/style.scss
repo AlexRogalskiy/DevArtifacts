@@ -1,0 +1,83 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
+
+@mixin prefix($prop, $val) {
+  -webkit-#{$prop}: #{$val};
+  -ms-#{$prop}: #{$val};
+  -moz-#{$prop}: #{$val};
+  -o-#{$prop}: #{$val};
+  #{$prop}: #{$val};
+}
+
+
+$tablet: 750;
+$celli: 550;
+
+$color1 : rgba(255,148,102,1);
+$color2 : rgba(255,102, 37,1);
+$color3 : rgba(255,125, 70,1);
+$color4 : rgba(255,175,141,1);
+$color5 : rgba(255,209,190,1);
+
+* {
+  @include prefix(box-sizing, border-box);
+  margin:0;padding:0;
+}
+html {
+  background: $color2;
+  font: {
+    family: 'Oswald', sans-serif;
+    size: 16px;
+  }
+  
+  .container {
+    width: 90%;
+    margin: 0 5%;
+    height: 100vh;
+    background: $color1;
+    text-align: center;
+  }
+  p {
+    width: #{$tablet - 100}px;
+    margin: 3.6em auto;
+    padding: 1.2em;
+    
+    @media (max-width: #{$tablet}px){
+      width: #{$celli - 100}px;
+    }
+    @media (max-width: #{$celli}px){
+      width: 90%;
+    }
+  }
+}
+ul {
+  width: 100%;
+  li {
+    color : $color2;
+    font-size: 1.6em;
+    background: $color5;
+    list-style: none;
+    text-align: center;
+    float: left;
+    border: 1px solid #444;
+    width: 12.5%;
+    
+    &.active {
+      background: $color3;
+      color: $color5;
+    }
+  }
+}
+
+// This is the post code
+// The "Magic"
+//
+ul {
+  li {
+    @media (max-width: #{$tablet}px){
+      width: 25%;
+    }
+    @media (max-width: #{$celli}px){
+      width: 50%;
+    }
+  }
+}

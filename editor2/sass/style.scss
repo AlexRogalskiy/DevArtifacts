@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
+
+$collapseButtonHeight: 40px;
+$white: #EEE;
+$black: #333;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  color: $black;
+  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, h4, h6 {
+  font-family: 'Monsterrat', sans-serif;
+  font-weight: normal;
+}
+
+#root, #container {
+  height: 100%;
+  min-width: 320px;
+}
+
+#editor, #output {
+  width: 50%;
+  height: 100%;
+  @media screen and (max-width: 640px) {
+    width: 100%;
+  }
+}
+
+#editor {
+  > textarea {
+    resize: none;
+
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    padding: 1em;
+  }
+  float: left;
+}
+
+#output {
+  background-color: $white;
+  box-sizing: border-box;
+  float: right;
+  padding: 1em;
+  overflow: auto;
+  
+  @media screen and (max-width: 640px) {
+    position: absolute;
+    right: -100%;
+    z-index: 1;
+  }
+}
+
+#preview-collapse {
+  display: none;
+  
+  width: 80px;
+  height: $collapseButtonHeight;
+  text-align: center;
+  vertical-align: middle;
+  background-color: $white;
+  border-left: 1px solid $black;
+  border-bottom: 1px solid $black;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 640px) {
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #editor > textarea, #output {
+    padding-top: $collapseButtonHeight + 16px;
+  }
+}

@@ -1,0 +1,102 @@
+*, *:before, *:after
+ box-sizing: border-box
+ margin: 0
+ padding: 0
+$animationTime: 0.5 //sets the animation time and delay of overlay apearance(in seconds)
+$numberOfSlides: 5 //just add new slides in html and change this value
+$k: 2 //defines how much slower slides move compared to the cursor
+$autochangeTime: 8 //time-delay between automatic slide changes (in seconds)
+.property-hack
+ display: none
+ width: $k * 100 + px
+ height: $animationTime * 1000 + px
+ margin-left: $autochangeTime * 1000 + px
+.demo-container
+ width: 100vw
+ height: 100vh
+ overflow: hidden
+ user-select: none
+ cursor: grab
+ background: #333
+.slides
+ width: 100% * $numberOfSlides
+ height: 100%
+ transform: translate3d(0, 0, 0)
+.slide
+ width: 100vw
+ height: 100%
+ float: left
+ overflow: hidden
+ position: relative
+.bg
+ width: 100%
+ height: 100%
+ background-position: center
+ background-size: cover
+.bg-2
+ transform: translate3d(-50vw, 0, 0)
+.animation
+ transition: transform $animationTime + s ease
+@for $i from 1 through $numberOfSlides
+ .bg-#{$i}
+  background-image: url("https://kiyutink.github.io/nyc/nyc#{$i}.jpg")
+.grabbing
+ cursor: grabbing
+.slide-indicator
+ position: fixed
+ left: 50%
+ bottom: 8px
+ transform: translateX(-50%)
+ width: $numberOfSlides * 14px + 20px
+ height: 14px + 20px
+ -webkit-tap-highlight-color: transparent
+ z-index: 5
+ padding: 10px
+ cursor: default
+.dot
+ width: 10px
+ height: 10px
+ border-radius: 50%
+ margin: 2px
+ float: left
+ background: white
+ opacity: 0.3
+ transition: opacity $animationTime + s ease
+ cursor: pointer
+.dot-1
+ opacity: 1
+.overlay
+ width: 100vw
+ height: 75px
+ position: fixed
+ bottom: 0
+ background: rgba(0, 0, 0, 0.6)
+ color: white
+ font-family: "Bad Script", sans-serif
+ font-size: 1.5rem
+ text-align: center
+ transform: translate3d(0, 100%, 0)
+ will-change: transform
+ transition: transform $animationTime + s ease, opacity $animationTime + s ease
+ transition-delay: $animationTime + s
+ opacity: 0
+.overlay-active
+ transform: translate3d(0, 0, 0)
+ opacity: 1
+.hint
+ background: transparent
+ position: absolute
+ top: 10%
+ width: 100%
+ text-align: center
+ font-family: "Bad Script", sans-serif
+ color: white
+ font-size: 1.2rem
+ z-index: 1
+a
+ color: white
+@media (max-width: 360px)
+ .slide-indicator
+  display: none
+ .overlay
+  font-size: 1rem
