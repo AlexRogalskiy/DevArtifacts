@@ -1,0 +1,311 @@
+/* line 3, ../sass/style.scss */
+body {
+  background: #071b6d;
+  color: white;
+  padding: 20px;
+}
+
+/* line 9, ../sass/style.scss */
+* {
+  font-family: "Barlow", helvetica, sans-serif;
+}
+
+/* line 13, ../sass/style.scss */
+.screen-reader-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* line 22, ../sass/style.scss */
+button {
+  background: #bf310b;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-style: italic;
+  font-weight: 300;
+  font-family: "Lato", sans-serif;
+  margin: 10px 0;
+}
+/* line 33, ../sass/style.scss */
+button.more {
+  cursor: pointer;
+  color: #95a2da;
+  background: none;
+  border: 0;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-appearance: button;
+  /* for input */
+  -webkit-user-select: none;
+  /* for button */
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+/* line 47, ../sass/style.scss */
+button.useone {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-appearance: button;
+  /* for input */
+  -webkit-user-select: none;
+  /* for button */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  margin-top: 18px;
+  color: #e8d499;
+  font-size: 18px;
+  transition: 0.25s all ease;
+}
+/* line 63, ../sass/style.scss */
+button.useone:hover {
+  color: #ef9d0e;
+}
+
+/* line 69, ../sass/style.scss */
+label {
+  font-size: 18px;
+}
+
+/* line 73, ../sass/style.scss */
+input {
+  margin: 10px 0 0;
+}
+
+/* line 77, ../sass/style.scss */
+p,
+h3 {
+  margin: 5px 0 0;
+}
+
+/* line 82, ../sass/style.scss */
+h1 span {
+  font-weight: 300;
+  font-size: 24px;
+  display: block;
+  margin: 15px 0;
+}
+
+/* line 89, ../sass/style.scss */
+hr {
+  opacity: 0.2;
+  width: 100%;
+  margin-top: 25px;
+}
+
+/* line 95, ../sass/style.scss */
+a {
+  text-decoration: none;
+  color: #fec802;
+}
+
+/* line 101, ../sass/style.scss */
+#app {
+  display: flex;
+}
+/* line 103, ../sass/style.scss */
+#app aside {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+/* line 108, ../sass/style.scss */
+#app main {
+  flex-grow: 2;
+}
+
+@media (min-width: 600px) {
+  /* line 114, ../sass/style.scss */
+  aside {
+    height: 85vh;
+  }
+
+  /* line 117, ../sass/style.scss */
+  main {
+    height: 85vh;
+  }
+}
+@media (max-width: 600px) {
+  /* line 123, ../sass/style.scss */
+  #app {
+    display: block;
+  }
+
+  /* line 126, ../sass/style.scss */
+  aside {
+    width: 100vw;
+  }
+
+  /* line 129, ../sass/style.scss */
+  main {
+    width: 85vw;
+    height: 300px;
+    margin: 0;
+  }
+
+  /* line 134, ../sass/style.scss */
+  #canvas {
+    width: 85%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  /* line 139, ../sass/style.scss */
+  .nomobile {
+    display: none;
+  }
+}
+/* line 145, ../sass/style.scss */
+.load {
+  margin: 15px 0;
+}
+
+/* line 149, ../sass/style.scss */
+.fail {
+  margin: 15px 0;
+}
+
+/* line 153, ../sass/style.scss */
+img {
+  max-width: 400px;
+  max-height: 600px;
+  width: 90%;
+  border: 1px solid #777;
+  margin: 15px 0;
+}
+
+/* line 161, ../sass/style.scss */
+.arrow {
+  margin-left: 2px;
+}
+/* line 163, ../sass/style.scss */
+.arrow path {
+  fill: #fec802;
+}
+
+/* line 168, ../sass/style.scss */
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+/* line 177, ../sass/style.scss */
+.inputfile + label {
+  margin: 4px 10px;
+  display: inline-block;
+  transition: 0.3s all ease-out;
+}
+
+/* line 183, ../sass/style.scss */
+.inputfile:focus + label circle,
+.inputfile + label circle:hover {
+  fill: #f14619;
+}
+
+/* line 188, ../sass/style.scss */
+.inputfile + label {
+  cursor: pointer;
+  /* "hand" cursor */
+}
+
+/* line 192, ../sass/style.scss */
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+/* line 197, ../sass/style.scss */
+.inputfile + label * {
+  pointer-events: none;
+}
+
+/* line 203, ../sass/style.scss */
+main {
+  padding: 20px;
+  background: #1f3bad;
+  margin: 20px;
+  height: 85vh;
+}
+/* line 208, ../sass/style.scss */
+main div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* line 218, ../sass/style.scss */
+main p {
+  width: 70%;
+  text-align: center;
+}
+
+/* line 223, ../sass/style.scss */
+.upload {
+  display: flex;
+}
+
+/* line 229, ../sass/style.scss */
+.nobottom {
+  margin-bottom: 0;
+}
+
+/* line 233, ../sass/style.scss */
+.bottom10 {
+  margin-bottom: 10px;
+}
+
+/* line 237, ../sass/style.scss */
+.select {
+  margin: 10px 0 18px;
+  font-weight: 300;
+}
+
+/* line 242, ../sass/style.scss */
+.loading {
+  animation: load 1s infinite both;
+  transform-origin: 50% 50%;
+}
+
+@keyframes load {
+  35% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* line 256, ../sass/style.scss */
+.fade-enter-active {
+  transition: opacity 0.35s ease-out;
+}
+
+/* line 260, ../sass/style.scss */
+.fade-leave-active {
+  transition: opacity 0.2s ease-in;
+}
+
+/* line 264, ../sass/style.scss */
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		
+		<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/og-elephanttaco.jpg" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="824" />
+		<meta property="og:image:secure_url" content="https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/og-elephanttaco.jpg" />
+		<meta property="og:image:type" content="image/jpeg" />
+		
+		<link href="https://fonts.googleapis.com/css?family=Barlow:300,400i,800" rel="stylesheet">
+        <link rel="stylesheet prefetch" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+<div id="app">
+  <aside>
+    <h1 class="nobottom">Dynamically Generated Alt Text<br>
+    <span>With Azure's Computer Vision API</span></h1>
+    <p><a href="https://aka.ms/Uzrshc" target="_blank">Check out the docs <svg class="arrow" version="1.1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 32 32" aria-labelledby="arrow">
+<title id="arrow">arrow-right</title>
+<path d="M31 16l-15-15v9h-16v12h16v9z"></path>
+</svg></a></p>
+    <hr>
+
+    <section v-if="!noText2">
+      <transition name="fade" mode="out-in">
+        <div v-if="desc.length === 0">
+          <div class="upload">
+            <h2 class="select" ref="selectimg">Select an image here: </h2>
+            <input type="file" name="file" id="file" class="inputfile" @change="fileUpload" />
+            <label for="file" aria-label="upload image">
+              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 32 32" aria-labelledby="plus" role="presentation">
+                <title id="plus">Plus Sign</title>
+                <circle cx="15" cy="15" r="15" fill="#bf310b"/>
+                 <line x1="15" x2="15" y1="10" y2="20" fill="none" stroke-weight="2" stroke="#ffffff"/>
+                <line x1="10" x2="20" y1="15" y2="15" fill="none" stroke-weight="2" stroke="#ffffff"/>
+              </svg>
+            </label>
+          </div>
+          <!--upload-->
+          <label for="url">Or enter a url:</label><br>
+          <input type="text" id="url" v-model.lazy="image" @keyup.enter="visionReq" />
+          <button class="useone" @click="useMine">Or use one of mine</button>
+          <p v-if="image.length > 0" class="load">Loading
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" aria-labelledby="loading" role="presentation" class="loading">
+              <title id="loading">spinner9</title>
+              <path fill="#ffffff" d="M16 0c-8.711 0-15.796 6.961-15.995 15.624 0.185-7.558 5.932-13.624 12.995-13.624 7.18 0 13 6.268 13 14 0 1.657 1.343 3 3 3s3-1.343 3-3c0-8.837-7.163-16-16-16zM16 32c8.711 0 15.796-6.961 15.995-15.624-0.185 7.558-5.932 13.624-12.995 13.624-7.18 0-13-6.268-13-14 0-1.657-1.343-3-3-3s-3 1.343-3 3c0 8.837 7.163 16 16 16z"></path>
+          </svg></p>
+        </div>
+        <div v-else>
+          <button @click="removeImage">Try it again!</button>
+        </div>
+      </transition>
+    </section>
+
+    <section v-if="noText && noText2" class="fail">
+      <p>Nothing was detected!<br> Sorry about that, care to...</p>
+      <button @click="removeImage">Try again!</button>
+    </section>
+
+    <hr>
+
+    <div @click="moreInfo = !moreInfo" class="more">
+      <button class="more" v-if="!moreInfo">More info...</button>
+      <button class="more" v-else>Less info</button>
+    </div>
+    <transition name="fade">
+      <p v-if="moreInfo">I kept hearing about machine learning being used for evil and wanted to use it for something good. Social media posts typically don't have a way to enter alt text and the only users I see that reliably remember to add descriptions to the post are
+        accessibility experts or blind people. Hopefully this allows good alt text to be a bit more ubiquitous. You can find <a href="https://aka.ms/Uzrshc" target="_blank">more information on how Azure's Computer Vision API works</a>, as well as how
+        to use it in your own projects here.</p>
+    </transition>
+  </aside>
+
+  <main>
+    <transition name="fade">
+      <div v-if="Object.keys(desc).length > 0">
+        <h3>Alt text:</h3>
+        <p role="status"><span class="screen-reader-only">Generated alt text:</span> {{ combinedText | capitalize }}</p>
+        <img :src="image" :alt="combinedText" ref="alttextimg" />
+      </div>
+    </transition>
+  </main>
+
+</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
+	
+</body>
+<!--  footer -->
+</html>
