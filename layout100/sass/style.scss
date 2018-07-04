@@ -1,0 +1,240 @@
+html,
+body * {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  background-color: #D7DFEA;
+  background-size: cover;
+}
+
+.container {
+  width: 100%;
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+.frame {
+  width: 400px;
+  background-color: red;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 2px 55px rgba(0, 0, 0, 0.2);
+}
+
+.row {
+  height: 90px;
+  width: 400px;
+  background-color: #525863;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: solid 8px #3C404B;
+  transition: all .5s ease;
+  padding: 25px 30px 0px 30px;
+}
+
+.row:hover,
+.row:nth-child(even):hover {
+  background-color: #353942;
+  border-left: solid 8px #353942;
+  cursor: pointer;
+}
+
+.row:nth-child(even) {
+  background-color: #4A4F59;
+}
+
+.state_active,
+.state_active:nth-child(even) {
+  height: 485px;
+  background-color: #201F24;
+  width: 420px;
+  border: none;
+  transform: translateX(-10px);
+  padding: 25px 40px 0px 50px;
+  overflow: hidden;
+}
+
+.state_active:hover,
+.state_active:nth-child(even):hover {
+  background-color: #201F24;
+  border: none;
+  cursor: auto;
+}
+
+h1 {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  color: #C7CDD8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  float: left;
+}
+
+.arrow {
+  background: url(https://dl.dropboxusercontent.com/u/22006283/Preview/codepen/arrow.svg) no-repeat center center;
+  float: right;
+  position: relative;
+  top: 16px;
+  height: 15px;
+  width: 20px;
+  transform: scale(.6);
+}
+
+.arrow:hover {
+  cursor: pointer;
+}
+
+.state_active .arrow {
+  background: url(https://dl.dropboxusercontent.com/u/22006283/Preview/codepen/x.svg) no-repeat center center;
+  transform: scale(.9);
+}
+
+.content1 {
+  background: transparent;
+  width: 100%;
+  height: 230px;
+  padding-top: 70px;
+  border-bottom: solid 1px #4A4F59;
+  display: none;
+}
+
+.content2 {
+  background: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 180px;
+  padding-top: 30px;
+  display: none;
+}
+
+.state_active .content1,
+.state_active .content2,
+.state_active .seeall {
+  display: block;
+}
+
+.circle,
+.circle2 {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: solid 2px #128DFF;
+  float: left;
+  margin-top: 5px;
+}
+
+.circle2 {
+  border: solid 2px #A5D97B;
+}
+
+.text {
+  width: 300px;
+  height: 140px;
+  background: rgba(0, 0, 0, .0);
+  float: left;
+  padding-left: 15px;
+}
+
+.state_active h1 {
+  color: #ffffff;
+}
+
+.content1 h1,
+.content2 h1 {
+  text-transform: none;
+  line-height: 5px;
+}
+
+p {
+  font-size: 12px;
+  font-weight: 400;
+  color: #848C9A;
+  margin-top: -150px;
+  clear: both;
+  display: block;
+}
+
+.with {
+  color: #535866;
+  font-size: 15px;
+}
+
+.attendee {
+  width: 32px;
+  height: 32px;
+  background: url(https://dl.dropboxusercontent.com/u/22006283/Preview/codepen/black-and-white-man-person-cigarette.jpg) no-repeat center center;
+  border-radius: 50%;
+  margin-top: -5px;
+  float: left;
+  margin-right: 8px;
+}
+
+.btn {
+  width: 112px;
+  height: 32px;
+  border: solid 2px #252831;
+  border-radius: 30px;
+  float: left;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #848C9A;
+  display: block;
+  margin-top: -5px;
+  padding-top: 5px;
+  margin-left: 8px;
+/*   clip-path: circle(30px at 35px 35px); */
+  transition: all .35s ease;
+}
+
+.btn:hover {
+  background: #252831;
+  cursor: pointer;
+}
+
+.seeall {
+  width: 420px;
+  height: 50px;
+  background: #0C0C0C;
+  padding: 7px 0 0 50px;
+  display: none;
+  position: relative;
+  left: -50px;
+  cursor: pointer;
+}
+
+.seeall h1 {
+  font-size: 13px;
+  font-weight: 400;
+  color: #848C9A;
+  text-transform: uppercase;
+}
+
+/* refresh button styling */
+
+#refresh {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ffffff;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
+  padding: 13px 0 0 13px;
+}
+
+.refreshicon {
+  fill: #d3d3d3;
+  transform: rotate(0deg);
+  transition: fill .25s ease, transform .25s ease;
+}
+
+.refreshicon:hover {
+  cursor: pointer;
+  fill: #D7DFEA;
+  transform: rotate(180deg);
+}

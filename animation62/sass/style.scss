@@ -1,0 +1,260 @@
+html, body * {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  background-color: #53CEE7;
+  background-size: cover;
+}
+
+.container {
+  width: 100%;
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+
+h1 {
+  font-size: 23px;
+  font-weight: 300;
+  color: #C0BCD4;
+  letter-spacing: 1px;
+  text-align: left;
+  padding-left: 15px;
+}
+
+span {
+  color: #4D4C51;
+}
+
+p {
+  font-size: 10px;
+  font-weight: 300;
+  color: #C0BCD4;
+  padding-left: 15px;
+  margin-top: -20px;
+}
+
+.frame {
+  height: 250px;
+  width: 430px;
+  background-color: #ffffff;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;
+  box-shadow: 0px 2px 55px rgba(0, 0, 0, 0.2);
+  transition: all .5s ease;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.nav {
+  height: 60px;
+  width: 430px;
+  background-color: #ffffff;
+  border-radius: 3px;
+  transition: all .5s ease;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+  padding-top: 2px;
+}
+
+li {
+  font-size: 18px;
+  padding-right: 62px;
+  display: inline;
+  text-align: left;
+  color: #605D6E;
+}
+
+.btn-active a {
+  padding-bottom: 16px;
+  color: #605D6E;
+  text-decoration: none;
+  border-bottom: solid 2px #605D6E;
+  transition: all .25s ease;
+}
+
+.btn-inactive a {
+  padding-bottom: 18px;
+  color: #C1BFD1;
+  text-decoration: none;
+  border-bottom: none;
+  cursor: pointer;
+}
+
+.btn-inactive a:hover {
+  padding-bottom: 16px;
+  color: #A9A9B7;
+  border-bottom: solid 2px #C1BFD1;
+  transition: all .25s ease;
+}
+
+.row {
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  padding-left: 15px;
+  transition: all .5s ease;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.state_hide .row {
+  transform: scale(.5, .5);
+  opacity: 0;
+  transition: all .5s ease;
+}
+
+.state_active, .row:hover {
+  height: 70px;
+  background-color: #29282E;
+  padding-left: 20px;
+  border-radius: 3px;
+  transform: translateX(-20px);
+  cursor: pointer;
+}
+
+.state_active {
+  width: 109%;
+}
+
+.state_active p, .row:hover p {
+  color: #95CAED;
+}
+
+.state_active h1, .row:hover h1 {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.column {
+  float: left;
+  height: 70px;
+  width: 33%;
+  background-color: marine;
+}
+
+.check {
+  width: 40px;
+  height: 40px;
+  background: blue;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  text-align: center;
+  padding-top: 12px;
+  opacity: 0;
+  transition: all .5 ease;
+}
+
+.state_active .check {
+  opacity: 1;
+}
+
+.checkmark {
+  fill: none;
+  stroke: white;
+  stroke: 8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.button-bar {
+  height: 60px;
+  width: 430px;
+  background-color: #ffffff;
+  background-size: cover;
+  border-radius: 3px;
+  margin-top: 18px;
+  transition: all .5s ease;
+  text-align: center;
+}
+
+.set {
+  width: 215px;
+  height: 60px;
+  font-size: 18px;
+  float: left;
+  font-weight: 300;
+  padding-top: 17px;
+  background: #29282E;
+  color: #ffffff;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  transition: all .25s ease;
+}
+
+.cancel {
+  width: 215px;
+  height: 60px;
+  font-size: 18px;
+  float: left;
+  font-weight: 300;
+  padding-top: 17px;
+  background: #ffffff;
+  color: #29282E;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  transition: all .25s ease;
+}
+
+.set:hover {
+  background-color: #1F1E23;
+  cursor: pointer;
+}
+
+.cancel:hover {
+  background-color: #F6F6F7;
+  cursor: pointer;
+}
+
+.submitted {
+  width: 430px;
+  height: 250px;
+  padding-top: 90px;
+  position: absolute;
+  opacity: 0;
+  top: 136px;
+  transform: scale(0);
+  transition: all .5s ease;
+}
+
+.state_hide .submitted {
+  opacity: 1;
+  transform: scale(1);
+  transition: all .5s ease .25s;
+}
+
+.submitted h1 {
+  text-align: center;
+}
+
+/* refresh button styling */
+
+#refresh {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ffffff;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
+  padding: 13px 0 0 13px;
+}
+
+.refreshicon {
+  fill: #d3d3d3;
+  transform: rotate(0deg);
+  transition: fill .25s ease, transform .25s ease;
+}
+
+.refreshicon:hover {
+  cursor: pointer;
+  fill: #53CEE7;
+  transform: rotate(180deg);
+}

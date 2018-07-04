@@ -1,0 +1,96 @@
+html, body * { box-sizing: border-box; font-family: 'Open Sans', sans-serif; }
+
+body {
+  padding-top: 100px;
+  background:
+    linear-gradient(
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.2)),
+    url(https://dl.dropboxusercontent.com/u/22006283/Preview/codepen/clouds-cloudy-forest-mountain.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+h1 {
+  font-weight: 100;
+  color: white;
+  font-size: 25px;
+  display: block;
+  position: relative;
+  top: 0px;
+  transition: all ease .5s;
+}
+
+.container {
+  width: 930px;
+  margin: 0 auto;
+}
+
+.frame {
+  width: 300px;    
+  background: none;
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 3px;
+  height: 225px;
+  padding: 60px 50px;
+  text-align: left;
+  color: rgba(0,0,0,.65);
+  display: inline-block;
+  overflow: hidden;
+  transition: all ease .5s;
+}
+
+.frame:hover {
+  cursor: pointer;
+  background: rgba(255,255,255,.8);
+}
+
+.left-margin {
+  margin-left: 10px;
+}
+
+h1::before {
+  transition: all ease .5s;
+  position: relative;
+  opacity: 1;
+  display: block;
+  top: 0px;
+}
+
+h1#one::before {
+  content: url(https://dl.dropboxusercontent.com/u/22006283/Preview/codepen/icons-01.png);
+}
+
+h1#two::before {
+  content: url(https://dl.dropboxusercontent.com/u/22006283/Preview/codepen/icons-02.png);
+}
+
+h1#three::before {
+  content: url(https://dl.dropboxusercontent.com/u/22006283/Preview/codepen/icons-03.png);
+}
+
+h1::after {
+  content: "Bacon ipsum dolor amet frankfurter beef ribs tenderloin pancetta meatball. Pig andouille ribeye alcatra meatball kielbasa leberkas tenderloin kevin ham. Prosciutto sausage beef rump short ribs.";
+  transition: all ease .5s;
+  position: relative;
+  opacity: 0;
+  display: block;
+  font-size: 12px;
+  top: 90px;
+  color: black;
+  padding-top: 10px;
+}
+
+.frame:hover h1:after {
+  opacity: .7;
+  top: 0;
+}
+
+.frame:hover h1 {
+  top: -75px;
+  color: black;
+}
+
+.frame:hover h1:before {
+  top: -30px;
+  opacity: 0.0;
+}

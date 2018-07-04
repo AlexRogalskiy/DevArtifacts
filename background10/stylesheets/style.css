@@ -1,0 +1,55 @@
+/* line 1, ../sass/style.scss */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 7, ../sass/style.scss */
+body {
+  background-color: #1B2633;
+  background-image: radial-gradient(circle at bottom, #ffffff, rgba(0, 0, 0, 0) 70%);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-blend-mode: overlay;
+}
+
+/* line 15, ../sass/style.scss */
+.star {
+  height: 1px;
+  width: 1px;
+  background-color: white;
+  position: absolute;
+}
+
+/* line 22, ../sass/style.scss */
+.star:nth-child(10n) {
+  height: 2px;
+  width: 2px;
+}
+
+/* line 27, ../sass/style.scss */
+.star:nth-child(100n) {
+  height: 3px;
+  width: 3px;
+}
+
+/* line 32, ../sass/style.scss */
+.star:nth-child(5000n) {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
