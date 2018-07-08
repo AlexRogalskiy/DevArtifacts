@@ -1,0 +1,41 @@
+$blur : .15em;
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic);
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform-style: preserve-3d;
+	perspective: 500px;
+	height: 100vh;
+	overflow: hidden;
+}
+
+h1 { 
+	animation: wobble 5s ease-in-out infinite;
+	padding-bottom: 2em;
+}
+@keyframes wobble {
+	from, to { transform: rotateY(-45deg); }
+	50% { transform: rotateY(45deg); }
+}
+
+span {
+	font: italic 10vw Playfair Display;
+	animation: 5s ease-in-out infinite;
+	color: transparent;
+	text-shadow: 0 0 1px #000;
+
+	&:nth-child(-n+3) { animation-delay: -2.5s; }
+}
+
+@for $i from 1 through 3 {
+	span:nth-child(#{$i}), 
+	span:nth-last-child(#{$i}) {
+		animation-name: blur-#{$i};	
+	}
+	
+	@keyframes blur-#{$i} {
+		50% { text-shadow: 0 0 $blur/$i #000; }
+	}
+}

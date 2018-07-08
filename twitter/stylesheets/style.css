@@ -1,0 +1,185 @@
+/* line 1, ../sass/style.scss */
+section, section div {
+  /* See it in slo-mo, you can change this */
+  transition-duration: .6s;
+}
+
+/* line 6, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 7, ../sass/style.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 8, ../sass/style.scss */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: -webkit-radial-gradient(center top, circle farthest-corner, #FFFFFF 0%, #D8DFE9 100%);
+  background-image: radial-gradient(circle farthest-corner at center top, #ffffff 0%, #d8dfe9 100%);
+  overflow: hidden;
+}
+
+/* line 18, ../sass/style.scss */
+section, .button {
+  transition-timing-function: ease;
+}
+
+/* line 20, ../sass/style.scss */
+section {
+  display: inline-block;
+  position: relative;
+  padding: .375rem .375rem 0;
+  height: 2.5rem;
+  background: #A9ADB6;
+  border-radius: .25rem;
+  perspective: 300;
+  box-shadow: 0 -1px 2px #fff, inset 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* line 32, ../sass/style.scss */
+.button {
+  opacity: 0;
+}
+
+/* line 34, ../sass/style.scss */
+.cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform-origin: center bottom;
+  transform-style: preserve-3d;
+  font: 1.25em/2 "icon";
+  color: white;
+  text-align: center;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* line 46, ../sass/style.scss */
+.innie, .outie, .spine, .shadow {
+  position: absolute;
+  width: 100%;
+}
+
+/* line 48, ../sass/style.scss */
+.innie, .outie {
+  height: 100%;
+  background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  border-radius: .25rem;
+}
+
+/* line 53, ../sass/style.scss */
+.innie:after, .outie:after {
+  content: "t";
+}
+
+/* line 55, ../sass/style.scss */
+.innie {
+  background-color: #67E2FE;
+  text-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* line 60, ../sass/style.scss */
+.spine {
+  top: .25rem;
+  background: #20C7F3;
+  height: .25rem;
+  transform: rotateX(90deg);
+  transform-origin: center top;
+}
+
+/* line 68, ../sass/style.scss */
+.shadow {
+  top: 100%;
+  left: 0;
+  height: 3.5rem;
+  transform-origin: center top;
+  transform: rotateX(90deg);
+  opacity: 0;
+  z-index: 0;
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  border-radius: .4rem;
+}
+
+/* line 82, ../sass/style.scss */
+.outie {
+  background-color: #2EC8FA;
+  transform: translateZ(0.25rem);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* line 88, ../sass/style.scss */
+section:hover {
+  background: #EBEFF2;
+}
+
+/* line 89, ../sass/style.scss */
+section:hover .button {
+  opacity: 1;
+}
+
+/* line 91, ../sass/style.scss */
+section:hover .cover, section:hover .innie, section:hover .spine, section:hover .outie, section:hover .spine {
+  transition-timing-function: cubic-bezier(0.2, 0.7, 0.1, 1.1);
+}
+
+/* line 93, ../sass/style.scss */
+section:hover .cover {
+  transform: rotateX(-120deg);
+}
+
+/* line 95, ../sass/style.scss */
+section:hover .innie {
+  background-color: #3ADAFC;
+}
+
+/* line 96, ../sass/style.scss */
+section:hover .spine {
+  background-color: #52B1E0;
+}
+
+/* line 97, ../sass/style.scss */
+section:hover .outie {
+  background-color: #2174A0;
+  color: rgba(255, 255, 255, 0);
+}
+
+/* line 99, ../sass/style.scss */
+section:hover .shadow {
+  opacity: 1;
+  transform: rotateX(45deg) scale(0.95);
+}
+
+/* line 105, ../sass/style.scss */
+small {
+  font: .8rem/1 sans-serif;
+  padding-top: 4rem;
+  color: #777;
+}
+
+/* line 110, ../sass/style.scss */
+small a {
+  color: #222;
+  text-decoration: none;
+  border-bottom: thin solid #ccc;
+}
+
+/* line 111, ../sass/style.scss */
+small a:hover {
+  border-bottom-color: #222;
+}
+
+/* Twitter font icon: https://codepen.io/bennettfeely/pen/GCAKJ */
+@font-face {
+  font-family: icon;
+  src: url("https://bennettfeely.com/fonts/icons.woff");
+}

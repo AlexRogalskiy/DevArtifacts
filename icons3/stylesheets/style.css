@@ -1,0 +1,211 @@
+@charset "UTF-8";
+/* line 11, ../sass/style.scss */
+.navicon-button {
+  display: inline-block;
+  position: relative;
+  padding: 2.0625rem 1.5rem;
+  transition: 0.25s;
+  cursor: pointer;
+  user-select: none;
+  opacity: .8;
+}
+/* line 20, ../sass/style.scss */
+.navicon-button .navicon:before, .navicon-button .navicon:after {
+  transition: 0.25s;
+}
+/* line 24, ../sass/style.scss */
+.navicon-button:hover {
+  transition: 0.5s;
+  opacity: 1;
+}
+/* line 28, ../sass/style.scss */
+.navicon-button:hover .navicon:before, .navicon-button:hover .navicon:after {
+  transition: 0.25s;
+}
+/* line 32, ../sass/style.scss */
+.navicon-button:hover .navicon:before {
+  top: .825rem;
+}
+/* line 33, ../sass/style.scss */
+.navicon-button:hover .navicon:after {
+  top: -.825rem;
+}
+
+/* line 37, ../sass/style.scss */
+.navicon {
+  position: relative;
+  width: 2.5em;
+  height: .3125rem;
+  background: #FFF;
+  transition: 0.5s;
+  border-radius: 2.5rem;
+}
+/* line 45, ../sass/style.scss */
+.navicon:before, .navicon:after {
+  display: block;
+  content: "";
+  height: .3125rem;
+  width: 2.5rem;
+  background: #FFF;
+  position: absolute;
+  z-index: -1;
+  transition: 0.5s 0.25s;
+  border-radius: 1rem;
+}
+/* line 57, ../sass/style.scss */
+.navicon:before {
+  top: .625rem;
+}
+/* line 58, ../sass/style.scss */
+.navicon:after {
+  top: -.625rem;
+}
+
+/* line 61, ../sass/style.scss */
+.open:not(.steps) .navicon:before,
+.open:not(.steps) .navicon:after {
+  top: 0 !important;
+}
+
+/* line 66, ../sass/style.scss */
+.open .navicon:before,
+.open .navicon:after {
+  transition: 0.5s;
+}
+
+/* Minus */
+/* line 72, ../sass/style.scss */
+.open {
+  transform: scale(0.75);
+}
+
+/* Arrows */
+/* line 78, ../sass/style.scss */
+.open.larr .navicon:before, .open.larr .navicon:after,
+.open.rarr .navicon:before,
+.open.rarr .navicon:after,
+.open.uarr .navicon:before,
+.open.uarr .navicon:after {
+  width: 1.5rem;
+}
+/* line 82, ../sass/style.scss */
+.open.larr .navicon:before,
+.open.rarr .navicon:before,
+.open.uarr .navicon:before {
+  transform: rotate(35deg);
+  transform-origin: left top;
+}
+/* line 83, ../sass/style.scss */
+.open.larr .navicon:after,
+.open.rarr .navicon:after,
+.open.uarr .navicon:after {
+  transform: rotate(-35deg);
+  transform-origin: left bottom;
+}
+
+/* line 85, ../sass/style.scss */
+.open.uarr {
+  transform: scale(0.75) rotate(90deg);
+}
+
+/* Arrows */
+/* line 89, ../sass/style.scss */
+.open.rarr .navicon:before {
+  transform: translate3d(1em, 0, 0) rotate(-35deg);
+  transform-origin: right top;
+}
+/* line 90, ../sass/style.scss */
+.open.rarr .navicon:after {
+  transform: translate3d(1em, 0, 0) rotate(35deg);
+  transform-origin: right bottom;
+}
+
+/* ├Ч and + */
+/* line 96, ../sass/style.scss */
+.open.plus .navicon,
+.open.x .navicon {
+  background: transparent;
+}
+/* line 99, ../sass/style.scss */
+.open.plus .navicon:before,
+.open.x .navicon:before {
+  transform: rotate(-45deg);
+}
+/* line 100, ../sass/style.scss */
+.open.plus .navicon:after,
+.open.x .navicon:after {
+  transform: rotate(45deg);
+}
+
+/* line 103, ../sass/style.scss */
+.open.plus {
+  transform: scale(0.75) rotate(45deg);
+}
+
+/* Base ================== */
+/* line 109, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 111, ../sass/style.scss */
+html {
+  font-size: 100%;
+}
+
+/* line 112, ../sass/style.scss */
+html, body, section {
+  position: relative;
+  height: 100%;
+}
+
+/* line 114, ../sass/style.scss */
+body {
+  background: #274380;
+  padding: 1.5rem 1.5rem 0;
+  backface-visibility: hidden;
+}
+
+/* line 120, ../sass/style.scss */
+section {
+  display: flex;
+  max-width: 40rem;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: .5rem .5rem 0 0;
+  background: #FFF;
+  overflow: hidden;
+  /* Smoother animations */
+}
+/* line 131, ../sass/style.scss */
+section *, section *:before, section *:after {
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 138, ../sass/style.scss */
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 4.5rem;
+  background: #000;
+  text-align: right;
+  border-radius: .5rem .5rem 0 0;
+  padding: 0 1rem;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* line 151, ../sass/style.scss */
+h1 {
+  text-align: right;
+  font: 1.25rem/1 sans-serif;
+  padding: 1.5rem;
+  opacity: .5;
+  transition: 1s;
+  pointer-events: none;
+}
+/* line 159, ../sass/style.scss */
+h1.fade {
+  opacity: 0;
+}
