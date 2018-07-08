@@ -1,0 +1,283 @@
+body
+{
+	background-color:#282e3a;
+	min-width: 800px;
+	min-height: 400px
+}
+.flat-anim
+{
+	display: block;
+	width: 264px;
+	height: 265px;
+	background-color: #ecf0f1;
+	border-radius: 42px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin:-132px 0 0 -132px;
+}
+.flat-anim:before
+{
+	content: "";
+	background-color: #e67e22;
+	width: 26px;
+	height: 26px;
+	border-radius: 26px;
+	position: absolute;
+	top: 19px;
+	left: 19px;
+}
+.flat-anim:after
+{
+	content: "";
+	background-color: #68b5f1;
+	width: 48px;
+	height: 24px;
+	border-radius: 10px;
+	position: absolute;
+	top: 17px;
+	right: 22px;
+}
+.bottom
+{
+	width: 264px;
+	height: 112px;
+	display: block;
+	z-index: 10;
+	background-color: #e67e22;
+	border-radius: 0 0 38px 38px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border-top:15px solid #dd660e;
+	-webkit-box-shadow: inset 0 -20px 0 0 #db640e;
+}
+.bottom:before
+{
+	content: "";
+	background-color: #282e3a;
+	width: 140px;
+	height: 30px;
+	display: block;
+	margin:14px auto 0 auto;
+}
+.bottom:after{
+	content: "";
+	position: absolute;
+	top: 30px;
+	left: 84px;
+	width: 96px;
+	height: 70px;
+	display: block;
+	background-color: #ecf0f1;
+	/*border-top:16px solid #c3d1dd;*/
+	/*border-bottom:14px solid #db640e;*/
+  -webkit-box-shadow:0 14px 0 0 #db640e,
+    0 -16px 0 0 #c3d1dd;
+  -moz-box-shadow:0 14px 0 0 #db640e,
+    0 -16px 0 0 #c3d1dd;
+	box-shadow:0 14px 0 0 #db640e,
+    0 -16px 0 0 #c3d1dd;
+}
+.eye
+{
+	width: 37px;
+	height: 37px;
+	border-radius: 37px;
+	background-color: #243e6e;
+	display: block;
+	margin:60px auto 0;
+	z-index: 20;
+	position: relative;
+	-webkit-box-shadow:	0	0		0	22px	#3e5489,
+						0 	0 		0 	30px 	#1c3666,
+						0 	0 		0 	45px 	#ecf0f1,
+						0 	10px 	0 	45px 	rgba(0,0,0,0.2);
+}
+.eye:before
+{
+	content: "";
+	background-color: #a3bfd5;
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+	position: absolute;
+	top: -16px;
+	left: -16px;
+}
+.eye:after
+{
+	content: "";
+	background-color: #6078a3;
+	width: 16px;
+	height: 16px;
+	border-radius: 16px;
+	position: absolute;
+	top: 30px;
+	left: 30px;
+}
+/* Animation */
+
+.flat-anim {
+  -webkit-animation: flatAnimation 5s infinite;
+}
+
+@-webkit-keyframes flatAnimation {
+  0% {
+	  -webkit-transform: rotate(50deg) scale(0.5); 
+  }
+  13% {
+	  -webkit-transform: rotate(-22deg) scale(1.2); 
+  }
+  20% {
+	  -webkit-transform: rotate(0) scale(1); 
+  }
+  95% {
+	  -webkit-transform: rotate(0) scale(1); 
+  }
+  100% {
+	  -webkit-transform: rotate(50deg) scale(0.5); 
+  }
+}
+.eye,
+.flat-anim:before,
+.flat-anim:after {
+  -webkit-animation: eyeAnimation 5s infinite;
+}
+.flat-anim:before{
+    -webkit-animation-delay: 50ms;
+    -moz-animation-delay: 50ms;
+    -o-animation-delay: 50ms;
+    animation-delay: 50ms;
+}
+.flat-anim:after{
+    -webkit-animation-delay: 150ms;
+    -moz-animation-delay: 150ms;
+    -o-animation-delay: 150ms;
+    animation-delay: 150ms;
+}
+
+@-webkit-keyframes eyeAnimation {
+  0% {
+	  opacity: 0;
+	  -webkit-transform: scale(0.1); 
+  }
+  12% {
+	  opacity: 0;
+	  -webkit-transform: scale(0.1);
+  }
+  13% {
+	  opacity: 1;
+	  -webkit-transform: scale(0.1);
+  }
+  20% {
+	  opacity: 1;
+	  -webkit-transform: scale(1.4); 
+  }
+  25% {
+	  -webkit-transform: scale(1); 
+  }
+  95% {
+	  -webkit-transform: scale(1); 
+	  opacity: 1;
+  }
+  100% {
+	  opacity: 0;
+	  -webkit-transform: scale(0.1); 
+  }
+}
+
+.bottom:before
+{
+  -webkit-animation: bottomAnimation 5s infinite;
+}
+
+@-webkit-keyframes bottomAnimation {
+  0% {
+	  opacity: 0;
+      width: 0;
+  }
+  20% {
+	  opacity: 0;
+      width: 0;
+  }
+  21% {
+	  opacity: 0;
+      width: 0;
+  }
+  22% {
+	  opacity: 1;
+      width: 8px;
+  }
+  25% {
+	  opacity: 1;
+  	  width: 165px;
+  }
+  26% {
+	  opacity: 1;
+  	  width: 140px;
+  }
+  95% {
+  	  width: 140px;
+	  opacity: 1;
+  }
+  96% {
+	  opacity: 0;
+      width: 0;
+  }
+  100% {
+	  opacity: 0;
+      width: 0;
+  }
+}
+.bottom:after
+{
+  -webkit-animation: bottomAfterAnimation 5s infinite;
+}
+
+@-webkit-keyframes bottomAfterAnimation {
+  0% {
+	  opacity: 0;
+      height: 0;
+      border: 0;
+  }
+  25% {
+	  opacity: 0;
+      height: 0;
+      border: 0;
+  }
+  26% {
+	  opacity: 1;
+      border: 0;
+      height: 0;
+  }
+  26% {
+	  opacity: 1;
+      border: 0;
+      height: 0;
+      border-top-width: 2px;
+  }
+  28% {
+	  opacity: 1;
+      border: 0;
+      height: 0;
+      border-top-width: 16px;
+  }
+  28% {
+	  opacity: 1;
+      height: 40px;
+      border-top-width: 16px;
+      border-bottom-width: 14px;
+  }
+  95% {
+	  opacity: 1;
+      height: 40px;
+      border-top-width: 16px;
+      border-bottom-width: 14px;
+  }
+  100% {
+	  opacity: 0;
+	  height: 0;
+    border: 0;
+  }
+}

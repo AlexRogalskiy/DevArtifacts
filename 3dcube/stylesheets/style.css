@@ -1,0 +1,192 @@
+/* line 11, ../sass/style.scss */
+body {
+  margin: 0;
+  padding: 0;
+  transform-style: preserve-3d;
+  perspective: 600;
+}
+
+/* line 17, ../sass/style.scss */
+.container {
+  width: 350px;
+  margin: 30vh auto;
+  transform: rotateX(-20deg) rotateY(-30deg) translate3d(0, 0, 0);
+  transform-style: preserve-3d;
+}
+
+/* line 23, ../sass/style.scss */
+.block {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  float: left;
+  transform-style: preserve-3d;
+}
+
+/* line 30, ../sass/style.scss */
+.face {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+/* line 36, ../sass/style.scss */
+.left {
+  transform-origin: 0% 50%;
+  animation: left 1s ease-in-out alternate infinite;
+  background: #373C94;
+}
+
+/* line 41, ../sass/style.scss */
+.right {
+  transform-origin: 100% 50%;
+  animation: right 1s ease-in-out alternate infinite;
+  background: #373C94;
+}
+
+/* line 46, ../sass/style.scss */
+.front {
+  animation: front 1s ease-in-out alternate infinite;
+  background: #5287A5;
+}
+
+/* line 50, ../sass/style.scss */
+.back {
+  transform: translateZ(-50px);
+  background: #5287A5;
+}
+
+/* line 54, ../sass/style.scss */
+.top {
+  transform-origin: 50% 0%;
+  animation: top 1s ease-in-out alternate infinite;
+  background: #81C8A8;
+}
+
+/* line 59, ../sass/style.scss */
+.bottom {
+  transform-origin: 50% 100%;
+  animation: bottom 1s ease-in-out alternate infinite;
+  background: #81C8A8;
+}
+
+@keyframes left {
+  0% {
+    width: 50px;
+    transform: rotateY(90deg) translateX(0);
+  }
+  100% {
+    width: 110px;
+    transform: rotateY(90deg) translateX(-60px);
+  }
+}
+@keyframes right {
+  0% {
+    width: 50px;
+    transform: rotateY(-90deg) translateZ(0) translateX(0);
+  }
+  100% {
+    width: 110px;
+    transform: rotateY(-90deg) translateZ(60px) translateX(60px);
+  }
+}
+@keyframes bottom {
+  0% {
+    height: 50px;
+    transform: rotateX(90deg) translateY(0);
+    top: 0;
+  }
+  100% {
+    height: 110px;
+    transform: rotateX(90deg) translateY(60px);
+    top: -60px;
+  }
+}
+@keyframes top {
+  0% {
+    height: 50px;
+    transform: rotateX(-90deg) translateY(0);
+  }
+  100% {
+    height: 110px;
+    transform: rotateX(-90deg) translateY(-60px);
+  }
+}
+@keyframes front {
+  0% {
+    transform: translateZ(0);
+  }
+  100% {
+    transform: translateZ(60px);
+  }
+}
+/* line 91, ../sass/style.scss */
+.block:nth-of-type(6n-5) > .face {
+  animation-delay: 0.15385s;
+}
+
+/* line 91, ../sass/style.scss */
+.block:nth-of-type(6n-4) > .face {
+  animation-delay: 0.30769s;
+}
+
+/* line 91, ../sass/style.scss */
+.block:nth-of-type(6n-3) > .face {
+  animation-delay: 0.46154s;
+}
+
+/* line 91, ../sass/style.scss */
+.block:nth-of-type(6n-2) > .face {
+  animation-delay: 0.61538s;
+}
+
+/* line 91, ../sass/style.scss */
+.block:nth-of-type(6n-1) > .face {
+  animation-delay: 0.76923s;
+}
+
+/* line 95, ../sass/style.scss */
+.block:nth-of-type(6n) > .face {
+  animation-delay: 0.92308s;
+}
+
+/* line 99, ../sass/style.scss */
+.block:nth-of-type(6n+1) > .face {
+  animation-delay: 1.07692s;
+}
+
+/* line 99, ../sass/style.scss */
+.block:nth-of-type(6n+8) > .face {
+  animation-delay: 1.23077s;
+}
+
+/* line 99, ../sass/style.scss */
+.block:nth-of-type(6n+15) > .face {
+  animation-delay: 1.38462s;
+}
+
+/* line 99, ../sass/style.scss */
+.block:nth-of-type(6n+22) > .face {
+  animation-delay: 1.53846s;
+}
+
+/* line 99, ../sass/style.scss */
+.block:nth-of-type(6n+29) > .face {
+  animation-delay: 1.69231s;
+}
+
+/* line 99, ../sass/style.scss */
+.block:nth-of-type(6n+36) > .face {
+  animation-delay: 1.84615s;
+}
+
+/* line 99, ../sass/style.scss */
+.block:nth-of-type(6n+43) > .face {
+  animation-delay: 2s;
+}
+
+/* line 103, ../sass/style.scss */
+.block:nth-of-type(1) {
+  display: none;
+}

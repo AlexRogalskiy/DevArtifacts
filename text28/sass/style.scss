@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Abel|Raleway:900');
+*{
+    margin: 0;
+    padding: 0;
+}
+.page-wrap{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-x: hidden;
+}
+.hola-block{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #010d44;
+    overflow: hidden;
+    background-color: #010A33;
+    isolation: isolate;
+    justify-content: center
+}
+.hola-block:nth-of-type(5){
+    border-right: none;
+}
+
+p{
+    line-height: 1;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    color: hsla(0,0%,13.3%,.5);
+    font-size: 22vw;
+    position: relative;
+    z-index: 1;
+    mix-blend-mode: exclusion;
+}
+p::before, p::after{
+    content: attr(data-letter);
+    position: absolute;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: 22vw;
+   
+}
+p::before{
+    left: 1.5vw;
+    color: hsla(0,0%,99.6%,0.6);
+    animation: color-switch 6s linear infinite;
+}
+p::after{
+    left: 2vw;
+    color: #F7F7DA;
+    animation: color-switch 6s linear infinite;
+}
+.hola-exclamation p{
+    font-family: 'Abel';
+    margin-left: auto;
+    margin-right: 1vw;
+}
+.hola-exclamation p::before, .hola-exclamation P::after{
+    font-family: inherit;
+}
+.hola-exclamation p::before{
+    left: 0.75vw;
+    animation: color-switch 6s linear infinite reverse;
+}
+.hola-exclamation p::after{
+    left: 1vw;
+    animation: color-switch 6s linear infinite  reverse;
+}
+
+@keyframes color-switch{
+    0%{
+        opacity: 1; color: hsla(0,0%,99.6%,0.6);
+    }
+    50%{
+        opacity: 0.8; color: hsla(0,0%,99.6%,0.2)
+    }
+    80%{
+        opacity: 1;color:crimson;
+    }
+    100%{
+        opacity: 1; color: hsla(0,0%,99.6%,0.6)
+    }
+}
+
+@media screen and (max-width: 640px){
+    .page-wrap{
+        flex-direction: column;
+        flex-wrap: wrap;
+        overflow-x: hidden;
+    }
+    .hola-block{
+        width: 100%;
+        height: 20%;
+    }
+}
