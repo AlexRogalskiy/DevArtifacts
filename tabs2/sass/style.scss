@@ -1,0 +1,167 @@
+@import "bourbon/bourbon";
+@import "compass/css3";
+
+// ---------------------- Variables
+
+$breakpoints: (
+	small: 35rem,
+	medium: 55rem,
+	large: 75rem,
+	extra-large: 90rem
+);
+
+$colors: (
+	grey: (
+		light: #666666,
+		base: #333333,
+		dark: #111111
+	),
+	blue: (
+		light: #4cc4cf,
+		base: #8099c2,
+		dark: #374d72
+	)
+);
+
+// ---------------------- Mixins
+
+@mixin breakpoint($width) {
+	@media screen and (min-width: map-get($breakpoints, $width)) {
+		@content;
+	}
+}
+
+@function color($color, $tone: 'base') {
+	@return map-get(map-get($colors, $color), $tone);
+}
+
+body {
+  margin: 0;
+  padding: 0 2rem;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.heading {
+  text-align: center;
+}
+
+button,
+.button {
+	position: relative;
+	display: inline-block;
+	color: white;
+	padding: 0.75rem 2rem;
+	margin: 0 auto;
+	background-color: color(blue, dark);
+  border: none;
+	width: 100%;
+	font-weight: bold;
+	font-size: 1.2rem;
+	text-align: center;
+	@include transition(all 0.3s);
+	&:hover {
+		background-color: color(blue, dark);
+		&:before,
+		&:after {
+			color: color(blue, light);
+		}
+	}
+	&:after,
+	&:before {
+		@include transition(all 0.3s);
+	}
+}
+
+/* ---------------------- Vertical Tabs */
+
+.tabs {
+	position: relative;
+	min-height: 0;
+	@include transition(all 0.5s);
+
+/* ---------------------- Tab */
+
+	.tab {
+		margin-bottom: 1px;
+		@include breakpoint(medium) {
+			float: left;
+			clear: left;
+			width: percentage(3/10);
+		}
+
+/* ---------------------- Tab Toggle */
+
+		.tab-toggle {
+			padding: 1rem 4rem 1rem 2rem;
+			position: relative;
+			outline: none;
+			width: 100%;
+			@include breakpoint(medium) {
+				text-align: left;
+			}
+			&:after {
+				content: "\25BC";
+				position: absolute;
+				display: block;
+				right: 2rem;
+				top: 50%;
+				@include transform(rotate(0deg) translateY(-50%));
+				@include breakpoint(medium) {
+				@include transform(rotate(-90deg) translateX(50%));
+
+				}
+			}
+			&.active {
+				color: color(blue);
+				background-color: white;
+				cursor: default;
+				&:after {
+					color: color(blue);
+					@include transform(rotate(180deg) translateY(50%));
+
+					@include breakpoint(medium) {
+						@include transform(rotate(-90deg) translateX(50%) translateY(0));
+
+						right: 1rem;
+					}
+				}
+			}
+		}
+	}
+
+/* ---------------------- Content */
+
+	.content {
+		max-height: 0;
+		overflow: hidden;
+		padding: 0 2rem;
+		background-color: #efefef;
+		@include transition(all 1s);
+		@include breakpoint(medium) {
+			max-height: none;
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: percentage(7/10);
+			opacity: 0;
+       padding: 0rem 2rem 2rem 2rem;
+			@include transform(translateX(100%));
+		}
+		&.active {
+			max-height: 1000px; // Enough to always clear longest content
+			@include breakpoint(medium) {
+				max-height: none;
+				opacity: 1;
+				@include transform(none);
+			}
+		}
+		> .heading {
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+		}
+	}
+}

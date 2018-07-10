@@ -1,0 +1,239 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+/* line 2, ../sass/style.scss */
+body {
+  background: #ddece9;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  color: #777;
+}
+
+/* line 8, ../sass/style.scss */
+p {
+  font-size: 0.9em;
+  margin-top: 25px;
+}
+
+/* line 12, ../sass/style.scss */
+.small {
+  font-size: 0.8em;
+}
+
+/* line 13, ../sass/style.scss */
+a {
+  color: #3e6185;
+  text-decoration: none;
+}
+
+/* line 14, ../sass/style.scss */
+a:hover {
+  text-decoration: underline;
+}
+
+/* line 15, ../sass/style.scss */
+.bk {
+  background: #fcf6e3;
+}
+
+/* line 16, ../sass/style.scss */
+input[type=checkbox] {
+  display: none;
+}
+
+/* line 17, ../sass/style.scss */
+label {
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 85px;
+  width: 100px;
+  height: 50px;
+  z-index: -1;
+  border-radius: 5px;
+}
+
+/* line 29, ../sass/style.scss */
+#chkbx:checked ~ label[for=chkbx]:before {
+  content: "";
+}
+
+/* line 32, ../sass/style.scss */
+#thumb {
+  content: '';
+  width: 52px;
+  height: 52px;
+  display: block;
+  float: left;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 0px 0px 0px 50px;
+  background: #fafafa;
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+  box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.3);
+  transition: background 0.5s;
+}
+
+/* line 49, ../sass/style.scss */
+#thumb:hover {
+  background: #f3f3f3;
+}
+
+/* line 52, ../sass/style.scss */
+#thumb div {
+  width: 70%;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 23px auto;
+  position: relative;
+}
+
+/* line 60, ../sass/style.scss */
+#thumb div:after {
+  content: "";
+  width: 100%;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+/* line 70, ../sass/style.scss */
+#thumb div:before {
+  content: "";
+  width: 100%;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: -10px;
+  left: 0;
+}
+
+/* line 81, ../sass/style.scss */
+#chkbx:checked ~ label[for=chkbx] #thumb {
+  margin: 0;
+}
+
+/* line 84, ../sass/style.scss */
+label:before, #thumb, #chkbx:checked ~ label[for=chkbx]:before {
+  transition: all .2s;
+}
+
+/* line 88, ../sass/style.scss */
+.night {
+  width: 50px;
+  height: 45px;
+  display: block;
+  position: absolute;
+  background: #3e6185;
+  border-radius: 0 5px 5px 0;
+  margin-left: 50%;
+  border-top: 5px solid #194d60;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+/* line 102, ../sass/style.scss */
+.night:before {
+  content: " ";
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  position: absolute;
+  background: #ffffff;
+  top: -15px;
+  margin-top: 50%;
+  left: -10px;
+  margin-left: 50%;
+}
+
+/* line 115, ../sass/style.scss */
+.night:after {
+  content: " ";
+  width: 15px;
+  height: 15px;
+  border-radius: 7.5px;
+  background: #3e6185;
+  position: absolute;
+  top: -15px;
+  margin-top: 50%;
+  left: -12px;
+  margin-left: 50%;
+}
+
+/* line 128, ../sass/style.scss */
+.night span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: #9fb0c2;
+  border-radius: 2.5px;
+  position: absolute;
+  z-index: 2;
+  right: 7px;
+  top: 4.5px;
+}
+
+/* line 140, ../sass/style.scss */
+.night span:before, .night span:after {
+  content: " ";
+  width: 3px;
+  height: 3px;
+  border-radius: 1.5px;
+  position: absolute;
+  background: #9fb0c2;
+  z-index: 2;
+  left: -26px;
+  top: 4px;
+}
+
+/* line 152, ../sass/style.scss */
+.night span:after {
+  left: -2px;
+  top: 28px;
+}
+
+/* line 157, ../sass/style.scss */
+.day {
+  width: 50px;
+  height: 45px;
+  display: block;
+  position: absolute;
+  background: #85d6f4;
+  border-radius: 5px 0 0 5px;
+  overflow: hidden;
+  border-top: 5px solid #56c1eb;
+  border-left: 1px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* line 171, ../sass/style.scss */
+.day:before {
+  content: " ";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  position: absolute;
+  background: #f0ed0a;
+  top: -18px;
+  margin-top: 50%;
+  left: -15px;
+  margin-left: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+/* line 185, ../sass/style.scss */
+.day:after {
+  content: " ";
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  position: absolute;
+  background: green;
+  top: 10px;
+  margin-top: 50%;
+  left: -20px;
+  margin-left: 50%;
+}

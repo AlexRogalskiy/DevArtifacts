@@ -1,0 +1,265 @@
+@import "bourbon/bourbon";
+@import "compass/css3";
+
+// Layout variables
+$tool-breakpoint: 63em;
+$content-max-width: 1200px;
+$max-house-size: 1000px;
+
+// Colour  variables
+$type-grey: #494949;
+$grey: #272727;
+$dark-grey: #262626;
+$blue: #8099c2;
+$dark-blue: #374d72;
+
+@mixin breakpoint($width) {
+	@media screen and (min-width: $width) {
+		@content;
+	}
+}
+
+@include keyframes(fadeIn) {
+	from { 
+		opacity: 0;
+	}
+}
+
+@include keyframes(draw) {
+	0% {
+		fill-opacity: 0;
+		stroke-dashoffset: 2500;
+	} 20% {
+		stroke-dashoffset: 2500;
+	} 40% {
+		fill-opacity: 0;
+	} 60% {
+		stroke-dashoffset: 0;
+	} 100% {
+		fill-opacity: 1;
+		stroke-opacity: 0;
+		@include transition(fill, 0.5s);
+	}
+}
+
+body {
+	font-family: "Roboto", sans-serif;
+	background-color: $dark-blue;
+}
+
+.colour-tool {
+	max-width: $content-max-width;
+	margin: 40px auto 0 auto;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 200px;
+	@include breakpoint($tool-breakpoint) {
+		min-height: 700px; // allow for absolutely positioned elements to flow
+	}
+	+ .enquiry-section {
+		margin-top: 50%; // adjust footer so the colour swacth content doesn't overflow
+		@include breakpoint($tool-breakpoint) {
+			margin-top: 0;
+		}
+	}
+
+/* -------------------------------- House section */
+
+	.house {
+		position: relative; // for positioning svg and image
+		width: $max-house-size;
+		max-width: 100%; // for responding down
+		overflow: hidden;
+		box-shadow: 0 0 0 5px lighten($grey, 70);
+		margin: auto auto 40px auto;
+		font-size: 0; // remove white space padding bug
+		line-height: 0;
+		max-height: 331px;
+		background-color: white;
+		@include breakpoint($tool-breakpoint) {
+			height: 331px; // fix for IE9
+		}
+		.house-overlay,
+		.windows-overlay,
+		.environment {
+			position: absolute; // for positioning over segments
+			z-index: 2;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			max-height: 331px;
+			width: $max-house-size;
+			max-width: 100%; // for responding down
+			@include animation(fadeIn 1s 2s backwards);
+		}
+		.windows-overlay {
+			z-index: 3;
+		}
+		.environment {
+			z-index: 1;
+		}
+		.segments {
+			position: relative;
+			z-index: 1;
+			width: 100%;
+			top: 0;
+			max-height: 331px; // needed for mobile safari
+			height: auto !important; // override svg inline height for smaller screens
+			@include breakpoint($tool-breakpoint) {
+				height: 331px; // fix for IE9
+			}
+			g {
+				@include animation-fill-mode(backwards);
+				@for $i from 1 through 7 {
+					// allowance has been made for animating on 7 segments
+					&:nth-child(#{$i}) {
+						// stagger animation for some sweet eye candy
+						@include animation-delay(#{0.2 + $i * 0.1}s);
+					}
+				}
+				* {
+					stroke-weight: 4;
+					stroke-dashoffset: 2500;
+					stroke-dasharray: 2500;
+					stroke: rgba(0,0,0,0.5);
+					@include animation(draw 5s backwards);
+					@for $i from 1 through 7 {
+					// allowance has been made for animating on 7 segments
+					&:nth-child(#{$i}) {
+						// stagger animation for some sweet eye candy
+						@include animation-delay(#{0.2 + $i * 0.1}s);
+					}
+				}
+				}
+			}
+		}
+	}
+
+/* -------------------------------- Swatch section */
+
+	.sections {
+		padding: 0 20px;
+		@include breakpoint($tool-breakpoint) {
+			padding: 0;
+			border: solid 1px lighten($grey, 60);
+			position: relative;
+			margin-bottom: 40px;
+			font-size: 0; // remove trailing whitespace on inline
+		}
+		> li {
+			display: block;
+			font-size: 16px;
+			margin-bottom: 5px;
+			background: #efefef;
+			text-align: center;
+			line-height: 60px;
+			cursor: pointer;
+			position: relative; // for positioning arrow
+			@include transition(all 0.5s);
+			&:after {
+				content: "\25BC";
+				display: inline-block;
+				position: absolute;
+				right: 20px;
+				top: 20px;
+				color: lighten($grey, 30);
+				margin-left: 20px;
+				line-height: 20px;
+				font-size: 20px;
+				vertical-align: middle;
+				@include transition(all 0.3s);
+			}
+			@include breakpoint($tool-breakpoint) {
+				height: 60px;
+				box-shadow: inset 1px -1px 0 0 lighten($grey, 60);
+				display: inline-block;
+				width: percentage(1/5);
+				margin-bottom: 0;
+				position: static; // for positioning arrow
+				@include box-sizing(border-box);
+				&:after {
+					display: none;
+				}
+			}
+			&.open {
+				background: white;
+				box-shadow: inset 0 0 0 1px lighten($grey, 60);
+				@include breakpoint($tool-breakpoint) {
+					box-shadow: inset 1px 0 0 0 lighten($grey, 60);
+				}
+				&:first-child {
+					@include breakpoint($tool-breakpoint) {
+						box-shadow: inset 0 0 0 0 lighten($grey, 60);
+					}
+				}
+				.swatches {
+					z-index: 4;
+				}
+				&:after {
+					color: $blue;
+					@include transform(rotate(180deg));
+				}
+			}
+			.swatches {
+				text-align: left;
+				line-height: 1;
+				display: none;
+				cursor: default;
+				@include breakpoint($tool-breakpoint) {
+					position: absolute;
+					top: 60px;
+					right: 0;
+					left: 0;
+					padding: 2em;
+					background-color: inherit; 
+					box-shadow: 0 0 0 1px lighten($grey, 60);
+				}
+				li {
+					display: inline-block;
+					vertical-align: top;
+					width: percentage(2/8);
+					margin: percentage(1/60);
+					padding: percentage(1/90) percentage(1/90) 10px percentage(1/90);
+            outline: none;
+					background-color: #efefef;
+					border-radius: 3px;
+					font-size: 10px;
+					@include breakpoint($tool-breakpoint) {
+						width: percentage(1/11);
+						margin: percentage(1/110);
+						padding: percentage(1/160) percentage(1/160) 10px percentage(1/160);
+					}
+					.swatch {
+						display: block;
+						height: 40px;
+						border-radius: 2px;
+						margin-bottom: 10px;
+						cursor: pointer;
+						border: none;
+						width: 100%;
+						@include hide-text;
+						@include breakpoint($tool-breakpoint) {
+							height: 60px;
+						}
+					}
+					&:hover,
+					&:active,
+					&:focus {
+						box-shadow: 0 0 0 2px rgba($grey, 0.5);
+					}
+					&.in-use {
+						box-shadow: 0 0 0 2px $blue;
+button {
+  &:hover,
+  &:active,
+  &:focus {
+                outline: none;
+  }
+}
+					}
+				}
+			}
+		}	
+	}
+}
