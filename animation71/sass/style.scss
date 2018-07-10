@@ -1,0 +1,181 @@
+@import 'compass';
+
+$debug: false;
+
+$dot-color: #ffffff;
+$dot-dimention: 8px;
+$dot-dimention-half: $dot-dimention / 2;
+$dot-box: 24px;
+$dot-box-half: $dot-box / 2;
+$row-height: 24px;
+
+* { box-sizing: border-box; }
+html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: #030303;
+	font-family: "Roboto", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+}
+
+.frame {
+	@include display-flex();
+	@include justify-content(center);
+	@include align-items(center);
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.map {
+	position: relative;
+}
+
+.row {
+	position: relative;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	letter-spacing: -0.31em; // alignment hack to make sure the dots nuzzle next to each other proper
+}
+
+.bar-pivot {
+	position: relative;
+	display:inline-block;
+    vertical-align:top; 
+	width: $dot-box;
+	height: $dot-box;
+	letter-spacing:normal;
+	
+	@if $debug == true {
+		background: rgba(yellow, .2);
+		 &:nth-child(even) { background: rgba(orange, .2); } 
+	}
+	
+	&:after {
+		@include transform(translate3d(-50%, -50%, 0));
+		content: '';
+		display: block;
+		position: absolute;
+		width: $dot-dimention;
+		height: $dot-dimention;
+		top: 50%;
+		left: 50%;
+		
+		@if $debug == true { background-color: rgba(LightGreen, .2); }
+	}
+}
+
+.bar {
+	@include transform(scale(0,0));
+	@include transform-origin(left, center);
+	position: absolute;
+	display: block;
+	top: $dot-box-half - $dot-dimention-half;
+	left: $dot-box-half;
+	opacity: 0;
+	width: $dot-box;
+	height: $dot-dimention;
+	border-radius: $dot-dimention-half;
+	
+	@if $debug == true { background: rgba(pink, .2); }
+}	
+
+	.bridge {
+		display: block;
+		position: absolute;
+		overflow: hidden;
+		top: 0;
+		left: $dot-dimention-half * -1;
+		right: 85%;
+		height: 100%;
+		border-radius: $dot-dimention-half;
+		background: $dot-color;
+		box-shadow: 0 0 18px 4px rgba(#575555, .8);
+		&.bridge-glow {
+			box-shadow: 0 0 36px 12px rgba(#4c2f44, 1);
+		}
+		&.bridge-flat {
+			box-shadow: none;
+		}
+	}
+	
+	.dot-a, .dot-b {
+		position: absolute;
+		top: 0;
+		display: block;
+		width: $dot-dimention;
+		height: $dot-dimention;
+		border-radius: 50%;
+		background-color: $dot-color;
+	}
+	.dot-a { 
+		left: $dot-dimention-half * -1;
+	}
+	.dot-b {
+		opacity: 0;
+		right: $dot-dimention-half * -1;
+	}	
+
+.bar-ne, .bar-nw, .bar-sw, .bar-se {
+	width: 27px;
+}
+.bar-ne { @include transform(rotate(-63.5deg)); }
+.bar-nw { @include transform(rotate(-116.5deg)); }
+.bar-w { @include transform(rotate(180deg)); }
+.bar-sw { @include transform(rotate(116.5deg)); }
+.bar-se { @include transform(rotate(63.5deg)); }
+
+.controls {
+	/* @include transform(translateX(-50%)); */
+	position: absolute;
+	/* left: 50%; */
+	width: 100%;
+	bottom: 0;
+	margin-bottom: 25px;
+	text-align: center;
+}
+	.btn {
+		@include appearance(none);
+		display: inline-block;
+		margin-right: 8px;
+		padding: 6px 24px;
+		border: 1px solid rgba(#F2836B, .2);
+		border-radius: 3px;
+		background-color: transparent;
+		color: rgba(#F2836B, .5);
+		font-size: 14px;
+		line-height: 22px;
+		outline: none;
+		cursor: pointer;
+		
+		&:hover {
+			color: lighten(#F2836B, 25%);
+			background-color: rgba(#F2836B, .2);
+		}
+	}
+
+.credit {
+	display: inline-block;
+	margin-top: 22px;
+	line-height: 22px;
+	color: rgba(#F2836B, .3);
+	i {
+		font-size: 18px;
+		line-height: 22px;
+		vertical-align: top;
+	}
+	a {
+		color: inherit;
+		text-decoration: none;
+		border-bottom: 1px dotted;
+	}
+}
+
+.controls:hover {
+	.credit {
+		color: rgba(#F2836B, .5);
+	}
+}

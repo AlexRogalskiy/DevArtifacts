@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600|Inconsolata');
+
+// presentational
+$blue: #4680FF;
+$dark-grey: #344055;
+$off-white: #EFE9F4;
+$white: #fafafa;
+
+// -------------------------------------
+// SVG ICON WRAPPER
+
+// creates a 1:1 ratio square frame for the icon
+.icn {
+	$base-icon-size: 24px !default;
+	
+	position: relative;
+	width: $base-icon-size;
+	
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: (1 / 1) * 100%;
+  }
+	
+  > svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+		width: inherit;
+		height: auto;
+		fill: currentColor;
+  }
+}
+
+// -------------------------------------
+// BUTTON
+
+.btn {
+	$bg-color: $blue;
+	$txt-color: #f2f2f2; 
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	border: 0;
+	outline: none;
+	cursor: pointer;
+	background-color: $bg-color;
+	color: $txt-color;
+	text-transform: capitalize;
+	transition-property: background-color, color;
+	transition-duration: .15s;
+	transition-timing-function: ease;
+	
+	&:hover {
+		background-color: lighten($bg-color, 5%);
+		color: $txt-color;
+	}
+}
+
+.btn-flat {
+	background-color: transparent;
+	color: #000;
+}
+
+.btn-dsbl {
+	opacity: 0.5;
+	cursor: default;
+	pointer-events: none;
+}
+
+/*
+	minSize: whats the smaller dimention the button could be. This ends up being a square in the case of an icon only button
+	pad: left and right padding of the button. Vertical is ignored thanks to flex positioning
+	childGap: the distance between an icon and the button text, when both are present.
+	fontSize: size of the text in a button
+	iconSIze: size of the icon in a button
+*/
+$dimentions: (
+	sm: (
+		minSize: 32px, pad: 10px, childGap: 6px, fontSize: 13px, iconSize: 16px
+	),
+	md: (
+		minSize: 36px, pad: 12px, childGap: 6px, fontSize: 15px, iconSize: 18px
+	),
+	lg: (
+		minSize: 40px, pad: 14px, childGap: 6px, fontSize: 17px, iconSize: 22px
+	)
+);
+
+@each $lbl, $map in $dimentions {
+	.btn-#{$lbl} {
+		min-width: map-get($map, minSize);
+		height: map-get($map, minSize);
+		padding: 0 map-get($map, pad);
+		font-size: map-get($map, fontSize);
+		line-height: map-get($map, minSize) / 2;
+
+		> .icn { width: map-get($map, iconSize); }
+		> .icn + .txt { margin-left: map-get($map, childGap); }
+	}
+}
+
+.btn.btn-icn {
+	padding: 0;
+}
+
+.btn.btn-crnr {
+	border-radius: 3px;
+}
+
+.btn.btn-pill {
+	border-radius: 999px; // large value ensures max curvature based on height
+}
+
+.btn.btn-shdw {
+	$shadow-color: $blue;
+	box-shadow: 0px 6px 6px -3px rgba($shadow-color, 0.2),
+		0px 10px 14px 1px rgba($shadow-color, 0.14),
+		0px 4px 18px 3px rgba($shadow-color, 0.12)
+}
+
+
+
+
+
+// -------------------------------------
+// PRESENTATION
+
+html, body {
+	font-family: 'Open Sans', Helveticea, sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 24px;
+	color: $dark-grey;
+}
+
+code {
+	display: inline-block;
+	font-size: 13px;
+	line-height: 24px;
+	padding: 0 4px;
+	border-radius: 2px;
+	background-color: $off-white;
+	font-family: 'Inconsolata', monospace;
+}
+
+.layout {
+	box-sizing: border-box;
+	width: 98%;
+	padding: 20px;
+	display: grid;
+	grid-gap: 12px;
+}
+
+.row {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-gap: 12px;
+}
+
+.row-header {
+	grid-column: 1 / -1;
+	display: flex;
+	flex-flow: row no-wrap;
+	padding-top: 20px;
+	font-weight: 400;
+	font-size: 14px;
+	grid-template-columns: 1fr;
+	
+	code {
+		margin-left: 12px;
+	}
+}
+
+.cell {
+	background-color: $white;
+	min-height: 80px;
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cell--double {
+	grid-column: span 2;
+}

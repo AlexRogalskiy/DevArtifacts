@@ -1,0 +1,390 @@
+@import "compass/css3";
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; position: relative;
+  width: 100%; height: 100%;
+  background-color: #3d4340;
+  font-family: "Dosis";
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.1);
+  background: #212121;
+}
+
+
+
+/* VARS */
+/* $teal: #79BB9F; */
+$teal: lighten(#2E8B5D, 20%);
+$light-orange: #c2b769;
+$orange: #c2a069;
+$light-red: #cc6570;
+$dark-red: #8F1934;
+$red: #bd5d68;
+$green: #3d6645;
+$light-green: #76c160;
+
+
+$pad: 24px;
+$pad-double: $pad * 2;
+$pad-half: $pad / 2;
+
+$space: 26px;
+$space-and-half: $space * 1.5;
+$space-double: $space * 2;
+$space-half: $space / 2;
+
+/* STYLES */
+
+// defaults
+button {
+  -webkit-appearance: none;
+  outline: none;
+  background: tranparent;
+  border: none;
+  display: block;
+  cursor: pointer;
+}
+
+// page
+
+.login {
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+  margin: auto;
+
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -moz-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+}
+
+// terminal wrapper and header
+.terminal { 
+  &.state--frozen .pwd__btn {
+    cursor: default;
+    pointer-events: none;
+  }
+  &.state--warp {
+    @include animation(warpOut .35s ease);
+    @include animation-fill-mode(forwards);
+  }
+}
+  .terminal-title {
+    text-transform: uppercase;
+    color: rgba($teal, .8);
+    padding-bottom: $pad-double;
+    span, h3 {
+      opacity: 0;
+      @include transform-style(preserve-3d);      
+    }
+    span {
+      display: block;
+      font-size: 14px;
+      @include animation(shiftInUp .35s ease .20s);
+      @include animation-fill-mode(forwards);
+    }
+    h3 {
+      font-size: 42px;
+      font-weight: 600;
+      @include animation(shiftInUp .35s ease .30s);
+      @include animation-fill-mode(forwards);
+    }
+  }
+
+// sequence pad
+$seq-pad-corner-offset: 2px;
+.seq-pad {
+  padding: $pad $pad 0 $pad;
+  border: 1px solid rgba($teal, .15);
+  position: relative;
+  opacity: 0;
+  @include transform-style(preserve-3d);
+  @include animation(warpIn .45s ease);
+  @include animation-fill-mode(forwards);
+}
+  .seq-pad__cnr { // corner dots
+    position: absolute;
+    display: block;
+    width: 6px; height: 6px;
+    background-color: $teal;
+    &.cnr--tp-lt {
+      top: $seq-pad-corner-offset; 
+      left: $seq-pad-corner-offset;
+    }
+    &.cnr--tp-rt {
+      top: $seq-pad-corner-offset; 
+      right: $seq-pad-corner-offset;
+    }&.cnr--bt-lt {
+      bottom: $seq-pad-corner-offset; 
+      left: $seq-pad-corner-offset;
+    }
+    &.cnr--bt-rt {
+      bottom: $seq-pad-corner-offset; 
+      right: $seq-pad-corner-offset;
+    }
+  }
+
+// buttons wrapper and buttons
+$btns-per-row: 8;
+$btn-bdr-size: 1px;
+.seq-pad__inr {
+  overflow: hidden;
+}  
+
+  %terminal-btn {
+    display: block; position: relative;
+    width: 80px; height: 80px;
+    float: left;
+    margin-right: 6px;
+    margin-bottom: $space;
+    &:nth-child(#{$btns-per-row}n + 1) {
+      clear: left;
+    }
+  }
+  .pad-btn {
+    @extend %terminal-btn;
+    background-color: rgba(#fff, .05);
+    color: rgba($teal, .8);
+    font-family: "Dosis";
+    font-size: 38px;
+    font-weight: 400;
+    @include transition(all .25s);
+    // states
+    &:hover {
+      color: rgba($teal, 1);
+      background-color: rgba(#fff, .15);
+    }
+    &.state--active {
+      color: $light-orange;
+      background-color: rgba($orange, .15);
+      .pad-btn__bdr {
+        background-color: rgba($orange, .65);
+      }
+    }
+    &.state--error {
+      color: $light-red;
+      background-color: rgba($red, .15);
+      .pad-btn__bdr {
+        background-color: rgba($red, .65);
+      }
+    }
+    &.state--success {
+      color: $light-green;
+      background-color: rgba($green, .15);
+      .pad-btn__bdr {
+        background-color: rgba($green, .85);
+      }
+    }
+  }
+  .pad-btn--blnk {
+    @extend %terminal-btn;
+  }
+    // button squares
+    .pad-btn__sqrs {
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      overflow: hidden;
+      .pad-btn__sqr {
+        width: 4px;
+        height: 4px;
+        display: block;
+        float: left;
+        margin-right: 2px;
+        background-color: $teal;
+      }
+    }
+    // button border and corners
+    .pad-btn__bdr {
+      display: block; position: absolute;
+      width: 6px; height: 6px;
+      background-color: rgba($teal, .4);
+      &:before, &:after {
+        content: "";
+        position: absolute; display: block;
+        background-color: inherit;
+      }
+      &.bdr--tp, &.bdr--bt {
+        height: $btn-bdr-size;
+        width: calc(100% - 12px);
+        left: 0; right: 0; top: 0;
+        margin: auto;
+        &:before, &:after {
+          width: $btn-bdr-size * 2;
+          height: $btn-bdr-size;
+          top: 0; left: -6px;
+        }
+        &:after {
+          left: auto; right: -6px;
+        }
+      }
+      &.bdr--bt {
+        top: auto; bottom: 0;
+      }
+      &.bdr--rt, &.bdr--lt {
+        width: $btn-bdr-size;
+        height: calc(100% - 12px);
+        top: 0; bottom: 0; right: 0;
+        margin: auto;
+      }
+      &.bdr--lt {
+        left: 0; right: auto;
+      }
+    }
+
+// footer
+.terminal-footer {
+  position: relative;
+  width: 100%;
+  margin-top: $space;
+  clear: both;
+  text-align: center;
+  min-height: 40px;
+}
+  .btn--clr {
+    display: block; position: absolute;
+    top: 0;
+    left: 0;
+    height: $space;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: $space;
+    padding: 0 $pad-half;
+    font-weight: 500;
+    border: none;
+    background-color: $dark-red;
+    color: #1a1a1a;
+    visibility: hidden;
+    opacity: 0;
+    @include transition(all, .25s);
+    @include transform(translate3d(0, -6px, 0));
+    &.state--visible {
+      visibility: visible;
+      opacity: 1;
+      @include transform(translate3d(0, 0, 0));
+    }
+  }
+  .verify-msg {
+    display: inline-block;
+    vertical-align: top;
+    line-height: $space;
+    font-size: 16px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    @include transform(translate3d(0, 6px, 0));
+    @include transition(width .25s, transform .25s);
+    @include animation(blink .35s ease infinite alternate);
+    @include animation-play-state(paused);
+    &.state--play {
+      @include transform(translate3d(0, 0, 0));
+      @include animation-play-state(running);
+      width: 150px;
+    }
+    &.state--error {
+      color: $light-red;
+    }
+    &.state--success {
+      color: $light-green;
+    }
+  }
+  .terminal-load-bar {
+    height: 2px;
+    width: 50%;
+    display: block;
+    position: relative;
+    margin-top: 10px;
+    &:before {
+      content: ''; display: block; position: absolute;
+      top: 0; left: 50%; bottom: 0; margin: auto;
+      width: 0;
+      background: rgba($light-green, .35);
+      @include transition(width 1.8s);
+    }
+    &.state--loading:before {
+      width: 100%;
+    }
+  }
+
+
+// welcome message and reset
+.welcome {
+  display: none;
+  width: 340px;
+  h2 {
+    font-size: 22px;
+    text-transform: uppercase;
+    color: $teal;
+    line-height: 1;
+  }
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba($teal, .7);
+    padding: $space 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .btn--rst {
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: $space;
+    padding: 0 $pad-half;
+    font-weight: 500;
+    border: none;
+    background-color: $dark-red;
+    color: #1a1a1a;
+  }
+}
+
+    
+@include keyframes(shiftInUp) {
+  0% {
+    opacity: 0;
+    @include transform(translate3d(0,20px,0));
+  }
+  100% {
+    opacity: 1;
+    @include transform(translate3d(0,0,0));
+  }
+}
+
+@include keyframes(blink) {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes warpIn {
+  0% {
+    opacity: 0;
+    @include transform(scale(.8, .8));
+    @include transform-origin(center, center);
+  }
+  100% {
+    opacity: 1;
+    @include transform(scale(1, 1));
+    @include transform-origin(center, center);
+  }
+}
+
+@include keyframes(warpOut) {
+  0% {
+    opacity: 1;
+    @include transform(scale(1, 1));
+    @include transform-origin(center, center);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    @include transform(scale(1.2, 1.2));
+    @include transform-origin(center, center);
+  }
+}

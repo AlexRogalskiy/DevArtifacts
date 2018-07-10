@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600|Inconsolata");
+/* line 13, ../sass/style.scss */
+.icn {
+  position: relative;
+  width: 24px;
+}
+/* line 19, ../sass/style.scss */
+.icn:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 100%;
+}
+/* line 26, ../sass/style.scss */
+.icn > svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: inherit;
+  height: auto;
+  fill: currentColor;
+}
+
+/* line 41, ../sass/style.scss */
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  background-color: #4680FF;
+  color: #f2f2f2;
+  text-transform: capitalize;
+  transition-property: background-color, color;
+  transition-duration: .15s;
+  transition-timing-function: ease;
+}
+/* line 59, ../sass/style.scss */
+.btn:hover {
+  background-color: #6092ff;
+  color: #f2f2f2;
+}
+
+/* line 65, ../sass/style.scss */
+.btn-flat {
+  background-color: transparent;
+  color: #000;
+}
+
+/* line 70, ../sass/style.scss */
+.btn-dsbl {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+/*
+	minSize: whats the smaller dimention the button could be. This ends up being a square in the case of an icon only button
+	pad: left and right padding of the button. Vertical is ignored thanks to flex positioning
+	childGap: the distance between an icon and the button text, when both are present.
+	fontSize: size of the text in a button
+	iconSIze: size of the icon in a button
+*/
+/* line 96, ../sass/style.scss */
+.btn-sm {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  font-size: 13px;
+  line-height: 16px;
+}
+/* line 103, ../sass/style.scss */
+.btn-sm > .icn {
+  width: 16px;
+}
+/* line 104, ../sass/style.scss */
+.btn-sm > .icn + .txt {
+  margin-left: 6px;
+}
+
+/* line 96, ../sass/style.scss */
+.btn-md {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 12px;
+  font-size: 15px;
+  line-height: 18px;
+}
+/* line 103, ../sass/style.scss */
+.btn-md > .icn {
+  width: 18px;
+}
+/* line 104, ../sass/style.scss */
+.btn-md > .icn + .txt {
+  margin-left: 6px;
+}
+
+/* line 96, ../sass/style.scss */
+.btn-lg {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 14px;
+  font-size: 17px;
+  line-height: 20px;
+}
+/* line 103, ../sass/style.scss */
+.btn-lg > .icn {
+  width: 22px;
+}
+/* line 104, ../sass/style.scss */
+.btn-lg > .icn + .txt {
+  margin-left: 6px;
+}
+
+/* line 108, ../sass/style.scss */
+.btn.btn-icn {
+  padding: 0;
+}
+
+/* line 112, ../sass/style.scss */
+.btn.btn-crnr {
+  border-radius: 3px;
+}
+
+/* line 116, ../sass/style.scss */
+.btn.btn-pill {
+  border-radius: 999px;
+}
+
+/* line 120, ../sass/style.scss */
+.btn.btn-shdw {
+  box-shadow: 0px 6px 6px -3px rgba(70, 128, 255, 0.2), 0px 10px 14px 1px rgba(70, 128, 255, 0.14), 0px 4px 18px 3px rgba(70, 128, 255, 0.12);
+}
+
+/* line 134, ../sass/style.scss */
+html, body {
+  font-family: 'Open Sans', Helveticea, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #344055;
+}
+
+/* line 142, ../sass/style.scss */
+code {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 24px;
+  padding: 0 4px;
+  border-radius: 2px;
+  background-color: #EFE9F4;
+  font-family: 'Inconsolata', monospace;
+}
+
+/* line 152, ../sass/style.scss */
+.layout {
+  box-sizing: border-box;
+  width: 98%;
+  padding: 20px;
+  display: grid;
+  grid-gap: 12px;
+}
+
+/* line 160, ../sass/style.scss */
+.row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 12px;
+}
+
+/* line 166, ../sass/style.scss */
+.row-header {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-flow: row no-wrap;
+  padding-top: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  grid-template-columns: 1fr;
+}
+/* line 175, ../sass/style.scss */
+.row-header code {
+  margin-left: 12px;
+}
+
+/* line 180, ../sass/style.scss */
+.cell {
+  background-color: #fafafa;
+  min-height: 80px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* line 189, ../sass/style.scss */
+.cell--double {
+  grid-column: span 2;
+}

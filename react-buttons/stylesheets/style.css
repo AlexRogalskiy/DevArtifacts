@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css?family=Hind:500");
+/* line 4, ../sass/style.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-family: 'Hind';
+  font-weight: 500;
+}
+
+/* line 12, ../sass/style.scss */
+.page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 38, ../sass/style.scss */
+.ui-checkbox-btn {
+  position: relative;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 18px;
+  background-color: rgba(255, 0, 0, 0.6);
+}
+/* line 46, ../sass/style.scss */
+.ui-checkbox-btn input {
+  display: none;
+}
+/* line 48, ../sass/style.scss */
+.ui-checkbox-btn .icon,
+.ui-checkbox-btn .text {
+  display: inline-block;
+  vertical-align: top;
+  color: inherit;
+}
+/* line 55, ../sass/style.scss */
+.ui-checkbox-btn .text {
+  font-size: 14px;
+  line-height: 22px;
+  padding-top: 2px;
+  padding-left: 4px;
+}
+/* line 63, ../sass/style.scss */
+.ui-checkbox-btn.is-unchecked {
+  border: 1px solid #7B9EA8;
+  background-color: transparent;
+  color: #7B9EA8;
+  fill: #7B9EA8;
+}
+/* line 70, ../sass/style.scss */
+.ui-checkbox-btn.is-checked {
+  border: 1px solid #44CF6C;
+  background-color: #44CF6C;
+  color: white;
+  fill: white;
+}
+
+/* line 78, ../sass/style.scss */
+.icon {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 24px;
+}
+/* line 84, ../sass/style.scss */
+.icon svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 16px;
+  height: auto;
+  fill: inherit;
+}
+/* line 93, ../sass/style.scss */
+.is-checked .icon {
+  color: white;
+  fill: white;
+}
+
+/* line 100, ../sass/style.scss */
+.ui-btn-ping {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+/* line 108, ../sass/style.scss */
+.ui-btn-ping:before {
+  content: '';
+  transform: scale(0, 0);
+  transition-property: background-color transform;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  display: block;
+  padding-bottom: 100%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.84);
+}
+/* line 119, ../sass/style.scss */
+.do-ping .ui-btn-ping:before {
+  transform: scale(2.5, 2.5);
+  transition-duration: .35s;
+  background-color: rgba(255, 255, 255, 0.08);
+}

@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+
+* { box-sizing: border-box; }
+
+html, body {
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(50% 100%, circle, #79D1BD 0%, #53ADAB 100%);
+	font-family: 'Roboto';
+	font-size: 14px;
+	line-height: 24px;
+	-webkit-font-smoothing: antialiased;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+// center the list, just visual candy
+.frame {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+}
+
+// main app wrapper
+.list {
+	
+	&#{&} { // self
+		position: relative;
+		width: 360px;
+		border-radius: 4px;
+		background-color: #F3F8F4;
+	}
+	
+	.shadow { // experiment
+		position: absolute;
+		right: 0;
+		bottom: -10px;
+		left: 0;
+		width: 94%;
+		height: 100%;
+		margin: 0 auto;
+		border-radius: inherit;
+		background-color: rgba(0, 0, 0, .12);
+		z-index: -1;
+	}
+}
+
+.list-inner {
+	overflow: hidden;
+	height: auto;
+	min-height: 240px;
+	padding-bottom: 12px;
+}
+
+.list-header {
+	$header-color: #E97164;
+	$button-color: #E66259;
+	
+	&#{&} { // self
+		display: flex;
+		padding: 18px 12px;
+	}
+	
+	h3 {
+		padding-top: 6px;
+		color: $header-color;
+		font-size: 17px;
+		font-weight: 500;
+		line-height: 20px;
+		text-transform: uppercase;
+	}
+	
+	button {
+		display: inline-block;
+		appearance: none;
+		margin-left: auto;
+		background-color: transparent;
+		outline: none;
+		cursor: pointer;
+	}
+	
+	.btn-add-one {
+		transition: all .15s ease;
+		padding: 0 8px;
+		border-radius: 3px;
+		border: 1px solid;
+		border-color: rgba($button-color, .3);
+		line-height: 24px;
+		color: $button-color;
+		
+		&:hover {
+			color: white;
+			background-color: $button-color;
+			border-color: $button-color;
+		}
+	}
+}
+
+.list-items {
+	background-color: #E2E2E2;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+.item-zone {
+	position: relative;
+	height: 48px;
+	margin-bottom: 1px;
+	
+	&:last-child { margin-bottom: 0; }
+}
+
+.item {
+	
+	&#{&} {
+		transition-property: transform, opacity, box-shadow;
+		transition-duration: .25s;
+		transition-timing-function: ease-out;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #f9f9f9;
+		color: rgba(#115A64, .7);
+		z-index: 20;
+	}
+	
+	&:hover {
+		background-color: white;
+		cursor: pointer;
+	}
+	
+	// when we are grabbed
+	.is-active & {
+		background-color: white;
+		color: rgba(#115A64, 1);
+		box-shadow: 0 8px 0 -4px rgba(black, .12), 0 -1px 0 0 rgba(black, .08);
+		z-index: 30;
+	}
+	
+	// while we are moving
+	.is-moving & { }
+	
+	// when we're about to be deleted
+	.state-deleting & { color: #BC4155; }
+	
+	span {
+		display: inline-block;
+		padding: 12px;
+		color: inherit;
+		font-size: 16px;
+		line-height: 24px;
+	}
+}
+
+.delete-overlay {
+	display: none;
+	width: 100%;
+	height: 100%;
+	background-color: #F36F76;
+	
+	.state-deleting & {
+		display: flex;
+		align-items: center;
+		padding-left: 20px;
+	}
+}
+
+.delete {
+	display: block;
+	width: 28px;
+	height: 28px;
+}
+
+.skull-icon {
+	width: 100%;
+	height: 100%;
+	stroke-width: 6px;
+	opacity: 1;
+}
+
+// ReactCSSTransitionGroup class + states
+.drag-leave .item {
+  opacity: 1;
+	transform: translate(0 ,0);
+}
+
+.drag-leave.drag-leave-active .item {
+	opacity: 0;
+	transform: translate(50%, 0);
+}
+
+
+
+/* used when dev-ing the drag variables */
+.dev-panel {
+	position: absolute; top: 100%; left: 0;
+	width: 120px; padding: 6px;
+	background-color: #333;
+	color: rgba(white, .55);
+	.x {
+		display: block; padding: 4px 0;
+		b { font-weight: 500; color: rgba(white, .75); }
+	}
+}

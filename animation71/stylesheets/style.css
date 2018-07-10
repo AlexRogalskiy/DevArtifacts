@@ -1,0 +1,233 @@
+/* line 12, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 13, ../sass/style.scss */
+html, body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #030303;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* line 22, ../sass/style.scss */
+.frame {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 31, ../sass/style.scss */
+.map {
+  position: relative;
+}
+
+/* line 35, ../sass/style.scss */
+.row {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  letter-spacing: -0.31em;
+}
+
+/* line 44, ../sass/style.scss */
+.bar-pivot {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 24px;
+  height: 24px;
+  letter-spacing: normal;
+}
+/* line 57, ../sass/style.scss */
+.bar-pivot:after {
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  content: '';
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 50%;
+  left: 50%;
+}
+
+/* line 71, ../sass/style.scss */
+.bar {
+  -moz-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  -webkit-transform: scale(0, 0);
+  transform: scale(0, 0);
+  -moz-transform-origin: left center;
+  -ms-transform-origin: left center;
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+  position: absolute;
+  display: block;
+  top: 8px;
+  left: 12px;
+  opacity: 0;
+  width: 24px;
+  height: 8px;
+  border-radius: 4px;
+}
+
+/* line 86, ../sass/style.scss */
+.bridge {
+  display: block;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: -4px;
+  right: 85%;
+  height: 100%;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow: 0 0 18px 4px rgba(87, 85, 85, 0.8);
+}
+/* line 97, ../sass/style.scss */
+.bridge.bridge-glow {
+  box-shadow: 0 0 36px 12px #4c2f44;
+}
+/* line 100, ../sass/style.scss */
+.bridge.bridge-flat {
+  box-shadow: none;
+}
+
+/* line 105, ../sass/style.scss */
+.dot-a, .dot-b {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+/* line 114, ../sass/style.scss */
+.dot-a {
+  left: -4px;
+}
+
+/* line 117, ../sass/style.scss */
+.dot-b {
+  opacity: 0;
+  right: -4px;
+}
+
+/* line 122, ../sass/style.scss */
+.bar-ne, .bar-nw, .bar-sw, .bar-se {
+  width: 27px;
+}
+
+/* line 125, ../sass/style.scss */
+.bar-ne {
+  -moz-transform: rotate(-63.5deg);
+  -ms-transform: rotate(-63.5deg);
+  -webkit-transform: rotate(-63.5deg);
+  transform: rotate(-63.5deg);
+}
+
+/* line 126, ../sass/style.scss */
+.bar-nw {
+  -moz-transform: rotate(-116.5deg);
+  -ms-transform: rotate(-116.5deg);
+  -webkit-transform: rotate(-116.5deg);
+  transform: rotate(-116.5deg);
+}
+
+/* line 127, ../sass/style.scss */
+.bar-w {
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* line 128, ../sass/style.scss */
+.bar-sw {
+  -moz-transform: rotate(116.5deg);
+  -ms-transform: rotate(116.5deg);
+  -webkit-transform: rotate(116.5deg);
+  transform: rotate(116.5deg);
+}
+
+/* line 129, ../sass/style.scss */
+.bar-se {
+  -moz-transform: rotate(63.5deg);
+  -ms-transform: rotate(63.5deg);
+  -webkit-transform: rotate(63.5deg);
+  transform: rotate(63.5deg);
+}
+
+/* line 131, ../sass/style.scss */
+.controls {
+  /* @include transform(translateX(-50%)); */
+  position: absolute;
+  /* left: 50%; */
+  width: 100%;
+  bottom: 0;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* line 140, ../sass/style.scss */
+.btn {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  display: inline-block;
+  margin-right: 8px;
+  padding: 6px 24px;
+  border: 1px solid rgba(242, 131, 107, 0.2);
+  border-radius: 3px;
+  background-color: transparent;
+  color: rgba(242, 131, 107, 0.5);
+  font-size: 14px;
+  line-height: 22px;
+  outline: none;
+  cursor: pointer;
+}
+/* line 154, ../sass/style.scss */
+.btn:hover {
+  color: #fce5e0;
+  background-color: rgba(242, 131, 107, 0.2);
+}
+
+/* line 160, ../sass/style.scss */
+.credit {
+  display: inline-block;
+  margin-top: 22px;
+  line-height: 22px;
+  color: rgba(242, 131, 107, 0.3);
+}
+/* line 165, ../sass/style.scss */
+.credit i {
+  font-size: 18px;
+  line-height: 22px;
+  vertical-align: top;
+}
+/* line 170, ../sass/style.scss */
+.credit a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted;
+}
+
+/* line 178, ../sass/style.scss */
+.controls:hover .credit {
+  color: rgba(242, 131, 107, 0.5);
+}

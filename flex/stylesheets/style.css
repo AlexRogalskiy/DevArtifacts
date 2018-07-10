@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css?family=Overpass:400,600");
+/* line 6, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 8, ../sass/style.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Overpass', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/*
+ 	utility classes for splitting vertically
+ */
+/* line 22, ../sass/style.scss */
+.u-vert-bisect {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+/* line 29, ../sass/style.scss */
+.u-vert-bisect .u-vert-bisect__autofill {
+  flex: 1 0 0;
+}
+
+/*
+	utility classes for contained content scrolling
+ */
+/* line 42, ../sass/style.scss */
+.u-bound-scroll__lock {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* line 48, ../sass/style.scss */
+.u-bound-scroll__lock .u-bound-scroll__scrollable {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/*
+	PEN SPECIFIC DESIGN
+	strictly styling from here
+*/
+/* line 67, ../sass/style.scss */
+.page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 73, ../sass/style.scss */
+.content {
+  position: absolute;
+  top: 0;
+  right: 320px;
+  bottom: 0;
+  left: 0;
+  background-color: #e2e2e2;
+}
+
+/* line 82, ../sass/style.scss */
+.rail {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  overflow: hidden;
+}
+
+/* line 91, ../sass/style.scss */
+.rail-header {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background-color: #555;
+  box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* line 99, ../sass/style.scss */
+.rail-content {
+  background-color: #777;
+}
+
+/* line 104, ../sass/style.scss */
+.label {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 24px;
+  border-radius: 12px;
+  background-color: #FFB9A1;
+  color: rgba(0, 0, 0, 0.65);
+  margin: 12px;
+  padding: 0 12px;
+}
+/* line 114, ../sass/style.scss */
+.label.highlight {
+  background-color: #E87672;
+}
+
+/* line 117, ../sass/style.scss */
+.label-group {
+  position: relative;
+  width: 100%;
+}
+/* line 122, ../sass/style.scss */
+.label-group.highlight .label,
+.label-group.highlight .label-link {
+  background-color: #E87672;
+}
+/* line 128, ../sass/style.scss */
+.label-group .label-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 134, ../sass/style.scss */
+.label-group .label-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+/* line 140, ../sass/style.scss */
+.label-group .label-link {
+  position: absolute;
+  background-color: #FFB9A1;
+}
+/* line 144, ../sass/style.scss */
+.label-group .label-link.highlight {
+  background-color: #E87672;
+}
+/* line 148, ../sass/style.scss */
+.label-group .label-link.vertical {
+  top: 12px;
+  left: 36px;
+  bottom: 12px;
+  width: 1px;
+}
+
+/* line 157, ../sass/style.scss */
+.force-height {
+  height: 2000px;
+}
