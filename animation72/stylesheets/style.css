@@ -1,0 +1,340 @@
+/* -------------------------------------
+ * Style
+ * ------------------------------------- */
+/* line 15, ../sass/style.scss */
+body {
+  padding: 50px;
+  background: radial-gradient(1000px, #f6f5f1, #cec9b3);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* line 22, ../sass/style.scss */
+h1 {
+  color: #9aacb1;
+  font: 24px Verdana, sans-serif;
+  font-weight: normal;
+}
+
+/* line 28, ../sass/style.scss */
+#robot {
+  width: 300px;
+  height: 620px;
+  margin: 50px auto 0;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: 50% 0 -30px;
+  animation: spin 60s linear infinite;
+}
+
+/*------- robot body ------- */
+/* line 40, ../sass/style.scss */
+#head {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 120px;
+}
+
+/* line 48, ../sass/style.scss */
+#torso {
+  width: 200px;
+  height: 230px;
+  position: absolute;
+  top: 80px;
+  left: 50px;
+}
+
+/* line 57, ../sass/style.scss */
+#left_arm {
+  width: 25px;
+  height: 240px;
+  position: absolute;
+  top: 110px;
+  left: 30px;
+}
+
+/* line 65, ../sass/style.scss */
+#right_arm {
+  width: 25px;
+  height: 240px;
+  position: absolute;
+  top: 110px;
+  right: 30px;
+}
+
+/* line 73, ../sass/style.scss */
+.upper_arm {
+  width: 25px;
+  height: 100px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+/* line 80, ../sass/style.scss */
+.forearm {
+  width: 25px;
+  height: 120px;
+  margin-top: 20px;
+}
+
+/* line 87, ../sass/style.scss */
+#left_leg {
+  width: 30px;
+  height: 340px;
+  position: absolute;
+  top: 280px;
+  left: 85px;
+}
+
+/* line 95, ../sass/style.scss */
+#right_leg {
+  width: 30px;
+  height: 340px;
+  position: absolute;
+  top: 280px;
+  right: 85px;
+}
+
+/* line 103, ../sass/style.scss */
+.thigh {
+  width: 30px;
+  height: 150px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+/* line 110, ../sass/style.scss */
+.lower_leg {
+  width: 30px;
+  height: 170px;
+  margin-top: 20px;
+}
+
+/*------- 3d effects ------- */
+/* line 118, ../sass/style.scss */
+.front {
+  width: inherit;
+  height: inherit;
+  background: #9aacb1;
+  position: absolute;
+}
+
+/* line 125, ../sass/style.scss */
+.back {
+  width: inherit;
+  height: inherit;
+  background: #9aacb1;
+  position: absolute;
+}
+
+/* line 132, ../sass/style.scss */
+.left {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  background: #b7c4c7;
+  transform-origin: 0 0 0;
+  transform: rotateY(90deg);
+}
+
+/* line 141, ../sass/style.scss */
+.right {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  background: #b7c4c7;
+  transform-origin: 100% 0 0;
+  transform: rotateY(-90deg);
+}
+
+/* line 150, ../sass/style.scss */
+.top {
+  width: inherit;
+  background: #8ca0a6;
+  position: absolute;
+  transform-origin: 0 0 0;
+  transform: rotateX(-90deg);
+}
+
+/* line 158, ../sass/style.scss */
+.bottom {
+  width: inherit;
+  background: #8ca0a6;
+  position: absolute;
+  transform-origin: 0 0 0;
+  transform: rotateX(-90deg);
+}
+
+/* line 166, ../sass/style.scss */
+#head {
+  transform-style: preserve-3d;
+  transform-origin: 50% 0 -30px;
+  animation: torso 0.8s ease-in-out infinite alternate;
+}
+/* line 171, ../sass/style.scss */
+#head .back {
+  transform: translateZ(-60px);
+}
+
+/* line 176, ../sass/style.scss */
+#torso {
+  transform-style: preserve-3d;
+  transform-origin: 50% 0 -30px;
+  animation: torso 0.8s ease-in-out infinite alternate;
+}
+/* line 181, ../sass/style.scss */
+#torso .front {
+  width: 0;
+  height: 0;
+  background: none;
+  border-top: 230px solid #9aacb1;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+}
+/* line 190, ../sass/style.scss */
+#torso .back {
+  width: 0;
+  height: 0;
+  background: none;
+  border-top: 230px solid #9aacb1;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  transform: translateZ(-60px);
+}
+/* line 200, ../sass/style.scss */
+#torso .left {
+  width: 60px;
+  height: 250px;
+  transform: rotateY(90deg) rotateX(23.5deg);
+}
+/* line 206, ../sass/style.scss */
+#torso .right {
+  width: 60px;
+  height: 250px;
+  transform: rotateY(-90deg) rotateX(23.5deg);
+  right: 0;
+}
+
+/* line 214, ../sass/style.scss */
+#left_arm, #right_arm {
+  transform-style: preserve-3d;
+  transform-origin: 0 0 -10px;
+  animation: arm 0.8s ease-in-out infinite alternate;
+}
+/* line 219, ../sass/style.scss */
+#left_arm .back, #right_arm .back {
+  transform: translateZ(-25px);
+}
+/* line 223, ../sass/style.scss */
+#left_arm .top, #right_arm .top {
+  height: 25px;
+}
+/* line 227, ../sass/style.scss */
+#left_arm .bottom, #right_arm .bottom {
+  height: 25px;
+  bottom: -25px;
+}
+
+/* line 233, ../sass/style.scss */
+#right_arm {
+  animation-delay: 0.8s;
+}
+/* line 236, ../sass/style.scss */
+#right_arm .forearm {
+  animation-delay: 0.8s;
+}
+
+/* line 241, ../sass/style.scss */
+.forearm {
+  transform-style: preserve-3d;
+  transform-origin: 0 0 0;
+  animation: forearm 0.8s ease-in-out infinite alternate;
+}
+
+/* line 247, ../sass/style.scss */
+#left_leg, #right_leg {
+  transform-style: preserve-3d;
+  transform-origin: 0 0 -20px;
+  animation: leg 0.8s ease-in-out infinite alternate;
+}
+/* line 252, ../sass/style.scss */
+#left_leg .back, #right_leg .back {
+  transform: translateZ(-30px);
+}
+/* line 256, ../sass/style.scss */
+#left_leg .top, #right_leg .top {
+  height: 30px;
+}
+/* line 260, ../sass/style.scss */
+#left_leg .bottom, #right_leg .bottom {
+  height: 30px;
+  bottom: -30px;
+}
+
+/* line 266, ../sass/style.scss */
+#left_leg {
+  animation-delay: 0.8s;
+}
+/* line 269, ../sass/style.scss */
+#left_leg .lower_leg {
+  animation-delay: 0.8s;
+}
+
+/* line 274, ../sass/style.scss */
+.lower_leg {
+  transform-style: preserve-3d;
+  transform-origin: 0 0 0;
+  animation: lower_leg 0.8s ease-in-out infinite alternate;
+}
+
+/*------- animation ------- */
+@keyframes spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+@keyframes torso {
+  0% {
+    transform: rotateY(-7deg);
+  }
+  100% {
+    transform: rotateY(7deg);
+  }
+}
+@keyframes arm {
+  0% {
+    transform: rotateX(-15deg) translateZ(-20px);
+  }
+  100% {
+    transform: rotateX(20deg) translateZ(-20px);
+  }
+}
+@keyframes forearm {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(60deg);
+  }
+}
+@keyframes leg {
+  0% {
+    transform: rotateX(-5deg) translateZ(-15px);
+  }
+  100% {
+    transform: rotateX(25deg) translateZ(-15px);
+  }
+}
+@keyframes lower_leg {
+  0% {
+    transform: rotateX(0deg) translateY(15px);
+  }
+  100% {
+    transform: rotateX(-50deg) translateY(15px);
+  }
+}

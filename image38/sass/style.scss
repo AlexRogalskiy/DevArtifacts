@@ -1,0 +1,279 @@
+@import "compass";
+
+// Colours
+$black: #4d4d4d;
+$keyboard: #f5f3f1;
+$text: #555;
+
+#update {
+  margin-top: 60px;
+  text-align: center;
+}
+
+/* -------------------------------------
+ * style
+ * ------------------------------------- */
+
+@import url(https://fonts.googleapis.com/css?family=Average+Sans);
+
+body {
+  width: 890px;
+  margin: 0 auto;
+  padding: 100px 30px 30px;
+  font-family: "Average Sans", sans-serif;
+  color: $text;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+  background: #C7DBE5;
+}
+
+/*------- Keyboard ------- */
+
+#keyboard {
+  padding: 30px 8px 13px;
+  background: $keyboard;
+  background: -webkit-linear-gradient(top, #e5e2e1, #f5f3f1, #e5e2e1);
+  background: -moz-linear-gradient(top, #e5e2e1, #f5f3f1, #e5e2e1);
+  background: -ms-linear-gradient(top, #e5e2e1, #f5f3f1, #e5e2e1);
+  background: -o-linear-gradient(top, #e5e2e1, #f5f3f1, #e5e2e1);
+  background: linear-gradient(top, #e5e2e1, #f5f3f1, #e5e2e1);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), inset 0 0 3px rgba(0, 0, 0, 0.3);
+  -webkit-transform: rotateX(15deg);
+  -ms-transform: rotateX(15deg);
+  -o-transform: rotateX(15deg);
+}
+
+#main {
+  padding: 2px;
+  background: $black;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#addition_wrap {
+  width: 650px;
+  margin: (-2px) 0 0 85px;
+  padding: 0 2px 2px;
+  background: $black;
+  border-radius: 0 0 4px 4px;
+  position: relative;
+
+  &:before, &:after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    background: #ebe8e7;
+    border-top: 2px solid $black;
+    position: absolute;
+    top: 0px;
+  }
+
+  &:before {
+    left: -5px;
+    border-right: 2px solid $black;
+    border-radius: 0 5px 0 0;
+  }
+
+  &:after {
+    right: -5px;
+    border-left: 2px solid $black;
+    border-radius: 5px 0 0 0;
+  }
+}
+
+#addition {
+  overflow: hidden;
+}
+
+.key, .f_key {
+  width: 40px;
+  height: 45px;
+  margin: 2px;
+  border-width: 3px 7px 10px;
+  border-style: solid;
+  border-radius: 4px;
+  float: left;
+
+  &.pressed {
+    -webkit-transform: scale(0.95, 0.95);
+    -moz-transform: scale(0.95, 0.95);
+    -ms-transform: scale(0.95, 0.95);
+    -o-transform: scale(0.95, 0.95);
+    transform: scale(0.95, 0.95);
+  }
+}
+
+.key {
+  background: #d3cfcc;
+  border-color: #ece8e4 #dedad6 #c9c4c4;
+}
+
+.f_key {
+  background: #a8aeb8;
+  border-color: #c4c7cc #adb9cc #96a6bd;
+}
+
+.key .keycap {
+  width: 33px;
+  height: 40px;
+  padding: 5px 0 0 7px;
+  font-size: 18px;
+  line-height: 1;
+  background: #f5f3f1;
+  background: -webkit-linear-gradient(left, #e5e2e1, #f5f3f1, #e5e2e1);
+  background: -moz-linear-gradient(left, #e5e2e1, #f5f3f1, #e5e2e1);
+  background: -ms-linear-gradient(left, #e5e2e1, #f5f3f1, #e5e2e1);
+  background: -o-linear-gradient(left, #e5e2e1, #f5f3f1, #e5e2e1);
+  background: linear-gradient(left, #e5e2e1, #f5f3f1, #e5e2e1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  position: relative;
+}
+
+.f_key .keycap {
+  width: inherit;
+  height: inherit;
+  font-size: 15px;
+  line-height: 45px;
+  text-indent: 7px;
+  background: #cdd3de;
+  background: -webkit-linear-gradient(left, #bbc3d2, #cdd3de, #bbc3d2);
+  background: -moz-linear-gradient(left, #bbc3d2, #cdd3de, #bbc3d2);
+  background: -ms-linear-gradient(left, #bbc3d2, #cdd3de, #bbc3d2);
+  background: -o-linear-gradient(left, #bbc3d2, #cdd3de, #bbc3d2);
+  background: linear-gradient(left, #bbc3d2, #cdd3de, #bbc3d2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  position: relative;
+}
+
+.top {
+  padding: 3px 5px 0 0;
+  font-size: 12px;
+  font-style: italic;
+  text-align: right;
+  line-height: 1;
+  display: block;
+}
+
+.bottom {
+  width: inherit;
+  line-height: 20px;
+  display: block;
+}
+
+.side {
+  font-size: 10px;
+  line-height: 1;
+  display: block;
+  position: absolute;
+  left: 4px;
+  bottom: -10px;
+  -webkit-transform: rotateX(50deg);
+  -moz-transform: rotateX(50deg);
+  -ms-transform: rotateX(50deg);
+  -o-transform: rotateX(50deg);
+  transform: rotateX(50deg);
+}
+
+.f_key .side {
+  left: -3px;
+}
+
+.k13 .side {
+  right: 7px;
+  text-align: right;
+}
+
+/*------- key width ------- */
+
+// esc and left alt
+.k27, .k18.left {
+  width: 38px;
+  border-right-width: 9px;
+}
+
+// ~ , fn and right alt
+.k192, .fn, .k18.right {
+  width: 38px;
+  border-left-width: 9px;
+}
+
+.k192 .keycap {
+  width: 30px;
+}
+
+// tab
+.k9 {
+  width: 66px;
+  border-right-width: 10px;
+}
+
+// delete
+.k8 {
+  width: 66px;
+  border-left-width: 10px;
+}
+
+// control
+.k17 {
+  width: 87px;
+  border-right-width: 10px;
+}
+
+// return
+.k13 {
+  width: 103px;
+  border-left-width: 10px;
+}
+
+// left shift
+.k16.left {
+  width: 113px;
+  border-right-width: 10px;
+}
+
+// right shift
+.k16.right {
+  width: 77px;
+  border-left-width: 10px;
+}
+
+// cmd
+.k91, .k93 {
+  width: 72px;
+
+  .top {
+    font-size: 13px;
+  }
+
+  .bottom {
+    font-size: 20px;
+  }
+}
+
+.k91.left {
+  border-right-width: 10px;
+}
+
+.k93.right {
+  border-left-width: 10px;
+}
+
+// space
+.k32 {
+  width: 328px;
+  border-width: 3px 8px 10px;
+
+  .keycap {
+    width: 321px;
+  }
+
+  &.pressed {
+    -webkit-transform: scale(0.98, 0.95);
+    -moz-transform: scale(0.98, 0.95);
+    -ms-transform: scale(0.98, 0.95);
+    -o-transform: scale(0.98, 0.95);
+    transform: scale(0.98, 0.95);
+  }
+}
