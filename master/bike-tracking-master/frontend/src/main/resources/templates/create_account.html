@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title th:text="#{home.title}"></title>
+
+    <div th:include="fragments/includes :: includes(false)" th:Remove="tag"></div>
+
+</head>
+<body>
+<div th:include="fragments/navbar :: navbar(false)" th:remove="tag"></div>
+<main>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h5 class="text center">Create Account</h5>
+
+                <div>
+                    <div class="input-field col s12">
+                        <input id="email_address" type="text" class="validate" name="username"/>
+                        <label for="email_address">Email Address</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate" name="password"/>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="input-field col s12 center">
+                        <div>
+                            <a class="waves-effect waves-light btn blue" type="submit">Create Account</a>
+                        </div>
+                    </div>
+                    <p class="center flow-text"><a href="/login">Already have an account?</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:include="fragments/scripts :: scripts" th:remove="tag"></div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+
+    <changeSet author="jeffreya (generated)" id="3-1">
+        <createTable schemaName="public" tableName="user_app">
+            <column autoIncrement="true" name="user_app_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="user_app_pkey"/>
+            </column>
+            <column name="user_id" type="BIGINT"/>
+            <column name="application_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet author="jeffreya" id="3-2">
+        <insert tableName="user_app">
+            <column name="user_app_id" value="1"/>
+            <column name="user_id" value="1"/>
+            <column name="application_id" value="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

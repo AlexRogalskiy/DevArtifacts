@@ -1,0 +1,214 @@
+
+// This following mixin is modified from the original Bourbon triangle add-on (https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/addons/_triangle.scss) in order to customise triangle shape and foreground / background colours, which can also create CSS ribbon incredibly easy.
+
+// @include triangle($width $height, $foreground-color $background-color, $direction)
+// $height and $background-color can be omitted, if so, $height will equal to $width and $background-color will be transparent.
+// $direction contains the following arguments: up, down, left, right, up-right, up-left, down-right, down-left, inset-up, inset-down, inset-left, inset-right.
+
+@mixin triangle ($size, $color, $direction) {
+  height: 0;
+  width: 0;
+
+  $width: nth($size, 1);
+  $height: nth($size, length($size));
+
+  $foreground-color: nth($color, 1);
+  $background-color: transparent !default;
+  @if (length($color) == 2) {
+    $background-color: nth($color, 2);
+  }
+
+  @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+
+    $width: $width / 2;
+
+    @if $direction == up {
+      border-left: $width solid $background-color;
+      border-right: $width solid $background-color;
+      border-bottom: $height solid $foreground-color;
+
+    } @else if $direction == right {
+      border-top: $width solid $background-color;
+      border-bottom: $width solid $background-color;
+      border-left: $height solid $foreground-color;
+
+    } @else if $direction == down {
+      border-left: $width solid $background-color;
+      border-right: $width solid $background-color;
+      border-top: $height solid $foreground-color;
+
+    } @else if $direction == left {
+      border-top: $width solid $background-color;
+      border-bottom: $width solid $background-color;
+      border-right: $height solid $foreground-color;
+    }
+  }
+
+  @else if ($direction == up-right) or ($direction == up-left) {
+    border-top: $height solid $foreground-color;
+
+    @if $direction == up-right {
+      border-left:  $width solid $background-color;
+
+    } @else if $direction == up-left {
+      border-right: $width solid $background-color;
+    }
+  }
+
+  @else if ($direction == down-right) or ($direction == down-left) {
+    border-bottom: $height solid $foreground-color;
+
+    @if $direction == down-right {
+      border-left:  $width solid $background-color;
+
+    } @else if $direction == down-left {
+      border-right: $width solid $background-color;
+    }
+  }
+
+  @else if ($direction == inset-up) {
+    border-width: $height $width;
+    border-style: solid;
+    border-color: $background-color $background-color $foreground-color;
+  }
+
+  @else if ($direction == inset-down) {
+    border-width: $height $width;
+    border-style: solid;
+    border-color: $foreground-color $background-color $background-color;
+  }
+
+  @else if ($direction == inset-right) {
+    border-width: $width $height;
+    border-style: solid;
+    border-color: $background-color $background-color $background-color $foreground-color;
+  }
+
+  @else if ($direction == inset-left) {
+    border-width: $width $height;
+    border-style: solid;
+    border-color: $background-color $foreground-color $background-color $background-color;
+  }
+}
+
+
+// Base
+
+body {
+  background: #b8deeb;
+}
+
+h1 {
+  margin-top: 70px;
+  color: #fff;
+  font-family: Helvetica, sans-serif;
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: 1px;
+  text-shadow: -2px 2px darken(#b8deeb, 10%);
+}
+
+.box {
+  width: 400px;
+  height: 600px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 3px;
+}
+
+// Ribbon
+
+[class^="ribbon-"] {
+  position: relative;
+  margin-bottom: 80px;
+  &:before, &:after {
+    content: "";
+    position: absolute;
+  }
+}
+
+
+// Ribbon-1
+.ribbon-1 {
+  width: 60px;
+  height: 100px;
+  background: #ee583a;
+  top: -6px;
+  left: 25px;
+  &:before {
+    @include triangle(6px, darken(#ee583a, 15%), down-left);
+    right: -6px;
+  }
+  &:after {
+    @include triangle(60px 30px, transparent #ee583a, up);
+    bottom: -30px;
+  }
+}
+
+
+// Ribbon-2
+.ribbon-2 {
+  width: 150px;
+  height: 50px;
+  background: #21749a;
+  left: -8px;
+  &:before {
+    @include triangle(8px, darken(#21749a, 15%), down-right);
+    top: -8px;
+  }
+  &:after {
+    @include triangle(50px 15px, #21749a, right);
+    right: -15px;
+  }
+}
+
+
+// Ribbon-3
+.ribbon-3 {
+  width: 400px + 20px;
+  height: 50px;
+  margin-left: -10px;
+  margin-right: -10px;
+  background: #efb23b;
+  &:before {
+    @include triangle(10px, darken(#efb23b,15%), up-right);
+    bottom: -10px;
+  }
+  &:after {
+    @include triangle(10px, darken(#efb23b,15%), up-left);
+    right: 0;
+    bottom: -10px;
+  }
+}
+
+// Ribbon-4
+.ribbon-4 {
+  @extend .ribbon-3;
+  &:before {
+    @include triangle(20px, transparent darken(#37b7c7, 5%), inset-right);
+    top: 20px;
+    left: -30px;
+  }
+  &:after {
+    @include triangle(20px, transparent darken(#37b7c7, 5%), inset-left);
+    top: 20px;
+    right: -30px;
+  }
+}
+.ribbon-content {
+  height: inherit;
+  margin-bottom: 0; // reset the value in [class^="ribbon-"]
+
+  background: #37b7c7;
+  z-index: 100;
+  &:before {
+    @include triangle(10px, darken(#37b7c7, 15%), up-right);
+    bottom: -10px;
+  }
+  &:after {
+    @include triangle(10px, darken(#37b7c7, 15%), up-left);
+    right: 0;
+    bottom: -10px;
+  }
+}
+

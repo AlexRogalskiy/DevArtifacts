@@ -1,0 +1,86 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="navbar(showOptions)">
+    <ul id="dropdown1" class="dropdown-content">
+        <li th:each="state : ${T(com.javabeast.domain.Language).values()}" th:value="${state}">
+            <a th:href="${#httpServletRequest.requestURL.toString()} + '?lang=' + ${state.displayName}"
+               th:inline="text">
+                <span class="flag" th:classappend="${state.flagClass}" style="float:left; margin-top:-5px;"></span>
+                &nbsp;
+                [[${state.languageName}]]
+            </a>
+        </li>
+    </ul>
+
+    <ul id="dropdown2" class="dropdown-content">
+        <li th:each="state : ${T(com.javabeast.domain.Language).values()}" th:value="${state}">
+            <a th:href="${#httpServletRequest.requestURL.toString()} + '?lang=' + ${state.displayName}"
+               th:inline="text">
+                <span class="flag" th:classappend="${state.flagClass}" style="float:left; margin-top:-5px;"></span>
+                &nbsp;
+                [[${state.languageName}]]
+            </a>
+        </li>
+    </ul>
+    <div class="navbar">
+        <nav class="white" role="navigation">
+            <div class="nav-wrapper container">
+                <a id="logo-container" href="/" class="brand-logo hide-on-med-and-down">BT</a>
+                <a id="logo-container2" href="/" class="brand-logo hide-on-large-only left">BT</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#features" th:text="#{home.features.button.text}">Placeholder</a></li>
+                    <li><a href="#pricing" th:text="#{home.pricing.button.text}">Placeholder</a></li>
+                    <li><a href="/checkout" th:text="#{home.buy.button.text}">Placeholder</a></li>
+                    <li><a href="/faq" th:text="#{home.faq.button.text}">Placeholder</a></li>
+                    <li th:with="lang=${#locale}" style="min-width:170px">
+                        <a class="dropdown-button" href="#!" data-activates="dropdown1"
+                           th:inline="text">
+                        <span class="flag"
+                              th:classappend="${T(com.javabeast.domain.Language).getFlagClassFromCode(lang)}"
+                              style="float:left; margin-top:15px;"></span>
+                            &nbsp;
+                            [[${T(com.javabeast.domain.Language).getNameFromCode(lang)}]]
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                    <li><a href="/login" th:text="#{home.login.button.text}">Placeholder</a></li>
+                </ul>
+
+                <ul class="right hide-on-large-only">
+                    <li th:with="lang=${#locale}" style="min-width:170px">
+                        <a class="dropdown-button" href="#!" data-activates="dropdown2"
+                           th:inline="text">
+                        <span class="flag"
+                              th:classappend="${T(com.javabeast.domain.Language).getFlagClassFromCode(lang)}"
+                              style="float:left; margin-top:15px;"></span>
+                            &nbsp;
+                            [[${T(com.javabeast.domain.Language).getNameFromCode(lang)}]]
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+
+
+    <div th:if="${showOptions}" th:remove="tag">
+        <div class="container hide-on-large-only" style="margin-top:20px">
+            <div class="row black-text">
+                <div class="col s4 m2 offset-m3 center">
+                    <a href="#features" class="black-text" style="font-size:1rem"
+                       th:text="#{home.features.button.text}">Placeholder</a>
+                </div>
+                <div class="col s4 m2 center">
+                    <a href="#pricing" class="black-text" th:text="#{home.pricing.button.text}">Placeholder</a>
+                </div>
+                <div class="col s4 m2 center">
+                    <a href="/login" class="black-text" th:text="#{home.login.button.text}">Placeholder</a>
+                    <!--<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" scope="public_profile,email" onlogin="checkLoginState();"-->
+                         <!--data-auto-logout-link="true" ></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

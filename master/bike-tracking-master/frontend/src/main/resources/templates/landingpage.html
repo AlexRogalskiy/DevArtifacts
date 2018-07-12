@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${page.title}"></title>
+    <meta name="description" th:content="${page.metaDescription}"/>
+    <div th:include="fragments/includes :: includes(false)" th:remove="tag"></div>
+</head>
+
+<div th:include="fragments/navbar :: navbar(false)" th:remove="tag"></div>
+
+<body>
+
+<main>
+    <div th:include="fragments/hero :: hero(${page.hero1},${page.hero2},${page.heroBlurb},${page.buyButton},${page.moreButton},${page.heroImage})"></div>
+
+    <div class="divider"></div>
+
+    <div th:include="fragments/usp :: usp"></div>
+
+    <div class="divider"></div>
+
+    <div th:include="fragments/featurecontent :: featurecontent(${page.feature1header}, ${page.feature1body},${page.feature2header},${page.feature2body})"></div>
+
+    <div class="divider"></div>
+
+    <div th:include="fragments/whoweare :: whoweare(#{whoweare.title1},#{whoweare.body1})"></div>
+
+    <div class="divider"></div>
+
+    <div th:include="fragments/howitworks :: howitworks"></div>
+
+    <div class="divider"></div>
+
+    <div th:include="fragments/features :: features"></div>
+
+    <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div class="row center">
+                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material
+                        Design</h5>
+                </div>
+            </div>
+        </div>
+        <div class="parallax"><img src="/images/bike-test-min.jpg" alt="Unsplashed background img 2"/></div>
+    </div>
+
+    <div th:include="fragments/pricing :: pricing"></div>
+
+
+</main>
+
+<div th:include="fragments/footer :: footer"></div>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/javascripts/materialize.js"></script>
+<script src="/javascripts/init.js"></script>
+<div class="hiddendiv common"></div>
+</body>
+
+</html>

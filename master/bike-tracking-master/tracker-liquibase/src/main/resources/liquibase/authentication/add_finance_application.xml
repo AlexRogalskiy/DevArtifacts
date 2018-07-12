@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="jeffreya" id="add-finance-website-application">
+        <insert tableName="application">
+            <column name="application_id" value="3"/>
+            <column name="name" value="finance-website"/>
+            <column name="hash" value="$2a$12$YzUVSaB7jBQ.CgZxHNrBtO9hK3X9OF6foHUxhU3bhNEgtm88yAtUS"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="jeffreya" id="3-2">
+        <insert tableName="user_app">
+            <column name="user_app_id" value="4"/>
+            <column name="user_id" value="1"/>
+            <column name="application_id" value="3"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

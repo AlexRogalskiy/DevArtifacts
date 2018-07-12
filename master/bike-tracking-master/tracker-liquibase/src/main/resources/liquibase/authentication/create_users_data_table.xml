@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="mlishman" id="create-users-data-table">
+        <createTable schemaName="public" tableName="users_data">
+            <column autoIncrement="true" name="user_data_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="users_data_pkey"/>
+            </column>
+            <column name="user_id" type="BIGINT"/>
+            <column name="nino" type="VARCHAR(9)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mlishman" id="users-data-fk1">
+        <addForeignKeyConstraint constraintName="users-data-fk1"
+                                 baseColumnNames="user_id"
+                                 baseTableName="users_data"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title th:text="#{home.title}"></title>
+
+    <div th:include="fragments/includes :: includes(false)" th:Remove="tag"></div>
+
+    <script src="https://js.stripe.com/v2/"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+
+</head>
+<body>
+<div th:include="fragments/navbar :: navbar(false)" th:remove="tag"></div>
+<main>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 l8 push-l2 center">&nbsp;</div>
+            <div class="col s12 l8 push-l2 center">
+                <a href="/checkout" class="breadcrumb black-text">Order</a>
+                <a href="#!" class="breadcrumb black-text">Payment</a>
+                <a href="#!" class="breadcrumb grey-text text-lighten-2">Confirm</a>
+            </div>
+
+            <form id="payment-form" class="col s12 l8 push-l2" th:object="${websitePayment}" th:action="@{/payment}"
+                  method="post"
+                  action="#">
+                <div class="flow-text">Account</div>
+                <p class="red-text text-lighten-3"
+                   th:if="${#fields.hasErrors('email')}"
+                   th:errors="*{email}">
+                    Placeholder
+                </p>
+                <div class="input-field">
+                    <input id="email" type="email" class="validate" th:field="*{email}"/>
+                    <label for="email">
+                        <span class="red-text">* </span>Email
+                    </label>
+                </div>
+
+                <div class="flow-text">Address</div>
+                <div class="row">
+
+                    <div class="col s12 center">
+                        <p class="red-text text-lighten-3 "
+                           th:if="${#fields.hasErrors('firstName')}"
+                           th:errors="*{firstName}">
+                            Placeholder
+                        </p>
+                        <p class="red-text text-lighten-3"
+                           th:if="${#fields.hasErrors('lastName')}"
+                           th:errors="*{lastName}">
+                            Placeholder
+                        </p>
+
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input id="first_name" type="text" class="validate" th:field="*{firstName}"/>
+                        <label for="first_name"> <span class="red-text">* </span>First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate" th:field="*{lastName}"/>
+                        <label for="last_name"> <span class="red-text">* </span>Last Name</label>
+                    </div>
+                </div>
+                <p class="red-text text-lighten-3"
+                   th:if="${#fields.hasErrors('buildingName')}"
+                   th:errors="*{buildingName}">
+                    Placeholder
+                </p>
+
+                <div class="input-field">
+                    <input id="buildingName" type="text" class="validate" th:field="*{buildingName}"/>
+                    <label for="buildingName"> <span class="red-text">* </span>Building Name / Number</label>
+                </div>
+                <p class="red-text text-lighten-3"
+                   th:if="${#fields.hasErrors('street')}"
+                   th:errors="*{street}">
+                    Placeholder
+                </p>
+
+                <div class="input-field">
+                    <input id="street" type="text" class="validate" th:field="*{street}"/>
+                    <label for="street"><span class="red-text">* </span>Street</label>
+                </div>
+                <div class="input-field">
+                    <input id="city" type="text" class="validate" th:field="*{city}"/>
+                    <label for="city">City</label>
+                </div>
+                <div class="input-field">
+                    <input id="country" type="text" class="validate" th:field="*{country}"/>
+                    <label for="country">Country</label>
+                </div>
+                <p class="red-text text-lighten-3"
+                   th:if="${#fields.hasErrors('postcode')}"
+                   th:errors="*{postcode}">
+                    Placeholder
+                </p>
+                <div class="input-field">
+                    <input id="postcode" type="text" class="validate" th:field="*{postcode}"/>
+                    <label for="postcode"><span class="red-text">* </span>Postcode</label>
+                </div>
+
+                <input type="hidden" name="paymentToken" id="paymentToken" th:field="*{paymentToken}"/>
+
+                <div class="form-row">
+                    <div class="flow-text"> Credit or debit card &nbsp;</div>
+                    <div id="card-element">
+                        <!-- a Stripe Element will be inserted here. -->
+                    </div>
+
+                    <!-- Used to display Element errors -->
+                    <div id="card-errors"></div>
+                </div>
+
+                <h4 class="center flow-text">Total Cost</h4>
+                <h4 class="center flow-text grey-text lighten-3" th:text="*{price}">Placeholder</h4>
+                <div class="center">
+                    <button class="waves-effect waves-light btn blue" type="submit">
+                        Pay Now
+                    </button>
+                </div>
+
+                <div class="center">&nbsp;</div>
+                <div class="center">&nbsp;</div>
+                <div class="center">&nbsp;</div>
+
+                <div class="center grey-text lighten 3"><p class="center">We endeavour to ensure all bike tracker
+                    transactions are secure, always look for the green padlock at the top of the screen.</p></div>
+                <div class="center">
+                    <img src="/images/powered_by_stripe.png"/>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+
+</main>
+
+
+<div th:include="fragments/scripts :: scripts" th:remove="tag"></div>
+
+
+<script>
+// <![CDATA[
+    var stripe = Stripe('pk_test_7TqxylgxM9xZe6rTsc75gBD3');
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+var style = {
+  base: {
+    // Add your base input styles here. For example:
+    fontSize: '16px',
+    lineHeight: '24px'
+  }
+};
+
+// Create an instance of the card Element
+var card = elements.create('card', {style: style, hidePostalCode:true});
+
+// Add an instance of the card Element into the `card-element` <div>
+card.mount('#card-element');
+
+card.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+// Create a token or display an error the form is submitted.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server
+      stripeTokenHandler(result.token);
+    }
+  });
+});
+
+function stripeTokenHandler(token) {
+  // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('payment-form');
+  form.paymentToken.value = token.id;
+
+  <!--var hiddenInput = document.createElement('paymentToken');-->
+  <!--hiddenInput.setAttribute('type', 'hidden');-->
+  <!--hiddenInput.setAttribute('name', 'stripeToken');-->
+  <!--hiddenInput.setAttribute('id', token.id);-->
+  <!--form.appendChild(hiddenInput);-->
+
+
+  // Submit the form
+  form.submit();
+}
+// ]]>
+
+
+
+
+</script>
+</body>
+</html>

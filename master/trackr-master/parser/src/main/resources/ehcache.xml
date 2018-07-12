@@ -1,0 +1,25 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ehcache.xsd"
+         updateCheck="true" monitoring="autodetect" dynamicConfig="true">
+
+    <cache name="geocodedLocations" maxEntriesLocalHeap="10000" maxEntriesLocalDisk="1000" diskSpoolBufferSizeMB="20"
+           eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="10000" memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
+    <diskStore path="java.io.tmpdir"/>
+
+    <cache name="latestPosition" maxEntriesLocalHeap="1000" maxEntriesLocalDisk="10" diskSpoolBufferSizeMB="20"
+           eternal="false" timeToIdleSeconds="60" timeToLiveSeconds="60" memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
+    <cache name="startEndJourneys" maxEntriesLocalHeap="1000" maxEntriesLocalDisk="10" diskSpoolBufferSizeMB="20"
+           eternal="false" timeToIdleSeconds="180" timeToLiveSeconds="300" memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
+
+</ehcache>

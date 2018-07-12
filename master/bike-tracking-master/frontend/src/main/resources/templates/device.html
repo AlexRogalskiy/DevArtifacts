@@ -1,0 +1,131 @@
+<html ng-app="main" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" href="/stylesheets/leaflet.css"/>
+    <div th:include="fragments/includes :: includes(false)" th:remove="tag"></div>
+</head>
+<body style="padding: 0px;">
+<div>
+    <nav>
+        <div class="nav-wrapper white">
+            <a href="#" class="brand-logo" th:text="${imei}"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html">Sass</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m10 l12 offset-m1">
+            </div>
+            <div class="col s12 m10 l12 offset-m1">
+                <map-directive class="z-depth-2"></map-directive>
+            </div>
+            <div class="col s12 m10 l12 offset-m1 center">
+                <p> History</p>
+                <div class="row">
+                    <!--<div class="col s12 m6 l6"><input placeholder="FromDate"/></div>-->
+                    <!--<div class="col s12 m6 l6"><input placeholder="ToDate"/></div>-->
+                    <div class="col s12 center">
+
+
+                        <div class="card yellow lighten-4">
+                            <div class="card-content black-text">
+                                <span class="card-title center">Alarm - Enabled</span>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <p>Alarm enabled at 18.15 by user device</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card green lighten-4">
+                            <div class="card-content black-text">
+                                <span class="card-title center">Journey Complete</span>
+                                <div class="row">
+                                    <div class="col s6">Started at 17.15 from Inner Ring Road Leeds England LS2 8BQ
+                                    </div>
+                                    <div class="col s6">Finished at 18.15 from Inner Ring Road Leeds England LS2 8BQ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card yellow lighten-4">
+                            <div class="card-content black-text">
+                                <span class="card-title center">Alarm - Disabled</span>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <p>Alarm disabled at 17.15 by user schedule</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card red lighten-3">
+                            <div class="card-content black-text">
+                                <span class="card-title center">Journey Complete - Unauthorized</span>
+                                <div class="row">
+                                    <div class="col s6">Started at 14.15 from Inner Ring Road Leeds England LS2 8BQ
+                                    </div>
+                                    <div class="col s6">Finished at 15.15 from Inner Ring Road Leeds England LS2 8BQ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card yellow lighten-4">
+                            <div class="card-content black-text">
+                                <span class="card-title center">Alarm - Enabled</span>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <p>Alarm enabled at 15.15 by user schedule</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card green lighten-4">
+                            <div class="card-content black-text">
+                                <span class="card-title center">Journey Complete</span>
+                                <div class="row">
+                                    <div class="col s6">Started at 17.15 from Inner Ring Road Leeds England LS2 8BQ
+                                    </div>
+                                    <div class="col s6">Finished at 18.15 from Inner Ring Road Leeds England LS2 8BQ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card green lighten-4">
+                            <div class="card-content black-text">
+                                <span class="card-title center">Journey Complete</span>
+                                <div class="row">
+                                    <div class="col s6">Started at 17.15 from Inner Ring Road Leeds England LS2 8BQ
+                                    </div>
+                                    <div class="col s6">Finished at 18.15 from Inner Ring Road Leeds England LS2 8BQ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="/javascripts/angular/angular.js"></script>
+<script src="/javascripts/angular/angular-leaflet-directive.js"></script>
+<script src="/javascripts/leaflet.js"></script>
+<script src="/javascripts/angular/app.js"></script>
+<script src="/javascripts/angular/bike-location.js"></script>
+
+<div th:include="fragments/scripts :: scripts"></div>
+</body>
+</html>

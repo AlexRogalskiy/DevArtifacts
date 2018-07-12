@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="mlishman" id="users-primary-key-seq">
+        <sql dbms="postgresql">ALTER SEQUENCE application_application_id_seq RESTART WITH 4;
+        </sql>
+    </changeSet>
+
+    <changeSet author="mlishman" id="application-primary-key-seq">
+        <sql dbms="postgresql">ALTER SEQUENCE users_user_id_seq RESTART WITH 4;
+        </sql>
+    </changeSet>
+
+    <changeSet author="mlishman" id="user-app-primary-key-seq">
+        <sql dbms="postgresql">ALTER SEQUENCE user_app_user_app_id_seq RESTART WITH 5;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

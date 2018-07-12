@@ -1,0 +1,217 @@
+/* -------------------------------------
+ * For horizontal version, set the
+ * $vertical variable to false
+ * ------------------------------------- */
+/* -------------------------------------
+ * General Style
+ * ------------------------------------- */
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+/* line 20, ../sass/style.scss */
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  font-size: 100%;
+  font-family: "Noto Sans", sans-serif;
+  color: #eee9dc;
+  background: #48b379;
+}
+
+/* line 36, ../sass/style.scss */
+h2 {
+  margin: 3em 0 0 0;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------
+ * timeline
+ * ------------------------------------- */
+/* line 47, ../sass/style.scss */
+#timeline {
+  list-style: none;
+  margin: 50px 0 30px 120px;
+  padding-left: 30px;
+  border-left: 8px solid #eee9dc;
+}
+/* line 63, ../sass/style.scss */
+#timeline li {
+  margin: 40px 0;
+  position: relative;
+}
+/* line 78, ../sass/style.scss */
+#timeline p {
+  margin: 0 0 15px;
+}
+
+/* line 83, ../sass/style.scss */
+.date {
+  margin-top: -10px;
+  top: 50%;
+  left: -158px;
+  font-size: 0.95em;
+  line-height: 20px;
+  position: absolute;
+}
+
+/* line 101, ../sass/style.scss */
+.circle {
+  margin-top: -10px;
+  top: 50%;
+  left: -44px;
+  width: 10px;
+  height: 10px;
+  background: #48b379;
+  border: 5px solid #eee9dc;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+}
+
+/* line 123, ../sass/style.scss */
+.content {
+  max-height: 20px;
+  padding: 50px 20px 0;
+  border-color: transparent;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0.5em;
+  position: relative;
+}
+/* line 143, ../sass/style.scss */
+.content:before, .content:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: solid transparent;
+  position: absolute;
+  pointer-events: none;
+  right: 100%;
+}
+/* line 159, ../sass/style.scss */
+.content:before {
+  border-right-color: inherit;
+  border-width: 20px;
+  top: 50%;
+  margin-top: -20px;
+}
+/* line 174, ../sass/style.scss */
+.content:after {
+  border-right-color: #48b379;
+  border-width: 17px;
+  top: 50%;
+  margin-top: -17px;
+}
+/* line 189, ../sass/style.scss */
+.content p {
+  max-height: 0;
+  color: transparent;
+  text-align: justify;
+  word-break: break-word;
+  hyphens: auto;
+  overflow: hidden;
+}
+
+/* line 199, ../sass/style.scss */
+label {
+  font-size: 1.3em;
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+  top: 20px;
+  transition: transform 0.2s linear;
+}
+
+/* line 220, ../sass/style.scss */
+.radio {
+  display: none;
+}
+
+/* line 226, ../sass/style.scss */
+.radio:checked + .relative label {
+  cursor: auto;
+  transform: translateX(42px);
+}
+/* line 238, ../sass/style.scss */
+.radio:checked + .relative .circle {
+  background: #f98262;
+}
+/* line 243, ../sass/style.scss */
+.radio:checked ~ .content {
+  max-height: 180px;
+  border-color: #eee9dc;
+  margin-right: 20px;
+  transform: translateX(20px);
+  transition: max-height 0.4s linear, border-color 0.5s linear, transform 0.2s linear;
+}
+/* line 256, ../sass/style.scss */
+.radio:checked ~ .content p {
+  max-height: 200px;
+  color: #eee9dc;
+  transition: color 0.3s linear 0.3s;
+}
+
+/* -------------------------------------
+ * mobile phones (vertical version only)
+ * ------------------------------------- */
+@media screen and (max-width: 767px) {
+  /* line 269, ../sass/style.scss */
+  #timeline {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+  }
+  /* line 274, ../sass/style.scss */
+  #timeline li {
+    margin: 50px 0;
+  }
+
+  /* line 279, ../sass/style.scss */
+  label {
+    width: 85%;
+    font-size: 1.1em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    transform: translateX(18px);
+  }
+
+  /* line 289, ../sass/style.scss */
+  .content {
+    padding-top: 45px;
+    border-color: #eee9dc;
+  }
+  /* line 293, ../sass/style.scss */
+  .content:before, .content:after {
+    border: solid transparent;
+    bottom: 100%;
+  }
+  /* line 298, ../sass/style.scss */
+  .content:before {
+    border-bottom-color: inherit;
+    border-width: 17px;
+    top: -16px;
+    left: 50px;
+    margin-left: -17px;
+  }
+  /* line 306, ../sass/style.scss */
+  .content:after {
+    border-bottom-color: #48b379;
+    border-width: 20px;
+    top: -20px;
+    left: 50px;
+    margin-left: -20px;
+  }
+  /* line 314, ../sass/style.scss */
+  .content p {
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  /* line 320, ../sass/style.scss */
+  .circle, .date {
+    display: none;
+  }
+}

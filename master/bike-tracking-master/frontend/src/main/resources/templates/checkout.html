@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title th:text="#{home.title}"></title>
+
+    <div th:include="fragments/includes :: includes(false)" th:Remove="tag"></div>
+
+</head>
+<body ng-app="main">
+<div th:include="fragments/navbar :: navbar(false)" th:remove="tag"></div>
+<main ng-controller="PriceCalculatorController">
+
+    <div class="container">
+        <form th:object="${websiteOrder}" th:action="@{/checkout}" method="post" action="#">
+
+            <div class="row">
+                <div class="col s12 l8 push-l2 center">&nbsp;</div>
+                <div class="col s12 l8 push-l2 center">
+                    <a href="/checkout" class="breadcrumb black-text">Order</a>
+                    <a href="/payment" class="breadcrumb grey-text text-lighten-2">Payment</a>
+                    <a href="#!" class="breadcrumb grey-text text-lighten-2">Confirm</a>
+                </div>
+
+                <div class="col s12 l8 push-l2 red-text text-lighten-3 flow-text"
+                     th:if="${#fields.hasErrors('numberOfTrackers')}"
+                     th:errors="*{numberOfTrackers}">
+                    Placeholder
+                </div>
+
+                <div class="input-field col s12 l8 push-l2">
+                    <input value="1" id="count" type="number" class="validate" th:field="*{numberOfTrackers}"
+                           ng-model="numberOfTrackers"/>
+                    <label>How many trackers?</label>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="input-field col s12 l8 push-l2">
+                    <select th:field="*{subscriptionType}" ng-model="subscriptionType">
+                        <option th:each="subscriptionType : ${T(com.javabeast.domain.SubscriptionType).values()}"
+                                th:value="${subscriptionType}" th:text="${subscriptionType.subscriptionType}">
+                            Placeholder
+                        </option>
+                    </select>
+                    <label>Billing frequency</label>
+                </div>
+
+                <div class="col s12 l8 push-l2">
+                    <div class="card white lighten-2 z-depth-3">
+                        <div class="card-content">
+                            <table class="center">
+                                <thead>
+                                <tr>
+                                    <th class="center">Product</th>
+                                    <th class="center">Quantity</th>
+                                    <th class="center">Unit</th>
+                                    <th class="center">Cost</th>
+                                </tr>
+                                </thead>
+                                <tbody class="grey-text">
+                                <tr>
+                                    <td class="center">Tracker</td>
+                                    <td class="center">{{numberOfTrackers}}</td>
+                                    <td class="center">£199</td>
+                                    <td class="center">£{{numberOfTrackers * 199}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="center">{{getBillingType()}}</td>
+                                    <td class="center">{{numberOfTrackers}}</td>
+                                    <td class="center">£{{getBillingPrice()}}</td>
+                                    <td class="center">£{{getBillingTotal()}}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <div class="row"></div>
+                            <h4 class="center flow-text">Total Cost Today</h4>
+                            <h4 class="center flow-text grey-text lighten-3">£{{price}}</h4>
+                            <div class="center">
+                                <button class="waves-effect waves-light btn blue" type="submit">
+                                    Show Payment Screen
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--<div class="card white lighten-2 z-depth-4">-->
+                    <!--<div class="card-content">-->
+                    <!--<h5 class="center flow-text">Got a discount code?</h5>-->
+                    <!--<div class="input-field">-->
+                    <!--<input id="discountCode" type="text" class="validate" th:field="*{discountCode}"-->
+                    <!--ng-model="discountcode"/>-->
+                    <!--<label>Discount code</label>-->
+                    <!--</div>-->
+
+                    <!--<div class="center">-->
+                    <!--<button class="waves-effect waves-light btn blue">-->
+                    <!--Apply Discount Code-->
+                    <!--</button>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+
+
+<div th:include="fragments/scripts :: scripts" th:remove="tag"></div>
+
+<script src="/javascripts/angular/angular.js"></script>
+<script src="/javascripts/angular/angular-leaflet-directive.js"></script>
+<script src="/javascripts/angular/app.js"></script>
+<script src="/javascripts/angular/checkout_price_calculator.js"></script>
+</body>
+</html>

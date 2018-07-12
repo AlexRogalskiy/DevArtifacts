@@ -1,0 +1,11 @@
+<aside class="blog-sidebar">
+{{#is "post, page"}}
+  {{#get "posts" limit="3" filter="featured:true+id:-{{post.id}}"}}
+    {{> "sidebar-posts" sidebarTitle="Featured Posts" sidebarPosts=posts}}
+  {{/get}}
+{{else}}
+  {{#get "posts" limit="3" filter="featured:true+id:-[{{posts[*].id}}]"}}
+    {{> "sidebar-posts" sidebarTitle="Featured Posts" sidebarPosts=posts}}
+  {{/get}}
+{{/is}}
+</aside>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="/stylesheets/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+</head>
+
+<body class="main-background-image">
+<div class="container" style="min-height:800px">
+
+    <div class="row">
+        <form class="col s12 m6 l4 offset-m3 offset-l4  ">
+            <div class="row">
+                <form th:action="@{/createaccount}" th:object="${newAccountDTO}" method="post">
+                    <div class="input-field col s12 center">
+                        <h4 class="white-text">Bike Tracking</h4>
+                    </div>
+                    <div class="input-field col s12 center">
+                        Create Account
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input id="icon_prefix" type="text" class="validate white-text" autocomplete='off' th:field="*{email}"/>
+                        <label for="icon_prefix">Email Address</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate white-text" autocomplete='off' th:field="*{password}"/>
+                        <label for="password">Password</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input id="password_confirm" type="password" class="validate white-text" autocomplete='off'  th:field="*{passwordConfirm}"/>
+                        <label for="password_confirm">Confirm Password</label>
+                    </div>
+
+                    <div class="col s12 center">
+                        <button class="btn waves-effect waves-light center" type="submit" name="action">Create My
+                            Account
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/javascripts/materialize.js"></script>
+<script src="/javascripts/init.js"></script>
+<div class="hiddendiv common"></div>
+</body>
+
+</html>

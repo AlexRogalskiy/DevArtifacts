@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="includes(showAlternates)">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="/stylesheets/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/stylesheets/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="stylesheets/pricing.css" media="screen"/>
+    <link type="text/css" rel="stylesheet" href="stylesheets/flags.min.css" media="screen"/>
+    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css"/>
+    <meta name="robots" content="index,follow"/>
+
+    <link th:href="${#httpServletRequest.requestURL.toString()}" rel="canonical"/>
+    <link th:href="${#httpServletRequest.requestURL.toString()}"/>
+
+    <div th:if="${showAlternates}" th:remove="tag">
+        <link rel="alternate" th:each="state : ${T(com.javabeast.domain.Language).values()}"
+              th:hreflang="${state.displayName}"
+              th:href="${#httpServletRequest.requestURL.toString()} + '?lang=' + ${state.displayName}"/>
+    </div>
+</div>
+</html>

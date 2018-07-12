@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title th:text="#{faq.title}"></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="/stylesheets/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/stylesheets/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <link type="text/css" rel="stylesheet" href="stylesheets/pricing.css" media="screen"/>
+
+
+    <link th:href="${canonical}" rel="canonical"/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="description" th:content="#{faq.meta.description}"/>
+
+
+    <meta property="og:title" th:content="#{faq.title}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" th:content="${canonical}"/>
+    <meta property="og:description" th:content="#{faq.meta.description}"/>
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:url" th:content="${canonical}"/>
+    <meta name="twitter:title" th:content="#{home.title}"/>
+    <meta name="twitter:description" th:content="#{faq.meta.description}"/>
+
+    <link th:href="${url}"/>
+
+    <link th:each="state : ${T(com.javabeast.domain.Language).values()}" th:value="${state}"
+          th:href="${url} + '?lang=' + ${state.displayName}"/>
+
+
+</head>
+<body>
+
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+
+    <li th:each="state : ${T(com.javabeast.domain.Language).values()}" th:value="${state}">
+        <a th:href="${#httpServletRequest.requestURL.toString()} + '?lang=' + ${state.displayName}"
+           th:text="${state.languageName}">Placeholder</a>
+    </li>
+
+</ul>
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="/" class="brand-logo">Bike Tracking <span class="red-text lighten-2"
+                                                                               style="font-size:x-small;">powered by hands off</span></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#">Navbar Link</a></li>
+            <li th:with="lang=${#locale}">
+                <a class="dropdown-button" href="#!" data-activates="dropdown1"
+                   th:text=" ${T(com.javabeast.domain.Language).getNameFromCode(lang)}">Dropdown
+                    <i class="material-icons right">arrow_drop_down</i></a>
+            </li>
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav">
+            <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="section row">
+        <div class="col s12 center">
+            <h5 th:text="#{faq.header}">Placeholder</h5>
+        </div>
+    </div>
+
+    <div class="section row">
+        <div class="col s12 m10 l10 offset-l1 offset-m1">
+            <div class="left">
+                <h5 class="orange-text" th:text="#{faq.question1}">Placeholder</h5>
+                <h5 class="black-text" th:text="#{faq.answer1}">Placeholder</h5>
+                <br/>
+
+                <h5 class="orange-text" th:text="#{faq.question2}">Placeholder</h5>
+                <h5 class="black-text" th:text="#{faq.answer2}">Placeholder</h5>
+                <br/>
+
+                <h5 class="orange-text" th:text="#{faq.question3}">Placeholder</h5>
+                <h5 class="black-text" th:text="#{faq.answer3}">Placeholder</h5>
+                <br/>
+
+                <h5 class="orange-text" th:text="#{faq.question4}">Placeholder</h5>
+                <h5 class="black-text" th:text="#{faq.answer4}">Placeholder</h5>
+                <br/>
+
+                <h5 class="orange-text" th:text="#{faq.question5}">Placeholder</h5>
+                <h5 class="black-text" th:text="#{faq.answer5}">Placeholder</h5>
+                <br/>
+
+                <h5 class="orange-text" th:text="#{faq.question6}">Placeholder</h5>
+                <h5 class="black-text" th:text="#{faq.answer6}">Placeholder</h5>
+                <br/>
+
+                <h5 class="orange-text" th:text="#{faq.question7}">Placeholder</h5>
+                <h5 class="black-text" th:text="#{faq.answer7}">Placeholder</h5>
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="page-footer teal">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Company Bio</h5>
+                <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's
+                    our full time job. Any amount would help support and continue development on this project and is
+                    greatly appreciated.</p>
+            </div>
+
+            <div class="col l3 s12">
+                <h5 class="white-text">Settings</h5>
+                <ul>
+                    <li><a class="white-text" href="#!">Link 1</a></li>
+                    <li><a class="white-text" href="#!">Link 2</a></li>
+                    <li><a class="white-text" href="#!">Link 3</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+
+            <div class="col l3 s12">
+                <h5 class="white-text">Connect</h5>
+                <ul>
+                    <li><a class="white-text" href="#!">Link 1</a></li>
+                    <li><a class="white-text" href="#!">Link 2</a></li>
+                    <li><a class="white-text" href="#!">Link 3</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        </div>
+    </div>
+</footer>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/javascripts/materialize.js"></script>
+<script src="/javascripts/init.js"></script>
+</body>
+</html>

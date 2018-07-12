@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title th:text="#{home.title}"></title>
+
+    <div th:include="fragments/includes :: includes(true)" th:remove="tag"></div>
+
+    <meta name="description" th:content="#{home.meta.description}"/>
+    <meta property="og:title" th:content="#{home.title}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" th:content="${canonical}"/>
+    <meta property="og:description" th:content="#{home.meta.description}"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:url" th:content="${canonical}"/>
+    <meta name="twitter:title" th:content="#{home.title}"/>
+    <meta name="twitter:description" th:content="#{home.meta.description}"/>
+</head>
+<body>
+
+<div th:include="fragments/navbar :: navbar(true)" th:remove="tag"></div>
+
+<main>
+    <div th:with="image='/images/landing-min.png'" th:remove="tag">
+        <div th:include="fragments/hero :: hero(#{home.landing.title},#{home.landing.title2},#{home.landing.blurb},#{home.landing.button.pay},#{home.landing.button.features}, ${image})"></div>
+    </div>
+    <div class="divider"></div>
+
+    <div th:include="fragments/usp :: usp" id="whoweare" name="whoweare"></div>
+
+    <div class="divider"></div>
+
+    <div th:include="fragments/whoweare :: whoweare(#{whoweare.title1},#{whoweare.body1})"></div>
+
+
+    <div th:include="fragments/howitworks :: howitworks"></div>
+
+
+    <div th:include="fragments/features :: features"></div>
+
+    <!--image divider-->
+    <!--<div class="parallax-container valign-wrapper">-->
+        <!--<div class="section no-pad-bot">-->
+            <!--<div class="container">-->
+                <!--<div class="row center">-->
+                    <!--<h5 class="header col s12 light"></h5>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="parallax"><img src="/images/14681750_10207728924918220_1613645974780228584_n.jpg" alt="Unsplashed background img 3"/></div>-->
+    <!--</div>-->
+    <!--image divider end-->
+
+    <div th:include="fragments/pricing :: pricing"></div>
+
+</main>
+
+<div th:include="fragments/footer :: footer"></div>
+<div th:include="fragments/scripts :: scripts"></div>
+
+</body>
+</html>

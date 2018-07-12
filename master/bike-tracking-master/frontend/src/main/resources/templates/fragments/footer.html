@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="footer">
+    <footer class="page-footer blue lighten-3">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="black-text center">Company Bio</h5>
+                    <p class="black-text black-text center">
+                      Bike-Tracker is a yorkshire based company, built by bikers. Our primary goal is to provide a secure product that doesn't skip a beat.
+                    </p>
+                </div>
+
+                <div class="col l3 s12">
+                    <h5 class="black-text center">Tracking</h5>
+                    <ul class="center">
+                        <li th:each="landingPage : ${landingPages}" th:value="${landingPage}">
+                            <a class="black-text black-text"
+                               th:href="${landingPage.fullUrl}"
+                               th:text="${landingPage.display}">Placeholder</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col l3 s12">
+                    <h5 class="black-text center">Connect</h5>
+                    <ul class="center">
+                        <li><a class="black-text black-text" href="https://www.linkedin.com/in/andrew-jeffrey-6591b05a/">Andrew Jeffrey</a></li>
+                        <li><a class="black-text black-text" href="#!">Nathan Hanson</a></li>
+                        <li><a class="black-text black-text" href="#!">Oliver Hanson</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright center">
+            <div class="container black-text">
+                Built by <a class="red-text " href="https://github.com/codebeast">Codebeast</a>
+            </div>
+        </div>
+    </footer>
+</div>
+</html>

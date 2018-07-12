@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Bike-Tracker Login</title>
+    <div th:include="fragments/includes :: includes(false)" th:remove="tag"></div>
+</head>
+<body>
+
+<div th:include="fragments/navbar :: navbar(false)" th:remove="tag"></div>
+
+<main>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="col s12">
+                    <form th:action="@{/login}" method="post">
+
+                        <div class="col s12 center red-text">
+                            <div th:if="${param.error}">
+                                Invalid username and password.
+                            </div>
+                            <div th:if="${param.logout}">
+                                You have been logged out.
+                            </div>
+                            <!--<div id="status"></div>-->
+
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="email_address" type="text" class="validate" name="username"/>
+                            <label for="email_address">Email Address</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate" name="password"/>
+                            <label for="password">Password</label>
+                        </div>
+
+                        <div class="col s12 center">
+                            <div>
+                                <a class="waves-effect waves-light btn blue" type="submit">Login</a>
+                            </div>
+                        </div>
+                        <div class="col s12" style="margin-top:10px">
+                            <div class="divider"></div>
+                            <a style="width:100%;margin-top:10px" class="waves-effect waves-light center flow-text">Help, I forgot my username or password.</a>
+
+                            <a href="/createaccount" style="width:100%;margin-top:10px" class="waves-effect waves-light center flow-text">
+                                Create Account</a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:include="fragments/scripts :: scripts" th:remove="tag"></div>
+
+
+</body>
+</html>
+
+

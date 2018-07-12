@@ -1,0 +1,42 @@
+#Dev environment
+version: '2'
+
+services:
+    listener:
+        image: handsoff/listen
+        ports:
+          - "5000:5000/udp"
+          - "5001:5001"
+        links:
+          - message_queue
+
+    message_queue:
+        image: handsoff/message-queue
+        ports:
+          - "5672:5672"
+          - "15672:15672"
+        volumes:
+          - /opt/data:/var/lib/rabbitmq
+
+    parser:
+        image: handsoff/parser
+        ports:
+          - "7001:7001"
+        links:
+          - message_queue
+#          - handsoff_database
+        env_file:
+          - parser-variables.env
+
+    frontend:
+        image: handsoff/frontend
+        ports:
+          - "8080:8080"
+        links:
+          - parser
+#    handsoff_database:
+#        image: handsoff/database
+#        ports:
+#          - "5432:5432"
+
+

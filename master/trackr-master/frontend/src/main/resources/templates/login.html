@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="/stylesheets/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+</head>
+
+<body class="main-background-image">
+<div class="container" style="min-height:800px">
+
+    <div class="row">
+        <form class="col s12 m6 l4 offset-m3 offset-l4  ">
+            <div class="row">
+                <form th:action="@{/login}" method="post">
+                    <div class="input-field col s12 center">
+                        <h4 class="white-text">Bike Tracking</h4>
+                    </div>
+
+                    <div class="input-field col s12 center">
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input id="icon_prefix" type="text" class="validate white-text" autocomplete='off'/>
+                        <label for="icon_prefix">Email Address</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate white-text" autocomplete='off'/>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="col s12 center">
+                        <button class="btn waves-effect waves-light center" type="submit" name="action">Login
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+
+                    <div class="col s12 center">
+                        <p class="center">I forgot my password</p>
+                    </div>
+                </form>
+                <form action="/createaccount">
+                    <div class="col s12 center">
+                        <button class="btn waves-effect waves-light center" type="submit">Create Account
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/javascripts/materialize.js"></script>
+<script src="/javascripts/init.js"></script>
+<div class="hiddendiv common"></div>
+</body>
+
+</html>
