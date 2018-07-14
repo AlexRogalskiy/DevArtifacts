@@ -1,0 +1,162 @@
+body,
+html,
+div {
+  background: #292a38;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+a {
+  -webkit-transition: color 0.5s;
+  -moz-transition: color 0.5s;
+  -o-transition: color 0.5s;
+  -ms-transition: color 0.5s;
+  transition: color 0.5s;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  top: 100px;
+  font-weight: 100;
+  display: block;
+  position: absolute;
+  z-index: 3;
+  text-decoration: none;
+  width: 200px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 30px;
+}
+a.loading {
+  color: rgba(255,255,255,0);
+}
+a.feedback {
+  z-index: 1;
+}
+a.feedback:after {
+  -webkit-transition: background 0.2s, -webkit-transform 0.2s;
+  -moz-transition: background 0.2s, -moz-transform 0.2s;
+  -o-transition: background 0.2s, -o-transform 0.2s;
+  -ms-transition: background 0.2s, -ms-transform 0.2s;
+  transition: background 0.2s, transform 0.2s;
+  border-radius: 30px;
+  position: absolute;
+  visibility: hidden;
+  width: 200px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  content: '';
+  background: rgba(255,255,255,0.9);
+}
+a:hover {
+  background: rgba(255,255,255,0.1);
+}
+svg {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  width: 240px;
+  height: 220px;
+  cursor: pointer;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+rect {
+  -webkit-transition: fill 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -moz-transition: fill 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -o-transition: fill 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -ms-transition: fill 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: fill 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  fill: #3e3f4c;
+}
+path {
+  fill: none;
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke: #1ecd97;
+  stroke-dashoffset: 0px;
+}
+path#top,
+path#bottom {
+  -webkit-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -moz-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -o-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -ms-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  stroke-dasharray: 295px 1000px;
+}
+.loading-start a {
+  color: rgba(255,255,255,0);
+}
+.loading-start a.loading {
+  color: #fff;
+}
+.loading-start a.feedback:after {
+  visibility: visible;
+  background: rgba(255,255,255,0);
+  -webkit-transform: scale(1.5, 2);
+  -moz-transform: scale(1.5, 2);
+  -o-transform: scale(1.5, 2);
+  -ms-transform: scale(1.5, 2);
+  transform: scale(1.5, 2);
+}
+.loading-start #top,
+.loading-start #bottom {
+  -webkit-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25);
+  -moz-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25);
+  -o-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25);
+  -ms-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25);
+  transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25);
+  stroke-dasharray: 10px 1000px;
+}
+.loading-progress #top,
+.loading-progress #bottom {
+  -webkit-transition: stroke-dashoffset 1s linear, stroke-dasharray 1s linear;
+  -moz-transition: stroke-dashoffset 1s linear, stroke-dasharray 1s linear;
+  -o-transition: stroke-dashoffset 1s linear, stroke-dasharray 1s linear;
+  -ms-transition: stroke-dashoffset 1s linear, stroke-dasharray 1s linear;
+  transition: stroke-dashoffset 1s linear, stroke-dasharray 1s linear;
+  stroke-dasharray: 10px 1000px;
+  stroke-dashoffset: -150px;
+}
+.loading-end a.loading {
+  color: rgba(255,255,255,0);
+}
+.loading-end #top,
+.loading-end #bottom {
+  stroke: #f5f6f7;
+}
+.loading-end #top {
+  -webkit-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -moz-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -o-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -ms-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  stroke-dasharray: 30px 1000px;
+  stroke-dashoffset: -518px;
+}
+.loading-end #bottom {
+  -webkit-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -moz-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -o-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -ms-transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25), stroke 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  stroke-dasharray: 10px 1000px;
+  stroke-dashoffset: -490px;
+}
+.loading-end rect {
+  fill: #1ecd97 !important;
+}

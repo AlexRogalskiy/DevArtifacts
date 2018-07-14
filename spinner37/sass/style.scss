@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: #43AD65;
+}
+
+body, .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 410px;
+  height: 310px;
+  zoom: 2;
+}
+
+.group {
+  animation: disappear 5s cubic-bezier(0.65, 0.1, 0, 1.2) infinite;
+  animation-fill-mode: both;
+}
+
+.oval {
+  stroke-dasharray: 100;
+  animation: ovalStroke 5s cubic-bezier(0.65, 0.1, 0, 1.2) infinite,
+    rotate 5s cubic-bezier(0.2, 0.1, 0, 1.2) infinite;
+  transform-origin: center;;
+}
+
+.dashes {
+  stroke-dasharray: 40;
+  stroke-dashoffset: -19;
+  animation: dashesplode 5s .25s ease infinite,
+    rotate 5s 1s cubic-bezier(0.5, 0.1, 0, 1.2) infinite;
+  transform-origin: center;
+  animation-fill-mode: both;
+}
+
+
+@keyframes ovalStroke {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  
+  33%, 100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: scale(.5) rotate(-280deg);
+  }
+  
+  33%, 100% {
+    transform: none;
+  }
+}
+
+@keyframes dashesplode {
+  0%, 20% {
+    stroke-dashoffset: -19;
+  }
+  
+  37% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  
+  54%, 100% {
+    stroke-dashoffset: 41;
+    opacity: 0;
+  }
+}
+
+@keyframes disappear {
+  from, 60% {
+    opacity: 1;
+    transform: none;
+  }
+  
+  80%, 100% {
+    opacity: 0;
+    transform: translateY(40%);
+  }
+}

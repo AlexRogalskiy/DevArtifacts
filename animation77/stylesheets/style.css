@@ -1,0 +1,71 @@
+/* line 1, ../sass/style.scss */
+html {
+  height: 100%;
+}
+
+/* line 5, ../sass/style.scss */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  background-image: linear-gradient(20deg, #095a69, #260655);
+  font-family: sans-serif;
+  color: #72daed;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* line 23, ../sass/style.scss */
+svg {
+  overflow: visible;
+  margin-bottom: 20px;
+}
+
+/* line 27, ../sass/style.scss */
+#native {
+  position: relative;
+}
+/* line 29, ../sass/style.scss */
+#native path,
+#native rect:not(#vanillaSquare),
+#native #vanillaSquare:hover {
+  fill: #ffa500;
+  transform-origin: center;
+  animation: rotate 5s linear infinite;
+}
+
+/* line 37, ../sass/style.scss */
+#triangle,
+#rectangle {
+  fill: #fa2e94;
+  position: absolute;
+}
+
+/* line 42, ../sass/style.scss */
+#square,
+#vanillaSquare {
+  cursor: pointer;
+}
+
+/* line 46, ../sass/style.scss */
+#square-dom {
+  width: 56px;
+  height: 56px;
+  background-color: yellow;
+  transform-origin: center;
+  animation: rotate 5s linear infinite;
+  margin: 50px 70px 50px 61px;
+}
+/* line 53, ../sass/style.scss */
+#square-dom ~ span {
+  color: #ffff00;
+  opacity: 0.9;
+}

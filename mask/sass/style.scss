@@ -1,0 +1,154 @@
+body {
+	background: #1b1e24;
+}
+
+ul {
+	margin:0 auto;
+	padding:0;
+	list-style:none;
+	width: 1100px;
+}
+
+ul li {
+	float:left;
+	margin:20px 25px;
+}
+
+
+.shape {
+	width: 300px;
+	height: 300px;
+	position: relative;
+}
+		
+	.shape .overlay {
+		display:block;
+		width: 310px;
+		height: 310px;
+		position: absolute;
+		top:-5px;
+		left:-5px;
+		-webkit-transform: scale(1,1);
+		-webkit-transition-timing-function:ease-out;
+		-webkit-transition-duration: 0.6s;
+		-moz-transform: scale(1,1);
+		-moz-transition-timing-function: ease-out;
+		-moz-transition-duration: 0.6s;
+		transform: scale(1,1);
+		transition-timing-function: ease-out;
+		transition-duration: 0.6s;				
+		z-index:500;
+		/* allow user to actually perform actions underneath this layer */
+		pointer-events:none; 
+		background-repeat: no-repeat;
+		outline:0;		
+	}
+
+/* different shapes */
+.shape .overlay.round {
+	background: url(http://www.queness.com/resources/html/masking-images-with-shape/round.png);		
+}
+
+.shape .overlay.hexagon {
+	background: url(http://www.queness.com/resources/html/masking-images-with-shape/hexagon.png);
+}
+
+.shape .overlay.pentagon {
+	background: url(http://www.queness.com/resources/html/masking-images-with-shape/pentagon.png);
+}			
+
+/* hover effect */
+.shape:hover .overlay {
+	-webkit-transform: scale(1.07,1.07);
+	-webkit-transition-timing-function: ease-out;
+	-webkit-transition-duration: 0.3s;
+	-moz-transform: scale(1.07,1.07);
+	-moz-transition-timing-function: ease-out;
+	-moz-transition-duration: 0.3s;
+}
+
+
+.shape:hover .bg {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+  display:block;
+}
+
+.shape:hover .details {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  opacity: 1;
+	z-index:450;
+  display:block;	
+}	
+		
+		
+
+/* content styles */
+.shape .bg, 
+.shape .details {
+	position: absolute;
+	width: 300px;
+	height:300px;
+	display:table-cell;
+	vertical-align:middle;
+	text-align:center;
+	top:0;
+	left:0;
+	opacity:0;
+	-webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;				
+	display:none;  
+}		
+
+.shape .bg {
+	background: #4b5a78;		
+}
+
+.shape .details span.heading {
+	font-family: 'Roboto Condensed', serif;		
+	font-size:30px;
+	display:block;
+	margin-top:70px;
+	color:#fff;
+	text-decoration:none;
+}
+
+.shape .details p {
+	font-family: 'Abel', sans-serif;		
+	color:#fff;
+	width: 70%;
+	font-size:14px;
+	margin:0 auto;
+}
+
+.shape a.button {
+	padding:5px 15px;
+	font-family: 'Abel', sans-serif;	
+	font-size:12px;	
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-ms-border-radius: 20px;
+	-o-border-radius: 20px;
+	border-radius: 20px;
+	background: #2f3644;
+	text-decoration:none;
+	color:#fff;
+	display:block;
+	width:50px;
+	margin:0 auto;
+	text-align:center;
+	margin-top:15px;
+}
+
+	.shape a.button:hover {
+		background: #fff;
+		color: #2f3644;				
+	}

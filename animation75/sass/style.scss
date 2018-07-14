@@ -1,0 +1,234 @@
+@import "bourbon/bourbon";
+@import "compass/css3";
+
+$green: #07190a;
+$size: 100px;
+$diametre: $size * 3;
+$atomDiametre: $diametre / 60;
+$diametre2: $size * 2.5;
+$atomDiametre2: $diametre2 / 60;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #fafafa;
+  perspective: 1000px;
+  display: flex;
+  align-items: center;
+}
+
+@include keyframes(pane) {
+  to {
+    @include transform(rotateX(-720deg) rotateY(-720deg) rotateZ(-360deg));
+  }
+}
+
+
+@include keyframes(cube) {
+  to {
+    @include transform(rotateX(720deg) rotateY(720deg) rotateZ(360deg));
+  }
+}
+
+
+@include keyframes(circle) {
+  to {
+    @include transform(rotateX(360deg) rotateY(-360deg) rotateZ(720deg));
+  }
+}
+
+
+@include keyframes(circle2) {
+  to {
+    @include transform(rotateX(-360deg) rotateY(360deg) rotateZ(-720deg));
+  }
+}
+
+
+@include keyframes(atomWrap) {
+  to {
+    @include transform(rotate(360deg));
+  }
+}
+
+
+@include keyframes(atomWrap2) {
+  to {
+    @include transform(rotate(-360deg));
+  }
+}
+
+
+.pane {
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: $diametre;
+  height: $diametre;
+
+  @include transform-style(preserve-3d);
+  @include transform(rotateX(0deg) rotateY(0deg) rotateZ(0deg));
+  @include animation(pane 15s linear infinite);
+}
+
+.cube {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: $size;
+  height: $size;
+
+  @include transform-style(preserve-3d);
+  @include transform(rotateX(0deg) rotateY(0deg) rotateZ(0deg));
+  @include transform-origin(center center ($size / 2));
+  @include animation(cube 5s linear infinite);
+
+  .side {
+    width: $size;
+    height: $size;
+    position: absolute;
+    opacity: 0.2;
+    box-shadow: inset 0 50px 50px 0 rgba(lighten(saturate($green, 100), 50), 0.5);
+
+    &:nth-of-type(1),
+    &:nth-of-type(2),
+    &:nth-of-type(3) {
+      @include background-image(linear-gradient(45deg, $green - 20, lighten(saturate($green, 50), 70)));
+    }
+
+    &:nth-of-type(4),
+    &:nth-of-type(5),
+    &:nth-of-type(6) {
+      @include background-image(linear-gradient(-45deg, $green - 20, lighten(saturate($green, 50), 70)));
+    }
+
+    &:nth-of-type(1) {
+      @include transform-origin(center top);
+      @include transform(rotateX(90deg));
+    }
+
+    &:nth-of-type(2) {
+      @include transform-origin(center bottom);
+      @include transform(rotateX(-90deg));
+    }
+
+    &:nth-of-type(3) {
+      @include transform-origin(left center);
+      @include transform(rotateY(-90deg));
+    }
+
+    &:nth-of-type(4) {
+      @include transform-origin(right center);
+      @include transform(rotateY(90deg));
+    }
+
+    &:nth-of-type(5) {
+      @include transform-origin(center center);
+      @include transform(translateZ($size));
+    }
+  }
+}
+
+.atomWrap {
+  width: $atomDiametre;
+  height: $diametre / 2;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 0;
+
+  @include transform-origin(center bottom);
+  @include animation(atomWrap 3s linear infinite);
+}
+
+.circle {
+  width: $diametre;
+  height: $diametre;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(lighten(saturate($green, 50), 10), 0.25);
+
+  @include transform-style(preserve-3d);
+  @include transform(rotateX(0deg) rotateY(0deg) rotateZ(0deg));
+  @include transform-origin(center center center);
+  @include animation(circle 10s linear infinite);
+
+  &.two {
+    @include animation(circle 20s linear infinite);
+  }
+
+  &.three {
+    @include animation(circle 40s linear infinite);
+  }
+
+  &.four,
+  &.five {
+    width: $diametre2;
+    height: $diametre2;
+
+    .atomWrap {
+      width: $atomDiametre2;
+      height: $diametre2 / 2;
+
+      @include animation(atomWrap2 6s linear infinite);
+    }
+
+    .atom {
+      width: $atomDiametre2;
+      height: $atomDiametre2;
+    }
+  }
+
+  &.four {
+    @include animation(circle2 2.5s linear infinite);
+  }
+
+  &.five {
+    @include animation(circle2 10s linear infinite);
+  }
+}
+
+.atom {
+  $atomSize: $atomDiametre;
+
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -$atomDiametre / 2;
+  width: $atomSize;
+  height: $atomSize;
+  border-radius: 50%;
+  background: pink;
+}
+
+.shadow {
+  width: $size;
+  height: $size / 2;
+  position: absolute;
+  background-color: rgba(black, 0.1);
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 50%;
+  opacity: 0.1;
+
+  @include transform(rotateX(70deg) translateY($diametre));
+}

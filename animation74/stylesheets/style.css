@@ -1,0 +1,55 @@
+/* line 1, ../sass/style.scss */
+html {
+  background-color: #303040;
+}
+
+/* line 5, ../sass/style.scss */
+div {
+  margin: 2rem auto;
+  background-color: skyBlue;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  animation: .75s bounce infinite;
+}
+
+/* line 14, ../sass/style.scss */
+html:hover div {
+  animation-duration: 4s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0.78, 0.01, 0.83, 0.67);
+    box-shadow: none;
+  }
+  25%, 45% {
+    width: 90px;
+    height: 110px;
+    box-shadow: 0 -5px 3px skyblue, 0 -6px 6px skyblue;
+  }
+  50% {
+    width: 90px;
+    height: 110px;
+    transform: translateY(350px);
+    filter: blur(2px);
+    box-shadow: none;
+  }
+  55% {
+    transform: translateY(360px);
+    width: 110px;
+    height: 90px;
+    box-shadow: -5px 0px 3px skyblue, 5px 0px 3px skyblue;
+  }
+  75% {
+    width: 90px;
+    height: 110px;
+    box-shadow: 0 5px 3px skyblue, 0 6px 6px skyblue;
+  }
+  100% {
+    transform: none;
+    animation-timing-function: ease-in;
+    box-shadow: none;
+  }
+}

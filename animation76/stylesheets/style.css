@@ -1,0 +1,75 @@
+/* line 4, ../sass/style.scss */
+html,
+body {
+  height: 100%;
+}
+
+/* line 9, ../sass/style.scss */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-image: radial-gradient(circle at left bottom, rgba(176, 41, 107, 0.35), rgba(39, 9, 24, 0.35) 28%, rgba(0, 0, 0, 0.35) 77%, rgba(0, 0, 0, 0.35) 94%, rgba(0, 0, 0, 0.35)), radial-gradient(circle at right bottom, #20173a, #161028 22%, #100b1d 48%, #000000 77%, #000000 94%, #000000);
+  padding: 0 30%;
+}
+
+/* line 31, ../sass/style.scss */
+body > div {
+  width: 45px;
+  height: 45px;
+  border-radius: 22.5px;
+  position: relative;
+  counter-increment: steps;
+}
+/* line 38, ../sass/style.scss */
+body > div::before {
+  content: '';
+  display: block;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  background-image: linear-gradient(42deg, #ff4f85, #f7b4c9);
+  transform-origin: 19.09091px;
+  animation: rotate 2s linear infinite;
+}
+/* line 51, ../sass/style.scss */
+body > div::after {
+  content: counter(steps);
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 48%;
+  left: 44%;
+  width: 40px;
+  height: 40px;
+  line-height: 42.10526px;
+  margin-left: -20px;
+  margin-top: -20px;
+  border-radius: 20px;
+  font-size: 20px;
+  text-align: center;
+  font-family: sans-serif;
+  color: #f7b4c9;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg) translateZ(0);
+  }
+}
+/* line 79, ../sass/style.scss */
+div:nth-of-type(1)::after {
+  background-color: #0E050F;
+}
+
+/* line 83, ../sass/style.scss */
+div:nth-of-type(2)::after {
+  background-color: #0F0713;
+}
+
+/* line 87, ../sass/style.scss */
+div:nth-of-type(3)::after {
+  background-color: #0E0716;
+}

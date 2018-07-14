@@ -1,0 +1,66 @@
+* { margin: 0; }
+
+html, body {
+  background-color: black;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div {
+  width: 50px;
+  height: 200px;
+  background-color: white;
+  margin: 2px;
+  border-radius: 50px;
+  transition: .3s ease;
+  
+  animation: 1s scaleWave cubic-bezier(0.65, 0.1, 0, 1.2),
+    shrinkToBall .75s cubic-bezier(0.65, 0.1, 0, 1.2),
+    wave .75s ease-in-out 20,
+    collapse .75s cubic-bezier(0.65, 0.1, 0, 1);
+  animation-fill-mode: both, forwards, forwards, forwards;
+}
+
+@for $i from 1 through 6 {
+  div:nth-child(#{$i}) {
+    $delay: $i * .075s;
+    animation-delay: $delay,
+      $delay + 1,
+      $delay + 1.4,
+      $delay + 7.5,
+      $delay + 15;
+  }
+}
+
+@keyframes scaleWave {
+  from {
+    height: 0;
+  }
+}
+
+@keyframes shrinkToBall {
+  to {
+    height: 50px;
+    transform: scale(.8);
+  }
+}
+
+@keyframes wave {
+  from, to {
+    transform: scale(.8);
+  }
+  50% {
+    transform: translateY(-50%) scale(.8);
+  }
+}
+
+@keyframes collapse {
+  to {
+    margin: -52px;
+  }
+}

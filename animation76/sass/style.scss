@@ -1,0 +1,89 @@
+// inspired by Benjamin De Cock's Dribbbox :-)
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  $color-funk-var: 0.35;
+  background-image: 
+    radial-gradient(circle at left bottom,
+    rgba(darken(#dc68a1,21%),$color-funk-var),
+    rgba(darken(#dc68a1,54%),$color-funk-var) 28%,
+    rgba(darken(#dc68a1,64%),$color-funk-var) 77%,
+    rgba(darken(#dc68a1,70%),$color-funk-var) 94%,
+    rgba(darken(#dc68a1,85%),$color-funk-var)),
+    radial-gradient(circle at right bottom,
+    darken(#412e75,16%),
+    darken(#412e75,21%) 22%,
+    darken(#412e75,24%) 48%,
+    darken(#412e75,34%) 77%,
+    darken(#412e75,40%) 94%,
+    darken(#412e75,45%));
+  padding: 0 30%;
+}
+
+body>div {
+  $w: 45px;
+  width: $w;
+  height: $w;
+  border-radius: $w/2;
+  position: relative;
+  counter-increment: steps;
+  &::before {
+    content: '';
+    $w: 42px;
+    display: block;
+    width: $w;
+    height: $w;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    background-image: linear-gradient(42deg, darken(#FFE8EF,30%), lighten(#ED5887,20%));
+    transform-origin: $w/2.2;
+    animation: rotate 2s linear infinite;
+  }
+  &::after {
+    content: counter(steps);
+    display: block;
+    position: absolute;
+    z-index: 2;
+    $w: 40px;
+    $xy: 46%;
+    top: $xy + 2;
+    left: $xy - 2;
+    width: $w;
+    height: $w;
+    line-height: $w/0.95;
+    margin-left: -$w/2;
+    margin-top: -$w/2;
+    border-radius: $w/2;
+    font-size: $w/2;
+    text-align: center;
+    font-family: sans-serif;
+    color: lighten(#ED5887,20%);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg) translateZ(0);
+ }
+}
+
+div:nth-of-type(1)::after {
+  background-color: #0E050F;
+}
+
+div:nth-of-type(2)::after {
+  background-color: #0F0713;
+}
+
+div:nth-of-type(3)::after {
+  background-color: #0E0716;
+}
