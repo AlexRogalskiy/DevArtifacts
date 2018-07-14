@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Shape Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+
+<!-- Bubbles made of SVG Gradients and SVG Masks just as experiment : ) 
+
+How bubble was made: https://codepen.io/yoksel/full/BzkyBJ
+-->
+
+<div class="demo">
+  <div class="demo__content">
+    
+    <svg class="svg svg--defs">  
+        
+        <!-- Bubble transparency -->
+        <radialGradient id="grad--bw"
+                        fx="25%" fy="25%">
+            <stop offset="0%" 
+                  stop-color="black"/>  
+            <stop offset="30%" 
+                  stop-color="black" 
+                  stop-opacity=".2"/>
+            <stop offset="97%" 
+                  stop-color="white" 
+                  stop-opacity=".4"/>
+            <stop offset="100%" 
+                  stop-color="black"/>
+        </radialGradient>
+        
+        <mask id="mask" maskContentUnits="objectBoundingBox">
+            <rect fill="url(#grad--bw)"
+              width="1" height="1"></rect>
+        </mask>
+        
+        <!-- Light spot -->
+        <radialGradient id="grad--spot"
+                        fx="50%" fy="20%">
+            <stop offset="10%" 
+                  stop-color="white"
+                  stop-opacity=".7"/>  
+            <stop offset="70%" 
+                  stop-color="white"
+                  stop-opacity="0"/>
+        </radialGradient>
+        
+        <!-- Top & bottom light -->
+        <radialGradient id="grad--bw-light"
+                        _fx="25%" fy="10%">
+            <stop offset="60%" 
+                  stop-color="black" 
+                  stop-opacity="0"/>
+            <stop offset="90%" 
+                  stop-color="white" 
+                  stop-opacity=".25"/>
+            <stop offset="100%" 
+                  stop-color="black"/>
+        </radialGradient>
+        
+        <mask id="mask--light-top" maskContentUnits="objectBoundingBox">
+            <rect fill="url(#grad--bw-light)"
+              width="1" height="1" transform="rotate(180, .5, .5)"></rect>
+        </mask>
+        
+        <mask id="mask--light-bottom" maskContentUnits="objectBoundingBox">
+            <rect fill="url(#grad--bw-light)"
+              width="1" height="1"></rect>
+        </mask>
+        
+        <!-- Colors of bubble -->
+        <linearGradient id="grad"
+              x1="0" y1="100%" x2="100%" y2="0">
+            <stop offset="0%" stop-color="dodgerblue" 
+                  class="stop-1"/>   
+            <stop offset="50%" stop-color="fuchsia"
+                  class="stop-2"/>
+            <stop offset="100%" stop-color="yellow" 
+                  class="stop-3"/>
+        </linearGradient> 
+        
+        <mask id="mask--collapse" maskContentUnits="objectBoundingBox">
+            <circle r=".5" cx=".5" cy=".5"
+                    class="collapse-circle"
+                    ></circle>
+        </mask>
+        
+        <symbol id="splash">
+            <g class="splash__group" 
+               fill="none"
+               stroke="white" stroke-opacity=".8">
+                <circle r="49%" 
+                    cx="50%" cy="50%"
+                    stroke-width="3%"  
+                    stroke-dasharray="1% 10%"  
+                    class="splash__circle _hidden"
+                    ></circle>
+                <circle r="44%" 
+                    cx="50%" cy="50%"
+                    stroke-width="2%"
+                    stroke-dasharray="1% 5%"                     class="splash__circle _hidden"
+                    ></circle>
+                <circle r="39%" 
+                    cx="50%" cy="50%"
+                    stroke-width="1%"  
+                    stroke-dasharray="1% 8%"  
+                    class="splash__circle _hidden"
+                    ></circle>
+                <circle r="33%" 
+                    cx="50%" cy="50%"
+                    stroke-width="3%"  
+                    stroke-dasharray="1% 6%"  
+                    class="splash__circle _hidden"
+                    ></circle>
+                <circle r="26%" 
+                    cx="50%" cy="50%"
+                    stroke-width="1%"  
+                    stroke-dasharray="1% 7%"  
+                    class="splash__circle _hidden"
+                    ></circle>
+                <circle r="18%" 
+                    cx="50%" cy="50%"
+                    stroke-width="1%"  
+                    stroke-dasharray="1% 8%"  
+                    class="splash__circle _hidden"
+                    ></circle>
+            </g>
+        </symbol>
+    </svg>
+    
+    <div class="demo__defs hidden">
+        <svg class="svg bubble" viewBox="0 0 200 200">
+            <g class="bubble__group">
+              <ellipse rx="20%" ry="10%"
+                   cx="150" cy="150"
+                   fill="url(#grad--spot)"
+                   transform="rotate(-225, 150, 150)"
+                   class="shape _hidden"    
+                   ></ellipse>     
+              <circle r="50%" 
+                    cx="50%" cy="50%"
+                    fill="aqua"
+                    mask="url(#mask--light-bottom)"
+                    class="shape _hidden"
+                    ></circle>
+              <circle r="50%" 
+                    cx="50%" cy="50%"
+                    fill="yellow"
+                    mask="url(#mask--light-top)"
+                    class="shape _hidden"
+                    ></circle>             
+              <ellipse rx="55" ry="25"
+                   cx="55" cy="55"
+                   fill="url(#grad--spot)"
+                   transform="rotate(-45, 55, 55)"
+                   class="shape _hidden"    
+                   ></ellipse> 
+              <circle r="50%" 
+                    cx="50%" cy="50%"
+                    fill="url(#grad)"
+                    mask="url(#mask)"
+                    class="shape _hidden"
+                    ></circle> 
+            </g>
+            
+            <use xlink:href="#splash" class="bubble__splash"/>
+                
+            </g>
+        </svg>
+    </div>  
+    
+    <header class="demo__title demo-title">
+        <svg class="svg demo-title__splash" viewBox="0 0 200 200">
+            <use xlink:href="#splash"/>
+        </svg>
+        
+        <h1 class="demo-title__content">
+        Bubbles
+            <span class="demo__tip">Click bubble to burst it!</span>
+        </h1>
+    </header> 
+  </div>
+
+</div>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js'></script>
+<script src="js/script.js" type="text/javascript"></script>
+
+</body>
+<!--  footer -->
+</html>
