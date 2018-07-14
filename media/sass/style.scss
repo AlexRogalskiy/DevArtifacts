@@ -1,0 +1,79 @@
+@import "compass/css3";
+
+/**
+ * Adjective dictionary says hi!
+ */
+$words: "Unconventional", "Flabbergasting", "Scintillating", "Extraordinary", "Unforgettable", "Unpredictable", "Dumbfounding", "Electrifying", "Overwhelming", "Incomparable", "Entertaining", "Magnificient", "Confounding", "Resourceful", "Interesting", "Adventurous", "Bewildering", "Astonishing", "Fascinating", "Outstanding", "Influential", "Imaginative", "Nonsensical", "Stimulating", "Exceptional", "Resplendent", "Commanding", "Determined", "Remarkable", "Incredible", "Impressive", "Perplexing", "Passionate", "Formidable", "Stupefying", "Refreshing", "Delightful", "Incredible", "Innovative", "Monumemtal", "Surprising", "Stupendous", "Staggering", "Delectable", "Astounding", "Responsive", "Courageous", "Outlandish", "Marvelous", "Whimsical", "Versatile", "Motivated", "Brilliant", "Eccentric", "Wonderful", "Excellent", "Thrilling", "Inspiring", "Exquisite", "Inventive", "Colourful", "Delicious", "Fantastic", "Audacious", "Dexterous", "Different", "Confident", "Enthused", "Peculiar", "Glorious", "Smashing", "Splendid", "Adaptive", "Daunting", "Imposing", "Striking", "Charming", "Dazzling", "Engaging", "Resolute", "Intrepid", "Dramatic", "Original", "Fearless", "Flexible", "Creative", "Animated", "Puzzling", "Shocking", "Intense", "Elastic", "Pointed", "Unusual", "Devoted", "Amusing", "Radiant", "Refined", "Natural", "Dynamic", "Radical", "Bizarre", "Curious", "Amazing", "Lively", "Modest", "Mighty", "August", "Unique", "Absurd", "Brazen", "Crafty", "Astute", "Shrewd", "Daring", "Lovely", "Nimble", "Classy", "Humble", "Limber", "Superb", "Super", "Ready", "Crazy", "Proud", "First", "Light", "Alert", "Lithe", "Fiery", "Eager", "Quick", "Risky", "Adept", "Sharp", "Smart", "Brisk", "Fresh", "Swift", "Novel", "Giant", "Funky", "Weird", "Grand", "Alive", "Happy", "Keen", "Bold", "Wild", "Spry", "Zany", "Nice", "Loud", "Lean", "Fine", "Busy", "Cool", "Rare", "Apt", "Fun", "Hot", "Big";
+
+/** 
+ * Gimme some styles
+ */
+.be {
+  display: inline-block;
+  vertical-align: middle;
+  font: 111px/1 'BebasNeueRegular', sans-serif; 
+	  text-shadow: 1px 1px 4px #333333;
+  text-transform: uppercase;
+  
+  /**
+   * One loop to rule them all
+   * One loop to find them
+   * One loop to bring them all
+   * And in the Sassy way bind them
+   */
+  $max: 1910px; /* Biggest size */
+  &:after {
+    @each $word in $words {
+      @media screen and (max-width: $max) { 
+        content: "Be #{$word}."; 
+      }
+      $max: $max - 10;
+    }
+  }
+}
+
+/**
+ * Nice font is nice
+ */
+@font-face {
+  font-family: 'BebasNeueRegular';
+  src: url('font/BebasNeue-webfont.eot');
+  src: url('https://css-tricks.com/examples/LarkQueries/font/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),  
+    url('https://css-tricks.com/examples/LarkQueries/font/BebasNeue-webfont.woff') format('woff'),
+    url('https://css-tricks.com/examples/LarkQueries/font/BebasNeue-webfont.ttf') format('truetype'),
+    url('https://css-tricks.com/examples/LarkQueries/font/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/**
+ * What a beautiful wall
+ */
+html {
+  background: 
+  url('http://arleym.com/wp-content/themes/ChapterX/images/wall_4.png')
+ ,url('http://arleym.com/wp-content/themes/ChapterX/images/wall_3.png')
+ ,url('http://arleym.com/wp-content/themes/ChapterX/images/wall_2.png')
+ ,url('http://arleym.com/wp-content/themes/ChapterX/images/wall_1.png');
+  background-attachment: fixed;
+  height: 100%;
+}
+
+/**
+ * What about a shadow?
+ */
+body {
+ background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPHN0b3Agb2Zmc2V0PSI1NCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPHN0b3Agb2Zmc2V0PSI5NyUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC45MSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDAwMDAwIiBzdG9wLW9wYWNpdHk9IjAuOTEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+');
+  background-attachment: fixed !important;
+  background-position: top;
+  background-repeat: none;
+  background-size: cover;
+  height: 100%;
+  text-align: center;
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}

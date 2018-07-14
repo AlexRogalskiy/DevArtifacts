@@ -1,0 +1,106 @@
+@import "compass/css3";
+
+*, 
+*:after, 
+*:before { 
+  box-sizing: border-box;
+}
+
+body { 
+  overflow: hidden; 
+ 	background: #c6c6c6;
+  -webkit-font-smoothing: antialiased;
+} 
+
+.deck {
+ 	position: absolute;
+  width: 10em;
+  height: 13em;
+  top: 50%;
+  left: 50%;
+  margin: -6.5em 0 0 -5em;
+  -webkit-backface-visibility: hidden; 
+  font-family: 'Ubuntu', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  text-align: center;
+}
+
+.deck__item {
+ 	width: 100%;
+  height: 100%;
+  position: absolute;
+  
+  border-radius: .3em; 
+  border: .1em solid rgba(black, .15);
+  
+  box-shadow: 
+    0 0 .3em rgba(black, .3), 
+    inset 0 6em 6em rgba(white, .1);
+  
+  transform-origin: 90% 92%;
+  transition: .3s;
+  
+  &:hover ~ .deck__item { 
+    transform: rotate(120deg);
+  }
+}
+
+.deck__item:last-of-type:after {
+ 	content: "";
+  position: absolute;
+  left: 90%;
+  top: 92%; 
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  background: white;
+  margin: -.6em 0 0 -.6em;
+  box-shadow:
+    inset 0 1px 1px white,
+    inset 0 -.3em .2em #dddcdb,
+    0 0 .6em rgba(black, .2);
+}
+
+.deck__item:last-of-type:before {
+ 	content: "";
+  position: absolute;
+  right: .4em; 
+  bottom: .9em;
+  width: 1.1em;
+  height: .15em;
+  background: silver;
+  background: rgba(black, .1); 
+  z-index: 2;
+}
+
+.deck__link {
+  text-decoration: none;
+  display: block;
+  color: white;
+  color: rgba(white, .8);
+}
+
+.deck__icon {
+  font-family: 'FontAwesome', sans-serif;
+  font-size: 4em;
+  color: black;
+  color: rgba(black, .6);
+  display: block;
+  margin: .5em auto;
+}
+
+$list: 
+  facebook   #3b5998, 
+  github     #4183c4, 
+  twitter    #00a0d1, 
+  linkedin   #0e76a8, 
+  pinterest  #910101, 
+  googleplus #db4a39;
+
+$deg: -20;
+@each $item in $list {
+  .deck__item--#{nth($item, 1)} {
+    background:  nth($item, 2);
+    transform: rotate(#{$deg}deg);
+  }
+  $deg: $deg + 10;
+}
