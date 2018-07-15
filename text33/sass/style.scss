@@ -1,0 +1,49 @@
+body {
+  max-width: 800px;
+  margin: 3em auto;
+}
+h1:not(:nth-of-type(1)) {
+	margin-top: 2em;
+}
+
+h1:nth-of-type(1) {
+  display: flex;
+  align-items: center;
+}
+h1:nth-of-type(1)::after {
+  content: '';
+  flex: 1 0 auto;
+  height: 2px;
+  margin-left: .5em;
+  background: #000;
+}
+
+h1:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+}
+h1:nth-of-type(2)::before {
+  content: '';
+  flex: 1 0 auto;
+  height: 2px;
+  margin-right: .5em;
+  background: #000;
+}
+
+h1:nth-of-type(3) {
+  display: flex;
+  align-items: center;
+}
+h1:nth-of-type(3)::before,
+h1:nth-of-type(3)::after {
+  content: '';
+  flex: 1 0 auto;
+  height: 2px;
+  background: #000;
+}
+h1:nth-of-type(3)::before {
+  margin-right: .5em;
+}
+h1:nth-of-type(3)::after {
+  margin-left: .5em;
+}

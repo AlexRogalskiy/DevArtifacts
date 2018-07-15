@@ -1,0 +1,116 @@
+body {
+	background-color: #f0e9d0;
+}
+
+#cofee {
+	div {
+		position: relative;
+	}
+	@material: #fbfbfb;
+	@cofee: #d2a579;
+	width: 50vw;
+	height: 50vw;
+	.center();
+	.plate {
+		.round();
+		.dropshadow();
+		.full();
+		div {
+			background-color: @material;
+			.round();
+			&.outer {
+				.full();
+			}
+			&.inner {
+				width: 50%;
+				height: 50%;
+				border: 12px solid darken(@material, 3%);
+				.center();
+			}
+		}
+	}
+	.cup {
+		.center();
+		width: 45%;
+		height: 45%;
+		.grab {
+			position: absolute;
+			width: 20%;
+			height: 15%;
+			right: -15%;
+			top: 50%;
+			transform: translateY(-50%);
+			background-color: @material;
+			border-radius: 20%;
+			box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.2);
+		}
+		.content {
+			animation: spin 24s linear infinite;
+			.round();
+			width: 85%;
+			height: 85%;
+			.center();
+			background-color: @cofee;
+			.bubble {
+				background-color: lighten(@cofee, 10%);
+				position: relative;
+				.round();
+				&:nth-child(1) {
+					left: 50%;
+					top: 10%;
+					width: 30%;
+					height: 30%;
+				}
+				&:nth-child(2) {
+					left: 50%;
+					top: 40%;
+					width: 25%;
+					height: 25%;
+				}
+				&:nth-child(3) {
+					left: 20%;
+					top: -5%;
+					width: 20%;
+					height: 20%;
+				}
+			}
+		}
+		.border {
+			width: ~"calc(100% - 20px)";
+			height: ~"calc(100% - 20px)";
+			.round();
+			border: 10px solid @material;
+			.dropshadow();
+		}
+	}
+}
+
+//Mixins
+.round() {
+	border-radius: 50%;
+}
+
+.full() {
+	width: 100%;
+	height: 100%;
+}
+
+.center() {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.dropshadow() {
+	box-shadow: 10px 5px 30px rgba(0, 0, 0, 0.333);
+}
+
+@keyframes spin {
+	from {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	to {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}

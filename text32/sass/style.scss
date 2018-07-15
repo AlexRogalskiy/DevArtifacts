@@ -1,0 +1,32 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+ul {
+  margin: 0;
+  list-style: none;
+  font-size: 4vw;
+  transform-style: preserve-3d;
+  animation: three-dimensions-circle 30s linear infinite;
+}
+li {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+@for $i from 1 through 12 {
+  li:nth-child(#{$i}) {
+    transform: translate(-50%, -50%) rotate(#{$i * 30 - 30}deg) translateY(-260px) rotateX(90deg);
+  }
+}
+@keyframes three-dimensions-circle {
+  0% {
+    transform: rotateX(-100deg) rotate(0);
+  }
+  100% {
+    transform: rotateX(-100deg) rotate(-360deg);
+  }
+}

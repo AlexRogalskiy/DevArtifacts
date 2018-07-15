@@ -1,0 +1,79 @@
+/* line 1, ../sass/style.scss */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 9, ../sass/style.scss */
+ul {
+  list-style: none;
+}
+/* line 11, ../sass/style.scss */
+ul li {
+  display: inline-block;
+  margin: 2em;
+}
+
+/* line 16, ../sass/style.scss */
+.card {
+  perspective: 800px;
+}
+/* line 18, ../sass/style.scss */
+.card-inner {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border: 2px solid #000;
+  transform-style: preserve-3d;
+  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+/* line 26, ../sass/style.scss */
+.card .front,
+.card .back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+/* line 38, ../sass/style.scss */
+.card .front {
+  position: absolute;
+  backface-visibility: hidden;
+}
+/* line 42, ../sass/style.scss */
+.card .back {
+  transform: rotateY(180deg);
+}
+/* line 46, ../sass/style.scss */
+.card01:hover .card-inner {
+  transform: rotateY(180deg);
+}
+/* line 50, ../sass/style.scss */
+.card02:hover .card-inner {
+  transform: rotateY(-180deg);
+}
+/* line 55, ../sass/style.scss */
+.card03 .back {
+  transform: rotateX(-180deg);
+}
+/* line 58, ../sass/style.scss */
+.card03:hover .card-inner {
+  transform: rotateX(180deg);
+}
+/* line 64, ../sass/style.scss */
+.card04 .back {
+  transform: rotateX(-180deg);
+}
+/* line 67, ../sass/style.scss */
+.card04:hover .card-inner {
+  transform: rotateX(-180deg);
+}

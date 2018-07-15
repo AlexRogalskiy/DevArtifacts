@@ -1,0 +1,66 @@
+$color-flag1: #ff7474;
+$color-flag2: #f3a678;
+$color-flag3: #e9df5c;
+$color-flag4: #b7e18a;
+$color-flag5: #8bc6dd;
+$color-flag6: #c2a9dd;
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-color: #e9e6de;
+}
+
+.flag {
+	display: flex;
+	justify-content: center;
+	width: 45vw;
+	height: 30vw;
+	transform: skewY(-20deg);
+}
+
+.stripes {
+	height: 100%;
+	width: 100%;
+}
+.stripe {
+	height: calc(100% / 6);
+	&:nth-child(1) {
+		background-color: $color-flag1;
+	}
+	&:nth-child(2) {
+		background-color: $color-flag2;
+	}
+	&:nth-child(3) {
+		background-color: $color-flag3;
+	}
+	&:nth-child(4) {
+		background-color: $color-flag4;
+	}
+	&:nth-child(5) {
+		background-color: $color-flag5;
+	}
+	&:nth-child(6) {
+		background-color: $color-flag6;
+	}
+}
+
+.flag h1 {
+	text-transform: uppercase;
+	font-family: "Roboto", sans-serif;
+	font-weight: 700;
+	font-size: 7.75vw;
+	color: #fff;
+	position: absolute;
+	margin: 0;
+	line-height:30vw;
+}

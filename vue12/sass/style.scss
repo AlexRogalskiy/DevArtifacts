@@ -1,0 +1,123 @@
+$color-bug: #a8b820;
+$color-dark: #705848;
+$color-dragon: #7038f8;
+$color-electric: #f8d030;
+$color-fairy: #ee99ac;
+$color-fighting: #c03028;
+$color-fire: #f08030;
+$color-flying: #a890f0;
+$color-ghost: #705898;
+$color-grass: #78c850;
+$color-ground: #e0c068;
+$color-ice: #98d8d8;
+$color-normal: #a8a878;
+$color-poison: #a040a0;
+$color-psychic: #f85888;
+$color-rock: #b8a038;
+$color-steel: #b8b8d0;
+$color-water: #6890f0;
+$color-eff-immune: #d6d6d6;
+$color-eff-noteffective: #fdd0d0;
+$color-eff-veryeffective:#ccfbcc;
+$field-width: 35px;
+
+@mixin type($color) {
+  background-color: $color;
+  border-color: $color;
+}
+
+body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+h1 {
+  margin: 0.5em 0;
+}
+
+.table {
+  td,th {
+    text-align: center;
+    border-color:$color-eff-immune;
+  }
+  thead th {
+    border-bottom-width: 1px;
+  }
+
+  .eff {
+    &-immune {
+      background-color: $color-eff-immune;
+    }
+    &-veryeffective {
+      background-color: $color-eff-veryeffective;
+    }
+    &-noteffective {
+      background-color: $color-eff-noteffective;
+    }
+  }
+
+  .type {
+    color: #fff;
+    text-shadow:0 0 8px rgba(93, 93, 93, 0.39);
+    &-bug {
+      @include type($color-bug);
+    }
+    &-dragon {
+      @include type($color-bug);
+    }
+    &-dark {
+      @include type($color-dark);
+    }
+    &-dragon {
+      @include type($color-dragon);
+    }
+    &-electric {
+      @include type($color-electric);
+    }
+    &-fairy {
+      @include type($color-fairy);
+    }
+    &-fighting {
+      @include type($color-fighting);
+    }
+    &-fire {
+      @include type($color-fire);
+    }
+    &-flying {
+      @include type($color-flying);
+    }
+    &-ghost {
+      @include type($color-ghost);
+    }
+    &-grass {
+      @include type($color-grass);
+    }
+    &-ground {
+      @include type($color-ground);
+    }
+    &-ice {
+      @include type($color-ice);
+    }
+    &-normal {
+      @include type($color-normal);
+    }
+    &-poison {
+      @include type($color-poison);
+    }
+    &-psychic {
+      @include type($color-psychic);
+    }
+    &-rock {
+      @include type($color-rock);
+    }
+    &-steel {
+      @include type($color-steel);
+    }
+    &-water {
+      @include type($color-water);
+    }
+  }
+}
