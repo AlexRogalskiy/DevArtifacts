@@ -1,0 +1,87 @@
+@import "../node_modules/nib"
+
+html, body {
+     margin: 0;
+     padding: 0;
+     overflow: hidden;
+     height: 100%;
+     width: 100%;
+}
+ #fps {
+     absolute: right 10px top 10px;
+     font: lighter 20px 'Helvetica Neue', sans-serif;
+     color: gray;
+     z-index: 1000;
+}
+ body {
+     &:after {
+         content: 'Click anywhere...';
+         absolute: top 50% left 0 right 0;
+         margin: -100px 0 0;
+         line-height: 200px;
+         font: lighter 50px/200px "Helvetica Neue", sans-serif;
+         color: gray;
+         text-align: center;
+         opacity: 1;
+         transition: opacity 0.5s ease;
+    }
+     &.hidden {
+         &:after {
+             opacity: 0;
+        }
+    }
+}
+#controls {
+     absolute: top 10px left 10px;
+     padding: 20px;
+     border: 1px solid #ccc;
+     border-radius: 10px;
+     background: #f9f9f9;
+     z-index: 1000;
+     .label {
+         display: block;
+         margin: 0 0 10px;
+         font: lighter 20px 'helvetica neue', roboto, sans-serif;
+         clearfix();
+         label {
+             float: left;
+             line-height: 40px;
+        }
+         #amount {
+             display: inline-block;
+             font-size: 1.7em;
+             color: #0c9;
+             text-shadow: 1px 1px rgba(black, 0.1);
+             float: right;
+        }
+         .radio {
+             float: right;
+             display: block;
+             text-align: center;
+             margin: 0 0 20px;
+             padding: 0 5px 0 0;
+             label {
+                 font: lighter 17px 'helvetica neue', roboto, sans-serif;
+            }
+        }
+    }
+     #gravity-slider {
+         width: 200px;
+         margin: 0 auto;
+    }
+}
+ canvas {
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+}
+ .liquid canvas {
+     filter: url(#goo);
+}
+ .label {
+     &:nth-of-type(2) {
+         display: none !important;
+    }
+}

@@ -1,0 +1,32 @@
+#fps
+#controls
+  .label
+    label Colors:
+    .radio
+      input#radio-colors-on(type='radio', name='colors')
+      label(for='radio-colors-on') On
+      input#radio-colors-off(type='radio', name='colors', checked)
+      label(for='radio-colors-off') Off
+  .label
+    label Walls:
+    .radio
+      input#radio-walls-on(type='radio', name='walls', checked)
+      label(for='radio-walls-on') On
+      input#radio-walls-off(type='radio', name='walls')
+      label(for='radio-walls-off') Off
+  .label
+    label Liquid
+    .radio
+      input#radio-liquid-on(type='radio' name='liquid' checked)
+      label(for='radio-liquid-on') On
+      input#radio-liquid-off(type='radio' name='liquid')
+      label(for='radio-liquid-off') Off
+  .label
+    label Gravity:
+    #amount
+  #gravity-slider
+svg
+  defs
+    filter#goo
+      feGaussianBlur(in="SourceGraphic" stdDeviation="15" result="blur")
+      feColorMatrix(in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo")
