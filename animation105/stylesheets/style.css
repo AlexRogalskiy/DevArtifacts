@@ -1,0 +1,362 @@
+@charset "UTF-8";
+/* line 1, ../sass/style.scss */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
+
+/* line 7, ../sass/style.scss */
+html,
+body {
+  height: 100%;
+}
+
+/* line 12, ../sass/style.scss */
+body {
+  background-color: #ffffe0;
+  color: #778899;
+  font-family: "Nunito", sans-serif;
+  overflow: hidden;
+}
+
+/* line 19, ../sass/style.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 23, ../sass/style.scss */
+h1 {
+  margin: 0 0 24px 0;
+}
+
+/* line 29, ../sass/style.scss */
+.text {
+  text-align: center;
+  padding-top: 32px;
+  width: 100%;
+  height: 80px;
+}
+/* line 34, ../sass/style.scss */
+.text .text-main,
+.text .title {
+  color: #778899;
+  font-weight: 400;
+}
+/* line 39, ../sass/style.scss */
+.text .title {
+  font-size: 32px;
+}
+/* line 41, ../sass/style.scss */
+.text .title #number {
+  color: #708090;
+  font-weight: 800;
+}
+
+/* line 48, ../sass/style.scss */
+.help {
+  text-align: center;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 100px;
+  height: 100px;
+}
+/* line 56, ../sass/style.scss */
+.help input {
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+/* line 60, ../sass/style.scss */
+.help p {
+  margin: 0 20px;
+}
+
+/* line 65, ../sass/style.scss */
+.container {
+  transform: translateZ(0px);
+}
+
+/* line 69, ../sass/style.scss */
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  height: calc(100vh - 100px);
+}
+
+/* line 79, ../sass/style.scss */
+.hover-cube:hover {
+  transform: rotate3d(-1.5, 3.5, -0.4, 26deg);
+}
+
+/* line 84, ../sass/style.scss */
+.static-cube {
+  transform: rotate3d(-1.5, 3.5, -0.5, 45deg);
+}
+
+/* line 89, ../sass/style.scss */
+.no-ribbon > .cube-front::after,
+.no-ribbon > .cube-back::after {
+  opacity: 0 !important;
+}
+
+/* line 95, ../sass/style.scss */
+.off {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* line 101, ../sass/style.scss */
+.win::after {
+  display: none;
+  content: "тШЮ";
+  color: #e74c3c;
+  font-size: 42px;
+  position: absolute;
+  top: -85px;
+  left: 14px;
+  transform: rotateY(0deg) rotateZ(90deg) translateX(0px);
+  animation: arrow 1s ease-in-out infinite;
+}
+
+/* line 115, ../sass/style.scss */
+.pseudo-block::after {
+  display: block !important;
+}
+
+@keyframes arrow {
+  50% {
+    transform: rotateY(0deg) rotateZ(90deg) translateX(12px);
+  }
+}
+/* line 126, ../sass/style.scss */
+.gift {
+  background: transparent !important;
+  position: absolute;
+  font-size: 42px;
+  left: 24px;
+  top: 12px;
+  transform: rotate3d(0, -1, 0, 45deg) translateZ(0px) translateY(0px);
+  animation: up 1s ease-in-out infinite;
+}
+
+@keyframes up {
+  50% {
+    transform: rotate3d(0, -1, 0, 45deg) translateZ(0px) translateY(12px);
+  }
+}
+/* line 142, ../sass/style.scss */
+.cube {
+  justify-self: center;
+  align-self: center;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  width: 80px;
+  height: 80px;
+  transition: transform 250ms ease-out;
+}
+/* line 152, ../sass/style.scss */
+.cube-contain {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform-style: preserve-3d;
+  transform: translate3d(0, 0, 0) scale3d(0, 0, 0);
+  transform-origin: center;
+  width: 80px;
+  height: 80px;
+}
+/* line 163, ../sass/style.scss */
+.cube-contain:hover > .cube-front::after {
+  transform: translateX(-100%) translateZ(-40px) rotate(25deg);
+}
+/* line 168, ../sass/style.scss */
+.cube-contain:hover > .cube-back::after {
+  transform: translateX(100%) translateZ(40px) rotate(-25deg);
+}
+/* line 173, ../sass/style.scss */
+.cube-top, .cube-front, .cube-back, .cube-left, .cube-right, .cube-bottom {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+}
+/* line 191, ../sass/style.scss */
+.cube-top::after, .cube-bottom::after {
+  filter: brightness(0.8);
+  background-color: #e74c3c;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+  width: 16px;
+  height: 100%;
+  z-index: 1;
+}
+/* line 203, ../sass/style.scss */
+.cube-top::before, .cube-bottom::before {
+  background-color: #e74c3c;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 100%;
+  z-index: 1;
+}
+/* line 215, ../sass/style.scss */
+.cube-front, .cube-back {
+  transform-style: preserve-3d;
+}
+/* line 218, ../sass/style.scss */
+.cube-front::after, .cube-back::after {
+  background-color: transparent;
+  border: 8px solid #e74c3c;
+  border-radius: 100%;
+  content: "";
+  position: absolute;
+  top: -21.33333px;
+  left: 50%;
+  width: 26.66667px;
+  height: 13.33333px;
+  transition: transform 250ms 250ms ease-in-out;
+}
+/* line 230, ../sass/style.scss */
+.cube-front::before, .cube-back::before {
+  background-color: #e74c3c;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 100%;
+}
+/* line 241, ../sass/style.scss */
+.cube-top {
+  transform: rotateX(90deg) translateZ(40px);
+}
+/* line 244, ../sass/style.scss */
+.cube-front {
+  transform: rotateX(0deg) translateZ(40px);
+}
+/* line 246, ../sass/style.scss */
+.cube-front::after {
+  filter: brightness(0.9);
+  left: 40px;
+  transform-origin: bottom right;
+  transform: translateX(-100%) translateZ(-40px) rotate(15deg);
+}
+/* line 253, ../sass/style.scss */
+.cube-back {
+  transform: rotateX(0deg) translateZ(-40px);
+}
+/* line 255, ../sass/style.scss */
+.cube-back::after {
+  filter: brightness(0.85);
+  left: 0;
+  transform-origin: bottom left;
+  transform: translateX(100%) translateZ(40px) rotate(-15deg);
+}
+/* line 264, ../sass/style.scss */
+.cube-left::before, .cube-right::before {
+  background-color: #e74c3c;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 100%;
+  z-index: 1;
+}
+/* line 276, ../sass/style.scss */
+.cube-left {
+  transform: rotateY(90deg) translateZ(-40px);
+  filter: brightness(0.8);
+}
+/* line 280, ../sass/style.scss */
+.cube-right {
+  transform: rotateY(90deg) translateZ(40px);
+  filter: brightness(0.95);
+}
+/* line 284, ../sass/style.scss */
+.cube-bottom {
+  transform: rotateX(-90deg) translateZ(40px);
+  filter: brightness(0.65);
+}
+
+/* line 290, ../sass/style.scss */
+.gradiant-0 > .cube-contain > div {
+  background: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent 0), #aacc00;
+  background: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent 0), #aacc00;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent 0), #aacc00;
+  background-position: auto auto;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: 50px 50px;
+  background-size: 50px 50px;
+}
+
+/* line 333, ../sass/style.scss */
+.container-modal {
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 2;
+}
+/* line 344, ../sass/style.scss */
+.container-modal .modal {
+  background-color: #ffffe0;
+  text-align: center;
+  padding: 64px 0px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: auto;
+  transform: translateY(100%);
+}
+/* line 354, ../sass/style.scss */
+.container-modal .modal-close {
+  color: #ccc;
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* line 367, ../sass/style.scss */
+.refresh {
+  background-color: #e74c3c;
+  border-radius: 20px;
+  color: #fff;
+  padding: 8px 24px;
+}
+/* line 372, ../sass/style.scss */
+.refresh:hover {
+  background-color: #ed7669;
+}

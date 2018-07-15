@@ -1,0 +1,199 @@
+$d: 215px;
+$w:$d;
+$h:$d;
+
+$color-base: rgba(27,45,65,1);
+$color-btn: #1AAF5D;
+
+/* images sprites
+*/
+
+$background-bid: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/bid_1.svg) no-repeat;
+
+$hover: 650ms;
+
+$ease: cubic-bezier(0.680, -0.550, 0.265, 1.650);
+
+.circle{
+  cursor: pointer;
+  width: $w;
+  height: $h;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transform: translate(-50%, -50%);
+}
+  
+.mask-a, 
+.mask-b{
+  border-radius: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mask-a{
+  background: $color-base;
+  overflow: hidden;
+  // Solution to the problem of overflow. Chrome
+  -webkit-mask-position: 0 0;
+  -webkit-mask-size: 215px 215px;
+  -webkit-mask-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/mask_svg.svg);
+  z-index: 10;
+}
+
+.mask-b{
+  background: $color-base;
+}
+
+/*=====================================================================================
+    HAND
+=======================================================================================
+*/
+
+.mask-a{
+    .hand{
+      background-position: 0px 0px;
+      height: 260px;
+      z-index: 10;
+    }
+    .hand-1{
+      background-position: -86px -50px;
+      height: 204px;
+      &::before{
+        background-position: -154px -50px;
+        clip: rect(0px,1px,84px,0px);
+        content: "";
+        top: 0;
+        left: 0;
+        width: 16px;
+        height: 84px;
+        transition: clip (($hover/2) - 25) ease;
+      }
+    }
+    .hand-2{
+      background-position: -173px -49px;
+      top: 0;
+      left: 0.2em;
+      margin-top: 7em;
+      width: 57px;
+      height: 177px;
+      transition: transform ($hover - 100) ease;
+      &::before{
+        background-position: -232px -49px;
+        clip: rect(0px,28px,111px,28px);
+        content: "";
+        top: 0;
+        right: 0;
+        width: 28px;
+        height: 111px;
+        transition: clip ($hover - 150) ease;
+      }
+    }
+}
+
+  .mask-b{
+    .hand{
+      background-position: -86px 0px;
+      height: 48px;
+    }
+    .hand-1{
+      background-position: -171px 0px;
+      height: 41px;
+    }
+  }
+
+.hand, 
+.hand-1,
+.hand-1::before,
+.hand-2,
+.hand-2::before{
+  background: $background-bid;
+  position: absolute;
+}
+
+.hand{
+  top: 0;
+  left: 50%;
+  margin-top: 2em;
+  margin-left: -42px;
+  width: 83px;
+  transition: all $hover ease;
+}
+
+.hand-1{
+  top: 0;
+  right: 0.2em;
+  margin-top: 5.5em;
+  width: 66px;
+  transition: transform ($hover - 150) ease;
+}
+
+.circle:hover > [class *= "mask-"] > .hand{
+  //@include transform(translate(0, -3em));
+  transform: translate3d(0, -3em, 0);
+  transition: transform $hover $ease;
+}
+
+.circle:hover > [class *= "mask-"] > .hand-1{
+  //@include transform(translate(-0.8em, -3.5em));
+  transform: translate3d(-0.8em, -3.5em, 0);
+  transition: transform ($hover + 50) $ease;
+  transition-delay: ($hover - 400);
+  &::before{
+    clip:rect(0px,18px,84px,0px);
+    transition: clip ($hover - 150) ease;
+    transition-delay:($hover - 250);
+  }
+}
+
+.circle:hover .mask-a > .hand-2{
+  transform: translate3d(1.5em, -3em, 0);
+  transition: transform ($hover + 100) $ease;
+  transition-delay: ($hover - 250);
+  &::before{
+    clip: rect(0px,28px,111px,0px);
+    transition: clip ($hover - 150) ease;
+    transition-delay: ($hover - 100);
+  }
+}
+
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height:100%;
+  overflow-x:hidden;
+}
+
+body{
+  background:#1E4063;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+figure {
+  margin: 0;
+}
+
+.credit-design {
+  color: lighten($color-base, 15);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 20px;
+  font-size: 0.8rem;
+  text-align: center;
+  a {
+    color: lighten($color-base, 20);
+    text-decoration: none;
+  }
+}

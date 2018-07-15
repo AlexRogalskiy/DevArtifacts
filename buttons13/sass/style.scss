@@ -1,0 +1,171 @@
+@import "compass/css3";
+
+// Set colors
+$primary_color: #ffba34; // orange
+$secondary_color: #a6c830; // green
+
+// Mixin for Buttonstyle
+@mixin btn($color) {
+
+    // Settings
+    $btn_padding: 3px;
+    $btn_radius: 10px;
+
+    // Set backgrounds
+    $background_layer_1: url(https://dl.dropboxusercontent.com/u/5600704/bg_noise_pattern.png) repeat scroll 0 0;
+    
+    // Fallback color
+    $btn_main_color: $primary_color;
+    
+    // Set colors
+    @if $color == "primary"
+    {
+        $btn_main_color: $primary_color;
+    }
+    
+    @if $color == "secondary"
+    {
+        $btn_main_color: $secondary_color;
+    }
+    
+    $btn_side_color: darken($btn_main_color, 20%);
+    
+    display: inline-block;
+    -webkit-border-radius: $btn_radius;
+    border-radius: $btn_radius;
+    padding: $btn_padding;
+    filter: dropshadow($btn_side_color,offx=0,offy=-1);
+  
+    -webkit-box-shadow: inset 0 0 5px 0 darken($btn_side_color, 5%);
+    box-shadow: inset 0 0 5px 0 darken($btn_side_color, 5%);
+    
+    background: $btn_main_color;
+    background:
+        $background_layer_1,
+        -moz-linear-gradient(top, $btn_main_color 0%, $btn_side_color 100%);
+    background:
+        $background_layer_1,
+        -webkit-gradient(linear, left top, left bottom, color-stop(0%,$btn_main_color), color-stop(100%,$btn_side_color));
+    background:
+        $background_layer_1,
+        -webkit-linear-gradient(top, $btn_main_color 0%,$btn_side_color 100%);
+    background:
+        $background_layer_1,
+        -o-linear-gradient(top, $btn_main_color 0%,$btn_side_color 100%);
+    background:
+        $background_layer_1,
+        -ms-linear-gradient(top, $btn_main_color 0%,$btn_side_color 100%);
+    background:
+        $background_layer_1,
+        linear-gradient(to bottom, $btn_main_color 0%,$btn_side_color 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$btn_main_color', endColorstr='$btn_side_color',GradientType=0 );
+    
+    span {
+        // Fallback border color
+        $btn_border_color: lighten($btn_main_color, 40%);
+        
+        // if color is bright set border dark and vice versa
+        @if lightness($btn_main_color) > 50
+        {
+            color: darken($btn_main_color, 60%);
+            $btn_border_color: darken($btn_main_color, 40%);
+			    text-shadow: 0 1px 0 lighten($btn_main_color, 10%);
+        }
+        @else
+        {
+		      color: lighten($btn_main_color, 60%);
+            $btn_border_color: lighten($btn_main_color, 40%);
+			    text-shadow: 0 -1px 0 darken($btn_main_color, 30%);
+        }
+        
+        display: block;
+        -webkit-border-radius: $btn_radius - $btn_padding;
+        border-radius: $btn_radius - $btn_padding;
+        padding: 6px 15px;
+        border: 1px dashed $btn_border_color;
+        cursor: pointer;
+    }
+    
+  
+    // Hover style only for no-touch devices
+    // .no-touch & {
+    // put this on <body> (e.g. with modernizr)
+        &:hover {
+            $btn_main_color: darken($btn_main_color, 5%);
+            $btn_side_color: darken($btn_main_color, 20%);
+        
+            background: $btn_main_color;
+            background:
+                $background_layer_1,
+                -moz-linear-gradient(top, $btn_main_color 0%, $btn_side_color 100%);
+            background:
+                $background_layer_1,
+                -webkit-gradient(linear, left top, left bottom, color-stop(0%,$btn_main_color), color-stop(100%,$btn_side_color));
+            background:
+                $background_layer_1,
+                -webkit-linear-gradient(top, $btn_main_color 0%,$btn_side_color 100%);
+            background:
+                $background_layer_1,
+                -o-linear-gradient(top, $btn_main_color 0%,$btn_side_color 100%);
+            background:
+                $background_layer_1,
+                -ms-linear-gradient(top, $btn_main_color 0%,$btn_side_color 100%);
+            background:
+                $background_layer_1,
+                linear-gradient(to bottom, $btn_main_color 0%,$btn_side_color 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$btn_main_color', endColorstr='$btn_side_color',GradientType=0 );
+        }
+    //}
+    
+    &:active {
+            transform: translateY(2px);
+      
+            $btn_main_color: darken($btn_main_color, 4%);
+            $btn_side_color: darken($btn_main_color, 20%);
+        
+            background: $btn_main_color;
+            background:
+                $background_layer_1,
+                -moz-linear-gradient(top, $btn_main_color 0%, $btn_side_color 100%);
+            background:
+                $background_layer_1,
+                -webkit-gradient(linear, left top, left bottom, color-stop(0%,$btn_main_color), color-stop(100%,$btn_side_color));
+            background:
+                $background_layer_1,
+                -webkit-linear-gradient(top, $btn_main_color 0%,$btn_side_color 100%);
+            background:
+                $background_layer_1,
+                -o-linear-gradient(top, $btn_main_color 0%,$btn_side_color 100%);
+            background:
+                $background_layer_1,
+                -ms-linear-gradient(top, $btn_main_color 0%,$btn_side_color 100%);
+            background:
+                $background_layer_1,
+                linear-gradient(to bottom, $btn_main_color 0%,$btn_side_color 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$btn_main_color', endColorstr='$btn_side_color',GradientType=0 );
+        }
+}
+
+// Set buttons
+%btn_primary {
+    @include btn(primary);
+}
+
+%btn_secondary {
+    @include btn(secondary);
+}
+
+// Extend buttons
+.awesome_btn_2 {
+  @extend %btn_primary;
+}
+
+.awesome_btn_1 {
+  @extend %btn_secondary;
+}
+
+
+
+
+// nothing here ;)
+body { background: #121212; padding: 30px; color: #fff; }

@@ -1,0 +1,198 @@
+@import "compass/css3";
+
+// var placedInCircle
+$n: 6;
+$circle-size: 15em;
+$item-size: 4em;
+
+$color-base: rgb(247, 247, 249);
+$btn-inactive: #323a45;
+$btn-active: rgb(230, 40, 43);	
+$ease: cubic-bezier(0.310, 1.470, 0.475, 1.005);
+
+// based on: https://codepen.io/HugoGiraudel/pen/Bigqr
+
+@mixin placedInCircle($n, $circle-size, $item-size) {
+  $half-item: $item-size / 2;
+  $half-parent: $circle-size / 2;
+  border-radius: 100%;
+  position: relative;
+  width: $circle-size;
+  height: $circle-size;
+  > * {
+    display: table;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $item-size;
+    height: $item-size;
+    margin-top: -$half-item;
+    margin-left: -$half-item;
+    text-align: center;
+    @include transition( transform 1.5s $ease );
+    
+    $angle: 360 / $n;
+    $rot: 630; // Starting angle of the first item
+    
+    @for $i from 1 to $n+1 {
+      &:nth-of-type(#{$i}) {
+        @include transform(rotate(#{$rot}deg) translate($half-parent) rotate(-#{$rot}deg));
+      }
+      $rot: $rot + $angle;
+    }
+  }
+}
+
+.circle-container {
+  @include placedInCircle($n, $circle-size, $item-size);
+  display: block;
+  border: 1px solid $btn-inactive;
+  margin: $item-size/2 auto;
+  a {
+    background: $btn-inactive;
+    border-radius: 100%;
+    color: #fff;
+    display: table-cell; 
+    vertical-align: middle;
+    font-size: 0.8em;
+    font-weight: 600;
+    line-height: 1.2em;
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    @include transition( background 400ms ease-in-out, transform 200ms ease );
+    .no-touch &:hover {
+      background: $btn-active;
+    }
+    &:active {
+      @include transform( scale(1.1) );
+    }
+    &:focus {
+      background: $btn-active;
+      @include transform( scale(1.1) );
+    }
+  }
+}
+
+.number {
+  display: block;
+  position: relative;
+  margin: 5em;
+  text-align: center;
+  > li {
+    display: inline-block;
+    line-height: 10px;
+    a {
+      background: $btn-inactive;
+      border-radius: 5px;
+      color: #fff;
+      outline: 0;
+      user-select: none;
+      padding: 5px 12px;
+      font-weight: 600; 
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+      @include transition( background 350ms ease-in-out, transform 200ms ease-in-out );
+      .no-touch &:hover {
+        background: $btn-active;
+      }
+      &:active {
+        @include transform( scale(1.1) );
+      }
+      &:focus {
+        background: $btn-active;
+        @include transform( scale(1.1) );
+      }
+    }
+  }
+}
+
+// addClass
+
+.active {
+  background: $btn-active !important;
+  @include transform( scale(1.1) );
+}
+
+// General
+
+* {
+    margin: 0;
+    padding: 0;
+    @include box-sizing(border-box);
+    &:before, &:after {
+        @include box-sizing(border-box);
+    }
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+html{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+}
+
+body {
+  background: $color-base;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+h1, h2 {
+  color: #323a45;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 1.8em;
+  font-weight: 900; 
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: 900; 
+}
+
+p {
+  line-height: 1.8em;
+  font-size: 0.85em;
+  font-weight: 400; 
+}
+
+section {
+  padding: 4em 0;
+  > .container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+}
+
+.col { width: 100%; }
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}

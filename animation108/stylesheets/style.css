@@ -1,0 +1,201 @@
+/* images sprites
+*/
+/* line 17, ../sass/style.scss */
+.circle {
+  cursor: pointer;
+  width: 215px;
+  height: 215px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transform: translate(-50%, -50%);
+}
+
+/* line 31, ../sass/style.scss */
+.mask-a,
+.mask-b {
+  border-radius: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 39, ../sass/style.scss */
+.mask-a {
+  background: #1b2d41;
+  overflow: hidden;
+  -webkit-mask-position: 0 0;
+  -webkit-mask-size: 215px 215px;
+  -webkit-mask-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/mask_svg.svg);
+  z-index: 10;
+}
+
+/* line 49, ../sass/style.scss */
+.mask-b {
+  background: #1b2d41;
+}
+
+/*=====================================================================================
+    HAND
+=======================================================================================
+*/
+/* line 59, ../sass/style.scss */
+.mask-a .hand {
+  background-position: 0px 0px;
+  height: 260px;
+  z-index: 10;
+}
+/* line 64, ../sass/style.scss */
+.mask-a .hand-1 {
+  background-position: -86px -50px;
+  height: 204px;
+}
+/* line 67, ../sass/style.scss */
+.mask-a .hand-1::before {
+  background-position: -154px -50px;
+  clip: rect(0px, 1px, 84px, 0px);
+  content: "";
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 84px;
+  transition: clip 300ms ease;
+}
+/* line 78, ../sass/style.scss */
+.mask-a .hand-2 {
+  background-position: -173px -49px;
+  top: 0;
+  left: 0.2em;
+  margin-top: 7em;
+  width: 57px;
+  height: 177px;
+  transition: transform 550ms ease;
+}
+/* line 86, ../sass/style.scss */
+.mask-a .hand-2::before {
+  background-position: -232px -49px;
+  clip: rect(0px, 28px, 111px, 28px);
+  content: "";
+  top: 0;
+  right: 0;
+  width: 28px;
+  height: 111px;
+  transition: clip 500ms ease;
+}
+
+/* line 100, ../sass/style.scss */
+.mask-b .hand {
+  background-position: -86px 0px;
+  height: 48px;
+}
+/* line 104, ../sass/style.scss */
+.mask-b .hand-1 {
+  background-position: -171px 0px;
+  height: 41px;
+}
+
+/* line 110, ../sass/style.scss */
+.hand,
+.hand-1,
+.hand-1::before,
+.hand-2,
+.hand-2::before {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/bid_1.svg) no-repeat;
+  position: absolute;
+}
+
+/* line 119, ../sass/style.scss */
+.hand {
+  top: 0;
+  left: 50%;
+  margin-top: 2em;
+  margin-left: -42px;
+  width: 83px;
+  transition: all 650ms ease;
+}
+
+/* line 128, ../sass/style.scss */
+.hand-1 {
+  top: 0;
+  right: 0.2em;
+  margin-top: 5.5em;
+  width: 66px;
+  transition: transform 500ms ease;
+}
+
+/* line 136, ../sass/style.scss */
+.circle:hover > [class*="mask-"] > .hand {
+  transform: translate3d(0, -3em, 0);
+  transition: transform 650ms cubic-bezier(0.68, -0.55, 0.265, 1.65);
+}
+
+/* line 142, ../sass/style.scss */
+.circle:hover > [class*="mask-"] > .hand-1 {
+  transform: translate3d(-0.8em, -3.5em, 0);
+  transition: transform 700ms cubic-bezier(0.68, -0.55, 0.265, 1.65);
+  transition-delay: 250ms;
+}
+/* line 147, ../sass/style.scss */
+.circle:hover > [class*="mask-"] > .hand-1::before {
+  clip: rect(0px, 18px, 84px, 0px);
+  transition: clip 500ms ease;
+  transition-delay: 400ms;
+}
+
+/* line 154, ../sass/style.scss */
+.circle:hover .mask-a > .hand-2 {
+  transform: translate3d(1.5em, -3em, 0);
+  transition: transform 750ms cubic-bezier(0.68, -0.55, 0.265, 1.65);
+  transition-delay: 400ms;
+}
+/* line 158, ../sass/style.scss */
+.circle:hover .mask-a > .hand-2::before {
+  clip: rect(0px, 28px, 111px, 0px);
+  transition: clip 500ms ease;
+  transition-delay: 550ms;
+}
+
+/* line 166, ../sass/style.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* line 172, ../sass/style.scss */
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* line 178, ../sass/style.scss */
+body {
+  background: #1E4063;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+/* line 183, ../sass/style.scss */
+figure {
+  margin: 0;
+}
+
+/* line 187, ../sass/style.scss */
+.credit-design {
+  color: #315277;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 20px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+/* line 195, ../sass/style.scss */
+.credit-design a {
+  color: #395f89;
+  text-decoration: none;
+}
