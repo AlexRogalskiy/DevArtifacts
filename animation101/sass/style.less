@@ -1,0 +1,71 @@
+@loop: 20;
+@width: 10em;
+@height: 1em;
+
+@deoxyribose: #3498db;
+@phosphate: #e74c3c;
+@a: #f1c40f;
+@t: #2ecc71;
+@c: #2980b9;
+@g: #e67e22;
+
+@nucleotides: "#f1c40f,#2ecc71,#2980b9,#e67e22";
+
+.dna {
+  width: @width;
+  margin: 0 auto;
+  padding: 1em;
+  perspective: 60em;
+  transform-style: preserve-3d;
+  transform: translate3d(0,0,0) rotateY(40deg);
+  
+  .protein {
+    margin: 0 @height @height;
+    width: @width - (@height*2);
+    height: @height;
+    transform-style: preserve-3d;
+    animation: rot 2s linear infinite;
+    position: relative;
+    
+    .loop (@index) when (@index > 0){
+      &:nth-of-type(@{index}){
+        animation-delay: @index*.1s;
+        background: linear-gradient(to right, color(~`@{nucleotides}.split(',')[Math.floor(Math.random()*@{nucleotides}.split(',').length)]`) 50%,color(~`@{nucleotides}.split(',')[Math.floor(Math.random()*@{nucleotides}.split(',').length)]`) 50%);
+      }
+      .loop (@index - 1);
+    }
+    .loop(0){}
+    .loop(@loop);
+    
+    b {
+      width: @height;
+      height: @height*2.7;
+      background: @phosphate;
+      transform-origin: 0 center;
+      transform: rotateX(-40deg);
+      position: absolute;
+      top: 0;
+      left: -@height;
+
+      &:nth-of-type(2) {
+        transform: rotateX(40deg);
+        left: auto;
+        right: -@height;
+        background-color: @deoxyribose;
+      }
+    }
+    &:last-child b {
+      display: none;
+    }
+  }
+}
+
+@keyframes rot {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+html,body {height:100%;}
+body {
+  background: linear-gradient(135deg, #160C23, #7B6762);
+}

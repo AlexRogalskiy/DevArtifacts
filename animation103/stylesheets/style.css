@@ -1,0 +1,82 @@
+/* line 1, ../sass/style.scss */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 5, ../sass/style.scss */
+.container {
+  position: absolute;
+  width: 150%;
+  height: 170%;
+  margin-top: -20%;
+  margin-left: -25%;
+  background: url("http://www.elmercuriomediacenter.cl/wp-content/gallery/mercurio-clasificados-economicos/3.jpg");
+  animation: rot 30s linear infinite;
+}
+
+/* line 16, ../sass/style.scss */
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -10em;
+  margin-top: -10em;
+  width: 20em;
+  height: 20em;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  perspective: 1200px;
+}
+
+/* line 28, ../sass/style.scss */
+.wall, .right, .left, .bottom, .top, .back {
+  width: 20em;
+  height: 20em;
+  background: url("http://www.elmercuriomediacenter.cl/wp-content/gallery/mercurio-clasificados-economicos/3.jpg");
+  background-size: cover;
+  position: absolute;
+}
+/* line 35, ../sass/style.scss */
+.wall:before, .right:before, .left:before, .bottom:before, .top:before, .back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+}
+
+/* line 44, ../sass/style.scss */
+.right {
+  transform: rotateY(90deg) translateZ(10em) rotate(90deg);
+}
+
+/* line 49, ../sass/style.scss */
+.left {
+  transform: rotateY(90deg) translateZ(-10em) rotate(90deg);
+}
+
+/* line 54, ../sass/style.scss */
+.bottom {
+  transform: rotateX(90deg) translateZ(-10em);
+}
+
+/* line 59, ../sass/style.scss */
+.top {
+  transform: rotateX(90deg) translateZ(10em);
+}
+
+/* line 64, ../sass/style.scss */
+.back {
+  transform: translateZ(-10em);
+}
+/* line 68, ../sass/style.scss */
+.back:before {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes rot {
+  to {
+    transform: rotate(360deg);
+  }
+}

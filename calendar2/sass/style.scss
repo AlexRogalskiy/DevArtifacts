@@ -1,0 +1,248 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300);
+@import "compass/utilities/general/clearfix";
+
+$spacing  : 3px;
+$size     : 74px;
+$duration : 0.35s;
+$ease-out : cubic-bezier(0.25, 0.8, 0.25, 1);
+$ease-in  : cubic-bezier(0.55, 0, 0.55, 0.2);
+$colors   : (
+  darkPrimary: #303F9F,
+  lightPrimary: #C5CAE9,
+  primary: #3F51B5,
+  accent: #8BC34A,
+  primaryText: #212121,
+  secondaryText: #727272,
+  divider: #B6B6B6,
+  text: #FFFFFF
+);
+
+body {
+  font: 300 16px/20px Roboto, Lato, sans-serif;
+  padding: 0;
+  margin: 0;
+  > header {
+    background: map-get($colors, darkPrimary);
+    padding: $size * 0.5;
+  }
+}
+[ng-app] {
+  width: ($spacing + $size) * 7;
+  padding: $size * 0.5;
+}
+h1.small {
+  font-size: 16px;
+  line-height: 22px;
+  margin: 0;
+  text-transform: uppercase;
+  text-indent: 5px;
+  color: tint(map-get($colors, accent), 20%);
+}
+h2 {
+  font-size: 45px;
+  line-height: 48px;
+  margin: 0;
+  color: map-get($colors, text);
+}
+p {
+  margin: 2em 0;
+}
+.light {
+  font-weight: 100;
+}
+calendar {
+  @include pie-clearfix();
+  clear: left;
+  margin: $spacing 0;
+  display: block;
+  > header {
+    color: map-get($colors, primaryText);
+    font-size: 32px;
+    padding: 0;
+    text-align: center;
+    margin: 0 $spacing $spacing 0;
+    margin-right: $size * 1.25 + $spacing * 2;
+    margin-left: $size * 1.25 + $spacing;
+    margin-bottom: $size * 0.25;
+    border-radius: 2px;
+    font-weight: 100;
+    position: relative;
+    line-height: $size * 0.5;
+    height: $size * 0.5;
+    a {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      height: $size * 0.5;
+      width: $size * 0.5;
+      user-select: none;
+      background: map-get($colors, text);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.125),
+                  0 2px 5px rgba(0, 0, 0, 0.125);
+      transition: 0.35s ease;
+      border-radius: 50%;
+      &.disabled {
+        cursor: default;
+      }
+      &:hover {
+        background: shade(map-get($colors, text), 2%);
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.125),
+                    0 5px 8px rgba(0, 0, 0, 0.125);
+      }
+      &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-width: 9px;
+        border-style: solid;
+        border-color: transparent map-get($colors, accent);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+    }
+    .back {
+      left: 0;
+      &:before {
+        border-left: none;
+        margin-left: -2px;
+      }
+    }
+    .forward {
+      right: 0;
+      &:before {
+        border-right: none;
+        margin-left: 2px;
+      }
+    }
+  }
+}
+
+.day-header {
+  @include clearfix();
+  .day {
+    float: left;
+    line-height: $size * 0.5;
+    height: $size * 0.5;
+    display: block;
+    width: $size;
+    margin: 0 $spacing $spacing 0;
+    background: map-get($colors, accent);
+    text-align: center;
+    color: map-get($colors, text);
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+}
+
+.day-content {
+  position: relative;
+  height: $size * 7;
+}
+
+day {
+  background: map-get($colors, primary);
+  color: map-get($colors, text);
+  width: $size;
+  height: $size;
+  display: block;
+  float: left;
+  margin: 0 $spacing $spacing 0;
+  text-align: center;
+  line-height: $size;
+  font-size: 38px;
+  font-weight: 100;
+  border-radius: 2px;
+  transition: $duration $ease-in;
+  position: absolute;
+  @for $row from 1 to 7 {
+    &[data-row='#{$row}'] { top: ($size + $spacing) * $row; }
+  }
+  @for $col from 1 to 7 {
+    &[data-col='#{$col}'] { left: ($size + $spacing) * $col; }
+  }
+  &[data-col='0'], &[data-col='6'] {
+    background: tint(map-get($colors, primary), 30%);
+  }
+  &.inactive {
+    background: map-get($colors, divider);
+    &[data-col='0'], &[data-col='6'] {
+      background: tint(map-get($colors, divider), 50%);
+    }
+  }
+  @for $col from 0 to 7 {
+    @for $row from 0 to 7 {
+      &[data-col='#{$col}'][data-row='#{$row}'] {
+        $rCol: 7 - $col;
+        $dist: sqrt($rCol * $rCol + $row * $row);
+        $max:  sqrt(6 * 6 + 4 * 4);
+        $perc: $dist / $max;
+        $delay: $perc * 0.5s;
+        &.ng-enter { transition-delay: $delay + $duration + 0.05s; }
+        &.ng-leave { transition-delay: $delay; }
+        @at-root .back & {
+          $dist: sqrt($col * $col + $row * $row);
+          $perc: $dist / $max;
+          $delay: $perc * 0.5s;
+          &.ng-enter { transition-delay: $delay + $duration + 0.05s; }
+          &.ng-leave { transition-delay: $delay; }
+        }
+      }
+    }
+  }
+  &.ng-enter {
+    transform: scale(0);
+    transition: $duration $ease-out;
+    &.ng-enter-active {
+      transform: scale(1);
+    }
+  }
+  &.ng-leave {
+    transition: $duration $ease-in;
+    transform: scale(1);
+    &.ng-leave-active {
+      transform: scale(0);
+    }
+  }
+}
+
+.date-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 47px;
+  right: 50px;
+  overflow: hidden;
+  span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: 0.65s ease-in-out;
+    transform: translateX(0);
+    &.ng-enter {
+      transform: translateX(100%);
+      opacity: 0;
+      @at-root .back & { transform: translateX(-100%); }
+      &.ng-enter-active {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    &.ng-leave {
+      transform: translateX(0);
+      opacity: 1;
+      &.ng-leave-active {
+        transform: translateX(-100%);
+        opacity: 0;
+        @at-root .back & { transform: translateX(100%); }
+      }
+    }
+  }
+}

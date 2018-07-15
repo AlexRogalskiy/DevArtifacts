@@ -1,0 +1,45 @@
+.wrapper
+  nav
+    .logo
+      - var botCurve = ' c 0 20 5 20 40 5 c -20 5 -20 5 -20 0';
+      - var topCurve = ' c 0 -20 -5 -20 -40 -5 c 20 -5 20 -5 20 0';
+      - var linePath = ' l 0 65 ' + botCurve + ' l 0 -65' + topCurve;
+      - var midInnerCurve = ' c 0 20 0 20 -20 30 c 20 -5 20 -5 20 0';
+      - var midOuterCurve = ' c 0 -20 -5 -20 -40 -5 c 20 -5 40 -15 40 -30';
+      svg(viewBox='0 0 140 100' preserveAspectRatio='none')
+        path.r-line(d='M 20 15' + linePath)
+        path.r-curves(d='M 60 15 l 0 10' + midInnerCurve + ' l 0 25 ' + botCurve + ' l 0 -25' + midOuterCurve + ' l 0 -5' + topCurve)
+        path.m-line(d='M 100 15' + linePath)
+    ul
+      li: a(href='#') Home
+      li: a(href='#') About
+      li.sub
+        a(href='#') Portfolio
+        nav.submenu: ul
+          li.sub
+            a(href='#') Graphics
+            nav.submenu: ul
+              li: a(href='#') Photoshop
+              li: a(href='#') Illustrator
+          li.sub
+            a(href='#') Programming
+            nav.submenu: ul
+              li: a(href='#') HTML/CSS/JS
+              li: a(href='#') Node.JS
+              li: a(href='#') Swift
+              li: a(href='#') Objective-C
+              li: a(href='#') Ruby on Rails
+              li: a(href='#') PHP
+          li.sub
+            a(href='#') Photography
+            nav.submenu: ul
+              li: a(href='#') HDR
+              li: a(href='#') Black & White
+              li: a(href='#') Landscapes
+              li: a(href='#') Portraits
+              li: a(href='#') Artistic
+      li: a(href='#') Contact
+  .content
+    h1 Multi-Level Navigation
+    p This is an idea I've wanted to try for a while.
+    p It was recently re-inspired by this CodePen: <a href="https://codepen.io/oknoblich/pen/xvwjE">https://codepen.io/oknoblich/pen/xvwjE</a>

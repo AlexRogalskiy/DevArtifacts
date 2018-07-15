@@ -1,0 +1,77 @@
+html,body {
+  height: 100%;
+  overflow: hidden;
+}
+.container {
+  position:absolute;
+  width: 150%;
+  height: 170%;
+  margin-top: -20%;
+  margin-left: -25%;
+  background: url('http://www.elmercuriomediacenter.cl/wp-content/gallery/mercurio-clasificados-economicos/3.jpg');
+  animation: rot 30s linear infinite;
+}
+
+$s: 20em;
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -$s/2;
+  margin-top: -$s/2;
+  width: $s;
+  height: $s;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  perspective: 1200px;
+}
+.wall {
+  width: $s;
+  height: $s;
+  background: url('http://www.elmercuriomediacenter.cl/wp-content/gallery/mercurio-clasificados-economicos/3.jpg');
+  background-size:cover;
+  position: absolute;
+  
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 100%);
+  }
+}
+
+.right {
+  @extend .wall;
+  transform: rotateY(90deg) translateZ($s/2) rotate(90deg);
+}
+
+.left {
+  @extend .wall;
+  transform: rotateY(90deg) translateZ(-$s/2) rotate(90deg);
+}
+
+.bottom {
+  @extend .wall;
+  transform: rotateX(90deg) translateZ(-$s/2);
+}
+
+.top {
+  @extend .wall;
+  transform: rotateX(90deg) translateZ($s/2);
+}
+
+.back {
+  @extend .wall;
+  transform: translateZ(-$s/2);
+  
+  &:before {
+    background: rgba(0,0,0,.5);
+  }
+}
+
+@keyframes rot {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,83 @@
+@loop: 25;
+@square: 20px;
+@border: 3px; // try increasing 'till 10px
+@style: dotted; // `solid`, `dotted`, `dashed`, `double`, 'ridge', ìnset`, `outset`
+@radius: 50%; // circle
+@color: #3498db;
+@gap: 100px; // increase this, the weirdest it feels
+@int: 2s;
+@bounce: ease-in-out; // works fine with `linear` too
+
+ul.medusa {
+  width: @square;
+  height: @square;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  animation: rot 6s ease-in-out alternate infinite;
+  
+  li {
+    //styling
+    width: @square;
+    height: @square;
+    border: @border @style @color;
+    border-radius: @radius;
+    //positioning
+    position: absolute;
+    top: 0;
+    left: 0;
+    //animating
+    transform-style: preserve-3d;
+    animation: ripple @int @bounce infinite;
+    //looping
+    .loop (@index) when (@index > 0){
+      &:nth-of-type(@{index}) {
+        border-color: lighten(@color, @index*1%);
+        width: @square*@index;
+        height: @square*@index;
+        left: -@square*@index/2;
+        top: -@square*@index/2;
+        //animating
+        animation-delay: @index*.05s;
+      }
+      .loop (@index - 1);
+    }
+    .loop(0){}
+    .loop(@loop);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translateZ( 0 ) translate3d(0,0,0) rotate(0);
+  }
+  33% {
+    transform: translateZ( @gap ) translate3d(0,0,0);
+  }
+  67% {
+    transform: translateZ( -@gap ) translate3d(0,0,0); 
+  }
+  100% {
+    transform: translateZ( 0 ) translate3d(0,0,0) rotate(180deg);
+  }
+}
+
+@keyframes rot {
+  0% {
+    transform: rotateX(5deg) rotateY(5deg);
+  }
+  50% {
+    transform: rotateX(11deg) rotateY(-37.9deg);
+  }
+  100% {
+    transform: rotateX(11deg) rotateY(-37.9deg);
+    
+  }
+}
+
+body {
+  background-color: darken(@color, 30%);
+}
