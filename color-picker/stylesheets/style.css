@@ -1,0 +1,685 @@
+@charset "UTF-8";
+/*==============================================
+Demo Styles
+================================================ */
+@import "http://weloveiconfonts.com/api/?family=fontawesome";
+/* line 7, ../sass/style.scss */
+html {
+  font-family: 'Roboto Slab', serif;
+  font-size: 16px;
+  height: 100%;
+}
+
+/* line 13, ../sass/style.scss */
+body {
+  background: #9b59b6;
+  text-align: center;
+}
+
+/* line 19, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 23, ../sass/style.scss */
+section {
+  width: 30rem;
+  margin: auto;
+  padding-bottom: 10rem;
+}
+
+/* line 30, ../sass/style.scss */
+h1 {
+  color: #fff;
+  font-size: 5rem;
+  font-weight: bold;
+  margin: 0 0 2rem 0;
+  text-shadow: 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.4);
+}
+
+/* line 38, ../sass/style.scss */
+h2 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.4);
+}
+
+/* line 46, ../sass/style.scss */
+h4 {
+  color: #fff;
+  margin: -2rem 0 2rem 0;
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+}
+
+/*==============================================
+Base Form Styles 
+All form elements need these styles
+The rest are modular
+================================================ */
+/* line 59, ../sass/style.scss */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+  font-size: 1.5rem;
+  line-height: 2;
+}
+
+/* line 65, ../sass/style.scss */
+.ui {
+  border-radius: 2rem;
+  box-shadow: inset 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.1), 0.2rem 0.2rem 0 rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+  padding: 1rem;
+  text-align: center;
+  width: 30rem;
+}
+/* line 76, ../sass/style.scss */
+.ui input[type="email"], .ui input[type="password"], .ui input[type="search"] {
+  background: rgba(0, 0, 0, 0.25);
+  border: 0;
+  border-radius: 0;
+  height: 3rem;
+  width: 58%;
+  color: #fff;
+  float: left;
+  padding-left: 0.5rem;
+}
+/* line 86, ../sass/style.scss */
+.ui input[type="email"]:focus, .ui input[type="password"]:focus, .ui input[type="search"]:focus {
+  background: rgba(0, 0, 0, 0.5);
+  transition: background 1s ease;
+}
+/* line 91, ../sass/style.scss */
+.ui input[type="submit"] {
+  background: rgba(0, 0, 0, 0.4);
+  border: 0;
+  border-radius: 0 1rem 1rem 0;
+  color: #fff;
+  float: left;
+  height: 3rem;
+  width: 20%;
+  z-index: 3;
+}
+/* line 101, ../sass/style.scss */
+.ui input[type="submit"]:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transition: all 1s ease;
+}
+/* line 106, ../sass/style.scss */
+.ui label {
+  background: rgba(0, 0, 0, 0.4);
+  border: 0;
+  border-radius: 0 1rem 1rem 0;
+  color: #fff;
+  float: left;
+  height: 3rem;
+  width: 20%;
+  z-index: 3;
+  border-radius: 1rem 0 0 1rem;
+  line-height: 3;
+}
+
+/*==============================================
+Color Picker Slider
+================================================ */
+/* line 125, ../sass/style.scss */
+#red, #green, #blue {
+  float: left;
+  clear: left;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+/* line 134, ../sass/style.scss */
+#red .ui-slider-range {
+  background: #ef2929;
+}
+
+/* line 138, ../sass/style.scss */
+#green .ui-slider-range {
+  background: #8ae234;
+}
+
+/* line 142, ../sass/style.scss */
+#blue .ui-slider-range {
+  background: #729fcf;
+}
+
+/* line 147, ../sass/style.scss */
+.ui-slider-handle {
+  width: 2rem !important;
+  height: 2rem !important;
+  border-radius: 50%;
+  margin-top: -0.2rem;
+}
+
+/* line 154, ../sass/style.scss */
+.ui-slider-range {
+  border-radius: 1rem;
+}
+
+/* line 158, ../sass/style.scss */
+.colors > div {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 1rem;
+  height: 1rem;
+  width: 100%;
+}
+
+/*==============================================
+Ratings modified version of Lea Verou's
+http://lea.verou.me/2011/08/accessible-star-rating-widget-with-pure-css/
+================================================ */
+/* line 171, ../sass/style.scss */
+fieldset {
+  border: 0;
+}
+
+/* line 175, ../sass/style.scss */
+.rating:not(:checked) > input {
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+  top: -9999px;
+}
+
+/* line 181, ../sass/style.scss */
+.rating:not(:checked) > label {
+  background: none;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  float: right;
+  height: 3.5rem;
+  overflow: hidden;
+  padding: 0;
+  transition: color 1s ease-in-out;
+  white-space: nowrap;
+  width: 5.4rem;
+}
+
+/* line 194, ../sass/style.scss */
+.rating:not(:checked) > label:before {
+  content: '= ';
+  font-family: 'Typicons', sans-serif;
+  font-size: 5rem;
+  line-height: 1;
+}
+
+/* line 201, ../sass/style.scss */
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label,
+.rating > input:checked ~ label {
+  color: #fff;
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+  transition: color 1s ease-in-out;
+}
+
+/*==============================================
+Progress Steps
+================================================ */
+/* line 218, ../sass/style.scss */
+ol.ui {
+  list-style: none;
+  list-style-image: none;
+  margin: 0 0 1rem 0;
+  padding: 1rem 0 1rem 1rem;
+  white-space: nowrap;
+}
+/* line 225, ../sass/style.scss */
+ol.ui li {
+  float: left;
+  margin-right: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100px;
+}
+/* line 233, ../sass/style.scss */
+ol.ui li > span {
+  color: #fff;
+  display: block;
+  margin-bottom: 0.5rem;
+  width: 100px;
+}
+/* line 240, ../sass/style.scss */
+ol.ui span:nth-of-type(2) {
+  background: rgba(0, 0, 0, 0.4);
+  border: 0.2rem solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 3rem;
+  height: 3rem;
+  display: inline-block;
+  line-height: 1.7;
+  transition: all 1.2s ease-in-out;
+}
+/* line 253, ../sass/style.scss */
+ol.ui span:nth-of-type(2):before {
+  background: rgba(0, 0, 0, 0.4);
+  bottom: 1.9rem;
+  content: "";
+  height: 0.5rem;
+  left: -2.65rem;
+  position: absolute;
+  transition: all 1.2s ease-in-out;
+  width: 0rem;
+}
+/* line 264, ../sass/style.scss */
+ol.ui span:nth-of-type(2):after {
+  background: rgba(0, 0, 0, 0.4);
+  bottom: 1.9rem;
+  content: "";
+  height: 0.5rem;
+  left: 4.65rem;
+  position: absolute;
+  transition: all 1.2s ease-in-out;
+  width: 4.35rem;
+}
+/* line 276, ../sass/style.scss */
+ol.ui li:first-of-type span:nth-of-type(2):before,
+ol.ui li:last-of-type span:nth-of-type(2):after {
+  display: none;
+}
+/* line 281, ../sass/style.scss */
+ol.ui .active span:nth-of-type(2) {
+  border: 0.2rem solid white;
+  transition: all 1s ease-in-out;
+  transition-delay: 0.8s;
+}
+/* line 286, ../sass/style.scss */
+ol.ui .active span:nth-of-type(2):before {
+  background: white;
+  transition: all 1.2s ease-in-out;
+  width: 4.35rem;
+}
+/* line 293, ../sass/style.scss */
+ol.ui p {
+  color: #fff;
+  left: 50%;
+  margin-left: -1rem;
+  margin-top: 4.5rem;
+  cursor: pointer;
+  position: absolute;
+}
+
+/* line 303, ../sass/style.scss */
+#first {
+  transition-delay: 0;
+}
+
+/*==============================================
+Video Player
+================================================ */
+/* line 311, ../sass/style.scss */
+input[type='range'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  height: 1rem;
+  width: 100%;
+}
+
+/* line 321, ../sass/style.scss */
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1rem;
+  background: white;
+  height: 2rem;
+  width: 2rem;
+}
+
+/* line 330, ../sass/style.scss */
+#video-container {
+  margin: 0.5rem 0.5rem 0 0.5rem;
+}
+
+/* line 334, ../sass/style.scss */
+#video-controls {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* line 342, ../sass/style.scss */
+button {
+  background: none;
+  border: 0;
+  color: #EEE;
+  border-radius: 3px;
+  width: 2rem;
+}
+/* line 349, ../sass/style.scss */
+button [class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.7;
+}
+
+/* line 358, ../sass/style.scss */
+button:hover {
+  cursor: pointer;
+  color: #ccc;
+}
+
+/* line 363, ../sass/style.scss */
+#seek-bar {
+  width: 58%;
+}
+
+/* line 367, ../sass/style.scss */
+#volume-bar {
+  width: 16%;
+}
+
+/*==============================================
+Menu
+================================================ */
+/* line 376, ../sass/style.scss */
+.ui ul {
+  list-style: none;
+  margin: 0 -1rem;
+}
+/* line 380, ../sass/style.scss */
+.ui ul li {
+  color: #fff;
+  cursor: pointer;
+  float: left;
+  font-size: 1.3rem;
+  height: 2rem;
+  position: relative;
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.6);
+  width: 5rem;
+}
+
+/* line 394, ../sass/style.scss */
+.notification-sml:after {
+  background: #e50000;
+  border-radius: 1rem 1rem 1rem 0;
+  box-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.6);
+  content: '1';
+  font-size: 0.8rem;
+  font-weight: bold;
+  height: 1.2rem;
+  left: 4.4rem;
+  margin-top: -1rem;
+  position: absolute;
+  width: 1.2rem;
+}
+
+/*==============================================
+Drop Down Menu
+================================================ */
+/* line 417, ../sass/style.scss */
+.menu ul {
+  list-style: none;
+  display: none;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  float: left;
+  margin: 1rem 0 0 0;
+  padding: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+/* line 428, ../sass/style.scss */
+.menu ul li {
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  float: none;
+  height: 3rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+/* line 437, ../sass/style.scss */
+.menu ul li:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  cursor: pointer;
+}
+/* line 444, ../sass/style.scss */
+.menu div {
+  float: left;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  color: #fff;
+  cursor: pointer;
+  line-height: 3;
+  padding-left: 3rem;
+}
+/* line 454, ../sass/style.scss */
+.menu div span {
+  float: right;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 1rem 1rem 0;
+  cursor: pointer;
+  padding: 0 1rem;
+}
+/* line 461, ../sass/style.scss */
+.menu div span:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/*==============================================
+Slider
+================================================ */
+/* line 471, ../sass/style.scss */
+input[type='range'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  height: 1rem;
+  width: 100%;
+}
+
+/* line 481, ../sass/style.scss */
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1rem;
+  background: white;
+  height: 2rem;
+  width: 2rem;
+}
+
+/*==============================================
+Progress Bar
+=============================================== */
+/* line 494, ../sass/style.scss */
+.progress > span {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+  display: block;
+  height: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+/* line 502, ../sass/style.scss */
+.progress > span:after {
+  background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.8) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.8) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+  background-size: 5rem 5rem;
+  border-radius: 1rem;
+  content: "";
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+/*==============================================
+Notifications
+=============================================== */
+/* line 528, ../sass/style.scss */
+.notifications ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 532, ../sass/style.scss */
+.notifications ul li {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  color: #fff;
+  cursor: pointer;
+  float: left;
+  height: 5rem;
+  list-style: none;
+  margin: 0 0.5rem;
+  width: 6rem;
+}
+/* line 543, ../sass/style.scss */
+.notifications ul li [class*="fontawesome-"]:before {
+  font-size: 3rem;
+  line-height: 1.7;
+}
+
+/* line 552, ../sass/style.scss */
+.notification:after {
+  background: #e50000;
+  border-radius: 1rem 1rem 1rem 0;
+  box-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.6);
+  content: '1';
+  font-size: 1.3rem;
+  font-weight: bold;
+  height: 2rem;
+  position: absolute;
+  margin-top: -0.5rem;
+  width: 2rem;
+}
+
+/*==============================================
+Login Form
+================================================ */
+/* line 572, ../sass/style.scss */
+.login input[type="email"], .login input[type="password"] {
+  border-radius: 0 1rem 1rem 0;
+  margin: 0.5rem 0;
+  width: 75%;
+}
+/* line 578, ../sass/style.scss */
+.login label {
+  margin: 0.5rem 0;
+  width: 25%;
+}
+/* line 583, ../sass/style.scss */
+.login input[type="submit"] {
+  border-radius: 1rem;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+/* line 591, ../sass/style.scss */
+input[type="email"]:valid ~ .input-validation:after {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  content: "тЬУ";
+  color: #fff;
+  font-size: 2rem;
+  height: 3rem;
+  line-height: 1.5;
+  margin-left: 2rem;
+  position: absolute;
+  width: 3rem;
+}
+
+/* line 604, ../sass/style.scss */
+input[type="email"]:invalid ~ .input-validation:before {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  content: "X";
+  color: #fff;
+  font-family: 'arial', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  height: 3rem;
+  line-height: 1.5;
+  margin-left: 2rem;
+  position: absolute;
+  width: 3rem;
+}
+
+/* line 620, ../sass/style.scss */
+input[type="email"]:invalid ~ .input-validation2:after {
+  border-radius: 1rem;
+  content: "This is an invalid email address";
+  color: #fff;
+  top: 0.5rem;
+  position: relative;
+}
+
+/*==============================================
+Search Inputs
+================================================ */
+/* line 634, ../sass/style.scss */
+.search2 input[type="email"] {
+  border-radius: 0 1rem 1rem 0;
+  width: 80%;
+}
+
+/*==============================================
+Twitter Widget
+================================================ */
+/* line 645, ../sass/style.scss */
+.twitter .fontawesome-twitter:before {
+  color: #fff;
+  float: left;
+  font-size: 4rem;
+  line-height: 2;
+  margin: -1rem 0 -2rem 0.5rem;
+}
+/* line 654, ../sass/style.scss */
+.twitter div {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  color: #fff;
+  float: right;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+  word-wrap: break-word;
+}
+/* line 666, ../sass/style.scss */
+.twitter div:after {
+  content: "";
+  display: block;
+  /* reduce the damage in FF3.0 */
+  position: absolute;
+  bottom: -15px;
+  left: 50px;
+  width: 0;
+  border-width: 15px 15px 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.4) transparent;
+}
+/* line 678, ../sass/style.scss */
+.twitter a {
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+/* line 684, ../sass/style.scss */
+.twitter h3 {
+  color: #fff;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,323 @@
+@import "compass/css3";
+
+// Settings
+$letters: s h a d o w;
+
+$multi-colored: true; 
+$type-color: #45ccc3 ; // if multicolored false
+$size-dots: 1em; // size of each dot
+$spacing: 1.5em; // spacing from point of origin
+$blur: 0.4em; // Spread of box shadow
+$border-radius: 0;
+
+
+// this function draws a single letter
+@function draw($matrix, $spacing: 1.5em, $blur: 0, $offset: 0, $multicolored: true) {
+  $shadow: ();
+  $color: null;
+
+  @for $i from 1 through length($matrix) {
+    $row: nth($matrix, $i);
+
+    @for $j from 1 through length($row) {
+      $val: nth($row, $j); 
+
+        @if $val == 1 {
+          @if $multicolored == true {
+            $color: hsl(random(360), 100, 50 );
+          }
+          @else {
+            $color: $type-color;
+          }
+          
+      $shadow: 
+        append($shadow, ($j * $spacing + $offset) ($i * $spacing) $blur $color, comma); }
+    }
+  }    
+  @return $shadow;
+}
+
+// this function is used to add more letters
+@function multi-draw($matrix-list, $spacing: 1em, $blur: 0, $multicolored:true) {
+  $shadow: 0px 0px 0px transparent;
+
+  @for $i from 1 through length($matrix-list) {
+    $matrix: nth($matrix-list, $i);
+
+    $matrix: val-to-var($matrix);
+
+    $shadow: #{$shadow} , draw($matrix, $spacing, $blur, ($i * (7 * $spacing)), $multicolored);
+  }
+
+  @return $shadow; 
+}
+
+// this function converts a letter to its corresponding variable
+@function val-to-var($value) {
+  $letters-val: a b c d e f g h i j k l m n o p q r s t u v w x y z;
+  $letters-var: $a $b $c $d $e $f $g $h $i $j $k $l $m $n $o $p $q $r $s $t $u $v $w $x $y $z;
+  $variable: null;
+
+  @for $i from 1 through length($letters-val) {
+
+    $single-val: nth($letters-val, $i);
+    $single-var: nth($letters-var, $i);
+
+    @if $value == $single-val {
+      $variable:  $single-var;
+    } 
+  }
+  @return $variable; 
+}
+
+// The letter Matrices Values
+$a: 
+  0 1 1 1 0,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 1 1 1 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1;
+
+$b: 
+  1 1 1 1 0,
+  1 0 0 0 1, 
+  1 0 0 0 1,
+  1 1 1 1 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 1 1 1 0;
+
+$c: 
+  0 1 1 1 0,
+  1 0 0 0 1,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 0 0 0 1,
+  0 1 1 1 0;
+
+$d:
+  1 1 1 1 0,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 1 1 1 0;
+
+$e: 
+  1 1 1 1 1,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 1 1 1 0,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 1 1 1 1;
+
+$f:
+  1 1 1 1 1,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 1 1 1 0,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 0 0 0 0;
+
+$g: 
+  0 1 1 1 0,
+  1 0 0 0 1,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 0 0 1 1,
+  1 0 0 0 1,
+  0 1 1 1 1;
+
+$h:
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 1 1 1 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1;
+
+$i:
+  1 1 1 1 1,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  1 1 1 1 1;
+
+$j:
+  0 0 1 1 1,
+  0 0 0 0 1,
+  0 0 0 0 1,
+  0 0 0 0 1,
+  0 0 0 0 1,
+  0 0 0 0 1,
+  1 1 1 1 1;
+
+$k:
+  1 0 0 0 1,
+  1 0 0 1 0,
+  1 0 1 0 0,
+  1 1 0 0 0,
+  1 0 1 0 0,
+  1 0 0 1 0,
+  1 0 0 0 1;
+
+$l: 
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 1 1 1 1;
+
+$m: 
+  1 0 0 0 1,
+  1 1 0 1 1,
+  1 0 1 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1;
+
+$n: 
+  1 0 0 0 1,
+  1 1 0 0 1,
+  1 0 1 0 1,
+  1 0 0 1 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1;
+
+$o:
+  0 1 1 1 0,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  0 1 1 1 0;
+
+$p:
+  1 1 1 1 0,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 1 1 1 0,
+  1 0 0 0 0,
+  1 0 0 0 0,
+  1 0 0 0 0;
+
+$q: 
+  0 1 1 1 0,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 1 0 1,
+  1 0 1 0 1,
+  0 1 1 1 0;
+
+$r:
+  1 1 1 1 0,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 1 1 1 0,
+  1 0 1 0 0,
+  1 0 0 1 0,
+  1 0 0 0 1;
+
+$s: 
+  0 1 1 1 0,
+  1 0 0 0 1,
+  1 0 0 0 0,
+  0 1 1 1 0,
+  0 0 0 0 1,
+  1 0 0 0 1,
+  0 1 1 1 0;
+
+$t: 
+  1 1 1 1 1,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0;
+
+$u:
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  0 1 1 1 0;
+
+$v: 
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1, 
+  0 1 0 1 0,
+  0 0 1 0 0;
+
+$w:
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 0 0 1,
+  1 0 1 0 1,
+  1 0 1 0 1,
+  1 0 1 0 1,
+  0 1 0 1 0;
+
+$x:
+  1 0 0 0 1,
+  0 1 0 1 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 1 0 1 0,
+  1 0 0 0 1;
+
+$y:
+  1 0 0 0 1,
+  0 1 0 1 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0,
+  0 0 1 0 0;
+
+$z:
+  1 1 1 1 1,
+  0 0 0 0 1,
+  0 0 0 1 0,
+  0 0 1 0 0,
+  0 1 0 0 0,
+  1 0 0 0 0,
+  1 1 1 1 1;
+
+
+body {
+  border-radius: $border-radius;
+  box-shadow: multi-draw($letters, $spacing, $blur, $multi-colored);  
+  height: $size-dots;
+  margin-top: -7em;
+  position: absolute;
+  top: 50%;
+  width: $size-dots;
+
+}
+
+html {
+  background: #111;
+  height: 100%;
+}

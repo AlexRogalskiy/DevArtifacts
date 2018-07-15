@@ -1,0 +1,475 @@
+/* Global Variables */
+/* changing box model on all elements */
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Racing+Sans+One);
+/* line 12, ../sass/mixins.scss */
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* This is a list of direct decendant elements that need their right margin adjusting when aligned center or right.*/
+/* line 30, ../sass/mixins.scss */
+.grid, .grid-center, .grid-right {
+  margin-left: -2%;
+  max-width: 105%;
+}
+
+/* line 35, ../sass/mixins.scss */
+.grid-center {
+  text-align: center;
+}
+/* line 39, ../sass/mixins.scss */
+.grid-center > div, .grid-center header, .grid-center img, .grid-center footer, .grid-center article, .grid-center section {
+  margin-right: 0.125em;
+}
+
+/* line 44, ../sass/mixins.scss */
+.grid-right {
+  text-align: right;
+}
+/* line 48, ../sass/mixins.scss */
+.grid-right > div, .grid-right header, .grid-right img, .grid-right footer, .grid-right article, .grid-right section {
+  margin-right: 0.20em;
+}
+
+/* line 53, ../sass/mixins.scss */
+.grid-justify {
+  margin-left: 0;
+  max-width: 105%;
+  text-align: justify;
+}
+/* line 58, ../sass/mixins.scss */
+.grid-justify:after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+
+/* Setting up class names */
+/* line 67, ../sass/mixins.scss */
+[class*="justify-"] {
+  margin-top: 1em;
+  overflow: hidden;
+  *overflow: visible;
+  display: block;
+  vertical-align: top;
+  width: 100%;
+}
+@media (min-width: 31.25em) {
+  /* line 67, ../sass/mixins.scss */
+  [class*="justify-"] {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+  }
+}
+/* line 81, ../sass/mixins.scss */
+[class*="justify-"]:last-of-type {
+  margin-right: -0.1125em;
+}
+
+/* line 86, ../sass/mixins.scss */
+[class*="block-"], .block-extend, header {
+  margin-left: 2%;
+  margin-right: -0.25em;
+  margin-top: 1em;
+  overflow: hidden;
+  *overflow: visible;
+  display: block;
+  vertical-align: top;
+  width: 98%;
+}
+@media (min-width: 31.25em) {
+  /* line 86, ../sass/mixins.scss */
+  [class*="block-"], .block-extend, header {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+  }
+}
+
+/* line 103, ../sass/mixins.scss */
+.block-1-1, header, .justify-1-1 {
+  width: 98%;
+}
+
+@media (min-width: 48.875em) {
+  /* line 107, ../sass/mixins.scss */
+  .block-1-2, .justify-1-2 {
+    width: 48%;
+  }
+}
+
+@media (min-width: 31.25em) {
+  /* line 112, ../sass/mixins.scss */
+  .block-1-3, .block-1-3-middle, .block-1-3-bottom, .justify-1-3 {
+    width: 31.36%;
+  }
+}
+
+@media (min-width: 31.25em) {
+  /* line 117, ../sass/mixins.scss */
+  .block-2-3, .justify-2-3 {
+    width: 64.66667%;
+  }
+}
+
+@media (min-width: 31.25em) {
+  /* line 122, ../sass/mixins.scss */
+  .block-1-4, .justify-1-4 {
+    width: 48%;
+  }
+}
+@media (min-width: 48.875em) {
+  /* line 122, ../sass/mixins.scss */
+  .block-1-4, .justify-1-4 {
+    width: 23.05%;
+  }
+}
+
+@media (min-width: 48.875em) {
+  /* line 129, ../sass/mixins.scss */
+  .block-3-4, .justify-3-4 {
+    width: 48%;
+  }
+}
+@media (min-width: 31.25em) {
+  /* line 129, ../sass/mixins.scss */
+  .block-3-4, .justify-3-4 {
+    width: 72%;
+  }
+}
+
+@media (min-width: 31.25em) {
+  /* line 136, ../sass/mixins.scss */
+  .block-1-5, .justify-1-5 {
+    width: 48%;
+  }
+}
+@media (min-width: 48.875em) {
+  /* line 136, ../sass/mixins.scss */
+  .block-1-5, .justify-1-5 {
+    width: 18.07%;
+  }
+}
+
+@media (min-width: 31.25em) {
+  /* line 143, ../sass/mixins.scss */
+  .block-2-5, .justify-2-5 {
+    width: 48%;
+  }
+}
+@media (min-width: 48.875em) {
+  /* line 143, ../sass/mixins.scss */
+  .block-2-5, .justify-2-5 {
+    width: 38%;
+  }
+}
+
+@media (min-width: 48.875em) {
+  /* line 150, ../sass/mixins.scss */
+  .block-3-5, .justify-3-5 {
+    width: 58%;
+  }
+}
+
+@media (min-width: 48.875em) {
+  /* line 155, ../sass/mixins.scss */
+  .block-4-5, .justify-4-5 {
+    width: 78%;
+  }
+}
+
+@media (min-width: 31.25em) {
+  /* line 161, ../sass/mixins.scss */
+  .block-1-6, .justify-1-6 {
+    width: 31.35%;
+  }
+}
+@media (min-width: 48.875em) {
+  /* line 161, ../sass/mixins.scss */
+  .block-1-6, .justify-1-6 {
+    width: 14.607%;
+  }
+}
+
+@media (min-width: 48.875em) {
+  /* line 169, ../sass/mixins.scss */
+  .block-5-6, .justify-5-6 {
+    width: 81.33334%;
+  }
+}
+
+/* line 12, ../sass/style.scss */
+::selection {
+  background: #2980b9;
+  color: #fff;
+}
+
+/* line 17, ../sass/style.scss */
+html {
+  background: #ecf0f1;
+  color: #444;
+  font-family: 'Droid Sans', sans-serif;
+}
+
+/* line 23, ../sass/style.scss */
+body {
+  margin: 0 auto;
+  margin-bottom: 3em;
+  max-width: 60em;
+  width: 95%;
+}
+
+/* line 30, ../sass/style.scss */
+code {
+  background: #ccc;
+  border-radius: 3px;
+  font-size: 0.8em;
+  padding: 0 8px;
+}
+
+/* line 39, ../sass/style.scss */
+[class*="icon-align-"] {
+  color: #444;
+  cursor: pointer;
+  font-size: 3em;
+  margin: 0.5em 1em;
+  transition: 0.4s color ease-in-out;
+  display: inline-block;
+}
+@media (max-width: 48.875em) {
+  /* line 39, ../sass/style.scss */
+  [class*="icon-align-"] {
+    margin: 0.5em;
+  }
+}
+@media (max-width: 31.25em) {
+  /* line 39, ../sass/style.scss */
+  [class*="icon-align-"] {
+    display: none;
+  }
+}
+/* line 56, ../sass/style.scss */
+[class*="icon-align-"]:hover {
+  color: #6ab0de;
+}
+
+/* line 62, ../sass/style.scss */
+.v-align header [class*="icon-align-"] {
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+/* line 67, ../sass/style.scss */
+.selected {
+  color: #2980b9;
+}
+
+/* Typography */
+/* line 74, ../sass/style.scss */
+h1 {
+  color: #444;
+  font-family: 'Racing Sans One',  sans-serif;
+  font-size: 4em;
+  margin: 0 0 0.3em 0;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+@media (max-width: 31.25em) {
+  /* line 74, ../sass/style.scss */
+  h1 {
+    font-size: 3em;
+  }
+}
+/* line 86, ../sass/style.scss */
+h1 ::selection {
+  background: #444;
+  color: #fff;
+}
+/* line 91, ../sass/style.scss */
+h1:before, h1:after {
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF444444', endColorstr='#FF444444');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQ0NDQ0NCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzQ0NDQ0NCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #444444), color-stop(100%, rgba(68, 68, 68, 0)));
+  background-image: -moz-linear-gradient(left, #444444 0%, rgba(68, 68, 68, 0) 100%);
+  background-image: -webkit-linear-gradient(left, #444444 0%, rgba(68, 68, 68, 0) 100%);
+  background-image: linear-gradient(to right, #444444 0%, rgba(68, 68, 68, 0) 100%);
+  border-radius: 4px;
+  content: '';
+  display: inline-block;
+  height: 1rem;
+  margin-bottom: .15em;
+  line-height: 0.4;
+  width: 30%;
+}
+@media (max-width: 48.875em) {
+  /* line 91, ../sass/style.scss */
+  h1:before, h1:after {
+    display: none;
+  }
+}
+/* line 106, ../sass/style.scss */
+h1:before {
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF2980B9', endColorstr='#FF2980B9');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI5ODBiOSIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyOTgwYjkiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(41, 128, 185, 0)), color-stop(100%, #2980b9));
+  background-image: -moz-linear-gradient(left, rgba(41, 128, 185, 0) 0%, #2980b9 100%);
+  background-image: -webkit-linear-gradient(left, rgba(41, 128, 185, 0) 0%, #2980b9 100%);
+  background-image: linear-gradient(to right, rgba(41, 128, 185, 0) 0%, #2980b9 100%);
+}
+/* line 113, ../sass/style.scss */
+h1 b {
+  color: #2980b9;
+}
+
+/* line 119, ../sass/style.scss */
+h2 {
+  color: #2980b9;
+  font-family: 'Racing Sans One',  sans-serif;
+  font-size: 4em;
+  margin: 0;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+@media (max-width: 31.25em) {
+  /* line 119, ../sass/style.scss */
+  h2 {
+    font-size: 3em;
+  }
+}
+/* line 131, ../sass/style.scss */
+h2:before, h2:after {
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF2980B9', endColorstr='#FF2980B9');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI5ODBiOSIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyOTgwYjkiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(41, 128, 185, 0)), color-stop(100%, #2980b9));
+  background-image: -moz-linear-gradient(left, rgba(41, 128, 185, 0) 0%, #2980b9 100%);
+  background-image: -webkit-linear-gradient(left, rgba(41, 128, 185, 0) 0%, #2980b9 100%);
+  background-image: linear-gradient(to right, rgba(41, 128, 185, 0) 0%, #2980b9 100%);
+  border-radius: 4px;
+  content: '';
+  display: inline-block;
+  height: 1rem;
+  margin-bottom: 0.15em;
+  width: 30%;
+}
+@media (max-width: 48.875em) {
+  /* line 131, ../sass/style.scss */
+  h2:before, h2:after {
+    display: none;
+  }
+}
+/* line 146, ../sass/style.scss */
+h2:after {
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* line 153, ../sass/style.scss */
+h3 {
+  color: #444;
+  font-family: 'Racing Sans One',  sans-serif;
+  font-size: 3.5em;
+  margin: 1em 0 0.3em 0;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+@media (max-width: 31.25em) {
+  /* line 153, ../sass/style.scss */
+  h3 {
+    font-size: 3em;
+  }
+}
+/* line 165, ../sass/style.scss */
+h3:before, h3:after {
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FF444444', endColorstr='#FF444444');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQ0NDQ0NCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzQ0NDQ0NCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #444444), color-stop(100%, rgba(68, 68, 68, 0)));
+  background-image: -moz-linear-gradient(left, #444444 0%, rgba(68, 68, 68, 0) 100%);
+  background-image: -webkit-linear-gradient(left, #444444 0%, rgba(68, 68, 68, 0) 100%);
+  background-image: linear-gradient(to right, #444444 0%, rgba(68, 68, 68, 0) 100%);
+  border-radius: 4px;
+  content: '';
+  display: inline-block;
+  height: 1rem;
+  margin-bottom: 0.15em;
+  width: 30%;
+}
+@media (max-width: 48.875em) {
+  /* line 165, ../sass/style.scss */
+  h3:before, h3:after {
+    display: none;
+  }
+}
+/* line 180, ../sass/style.scss */
+h3:before {
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* line 185, ../sass/style.scss */
+p {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 31.25em) {
+  /* line 193, ../sass/style.scss */
+  .ribbon {
+    display: none;
+  }
+}
+
+/* line 201, ../sass/style.scss */
+header {
+  padding: 1em;
+  text-align: center;
+}
+
+/* line 208, ../sass/style.scss */
+.block-1-3-middle {
+  vertical-align: middle;
+}
+
+/* line 213, ../sass/style.scss */
+.block-1-3-bottom {
+  vertical-align: bottom;
+}
+
+/* line 220, ../sass/style.scss */
+#v-align span {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* line 227, ../sass/style.scss */
+[class*="block-"], [class*="justify-"] {
+  background: #2980b9;
+  border-radius: 0.5em;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+}
+/* line 237, ../sass/style.scss */
+[class*="block-"] .block-1-3, [class*="block-"] .block-1-3-middle, [class*="block-"] .block-1-3-bottom, [class*="block-"] .block-2-3, [class*="justify-"] .block-1-3, [class*="justify-"] .block-1-3-middle, [class*="justify-"] .block-1-3-bottom, [class*="justify-"] .block-2-3 {
+  background: #ecf0f1;
+  color: #444;
+  min-height: 10em;
+}

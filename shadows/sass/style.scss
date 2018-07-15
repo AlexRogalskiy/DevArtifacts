@@ -1,0 +1,272 @@
+@import "compass/css3";
+@import "mixins";
+
+@mixin shade($type, $color: #3498db, $depth: 20, $angle: 135deg, $long: false, $fade: false) {             
+            $angle: ($angle - 90);             
+            $x: 1.5 * cos($angle) + 0px;  
+            $y: 1.5 * sin($angle) + 0px;  
+            $darken: (lightness($color)/$depth)/2;
+            $opacify: 0; 
+            $shadow: ();  
+            
+            @if $long == true{              
+              $darken:0;
+            }  
+            
+            @if $fade == true {
+              $opacify: (opacity($color)/$depth) ;
+// added this for rendering in some browsers, remove if you like.
+              @include translateZ(0);
+            }
+            
+            @for $i from 1 through $depth {
+              $shadow: $shadow, $i*$x $i*$y 0 hsla(hue($color) , saturation($color), (lightness($color) - ($i * $darken)), 1 - ($i * $opacify));     
+            }       
+            #{$type}-shadow: $shadow;
+    }
+
+  
+/* ===============================================
+  That's all there is to the mixin :)  
+================================================= */
+  
+          
+html {
+  background: #34495e; 
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  text-align: center;
+}
+
+header {
+    margin: 0 auto;
+   width: 22em; 
+  }
+  
+h1 {
+  color: #fff;           
+  font-family: 'Russo One', sans-serif;
+  font-size: 100px;
+  margin-top: 0.5em; 
+}
+  
+h3 {
+  background: #fff; 
+  color: #34495e;
+  font-weight: 400;
+  margin: -3.5em auto 0;
+  margin-top: -3.5em;
+  padding: 0.1em 0;
+  position: relative;
+  width: 19em;
+  
+  &:after, &:before {
+   content: ' * * * ';
+    top: 0.4em;
+    position: absolute;
+  }
+   &:after {
+    right: 0.6em;
+  }
+  &:before {
+    left: 0.6em;
+  }
+}
+
+header:hover > h3 {
+  animation: 1s hover-box linear infinite;
+}  
+
+header:hover > h1 {
+   animation: 1s hover-text linear infinite; 
+  }
+
+  .ribbon {
+    display: none;
+    @include bp(brian) {
+      display: block;
+    } 
+  }  
+  
+  
+%demo-boxes {
+    background: rgba(black,0.08);
+    border-radius: 1em;
+    box-shadow: inset 1px 1px 2px rgba(black,0.3);
+    color: #fff;
+    margin: 3em auto;
+    max-width: 60em;
+    padding: 1em; 
+  }
+  
+h2 {
+  color: #fff;
+  font-family: 'Russo One', sans-serif;
+  font-size: 2em;
+  margin: 0; 
+}
+  
+.text3d {
+  @extend %demo-boxes;
+  
+    h4 { 
+      color: #fff;
+       @include shade(text); 
+      font-family: 'Russo One', sans-serif;
+     font-size: 8em; 
+      margin: 0.2em 0;
+    }
+  
+}
+   
+.longshadows {
+    @extend %demo-boxes;
+    
+div {
+  @include shade(box, #2b3c4e, 50, 227deg, true); 
+  border-radius: 1em;
+  display: inline-block;
+  height: 8em; 
+  margin: 3em;
+  overflow: hidden;
+  text-align: center;
+  width: 8em;          
+}
+    
+[class*="icon-"]{
+  font-size: 5em;
+  line-height: 1.5;  
+}
+    
+.star {
+   background: #8e44ad;
+  }
+    
+.icon-star {
+  color: #fff;
+  @include shade(text, #703688, 50, 227deg, true); 
+}
+
+.thumb {
+      background: #3498db;
+  }
+    
+.icon-thumbs-up {
+  color: #fff;
+  @include shade(text, #217dbb, 50, 227deg, true);
+}
+ 
+  
+.dribbble {
+      background: #ea4c89;
+  }
+    
+.icon-dribbble {
+  color: #fff;
+  @include shade(text, #ba1655, 50, 227deg, true);
+}
+    
+.dollar {
+   background: #2ecc71; 
+  }
+    
+.icon-usd {
+  color: #fff;
+  @include shade(text, #27ae60, 70, 227deg, true, true);
+}    
+    
+}  
+  
+
+  .angle-box {
+    @extend %demo-boxes;
+    overflow: hidden;
+    
+    div {
+      background: #3498db;
+       @include shade(box, #2b3c4e, 150, 156deg, true);  
+      height: 8em;
+      margin: 4em auto 5em; 
+      max-width: 28em;
+      overflow: hidden;
+    }
+    
+    h4 { 
+      color: #fff;
+      @include shade(text,#196090, 90, 156deg, true); 
+      font-family: 'Russo One', sans-serif;
+      font-size: 4em; 
+      line-height: 1.7;
+      margin: 0.2em 0;
+    }
+    
+  }
+
+.fade-box {
+    @extend %demo-boxes;
+    overflow: hidden;
+    
+    div {
+      background: #e67e22;
+       @include shade(box, #2b3c4e, 50, 190deg, true, true);  
+      height: 8em;
+      margin: 4em auto 5em; 
+      max-width: 28em;
+      overflow: hidden;
+    }
+    
+    h4 { 
+      color: #fff;
+      @include shade(text, #d35400, 50, 190deg, true, true); 
+      font-family: 'Russo One', sans-serif;
+      font-size: 4em; 
+      line-height: 1.7;
+      margin: 0.2em 0;
+    }
+    
+  }
+    
+footer {
+  color: #fff;
+  font-family: 'Russo One', sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 2em;
+    
+    a {
+     color: #fff; 
+    }
+}
+  
+  
+// Animation Keyframes
+  
+@keyframes hover-text {
+      0%, 100% {
+     @include shade(text, #2980b9, 15, 45deg, true);  
+    }
+    25% {
+      @include shade(text, #2980b9, 15, 135deg, true);  
+    }
+    50% {
+     @include shade(text, #2980b9, 15, 225deg, true);   
+    }
+    75% {
+     @include shade(text, #2980b9, 15, 315deg, true);   
+    }
+  }
+  
+@keyframes hover-box {
+      0%, 100% {
+     @include shade(box, #2980b9, 15, 45deg, true);  
+    }
+    25% {
+      @include shade(box, #2980b9, 15, 135deg, true);  
+    }
+    50% {
+     @include shade(box, #2980b9, 15, 225deg, true);   
+    }
+    75% {
+     @include shade(box, #2980b9, 15, 315deg, true);   
+    }
+  }  
+  
+  

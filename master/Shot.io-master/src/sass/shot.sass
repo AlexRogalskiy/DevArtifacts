@@ -1,0 +1,577 @@
+@import "bourbon"
+
+@import "foundation/_functions"
+@import "foundation/_settings"
+
+@import "font-awesome/font-awesome"
+
+$primary-color: #ce4b3e
+$secondary-color: #252833
+
+$body-bg: darken($secondary-color, 10%) !default
+$body-font-color: #fff !default
+
+$topbar-bg: $secondary-color
+$topbar-link-color-hover: #fff
+$topbar-link-bg-hover: $secondary-color
+$topbar-divider-border-bottom: solid 1px $topbar-bg
+
+$form-label-font-color: darken($body-font-color, 30%)
+
+$fieldset-bg: transparent
+$fieldset-border-color: transparent
+
+$button-med: rem-calc(12)
+$button-disabled-opacity: 0.5
+
+$legend-bg: transparent
+
+$input-border-color: lighten($secondary-color, 30%)
+$input-focus-border-color: lighten($secondary-color, 30%)
+$input-border-width: 0
+
+$form-label-font-color: lighten($secondary-color, 60%)
+$form-label-bottom-margin: .5em
+
+$shiny-edge-color: rgba(#fff, .3)
+
+$thumbnail-size: rem-calc(480px)
+
+@import "foundation/components/global"
+@import "foundation/components/grid"
+@import "foundation/components/block-grid"
+@import "foundation/components/type"
+@import "foundation/components/buttons"
+@import "foundation/components/forms"
+@import "foundation/components/button-groups"
+@import "foundation/components/top-bar"
+@import "foundation/components/labels"
+
+.foundation-data-attribute-namespace
+	font-family: false
+
+@-moz-document url-prefix()
+	img:-moz-loading
+		visibility: hidden
+
+html
+	background-color: $body-bg
+	height: 100%
+
+body
+	min-height: 100%
+	padding-bottom: 100px
+
+@media #{$small}
+	body
+		padding-top: 45px
+
+.top-bar
+	z-index: 98
+
+@media #{$small}
+	.top-bar
+		position: fixed
+		top: 0
+		width: 100%
+
+.top-bar-section
+
+	ul li:first-child.divider
+		display: none
+
+	em
+		color: #fff
+		font-style: normal
+
+@media #{$small}
+	.top-bar-section ul li:first-child.divider
+		display: inherit
+
+@media #{$medium}
+	.top-bar-section ul li > a
+		color: lighten($topbar-bg, 50%)
+
+.top-bar ul li:hover > a
+	color: $topbar-link-color-hover
+
+a
+	outline: none
+
+	&:active
+		background: none
+
+select
+	-moz-appearance: window
+
+h1, h2, h3, h4, h5, h6
+	color: $body-font-color
+
+h6
+	font-size: 13px
+	font-weight: bold
+
+form
+	margin: 0 auto
+
+fieldset
+	padding-bottom: 0
+	padding-left: 0
+	padding-right: 0
+
+	& .row:first-child
+		margin-top: -1.25em !important
+
+button
+	background-image: none
+
+.button-group.even-2 li > button, .button-group.even-2 li > .button
+	border-color: lighten($secondary-color, 5%)
+
+input
+	border-width: 0 1px 1px 0
+
+table
+	color: $form-label-font-color
+	font-size: 13px
+	line-height: 1.5em
+	margin-bottom: 1.25em
+	width: 100%
+
+	th
+		text-align: left
+
+	td
+		padding-right: 1em
+
+code
+	color: $body-font-color
+	font-weight: normal
+
+li
+	list-style-position: inside
+
+.button-group li
+	list-style-position: inherit
+
+.row
+	min-width: 100% !important
+
+@media #{$medium}
+	.row
+		min-width: 80% !important
+
+.modal
+	display: none
+
+.modal-background
+	background: rgba(darken($secondary-color, 20%), .3)
+	bottom: 0
+	left: 0
+	position: fixed
+	right: 0
+	top: 0
+	z-index: 98
+
+.modal-wrap
+	bottom: 0
+	left: 0
+	overflow: auto
+	padding-top: 100px
+	position: fixed
+	right: 0
+	top: 0
+	z-index: 98
+
+.modal-content
+	background: lighten($secondary-color, 10%)
+	box-shadow: 0 0 50px rgba(#000, .5)
+	margin: 0 auto 55px auto
+	overflow: hidden
+	padding: 1em 2.4em 0
+	max-width: 600px
+
+#edit-mode
+	background: lighten($secondary-color, 5%)
+	bottom: 0
+	box-shadow: 0 0 5px rgba(#000, .5)
+	display: none
+	padding-top: 1.25em
+	position: fixed
+	width: 100%
+
+.valign
+	display: inline-block
+	height: 100%
+	vertical-align: middle
+
+.carousel
+	-webkit-touch-callout: none
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+	bottom: 0
+	cursor: grab
+	cursor: -moz-grab
+	cursor: -webkit-grab
+	overflow: hidden
+	padding-bottom: -40px
+	position: absolute
+	top: 45px
+	width: 100%
+
+	&:active
+		cursor: grabbing
+		cursor: -moz-grabbing
+		cursor: -webkit-grabbing
+
+	.wrap
+		height: 100%
+		left: -100%
+		position: absolute
+		width: 300%
+
+	.image
+		bottom: 0
+		left: 0
+		max-height: 100%
+		position: absolute
+		right: 0
+		top: 0
+		white-space: nowrap
+
+		img
+			background:
+				color: lighten($body-bg, 5%)
+				image: image-url('checkers.png')
+				repeat: repeat
+			max-height: 100%
+			box-shadow: 0 0 5px #000
+
+	.previous, .current, .next
+		position: absolute
+
+	.previous, .next
+		height: 90%
+		top: 5%
+		width: ( 86% / 3 )
+
+	.previous
+		left: ( 18% / 3 )
+		text-align: right
+
+	.next
+		left: ( 196% / 3 )
+
+	.current
+		height: 100%
+		left: ( 107% / 3 )
+		text-align: center
+		top: 0
+		width: ( 86% / 3 )
+
+		a
+			cursor: zoom-in
+
+		.description-wrap
+			display: inherit
+
+	&.animating
+		img
+			box-shadow: none
+
+.thumbnail-grid
+	+block-grid(5, 15px, true)
+	margin-top: rem-calc(30) !important
+
+	li
+
+		.container
+			background:
+				color: lighten($body-bg, 5%)
+				image: image-url('checkers.png')
+				repeat: repeat
+			box-shadow: 0 0 5px #000
+			height: 0
+			padding-bottom: 100%
+			position: relative
+
+			&.error
+				background: darken($alert-color, 25%)
+
+				.processing
+					background-image: none
+
+			.processing
+				background:
+					image: image-url('time.png')
+					repeat: no-repeat
+					position: center center
+				height: 100%
+				position: absolute
+				width: 100%
+
+			.progressbar-wrap
+				position: absolute
+				width: 100%
+
+				.progressbar
+					background: $primary-color
+					+background(linear-gradient(top left, lighten($primary-color, 10%), $primary-color))
+					height: 3px
+					margin-bottom: -3px
+					width: 0
+
+			.selection
+				+transition(opacity .15s ease-in-out)
+				border: 2px solid #fff
+				border-bottom: none
+				bottom: 35px
+				left: 0
+				opacity: 0
+				position: absolute
+				right: 0
+				top: 0
+
+			.bar-wrap
+				height: 35px
+				left: 0px
+				position: absolute
+				right: 0px
+				bottom: 0px
+
+			.bar
+				box-shadow: 0 0 5px rgba(#000, .5)
+				display: table
+				margin: 0
+				position: absolute
+				table-layout: fixed
+				text-shadow: 1px 1px 0 rgba(#fff, .1)
+				width: 100%
+
+				&:before
+					+transition(opacity .15s ease-in-out)
+					background: #fff
+					bottom: 0
+					content: ''
+					display: block
+					left: 0
+					opacity: .3
+					position: absolute
+					right: 0
+					top: 0
+
+				li
+					color: #000
+					display: table-cell
+					font-size: 13px
+					height: 35px
+					line-height: 35px
+					list-style: none
+					overflow: hidden
+					opacity: .999
+					padding: 0 10px
+					text-overflow: ellipsis
+					white-space: nowrap
+					width: 100%
+
+					&.icon
+						padding: 0
+						text-align: center
+						width: 35px
+
+					&.drag-handle
+						cursor: grab
+						cursor: -moz-grab
+						cursor: -webkit-grab
+
+		&:hover
+
+			.bar:before
+				opacity: .7
+
+	img, canvas
+		position: absolute
+
+	canvas
+		height: auto
+		max-width: 100%
+
+	.placeholder-thumbnail
+		background: $secondary-color
+		color: lighten($secondary-color, 10%)
+		display: inline-block
+		height: 100%
+		overflow: hidden
+		position: absolute
+		text-align: center
+		width: 100%
+
+		.fa
+			vertical-align: middle
+
+	&.multi-edit
+
+		li
+
+			.container
+				cursor: default
+
+				a
+					cursor: default
+
+			&:hover
+				.selection
+					opacity: .7
+
+			&.selected
+
+				.selection
+					opacity: .9
+
+				.bar
+					box-shadow: none
+
+					&:before
+						opacity: .9
+
+			&.draggable
+
+				.drag-handle
+					cursor: move !important
+
+				.container
+					box-shadow: 0 0 50px rgba(#000, .5)
+
+					.selection
+						opacity: 0
+
+					.bar
+						box-shadow: none
+
+						&:before
+							opacity: .3
+
+			&.drop-target
+
+				.container
+					background: none
+					box-shadow: none
+
+					div
+						border: 1px dashed lighten($secondary-color, 50%)
+						box-shadow: 0 0 50px #000 inset
+						height: 100%
+						position: absolute
+						width: 100%
+
+@media #{$screen}
+	.thumbnail-grid
+		+block-grid(2, 15px, true)
+
+@media #{$small}
+	.thumbnail-grid
+		+block-grid(3, 15px, true)
+
+@media #{$large}
+	.thumbnail-grid
+		+block-grid(5, 15px, true)
+
+.full-screen
+	background: $body-bg
+	cursor: zoom-out
+	display: none
+	text-align: center
+	width: 100%
+	height: 100%
+
+	img
+		box-shadow: 0 0 5px #000
+		max-height: 100%
+		max-width: 100%
+
+	&:fullscreen
+		display: inherit
+
+	&:-moz-full-screen
+		display: inherit
+
+	&:-webkit-full-screen
+		display: inherit
+
+	&:-ms-full-screen
+		display: inherit
+
+	&:-o-full-screen
+		display: inherit
+
+.button.upload
+
+	input[type=file]
+		cursor: pointer
+		height: 100%
+		left: 0
+		opacity: 0
+		position: absolute
+		top: 0
+		width: 100%
+
+.page-placeholder
+	color: lighten($secondary-color, 10%)
+	font-size: 30px
+	margin-top: 100px
+	text-align: center
+
+#notices
+	box-sizing: border-box
+	padding: 0 40px
+	position: fixed
+	right: 0
+	top: 85px
+	width: 100%
+
+@media #{$small}
+	#notices
+		width: 400px
+		z-index: 99
+
+.notice
+	background-color: lighten($secondary-color, 30%)
+	border-radius: 2px
+	box-shadow: 0 0 5px rgba(#000, .5)
+	cursor: pointer
+	line-height: 1.5em
+	margin-bottom: .5em
+	padding: 1em 1.25em
+
+	i
+		display: none
+		margin-right: 5px
+
+	&.type-success
+		background: $success-color
+
+		i.icon-success
+			display: inline
+
+	&.type-notice i.icon-notice
+		display: inline
+
+	&.type-warn
+		background: $alert-color
+
+		i.icon-warn
+			display: inline
+
+	&.type-error
+		background: $alert-color
+
+		i.icon-error
+			display: inline
+
+.cover-preview
+
+	img
+		border: 1px solid white

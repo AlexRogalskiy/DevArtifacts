@@ -1,0 +1,690 @@
+@import "compass/css3";
+
+/*==============================================
+Demo Styles
+================================================ */
+
+html {
+  font-family: 'Roboto Slab', serif;
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  background: #9b59b6;
+  
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+section {
+  width: 30rem;
+  margin: auto;
+  padding-bottom: 10rem;
+  
+} 
+
+h1 {
+  color: #fff;
+  font-size: 5rem;
+  font-weight: bold;
+  margin: 0 0 2rem 0;
+  text-shadow: 0.2rem 0.2rem 0.1rem rgba(black,0.4);
+}
+
+h2 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  margin:0;
+  text-shadow: 0.2rem 0.2rem 0.1rem rgba(black,0.4);
+} 
+
+h4 {
+  color: #fff;
+  margin: -2rem 0 2rem 0;
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(black,0.4); 
+}
+
+/*==============================================
+Base Form Styles 
+All form elements need these styles
+The rest are modular
+================================================ */
+@import "http://weloveiconfonts.com/api/?family=fontawesome"; 
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+  font-size: 1.5rem;
+  line-height: 2;
+}
+
+.ui  {
+  border-radius: 2rem; 
+  box-shadow: inset 0.1rem 0.1rem 0 rgba(black,0.1), 0.2rem 0.2rem 0 rgba(white,0.1); 
+  background:  rgba(black,0.25);
+  display: inline-block;
+  font-size: 1rem;
+  margin: 0 0 1rem 0 ;
+  padding: 1rem;
+  text-align: center;
+  width: 30rem;
+  
+   input[type="email"],input[type="password"],input[type="search"]{
+      background:  rgba(black,0.25);
+      border: 0;
+      border-radius: 0;
+      height: 3rem;
+      width: 58%; 
+      color: #fff;
+      float:left;
+      padding-left: 0.5rem;
+      
+      &:focus {
+          background:  rgba(black,0.5);
+          transition: background 1s ease;
+        }
+    }
+    input[type="submit"] {
+      background:  rgba(black,0.4);
+      border: 0;
+      border-radius: 0 1rem 1rem 0;
+      color: #fff;
+      float:left;
+      height: 3rem;
+      width: 20%; 
+      z-index: 3;
+      
+      &:hover { 
+          background:  rgba(black,0.6);
+          transition: all 1s ease;
+        }
+    }
+    label {
+      background:  rgba(black,0.4);
+      border: 0;
+      border-radius: 0 1rem 1rem 0;
+      color: #fff;
+      float:left;
+      height: 3rem;
+      width: 20%; 
+      z-index: 3;
+      border-radius: 1rem 0 0 1rem;
+      line-height: 3; 
+    }
+}
+
+
+/*==============================================
+Color Picker Slider
+================================================ */
+
+#red, #green, #blue {
+  float: left;
+  clear: left;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+
+
+#red .ui-slider-range { 
+  background: #ef2929;
+}
+
+#green .ui-slider-range { 
+  background: #8ae234; 
+}
+
+#blue .ui-slider-range { 
+  background: #729fcf; 
+} 
+
+
+.ui-slider-handle{
+  width:2rem !important;
+  height:2rem !important;
+  border-radius: 50%;
+  margin-top: -0.2rem;  
+}
+
+.ui-slider-range {
+  border-radius: 1rem; 
+}
+
+.colors > div {
+  background: rgba(black,0.5);
+  border: none;
+  border-radius: 1rem;
+  height: 1rem;
+  width: 100%;
+}
+
+
+/*==============================================
+Ratings modified version of Lea Verou's
+http://lea.verou.me/2011/08/accessible-star-rating-widget-with-pure-css/
+================================================ */
+fieldset {
+  border: 0;  
+}
+
+.rating:not(:checked) > input {
+  clip:rect(0,0,0,0);  
+  position:absolute;
+  top:-9999px;
+}
+
+.rating:not(:checked) > label {
+  background: none;
+  color:rgba(black, 0.6);  
+  cursor:pointer;
+  float:right;
+  height: 3.5rem;
+  overflow:hidden;
+  padding:0;
+  transition: color 1s ease-in-out;
+  white-space:nowrap;
+  width:5.4rem; 
+}
+
+.rating:not(:checked) > label:before {
+  content: '= ';
+  font-family: 'Typicons', sans-serif;
+  font-size:5rem;
+  line-height: 1;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label,
+.rating > input:checked ~ label{
+  color: #fff;
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(black, 0.4);
+  transition: color 1s ease-in-out;
+}
+
+/*==============================================
+Progress Steps
+================================================ */
+
+ol.ui {
+  list-style: none;
+  list-style-image: none;
+  margin: 0 0 1rem 0;
+  padding: 1rem 0 1rem 1rem;
+  white-space: nowrap;
+  
+  li {
+    float: left;
+    margin-right: 1rem;
+    position: relative;
+    text-align: center;
+    width: 100px;
+  }
+  
+  li > span {
+    color: #fff;
+    display: block;
+    margin-bottom: 0.5rem;
+    width: 100px;
+  }
+  
+  span:nth-of-type(2) {
+      background: rgba(black,0.4);
+      border: 0.2rem solid rgba(black,0);
+      border-radius: 50%;
+      cursor: pointer; 
+      font-size: 1.5rem;
+      font-weight: bold;
+      width: 3rem;
+      height: 3rem;
+      display: inline-block;
+      line-height: 1.7;
+      transition: all 1.2s ease-in-out;
+      
+      &:before {
+          background: rgba(black,0.4);
+          bottom: 1.9rem;
+          content: ""; 
+          height: 0.5rem;
+          left: -2.65rem; 
+          position: absolute;
+          transition: all 1.2s ease-in-out;
+          width: 0rem; 
+        }
+        
+        &:after {
+          background: rgba(black,0.4);
+          bottom: 1.9rem;
+          content: ""; 
+          height: 0.5rem;
+          left: 4.65rem;
+          position: absolute;
+          transition: all 1.2s ease-in-out;
+          width: 4.35rem; 
+        }
+    }
+    
+    li:first-of-type span:nth-of-type(2):before,
+    li:last-of-type span:nth-of-type(2):after {
+      display: none;
+    }
+    
+    .active span:nth-of-type(2) {
+      border: 0.2rem solid white;
+      transition: all 1s ease-in-out;
+      transition-delay: 0.8s;   
+      
+      &:before {
+          background: white; 
+          transition: all 1.2s ease-in-out;
+          width: 4.35rem; 
+        }   
+    }  
+    
+    p {
+      color: #fff;
+      left: 50%;
+      margin-left: -1rem;
+      margin-top: 4.5rem;
+      cursor: pointer;
+      position: absolute;
+    }
+}    
+
+#first {
+  transition-delay: 0;
+}
+
+
+/*==============================================
+Video Player
+================================================ */
+input[type='range'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1rem;
+  background: rgba(black,0.5);
+  height: 1rem;
+  width:100%;
+  
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1rem;
+  background: white;
+  height: 2rem;
+  width: 2rem;
+}
+
+#video-container {
+  margin: 0.5rem 0.5rem 0 0.5rem;
+}
+
+#video-controls {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+button {
+  background: none;
+  border: 0;
+  color: #EEE; 
+  border-radius: 3px;
+  width: 2rem;
+  
+  [class*="fontawesome-"]:before {
+      font-family: 'FontAwesome', sans-serif;
+      font-size: 1.5rem;
+      line-height: 1.7;
+    }
+    
+    
+}
+
+button:hover {
+  cursor: pointer;
+  color: #ccc;
+}
+
+#seek-bar {
+  width: 58%;
+}
+
+#volume-bar {
+  width: 16%; 
+}
+
+
+/*==============================================
+Menu
+================================================ */
+
+.ui ul {
+  list-style: none;
+  margin: 0 -1rem;
+  
+  li {
+    color: #fff;
+    cursor: pointer;
+    float: left;
+    font-size: 1.3rem;
+    height: 2rem;
+    position: relative;
+    text-shadow: 0.1rem 0.1rem 0.1rem rgba(black,0.6); 
+     width: 5rem;
+  }
+}
+
+
+.notification-sml {
+  &:after {
+      background: #e50000;
+      border-radius: 1rem 1rem 1rem 0;
+      box-shadow: 0.05rem 0.05rem 0.1rem rgba(black, 0.6);
+      content: '1';
+      font-size: 0.8rem; 
+      font-weight: bold;
+      height: 1.2rem;
+      left: 4.4rem;
+      margin-top: -1rem;
+      position: absolute;
+      width: 1.2rem;
+    }
+}
+
+/*==============================================
+Drop Down Menu
+================================================ */
+
+
+
+.menu{
+  
+  ul {
+    list-style:none;
+    display:none;
+    width:100%;
+    background: rgba(black,0.5);
+    float: left;
+    margin: 1rem 0 0 0;
+    padding:0;
+    border-radius: 1rem;
+    overflow:hidden;
+    
+    li {
+      color:#fff;
+      cursor:pointer;
+      display:block;
+      float:none;
+      height: 3rem;
+      padding: 0.5rem;
+      width:100%; 
+      
+      &:hover {
+          background: rgba(black,0.5); 
+          border-radius:1rem;
+          cursor:pointer;
+        }
+    }  
+  }
+  div {
+    float: left;
+    width:100%;
+    background: rgba(black,0.25);
+    border-radius:1rem;
+    color:#fff;
+    cursor:pointer;
+    line-height: 3;
+    padding-left: 3rem;
+    
+    span {
+      float: right;
+      background: rgba(black,0.2);
+      border-radius: 0 1rem 1rem 0;
+      cursor:pointer;
+      padding: 0 1rem;
+      
+      &:hover {
+          background: rgba(black,0.5);
+        }
+    }  
+  }
+}
+
+/*==============================================
+Slider
+================================================ */
+input[type='range'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1rem;
+  background: rgba(black,0.5);
+  height: 1rem;
+  width:100%;
+  
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1rem;
+  background: white;
+  height: 2rem;
+  width: 2rem;
+}
+
+/*==============================================
+Progress Bar
+=============================================== */
+
+.progress > span {
+  background-color: rgba(white,0.6);
+  border-radius: 1rem;
+  display: block;
+  height: 2rem;
+  overflow: hidden;	
+  position: relative;
+  
+  &:after { 
+      background-image: 
+        linear-gradient(
+        -45deg, 
+        rgba(black, .8) 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        rgba(255, 255, 255, .8) 50%, 
+        rgba(255, 255, 255, .8) 75%, 
+        transparent 75%, 
+        transparent
+        ); 
+      background-size: 5rem 5rem;
+      border-radius: 1rem;
+      content: "";
+      overflow: hidden;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      z-index: 1;
+    }
+}  
+
+/*==============================================
+Notifications
+=============================================== */
+
+.notifications ul {
+  margin: 0;
+  padding: 0;
+  
+  li {
+    background-color: rgba(black,0.5);
+    border-radius: 1rem;
+    color: #fff;
+    cursor: pointer;
+    float: left;  
+    height: 5rem;
+    list-style: none;
+    margin: 0 0.5rem;
+    width: 6rem;
+    
+    [class*="fontawesome-"]:before {
+        font-size: 3rem;
+        line-height: 1.7;
+      }
+      
+  }
+}
+
+.notification {
+  &:after {
+      background: #e50000;
+      border-radius: 1rem 1rem 1rem 0;
+      box-shadow: 0.05rem 0.05rem 0.1rem rgba(black, 0.6);
+      content: '1';
+      font-size: 1.3rem;
+      font-weight: bold;
+      height:2rem;
+      position: absolute;
+      margin-top: -0.5rem;
+      width: 2rem;
+    }
+}
+
+
+/*==============================================
+Login Form
+================================================ */
+
+.login {
+  input[type="email"],input[type="password"]{
+    border-radius: 0 1rem 1rem 0; 
+    margin: 0.5rem 0;
+    width: 75%;
+  }
+  
+  label {
+    margin: 0.5rem 0;
+    width: 25%; 
+  }
+  
+  input[type="submit"] { 
+    border-radius: 1rem;
+    margin: 1rem 0;
+    width: 100%;
+  }
+}
+
+
+input[type="email"]:valid ~ .input-validation:after {
+  background: rgba(black,0.5);
+  border-radius: 1rem;
+  content: "✓"; 
+  color: #fff;
+  font-size: 2rem;
+  height: 3rem;
+  line-height: 1.5;
+  margin-left: 2rem;
+  position: absolute;
+  width: 3rem;
+}
+
+input[type="email"]:invalid ~ .input-validation:before {
+  background: rgba(black,0.5);
+  border-radius: 1rem;
+  content: "X"; 
+  color: #fff;
+  font-family: 'arial', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  height: 3rem;
+  line-height: 1.5;
+  margin-left: 2rem;
+  position: absolute;
+  width: 3rem;
+}
+
+
+input[type="email"]:invalid ~ .input-validation2:after {
+  border-radius: 1rem;
+  content: "This is an invalid email address"; 
+  color: #fff;
+  top: 0.5rem;
+  position: relative;
+}
+
+/*==============================================
+Search Inputs
+================================================ */
+
+
+.search2{
+  input[type="email"] {
+    border-radius: 0 1rem 1rem 0;
+    width: 80%; 
+  }
+}
+
+/*==============================================
+Twitter Widget
+================================================ */
+
+.twitter {
+  .fontawesome-twitter:before {
+      color: #fff;  
+      float: left;
+      font-size: 4rem;
+      line-height: 2;
+      margin: -1rem 0 -2rem 0.5rem;
+      
+    }
+    
+    div {
+      background: rgba(black,0.4);
+      border-radius: 1rem;
+      color: #fff;
+      float: right;
+      font-size: 1.3rem; 
+      margin-bottom: 0.5rem;
+      padding: 1rem; 
+      position: relative;
+      width: 100%;
+      word-wrap:break-word;
+      
+      &:after {
+          content:"";
+          display:block; /* reduce the damage in FF3.0 */
+          position:absolute;
+          bottom:-15px;
+          left:50px;
+          width:0;
+          border-width:15px 15px 0;
+          border-style:solid;
+          border-color: rgba(black,0.4) transparent;
+        }
+    }
+    a {
+      color: #fff; 
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+    
+    h3 {
+      color: #fff;
+      font-size: 2rem;
+      margin:0;
+      padding: 0;
+    }
+}

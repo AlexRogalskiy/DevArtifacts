@@ -1,0 +1,242 @@
+@import "compass/css3";
+@import "mixins";
+
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Racing+Sans+One);
+
+//Demo Variable & Mixin
+$avant-blue: #2980b9;
+$second-color: lighten($avant-blue, 20%);
+ 
+
+
+::selection {
+  background: $avant-blue;
+  color:#fff;
+}
+
+html {
+  background: #ecf0f1;  
+  color: #444;
+  font-family: 'Droid Sans', sans-serif;
+}
+
+body {
+  margin: 0 auto;
+  margin-bottom: 3em;
+  max-width: 60em;
+  width: 95%;  
+}
+
+code {
+  background: #ccc;
+  border-radius: 3px;
+  font-size: 0.8em;
+  padding: 0 8px;
+}
+
+
+
+[class*="icon-align-"] {
+  color: #444;
+  cursor: pointer;
+  font-size: 3em;
+  margin: 0.5em 1em;
+  transition: 0.4s color ease-in-out;
+  display: inline-block;
+  
+  @media (max-width: $medium) {
+  margin: 0.5em;
+}
+
+@media (max-width: $small) {
+display: none;
+}
+
+
+&:hover {
+  color: $second-color; 
+} 
+} 
+
+.v-align header{
+  [class*="icon-align-"] {
+    @include rotate(90deg);
+  }
+} 
+
+.selected {
+  color: $avant-blue; 
+}
+
+
+/* Typography */
+
+h1 {
+  color: #444;
+  font-family: 'Racing Sans One',  sans-serif;
+  font-size: 4em;
+  margin: 0 0 0.3em 0;
+  text-shadow: 0px 1px 0px rgba(black,.1);
+  white-space:nowrap;
+  
+  @media (max-width: $small) {
+  font-size: 3em;
+}
+
+::selection {
+  background: #444;
+  color:#fff;
+}
+
+&:before, &:after {
+  @include filter-gradient(#444444, #444444, horizontal);
+  @include background-image(linear-gradient(left,  rgba(68,68,68,1) 0%,rgba(68,68,68,0) 100%));
+  border-radius: 4px;
+  content: '';
+  display: inline-block;
+  height: 1rem;
+  margin-bottom: .15em;
+ line-height: 0.4;
+  width: 30%;
+  
+  @media (max-width: $medium) {
+  display: none;
+}
+}
+&:before {
+  @include filter-gradient(#2980b9, #2980b9, horizontal);
+  @include background-image(linear-gradient(left,  rgba(41,128,185,0) 0%,rgba(41,128,185,1) 100%));
+  
+}
+
+
+b {
+  color: $avant-blue;
+}
+
+}
+
+h2 {
+  color: $avant-blue;
+  font-family: 'Racing Sans One',  sans-serif;
+  font-size: 4em;
+  margin: 0;
+  text-shadow: 0px 1px 0px rgba(black,.1);
+  white-space:nowrap;
+  
+  @media (max-width: $small) {
+  font-size: 3em;
+}
+
+&:before, &:after {
+  @include filter-gradient(#2980b9, #2980b9, horizontal);
+  @include background-image(linear-gradient(left,  rgba(41,128,185,0) 0%,rgba(41,128,185,1) 100%));
+  border-radius: 4px;
+  content: '';
+  display: inline-block;
+  height: 1rem;
+  margin-bottom: 0.15em;
+  width: 30%;
+  
+  @media (max-width: $medium) {
+  display: none;
+}
+}
+
+&:after {
+  @include rotate(180deg);
+}
+
+}
+
+
+h3 {
+  color: #444;
+  font-family: 'Racing Sans One',  sans-serif;
+  font-size: 3.5em;
+  margin: 1em 0 0.3em 0; 
+  text-shadow: 0px 1px 0px rgba(black,.1);
+  white-space:nowrap;
+  @media (max-width: $small) {
+  font-size: 3em;
+}
+ 
+
+&:before, &:after {
+  @include filter-gradient(#444444, #444444, horizontal);
+  @include background-image(linear-gradient(left,  rgba(68,68,68,1) 0%,rgba(68,68,68,0) 100%));
+  border-radius: 4px;
+  content: '';
+  display: inline-block;
+  height: 1rem;
+  margin-bottom: 0.15em;
+  width: 30%;
+  
+  
+  @media (max-width: $medium) {
+  display: none;
+}
+}
+&:before {
+  @include rotate(180deg);
+}
+}
+
+p {
+ margin: 0;
+  padding: 0; 
+}
+
+
+// fork on github 
+
+.ribbon {
+  @media (max-width: $small) {
+  display: none;
+} 
+}
+
+// Additional classes for demo
+ 
+header {
+  padding: 1em;
+   @extend .block-extend;
+  @extend .block-1-1;
+  text-align: center;
+}
+
+.block-1-3-middle { 
+@extend .block-1-3;
+  vertical-align: middle;
+}
+
+.block-1-3-bottom {  
+  @extend .block-1-3;
+  vertical-align: bottom;
+}
+
+// lighter lorem ipsum
+
+#v-align span{
+  color: rgba(white,0.4); 
+}
+
+
+// Demo styling of boxes
+
+[class*="block-"], [class*="justify-"] { 
+  background: $avant-blue; 
+  border-radius: 0.5em; 
+  box-shadow: 0px 1px 0px rgba(black,.1);
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+  
+  // Demo styling for nested boxes
+  
+    .block-1-3, .block-2-3 {
+    background: #ecf0f1; 
+    color: #444;
+    min-height: 10em;
+  }
+}  

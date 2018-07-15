@@ -1,0 +1,142 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	background-color: black;
+	overflow: hidden;
+}
+
+h2{
+	position: absolute;
+  width:100%;
+  pointer-events: none;
+	bottom: 40px;
+	font: 12px/1 sans-serif;
+	color: white;
+  text-align: center;
+}
+.stage{
+	position: absolute;
+	width:  300px;
+	height:  300px;
+	left: 50%;
+	top: 50%;
+	margin: -150px 0 0 -150px;
+	-wekit-perspective: 500px;
+	-moz-perspective: 500px;
+	perspective: 500px;
+	}
+
+#box{
+	position: absolute;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform-origin: 50% 50%;
+	-moz-transform-style: preserve-3d;
+	-moz-transform-origin: 50% 50%;
+	transform-style: preserve-3d;
+	transform-origin: 50% 50%;
+	left: 20px;
+	top: 20px;
+	width:  250px;
+	height: 250px;
+	cursor: move;
+	}
+
+div.outer{
+	-webkit-animation: fadeIn 0.5s ease-in 1 forwards;
+	-moz-animation: fadeIn 0.5s ease-in 1 forwards;
+	animation: fadeIn 0.5s ease-in 1 forwards;
+	opacity: 0;
+}
+
+div, div div, div div div{
+	width: 250px;
+	height: 250px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-webkit-transform-origin: 50% 50%;
+	-moz-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+}
+
+div div{
+	-webkit-animation: rotate1 12s linear infinite;
+	-moz-animation: rotate1 12s linear infinite;
+	animation: rotate1 12s linear infinite;
+}
+
+div div div{
+	opacity: 0.7;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	width: 200px;
+	height: 200px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	-webkit-transform: scale(0.2,0.2);
+ 	-webkit-animation: scale1 3s ease-in-out infinite alternate;
+	-moz-transform: scale(0.2,0.2);
+	-moz-animation: scale1 3s ease-in-out infinite alternate;
+	transform: scale(0.2,0.2);
+	animation: scale1 3s ease-in-out infinite alternate;
+}
+.a{
+	}
+.b{
+	left:auto;
+	right: 10px;
+	width: 100px;
+	height: 100px;
+ 	-webkit-animation: scale2 6s ease-in-out infinite alternate;
+	-moz-animation: scale2 6s ease-in-out infinite alternate;
+	animation: scale2 6s ease-in-out infinite alternate;
+}
+
+.c{
+	left:auto;
+	top: auto;
+	right: 10px;
+	bottom: 10px;
+ 	-webkit-animation: scale1 3s ease-in-out infinite alternate;
+	-moz-animation: scale1 3s ease-in-out infinite alternate;
+	animation: scale1 3s ease-in-out infinite alternate;
+}
+
+.d{
+	top: auto;
+	bottom: 10px;
+	width: 100px;
+	height: 100px;
+ 	-webkit-animation: scale2 6s ease-in-out infinite alternate;
+	-moz-animation: scale2 6s ease-in-out infinite alternate;
+	animation: scale2 6s ease-in-out infinite alternate;
+}
+
+@keyframes rotate1 {
+	from { transform: rotate(0deg);}
+	50% { transform: rotate(180deg);}
+	to { transform:rotate(360deg);}
+}
+
+@keyframes scale1 {
+	from { transform: rotateY(-90deg) scale(0.1,0.1);}
+	to {transform: rotateY(90deg) scale(1,1);}
+}
+
+
+@keyframes scale2{
+	from {transform: rotateY(90deg) scale(1,1);}
+	to {transform: rotateY(-90deg) scale(0.1,0.1);}
+}
+@keyframes fadeIn {
+	from { opacity: 0;}
+	to {opacity: 1;}
+}

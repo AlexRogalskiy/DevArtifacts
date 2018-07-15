@@ -1,0 +1,263 @@
+@import "compass/css3";
+
+// mobile first breakpoints
+$stewie: 18.74em;
+$brian: 31.25em;
+$chris: 48.875em;
+$lois: 60em;
+$peter: 71.875em;
+
+@mixin bp($point) {
+  @if $point == stewie {
+    @media (min-width: $stewie) { @content; }
+  }
+  @else if $point == brian {
+    @media (min-width: $brian) { @content; }
+  }
+  @else if $point == chris {
+    @media (min-width: $chris)  { @content; }
+  }
+  @else if $point == lois {
+    @media (min-width: $lois)  { @content; }
+  }
+  @else if $point == peter {
+    @media (min-width: $peter)  { @content; }
+  }
+}
+
+// Place holder color on form input
+
+
+@mixin placeholder ($placeholder: #fff){
+    
+    ::-webkit-input-placeholder {
+      color: $placeholder;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      color: $placeholder;  
+    }
+    ::-moz-placeholder {  /* Firefox 19+ */
+      color: $placeholder;  
+    }
+    :-ms-input-placeholder {  
+      color: $placeholder;  
+    }
+  }
+  
+  // stop user from selecting
+  
+  @mixin callout () {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  // custom scroll bars
+  
+  
+  @mixin scrollbar($size, $primary, $secondary: lighten($primary, 25%)) {
+      ::-webkit-scrollbar {
+        width:  $size;
+        height: $size;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: $primary;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: $secondary;
+      }
+      
+      // For Internet Explorer
+      body {
+        scrollbar-face-color: $primary;
+        scrollbar-track-color: $secondary;
+      }
+    }
+    
+    
+    
+    //flex box old and new syntax
+    
+    @mixin flexbox() {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+    }
+    
+    @mixin flex($values) {
+      -webkit-box-flex: $values;
+      -moz-box-flex:  $values;
+      -webkit-flex:  $values;
+      -ms-flex:  $values;
+      flex:  $values;
+    }
+    
+    @mixin order($val) {
+      -webkit-box-ordinal-group: $val;  
+      -moz-box-ordinal-group: $val;     
+      -ms-flex-order: $val;     
+      -webkit-order: $val;  
+      order: $val;
+    }
+    
+    
+    //Blurred Background Image    
+    
+    @mixin blur-bg($url, $radius: 10px) {
+        &:after {
+          content: ' ';
+          background: url( $url); 
+          background-size: cover;
+          -webkit-filter:  blur($radius);
+          filter: url(#blur);
+          height: 105%;
+          position: absolute;
+          width: 105%;
+          right: -2.5%;
+          left: -2.5%;
+          top: -2.5%;
+          bottom: -2.5%;
+          z-index: -1;
+        }
+      }    
+      
+      
+      // Keyframes
+      @mixin keyframes($name) {
+        @-o-keyframes $name { @content };
+        @-moz-keyframes $name { @content };
+        @-webkit-keyframes $name { @content }; 
+        @-keyframes $name { @content };
+      }
+      
+      
+      
+      // animation properties
+      
+      @mixin animation-name($name...) {
+  -o-animation-name: $name;
+  -moz-animation-name: $name;
+  -webkit-animation-name: $name;
+  animation-name: $name;
+}
+@mixin animation-duration($duration...) {
+  -o-animation-duration: $duration;
+  -moz-animation-duration: $duration;
+  -webkit-animation-duration: $duration;
+  animation-duration: $duration;
+}
+@mixin animation-duration($duration...) {
+  -o-animation-duration: $duration;
+  -moz-animation-duration: $duration;
+  -webkit-animation-duration: $duration;
+  animation-duration: $duration;
+}
+@mixin animation-timing-function($timing...) {
+  -o-animation-timing-function: $timing;
+  -moz-animation-timing-function: $timing;
+  -webkit-animation-timing-function: $timing;
+  animation-timing-function: $timing;
+}
+@mixin animation-iteration-count($count...) {
+  -o-animation-iteration-count: $count;
+  -moz-animation-iteration-count: $count;
+  -webkit-animation-iteration-count: $count;
+  animation-iteration-count: $count;
+}
+@mixin animation-direction($direction...) {
+  -o-animation-direction: $direction;
+  -moz-animation-direction: $direction;
+  -webkit-animation-direction: $direction;
+  animation-direction: $direction;
+}
+@mixin animation-delay($delay...) {
+  -o-animation-delay: $delay;
+  -moz-animation-delay: $delay;
+  -webkit-animation-delay: $delay;
+  animation-delay: $delay;
+}      
+      
+@mixin animation-fill-mode($fill...) {
+  -o-animation-fill-mode: $fill;
+  -moz-animation-fill-mode: $fill;
+  -webkit-animation-fill-mode: $fill;
+  animation-fill-mode: $fill;
+}
+@mixin animation-play-state($state...) {
+  -o-animation-play-state: $state;
+  -moz-animation-play-state: $state;
+  -webkit-animation-play-state: $state;
+  animation-play-state: $state;
+}
+@mixin animation($animation...) {
+  -o-animation: $animation;
+  -moz-animation: $animation;
+  -webkit-animation: $animation;
+  animation: $animation;
+}
+
+      
+// clearfix 
+      
+%cf:before,
+%cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+%cf:after {
+    clear: both;
+}
+
+  
+ //absolute positioning     
+      
+%center {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top:0; 
+}
+      
+      
+      
+ //Hugo Giraudel's Mixin
+      
+      @mixin stripes($colors, $direction: "to bottom") {  
+    
+    $stripes   : 100% / length($colors);
+    $auto      : not(type-of(nth($colors, 1)) == list);
+    $gradient  : ();
+    
+    @for $i from 1 through length($colors) {
+      $item : nth($colors, $i);
+      $dump : ();
+
+      @if $auto == true {
+        $dump : $item $stripes * ($i - 1), $item $stripes * $i;
+      }
+      
+      @else {
+                
+        @if $i > 1 {
+          $prev : nth($colors, $i - 1);
+          $dump : append($dump, nth($item, 1) nth($prev, 2));
+        }
+        $dump : append($dump, $item);
+        
+      }
+      
+      $gradient : join($gradient, $dump, comma);
+
+    }
+
+    @include background-image(linear-gradient($direction, $gradient));
+}
