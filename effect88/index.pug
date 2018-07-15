@@ -1,0 +1,6 @@
+div(ng-app='app' ng-controller='ctrl as ctrl' ng-click='ctrl.click()')
+  .msg
+    span(ng-repeat='(index, letter) in ctrl.msg.split("") track by index'
+        title='{{letter.toUpperCase()}}'
+        ng-class='{ space: letter === " " }')
+  input(ng-model='ctrl.msg' autofocus)

@@ -1,0 +1,38 @@
+@import "../node_modules/nib"
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  transform: rotate(-5deg);
+  background: radial-gradient(center, crimson, darken(crimson, 60%));
+}
+.slashed {
+  absolute: top 0 left 0 right 0 bottom 0;
+  text-shadow: 3px 3px 3px rgba(black, 0.5);
+  .top, .bot {
+    text-align: center;
+    font: 62px/100px arial;
+    text-transform: uppercase;
+    text-align: center;
+    overflow: hidden;
+    color: white;
+    &:before {
+      content: attr(title);
+      transform: rotate(5deg);
+    }
+  }
+  .top {
+    absolute: top 0 left 5px right 0 bottom 50%;
+    &:before {
+      absolute: bottom -50px left 0 right 0;
+    }
+  }
+  .bot {
+    absolute: top 50% left 0 right 5px bottom 0;
+    &:before {
+      absolute: top -50px left 0 right 0;
+    }
+  }
+}

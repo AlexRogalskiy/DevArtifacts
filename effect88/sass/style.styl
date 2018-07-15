@@ -1,0 +1,82 @@
+@import "../node_modules/nib"
+
+$color = hsl(210, 40, 40);
+$border = hsl(215, 80, 15);
+$text = hsl(210, 60, 15);
+
+html, body {
+  height: 100%;
+  background: radial-gradient(center, $color, darken($color, 60%));
+}
+.msg {
+  absolute: top 50% left 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 100%;
+  line-height: 200px;
+  text-align: center;
+  perspective: 1000;
+  transform-origin: 50% 80%;
+  transform-type: preserve-3d;
+  span {
+    color: $text;
+    display: inline-block;
+    font: 60px serif;
+    font-family: 'Cinzel', 'Bigelow Rules', cursive;
+    relative: 0;
+    border-bottom: 5px solid $border;
+    border-top: 5px solid $border;
+    box-shadow: 0 0 25px rgba(black,0.3);
+    background: hsl(30, 20, 94);
+    animation: pulsate 3s infinite linear;
+    for i in (1..100) {
+      &:nth-of-type({i}) {
+        animation-delay: (i / 1)s;
+      }
+    }
+    &:first-of-type {
+      border-left: 5px solid $border;
+    }
+    &:last-of-type {
+      border-right: 5px solid $border;
+    }
+    &:nth-of-type(even) {
+      transform: scale(1.1) rotate(2deg);
+    }
+    &:nth-of-type(odd) {
+      transform: rotate(-2deg);
+    }
+    &:before {
+      display: block;
+      content: attr(title);
+    }
+    &:after {
+      content: attr(title);
+      absolute: top 0 left 0 right 0 bottom 0;
+      opacity: 0.15;
+      transform-origin: 50% 80%;
+      transform-type: preserve-3d;
+      transform: rotateX(50deg) translateY(-3px);
+      text-shadow: 0 0 5px black;
+    }
+    &.space:before,
+    &.space:after {
+      content: '\00a0\00a0';
+    }
+  }
+}
+input {
+  background: transparent;
+  color: white;
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  border-width: 0 0 2px;
+  border-color: white;
+  border-style: solid;
+  text-align: center;
+  font-size: 3em;
+  transform: translate(-50%, 0);
+  outline: none;
+  width: calc(100% - 30px);
+  font-family: 'Special Elite', cursive;
+}
