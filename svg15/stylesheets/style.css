@@ -1,0 +1,286 @@
+/* line 8, ../sass/style.scss */
+.artwork {
+  transform-origin: 0;
+  animation: artwork 4000ms ease-in-out infinite;
+}
+
+@keyframes artwork {
+  000% {
+    transform: translateY(800px);
+  }
+  015% {
+    transform: translateY(0);
+  }
+  020% {
+    transform: translateY(0);
+  }
+  050% {
+    transform: scale(1) translateX(0);
+  }
+  052% {
+    transform: scale(0.6) translate(0, -120px);
+  }
+  060% {
+    transform: scale(0.6) translate(80px, -140px);
+  }
+  070% {
+    transform: scale(0.6) translate(80px, -120px);
+  }
+  080%,
+  100% {
+    transform: scale(0.6) translate(80px, -800px);
+  }
+}
+/* line 42, ../sass/style.scss */
+.raygun {
+  transform-origin: center;
+  animation: raygun 4000ms ease-in-out infinite;
+}
+
+@keyframes raygun {
+  000% {
+    transform: rotate(40deg);
+  }
+  015% {
+    transform: rotate(-16deg);
+  }
+  025% {
+    transform: rotate(8deg);
+  }
+  030% {
+    transform: rotate(-2deg);
+  }
+  032%,
+  036%,
+  040%,
+  044%,
+  048% {
+    transform: rotate(-0.5deg);
+  }
+  034%,
+  038%,
+  042%,
+  046%,
+  050% {
+    transform: rotate(0.5deg);
+  }
+  050% {
+    transform: rotate(0);
+  }
+  052% {
+    transform: rotate(-16deg);
+  }
+  060% {
+    transform: rotate(12deg);
+  }
+  080%,
+  100% {
+    transform: rotate(-12deg);
+  }
+}
+/* line 92, ../sass/style.scss */
+.gun-trigger {
+  transform-origin: center 20%;
+  animation: gun-trigger 4000ms ease-in-out infinite;
+}
+
+@keyframes gun-trigger {
+  000%,
+  030% {
+    transform: rotate(0);
+  }
+  046% {
+    transform: rotate(32deg);
+  }
+  048%,
+  100% {
+    transform: rotate(0);
+  }
+}
+/* line 112, ../sass/style.scss */
+.sheen {
+  animation: sheen 4000ms ease-in-out infinite;
+}
+
+@keyframes sheen {
+  000%,
+  025% {
+    transform: translateX(-320px);
+  }
+  040%,
+  055% {
+    transform: translateX(320px);
+  }
+  070%,
+  100% {
+    transform: translateX(-320px);
+  }
+}
+/* line 132, ../sass/style.scss */
+.gun-charge {
+  transform-origin: center;
+  animation: gun-charge 4000ms ease-in-out infinite;
+}
+
+@keyframes gun-charge {
+  000%,
+  025% {
+    opacity: 0;
+    fill: #4193f2;
+    transform: scale(1);
+  }
+  045% {
+    opacity: 0.5;
+    fill: #4193f2;
+    transform: scale(0.9);
+  }
+  050%,
+  100% {
+    opacity: 1;
+    fill: white;
+    transform: scale(0);
+  }
+}
+/* line 159, ../sass/style.scss */
+.line {
+  animation: fire 4000ms ease-in-out infinite;
+}
+
+@keyframes fire {
+  0%,
+  049% {
+    stroke: transparent;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 5,200;
+  }
+  050% {
+    stroke: white;
+  }
+  055% {
+    stroke-dashoffset: -80px;
+    stroke-dasharray: 20,200;
+    stroke: white;
+  }
+  060%,
+  100% {
+    stroke-dashoffset: -120px;
+    stroke-dasharray: 5,200;
+    stroke: transparent;
+  }
+}
+/* line 188, ../sass/style.scss */
+.beam-white {
+  animation: white-beam 4000ms ease-in-out infinite;
+}
+
+@keyframes white-beam {
+  000%,
+  050% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 400,2000;
+  }
+  051%,
+  069% {
+    opacity: 1;
+  }
+  070%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -500px;
+    stroke-dasharray: 0,2000;
+  }
+}
+/* line 210, ../sass/style.scss */
+.beam-blue {
+  animation: blue-beam 4000ms ease-in-out infinite;
+}
+
+@keyframes blue-beam {
+  000%,
+  055% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 300,2000;
+  }
+  056%,
+  069% {
+    opacity: 1;
+  }
+  070%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -550px;
+    stroke-dasharray: 0,2000;
+  }
+}
+/* line 235, ../sass/style.scss */
+html {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 239, ../sass/style.scss */
+body {
+  background: #303845;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* line 249, ../sass/style.scss */
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* line 254, ../sass/style.scss */
+.center {
+  position: relative;
+}
+/* line 256, ../sass/style.scss */
+.center:before {
+  content: 'SVG + CSS';
+  display: none;
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  padding: 8px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+  background: #7f8794;
+  border-radius: 4px;
+  font-family: arial, helvetica, sans-serif;
+  box-shadow: 0 3px 0 black;
+}
+
+@media screen and (max-width: 480px) {
+  /* line 274, ../sass/style.scss */
+  .center:before {
+    display: none;
+  }
+}
+/* line 279, ../sass/style.scss */
+.center__image {
+  background: #1c232d;
+}
+
+/* line 282, ../sass/style.scss */
+.center__plug {
+  display: none;
+  font-family: arial, helvetica, sans-serif;
+  width: 100%;
+  margin-top: 64px;
+  text-align: center;
+  color: #9ca3af;
+}
+/* line 289, ../sass/style.scss */
+.center__plug a {
+  color: #4193f2;
+}

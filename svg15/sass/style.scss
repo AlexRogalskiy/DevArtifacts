@@ -1,0 +1,292 @@
+// animation duration controls the length of the entire animation
+$animation-duration: 4000ms;
+
+//-- Lets get started!
+
+//-
+// The artwork layer controls the vertical movement and scale of the entire animation
+.artwork {
+  transform-origin: 0;
+  animation: artwork $animation-duration ease-in-out infinite;
+}
+@keyframes artwork {
+  000% {
+    transform: translateY(800px);
+  }
+  015% {
+    transform: translateY(0);
+  }
+  020% {
+    transform: translateY(0);
+  }
+  050% {
+    transform: scale(1) translateX(0);
+  }
+  052% {
+    transform: scale(0.6) translate(0, -120px);
+  }
+  060% {
+    transform: scale(0.6) translate(80px, -140px);
+  }
+  070% {
+    transform: scale(0.6) translate(80px, -120px);
+  }
+  080%,
+  100% {
+    transform: scale(0.6) translate(80px, -800px)
+  }
+}
+
+//-
+// The raygun layer controls the rotation and bouncing of the gun
+.raygun {
+  transform-origin: center;
+  animation: raygun $animation-duration ease-in-out infinite;
+}
+@keyframes raygun {
+  000% {
+    transform: rotate(40deg);
+  }
+  015% {
+    transform: rotate(-16deg);
+  }
+  025% {
+    transform: rotate(8deg);
+  }
+  030% {
+    transform: rotate(-2deg);
+  }
+  //--- chargin
+  032%,
+  036%,
+  040%,
+  044%,
+  048% {
+    transform: rotate(-0.5deg);
+  }
+  034%,
+  038%,
+  042%,
+  046%,
+  050% {
+    transform: rotate(0.5deg);
+  }
+  //--- mah lazor
+  050% {
+    transform: rotate(0);
+  }
+  052% {
+    transform: rotate(-16deg);
+  }
+  060% {
+    transform: rotate(12deg);
+  }
+  080%,
+  100% {
+    transform: rotate(-12deg);
+  }
+}
+
+//-
+// Gun trigger
+.gun-trigger {
+  transform-origin: center 20%;
+  animation: gun-trigger $animation-duration ease-in-out infinite;
+}
+@keyframes gun-trigger {
+  000%,
+  030%{
+    transform: rotate(0);
+  }
+  046% {
+    transform: rotate(32deg);
+  }
+  048%,
+  100% {
+    transform: rotate(0);
+  }
+}
+
+//-
+// White polygon that travels across the gun, Masked
+.sheen {
+  animation: sheen $animation-duration ease-in-out infinite;
+}
+@keyframes sheen {
+  000%,
+  025% {
+    transform: translateX(-320px);
+  }
+  040%,
+  055% {
+    transform: translateX(320px);
+  }
+  070%,
+  100% {
+    transform: translateX(-320px);
+  }
+}
+
+//-
+// Gun charging circle
+.gun-charge {
+  transform-origin: center;
+  animation: gun-charge $animation-duration ease-in-out infinite;
+}
+@keyframes gun-charge{
+  000%,
+  025% {
+    opacity: 0;
+    fill: #4193f2;
+    transform: scale(1);
+  }
+  045% {
+    opacity: 0.5;
+    fill: #4193f2;
+    transform: scale(0.9);
+  }
+  050%,
+  100% {
+    opacity: 1;
+    fill: white;
+    transform: scale(0);
+  }
+}
+
+
+//-
+// Little shockwave particle things, reused stroke animation on each line.
+.line {
+  animation: fire $animation-duration ease-in-out infinite;
+}
+@keyframes fire {
+  0%,
+  049% {
+    stroke: transparent;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 5,200;
+  }
+  050% {
+    stroke: white;
+  }
+  055% {
+    stroke-dashoffset: -80px;
+    stroke-dasharray: 20,200;
+    stroke: white;
+  }
+  060%,
+  100% {
+    stroke-dashoffset: -120px;
+    stroke-dasharray: 5,200;
+    stroke: transparent;
+  }
+}
+
+
+//-
+// Firing beam stroke animations
+.beam-white {
+  animation: white-beam $animation-duration ease-in-out infinite;
+}
+@keyframes white-beam {
+  000%,
+  050% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 400,2000;
+  }
+  051%,
+  069% {
+   opacity: 1;
+  }
+  070%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -500px;
+    stroke-dasharray: 0,2000;
+  }
+}
+
+.beam-blue {
+  animation: blue-beam $animation-duration ease-in-out infinite;
+}
+@keyframes blue-beam {
+  000%,
+  055% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 300,2000;
+  }
+  056%,
+  069% {
+   opacity: 1;
+  }
+  070%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -550px;
+    stroke-dasharray: 0,2000;
+  }
+}
+
+
+//--- Making the display look pretty
+//-- Display / Setup
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  background: #303845;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+}
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.center {
+  position: relative;
+  &:before {
+    content: 'SVG + CSS';
+    display: none;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    background: #7f8794;
+    border-radius: 4px;
+    font-family: arial, helvetica, sans-serif;
+    box-shadow: 0 3px 0 black;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .center:before {
+    display: none;
+  }      
+}
+
+.center__image {
+  background: #1c232d;
+}
+.center__plug {
+  display:none;
+  font-family: arial, helvetica, sans-serif;
+  width: 100%;
+  margin-top: 64px;
+  text-align: center;
+  color: #9ca3af;
+  a {
+    color: #4193f2;
+  }
+}
