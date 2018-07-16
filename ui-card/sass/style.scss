@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+// Variables
+$wrapper-bg: url("https://images4.alphacoders.com/573/573386.jpg") no-repeat center;
+$font: 'Raleway', sans-serif;
+$white: #fff;
+$black: #050a1e;
+$gray: #aaacaf;
+$border: #2762c1;
+$dark-blue: #0f224d;
+$db: #10214c;
+$gradient: linear-gradient(to bottom, $black 0%, $dark-blue 50%, $db 100%);
+
+* {
+   margin: 0;
+   padding: 0;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   -ms-box-sizing: border-box;
+   -o-box-sizing: border-box;
+   box-sizing: border-box;
+   outline: none;
+   text-decoration: none;
+   list-style-type: none;
+   font-family: $font;
+}
+
+img {
+   max-width: 100%;
+}
+
+html, body {
+   height: 100;
+}
+
+body {
+   background: $gradient;
+}
+
+.wrapper {
+   position: relative;
+   text-align: center;
+   .header {
+      position: relative;
+      color: $white;
+      text-align: center;
+      font-size: 2.6em;
+      letter-spacing: 0.05em;
+      font-weight: 100;
+      top: 30px;
+   }
+   .tabs {
+      position: relative;
+      display: inline-block;
+      border: 2px solid $border;
+      top: 50px;
+      padding: 10px;
+      border-radius: 20px;
+         ul li {
+            display: inline-block;
+            text-align: center;
+            top: 50px;
+            padding: 0 10px;
+            a {
+               color: $white;
+               text-transform: uppercase;
+               letter-spacing: 0.3em;
+               transition: 250ms;
+               &:hover {
+                  color: $border;
+                  border-bottom: 1px solid $border;
+                  transition: 250ms;
+               }
+            }
+      }
+   }
+   .wrap {
+      max-width: 400px;
+      position: relative;
+      background: $white;
+      color: $white;
+      margin: 80px auto;
+      border-radius: 20px;
+      box-shadow: 0px 0px 80px 1px $black;
+      .header-bg {
+         min-height: 300px;
+         background: $wrapper-bg;
+         background-size: cover;
+         border-radius: 10px 10px 0 0;
+      }
+      .users {
+         display: none;
+         position: absolute;
+         margin-left: 15px;
+         margin-top: 10px;
+         ul li {
+            display: inline-block;
+            margin-left: -3px;
+            img {
+               width: 30px;
+               border-radius: 100%;
+               border: 2px solid $white;
+            }
+         }
+      }
+      a i.fa-heart-o {
+         position: relative;
+         color: $white;
+         font-size: 2em;
+         text-align: right;
+         top: 15px;
+         right: 15px;
+         float: right;
+      }
+      .title {
+         position: absolute;
+         text-align: left;
+         margin-left: 25px;
+         margin-top: 250px;
+      }
+      span {
+         position: absolute;
+         margin-left: 165px;
+         margin-top: 278px;
+         color: $border;
+         &:hover {
+            // transform: rotateZ(360deg);
+            transition: 100ms;
+         }
+      }
+      .info {
+         position: relative;
+         .main-title {
+            color: $border;
+            font-size: 1em;
+            text-align: left;
+            margin: 15px 25px;
+         }
+         .description {
+            color: $black;
+            font-weight: normal;
+            text-align: left;
+            margin: 0 25px;
+         }
+         .steps li {
+            color: $gray;
+            display: inline-block;
+            margin: 20px 25px;
+         }
+      }
+   }
+}
