@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		
+
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet prefetch" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+<div id="app">
+  <h2>Vue Password Strength Meter</h2>
+
+  <div class="input_container">
+    <input type="password" @input="p_len" v-model="password" placeholder="Type your password" />
+    <span v-bind:class="{ valid_password_length: valid_password_length , show_password_length: typed}" class="password_length">{{password_length}}</span>
+  </div>
+
+  <div class="lnu_container">
+    <p v-bind:class="{ lovercase_valid: contains_lovercase }">Lowercase</p>
+    <p v-bind:class="{ number_valid: contains_number }">Number</p>
+    <p v-bind:class="{ uppercase_valid: contains_uppercase }">Uppercase</p>
+  </div>
+
+  <div class="valid_password_container" v-bind:class="{show_valid_password_container : valid_password }">
+    <svg width="100%" height="100%" viewBox="0 0 140 100">
+    <path class="tick" v-bind:class="{checked: valid_password }" 
+          d="M10,50 l25,40 l95,-70" />
+  </svg>
+  </div>
+
+</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
+	
+</body>
+<!--  footer -->
+</html>
