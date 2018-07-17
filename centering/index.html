@@ -1,0 +1,799 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />	
+
+		
+		<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+		<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+        <link rel="stylesheet prefetch" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+
+<div class="Modal-Background toggle-Modal">
+  <div class="Center-Block Absolute-Center is-Fixed is-Variable Modal" id="Fixed-Modal">
+    <div class="Center-Content">
+      <h4 class="Title">Absolute Center.</h4>
+
+      <p>This box is absolutely centered within the viewport, horizontally and vertically, using only CSS.</p>
+
+      <p><a href="#" class="Shaw-Button trigger-Resize">Resize Me!</a></p>
+
+      <p><a href="#" class="Shaw-Button toggle-Modal">Close Modal</a></p>
+    </div>
+  </div>
+</div>
+
+<nav id="Navigation" role="navigation">
+  <a href="#Overview">Absolute Centering</a>
+  <a href="#Comparison-Table">Comparison Table</a>
+  <a href="#Explanation">Explanation</a>
+  <a href="#Alignment">Alignment</a>
+  <a href="#Responsive">Responsive</a>
+  <a href="#Overflow">Overflow</a>
+  <a href="#Resizing">Resizing</a>
+  <a href="#Images">Images</a>
+  <a href="#Height">Variable Height</a>
+  <a href="#Other">Other Techniques</a>
+  <a href="#Recommendations">Recommendations</a>
+</nav>
+
+<article class="Content">
+  <header id="Overview" class="clearfix">
+
+    <div class="Center-Container no-wp" id="Main-Title">
+      <h1 class="Title Center-Block Absolute-Center is-Variable">Absolute Centering in CSS</h1>
+    </div>
+
+    <div class="Notification no-wp">
+      <p>Thanks for the positive comments! Now you can read this article on <a href="http://coding.smashingmagazine.com/2013/08/09/absolute-horizontal-vertical-centering-css/" target="_blank">Smashing Magazine</a> and experience a few new demos (like <a href="#Resizing">Resizing</a>) and code examples (<a href="#Height">Variable Height Modernizr Test</a> &amp; <a href="#Other">Other Techniques</a>)! I've also added a <a href="https://codepen.io/shshaw/full/gEiDt#Comparison-Table">Comparison Table</a> to see which vertical centering technique is right for you.</p>
+    </div>
+
+    <p>We've all seen <code>margin: 0 auto;</code> for horizontal centering, but <code>margin: auto;</code> has refused to work for vertical centering... <em>until now!</em> But actually (spoiler alert!) absolute centering <strong>only requires a <a href="#Height">declared height*</a> and these styles</strong>:</p>
+    <pre>.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}</pre>
+    <p>I'm not the pioneer of this method (yet I have dared to name it <em>Absolute Centering</em>), and it may even be a common technique, however, most vertical centering articles never mention it and I had never seen it until I dug through the comments section of a <a href="https://designshack.net/articles/css/how-to-center-anything-with-css" target="_blank">particular article</a>.</p>
+
+    <p>There, <a href="https://designshack.net/articles/css/how-to-center-anything-with-css/#comment-684580538" target="_blank">Simon</a> linked to this <a href="http://jsfiddle.net/mBBJM/1/" target="_blank">jsFiddle</a> that blew every other method out of the water (the same method was also mentioned by <a href="https://designshack.net/articles/css/how-to-center-anything-with-css/#comment-684580409" target="_blank">Priit</a> in the comments). Researching further, I had to use very specific keywords to find <a href="http://www.vanseodesign.com/css/vertical-centering/">some</a> <a href="http://www.student.oulu.fi/~laurirai/www/css/middle/" target="_blank">other</a> <a href="http://blog.themeforest.net/tutorials/vertical-centering-with-css/" target="_blank">sources</a> for this method.</p>
+
+    <p>Having never used this technique before, I put it to the test and discovered how incredible Absolute Centering really is.</p>
+
+    <div id="More-Info">
+      <p><strong><em>Leave a comment on <a href="https://codepen.io/shshaw/details/gEiDt">CodePen</a>, <a href="http://coding.smashingmagazine.com/2013/08/09/absolute-horizontal-vertical-centering-css/#comments" target="_blank">Smashing Magazine</a>, or message <a href="https://twitter.com/shshaw" target="_blank">@shshaw</a> on Twitter if you have any additional features or suggestions.</em></strong></p>
+    </div>
+
+    <br />
+
+    <div class="Advantages Float-Left">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Cross-browser (including IE8-10)</li>
+        <li>No special markup, minimal styles</li>
+        <li>Responsive with percentages and min-/max-</li>
+        <li>Use one class to center any content</li>
+        <li>Centered regardless of padding (without <code>box-sizing</code>!)</li>
+        <li>Blocks can easily be resized</li>
+        <li>Works great on images</li>
+      </ul>
+    </div>
+
+    <div class="Caveats Float-Right">
+      <h4>Caveats:</h4>
+      <ul>
+        <li>Height must be declared (see <a href="#Height">Variable Height</a>)</li>
+        <li>Recommend setting <code>overflow: auto</code> to prevent content spillover (see <a href="#Overflow">Overflow</a>)</li>
+      </ul>
+    </div>
+    <div class="Clear"></div>
+
+    <h4>Browser Compatibility:</h4>
+    <p><strong> Chrome, Firefox, Safari, Mobile Safari, IE8-10.</strong><br />Absolute Centering was tested and works flawlessly in the latest versions of Chrome, Firefox, Safari, Mobile Safari, <a href="https://twitter.com/BrairMoss/status/475014563318886401">Windows Phone</a> and even IE8-10. <small>(Previous versions of the article mentioned issues with Windows Phone, but that may have been a CodePen limitation).</small></p>
+
+
+  </header>
+
+
+
+  <section id="Comparison-Table" class="clearfix">
+
+    <h3>Comparison Table</h3>
+
+    <p>Absolute Centering isn't the only option out there. Several unique methods exist for vertical centering, and each has their advantages. Which technique you choose mainly boils down to which browsers you support and what your existing markup looks like, but this comparison table can help make the right choice to match the features you need.</p>
+
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="Technique-Title">Technique</th>
+            <th scope="col" class="Browser-Support">Browser Support</th>
+            <th scope="col" class="Responsive-Support">Responsive</th>
+            <th scope="col" class="Overflow-Support">Overflow</th>
+            <th scope="col" class="Resize-Support"><code>resize:both</code></th>
+            <th scope="col" class="Height-Support">Variable Height</th>
+            <th scope="col" class="Major-Caveats">Major Caveats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Overview">Absolute Centering</a></th>
+            <td class="Browser-Support">Modern &amp; IE8+</td>
+            <td class="Responsive-Support">Yes</td>
+            <td class="Overflow-Support">Scroll, can overflow container</td>
+            <td class="Resize-Support">Yes</td>
+            <td class="Height-Support">Yes*</td>
+            <td class="Major-Caveats"><a href="#Height">Variable Height</a> not perfect cross-browser</td>
+          </tr>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Negative-Margins">Negative Margins</a></th>
+            <td class="Browser-Support">All</td>
+            <td class="Responsive-Support">No</td>
+            <td class="Overflow-Support">Scroll</td>
+            <td class="Resize-Support">Resizes but doesn't stay centered</td>
+            <td class="Height-Support">No</td>
+            <td class="Major-Caveats">Not responsive, margins must be calculated manually</td>
+          </tr>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Transforms">Transforms</a></th>
+            <td class="Browser-Support">Modern &amp; IE9+</td>
+            <td class="Responsive-Support">Yes</td>
+            <td class="Overflow-Support">Scroll, can overflow container</td>
+            <td class="Resize-Support">Yes</td>
+            <td class="Height-Support">Yes</td>
+            <td class="Major-Caveats">Blurry rendering</td>
+          </tr>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Table-Cell">Table-Cell</a></th>
+            <td class="Browser-Support">Modern &amp; IE8+</td>
+            <td class="Responsive-Support">Yes</td>
+            <td class="Overflow-Support">Expands container</td>
+            <td class="Resize-Support">No</td>
+            <td class="Height-Support">Yes</td>
+            <td class="Major-Caveats">Extra markup</td>
+          </tr>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Inline-Block">Inline-Block</a></th>
+            <td class="Browser-Support">Modern, IE8+ &amp; IE7*</td>
+            <td class="Responsive-Support">Yes</td>
+            <td class="Overflow-Support">Expands container</td>
+            <td class="Resize-Support">No</td>
+            <td class="Height-Support">Yes</td>
+            <td class="Major-Caveats">Requires container, hacky styles</td>
+          </tr>
+          <tr>
+            <th scope="row" class="Technique-Title"><a href="#Flexbox">Flexbox</a></th>
+            <td class="Browser-Support">Modern &amp; IE10+</td>
+            <td class="Responsive-Support">Yes</td>
+            <td class="Overflow-Support">Scroll, can overflow container</td>
+            <td class="Resize-Support">Yes</td>
+            <td class="Height-Support">Yes</td>
+            <td class="Major-Caveats">Requires container, vendor prefixes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section id="Explanation" class="clearfix">
+    <h3>Explanation</h3>
+
+    <p>After researching specs and documentation, this is my understanding of how Absolute Centering works:</p>
+
+    <ol>
+      <li>In the <a href="http://taligarsiel.com/Projects/howbrowserswork1.htm#Layout" target="_blank">normal content flow</a>, <code>margin: auto;</code> equals '0' for the top and bottom.
+        <small class="Reference"><a href="http://www.w3.org/TR/CSS2/visudet.html#normal-block">W3.org</a>: <q>If 'margin-top', or 'margin-bottom' are 'auto', their used value is 0.</q></small></li>
+
+      <li><code>position: absolute;</code> breaks the block out of the typical content flow, rendering the rest of the content as if that block weren't there. 
+        <small class="Reference"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#Absolute_positioning" target="_blank">Developer.mozilla.org</a>: <q>...an element that is positioned absolutely is taken out of the flow and thus takes up no space</q></small></li>
+
+      <li>Setting <code>top: 0; left: 0; bottom: 0; right: 0;</code> gives the browser a new bounding box for the block. At this point the block will fill all available space in its offset parent, which is the body or <code>position: relative;</code> container. <small class="Reference"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#Notes" target="_blank">Developer.mozilla.org</a>: <q>For absolutely positioned elements, the top, right, bottom, and left properties specify offsets from the edge of the element's containing block (what the element is positioned relative to).</q></small></li>
+
+      <li>Giving the block a <code>width</code> or a <code>height</code> prevents the block from taking up all available space and forces the browser to calculate <code>margin: auto</code> based on the new bounding box. <small class="Reference"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#Notes" target="_blank">Developer.mozilla.org</a>: <q>The margin of the [absolutely positioned] element is then positioned inside these offsets.</q></small></li>
+
+      <li>Since the block is absolutely positioned and therefore out of the normal flow, the browser gives equal values to <code>margin-top</code> and <code>margin-bottom</code> centering the element in the bounds set earlier. 
+        <small class="Reference"><a href="http://www.w3.org/TR/CSS2/visudet.html#abs-non-replaced-height">W3.org</a>: <q>If none of the three [top, bottom, height] are 'auto': If both 'margin-top' and 'margin-bottom' are 'auto', solve the equation under the extra constraint that the two margins get equal values.</q> AKA: center the block vertically</small></li>
+    </ol>
+
+    <p>Absolute Centering appears to be the intended use for <code>margin: auto;</code> based on the spec and should therefore work in every standards compliant browser.</p>
+
+    <p><strong>TL;DR:</strong> Absolutely positioned elements aren't rendered in the normal flow, so <code>margin: auto;</code> centers vertically within the bounds set by <code>top: 0; left: 0; bottom: 0; right: 0;</code>.</p>
+
+  </section>
+
+
+  <section id="Alignment" class="clearfix">
+    <h3 class="no-wp">Alignment</h3>
+
+    <div id="In-Container" class="Sub-Section clearfix">
+
+      <h3>Within Container</h3>
+
+      <div class="Float-Right">
+        <pre>.Center-Container {
+  position: relative;
+}
+
+.Absolute-Center {
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}</pre>
+      </div>
+
+      <p>With Absolute Centering, you can place your content block inside of a <code>position: relative</code> container to align the block within the container!</p>
+
+      <p><strong>The rest of the demos will assume these styles are already included and will provide add-on classes to implement various features.</strong></p>
+
+      <div class="Center-Container">
+        <div class="Center-Block Absolute-Center">
+          <h4 class="Title">Absolute Center,<br />Within Container.</h4>
+
+          <p>This box is absolutely centered, horizontally and vertically, within its container using <br /><code>position: relative</code></p>
+        </div>
+      </div>
+
+      <div class="Clear"></div>
+    </div>
+
+    <div id="Viewport" class="Sub-Section clearfix">
+
+      <h3>Within Viewport</h3>
+
+      <div class="Float-Right">
+        <pre>.Absolute-Center.is-Fixed {
+  position: fixed;
+  z-index: 999;
+}</pre>
+      </div>
+
+      <p>Want the content block centered in the viewport? Set it to <code>position: fixed</code> and give it a high z-index, like the modal on this page.</p>
+
+      <ul class="Caveats">
+        <li><strong>Mobile Safari:</strong> The content block will be centered vertically in the whole document, not the viewport, if it is not within a <code>position: relative</code> container.</li>
+      </ul>
+      <a class="toggle-Modal Shaw-Button" href="#Fixed-Modal">Show/Hide Modal.</a>
+
+      <div class="Clear"></div>
+
+    </div>
+
+    <div id="Offsets" class="Sub-Section clearfix">
+      <h3>Offsets</h3>
+
+      <div class="Float-Right">
+        <pre>.Absolute-Center.is-Right {
+  left: auto; right: 20px;
+  text-align: right;
+}
+
+.Absolute-Center.is-Left {
+  right: auto; left: 20px;
+  text-align: left;
+}</pre>
+      </div>
+
+      <p>If you have a fixed header or need to add other offsets, simply add it in your content block's styles like <code>top: 70px;</code>. As long as <code>margin: auto;</code> is declared, the content block will be vertically centered within the bounds you declare with <code>top</code> <code>left</code> <code>bottom</code> and <code>right</code>.</p>
+
+      <p>You can also stick your content block to the right or left while keeping it vertically centered, using <code>right: 0; left: auto;</code> to stick to the right or <code>left: 0; right: auto;</code> to stick to the left.</p>
+
+      <div class="Center-Container">
+        <div class="Center-Block Absolute-Center is-Right">
+          <h4 class="Title">Vertical Center,<br /> Align Right.</h4>
+
+          <p>This box is absolutely centered vertically within its container, but stuck to the right with <br /><code>right: 0; left: auto;</code></p>
+        </div>
+      </div>
+      </section>
+
+  </section>
+
+  <section id="Responsive" class="clearfix">
+    <h3>Responsive</h3>
+
+    <div class="Float-Right">
+      <pre>
+.Absolute-Center.is-Responsive {
+  width: 60%; 
+  height: 60%;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 40px;
+}
+</pre>
+    </div>
+
+    <p>Perhaps the best benefit of Absolute Centering is percentage based width/heights work perfectly! Even <code>min-width/max-width</code> and <code>min-height/max-height</code> styles behave as expected for more responsive boxes.</p>
+
+    <p>Go ahead, add padding to the element; Absolute Centering doesn't mind!</p>
+
+    <div class="Center-Container">
+      <div class="Center-Block Absolute-Center is-Responsive">
+        <h4 class="Title">Absolute Center,<br />Percentage Based.</h4>
+
+        <p>This box is absolutely centered, horizontally and vertically, even with percentage based widths &amp; height, min-/max-, and padding!</code></p>
+    </div>
+  </div>
+</section>
+
+<section id="Overflow" class="clearfix">
+  <h3>Overflow</h3>
+
+  <div class="Float-Right">
+    <pre>.Absolute-Center.is-Overflow {
+  overflow: auto;
+}</pre>
+  </div>
+
+  <p>Content taller than the block or container (viewport or a <code>position: relative</code> container) will overflow and may spill outside the content block and container or even be cut off. Simply adding <code>overflow: auto</code> will allow the content to scroll within the block as long as the content block itself isn't taller than its container (perhaps by adding <code>max-height: 100%;</code> if you don't have any padding on the content block itself).</p>
+
+  <div class="Center-Container">
+    <div class="Center-Block Absolute-Center is-Overflow">
+      <h4 class="Title">Absolute Center,<br /> With Overflow.</h4>
+
+      <p>This box is absolutely centered within its container, with content set to overflow.</p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum, lorem vel tincidunt imperdiet, nibh elit laoreet felis, a bibendum nisl tortor non orci. Donec pretium fermentum felis, quis aliquet est rutrum ut. Integer quis massa ut lacus viverra pharetra in eu lacus. Aliquam tempus odio adipiscing diam pellentesque rhoncus.</p>
+
+      <p>Curabitur a bibendum est. Mauris vehicula cursus risus id luctus. Curabitur accumsan venenatis nibh, non egestas ipsum vulputate ac. Vivamus consectetur dolor sit amet enim aliquet eu scelerisque ipsum hendrerit. Donec lobortis suscipit vestibulum. </p>
+
+      <p>Nullam luctus pellentesque risus in ullamcorper. Nam neque nunc, mattis vitae ornare ut, feugiat a erat. Ut tempus iaculis augue vel pellentesque.</p>
+    </div>
+  </div>
+</section>
+
+<section id="Resizing" class="clearfix">
+  <h3>Resizing</h3>
+
+  <div class="Float-Right"> 
+    <pre>.Absolute-Center.is-Resizable {
+  min-width: 20%;
+  max-width: 80%;
+  min-height: 20%;
+  max-height: 80%;
+  resize: both;
+  overflow: auto;
+}</pre>
+  </div>
+
+  <p>You can resize your content block with other classes or Javascript without having to recalculate the center manually! Adding the <code>resize</code> property will even let your content block be resized by the user.</p>
+
+  <p>Absolute Centering keeps the block centered no matter how the block is resized. Setting min-/max- will limit the block's size to what you want and prevent it from overflowing the window/container.</p>
+
+  <p>If you don't use <code>resize: both</code>, you can add a <code>transition</code> to smoothly animate between sizes. Be sure to set <code>overflow: auto</code> since the block could be resized smaller than the content.</p>
+
+  <p>Absolute Centering is the only vertical centering technique tested that successfully supports the <code>resize: both</code> property.</p>
+
+  <div class="Caveats">
+    <h4>Caveats:</h4>
+
+    <ul>
+      <li>Set your <code>max-width/max-height</code> to compensate for any padding on the content block itself, otherwise it will overflow its container.</li>
+      <li>The <code>resize</code> property is not supported on mobile browsers or in IE 8-10 so make sure your users have an alternate way of resizing if that is essential to user experience.</li>
+      <li>Combining <code>resize</code> and <code>transition</code> properties causes a delay equal to the transition time when the user attempts to resize.</li>
+    </ul>
+  </div>
+
+  <div class="Center-Container">
+    <div id="Resize-Block" class="Center-Block Absolute-Center is-Resizable">
+      <h4 class="Title">Absolute Center,<br /> Resizable.</h4>
+
+      <p>This box is absolutely centered within its container and can be resized by the user or via Javascript.</p>
+
+      <p class="no-wp"><a href="#" class="trigger-Resize Shaw-Button">Resize Me!</a></p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum, lorem vel tincidunt imperdiet, nibh elit laoreet felis, a bibendum nisl tortor non orci. Donec pretium fermentum felis, quis aliquet est rutrum ut. Integer quis massa ut lacus viverra pharetra in eu lacus. Aliquam tempus odio adipiscing diam pellentesque rhoncus.</p>
+
+      <p>Curabitur a bibendum est. Mauris vehicula cursus risus id luctus. Curabitur accumsan venenatis nibh, non egestas ipsum vulputate ac. Vivamus consectetur dolor sit amet enim aliquet eu scelerisque ipsum hendrerit. Donec lobortis suscipit vestibulum. </p>
+
+      <p>Nullam luctus pellentesque risus in ullamcorper. Nam neque nunc, mattis vitae ornare ut, feugiat a erat. Ut tempus iaculis augue vel pellentesque.</p>
+    </div>
+  </div>
+</section>
+
+<section id="Images" class="clearfix">
+  <h3>Images</h3>
+
+  <div class="Float-Right">
+    <strong>HTML:</strong>
+    <pre>&lt;img src="http://placekitten.com/g/500/200" class="Absolute-Center is-Image" alt="" /&gt;</pre>
+
+    <strong>CSS:</strong>
+    <pre>.Absolute-Center.is-Image {
+  height: auto;
+}
+
+.Absolute-Center.is-Image img { 
+  width: 100%;
+  height: auto;
+}</pre>
+  </div>
+
+  <p>Images work too! Apply the class/style to the image itself and set <code>height: auto;</code> like you would with a responsively-sized image to let it resize with the container.</p>
+
+  <p>Note that <code>height: auto;</code> works for images, but causes a regular content block to stretch to fill the container unless you use the <a href="#Height">variable height technique</a>. It's likely that because browsers have to calculate the height for the image rendered image, so <code>margin: auto;</code> ends up working as if you'd declared the height in all tested browsers.</p>
+
+  <div class="Center-Container">
+    <img src="http://placekitten.com/g/500/200" class="Center-Block Absolute-Center is-Image" alt="Center Cat" />
+  </div>
+</section>
+
+<section id="Height" class="clearfix">
+
+  <h3>Variable Height</h3>
+
+  <div class="Float-Right">
+    <strong>Javascript:</strong>
+    <pre>/* Modernizr Test for Variable Height Content */
+Modernizr.testStyles('#modernizr { display: table; height: 50px; width: 50px; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; }', function(elem, rule) {
+  Modernizr.addTest('absolutecentercontent', Math.round(window.innerHeight / 2 - 25) === elem.offsetTop);
+});
+</pre>
+    <strong>CSS:</strong>
+    <pre>
+.absolutecentercontent .Absolute-Center.is-Variable {
+  display: table;
+  height: auto;
+}</pre>
+  </div>
+
+  <p>Absolute Centering does require a declared height, however the height can be percentage based and controlled by <code>max-height</code>. This makes it ideal for responsive scenarios, just make sure you set an appropriate <a href="#Overflow">overflow</a>.</p>
+
+  <p>One way around the declared height is adding <code>display: table</code>, centering the content block regardless of content length. This causes issues in a few browsers (IE and Firefox, mainly), so my buddy <a href="http://stackoverflow.com/users/2539605/kalley" target="_blank">Kalley</a> at <a href="http://ellcreative.com" target="_blank">ELL Creative</a> wrote a Modernizr test to check if the browser supports this method of centering. Now you can progressively enhance</p>
+
+  <div class="Caveats">
+    <h4>Caveats:</h4> This will break cross-browser compatibility. You may want to consider an <a href="#Other">alternate technique</a> if the Modernizr test doesn't meet your needs.
+    <ul>
+      <li>Not compatible with the <a href="#Resizing">Resizing</a> technique.
+      <li><strong>Firefox/IE8:</strong> Using <code>display: table</code> aligns the content block to the top, but is still centered horizontally.</li>
+
+      <li><strong>IE9/10:</strong> Using <code>display: table</code> aligns the content block to the top left.</li>
+
+      <li><strong>Mobile Safari:</strong> The content block is centered vertically, but becomes slightly off-center horizontally when using percentage based widths.</li>
+    </ul>
+  </div>
+
+  <div class="Center-Container">
+    <div class="Center-Block Absolute-Center is-Variable">
+      <h4 class="Title">Absolute Center,<br /> Variable Height.</h4>
+
+      <p>This box is absolutely centered vertically within its container, regardless of content height.</p>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="Other" class="clearfix">
+  <h3>Other Techniques</h3>
+  <p><em>Absolute Centering</em> is a great solution for centering, but there are other methods that may fit more specific needs. The most commonly used or recommended methods are <a href="#Negative-Margins">Negative Margins</a>, <a href="#Transforms">Transforms</a>, <a href="#Table-Cell">Table-Cell</a>, <a href="#Inline-Block">Inline-Block</a>, and now <a href="#Flexbox">Flexbox</a>. They are covered more in depth in other articles, so I'll only cover the basics here.</p>
+
+  <div id="Negative-Margins" class="Technique Sub-Section clearfix">
+
+    <h3>Negative Margins</h3>
+
+    <div class="Float-Right">
+      <pre>.is-Negative {
+        width: 300px;
+        height: 200px;
+        padding: 20px;
+        position: absolute;
+        top: 50%; left: 50%;
+        margin-left: -170px; /* (width + padding)/2 */
+        margin-top: -120px; /* (height + padding)/2 */
+}</pre>
+    </div>
+
+    <p>Perhaps the most common technique. If exact dimensions are known, setting a negative margin equal to half the width/height (plus padding, if not using <code>box-sizing: border-box</code>) along with <code>top: 50%; left: 50%;</code> will center the block within a container.</p>
+
+    <p>It should be noted that this is the only method tested that worked as expected in IE6-7.</p>
+
+    <div class="Advantages">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Works well cross-browser, including IE6-7</li>
+        <li>Requires minimal code</li>
+      </ul>
+    </div>
+
+    <div class="Caveats">
+      <h4>Caveats:</h4> 
+      <ul>
+        <li>Not responsive. Doesn't work for percentage based dimensions and can't set min-/max-</li>
+        <li>Content can overflow the container</li>
+        <li>Have to compensate for <code>padding</code> or use <code>box-sizing: border-box</code></li>
+      </ul>
+    </div>
+
+    <div class="Center-Container Clear">
+      <div class="Center-Block is-Negative">
+        <h4 class="Title">Absolute Center,<br /> Negative Margins.</h4>
+        <p>This box is absolutely centered vertically within its container using negative margins.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="Transforms" class="Technique Sub-Section clearfix">
+
+    <h3>Transforms</h3>
+
+    <div class="Float-Right"> 
+      <pre>.is-Transformed { 
+  width: 50%;
+  margin: auto;
+  position: absolute;
+  top: 50%; left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}</pre>
+    </div>
+
+    <p>One of the simplest techniques with about the same benefits as Absolute Centering, but supports variable height. Give the content block <code>transform: translate(-50%,-50%)</code> with the required vendor prefixes along with <code>top: 50%; left: 50%;</code> to get it centered.</p>
+
+    <div class="Advantages">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Variable height content</li>
+        <li>Requires minimal code</li>
+      </ul>
+    </div>
+
+    <div class="Caveats">
+      <h4>Caveats:</h4> 
+      <ul>
+        <li>Won't work in IE8</li>
+        <li>Need vendor prefixes</li>
+        <li>Can interfere with other <code>transform</code> effects</li>
+        <li>Results in blurry rendering of edges and text in some cases. Not as much of an issue in modern rendering engines, especially if you <a href="http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/">enable <code>transform-style: preserve-3d</code></a></li>
+      </ul>
+    </div>
+
+    <p><strong>Futher Resources</strong></p>
+    <p>Read more about Transform Centering in Chris Coyier’s article <a href="https://css-tricks.com/centering-percentage-widthheight-elements/">“Centering Percentage Width/Height Elements”</a> on <em>CSS-Tricks</em>.</p>
+
+    <div class="Center-Container Clear">
+      <div class="Center-Block is-Translated">
+        <h4 class="Title">Absolute Center,<br /> Translate(-50%,-50%).</h4>
+        <p>This box is absolutely centered vertically within its container using <code>translate(-50%,-50%)</code>.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="Table-Cell" class="Technique Sub-Section clearfix">
+
+    <h3>Table-Cell</h3>
+
+    <div class="Float-Right">
+      <strong>HTML:</strong>
+      <pre>
+&lt;div class="Center-Container is-Table"&gt;
+  &lt;div class="Table-Cell"&gt;
+    &lt;div class="Center-Block"&gt;
+    &lt;!-- CONTENT --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+      <strong>CSS:</strong>
+      <pre>.Center-Container.is-Table { display: table; }
+.is-Table .Table-Cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+.is-Table .Center-Block {
+  width: 50%;
+  margin: 0 auto;
+}</pre>
+    </div>
+    <p>This may be the best technique overall, simply because the height can vary with the content and browser support is great. The main disadvantage is the extra markup, requiring a total of three elements to get the final one centered.</p>
+
+    <div class="Advantages">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Variable height content</li>
+        <li>Content overflows by stretching the parent element</li>
+        <li>Works well cross-browser</li>
+      </ul>
+    </div>
+
+    <div class="Caveats">
+      <h4>Caveats:</h4>
+      <ul>
+        <li>Requires extra markup</li>
+      </ul>
+    </div>
+
+    <p><strong>Futher Resources</strong></p>
+    <p>Read more about Table-Cell Centering in Roger Johansson’s article <a href="http://www.456bereastreet.com/archive/201103/flexible_height_vertical_centering_with_css_beyond_ie7/">“Flexible height vertical centering with CSS, beyond IE7″</a> on <em>456bereastreet</em>.</p>
+
+    <div class="Center-Container is-Table Clear">
+      <div class="Table-Cell">
+        <div class="Center-Block">
+          <h4 class="Title">Absolute Center,<br /> Table/Table-Cell.</h4>
+          <p>This box is absolutely centered vertically within its <code>display: table-cell</code> parent, which is within a <code>display: table</code> container.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="Inline-Block" class="Technique Sub-Section clearfix">
+
+    <h3>Inline-Block</h3>
+
+    <div class="Float-Right">
+      <strong>HTML:</strong>
+      <pre>
+&lt;div class="Center-Container is-Inline"&gt;
+  &lt;div class="Center-Block"&gt;
+    &lt;!-- CONTENT --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+      <strong>CSS:</strong>
+      <pre>.Center-Container.is-Inline { 
+  text-align: center;
+  overflow: auto;
+}
+
+.Center-Container.is-Inline:after,
+.is-Inline .Center-Block {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Center-Container.is-Inline:after {
+  content: '';
+  height: 100%;
+  margin-left: -0.25em; /* To offset spacing. May vary by font */
+}
+
+.is-Inline .Center-Block {
+  max-width: 99%; /* Prevents issues with long content causes the content block to be pushed to the top */
+  /* max-width: calc(100% - 0.25em) /* Only for IE9+ */ 
+}</pre>
+    </div>
+    <p>By popular demand: Inline-Block centering. The basic idea is using <code>display: inline-block</code>, <code>vertical-align: middle</code> and a psuedo element to center your content block inside of a container. The concept here is best explained in this CSS-Tricks article, <a href="https://css-tricks.com/centering-in-the-unknown/" target="_blank">Centering in the Unknown</a>. My implementation has a few new tricks here that I haven't seen elsewhere that help solve a few issues.</p>
+
+    <p>The content block's width must be declared to be no wider than 100% of the container minus 0.25em if the content is wider than the container. like a block with long paragraph text. Otherwise, the content block will be pushed to the top, which is the reason for using <code>:after</code>. Using <code>:before</code> caused the content to be pushed down 100%!</p>
+
+    <p>If your content block needs take up as much available horizontal space as possible, you can add either <code>max-width: 99%;</code>, which works for bigger containers, or <code>max-width: calc(100% - 0.25em)</code> depending on the browsers you support and the width of the container.</p>
+
+    <p>The benefits are mostly the same as the <a href="#Table-Cell">Table-Cell</a> technique, but I initially left this method out because it's very much a hack. Regardless, browser support is great and it proves to be a popular technique.</p> 
+
+    <div class="Advantages">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Variable height content</li>
+        <li>Content overflows by stretching the parent element</li>
+        <li>Works well cross-browser, and can be adapted for IE7 support (view <a href="https://codepen.io/shshaw/pen/gEiDt">the CSS</a> to see)</li>
+      </ul>
+    </div>
+
+    <div class="Caveats">
+      <h4>Caveats:</h4>
+      <ul>
+        <li>Requires a container</li>
+        <li>Relies on <code>margin-left: -0.25em;</code> to horizontally center correctly, but may need to be adjusted for different fonts/sizes</li>
+        <li>Content block's width must be declared to be no wider than 100% of the container minus 0.25em.</li>
+      </ul>
+    </div>
+
+    <p><strong>Futher Resources</strong></p>
+    <p>Read more about Transform Centering in Chris Coyier’s article <a href="https://css-tricks.com/centering-in-the-unknown/">"Centering In The Unknown”</a> on <em>CSS-Tricks</em>.</p>
+
+    <div class="Center-Container is-Inline Clear">
+      <div class="Center-Block">
+        <h4 class="Title">Absolute Center,<br /> Inline-Block.</h4>
+        <p>This box is absolutely centered vertically using <code>display: inline-block</code>, <code>vertical-align: middle</code> and a psuedo element.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="Flexbox" class="Technique Sub-Section clearfix">
+
+    <h3>Flexbox</h3>
+
+    <div class="Float-Right">
+      <pre>.Center-Container.is-Flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+     -moz-box-align: center;
+     -ms-flex-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+     -moz-box-pack: center;
+     -ms-flex-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}</pre>
+    </div>
+    <p>The future of layout in CSS, Flexbox is the latest CSS spec designed to solve common layout problems such as vertical centering. Smashing Magazine already has a great article on <a href="http://coding.smashingmagazine.com/2013/05/22/centering-elements-with-flexbox/" target="_blank">Centering Elements with Flexbox</a> that you should read to for a more complete overview. Keep in mind that Flexbox is more than just a way to center, it can be used for columns and all sorts of crazy layout problems.</p>
+
+    <div class="Advantages">
+      <h4>Advantages:</h4>
+      <ul>
+        <li>Content can be any width or height, even overflows gracefully</li>
+        <li>Can be used for more advanced layout techniques.</li>
+      </ul>
+    </div>
+
+    <div class="Caveats">
+      <h4>Caveats:</h4> 
+      <ul>
+        <li>No IE8-9 support</li>
+        <li>Requires a container or styles on the body</li>
+        <li>Requires <a href="https://css-tricks.com/using-flexbox/">many vendor prefixes with different syntaxes</a> to work on modern browsers</li>
+        <li>Possible <a href="https://css-tricks.com/does-flexbox-have-a-performance-problem/">performance issues</a></li>
+      </ul>
+    </div>
+
+    <p><strong>Futher Resources</strong></p>
+    <p>Read more about Flexbox Centering in David Storey’s article <a href="http://coding.smashingmagazine.com/2013/05/22/centering-elements-with-flexbox/">“Designing CSS Layouts With Flexbox Is As Easy As Pie”</a> on <em>Smashing Magazine</em>.</p>
+
+    <div class="Center-Container is-Flexbox Clear">
+      <div class="Center-Block">
+        <h4 class="Title">Absolute Center,<br /> Flexbox.</h4>
+        <p>This Flexbox box is absolutely centered vertically within its container.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section id="Recommendations" class="clearfix">
+  <h3>Recommendations</h3>
+
+  <p>Each technique has their advantages. Which one you choose mainly boils down to which browsers you support and what your existing markup looks like, but use the <a href="https://codepen.io/shshaw/full/gEiDt#Comparison-Table">comparison table</a> to make the right choice to match the features you need.</p>
+
+  <p><em>Absolute Centering</em> works great as a simple drop-in solution with no-fuss. Anywhere you used Negative Margins before, use Absolute Centering instead. You won't have to deal with pesky math for the margins or extra markup, and you can size your boxes responsively.</p>
+
+  <p>If your site requires variable height content with the best browser compatibility, try out the <a href="#Table-Cell">Table-Cell</a>, <a href="#Inline-Block">Inline-Block</a> techniques. If you're on the bleeding edge, give <a href="#Flexbox">Flexbox</a> a try and reap the benefits of its advanced layout techniques.</p>
+
+</section>
+</article>
+
+
+<!--[if lt IE 9]>
+<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+<![endif]-->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+	<script src="js/addon.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
+	
+</body>
+<!--  footer -->
+</html>

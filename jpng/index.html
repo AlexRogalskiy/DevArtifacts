@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />	
+
+		
+		<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+		<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+        <link rel="stylesheet prefetch" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+
+<header class="container">
+
+  <div class="logo">
+    <h1 class="logo__heading">
+      <img class="logo__image" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/39255/jpng-logo.png" alt="JPNG.svg" />
+    </h1>
+    <small class="logo__subtitle"><em>This logo was originally 300kb, but compressed down to 69kb using the tool below.</em></small>
+
+  </div>
+
+  <p class="text-center"><strong>Combine the transparency of a PNG with the compression of a JPEG.</strong></p>
+  
+  <p>Based on the idea from <a href="http://peterhrynkow.com/how-to-compress-a-png-like-a-jpeg/">Using SVG to Shrink Your PNGs</a>, but adapted to use data URIs instead of external images. Include on your page as inline SVG, using an <code>&lt;img/&gt;</code> tag, or as a <code>background-image</code>.</p>
+
+  <p>This technique is tested & working in all modern browsers, IE9+ and Safari 9+. Run <a href="https://codepen.io/shshaw/pen/IDbqC" target="_blank">the image test</a> yourself to see if it works in required browsers. Inline seems to be the best option for compatibility, in which case you should use external assets so that they can be cached.</p>
+  
+  
+  <p class="text-center"><small><em>Need more SVG? Try <a href="https://codepen.io/shshaw/pen/XbxvNj" target="_top">Pixels.svg</a>, <a href="https://codepen.io/shshaw/pen/doLavv" target="_top">HalfTone.svg</a> and <a href="https://codepen.io/shshaw/pen/BNeBPq">LinePrint.svg</a>.</em></small></p>
+
+  <p class="note">Adjust your settings before dragging & dropping a transparent PNG.<br />
+    If you need to change the settings, make your changes then add the file again. <br />
+    Photographic PNGs with transparency can be rather large, so processing may take a moment.</p>
+
+
+
+<div class="controls">
+  <div class="control-group">
+    <label class="control">
+      <span class="control__label">Image Quality:</span> 
+      <input type="range" name="image-quality" min="0.1" max="1" step="0.1" value="0.6" />
+      <span class="current-value"></span>
+    </label>
+  </div>
+
+  <div class="control-group">
+    <label class="control">
+      <span class="control__label">Image Matte:</span> 
+      <input type="color" name="matte" value="#FFFFFF" />
+      <span class="current-value"></span>
+    </label>
+  </div>
+
+  <div class="control-group">
+    <div class="control">
+      <span class="control__label">Mask Type: </span>
+      <label><input type="radio" name="mask-type" value="jpeg" checked/> JPEG</label>
+      <label><input type="radio" name="mask-type" value="png" /> PNG</label>
+    </div>
+
+    <label class="control">
+      <span class="control__label">Mask Quality: </span>
+      <input type="range" name="mask-quality" min="0.1" max="1" step="0.1" value="0.5" />
+      <span class="current-value"></span>
+    </label>
+  </div>
+  </div>
+
+  <div class="choices">
+    <div class="file">
+      Drag & Drop files or 
+      <input type="file" id="upload" multiple="multiple" accept=".jpg,.jpeg,.png,.gif,.svg" />
+    </div>
+
+    <button id="test">Try a test image: <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/39255/face.png" id="testImage" crossorigin="anonymous" style="width: 2em" /></button>
+
+    <button id="clear">Clear Output</button>
+  </div>
+</header>
+
+<div id="output"></div>
+
+<div id="filedrag">Drop images to convert here.</div>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+	<script src="js/addon.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
+	
+</body>
+<!--  footer -->
+</html>

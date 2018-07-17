@@ -1,0 +1,206 @@
+.panels {
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  z-index: 1;
+}
+.panel {
+  flex: 1;
+  cursor: pointer;
+  background-position: center center;
+  background-size: cover;
+}
+.panel__content {
+  width: 100%;
+  height: 102%;
+  overflow: hidden;
+  cursor: pointer;
+  background: inherit;
+}
+.panel:before,
+.panel__content:before {
+  content: ' ';
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.panel:before {
+  background: rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+/* The non-CSS Var hover state */
+.panel:hover:before,
+.panel:focus:before {
+  opacity: 1;
+}
+.panel:hover .panel__content,
+.panel:focus .panel__content {
+  position: absolute;
+  top: -1%;
+  left: 0;
+  z-index: 98;
+}
+/* If CSS Vars are supported... */
+@supports ( (--panel-support: 0) ) {
+  .panel {
+    --i: 0;
+    --percent: calc( ((var(--i) - 1) / var(--items)) * 100 );
+  }
+  /* 
+  A simple LESS loop to set up the CSS vars.
+
+  Output will be something like
+  .panels--1 { --items: 1; }
+  .panth:nth-child(1) { --i: 1; }
+  .panels--2 { --items: 2; }
+  .panth:nth-child(2) { --i: 2; }
+
+  ..up to the total number provided.
+  */
+  .panel:nth-last-child(n + 1),
+  .panel:nth-last-child(n + 1) ~ .panel {
+    --items: 1;
+  }
+  .panel:nth-child( 1) {
+    --i: 1;
+  }
+  .panel:nth-last-child(n + 2),
+  .panel:nth-last-child(n + 2) ~ .panel {
+    --items: 2;
+  }
+  .panel:nth-child( 2) {
+    --i: 2;
+  }
+  .panel:nth-last-child(n + 3),
+  .panel:nth-last-child(n + 3) ~ .panel {
+    --items: 3;
+  }
+  .panel:nth-child( 3) {
+    --i: 3;
+  }
+  .panel:nth-last-child(n + 4),
+  .panel:nth-last-child(n + 4) ~ .panel {
+    --items: 4;
+  }
+  .panel:nth-child( 4) {
+    --i: 4;
+  }
+  .panel:nth-last-child(n + 5),
+  .panel:nth-last-child(n + 5) ~ .panel {
+    --items: 5;
+  }
+  .panel:nth-child( 5) {
+    --i: 5;
+  }
+  .panel:nth-last-child(n + 6),
+  .panel:nth-last-child(n + 6) ~ .panel {
+    --items: 6;
+  }
+  .panel:nth-child( 6) {
+    --i: 6;
+  }
+  .panel:nth-last-child(n + 7),
+  .panel:nth-last-child(n + 7) ~ .panel {
+    --items: 7;
+  }
+  .panel:nth-child( 7) {
+    --i: 7;
+  }
+  .panel__content {
+    position: absolute;
+    top: -1%;
+    left: 0%;
+    z-index: auto;
+    transform: translateX(calc( var(--percent) * 1% ));
+  }
+  .panel__content:before {
+    background: inherit;
+    transform: translateX(-50%) translateX(calc(100% / var(--items) * 0.5 ));
+  }
+  .panel__content,
+  .panel__content:before {
+    transition: transform 0.4s cubic-bezier(0.44, 0, 0, 1);
+  }
+  /* When there's an active hover on the container. This will apply to all panels in the container, unless overridden */
+  .panels:hover .panel__content {
+    z-index: auto;
+    transform: translateX(0%);
+  }
+  /* Panels after the hovered panel */
+  .panel:hover ~ .panel .panel__content {
+    transform: translateX(100%);
+  }
+  /* The active panel */
+  .panel:hover .panel__content,
+  .panel:focus .panel__content {
+    transform: translateX(0%);
+  }
+  .panel:hover .panel__content:before,
+  .panel:focus .panel__content:before {
+    transform: translateX(0%) scale(1.2);
+  }
+  .panel:focus .panel__content,
+  .panel:focus .panel__content:before {
+    transition: none !important;
+  }
+}
+/* 
+//////////////////////////////////////
+STYLISTIC CHOICES
+//////////////////////////////////// 
+*/
+.panels {
+  box-shadow: 0 0 10rem rgba(0, 0, 0, 0.6);
+  height: 40vh;
+  margin: 10vh auto;
+  min-height: 300px;
+  max-height: 700px;
+}
+body > .panels:first-child {
+  margin: 15vh auto;
+  height: 65vh;
+}
+/* Set up the background images */
+.panel:nth-child( 7) {
+  background-image: url( 'https://unsplash.it/1000/1000/?image=777' );
+}
+.panel:nth-child( 6) {
+  background-image: url( 'https://unsplash.it/1000/1000/?image=821' );
+}
+.panel:nth-child( 5) {
+  background-image: url( 'https://unsplash.it/1000/1000/?image=550' );
+}
+.panel:nth-child( 4) {
+  background-image: url( 'https://unsplash.it/1000/1000/?image=342' );
+}
+.panel:nth-child( 3) {
+  background-image: url( 'https://unsplash.it/1000/1000/?image=786' );
+}
+.panel:nth-child( 2) {
+  background-image: url( 'https://unsplash.it/1000/1000/?image=883' );
+}
+.panel:nth-child( 1) {
+  background-image: url( 'https://unsplash.it/1000/1000/?image=760' );
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #2F3C4F;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}

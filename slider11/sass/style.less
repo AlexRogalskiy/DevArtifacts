@@ -1,0 +1,167 @@
+@images: 
+  'https://unsplash.it/1000/1000/?image=760',
+  'https://unsplash.it/1000/1000/?image=883',
+  'https://unsplash.it/1000/1000/?image=786',
+  'https://unsplash.it/1000/1000/?image=342',
+  'https://unsplash.it/1000/1000/?image=550',
+  'https://unsplash.it/1000/1000/?image=821',
+  'https://unsplash.it/1000/1000/?image=777';
+
+
+
+.panels {
+  overflow: hidden;
+  display: flex; 
+  position: relative;
+  z-index: 1;
+}
+
+.panel { 
+  flex: 1;
+  cursor: pointer;
+  background-position: center center;
+  background-size: cover;
+}
+
+.panel__content {
+  width: 100%;
+  height: 102%;
+  overflow: hidden;
+  cursor: pointer;
+  background: inherit;
+}
+
+.panel:before,
+.panel__content:before {
+  content: ' ';
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.panel:before {
+  background: rgba(255,255,255,0.3);
+  position: relative;
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+
+/* The non-CSS Var hover state */
+.panel:hover,
+.panel:focus {
+  &:before { opacity: 1; }
+
+  .panel__content { 
+    position: absolute; 
+    top: -1%;
+    left: 0;
+    z-index: 98;
+  }
+}
+
+
+
+/* If CSS Vars are supported... */
+@supports ( (--panel-support: 0) ) {
+
+
+  .panel {
+    --i: 0;
+    --percent: ~"calc( ((var(--i) - 1) / var(--items)) * 100 )";
+  }
+  
+  /* 
+  A simple LESS loop to set up the CSS vars.
+
+  Output will be something like
+  .panels--1 { --items: 1; }
+  .panth:nth-child(1) { --i: 1; }
+  .panels--2 { --items: 2; }
+  .panth:nth-child(2) { --i: 2; }
+
+  ..up to the total number provided.
+  */
+  .panel-maker( length(@images) );
+  .panel-maker(@total, @i: @total) when (@i > 0) {
+    .panel-maker(@total, ( @i - 1 ) );  
+    
+    .panel:nth-last-child(n+@{i}), .panel:nth-last-child(n+@{i}) ~ .panel { --items: @i; }
+    .panel:nth-child( @{i} ) { --i: @i; }
+  }
+
+  .panel__content {
+    position: absolute;
+    top: -1%;
+    left: 0%;
+    z-index: auto;
+    transform: translateX( ~"calc( var(--percent) * 1% )" );
+
+    &:before {
+      background: inherit;
+      transform: translateX(-50%) translateX( ~"calc(100% / var(--items) * 0.5 )" );
+    }
+  }
+  
+  .panel__content,
+  .panel__content:before { 
+    transition: transform 0.4s cubic-bezier(.44,.0,.0,1);
+  }
+
+  /* When there's an active hover on the container. This will apply to all panels in the container, unless overridden */
+  .panels:hover .panel__content { 
+      z-index: auto; 
+      transform: translateX(0%);
+  }
+
+  /* Panels after the hovered panel */
+  .panel:hover ~ .panel .panel__content { transform: translateX( 100% ); }
+  
+  /* The active panel */
+  .panel:hover,
+  .panel:focus {
+    .panel__content { transform: translateX(0%); }
+    .panel__content:before { transform: translateX(0%) scale(1.2); }
+  }
+  
+  .panel:focus {
+    .panel__content,
+    .panel__content:before { transition: none !important; }
+  }
+
+}
+
+
+
+/* 
+//////////////////////////////////////
+STYLISTIC CHOICES
+//////////////////////////////////// 
+*/
+
+.panels { 
+  box-shadow: 0 0 10rem rgba(0, 0, 0, 0.6);
+  height: 40vh;
+  margin: 10vh auto;
+  min-height: 300px;
+  max-height: 700px;
+}
+body > .panels:first-child { margin: 15vh auto; height: 65vh; }
+
+/* Set up the background images */
+.image-loop(@total, @i: 1) when (@i <= @total) {
+  .image-loop(@total, ( @i + 1 ) );
+  .panel:nth-child( @{i} ) {
+    background-image: ~"url(" extract(@images, @i) ~")";
+  }
+}
+.image-loop(length(@images));
+
+html { height: 100%; }
+body { min-height: 100%; }
+html, body { margin: 0; padding: 0; }
+body { background: #2F3C4F; }
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}

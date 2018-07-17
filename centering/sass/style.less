@@ -1,0 +1,313 @@
+/*
+////////////////////////////////////////
+ Absolute Centering
+//////////////////////////////////////// 
+*/
+.Absolute-Center { 
+  height: 50%; /* Set your own height: percents, ems, whatever! */
+  width: 50%; /* Set your own width: percents, ems, whatever! */
+  overflow: auto; /* Recommended in case content is larger than the container */
+  margin: auto; /* Center the item vertically & horizontally */
+  position: absolute; /* Break it out of the regular flow */
+  top: 0; left: 0; bottom: 0; right: 0; /* Set the bounds in which to center it, relative to its parent/container */
+}
+
+
+/* //////////////////////////////////////// */
+/* Make sure our center blocks stay in their container! */
+.Center-Container { position: relative; }
+
+
+/* //////////////////////////////////////// */
+/* Fixed floating element within viewport */
+.Absolute-Center.is-Fixed { 
+  position: fixed;
+  z-index: 999;
+}
+
+
+/* //////////////////////////////////////// */
+/* Min/Max Width */
+.Absolute-Center.is-Responsive {
+  width: 60%; 
+  height: 60%;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 40px;
+}
+
+
+/* //////////////////////////////////////// */
+/* Align Right, still vertically centered */
+.Absolute-Center.is-Right { 
+  left: auto;
+  right: 20px;
+  text-align: right;
+}
+
+
+/* //////////////////////////////////////// */
+/* Align Left, still vertically centered */
+.Absolute-Center.is-Left { 
+  right: auto;
+  left: 20px;
+  text-align: left;
+}
+
+
+/* //////////////////////////////////////// */
+/* Responsive image, still absolutely centered! Apply the classes to the image itself. */
+.Absolute-Center.is-Image { 
+	width: 50%;
+	height: auto;
+	padding: 0;
+}
+.Absolute-Center.is-Image img { 
+	width: 100%;
+	height: auto;
+}
+
+
+/* //////////////////////////////////////// */
+/* Set content overflow if your content may go too long */
+.Absolute-Center.is-Overflow { 
+	height: 250px;
+	max-height: 100%;
+	overflow: auto;
+}
+
+
+/* //////////////////////////////////////// */
+/* Variable content height with display: table; 
+Breaks cross browser compatibility, but now has a Modernizr test available!
+
+Modernizr test adds ".absolutecentercontent" to <html> if the browser will center correctly with a variable height, and ".no-absolutecentercontent" if it will not be centered with a variable height so that you can add fallback styles in your CSS or use Javascript to manually center it. */
+.absolutecentercontent .Absolute-Center.is-Variable {
+  display: table; 
+  height: auto;/* Only necessary because height was already declared */
+}
+
+
+/* //////////////////////////////////////// */
+/* Allow the user to resize */
+.Absolute-Center.is-Resizable {
+  min-width: 20%;
+  max-width: 90%;
+  min-height: 20%;
+  max-height: 80%;
+  resize: both;
+}
+
+.absolutecentercontent .Absolute-Center.is-Resizable { 
+  /* necessary to override settings from .is-Variable, if used */
+  display: block !important;
+}
+
+
+/* 
+////////////////////////////////////////
+ Other Techniques  
+//////////////////////////////////////// 
+*/
+
+
+/* //////////////////////////////////////// */
+/* Negative Margin Technique */
+.Center-Block.is-Negative {
+  width: 300px;
+  height: 200px;
+  padding: 20px;
+  position: absolute;
+  top: 50%; left: 50%;
+  margin-left: -170px; /* (width + padding)/2 */
+  margin-top: -120px; /* (height + padding)/2 */
+}
+
+
+/* //////////////////////////////////////// */
+/* Display: Table Technique */
+.Center-Container.is-Table { display: table; }
+.is-Table .Table-Cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+.is-Table .Center-Block {
+	width: 50%;
+	margin: 0 auto;
+}
+
+
+/* //////////////////////////////////////// */
+/* Inline-Block Technique */
+.Center-Container.is-Inline { 
+  text-align: center;
+  overflow: auto;
+}
+
+.Center-Container.is-Inline:after,
+.is-Inline .Center-Block {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Center-Container.is-Inline:after {
+  content: ' ';
+  height: 100%;
+  margin-left: -0.25em; /* to offset spacing. may vary with fonts */
+ }
+ 
+.is-Inline .Center-Block { 
+	text-align: left;
+  max-width: 80%; /* Prevents issues with long content causes the content block to be pushed to the top */
+  /* max-width: calc(100% - 0.25em) /* Only for IE9+ */ 
+}
+
+.lt-ie8 .is-Inline .Center-Block {
+ 	/* IE7 Support */
+  display: block;
+  margin-top: ~'expression(this.offsetHeight < this.parentNode.offsetHeight ? parseInt((this.parentNode.offsetHeight - this.offsetHeight) / 2) + "px" : "0")'; 
+}
+
+
+/* //////////////////////////////////////// */
+/* Transform Technique */
+.is-Translated {
+	width: 50%;
+	margin: auto;
+	position: absolute;
+	top: 50%; left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	        transform: translate(-50%,-50%);
+}
+
+
+/* //////////////////////////////////////// */
+/* Flexbox Technique */
+.Center-Container.is-Flexbox {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	   -moz-box-align: center;
+	   -ms-flex-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	   -moz-box-pack: center;
+	   -ms-flex-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+
+
+
+
+
+/* 
+////////////////////////////////////////
+ Presentational Code. You can ignore this!
+//////////////////////////////////////// 
+*/
+
+@green: #4fa46b;
+@greenDark: #2e5f3e;
+
+
+.Shaw-Button { display: block; width: 50%; margin: 0 auto;  padding: 10px 20px; text-align: center; background: @greenDark; color: #FFF; font-weight: bold; }
+.Shaw-Button:hover { background: lighten(@greenDark,10%); color: #FFF; text-decoration: none; }
+
+// Demos
+.Center-Container { background: @greenDark; color: @green; width: 100%; height: 400px; margin: 20px auto 40px; clear: both; }
+.Center-Block { background: @green; color: #FFF; padding: 20px; }
+.Center-Block .Title { padding: 0; margin: 0 0 .5em; line-height: 1em; }
+
+
+
+html, body { height: 100%; width: 100%; }
+body { background: #FFF; color: #444; padding: 40px 20px; font: 300 16px/24px "Helvetica Neue", Helvetica, sans-serif; }
+h1, h2, h3, h4 { line-height: 1em; margin: 0 0 .5em; }
+h1 { font-size: 4em; }
+h2 { font-size: 3em; }
+h3 { font-size: 2em; }
+h4 { font-size: 1.5em; }
+ul, ol { padding-left: 20px; }
+
+p { margin: 0 0 20px; }
+p:last-child, .Technique:last-child, section:last-child, .Container:last-child { margin-bottom: 0; }
+
+// Links
+a { color: @green; text-decoration: none; transition: all 150ms ease; border-bottom: dotted 1px transparent; }
+a:hover { color: @greenDark; text-decoration: underline; }
+
+// Table
+table { font-size: 12px; line-height: 1.1em; text-align: left; max-width: 100%; }
+table th, table td { padding: 2px 5px; }
+table .Technique-Title { width: 130px; }
+table .Resize-Support,
+table .Browser-Support { width: 100px; }
+
+.table-container {
+  max-width: 100%;
+  overflow-y: auto;
+}
+
+.no-js .is-Fixed { display: none; }
+//.Center-Block { overflow: auto; resize: both; }
+
+#Main-Title { height: 300px; } 
+#Main-Title .Title { font-size: 2.5em; width: 80%; text-align: center; }
+.absolutecentercontent #Main-Title .Title { background: transparent; }
+
+.Modal { border: solid 5px @greenDark; box-shadow: 0 0 20px rgba(0,0,0,0.25);  }
+.Modal-Background { position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: #000; background: fade(#000,85%); z-index: 3; }
+.toggle-Modal { cursor: pointer; }
+.is-Hidden { display: none; }
+
+// Notification
+.Notification { font-size: 0.8em; line-height: 1.25em; color: #766841; background: #FFFFC9; border: solid 1px #F1E7B4; padding: 10px 15px; border-radius: 5px; margin: 40px auto; }
+
+// Navigation
+#Navigation { position: fixed; top: 0; left: 0; right: 0; text-align: center; padding: 10px 10px; background: @green; z-index: 2; font-size: 11px; line-height: 20px; box-shadow: inset 0 -20px 20px -20px @greenDark; }
+#Navigation a { color: #FFF; display: inline-block; padding: 0px 5px; border-radius: 2px; }
+#Navigation a.is-Current { background: @greenDark; text-decoration: none; }
+
+// Sections
+.Content { max-width: 1000px; margin: 0 auto; }
+header,
+section { margin: 0; padding: 60px 0 60px; border-bottom: dotted 1px #ccc; &:last-child { border-bottom: 0; } }
+.Sub-Section { margin: 20px 0; padding: 40px 0; }
+.Technique { border-top: solid 1px #ddd; }
+.Technique .Container { background: desaturate(@greenDark,15%); }//#455a6c; }
+.Technique .Center-Block { background: desaturate(@green,15%); } //#5785ad; }
+
+// Code Snippets
+pre,
+code { background: #eee; padding: 1px 7px; border-radius: 3px; font-size: 0.8em; }
+.Center-Block code { color: #555; }
+pre { display: block; width: 55%; padding: 10px 10px; margin: 20px auto; box-shadow: inset 1px 1px 4px #ddd; border-radius: 5px; line-height: 1.25em; overflow: auto; box-sizing: border-box; }
+.Float-Left,
+.Float-Right { margin-bottom: 20px; max-width: 40%; }
+.Float-Right { float: right; margin-left: 20px; }
+.Float-Left { float: left; margin-right: 20px; }
+.Float-Left pre,
+.Float-Right pre { width: 100%; margin: 0; }
+
+// References
+#Explanation ol li { margin-bottom: 20px; }
+.Reference { display: block; font-size: 12px; color: #666; }
+q { font-style: italic; }
+
+// Caveats & Advantages
+.Caveats { color: #a73529; }
+.Advantages { color: @greenDark; }
+.Advantages,
+.Caveats { font-size: 0.9em; line-height: 1.25em; }
+.Advantages ul,
+.Caveats ul { margin: 0 0 20px; }
+
+// Misc
+.Clear { clear: both; }
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
