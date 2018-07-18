@@ -1,0 +1,169 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  font: 1em 'Montserrat', sans-serif;
+  background: #f0f0fa;
+}
+#css-element {
+  width: 500px;
+  height: 350px;
+  border: none;
+  box-shadow: 0 3px 2px rgba(0,0,0,.5);
+}
+.face{
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  perspective: 500px;
+  perspective-origin: 0% 70%;
+}
+.face:nth-child(odd) {
+  perspective-origin: 100% 70%;
+}
+.face div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  transform-origin: top right;
+}
+.face:nth-child(odd) div {
+  right: auto;
+  left: 0;
+  transform-origin: top left;
+}
+.face span {
+  position: absolute;
+  width: 100%; height: 100%;  
+}
+.face--even span {
+    background: black;
+    background: linear-gradient( 
+                   to right, 
+                   transparent 0%, 
+                   rgba(0,0,0,.6) 90%, 
+                   black),
+                   rgba(0,0,0,.5);
+    opacity: 0;
+}
+.face--odd div span {
+    background: none;
+    background: linear-gradient(
+                   to left, 
+                   transparent 50%, 
+                   rgba(0,0,0,.4) 90%, 
+                   black);
+    opacity: 0;
+}
+.face--odd:first-child div span {
+    background: none;
+}
+
+.placeholder {
+  position: absolute;
+  z-index: 0;
+  left: 0; right: 0;
+  width: 500px;
+  margin: 100px auto;
+}
+
+.aside {
+  display: none;
+}
+
+@supports (background: -moz-element(#id)) {
+  .mask {
+    position: absolute;
+    z-index: 1;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background: #f0f0fa;
+    pointer-events: none;
+  }
+  .result {
+    position: absolute;
+    top: 0; bottom: 0; right: 0; left: 0;
+    z-index: 2;
+    width: 500px;
+    height: 350px;
+    margin: 100px auto;
+    background: rgba(255,255,255,.4);
+    background-clip: content-box;
+    pointer-events: none;
+  }
+  .result::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0; bottom: 0; left: 0; right: 0px;
+    border: 5px dashed rgba(0,0,0,.4);
+  }
+  .wrapper {
+    position: absolute;
+    z-index: 3;
+    width: 500px;
+    height: 350px;
+    /*filter: drop-shadow(0 3px 2px rgba(0,0,0,.5));*/
+    box-shadow: 0 3px 2px rgba(0,0,0,.5);
+  }
+  .aside {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 0; bottom: 0; right: 0;
+    overflow: hidden;
+    width: 0;
+    pointer-events: auto;
+  }
+  .aside-inner {
+    position: absolute;
+    overflow: auto;
+    top: 5px; bottom: 5px; right: -20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 170px;
+    padding: 0 30px 0 10px;
+    color: rgba(0,0,0,.6);
+    font-size: .8em;
+    text-align: right;
+  }
+  .aside-inner-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+
+
+.data {
+  font-size: 1.6em;
+  word-spacing: -.1em; 
+  color: #111;
+  overflow: hidden;
+}
+
+.controls {
+  position: absolute;
+  left: 0; right: 0;
+  z-index: 5;
+  width: 500px;
+  margin: 470px auto;
+  text-align: center;
+  pointer-events: auto;
+}
+.controls * {
+  vertical-align: middle;
+}
+.info {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: rgba(0,0,0,.3);
+}
+.info a {
+  color: inherit;
+}

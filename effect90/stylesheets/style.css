@@ -1,0 +1,70 @@
+/* line 1, ../sass/style.scss */
+.text {
+  animation: inherit;
+}
+
+/* line 4, ../sass/style.scss */
+.background {
+  color: #c32283;
+  animation: wheelHueColor 10s infinite;
+  background-color: currentColor;
+}
+
+@supports (background-blend-mode: overlay) {
+  /* line 10, ../sass/style.scss */
+  .background {
+    background-image: linear-gradient(45deg, white 10%, black 90%);
+    background-blend-mode: overlay;
+  }
+}
+@keyframes wheelHueColor {
+  from, to {
+    color: #c32283;
+  }
+  10% {
+    color: #bd2828;
+  }
+  20% {
+    color: #cf8517;
+  }
+  30% {
+    color: #819c16;
+  }
+  40% {
+    color: #36931f;
+  }
+  50% {
+    color: #169c4c;
+  }
+  60% {
+    color: #169c9c;
+  }
+  70% {
+    color: #2e65b8;
+  }
+  80% {
+    color: #4e2dd2;
+  }
+  90% {
+    color: #8b29a3;
+  }
+}
+/* misc */
+/* line 30, ../sass/style.scss */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 31, ../sass/style.scss */
+.background {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* line 35, ../sass/style.scss */
+.text {
+  margin: auto;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 1em;
+}

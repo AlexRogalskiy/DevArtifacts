@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+html{
+  font: .9em 'Raleway',sans-serif;
+  height: 100%;
+  text-align: center;
+  background: radial-gradient(50% 0,rgba(255,255,255,.3),rgba(255,255,255,0)), deepskyblue;
+  color: rgba(0,0,0,.6);
+}
+p a{
+  color: rgba(0,0,0,.6);
+}
+.mask a{
+  position: relative;
+  display:block;
+  width:150px;
+  height: 64px;
+  text-align:center;
+  margin: 50px auto;
+  -webkit-filter: drop-shadow(1px 1px 2px rgba(0,0,0,.5));
+}
+.mask a{
+  background-position: -140px 0;
+  
+}
+.mask a:hover,
+.mask a:focus{
+  background-position: 10px 0;
+  /*change speed to see in slow motion*/
+  transition: all 1s;
+}
+.mask a::after{
+  content:'';
+  position: absolute;
+  pointer-events: none;
+  top:0; left:0; right:0; bottom: 0;
+  background: radial-gradient(0 0,circle farthest-side, rgba(255,255,255,0) 90%,rgba(255,255,255,.8) 98%,rgba(255,255,255,0) 100%) no-repeat;
+  background: radial-gradient(circle farthest-side at 0 0, rgba(255,255,255,0) 90%,rgba(255,255,255,.8) 98%,rgba(255,255,255,0) 100%) no-repeat;
+  background-position: inherit; 
+  -webkit-mask: url('http://dev.iamvdo.me/newLogoCSS3create2.png') center;
+  mask: url('#mask-firefox');
+}

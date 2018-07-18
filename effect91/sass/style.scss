@@ -1,0 +1,33 @@
+.a {
+  width: 100px;
+  height: 100px;
+  background: #f00;
+  border-radius: 50%;
+  pointer-events: auto
+}
+.b {
+  width: 100px;
+  height: 100px;
+  background: #00f;
+  transform: translate(50px);
+  pointer-events: none
+}
+.c {
+  width: 100px;
+  height: 100px;
+  background: #0ff;
+  transform: translate(100px);
+  pointer-events: auto
+}
+.a:hover {
+  background: pink;
+}
+.b:hover {
+  background: green;
+}
+.c:hover {
+  background: yellow;
+}
+.b:not(:hover) > .c:hover {
+  background: black;
+}

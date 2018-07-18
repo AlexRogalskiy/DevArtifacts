@@ -1,0 +1,217 @@
+/* line 1, ../sass/style.scss */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* line 6, ../sass/style.scss */
+html {
+  font: 1em 'Montserrat', sans-serif;
+  background: #f0f0fa;
+}
+
+/* line 10, ../sass/style.scss */
+#css-element {
+  width: 500px;
+  height: 350px;
+  border: none;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* line 16, ../sass/style.scss */
+.face {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  perspective: 500px;
+  perspective-origin: 0% 70%;
+}
+
+/* line 23, ../sass/style.scss */
+.face:nth-child(odd) {
+  perspective-origin: 100% 70%;
+}
+
+/* line 26, ../sass/style.scss */
+.face div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  transform-origin: top right;
+}
+
+/* line 33, ../sass/style.scss */
+.face:nth-child(odd) div {
+  right: auto;
+  left: 0;
+  transform-origin: top left;
+}
+
+/* line 38, ../sass/style.scss */
+.face span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 42, ../sass/style.scss */
+.face--even span {
+  background: black;
+  background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.6) 90%, black), rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+
+/* line 52, ../sass/style.scss */
+.face--odd div span {
+  background: none;
+  background: linear-gradient(to left, transparent 50%, rgba(0, 0, 0, 0.4) 90%, black);
+  opacity: 0;
+}
+
+/* line 61, ../sass/style.scss */
+.face--odd:first-child div span {
+  background: none;
+}
+
+/* line 65, ../sass/style.scss */
+.placeholder {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  width: 500px;
+  margin: 100px auto;
+}
+
+/* line 73, ../sass/style.scss */
+.aside {
+  display: none;
+}
+
+@supports (background: -moz-element(#id)) {
+  /* line 78, ../sass/style.scss */
+  .mask {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #f0f0fa;
+    pointer-events: none;
+  }
+
+  /* line 85, ../sass/style.scss */
+  .result {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    width: 500px;
+    height: 350px;
+    margin: 100px auto;
+    background: rgba(255, 255, 255, 0.4);
+    background-clip: content-box;
+    pointer-events: none;
+  }
+
+  /* line 96, ../sass/style.scss */
+  .result::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0px;
+    border: 5px dashed rgba(0, 0, 0, 0.4);
+  }
+
+  /* line 103, ../sass/style.scss */
+  .wrapper {
+    position: absolute;
+    z-index: 3;
+    width: 500px;
+    height: 350px;
+    /*filter: drop-shadow(0 3px 2px rgba(0,0,0,.5));*/
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  /* line 111, ../sass/style.scss */
+  .aside {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    width: 0;
+    pointer-events: auto;
+  }
+
+  /* line 120, ../sass/style.scss */
+  .aside-inner {
+    position: absolute;
+    overflow: auto;
+    top: 5px;
+    bottom: 5px;
+    right: -20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 170px;
+    padding: 0 30px 0 10px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: .8em;
+    text-align: right;
+  }
+
+  /* line 133, ../sass/style.scss */
+  .aside-inner-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+/* line 142, ../sass/style.scss */
+.data {
+  font-size: 1.6em;
+  word-spacing: -.1em;
+  color: #111;
+  overflow: hidden;
+}
+
+/* line 149, ../sass/style.scss */
+.controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  width: 500px;
+  margin: 470px auto;
+  text-align: center;
+  pointer-events: auto;
+}
+
+/* line 158, ../sass/style.scss */
+.controls * {
+  vertical-align: middle;
+}
+
+/* line 161, ../sass/style.scss */
+.info {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+/* line 167, ../sass/style.scss */
+.info a {
+  color: inherit;
+}

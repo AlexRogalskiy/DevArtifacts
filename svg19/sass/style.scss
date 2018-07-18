@@ -1,0 +1,36 @@
+.effet{
+  width: 400px; height: 300px;
+  margin: 0 auto 50px auto;
+  box-shadow: 0 1px 5px rgba(0,0,0,.5);
+}
+.effet img{
+  position: absolute;
+}
+.filtre--r{
+  -webkit-mask: -webkit-radial-gradient( center, closest-side, transparent 30%, black 80%);
+  -webkit-mask: radial-gradient( closest-side at center, transparent 50%, black 110%);
+  -webkit-filter: blur(5px);
+  mask: url('#mask-radial');
+  filter: url('#filtre1');
+}
+.filtre--l{
+  -webkit-mask: -webkit-linear-gradient(black, transparent 30%, black);
+  -webkit-mask: linear-gradient(black, transparent 30%, black);
+  -webkit-filter: blur(3px);
+  mask: url('#mask-linear');
+  filter: url('#filtre2');
+}
+.filtre:hover{
+   -webkit-mask: none;
+   -webkit-filter: none;
+   mask: none;
+   filter: none;
+}
+p{
+   text-align: center;
+   color: rgba(0,0,0,.6);
+   margin: 1em;
+}
+p a{
+  color: rgba(0,0,0,.6);
+}
