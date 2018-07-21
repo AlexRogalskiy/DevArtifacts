@@ -1,0 +1,229 @@
+@import "compass/css3";
+
+/* variables */
+$darkBrown: hsla(26, 29%, 11%, 0.65);
+
+/* fonts 
+----------------------*/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+@import url("https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica");
+
+@import url("https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff");
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+
+
+/* grid 
+----------------------*/
+.grid {
+  margin: 0 auto;
+  width: 80%;
+}
+
+[class*=grid-] {
+  display: inline-block;
+  position: relative;
+  /* get rid of inline block whitespace bug: www.lifeathighroad.com/web-development/css-web-development/inline-block-whitespace-workaround */
+  margin-left: -4px; 
+}
+.grid-one-third {
+  width: 33.33%;
+}
+.grid-two-thirds {
+  width: 66.66%;
+}
+
+.grid-one-fourth {
+  width: 25%;
+}
+.grid-two-fourths {
+  width: 50%;
+}
+.grid-three-fourths {
+  width: 75%;
+}
+
+.grid-one-fifth {
+  width: 20%;
+}
+.grid-two-fifths {
+  width: 40%;
+}
+.grid-three-fifths {
+  width: 60%;
+}
+.grid-four-fifths {
+  width: 80%;
+}
+
+.grid-full {
+  width: 100%;
+}
+
+
+/* core styles 
+-------------------------- */
+* { box-sizing: border-box; }
+
+body {
+  background-image: url(http://cirq.com/assets/img/common/background.jpg);
+  background-position: -40% 0;
+}
+  
+
+/* style components 
+-------------------------- */
+.topSeparator {
+  border: 5px solid transparent;
+  border-top-color: hsla(26, 29%, 11%, 0.65);
+}
+.centerText {
+    text-align: center;
+}
+
+.padding {
+  padding: 2em 2em 1.75em;
+}
+/* blocks 
+-------------------------- */
+.logo {
+  font-size: 5.25em;
+  line-height: 1;
+  margin-bottom: 1.1em;
+  letter-spacing: 12px;
+  color: hsla(26, 29%, 11%, 0.86);
+  text-transform: uppercase;
+  font-family: 'IM Fell DW Pica', serif;
+}
+
+.attributionBlock {
+  line-height: 0.4;
+  font-family: monospace;
+  [itemprop=name] {
+    color: hsla(26, 29%, 11%, 0.76);
+    text-transform: uppercase;
+    
+    &:before {
+      content: attr(data-signature);
+      display: block;
+      height: 0;
+      position: relative;
+      top: -0.75em;
+      color: hsla(226, 15%, 57%, 1.0);
+      font-family: 'Herr Von Muellerhoff';
+      font-weight: normal;
+      text-transform: none;
+      font-size: 3em;
+      letter-spacing: -2px;
+    }
+  }
+  [itemprop=jobTitle] {
+    color: hsla(26, 29%, 11%, 0.7);
+    font-size: 0.9em;
+  }
+}
+
+.join {
+  padding: 1.5em 0 0;
+  position: relative;
+  top: -1.5em;
+  text-transform: uppercase;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-size: 1.05em;
+  color: hsla(26, 29%, 11%, 0.85);
+  border-bottom: 3px solid hsla(26, 19%, 11%, 0.5);
+}
+
+.lede {
+  text-transform: uppercase;
+  padding-top: 1em;
+  font-family: Futura;
+  font-weight: bold;
+  font-size: 0.75em;
+}
+
+.giga { 
+  // props to @gryghostvisuals for this class
+  color: hsla(32, 100%, 97%, 1.0);
+  @include transition(.3s text-shadow ease-in-out);
+  text-shadow:
+    -2px -2px 0 $darkBrown,
+    -2px 2px 0 $darkBrown,
+    2px -2px 0 $darkBrown,
+    2px 2px 0 $darkBrown,
+    
+    $darkBrown 1px 1px, $darkBrown 2px 2px, $darkBrown 3px 3px, $darkBrown 4px 4px, $darkBrown 5px 5px, $darkBrown 6px 6px, $darkBrown 7px 7px, $darkBrown 8px 8px, $darkBrown 9px 9px, $darkBrown 10px 10px, $darkBrown 11px 11px, $darkBrown 12px 12px, $darkBrown 13px 13px, $darkBrown 14px 14px, $darkBrown 15px 15px,
+    // red text shadow
+    15px 20px 0px red,
+    15px 21px 0px red,
+    15px 22px 0px red,
+    15px 23px 0px red,
+    15px 24px 0px red,
+    15px 25px 0px red,
+    15px 26px 0px red,
+    15px 27px 0px red,
+    15px 28px 0px red,
+    16px 28px 0px red,
+    17px 28px 0px red,
+    18px 28px 0px red;
+  font-size:14em;
+  letter-spacing: 0.135em;
+  line-height:0;
+  text-transform: uppercase;
+  font-family: "Yanone Kaffeesatz";
+  margin: 0.4em 0;
+  .char1, .char13 {
+    font-size: 1.25em;
+    position: relative;
+    top: 0.15em;
+  }
+  
+  &:hover {
+    cursor: pointer;
+    text-shadow:
+    -2px -2px 0 $darkBrown,
+    -2px 2px 0 $darkBrown,
+    2px -2px 0 $darkBrown,
+    2px 2px 0 $darkBrown,
+    
+    $darkBrown 1px 1px, $darkBrown 2px 2px, $darkBrown 3px 3px, $darkBrown 4px 4px, $darkBrown 5px 5px, $darkBrown 6px 6px, $darkBrown 7px 7px, $darkBrown 8px 8px, $darkBrown 9px 9px, $darkBrown 10px 10px, $darkBrown 11px 11px, $darkBrown 12px 12px, $darkBrown 13px 13px, $darkBrown 14px 14px, $darkBrown 15px 15px,
+    //red text shadow
+    15px 20px 0px red,
+    15px 21px 0px red,
+    15px 22px 0px red,
+    15px 23px 0px red,
+    15px 24px 0px red,
+    15px 25px 0px red,
+    15px 26px 0px red,
+    15px 27px 0px red,
+    15px 28px 0px red,
+    16px 28px 0px red,
+    17px 28px 0px red,
+    18px 28px 0px red,
+      //hover movement
+      19px 28px 0px red,
+      20px 28px 0px red,
+      21px 28px 0px red,
+      22px 28px 0px red,
+      23px 28px 0px red,
+      24px 28px 0px red;
+  }
+}
+.subtitle {
+  font-family: "Quicksand";
+  text-transform: uppercase;
+  font-size: 3em;
+  font-size: 400;
+  margin-top: 2.75em;
+  color: hsla(7, 74%, 59%, 1.0);
+  [class*=char] {
+    letter-spacing: 1.5em;
+    padding-left: 0.75em;
+  }
+}

@@ -1,0 +1,89 @@
+/* line 1, ../sass/style.scss */
+body {
+  padding: 1em 2em;
+}
+
+/* line 5, ../sass/style.scss */
+ul, ol {
+  list-style: none;
+  padding: 0;
+}
+
+/* line 9, ../sass/style.scss */
+li {
+  text-align: center;
+  line-height: 2;
+  background: slategrey;
+}
+
+/* line 14, ../sass/style.scss */
+div {
+  width: 12em;
+  float: left;
+  margin-right: 2em;
+}
+
+/* line 19, ../sass/style.scss */
+hr {
+  clear: both;
+  padding-top: 1em;
+  border: 0;
+  border-bottom: 1px solid grey;
+}
+
+/* line 26, ../sass/style.scss */
+.one li:nth-last-child(1) {
+  background: lightsteelblue;
+}
+
+/* line 30, ../sass/style.scss */
+.two ol :nth-last-child(3) {
+  background: lightsteelblue;
+}
+
+/* line 34, ../sass/style.scss */
+.three :nth-last-child(-n+2) :nth-last-child(1) {
+  background: lightsteelblue;
+}
+
+/* line 40, ../sass/style.scss */
+div:before {
+  font-family: monospace;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+/* line 45, ../sass/style.scss */
+div:after {
+  font-style: italic;
+}
+
+/* line 49, ../sass/style.scss */
+.one:before {
+  content: "li:nth-last-child(1)";
+}
+
+/* line 52, ../sass/style.scss */
+.one:after {
+  content: "select <li> elements that are the last child of their parent";
+}
+
+/* line 56, ../sass/style.scss */
+.two:before {
+  content: "ol :nth-last-child(3)";
+}
+
+/* line 59, ../sass/style.scss */
+.two:after {
+  content: "select the third-from-last child element of an <ol>";
+}
+
+/* line 63, ../sass/style.scss */
+.three:before {
+  content: ":nth-last-child(-n+2) :nth-last-child(-n+3)";
+}
+
+/* line 66, ../sass/style.scss */
+.three:after {
+  content: "select the last <li> element inside the last two elements";
+}

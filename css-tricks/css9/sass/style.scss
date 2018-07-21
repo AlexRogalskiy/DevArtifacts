@@ -1,0 +1,52 @@
+main {
+	position: relative;
+}
+
+.lines {
+	&__line {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		z-index: 1;
+		width: 1px;
+		background-color: rgba(black, 0.2);
+		
+		&:nth-child(1) {
+			left: 25%;
+		}
+		
+		&:nth-child(2) {
+			left: 50%;
+		}
+		
+		&:nth-child(3) {
+			right: 25%;
+		}
+	}
+}
+
+.over-lines {
+	position: relative;
+	z-index: 2;
+}
+
+.box {
+	width: 80%;
+	height: 300px;
+	
+	&:nth-child(even) {
+		margin-left: 20%;
+	}
+	
+	&:nth-child(1n) {
+		background-color: #cfc;
+	}
+	
+	&:nth-child(2n) {
+		background-color: #fcc;
+	}
+	
+	&:nth-child(3n) {
+		background-color: #ccf;
+	}
+}
