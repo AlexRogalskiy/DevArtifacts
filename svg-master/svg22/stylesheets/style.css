@@ -1,0 +1,35 @@
+/* line 1, ../sass/style.scss */
+body {
+  background: black;
+}
+
+/* line 4, ../sass/style.scss */
+.outer {
+  color: white;
+  filter: url(#goo);
+  font-size: 15em;
+  letter-spacing: -0.12em;
+  display: inline-block;
+  position: relative;
+}
+
+/* line 12, ../sass/style.scss */
+.wipe {
+  position: absolute;
+  transform-origin: 0 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  animation: 30s linear slidein infinite alternate;
+}
+
+@keyframes slidein {
+  from {
+    transform: scale(0, 1);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}

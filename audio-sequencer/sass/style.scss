@@ -1,0 +1,56 @@
+// Styles loaded from https://codepen.io/njmcode/pen/MYXJGM
+
+$c-orange: #ff9900;
+$c-hilite: #99ccaa;
+$c-hilite-blink: #336655;
+
+#app {
+  margin: 0 auto;
+  width: 500px;
+  position: relative;
+}
+
+#r-head {
+  position: absolute;
+  right:0;
+  top:0;
+  
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.presets {
+  margin:0;
+  padding:0;
+  list-style-type:none;
+  
+  li {
+    display: inline-block;
+    border: 1px solid #111;
+  }
+  
+  a {
+    display: inline-block;
+    padding: 5px;
+    width: 200px;
+    border: 2px solid #333;
+    background: #222;
+    color: #555;
+    background-image: linear-gradient(transparent, rgba(0,0,0,0.6));
+    transition: border-color 0.3s ease, 
+    background-color 0.3s ease,
+    color 0.3s ease;
+    &:hover {
+      background-color: #530;
+      border-color: $c-orange;
+    }
+    &.active {
+      border-color: $c-hilite;
+      color: white;
+      animation: focused 0.5s ease;
+      animation-iteration-count: infinite;
+      animation-direction:alternate;
+    }
+  }
+}

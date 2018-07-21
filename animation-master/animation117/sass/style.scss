@@ -1,0 +1,107 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-image:linear-gradient(blue, magenta, orange);
+    background-position: fixed;
+    text-align: center;
+    overflow: hidden;
+    margin: 0;
+    height: 100%;
+}
+
+#player {
+    overflow: hidden;
+    width: 480px;
+    height: 62px;
+    margin: 0 auto;
+    
+    iframe {
+        //margin-top: -315px;
+    }
+}
+
+#inner {
+    font-family: 'Yellowtail';
+    position: absolute;
+    z-index: 9999;
+    top: 30%;
+    width: 100%;
+    transform: rotate(-20deg) translate(-50px, -50%);
+}
+
+#name, .clone {
+    color: white;
+    font-size: 8em;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    line-height: 1;
+}
+
+#name {
+    color: white;
+    z-index: 400;
+    text-shadow:0 0 30px white;
+    cursor: pointer;
+    /*animation: wiggle 1s ease;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0.1s;*/
+}
+
+#clones {
+    
+    .clone {
+        @for $i from 1 through 5 {
+          &:nth-child(#{$i}) { 
+            color: adjust_hue(cyan, 4 * $i);
+            top: #{$i * 5}px;
+            z-index: #{300 - $i};
+              
+            animation: wiggle 1s ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-delay: #{0.2 * $i}s;
+          }
+        }
+    }
+    
+}
+
+@keyframes wiggle {
+    0% {
+        transform: translateX(-6px);
+    }
+    100% {
+        transform: translateX(6px);
+    }
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    
+    a {
+        color: cyan;
+    }
+}
+
+.skyline {
+    background-image: repeat-x;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
+    &.para {
+        opacity: 0.6;
+        bottom: 20px;
+    }
+    
+}

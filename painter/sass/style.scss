@@ -1,0 +1,298 @@
+body {
+  background: #000;
+  color: #ccc;
+  text-align: center;
+  margin:30px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  box-sizing: border-box;
+}
+
+a {
+  color: #ff0099;
+  text-decoration:none;
+}
+
+#wrap {
+  border: 1px solid #333;
+  position:relative;
+  margin: 0 auto;
+  user-select: none;
+  cursor:default;
+}
+
+#droplets {
+  width: 20px;
+  border: 1px solid #333;
+  height: calc(100% - 40px);
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+#droplets span {
+  width: 100%;
+  display:block;
+  border-bottom: 1px solid #333;
+  cursor:crosshair;
+  background-color: black;
+  /*text-indent: -35px;*/
+  line-height: 30px;
+  text-shadow:1px 1px 1px black;
+}
+
+#pal-select {
+  height: 20px;
+  line-height:20px;
+  position: absolute;
+  text-align:right;
+  top: 0;
+  right: 20px;
+}
+
+canvas {
+  border: 1px solid #444;
+  cursor: crosshair;
+}
+
+#cursors {
+  position: absolute;
+  top:20px;
+  left:60px;
+  z-index: 99999;
+  cursor:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNiYAIAAAsABb4+CbQAAAAASUVORK5CYII='), crosshair;
+}
+
+#cursors.sampling {
+  cursor: crosshair;
+}
+
+.layerCanvas, #help-wrap {
+  position: absolute;
+  top:20px;
+  left:60px;
+  z-index: 50;
+}
+
+#help-wrap {
+  z-index: 999999999;
+}
+
+#base {
+  position: absolute;
+  top:20px;
+  left:60px;
+}
+
+#pal {
+  position: absolute;
+  top:20px;
+  right:20px;
+  cursor: crosshair;
+}
+
+#picks {
+  position:absolute;
+  border:1px solid #444;
+  width: 80px;
+  height: 40px;
+  right: 20px;
+  top: 221px;
+}
+
+#picks div {
+  height:20px;
+  background: #ffffff;
+}
+
+#undo {
+  border-color: #900;
+  position: absolute;
+  right: 20px;
+  top: 275px;
+}
+
+#import {
+  position: absolute;
+  right: 70px;
+  top: 275px;
+}
+
+#tools {
+  position: absolute;
+  top: 235px;
+  right: 145px;
+  width: 80px;
+  text-align:left;
+}
+
+#brush {
+  position: absolute;
+  right: 145px;
+  top: 275px;
+  width: 80px;
+  text-align:left;
+}
+
+#brush span {
+  font-size: 13px;
+}
+
+button {
+  border: 1px solid #444;
+  color: #ccc;
+  background: #333;
+  cursor:pointer;
+  margin: 0 2px;
+  width:30px;
+  height:30px;
+  line-height:30px;
+  padding:0;
+}
+
+button:hover {
+  background: #660033;
+}
+
+#tools button.active {
+  background: #ff0099;
+  border:1px solid #ccc;
+}
+
+#readout {
+  position: absolute;
+  bottom: 20px;
+  right: 120px;
+  text-align:left;
+  width: 100px;
+}
+
+#readout p {
+  margin:0;
+}
+
+#readout span {
+  display: inline-block;
+  width: 20px;
+}
+
+#mini {
+  position:absolute;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid #111;
+  cursor: pointer;
+}
+
+#mini:hover {
+  border-color: #00ff00;
+}
+
+#layers {
+  position: absolute;
+  top: 320px;
+  right: 20px;
+  width: 200px;
+  /*display:none;*/
+}
+
+#layers ul {
+  margin:0;
+  padding:0;
+  list-style-type:none;
+}
+
+#layers button {
+  width:20px;
+  height:20px;
+  line-height:20px;
+}
+
+#layers ul li {
+  margin: 0;
+  padding: 2px;
+  text-align: left;
+  background: #111;
+  border: 1px sold #111;
+  cursor:pointer;
+}
+
+#layers ul li:hover {
+  background: #222222;
+}
+
+#layers ul li.active {
+  border: 1px solid #fff;
+  background: #ff0099
+}
+
+#layers ul li.hidden {
+  color: #444;
+}
+
+#layers .layer-up, #layers .layer-down {
+  display:none;
+}
+
+#doom-pal, #true-pal {
+  display:none;
+}
+
+#blurb {
+  color: #444;
+}
+
+#blurb strong {
+  color: #999;
+}
+
+#help-but {
+  display:block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  line-height:20px;
+  text-align:center;
+  width:20px;
+}
+
+#help-wrap {
+  display:none;
+  text-align: left;
+  border:1px solid #444;
+  background:rgba(0,0,0,0.8);
+}
+
+#help-inner {
+  padding: 20px;
+}
+
+#help-wrap .col-l, #help-wrap .col-r {
+  display: inline-block;
+  
+}
+
+#help-wrap .col-l {
+  width: 30%;
+  text-align: right;
+  padding-right: 20px;
+}
+
+#help-wrap pre {
+ margin-top:0;
+}
+
+#help-wrap h3 {
+  color: #fff;
+  font-size: 16px;
+
+}
+
+.h-first {
+  margin-top:0;
+}
+
+.appname {
+  color:white;
+}

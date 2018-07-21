@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang='en' class='seq-ui'>
+<head>
+
+    <title>Effect Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="UTF-8" />
+    <meta name="description" content="TEST API" />
+    <meta name="keywords" content="TEST,API" />
+    <meta name="author" content="Alexander R." />
+    <meta name="theme-color" content="#000000" />
+    <meta name="copyright" content="Alexander R." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+    <meta name="apple-mobile-web-app-title" content="TEST API" />
+    <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css' />
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Yellowtail' />
+	<link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+
+</head>
+
+<!--  header -->
+<body>
+
+<h1><strong class="appname">HARDCELL</strong> - 32x32 Paletted Color Pixeller</h1>
+<h2>Inspired by <a href="http://jams.gamejolt.io/lowrezjam2014" target="_blank">#LOWREZJAM</a>, old Doom WAD tools, and the epicness that was (and is) the C64.</h2>
+<div id="wrap">
+  
+  <a href="#" title="Toggle help" id="help-but">?</a>
+  
+  <div id="help-wrap">
+    <div id="help-inner">
+      <h3 class="h-first">Shortcuts</h3>
+      <div class="col-l">
+<pre>b
+e
+[
+]
+d (hold)
+Shift + d (hold)
+Ctrl + z
+Ctrl + click
+[0-9]
+Shift + [0-9]
+</pre>
+      </div>
+      
+      <div class="col-r">
+<pre>- brush tool
+- eraser tool
+- smaller brush size
+- larger brush size
+- dither
+- inverse dither
+- undo
+- sample canvas color
+- select color preset
+- assign color preset
+</pre>
+      </div>
+      
+      <h3>How to use</h3>
+      
+      <p>Draw your art then use the thumbnail at the bottom-right to export the flattened 32x32 .png to a new tab for saving. The app can not save your in-progress work, only export flat .png files.</p>
+      <p>Color presets will be remembered on a HTML5 LocalStorage-capable browser. This app has 10 levels of undo.</p>
+      
+      <h3>About</h3>
+      
+      <p><strong class="appname">HARDCELL</strong> was hacked together by <a href="//twitter.com/njmcode" target="_blank"><strong>@njmcode</strong></a> for a laugh as inspiration/procrastination for <a href="http://jams.gamejolt.io/lowrezjam2014" target="_blank">#LOWREZJAM 2014</a>.  The underlying code is grim and needs a full refactor whenever time permits.</p>
+      <p>This app may well not function correctly on anything other than Chrome stable. Sorry about that.</p>
+      <p>Thanks to <a href="//twitter.com/DesignThenCode" target="_blank">@DesignThenCode</a> and <a href="//twitter.com/thegrieve" target="_blank">@thegrieve</a> for feedback and suggestions.</p>
+    </div>
+  </div>
+  
+  <div id="pal-select">
+    <a href="#" data-pal="c64">C64</a> | <a href="#" data-pal="doom">Doom</a> | <a href="#" data-pal="truecol">TrueCol</a>
+  </div>
+  
+  <div id="droplets">
+  </div>
+  
+  <canvas id="base" width="320" height="320"></canvas>
+  <canvas id="pal" width="200" height="200"></canvas>
+  <canvas id="cursors" width="320" height="320"></canvas>
+  
+  
+  <a href="#" id="outlink" target="_blank" border="0" href="#"><img id="mini" title="View/save in new tab" width="32" height="32" src="" border="0" /></a>
+  <div id="picks">
+    <div id="atcursor"></div>
+    <div id="selected"></div>
+  </div>
+  
+  <div id="tools">
+    <button data-tool="pencil" title="Brush (b)" class="active">&#9998;</button>
+    <button data-tool="eraser" title="Eraser (e)">&#10063;</button>
+  </div>
+  <button id="undo" title="Undo (permanent!) (Ctrl+z)">!</button>
+  <button id="import" title="Import base64 data to current layer">b64</button>
+  <div id="brush">
+    <button data-brush="down" title="Smaller brush ( [ )">-</button>
+    <button data-brush="up" title="Larger brush ( ] )">+</button>
+  </div>
+  
+  <script id="t-layer" type="text/template">
+    <li data-layer="LAYER_ID">
+      <button class="layer-toggle" title="Show/hide">&#9675;</button>
+      <button class="layer-up" title="Bring forward">&#8963;</button>
+      <button class="layer-down" title="Send back">&#8964;</button>
+      Layer LAYER_ID
+    </li>
+  </script>
+  
+  <div id="layers">
+    <ul>
+
+    </ul>
+  </div>
+
+  <div id="readout">
+    <p>x: <span id="pos-x">0</span> y: <span id="pos-y"></p>
+  </div>
+</div>
+<p id="blurb">No layer moving, no smoothing, no blending, no copypasta. Just pure pixels. <strong>Tested in Chrome.</strong></p>
+  <p>a gross hack by <strong>@njmcode</strong> [ <a href="//codepen.io/njmcode" target="_blank">CodePen</a> | <a href="//twitter.com/njmcode" target="_blank">Twitter</a> ] --- - --- <a href="http://jams.gamejolt.io/lowrezjam2014" target="_blank">#LOWREZJAM - 32px square game jam</a></p>
+  
+<img id="doom-pal" width="256" height="256" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAABKZJREFUeNrt3TGLVFccxuE/VkI+QCwEG8FAGsEUFhaCKYSk8yOkTGGRIkVKSSfY2FlY6gcQLG0tUmyRIsWE3GLEBQdyixM4CwfGL5DmBQ/MZZ+Ht3XZBX/MLe6Zc6VCx7dvo724cyfa8dM/0d799kO0f0NPQr8eH0d79+pZtJdPfop2PP6SrSrax4/HaLNVPYp2peASEwACAAGAAEAAIAAQAAgABAACAAGAAEAAIADYdAA3vv4qWm8t2ghVb9FaH9F6KP39+9qzhda2Rjvs9tHWqmjLkq0Ou2z1V7gWzScAHoFAACAAEAAIAAQAAgABgABAACAAEAAIAAQAWw2g9xFthP+gjxEtPQ+Q/vw+2+TzAOFxjH5YDtFa+EL9fp+tDku22oVzHgA8AoEAQAAgABAACAAEAAIAASAAEAAIAAQAAoDLEcB3976PFt8PEJ4fmH0eIP6+/5M7D5A5ufMA65LNeQDwCAQCAAGAAEAAIAAQAAgABAACAAGAAEAAIAD43wDehKbfDzB6tPR+g/T9+/gAwdqjxccNWot2WNZo7gcAj0AgABAACAAEAAIAAYAAQAAgABAACAAEAAKAbQRwPTT7ffr0foA2RrQ+W3g/wAgPTITXM/TD0qKl5wGWJZv7AcAjEAgABAACAAGAAEAAIAAQAAgABAACAAGAAODLBBC/399atPh+gPA8QHo/QGr2eYD0eoP4PMB5i+Z+APAIBAIAAYAAQAAgABAACAAEAAIAAYAAQAAgANhGALO/Lj++H2D0aOl5g9m/f289Wyj98Yfzi2jTzwPE9wP8He6/aD4B8AgEAgABgABAACAAEAAIAAQAAgABgABAACAA2GoA078vP74fYI02+zxA/Oeu2dILAu7++DDa0z+P0dLzAB8+ZAuvlxiv71e048sH0XwC4BEIBAACAAGAAEAAIAAQAAgABAACAAGAAEAAsNUAvrl9LdpIX2CffN6g9RFt+vmHdWRL/95Q7XbR1qpoVftoPf0P1CtaPbwazScAHoFAACAAEAAIAAQAAgABgABAACAAEAAIAAQAWw2gtTXa7PsB4vfjx4iW//rh+YG1R5t9PqGWJVp6P0DVebTWa+rq+ZtoPgHwCAQCAAGAAEAAIAAQAAgABAACAAGAAEAAIADYagCt9WjxF+xXRZt9HmD+/QDh4vsQsp3aeYD0eonWKlr9ns0nAB6BQAAgABAACAAEAAIAAYAAQAAgABAACAAEAFsNoPeLcOkX1Fe2/AKCcLPvBwiX3p8QHuA4vfsBRrT3125FO6uzaD4B8AgEAgABgABAACAAEAAIAAQAAgABgABAACAA2GoA929+Gy19+35cXETLvy8/e7+8z3Zq9wPs99Hm3w+QnT9pobP6I5pPADwCgQBAACAAEAAIAAQAAgABgABAACAAEAAIALYawPT34yffD9DGiBZ/3396n8A6os2+3+D07geobNl1CN39AOARCAQAAgABgABAACAAEAAIAAGAAEAAIAAQAFyWAOL33VNV2eL39ee+Tx//Pi3b7L/31M4D9FHZQnd/rmg+AfAIBAIAAYAAQAAgABAACAAEAAIAAYAAQAAgANiozw69BA0IDMGeAAAAAElFTkSuQmCC" />
+
+<img id="true-pal" width="200" height="200" src="data:image/jpeg;base64,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" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+
+</body>
+<!--  footer -->
+</html>
