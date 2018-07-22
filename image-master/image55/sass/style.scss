@@ -1,0 +1,188 @@
+
+$color1: #E6E7E8;
+$color2: #FF8F8F;
+$color3: #404041;
+$color4: #FF8F8F;
+$color5: #5EC3AF;
+$color6: #9E76B4;
+$color7: #43C7F4;
+$color8: #FFCC4E;
+
+
+body {
+  background-color:$color4;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+// Macbook
+.sublime-text {
+  margin: 60px auto 50px auto;
+  width: 416px;
+  overflow: visible;
+  transform: scale(0);
+  animation: appear 500ms ease-out forwards;
+  
+  .screen {
+    position: relative;
+    height: 234px;
+    background-color: $color3;
+    border-radius: 8px;
+    color:white;
+    font-size:30px;
+
+    .top-bar {
+       width: 100%;
+       height: 30px;
+       position: absolute;
+       margin-top: 0;
+       background-color: $color1;
+       border-radius: 7px 7px 0 0;
+      
+      .buttons {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        top:12px;
+        background: $color4;
+        border-radius: 50%;
+        left: 22px;
+        &:after, &:before {
+          position: absolute;
+          content: "";
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+        }
+        &:after {
+          left: 12px;
+          background-color: $color5;
+        }
+        &:before {
+          left: -12px;
+          background-color: darken($color4, 20%);
+        }
+      }
+    }
+    
+    .left-bar {
+      height: 100%;
+      width: 30px;
+      position: absolute;
+      padding-left:8px;
+      background-color:darken($color3, 7%);
+      border-radius: 10px 0 0 7px;
+      
+      &:after {
+        position: absolute;
+        top:24px;
+        content: ". . . . . . . . . .";
+        color:lighten($color3, 10%);
+        font-size:42px;
+        line-height:20px;
+      }
+    }
+    
+    .code {
+      position:absolute;
+      margin: 0 0 0 30px;
+      
+      .row {
+        position:relative;
+        padding:8px;
+        height:20px;
+        p {
+          opacity:0;
+          position:relative;
+          display:inline-block;
+          width:90px;
+          height:8px;
+          background-color: white;
+          border-radius:4px;
+          
+          &.green {
+            width: random(20) + 60px;
+            background-color: $color5;
+          }
+          &.orange {
+            width: random(10) + 110px;
+            background-color: $color4;
+          }
+          &.blue {
+            width: random(10) + 90px;
+            background-color: $color7;
+          }
+          &.purple {
+            width: random(20) + 30px;
+            background-color: $color6;
+          }
+          &.yellow {
+            width: random(20) + 65px;
+            background-color: $color8;
+          }
+          &.transparent {
+            background-color: transparent;
+            width: 30px;
+ 
+          }
+          &.cursor {
+            border-radius:0;
+            margin-left:1px;
+            background-color: $color1;
+            width: 2px;
+            animation: blink 1s ease 4.6s infinite;
+            
+          }
+        }
+      }
+    }
+    
+  }
+  
+  
+} /* sublime text */
+
+/* Input text animation */
+$cont:0;
+ @for $z from 1 through 9 {
+    @for $i from 1 through 9 {
+      .row#{$z}>p:nth-child(#{$i}) {
+        $cont:400*$z + $i*100 + 600;
+        animation: show-text 100ms ease #{$cont}ms forwards;
+      }
+    }
+}
+
+@keyframes blink { 
+    0% {
+    opacity: 0;
+      
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes show-text {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@keyframes appear {
+  0% {
+    transform:scale(0);
+  }
+  50% {
+    transform:scale(1.05)
+  }
+  75% {
+    transform:scale(0.95)
+  }
+  100% {
+   transform:scale(1)
+  }
+}

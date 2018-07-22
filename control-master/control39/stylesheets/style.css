@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:600);
+/* line 15, ../sass/style.scss */
+html {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #2D4B6F;
+}
+
+/* line 24, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+/* line 28, ../sass/style.scss */
+.flag-switch {
+  position: relative;
+  outline: 0;
+  appearance: none;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  width: 60px;
+  height: 30px;
+  margin: 5px auto;
+}
+/* line 40, ../sass/style.scss */
+.flag-switch:before, .flag-switch:after {
+  position: absolute;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+/* line 49, ../sass/style.scss */
+.flag-switch:before {
+  left: -19px;
+  content: attr(data-first-lang);
+}
+/* line 54, ../sass/style.scss */
+.flag-switch:after {
+  right: -17px;
+  content: attr(data-second-lang);
+}
+/* line 59, ../sass/style.scss */
+.flag-switch input {
+  display: none;
+}
+/* line 63, ../sass/style.scss */
+.flag-switch input + label {
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  width: 60px;
+}
+/* line 70, ../sass/style.scss */
+.flag-switch input + label:before, .flag-switch input + label:after {
+  content: "";
+  position: absolute;
+  border-radius: 30px;
+  transition: all 0.25s ease-in-out;
+}
+/* line 77, ../sass/style.scss */
+.flag-switch input + label:before {
+  height: 30px;
+  width: 60px;
+  background-color: #EE4B5E;
+}
+/* line 83, ../sass/style.scss */
+.flag-switch input + label:after {
+  top: 3px;
+  left: 3px;
+  border: 2px solid #DFDFDF;
+  width: 24px;
+  height: 24px;
+  background: #eb3 url(https://i.imgur.com/pxxUsQs.jpg) -26px center;
+  transform: translate(30px, 0);
+  -webkit-transform: translate(30px, 0);
+}
+/* line 96, ../sass/style.scss */
+.flag-switch input:checked + label:after {
+  background: #000233 url(https://i.imgur.com/pxxUsQs.jpg) -2px center;
+  transition: all 0.25s ease-in-out;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+/* line 103, ../sass/style.scss */
+.flag-switch input:checked + label:before {
+  background-color: #1FA9D6;
+}
