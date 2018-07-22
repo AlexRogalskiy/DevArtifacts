@@ -1,0 +1,114 @@
+body {
+  background-color: #00bdb1;
+  padding: 20px;
+}
+
+.title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 50px;
+}
+
+.column {
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tile {
+  display: grid;
+  grid-template-rows: 1fr 2px 1fr;
+  background-color: #f2eee7;
+  width: 70px;
+  height: 140px;
+  border-radius: 6px;
+}
+
+.tile-number {
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  justify-items: center;
+  padding: 5px 10px;
+}
+
+/* 1 */
+.tile-number--1 {
+  justify-content: center;
+}
+
+/* 2 */
+.tile-number--2 {
+  grid-template-columns: repeat(2, 16px);
+}
+.tile-number--2 .tile-dot:nth-child(2) {
+  grid-row-start: 2;
+  grid-column-start: 2;
+}
+
+/* 3 */
+.tile-number--3 {
+  grid-template-columns: repeat(3, 16px);
+  grid-template-rows: repeat(3, 1fr);
+}
+.tile-number--3 .tile-dot:nth-child(2) {
+  grid-row-start: 2;
+  grid-column-start: 2;
+}
+.tile-number--3 .tile-dot:nth-child(3) {
+  grid-row-start: 3;
+  grid-column-start: 3;
+}
+
+/* 4 */
+.tile-number--4 {
+  grid-template-columns: repeat(2, 16px);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+/* 5 */
+.tile-number--5 {
+  grid-template-columns: repeat(3, 16px);
+  grid-template-rows: repeat(3, 1fr);
+}
+.tile-number--5 .tile-dot:nth-child(2) {
+  grid-column-start: 3;
+}
+.tile-number--5 .tile-dot:nth-child(3) {
+  grid-column-start: 2;
+}
+.tile-number--5 .tile-dot:nth-child(4) {
+  grid-row-start: 3;
+}
+.tile-number--5 .tile-dot:nth-child(5) {
+  grid-column-start: 3;
+  grid-row-start: 3;
+}
+
+/* 6 */
+.tile-number--6 {
+  grid-template-columns: repeat(2, 16px);
+}
+
+.tile-dot {
+  display: block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background-color: #41312b;
+  border-radius: 50%;
+  box-shadow: inset 0 3px #2d221e;
+}
+
+.tile-divider {
+  display: block;
+  flex-shrink: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #ccc7ba;
+  margin: 0 auto;
+}
