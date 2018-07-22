@@ -1,0 +1,291 @@
+// Best rendered in Google Chrome. Still working out small visual bugs.
+
+@mixin center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+@mixin before-after{
+  display: block;
+  content:"";
+  position: absolute;
+}
+
+@mixin before-after-tick {
+  display: block;
+  content:"";
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  background: inherit;
+  box-shadow: inherit;
+  backface-visibility: inherit;
+}
+
+
+*,*:before,*:after{
+  box-sizing: border-box;
+}
+
+html, body { height: 100%; width: 100%;}
+
+body{
+  font-size: 100%;
+  font-family: helvetica;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to bottom, rgba(150,150,150,1) 0%,rgba(110,110,110,1) 100%); 
+}
+
+$tick: #383838;
+$alarm: linear-gradient(to bottom, #f6f6f6 0%, #f8f8f8 100%);
+$sec: #fbc900;
+$min-hour: #303030; 
+$watch-body: #fff;
+
+#clock{
+  @include center;
+  width: 21em;
+  height: 21em;
+  border-radius: 50%;
+  background: #eee;
+  border: 0.2em solid #d0d0d0;
+  box-shadow:
+    0 1.2em 0 -1em rgba(255,255,255,1),
+    0 -0.1em 0.3em 0 #fff,
+    0 0 0 0.6em #e7e7e7,
+    0 0.6em 1.2em 0 rgba(0,0,0,0.5),
+    inset 0 0.5em 1em 0 rgba(0,0,0,0.3),
+    inset 0 0 8em 0 rgba(0,0,0,0.2)
+    
+    ;
+  
+  &:before{
+    @include before-after;
+    background: #dedede;
+    left: -2em;
+    top: -2em;
+    width: 25em;
+    height: 25em;
+    border-radius: 4.6em;
+    z-index:-1;
+    box-shadow:
+      inset 0 -0.2em 0.2em 0 rgba(0,0,0,0.2),
+      inset 0 0.2em 2em 0 #fff;
+  }
+  
+  &:after{
+    @include before-after;
+    height: inherit;
+    width: inherit;
+    background: transparent;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    box-shadow:
+      inset 12em 14em 0 -10em rgba(255,255,255,0.25);
+    z-index: 4;
+  }
+  
+  // Hours
+  .hour{
+    @include center;
+    //backface-visibility: hidden;
+    width: 0.5em;
+    height: 16.4em;
+    background: transparent;
+    box-shadow:
+      0 -1em 0 -0.1em $tick,
+      0 1em 0 -0.1em $tick;
+    transform: rotate(30deg);
+    
+    &:after,
+    &:before{
+      @include before-after-tick;
+    }
+    
+    &:before { transform: rotate(30deg); }
+    &:after  { transform: rotate(-30deg); }
+    &:nth-of-type(1) { transform: rotate(-60deg);}
+  } 
+  
+  // Minutes
+  .min{
+    @include center;
+    //backface-visibility: hidden;
+    width: 0.3em;
+    height: 17em;
+    background: transparent;
+    box-shadow:
+      0 -0.6em 0 -0.1em $tick,
+      0 0.6em 0 -0.1em $tick;
+    z-index:-1;
+    transform: rotate(-54deg);
+    
+    &:after,
+    &:before{
+      @include before-after-tick;
+      z-index:0;
+    }
+    
+    &:before { transform: rotate(6deg); }
+    &:after  { transform: rotate(12deg); }
+    
+    &:nth-child(2){ transform: rotate(-36deg); }
+    &:nth-child(3){ transform: rotate(-18deg); }
+    &:nth-child(4){ transform: rotate(6deg); }
+    &:nth-child(5){ transform: rotate(24deg); }
+  }
+}
+
+//
+// Alarm Hand
+//
+#alarm{
+  @include center;
+  background: #f8f8f8;
+  width: 2.6em;
+  height: 2.6em;
+  border-radius: 50%;
+  transform: rotate(-45deg);
+  box-shadow: 0 0.2em 0.4em 0 rgba(0,0,0,0.1);
+  
+  &:after{
+    @include before-after;
+    width: 0.4em;
+    height: 4.8em;
+    top: -4.6em;
+    background: $alarm;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index:-3;
+    box-shadow:
+      inset 0 1.2em 0 #4ca440,
+      -0.2em -0.2em 0.3em 0 rgba(0,0,0,0.1);
+  }
+}
+
+//
+// Second Hand
+//
+#sec{
+  @include center;
+  background: radial-gradient(ellipse at center, rgba(255,211,34,1) 0%,rgba(251,201,0,1) 100%);;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  border: 0.14em solid $sec;
+  z-index: 3;
+  
+  &:before,
+  &:after{
+    @include before-after;
+  }
+  &:before{
+    background: $sec;
+    width: 0.8em;
+    height: 1.5em;
+    top: 1.8em;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border-radius: 0 0 2em 2em;
+  }
+  &:after{
+    width: 0.18em;
+    height: 7.6em;
+    top: -7.6em;
+    background: $sec;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  
+}
+
+//
+// Minute and Hour Hands
+//
+#min,
+#hour{
+  z-index: 2;
+  @include center;
+  background: $sec;
+  transform-origin: bottom center;
+}
+#min{
+  width: 0.6em;
+  height: 8.6em;
+  top: -8.6em;
+  border-radius: 2em 2em 0 0;
+  box-shadow:
+    inset 0 0 0 0.16em $min-hour,
+    inset 0 -6em 0 0 $min-hour,
+    -0.2em -0.2em 0.4em 0 rgba(0,0,0,0.2);
+}
+
+#hour{
+  width: 0.7em;
+  height: 7em;
+  top: -7em;
+  border-radius: 2em 2em 0 0;
+  box-shadow:
+    inset 0 0 0 0.16em $min-hour,
+    inset 0 -4.2em 0 0 $min-hour,
+    -0.2em -0.2em 0.4em 0 rgba(0,0,0,0.2);
+}
+
+ol {
+  position: relative;
+  height: inherit;
+  width: inherit;
+  li {
+    counter-increment: customlistcounter;
+    font-size: 1.4rem;
+    display: inline-block;
+    position: absolute;
+    letter-spacing: -0.1em;
+    color: $tick;
+    text-align: center;
+
+    &:before {
+      content: counter(customlistcounter) "";
+    }
+    
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(7),
+    &:nth-child(8),
+    &:nth-child(10),
+    &:nth-child(11){
+      font-size: 0;
+    }
+    
+    &:nth-child(3){
+      top: 6.95em;
+      right: 2.4em;
+    }
+    &:nth-child(9){
+      top: 6.95em;
+      left: 2em;
+    }
+    
+    
+    &:nth-child(6){
+      bottom: 2.1em;
+      left: 7.06em;
+    }
+    &:nth-child(12){
+      top: 1.9em;
+      left: 6.78em;
+    }
+    
+  }
+}

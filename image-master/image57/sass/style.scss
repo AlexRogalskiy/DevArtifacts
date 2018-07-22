@@ -1,0 +1,303 @@
+*, *:before, *:after { box-sizing: border-box; }
+
+body { background: #eee; font: 100%/1.618 'Lato', sans-serif; font-weight: 400; color: #666; text-rendering: optimizeLegibility;}
+
+#device,
+#device::before,
+#device::after{
+   transition: all 1s ease-in-out;
+}
+
+#device::before,
+#device::after,
+#device span::before,
+#device span::after{
+	content: '';
+	display: block;
+	position: absolute;
+	right: 50%;
+}
+
+#device	{
+	position: relative;
+	margin: 80px auto 0;
+	background: #444;
+}
+
+#device:before {
+	background: #007aff;
+	z-index: 2;
+}
+
+#device:after {
+	background: #d2d5d9;
+}
+
+#device span:after{
+	background: #b2b5b9;
+	z-index: 1;
+}
+
+#device span,
+#device span::after,
+#device span::before{
+    transition: all 1s ease-in-out;
+}
+
+#device span {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	background: #666;
+	margin: 4px 0 0 -3px;
+	width: 6px;
+	height: 6px;
+	border-radius: 10px;
+
+}
+
+#device span:before{
+	content: '< HTML >';
+	text-align: center;
+	background: #eee;
+	border-top: 8px solid #ddd;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+	z-index: 2;
+}
+
+/* MBPro */
+#device	{
+ 	width: 280px;
+ 	height: 160px; 
+	-webkit-border-radius: 10px 10px 0 0 ;
+	-moz-border-radius: 10px 10px 0 0;
+	border-radius: 10px 10px 0 0 ;
+}
+
+#device:before	{
+	top: 15px;
+	margin: 0 -125px 0 0;
+	height: 129px;
+	width: 250px;
+}
+
+#device:after	{
+	bottom: -18px;
+	margin: 0 -180px 0 0;
+	height: 18px;
+	width: 360px;
+	-webkit-border-radius: 0 0 10px 10px ;
+	-moz-border-radius: 0 0 10px 10px ;
+	border-radius: 0 0 10px 10px ;
+}
+
+#device span:after{
+	top:156px;
+	margin: 0 -40px 0 0;
+	height: 10px;
+	width: 80px;
+	-webkit-border-radius: 0 0 5px 5px ;
+	-moz-border-radius: 0 0 5px 5px ;
+	border-radius: 0 0 5px 5px ;
+}
+
+#device span:before{
+	height: 110px;
+	top: 20px;
+	width: 180px;
+	margin: 0 -90px 0 0;
+	padding: 35px 0 0 0;
+}
+
+/* -- Wide Screen -- */
+@media only screen and (min-width: 1400px){
+
+/* Thunderbolt */
+#device	{
+ 	width: 400px;
+ 	height: 220px; 
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+#device:before	{
+	top: 17px;
+	margin: 0 -183px 0 0;
+	height: 186px;
+	width: 366px;
+}
+
+#device:after	{
+	bottom: -30px;
+	margin: 0 -40px 0 0;
+	height: 15px;
+	width: 80px;
+	background: transparent;
+ border-bottom: 30px solid #d2d5d9;
+ border-left: 5px solid transparent;
+ border-right: 5px solid transparent;
+
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+
+}
+
+#device span {
+	top: 2px;
+}
+
+#device span:after{
+	top:244px;
+	margin: 0 -50px 0 0;
+	height: 6px;
+	width: 100px;
+}
+
+#device span:before{
+	height: 165px;
+	top: 20px;
+	width: 300px;
+	margin: 0 -150px 0 0;
+	padding: 65px 0 0 0;
+}
+
+
+} /* -- End Wide -- */
+
+/* -- iPad Screen Vertical -- */
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+
+/* iPad */
+#device	{
+	margin: 75px auto 0;
+ 	width: 200px;
+ 	height: 240px;
+	border-radius: 15px;
+	background: #fff;
+}
+
+#device:before	{
+	top: 15px;
+	margin: 0 -85px 0 0;
+	height: 194px;
+	width: 170px;
+}
+
+#device:after	{
+	bottom: 5px;
+	margin: 0 -10px 0 0;
+	height: 20px;
+	width: 20px;
+
+	border-radius: 20px;
+
+	background: #d2d5d9;
+}
+
+#device span {
+	background: #d2d5d9;
+}
+
+#device span:after{
+	top:220px;
+	margin: 0;
+	height: 0;
+	border-width: 0 0 0 0;
+	width: 0;
+	background: #d2d5d9;
+}
+
+#device span:before{
+	height: 194px;
+	top: 11px;
+	width: 170px;
+	margin: 0 -85px 0 0;
+	padding: 75px 0 0 0;
+  box-shadow: 0px 0px 0px ;
+}
+
+}
+
+@media only screen and (max-width: 479px) {
+
+/* iPhone */
+#device	{
+	margin: 70px auto 0;
+ 	width: 130px;
+ 	height: 220px;
+	border-radius: 15px;
+}
+
+#device:before	{
+	top: 30px;
+	margin: 0 -55px 0 0;
+	height: 150px;
+	width: 110px;
+}
+
+#device:after	{
+	bottom: 10px;
+	margin: 0 -9px 0 0;
+	height: 18px;
+	width: 18px;
+	border-radius: 20px;
+	background: #818188;
+}
+#device span{
+	top: 4px;
+}
+#device span:after{
+	top:12px;
+	margin: 0 -20px 0 0;
+	height: 3px;
+	width: 40px;
+	background: #818188;
+	}
+
+#device span:before{
+	height: 150px;
+	top: 22px;
+	width: 110px;
+	margin: 0 -55px 0 0;
+	padding: 50px 0 0 0;
+  box-shadow: none;
+}
+	
+}
+
+@media only screen and (max-width: 450px) {
+  
+  #device	{
+    margin: 70px auto 0;
+    width: 90px;
+    height: 106px;
+    border-radius: 22px;
+    background: #333;
+    border: 3px solid #aaa;
+    box-shadow: 48px -16px 0 -42px #888;
+    
+    &::before,
+    &::after{
+      display: none;
+    }
+    
+  }
+  
+  #device span{
+    
+    &::after{
+      display: none;
+    }
+    
+    &::before{
+      height: 150px;
+      width: 110px;
+      box-shadow: none;
+      background: red;
+    }
+  }
+  
+}

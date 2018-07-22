@@ -1,0 +1,107 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+
+    body {
+        background-color: #000000;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 40px;
+        color: #ffffff;
+    }
+
+    #hiddenInput {
+        font-size: 40px;
+        font-family: 'Roboto Condensed', sans-serif;
+        background-color: #808080;
+        position: absolute;
+        opacity: 0.4;
+        margin-top: -22px;
+        margin-left: -125px;
+        opacity: 0;
+        filter: alpha(opacity = 0);
+    }
+
+    #container {
+        position: absolute;
+        top: 80px;
+        left: 50%;
+    }
+
+    #input {
+        position: absolute;
+        margin-top: -20px;
+        margin-left: -120px;
+    }
+
+    .letterContainer {
+        display: inline;
+        white-space: nowrap;
+    }
+
+    .letterStatic {
+        display: inline;
+    }
+
+    .letterAnimTop {
+        display: inline;
+        position: absolute;
+        -webkit-animation: dropTop .1s ease;
+        -moz-animation: dropTop .1s ease;
+
+    }
+
+    .letterAnimBottom {
+        display: inline;
+        position: absolute;
+        -webkit-animation: dropBottom .1s ease;
+        -moz-animation: dropBottom .1s ease;
+    }
+
+    .blink {
+        position: static;
+        top: -5px;
+        -webkit-animation: blink 0.3s ease 0 infinite alternate;
+        -moz-animation: blink 0.3s ease 0 infinite alternate;
+    }
+
+    @-moz-keyframes blink {
+        from { opacity: 0 }
+        to { opactiy: 1 }
+    }
+
+    @-webkit-keyframes blink {
+        from { opacity: 0 }
+        to { opactiy: 1 }
+    }
+
+    @-moz-keyframes dropTop {
+        from {
+            -moz-transform: translateX(0) translateY(-20px) translateZ(20px) rotateX(90deg);
+            transform: translateX(0) translateY(-20px) translateZ(20px) rotateX(90deg);
+        }
+
+        to {
+            -moz-transform: translateX(0) translateY(0) translateZ(0) rotateX(0deg);
+            transform: translateX(0) translateY(0) translateZ(0) rotateX(0deg);
+        }
+    }
+
+    @-moz-keyframes dropBottom {
+        from {
+            -moz-transform: translateY(20px) translateZ(20px) rotateX(-90deg);
+            transform: translateY(20px) translateZ(20px) rotateX(-90deg);
+        }
+
+        to {
+            -moz-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+        }
+    }
+
+    @-webkit-keyframes dropTop {
+        from { -webkit-transform: translateX(0) translateY(-20px) translateZ(20px) rotateX(90deg); }
+        to { -webkit-transform: translateX(0) translateY(0) translateZ(0) rotateX(0deg); }
+}
+
+    @-webkit-keyframes dropBottom {
+        from { -webkit-transform: translateY(20px) translateZ(20px) rotateX(-90deg); }
+        to { -webkit-transform: rotateX(0deg); }
+    }

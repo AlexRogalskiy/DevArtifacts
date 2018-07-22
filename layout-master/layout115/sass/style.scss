@@ -1,0 +1,109 @@
+@font-face {
+  font-family: 'GothamRound';
+  src: url('https://cdn.releasepage.co/fonts/gothic-rounded/GothamRoundedLight_21020.ttf') format('truetype');  
+}
+
+@font-face {
+  font-family: 'GothamRound-Book';
+  src: url('https://cdn.releasepage.co/fonts/gothic-rounded/GothamRoundedMedium_21022.ttf') format('truetype'); 
+}
+
+body {
+  font-family: 'GothamRound';
+  line-height: 1.25;  
+}
+
+p {
+  margin: 1rem 0;
+}
+
+.subscribers-feature {
+  position: relative;
+  background-image: url("https://i.imgur.com/DFINVm4.png");
+  background-color: #50514F;  
+}
+
+.subscribers-feature__email-image {
+  position: relative;
+  width: 80%;
+  max-width: 1000px;
+  background: white;
+  height: 350px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-top: 3rem;
+}
+
+.section-lead {
+  text-align: center;
+  padding: 0 2rem;
+  width: 900px;
+  max-width: 100%;  
+  font-size: 18px;
+  line-height: 1.4;
+  opacity: 0.75;
+}
+
+h2 {
+  font-family: 'GothamRound-Book';
+  margin: 1rem 0;
+  font-size: 35px;
+  display: block;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;  
+  padding: 4rem 0 0 0;
+  
+  &--dark {
+    color: white;
+  }
+  
+  &:after {
+    display: table;
+    content: "";
+    clear: both;
+  }
+}
+
+.addons > div {
+  position: absolute;    
+  width: 70px;
+  height: 70px;
+  // animation: 4s infinite addon-wiggle;
+  opacity: 0.2;
+  filter: grayscale(100%);
+  transition: filter 200ms ease-in-out,
+    opacity 200ms ease-in-out;
+  &:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+  
+  img {
+    width: 100%;
+  }
+}
+
+.intercom {
+  left: -100px;
+  top: 200px;
+}
+
+.sendgrid {
+  left: -150px;
+  top: 50px;
+}
+@keyframes addon-wiggle {
+  0% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translate(10px, 10px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}

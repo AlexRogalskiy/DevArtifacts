@@ -1,0 +1,43 @@
+.textedit {
+  width: 450px;
+  margin: 50px 20px;
+  line-height: 22px;
+
+  &:focus  {
+    outline: 0;
+  }
+  &.ondrag {
+    text-select: none;
+  }
+}
+
+
+.highlight {
+  background-color: rgba(rebeccapurple, 0.25);
+  position: relative;
+  // pointer-events: none;
+  &:before, &:after {
+    content: "";
+    position: absolute;    
+    width: 1px;
+    background: transparent;
+    height: 1em;
+    height: 22px;
+    display: inline-block;
+    border: solid 7px rebeccapurple;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    transform: translate(-7px, -7px); 
+    cursor: col-resize;
+  }
+  &:before {
+    border-bottom-color: transparent;
+  }
+  &:after {
+    border-top-color: transparent;
+  }
+}
+
+ol {
+  list-style: lower-roman;
+}

@@ -1,0 +1,367 @@
+*,*:before,*:after{ box-sizing: border-box; } html, body { height: 100%; width: 100%; } body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #222;} 
+
+$stripe-light:   #F7F8E5;
+$fill-light:     #D1DE00;
+$stripe-medium:  $stripe-light;
+$fill-medium:    #BEC60A;
+$stripe-dark:    $stripe-light;
+$fill-dark:      #ABAF25;
+
+$plant-left-light: $fill-light;
+$plant-left-med:   $fill-medium;
+$plant-left-dark:  $fill-dark;
+
+$plant-rear:     #878561;
+
+$frame:          #8e8e8e;
+
+%succulent-leaf{
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  position: absolute;
+  bottom: 0;
+}
+
+%pseudo{
+  content:'';
+  display: block;
+  position: absolute;
+}
+
+body{
+  background: #cfe5dc;
+  background: linear-gradient(-135deg, #F7FFFC 0%, #cfe5dc 100%);
+}
+
+.container{
+  width: 260px;
+  height: 230px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  box-shadow: 0 4px 0 #fff;
+  &:before,
+  &:after{
+    @extend %pseudo;
+    width: 3px;
+    height: 76px;
+    bottom: -6px;
+    background: $frame;
+    z-index: 2;
+  }
+  &:before {
+    right: 22px;
+    transform: rotateZ(35deg);
+  }
+  &:after{
+    left: 22px;
+    transform: rotateZ(-35deg);
+  } 
+}
+
+// Mid Horizontal Bar
+.frame-outer{
+  bottom: 60px;
+  border-bottom: 3px solid $frame;
+  position: absolute;
+  width: 98%;
+  left: 1%;
+  
+  &:before,
+  &:after{
+    @extend %pseudo;
+    width: 3px;
+    height: 206px;
+    bottom: -23px;
+    background: $frame;
+  }
+  
+  // Left Outer
+  &:before {
+    left: 62px;
+    transform: rotateZ(38.5deg);
+  }
+  
+  // Right Outer
+  &:after{
+    right: 62px;
+    transform: rotateZ(-38.5deg);
+  } 
+}
+
+
+// Top Horizontal Bar
+.frame-inner{
+  top: 54px;
+  border-bottom: 3px solid $frame;
+  position: absolute;
+  width: 80px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  
+  &:before,
+  &:after{
+    @extend %pseudo;
+    width: 3px;
+    height: 170px;
+    top: -50px;
+    background: $frame;
+    z-index: -3;
+  }
+  
+  // Left Inner
+  &:before {
+    left: 10px;
+    transform: rotateZ(20deg);
+  }
+  
+  // Right Inner
+  &:after{
+    right: 10px;
+    transform: rotateZ(-20deg);
+  } 
+}
+
+.glass{
+  border-top: 58px solid rgba(255,255,255,0.5);
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  height: 0;
+  bottom: 2px;
+  width: 98%;
+  left: 1%;
+  position: absolute;
+  
+  &:before,
+  &:after{
+    @extend %pseudo;
+    right: 0;
+    margin: auto;
+  }
+  
+  // Large, Top
+  &:before{
+    top: -220px;
+    left: -40px;
+    width: 0;
+    height: 0; 
+    border-left: 128px solid transparent;
+    border-right: 128px solid transparent;
+    border-bottom: 160px solid rgba(255,255,255,0.3);
+    z-index: -5;
+  }
+  
+  // Top Ring
+  &:after{
+    top:-250px;
+    width: 30px;
+    height: 30px;
+    left: 0;
+    border-radius: 50%;
+    border: 3px solid $frame;
+  }
+}
+
+// Overlay
+.shine{
+  background: rgba(255,255,255,0.4);
+  height: 58px;
+  width: 20px;
+  display: block;
+  left: -10px;
+  bottom: 0;
+  position: absolute;
+  transform: skew(35.5deg);
+
+  &:after{
+    @extend %pseudo;
+    bottom: inherit;
+    background: inherit;
+    height: inherit;
+    width: 8px;
+    left: 26px;
+  }
+}
+
+.soil{
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%);
+  background:repeating-linear-gradient(
+  #efa63c,
+  #efa63c 50%,
+  #ba6d20 50%,
+  #ba6d20 100%);
+  width: 227px;
+  height: 44px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-bottom: 3px solid $frame;
+  bottom: -1px;
+}
+
+.plant-right{
+  width: 46px;
+  height: 96px;
+  position: absolute;
+  bottom: 42px;
+  right: 56px;
+
+  // Center
+  #leaf-1{
+    @extend %succulent-leaf;
+    height: 100%;
+    width: 24px;
+    background:repeating-linear-gradient(
+    $fill-dark,
+    $fill-dark 20%,
+    $stripe-dark 20%,
+    $stripe-dark 23%);
+    left:12px;
+  }
+
+  /// Left
+  #leaf-2{
+    @extend %succulent-leaf;
+    height: 62px;
+    width: 24px;
+    background:repeating-linear-gradient(
+    $fill-light,
+    $fill-light 20%,
+    $stripe-light 20%,
+    $stripe-light 24%);
+    transform: rotate(-15deg);
+  }
+
+  // Right
+  #leaf-3{
+    @extend %succulent-leaf;
+    height: 50px;
+    width: 16px;
+    background:repeating-linear-gradient(
+    $fill-medium,
+    $fill-medium 20%,
+    $stripe-medium 20%,
+    $stripe-medium 24%);
+    transform: rotate(15deg);
+    right: 0;
+  }
+}
+
+.plant-left{
+  border-radius: 60% 60% 60% 60% / 90% 90% 30% 30%;
+  background: $plant-left-light;
+  width: 22px;
+  height: 48px;
+  position: absolute;
+  bottom: 40px;
+  left: 90px;
+  
+  &:before,
+  &:after{
+    @extend %pseudo;
+    background: inherit;
+    height: inherit;
+    width: inherit;
+    border-radius: inherit;
+    transform-origin: bottom center;
+    bottom:8px;
+    z-index:-3;
+  }
+  
+  &:before{
+    transform: rotate(78deg);
+    right: -2px;
+  }
+  
+  &:after{
+    transform: rotate(-78deg);
+    left: -2px;
+  }
+  
+  #leaf-middle{
+    border-radius: 60% 60% 60% 60% / 90% 90% 30% 30%;
+    background: $plant-left-dark;
+    width: 18px;
+    height: 44px;
+    transform-origin: bottom center;
+    transform: rotate(-56deg);
+    bottom: 5px;
+    left: 2px;
+    position: absolute;
+    z-index:-2;
+    &:before{
+      @extend %pseudo;
+      transform: rotate(112deg);
+      border-radius: inherit;
+      background: inherit;
+      width: inherit;
+      height: inherit;
+      transform-origin: inherit;
+    }
+  }
+  
+  #leaf-top{
+    border-radius: 60% 60% 60% 60% / 90% 90% 30% 30%;
+    background: $plant-left-med;
+    width: 16px;
+    height: 44px;
+    transform-origin: bottom center;
+    transform: rotate(-30deg);
+    bottom: 2px;
+    left: 4px;
+    position: absolute;
+    z-index: -1;
+    &:before{
+      @extend %pseudo;
+      transform: rotate(60deg);
+      border-radius: inherit;
+      background: inherit;
+      width: inherit;
+      height: inherit;
+      transform-origin: inherit;
+    }
+  }
+}
+
+.plant-rear{
+  width: 4px;
+  border-radius: 6px;
+  background: $plant-rear;
+  position: absolute;
+  height: 90px;
+  left: 144px;
+  bottom: 40px;
+  z-index: -4;
+  
+  &:before,
+  &:after{
+    @extend %pseudo;
+    width: 7px;
+    height: 16px;
+    background: $plant-rear;
+    border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+  }
+  
+  // Left 
+  &:before{
+    right: 5px;
+    top: 12px;
+    transform: rotate(-50deg);
+    box-shadow: 
+      0 0 0 2px $plant-rear,
+      -26px 16px 0 5px $plant-rear;
+  }
+  
+  // Right
+  &:after{
+    left: 5px;
+    transform: rotate(50deg);
+    box-shadow:
+      22px 14px 0 3px $plant-rear,
+      50px 32px 0 7px $plant-rear;
+  }
+}

@@ -1,0 +1,274 @@
+@font-face {
+  font-family: 'GothamRound';
+  src: url('https://cdn.releasepage.co/fonts/gothic-rounded/GothamRoundedLight_21020.ttf') format('truetype');  
+}
+
+@font-face {
+  font-family: 'GothamRound-Book';
+  src: url('https://cdn.releasepage.co/fonts/gothic-rounded/GothamRoundedMedium_21022.ttf') format('truetype'); 
+}
+
+body {
+  font-family: 'GothamRound';
+  line-height: 1.25;  
+}
+
+p {
+  margin: 1rem 0;
+}
+
+.section-lead {
+  text-align: center;
+  padding: 0 2rem;
+  width: 900px;
+  max-width: 100%;  
+  font-size: 20px;
+  line-height: 1.4;
+  opacity: 0.75;
+}
+
+h2 {
+  font-family: 'GothamRound-Book';
+  margin: 1rem 0;
+  font-size: 50px;
+  display: block;
+}
+
+
+.row {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;  
+  padding: 2rem 0 0 0;
+  
+  &--light {
+    color: #50514F;
+  }
+  
+  &--dark {
+    color: white;
+  }
+  
+  &:after {
+    display: table;
+    content: "";
+    clear: both;
+  }
+}
+
+.customise-feature__content {
+  display: flex;
+  width: 100%;
+}
+
+.customise-feature__helptext{
+  flex: 1;  
+  padding: 2rem;
+  position: relative;
+}
+
+.helptext {  
+  z-index: 9;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 150px;
+  
+  &:before {
+    height: 4px;
+    border-radius: 2px;
+  }
+  
+  &:after {
+    height: 16px;
+    width: 16px;
+    border-radius: 50%; 
+  }
+  
+  &:after, &:before {    
+    position: absolute;
+    background: #70C1B3;
+  }
+  
+  h3 {
+    font-size: 20px;
+    margin: 1rem auto;
+    max-width: 300px;
+  }
+  
+  p {
+    font-size: 16px;
+    max-width: 300px;
+    line-height: 1.4;
+    margin: 0 auto;
+  }
+  
+  &--branding {
+    top: 200px;
+    .colorboxes {
+      position: relative;
+      top: -20px;
+      left: 50%;     
+      width: 120px;
+      transform: translateX(-50%);
+    } 
+    .colorbox {
+      border: 1px solid rgba(0,0,0,0.25);
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin-left: 5px;
+      border-radius: 5px;
+      &--red {
+        background: #F25F5C;
+      }
+      &--green {
+        background: #70C1B3;
+      }
+      &--yellow {
+        background: #FFE066;
+      }
+      &--blue {
+        background: #247BA0;
+      }
+    }
+    
+  }
+  
+  &--describe {
+    top: 600px;
+    width: 300px;
+    margin: 0 auto;
+    
+    &:before {
+      content: "";
+      width: 300px;
+      left: 340px;
+      top: 85px;
+    }
+    &:after {
+      content: "";
+      left: 630px;
+      top: 78px;
+    }
+  }
+  
+  &--power {
+    top: 950px;    
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  &--contents {
+    top: 1950px;    
+  }
+  
+  &--groups {
+    top: 1420px;
+    width: 400px;
+    margin: 0 auto;    
+    
+    &:after {
+      content: "";
+      left: 790px;
+      top: 74px;
+    }
+    &:before {
+      content: "";
+      width: 420px;
+      top: 80px;
+      left: 380px;
+    }
+  }
+}
+
+.customise-feature__image {
+  position: relative;
+  flex: 1;  
+  // max-width: 900px;
+  background: white;
+  // height: 350px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-top: 3rem;  
+  // border: 1px solid rgba(0,0,0,0.5);
+}
+
+
+
+
+.browser-container {
+  border: 2px solid rgb(236, 236, 236);
+  background: white;
+  width: 100%;
+  max-width: 745px;
+  min-width: 330px;
+  border-radius: 12px 12px 0 0;
+  min-height: 200px;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.25);
+  &--shadowed {
+    box-shadow: rgba(0, 0, 0, 0.57) 0px 0px 8px;
+  }
+
+  &--screenshot {
+    height: 300px;
+    max-width: 400px;
+    .browser-container__content {
+      overflow: hidden;
+    }
+  }
+}
+
+.browser-container__header {
+  background: rgb(236, 236, 236);
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 10px 10px 0px 0;
+}
+
+.browser-container__header-dot {
+  border-radius: 50%;
+  height: .75rem;
+  width: .75rem;
+  margin-top: .85rem;
+  margin-left: .55rem;
+  float: left;
+
+  &--red {
+    background: rgb(252, 98, 93);
+  }
+  &--green {
+    background: rgb(52, 200, 74);
+  }
+  &--yellow {
+    background: rgb(253, 190, 65);
+  }
+}
+
+.browser-container__content {
+  height: calc(100% - 2rem);
+}
+
+.browser__image {
+  width: 100%;
+
+  &--background {
+    opacity: 0.6;
+  }
+}
+
+.browser-container__address {
+  position: relative;
+  top: 0.35rem;
+  margin-left: 5rem;  
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px 20px;
+  font-size: 16px;
+  width: 50%;
+}
+
+.releasepage-image {  
+  width: 750px;
+}
