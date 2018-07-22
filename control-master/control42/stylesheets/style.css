@@ -1,0 +1,75 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Nixie+One);
+body {
+  background-color: #30303A;
+}
+
+.slider {
+  width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.slider .main-content {
+  background: #eee;
+  height: 150px;
+  position: relative;
+  top: -195px;
+  transition: top 0.5s ease-in-out;
+}
+
+.slider input#toggle + label {
+  font-size: 25px;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  padding: 10px;
+  color: white;
+  background: #8f2c2c;
+  position: relative;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+}
+
+input#toggle {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+input#toggle + label i.toggle-icon:before {
+  font-family: 'entypo', sans-serif;
+  content: "\e764";
+}
+
+input#toggle:checked + label i.toggle-icon:before {
+  content: "\e767";
+}
+
+input#toggle:checked + label {
+  top: 150px;
+  cursor: pointer;
+}
+
+input#toggle:checked ~ .main-content {
+  top: -45px;
+}
+
+/* Demo credits stuff */
+h1#author {
+  line-height: 150px;
+  color: #30303f;
+  width: 100%;
+  text-stroke: 1px;
+  font-size: 30px;
+  text-shadow: 0 1px 1px #000;
+  font-family: "Roboto";
+}
+
+h1#author a {
+  color: #3399dd;
+  text-decoration: none;
+}
