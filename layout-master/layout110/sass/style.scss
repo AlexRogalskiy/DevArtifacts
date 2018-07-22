@@ -1,0 +1,508 @@
+$xltgray: #F0F5F8;
+$ltgray: #DBE6EC;
+$brtblue: #3F92DE;
+$brtgreen: #6aca6a;
+$ltpurple: #9492d5;
+$dkpurple: #282741;
+$xdkpurple: #1E202F;
+$reddish: #F73D63;
+$offscreen-distance: 160px;
+$bezier: "cubic-bezier(.4,0,0,1)";
+$bezier-bounce: "cubic-bezier(.4, 0, 0, 1.425);";
+$bezier-in: "cubic-bezier(0, 0, .2, 1);";
+$bezier-out: "cubic-bezier(.4, 0, 1, 1);";
+$revealSpeed: .1s;
+@mixin button($color) {
+  display: block;
+  border: 1px solid darken($color, 15%);
+  color: #fff;
+  letter-spacing: .02em;
+  font-weight: bold;
+  border-radius: 2px;
+  width: 100%;
+  background: $color;
+  &:focus {
+    outline-width: 2px;
+    outline-color: lighten($color, 8%);
+  }
+  &:hover:not(:active) {
+    background: saturate(lighten($color, 5%), 5%);
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  color: $ltpurple;
+  background: $xdkpurple;
+  padding: 16px;
+}
+
+a {
+  color: $brtblue;
+  text-decoration: none;
+  &:hover {
+    color: lighten($brtblue, 7%);
+  }
+}
+
+p {
+  margin-bottom: 16px;
+}
+
+.intro {
+  font-size: .85rem;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.lead {
+  margin-top: 0;
+  font-size: 1.2em;
+  color: lighten($ltpurple, 15%);
+}
+
+.page-wrap {
+  margin: auto;
+  width: 540px;
+  flex-shrink: 0;
+}
+
+.usercards-wrap {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.card {
+  transition: height .25s #{$bezier};
+  background: linear-gradient(lighten($dkpurple, 5%), $dkpurple);
+  padding: 24px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  overflow: hidden;
+  .card {
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(lighten($dkpurple, 8%), lighten($dkpurple, 5%));
+  }
+}
+
+.usercard {
+  &:first-of-type {
+    margin-right: 24px;
+  }
+  margin: auto;
+  flex-basis: 50%;
+  position: relative;
+}
+
+.usercard__avatar-wrap {
+  width: 130px;
+  height: 130px;
+  background-size: cover;
+  display: block;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/186499/default-avatar.png");
+  position: relative;
+}
+
+.usercard__avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform $revealSpeed*1.45 #{$bezier-bounce};
+  &.active {
+    background-color: white;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.usercard__back {
+  background: none;
+  display: none;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  padding: 0;
+  border: 0;
+  stroke: $ltpurple;
+  opacity: .35;
+  cursor: pointer;
+  &.active {
+    display: block;
+  }
+  &:hover {
+    opacity: .75;
+  }
+  &:focus {
+    opacity: 1;
+    outline: none;
+    stroke: $brtblue;
+  }
+  &:active {
+    stroke: $ltpurple;
+  }
+}
+
+.usercard__username {
+  font-size: .9rem;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.usercard__name {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 4px;
+  text-align: center;
+  color: white;
+}
+
+.usercard__name,
+.usercard__username {
+  &.prepped {
+    transform: translateY($offscreen-distance);
+    opacity: 0;
+  }
+  &.active {
+    opacity: 1;
+    transition: all $revealSpeed #{$bezier-in};
+    transform: translateY(0);
+  }
+}
+
+.usercard__form {
+  &.hidden {
+    display: none;
+  }
+}
+
+.usercard__input-wrap {
+  display: flex;
+  height: 32px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.usercard__random {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 28px;
+  height: calc(100% - 4px);
+  padding: 4px;
+  padding-right: 2px;
+  background: $ltgray;
+  border: 0;
+  display: flex;
+  fill: $dkpurple;
+  svg {
+    margin: auto;
+    height: 100%;
+    width: auto;
+  }
+  &:focus {
+    outline: none;
+    fill: $brtblue;
+  }
+  &:hover {
+    fill: $ltpurple;
+  }
+  &:active {
+    fill: $dkpurple;
+  }
+}
+
+.offscreen-thingo {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all .25s #{$bezier-in};
+  &:not(.hiding) {
+    // for some reason just setting transition-delay: 0
+    // on `.hiding` wasn't working.
+    transition-delay: .25s;
+  }
+  &.down {
+    opacity: 0;
+    transform: translateY($offscreen-distance/2);
+  }
+  &.hiding {
+    opacity: 0;
+  }
+  &.hidden {
+    display: none;
+  }
+}
+
+.usercard__input {
+  font-size: .9rem;
+  width: 100%;
+  padding: 4px;
+  background: $xltgray;
+  border: 2px solid $ltgray;
+  border-radius: 2px;
+  color: inherit;
+  color: $dkpurple;
+  &:focus {
+    outline: none;
+    border-color: $brtblue;
+  }
+  &::placeholder {
+    color: lighten($ltpurple, 10%);
+  }
+  &.invalid {
+    border-color: $reddish;
+  }
+}
+
+.templates {
+  display: none;
+}
+
+.usercard__submit {
+  flex-shrink: 1;
+  padding: 4px;
+  height: 32px;
+  font-size: .9rem;
+  @include button($brtblue);
+}
+
+.usercard__userstats {
+  display: none;
+  transform: translateY($offscreen-distance);
+  opacity: 0;
+  transition: all $revealSpeed #{$bezier-in};
+  &.prepped {
+    display: flex;
+  }
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heading {
+  font-size: .75rem;
+  letter-spacing: .02em;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.important-heading {
+  margin-bottom: 24px;
+  margin-top: 16px;
+  color: white;
+}
+
+.pseudo-underline {
+  &:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    height: 2px;
+    margin-top: 8px;
+    width: 32px;
+    background: $brtblue;
+  }
+  &--huge {
+    &:after {
+      margin-top: 26px;
+      width: 80px;
+    }
+  }
+}
+
+.pseudo-overline {
+  &:before {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    height: 2px;
+    margin-bottom: 8px;
+    width: 32px;
+    background: $brtblue;
+  }
+}
+
+.userstats__divider {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.userstats__stat {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+#nprogress .bar {
+  background: $ltpurple;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: $ltpurple;
+  border-left-color: $ltpurple;
+}
+
+.start {
+  @include button($brtgreen);
+  padding: 8px;
+  width: 66%;
+  margin: 0 auto;
+}
+
+.head-to-head {
+  background: lighten($dkpurple, 8%);
+  margin: -24px;
+  margin-bottom: 24px;
+  display: flex;
+}
+
+.head-to-head__user {
+  flex-basis: 50%;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: row-reverse;
+  &:nth-of-type(2) {
+    flex-direction: row;
+  }
+}
+
+.head-to-head__avatar {
+  display: block;
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+}
+
+.head-to-head__text-wrap {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: right;
+  margin: 0 16px;
+  .head-to-head__user:nth-of-type(2) & {
+    text-align: left;
+  }
+}
+
+.head-to-head__name {
+  color: white;
+  font-weight: bold;
+  font-size: .8rem;
+  margin: 0;
+}
+
+.head-to-head__username {
+  font-size: .8rem;
+}
+
+.counter {
+  text-align: center;
+}
+
+.counter__number {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 16px 0;
+  line-height: 1.15;
+  color: white;
+}
+
+.profile-pair {
+  display: flex;
+  margin-top: 16px;
+  font-size: .85rem;
+}
+
+.profile-pair__follows {
+  margin: auto 8px;
+  font-size: .65rem;
+}
+
+.profile-pair__profile {
+  flex-grow: 1;
+  padding: 8px;
+  display: flex;
+  width: 0;
+}
+
+.profile-pair__arrow {
+  height: 10px;
+  width: auto;
+  stroke: $ltpurple;
+  display: block;
+  margin: 8px auto 4px auto;
+}
+
+.profile-pair__avatar {
+  float: left;
+  height: 48px;
+  width: 48px;
+  display: block;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.profile-pair__details {
+  text-align: left;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.profile-pair__details__name {
+  font-weight: bold;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-pair__details__username {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result-wrapper {
+  transition: height .35s #{$bezier};
+  text-align: center;
+}
+
+footer {
+  position: fixed;
+  font-size: .85rem;
+  transform: scale(.85);
+  transform-origin: bottom right;
+  padding: 16px;
+  bottom: 0;
+  right: 0;
+  opacity: .5;
+  text-align: right;
+  transition: all .25s #{$bezier};
+  &:hover {
+    transform:scale(1);
+    opacity: 1;
+  }
+}

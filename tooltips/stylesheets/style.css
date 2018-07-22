@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:200,200i,400,400i,500,500i,700,700i");
+/*tipped element. should be inline-block or block*/
+/* line 3, ../sass/style.scss */
+.qtip {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  color: #3bb4e5;
+  border-bottom: 0.05em dotted #3bb4e5;
+  box-sizing: border-box;
+  font-style: normal;
+  transition: all 0.25s ease-in-out;
+}
+
+/* line 13, ../sass/style.scss */
+.qtip:hover {
+  color: #069;
+  border-bottom: 0.05em dotted #069;
+}
+
+/*the tip*/
+/* line 15, ../sass/style.scss */
+.qtip:before {
+  content: attr(data-tip);
+  font-size: 14px;
+  position: absolute;
+  background: rgba(10, 20, 30, 0.85);
+  color: #fff;
+  line-height: 1.2em;
+  padding: 0.5em;
+  font-style: normal;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  min-width: 120px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s ease-in-out;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-family: sans-serif;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+/* line 35, ../sass/style.scss */
+.qtip:after {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  content: '';
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+/* line 45, ../sass/style.scss */
+.qtip:hover:before,
+.qtip:hover:after {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*top*/
+/* line 51, ../sass/style.scss */
+.qtip.tip-top:before {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, calc(-100% - 8px));
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+/* line 58, ../sass/style.scss */
+.qtip.tip-top:after {
+  border-width: 8px 8px 0 8px;
+  border-color: rgba(10, 20, 30, 0.85) transparent transparent transparent;
+  top: -8px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+/*bottom*/
+/* line 66, ../sass/style.scss */
+.qtip.tip-bottom:before {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, calc(100% + 8px));
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+/* line 73, ../sass/style.scss */
+.qtip.tip-bottom:after {
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent rgba(10, 20, 30, 0.85) transparent;
+  bottom: -8px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+/*left*/
+/* line 81, ../sass/style.scss */
+.qtip.tip-left:before {
+  left: 0;
+  top: 50%;
+  transform: translate(calc(-100% - 8px), -50%);
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+/* line 88, ../sass/style.scss */
+.qtip.tip-left:after {
+  border-width: 8px 0 8px 8px;
+  border-color: transparent transparent transparent rgba(10, 20, 30, 0.85);
+  left: -8px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+/*right*/
+/* line 96, ../sass/style.scss */
+.qtip.tip-right:before {
+  right: 0;
+  top: 50%;
+  transform: translate(calc(100% + 8px), -50%);
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+/* line 103, ../sass/style.scss */
+.qtip.tip-right:after {
+  border-width: 8px 8px 8px 0;
+  border-color: transparent rgba(10, 20, 30, 0.85) transparent transparent;
+  right: -8px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+/*some styles for this example*/
+/* line 111, ../sass/style.scss */
+body {
+  background: #3bb4e5;
+}
+
+/* line 114, ../sass/style.scss */
+.container {
+  padding: 1.5em;
+  margin: 3em auto;
+  background: #fff;
+  position: relative;
+  max-width: 720px;
+  font-size: calc(2vmin + 12px);
+  line-height: 1.5em;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+}
+
+/* line 127, ../sass/style.scss */
+.container p {
+  margin: 0 auto 0.8em;
+}
+
+/* line 128, ../sass/style.scss */
+.container h1 {
+  text-align: center;
+  font-family: monospace, serif;
+  line-height: 1em;
+  color: #d40;
+  margin: 0 auto 0.5em;
+  font-size: 2.5em;
+}
+
+/* line 135, ../sass/style.scss */
+code {
+  color: #3bb4e5;
+  font-size: 0.8em;
+  padding: 1em;
+  background: #0a141e;
+  display: block;
+  text-align: left;
+}
+
+/* line 143, ../sass/style.scss */
+.hl {
+  color: #eb1777;
+}
+
+/* line 146, ../sass/style.scss */
+.qcontent {
+  color: #ff0;
+  font-weight: bold;
+}
+
+/* line 150, ../sass/style.scss */
+.qclass {
+  color: #dd0;
+  font-weight: bold;
+}

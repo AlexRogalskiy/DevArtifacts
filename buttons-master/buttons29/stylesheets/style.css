@@ -1,0 +1,161 @@
+/* line 19, ../sass/style.scss */
+body, html {
+  height: 100%;
+}
+
+/* line 22, ../sass/style.scss */
+body {
+  margin: 0;
+  display: flex;
+  background: #FFDC52;
+}
+
+/* line 28, ../sass/style.scss */
+.button {
+  background: #eb1f48;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: Roboto;
+  font-size: 1.9em;
+  height: 65px;
+  letter-spacing: .2px;
+  line-height: 65px;
+  text-align: center;
+  text-transform: uppercase;
+  user-select: none;
+  width: 150px;
+}
+/* line 42, ../sass/style.scss */
+.button:hover {
+  background: #ec3257;
+}
+/* line 45, ../sass/style.scss */
+.button:active {
+  box-shadow: inset 0px 2px 8px -1px #d7143b;
+}
+
+/* line 50, ../sass/style.scss */
+.fancy-button {
+  margin: auto;
+  position: relative;
+}
+
+/* line 54, ../sass/style.scss */
+.frills, .frills:after, .frills:before {
+  position: absolute;
+  background: #eb1f48;
+  border-radius: 4px;
+  height: 8px;
+}
+
+/* line 60, ../sass/style.scss */
+.frills:after, .frills:before {
+  content: "";
+  display: block;
+}
+
+/* line 64, ../sass/style.scss */
+.frills:before {
+  bottom: 45px;
+}
+
+/* line 67, ../sass/style.scss */
+.frills:after {
+  top: 45px;
+}
+
+/* line 70, ../sass/style.scss */
+.left-frills {
+  right: 164px;
+  top: 28.5px;
+}
+/* line 73, ../sass/style.scss */
+.active .left-frills {
+  animation: move-left 0.38s ease-out, width-to-zero 0.38s ease-out;
+}
+/* line 77, ../sass/style.scss */
+.left-frills:before, .left-frills:after {
+  left: 15px;
+}
+/* line 82, ../sass/style.scss */
+.active .left-frills:before {
+  animation: width-to-zero 0.38s ease-out, move-up 0.38s ease-out;
+}
+/* line 87, ../sass/style.scss */
+.active .left-frills:after {
+  animation: width-to-zero 0.38s ease-out, move-down 0.38s ease-out;
+}
+
+/* line 93, ../sass/style.scss */
+.right-frills {
+  left: 164px;
+  top: 28.5px;
+}
+/* line 96, ../sass/style.scss */
+.active .right-frills {
+  animation: move-right 0.38s ease-out, width-to-zero 0.38s ease-out;
+}
+/* line 99, ../sass/style.scss */
+.right-frills:before, .right-frills:after {
+  right: 15px;
+}
+/* line 103, ../sass/style.scss */
+.active .right-frills:before {
+  animation: width-to-zero 0.38s ease-out, move-up 0.38s ease-out;
+}
+/* line 108, ../sass/style.scss */
+.active .right-frills:after {
+  animation: width-to-zero 0.38s ease-out, move-down 0.38s ease-out;
+}
+
+/* line 114, ../sass/style.scss */
+.left-frills:before, .right-frills:after {
+  transform: rotate(34deg);
+}
+
+/* line 119, ../sass/style.scss */
+.left-frills:after, .right-frills:before {
+  transform: rotate(-34deg);
+}
+
+@keyframes move-left {
+  0% {
+    transform: none;
+  }
+  65% {
+    transform: translateX(-80px);
+  }
+  100% {
+    transform: translateX(-80px);
+  }
+}
+@keyframes move-right {
+  0% {
+    transform: none;
+  }
+  65% {
+    transform: translateX(80px);
+  }
+  100% {
+    transform: translateX(80px);
+  }
+}
+@keyframes width-to-zero {
+  0% {
+    width: 38px;
+  }
+  100% {
+    width: 8px;
+  }
+}
+@keyframes move-up {
+  100% {
+    bottom: 69.75px;
+  }
+}
+@keyframes move-down {
+  100% {
+    top: 69.75px;
+  }
+}

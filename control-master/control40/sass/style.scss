@@ -1,0 +1,112 @@
+@import "compass/css3";
+
+/* Variables */
+$color-1: #e65e62;
+$color-2: #9b3950;
+$color-3: #f79b57;
+$color-4: #6b3241;
+$color-bg-dark: rgba(255, 255, 255, 0.1);
+$color-bg-1: darken($color-4, 20%);
+
+
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+/* Background */
+.bg {
+  background-color: $color-bg-1;
+}
+
+/* Progress Bars */
+progress, progress[role] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background-size: auto;
+  height: 3.1em;
+  width: 100%;
+}
+
+/* Unordered list */
+.skill-list {
+  list-style: none;
+  
+  margin: 0;
+  padding: 1em;
+}
+
+/* List item */
+.skill {
+  margin-bottom: 1em;
+  position: relative;
+  
+  label {
+    color: white;
+    line-height: 1;
+    
+    position: absolute;
+    top: 1em;
+    left: 1em;
+  }
+  
+  ::-webkit-progress-value {
+    -webkit-animation: bar 2s ease-in;
+    width: 0px;
+  }
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: $color-bg-dark;
+}
+
+/* Bars */
+.skill-1::-webkit-progress-value {
+  background-color: $color-1;
+}
+
+.skill-1::-moz-progress-bar {
+  background-color: $color-1;
+}
+
+.skill-2::-webkit-progress-value {
+  background-color: $color-2;
+}
+
+.skill-2::-moz-progress-bar {
+  background-color: $color-2;
+}
+
+.skill-3::-webkit-progress-value {
+  background-color: $color-3;
+}
+
+.skill-3::-moz-progress-bar {
+  background-color: $color-3;
+}
+
+.skill-4::-webkit-progress-value {
+  background-color: $color-4;
+}
+
+.skill-4::-moz-progress-bar {
+  background-color: $color-4;
+}
+
+/* Animations */
+
+@-webkit-keyframes bar {
+  0% { 
+    width: 0; 
+  }
+}
+
+@keyframes bar {
+  0% { width: 0; }
+}

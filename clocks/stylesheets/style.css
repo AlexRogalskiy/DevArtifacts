@@ -1,0 +1,52 @@
+/* line 1, ../sass/style.scss */
+.clock {
+  width: 256px;
+  height: 256px;
+  border: 8px solid #353535;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -128px 0 0 -128px;
+  box-shadow: 0 0 16px rgba(0, 150, 255, 0.3) inset;
+}
+
+/* line 13, ../sass/style.scss */
+.clock:before,
+.clock:after {
+  content: "";
+  position: absolute;
+  height: 128px;
+  width: 8px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  left: 50%;
+  bottom: 128px;
+  margin: 0 0 0 -4px;
+  transform-origin: bottom;
+  animation-name: Clock;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  box-shadow: 0 16px 0px rgba(0, 0, 0, 0.75);
+}
+
+/* line 31, ../sass/style.scss */
+.clock:before {
+  animation-duration: 720s;
+  height: 96px;
+}
+
+/* line 35, ../sass/style.scss */
+.clock:after {
+  animation-duration: 60s;
+  height: 120px;
+}
+
+@keyframes Clock {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

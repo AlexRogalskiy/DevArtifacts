@@ -1,0 +1,123 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, html {
+  height: 100%;
+}
+
+body {
+  display:flex;
+  background: #DAECF7;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 1em;
+  font-family: "Montserrat";
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #b6d0e0;
+  position: relative;
+  margin-top: -15px;
+  line-height: 15px;
+}
+
+.center {
+  margin: auto;
+}
+.wrapper {
+  width: 700px;
+  flex-shrink: 0;
+  background: white;
+  overflow:hidden;
+  height: 364px;
+  border-radius: 8px;
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+}
+
+.card-wrap {
+  width: 260px;
+  float:right;
+  background: #665aa7;
+  padding: 50px;
+  transform:
+    scale(1.5)
+    rotate(20deg);
+}
+
+.card {
+  transform:
+    scale(.75)
+    rotate(-20deg);
+}
+svg {
+  &:not(:root) {
+    overflow:visible;
+  }
+  width: 150%;
+  position: relative;
+  right: 130px;
+  top: 10px;
+  overflow:visible;
+}
+
+ #sunglasses {
+   transition: transform .15s;
+   .checkout:hover ~ .card-wrap & {
+     transform: translateY(-40px);
+   }
+}
+
+#right_eye {
+  &_wink {
+    display:none;
+  }
+  .checkout:active ~ .card-wrap & {
+    display:none;
+    &_wink {
+      display:block;
+    }
+  }
+}
+
+#mouth {
+  transition: transform .15s;
+  .checkout:hover ~ .card-wrap & {
+    transform: translateY(-10px);
+  }
+}
+
+#front_hand, #back_hand {
+  transition: transform .03s;
+  .checkout:active ~ .card-wrap & {
+    transform: translateX(10px);
+  }
+}
+
+.checkout {
+  outline: none;
+  background: #665aa7;
+  border: 0;
+  color: white;
+  position: relative;
+  top: 50%;
+  left: 15%;
+  transform: translateY(-50%);
+  padding: 12px 16px;
+  font-family: "Montserrat";
+  text-transform: uppercase;
+  font-size: 1.1em;
+  letter-spacing: .1em;
+  border-radius: 4px;
+  transition: all .1s ease-out;
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+  &:hover:not(:active) {
+    background: lighten(#665aa7, 10%);
+  }
+}

@@ -1,0 +1,201 @@
+body {
+  background: #333
+}
+
+.Android {
+  position: absolute;
+  width: 50vmin;
+  height: 60vmin;
+  top: 50%;
+  left: 50%;
+  margin: -30vmin 0 0 -25vmin;
+  background-size: 100% auto;
+}
+
+.Android i {
+  display: block;
+  box-sizing: border-box;
+}
+
+.head {
+  background-color: rgba(151, 192, 61, 1);
+  position: absolute;
+  top: 4vmin;
+  height: 14vmin;
+  width: 32vmin;
+  left: 50%;
+  margin: 0 0 0 -16vmin;
+  border-radius: 32vmin 32vmin 0 0;
+}
+
+.body {
+  position: absolute;
+  width: 32vmin;
+  height: 28vmin;
+  background-color: rgba(151, 192, 61, 1);
+  left: 50%;
+  top: 20vmin;
+  margin: 0 0 0 -16vmin;
+  border-radius: 0 0 4vmin 4vmin
+}
+
+.lefteye,
+.righteye {
+  height: 4vmin;
+  width: 4vmin;
+  background-color: #333;
+  position: absolute;
+  top: 5vmin;
+  border-radius: 50%;
+}
+
+.lefteye {
+  left: 8vmin;
+}
+
+.righteye {
+  right: 8vmin;
+}
+
+.head:before,
+.head:after {
+  content: '';
+  background-color: rgba(151, 192, 61, 1);
+  height: 8vmin;
+  width: 1.5vmin;
+  position: absolute;
+  top: -4.5vmin;
+  border-radius: 4vmin;
+  transform-origin: bottom;
+}
+
+.head:before {
+  transform: rotate(-35deg);
+  left: 8.5vmin;
+  animation: 6s headLeft infinite
+}
+
+.head:after {
+  transform: rotate(35deg);
+  right: 8.5vmin;
+  animation: 6s headRight infinite
+}
+
+.leftleg,
+.rightleg,
+.leftarm,
+.rightarm {
+  position: absolute;
+  background-color: rgba(151, 192, 61, 1);
+  height: 21vmin;
+  width: 6.5vmin;
+  border-radius: 3vmin
+}
+
+.leftarm {
+  left: -8.5vmin;
+  transform-origin: top;
+  animation: 10s Hi infinite;
+}
+
+.rightarm {
+  right: -8.5vmin
+}
+
+.leftleg,
+.rightleg {
+  bottom: -12vmin;
+}
+
+.leftleg {
+  left: 6vmin
+}
+
+.rightleg {
+  right: 6vmin
+}
+
+@keyframes Hi {
+  20% {
+    transform: rotate(0deg)
+  }
+  30% {
+    transform: rotate(170deg)
+  }
+  32% {
+    transform: rotate(190deg)
+  }
+  34% {
+    transform: rotate(170deg)
+  }
+  36% {
+    transform: rotate(190deg)
+  }
+  38% {
+    transform: rotate(170deg)
+  }
+  40% {
+    transform: rotate(190deg)
+  }
+  42% {
+    transform: rotate(170deg)
+  }
+  44% {
+    transform: rotate(190deg)
+  }
+  46% {
+    transform: rotate(170deg)
+  }
+  48% {
+    transform: rotate(190deg)
+  }
+  50% {
+    transform: rotate(170deg)
+  }
+  55% {
+    transform: rotate(0deg)
+  }
+}
+
+.righteye {
+  animation: Nudge 5s infinite
+}
+
+@keyframes Nudge {
+  40% {
+    transform: scale(1, 1)
+  }
+  45% {
+    transform: scale(1, 0.5)
+  }
+  55% {
+    transform: scale(1, 0.5)
+  }
+  60% {
+    transform: scale(1, 1)
+  }
+}
+
+@keyframes headLeft {
+  20% {
+    transform: rotate(-35deg)
+  }
+  40% {
+    transform: rotate(-15deg);
+  }
+  60% {
+    transform: rotate(-35deg)
+  }
+}
+
+@keyframes headRight {
+  20% {
+    transform: rotate(35deg)
+  }
+  40% {
+    transform: rotate(15deg);
+  }
+  60% {
+    transform: rotate(35deg)
+  }
+}

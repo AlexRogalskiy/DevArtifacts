@@ -1,0 +1,166 @@
+@import "compass/css3";
+
+/* Variables */
+$color-1: black;
+$color-2: white;
+
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+/* Styles */
+.grid {
+  list-style: none;
+  text-align: center;
+  margin: 0 auto;
+  padding: 2em;
+  max-width: 80rem;
+  
+  @media screen and (max-width: 35rem) {
+    padding: 10px 10px 100px 10px;
+  }
+
+  li {
+    text-align: left;
+    
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    padding: 2em;
+    position: relative;
+    width: 28em;
+    height: 21em;
+    
+    @media screen and (max-width: 35rem) {
+      padding: 0;
+      width: 100%;
+      min-width: 300px;
+    }
+  }
+  
+  figure {
+    background-color: $color-1;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    height: 100%;
+    
+    img {
+      opacity: 0.7;
+      width: 100%;
+      display: block;
+      position: relative;
+    }
+    
+    p {
+      @include transition(opacity 0.2s ease-in);
+      color: $color-2;
+      text-align: center;
+      
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      @include box-sizing(border-box);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -0.75em;
+      margin-left: -6em;
+      padding: 0.4em 0.6em;
+      width: 12em;
+    }
+  }
+  
+  figcaption {
+    color: $color-2;
+    font-size: 0.875em;
+    
+    background-color: $color-1;
+    padding: 1.2em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    
+    h3 {
+      font-size: 1.2em;
+      
+      border-bottom: 1px solid $color-2;
+      margin: 0 0 0.5em 0;
+      padding: 0 0 0.5em 0;
+    }
+    
+    a {
+      color: $color-2;
+      font-size: 0.875em;
+      text-align: center;
+      text-decoration: none;
+      
+      border: 1px solid $color-2;
+      display: inline-block;
+      padding: 0.45em 0.5em 0.5em 0.5em;
+      position: absolute;
+      bottom: 1.2em;
+      right: 1.5em;
+      
+      &:hover,
+      &:active {
+        background-color: $color-2;
+        color: $color-1;
+      }
+    }
+  }
+}
+
+/* Animation */
+.grid-animation {
+  
+  li {
+    perspective: 1700px;
+    perspective-origin: 0 50%;
+  }
+  
+  figure {
+    @include transform-style(preserve-3d);
+    overflow: hidden;
+    
+    img {
+      @include transition(transform 0.25s);
+    }
+  }
+  
+  figcaption {
+    transform-origin: 0 0; 
+    @include transform(rotateY(-90deg));
+    @include transition(transform 0.3s, opacity 0.1s 0.3s);
+    
+    backface-visibility: hidden;
+    @include box-sizing(border-box);
+    opacity: 0;
+    width: 50%;
+    height: 100%;
+  }
+}
+
+/* Hover effect */
+no-touch .grid-animation figure:hover img,
+.grid-animation figure:hover img {
+  @include transform(translateX(25%));
+  @include filter(blur(3px));
+}
+
+no-touch .grid-animation figure:hover p,
+.grid-animation figure:hover p {
+  opacity: 0;
+}
+
+.no-touch .grid-animation figure:hover figcaption,
+.grid-animation figure:hover figcaption {
+    opacity: 1;
+    transform: rotateY(0deg);
+    transition: transform 0.4s, opacity 0.1s;
+}

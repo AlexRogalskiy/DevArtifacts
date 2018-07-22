@@ -1,0 +1,201 @@
+/*resetting box-sizng to default to override bootstrap styles*/
+/* line 2, ../sass/style.scss */
+#m24preloader *, .circle i {
+  box-sizing: content-box;
+}
+
+/* line 3, ../sass/style.scss */
+.daoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(55, 55, 55, 0.95);
+  z-index: 1000;
+  box-shadow: 0 0 15vw rgba(0, 0, 0, 0.95) inset;
+}
+
+/* line 4, ../sass/style.scss */
+.dalogo {
+  -webkit-perspective: 300px;
+  perspective: 300px;
+  position: relative;
+  margin: 16px auto;
+  width: 380px;
+  height: 380px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -190px 0 0 -190px;
+}
+
+/* line 5, ../sass/style.scss */
+.circle {
+  width: 300px;
+  height: 300px;
+  border: 40px solid #d0d5d9;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 4px 0 #fff;
+  -webkit-animation: 3s Swing infinite;
+  animation: 3s Swing infinite;
+  box-shadow: 0 0 26px black inset;
+}
+
+@-webkit-keyframes Swing {
+  40% {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+  }
+  60% {
+    -webkit-transform: rotateY(15deg);
+    transform: rotateY(15deg);
+  }
+  80% {
+    -webkit-transform: rotateY(-15deg);
+    transform: rotateY(-15deg);
+  }
+}
+@keyframes Swing {
+  40% {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+  }
+  60% {
+    -webkit-transform: rotateY(15deg);
+    transform: rotateY(15deg);
+  }
+  80% {
+    -webkit-transform: rotateY(-15deg);
+    transform: rotateY(-15deg);
+  }
+}
+/* line 14, ../sass/style.scss */
+.circle i {
+  position: absolute;
+  display: block;
+  width: 140px;
+  height: 140px;
+  border-width: 40px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 50%;
+  top: 40px;
+  left: 40px;
+  -webkit-animation: 5s pulse infinite;
+  animation: 5s pulse infinite;
+  z-index: 2;
+}
+
+/* line 15, ../sass/style.scss */
+.circle i:before {
+  content: '';
+  box-sizing: content-box;
+  position: absolute;
+  display: block;
+  width: 140px;
+  height: 140px;
+  border-width: 40px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  top: -44px;
+  left: -40px;
+  z-index: 1;
+}
+
+/* line 16, ../sass/style.scss */
+.circle i:first-child {
+  border-color: #89c759 transparent transparent transparent;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-transform-origin: bottom;
+  transform-origin: bottom;
+}
+
+/* line 17, ../sass/style.scss */
+.circle i:first-child:before {
+  border-color: rgba(0, 0, 0, 0.15) transparent transparent transparent;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-transform-origin: bottom;
+  transform-origin: bottom;
+}
+
+/* line 18, ../sass/style.scss */
+.circle i:nth-child(2) {
+  border-color: transparent #3bb4e5 transparent transparent;
+  -webkit-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+  -webkit-transform-origin: left;
+  transform-origin: left;
+}
+
+/* line 19, ../sass/style.scss */
+.circle i:nth-child(2):before {
+  border-color: transparent rgba(0, 0, 0, 0.15) transparent transparent;
+  -webkit-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+  -webkit-transform-origin: left;
+  transform-origin: left;
+}
+
+/* line 20, ../sass/style.scss */
+.circle i:nth-child(3) {
+  border-color: transparent transparent #823d97 transparent;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+  z-index: 2;
+  -webkit-transform-origin: top;
+  transform-origin: top;
+}
+
+/* line 21, ../sass/style.scss */
+.circle i:nth-child(3):before {
+  border-color: transparent transparent rgba(0, 0, 0, 0.15) transparent;
+  animation-delay: 0.3s;
+  -webkit-animation-delay: 0.3s;
+  z-index: 2;
+  transform-origin: top;
+  -webkit-transform-origin: top;
+}
+
+/* line 22, ../sass/style.scss */
+.circle i:nth-child(4) {
+  border-color: transparent transparent transparent #eb1777;
+  animation-delay: 0.45s;
+  transform-origin: right;
+  -webkit-animation-delay: 0.45s;
+  -webkit-transform-origin: right;
+}
+
+/* line 23, ../sass/style.scss */
+.circle i:nth-child(4):before {
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.15);
+  animation-delay: 0.45s;
+  transform-origin: right;
+  -webkit-animation-delay: 0.45s;
+  -webkit-transform-origin: right;
+}
+
+@keyframes pulse {
+  70% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  85% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+  }
+}
+@-webkit-keyframes pulse {
+  70% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  85% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+  }
+}
