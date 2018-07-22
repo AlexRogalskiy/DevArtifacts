@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang='en' class='seq-ui'>
+<head>
+
+    <title>Effect Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="UTF-8" />
+    <meta name="description" content="TEST API" />
+    <meta name="keywords" content="TEST,API" />
+    <meta name="author" content="Alexander R." />
+    <meta name="theme-color" content="#000000" />
+    <meta name="copyright" content="Alexander R." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+    <meta name="apple-mobile-web-app-title" content="TEST API" />
+    <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css' />
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Yellowtail' />
+	<link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+
+</head>
+
+
+
+<!--  header -->
+<body>
+<svg class="svg-defs">
+  <defs>
+        <clipPath id="clipping">
+          <polygon id="Star-1" points="98.4999978 153.75 38.2520165 185.424245 49.7583542 118.337123 1.01670635 70.8257603 68.3760155 61.037872 98.5000012 1.1379786e-14 128.624005 61.0378871 195.98331 70.8258091 147.241642 118.337136 158.747982 185.424247"/>
+          <text x="0" y="3.2em">Text</text>
+        </clipPath>
+        
+        <linearGradient id="gradient" x1="0" y1="0" x2 ="110%" y2="0%">
+          <stop stop-color="#fff" offset="0"/><stop stop-color="#fff" offset="10%"/>
+          <stop stop-color="#AAA" offset="10%"/><stop stop-color="#AAA" offset="20%"/>
+          <stop stop-color="#777" offset="20%"/><stop stop-color="#777" offset="30%"/>
+          <stop stop-color="#333" offset="30%"/><stop stop-color="#333" offset="40%"/>
+          <stop stop-color="#000" offset="40%"/><stop stop-color="#000" offset="50%"/>
+          <stop stop-color="#fff" offset="50%"/><stop stop-color="#fff" offset="60%"/>
+          <stop stop-color="#AAA" offset="60%"/><stop stop-color="#AAA" offset="70%"/>
+          <stop stop-color="#777" offset="70%"/><stop stop-color="#777" offset="80%"/>
+          <stop stop-color="#333" offset="80%"/><stop stop-color="#333" offset="90%"/>
+          <stop stop-color="#000" offset="90%"/><stop stop-color="#000" offset="100%"/>
+        </linearGradient>
+    
+        <mask id="masking" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+          <rect y="0" width="1" height="1" fill="url(#gradient)" />
+          <circle cx=".5" cy=".5" r=".42" fill="black" />
+          
+          <circle cx="0" cy=".5" r=".32" fill="black" />
+          <circle cx="1" cy=".5" r=".32" fill="black" />
+          
+          <circle cx="0" cy=".5" r=".3" fill="gray" />
+          <circle cx=".5" cy=".5" r=".4" fill="gray" />
+          <circle cx="1" cy=".5" r=".3" fill="gray" />
+          
+          <circle cx="0" cy=".5" r=".25" fill="white" />
+          <circle cx=".5" cy=".5" r=".35" fill="white" />
+          <circle cx="1" cy=".5" r=".25" fill="white" />
+        </mask>
+    
+        <pattern id="pattern" 
+                 patternUnits="userSpaceOnUse"
+                 width="200" height="300" 
+                 viewbox="0 0 200 300">
+          <image xlink:href="https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg" width="200" height="300" />
+        </pattern>
+   </defs>
+</svg>
+
+<div class="wrapper">
+  <h1>CSS and SVG Masks</h1>
+  <div class="item item--clip">
+    <div class="demo">
+      <img src="https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg" alt="" class="has-mask"/>
+    </div>
+    <div class="text">
+      <h3>CSS clip</h3>
+      <a href="http://www.w3.org/TR/2014/WD-css-masking-1-20140213/#clip-property">Specification</a>
+      <br /><br />
+      <code class="code--css"><pre>.item {
+  position: absolute;
+  clip: rect(10px, 190px, 190px, 10px);
+  }</pre></code>
+      <ul class="browsers">
+        <li class="browser chrome has-support"></li>
+        <li class="browser safari has-support"></li>
+        <li class="browser opera-13 has-support"></li>
+        <li class="browser firefox has-support"></li>
+        <li class="browser ie9 has-support"></li>
+        <li class="browser opera-12 has-support"></li>
+      </ul>
+    </div>  
+  </div>
+  <!-- ********* -->   
+  <div class="item item--css-clip-path">
+    <div class="demo">
+       <img src="https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg" alt="" />
+    </div>  
+    <div class="text">
+      <h3>CSS clip-path</h3>
+      <a href="http://www.w3.org/TR/2014/WD-css-masking-1-20140213/#the-clip-path">Specification</a>
+      <br /><br />
+      <code class="code--css"><pre>.item {
+  <del>clip-path: circle(100px, 100px, 100px);</del>
+  clip-path: circle(100px at center);
+  }</pre></code>
+      Syntax for circle <a href="http://dev.w3.org/csswg/css-shapes/#20130620">was chnaged</a>, to radial gradient syntax
+
+      <ul class="browsers">
+        <li class="browser chrome has-support"></li>
+        <li class="browser safari has-support"></li>
+        <li class="browser opera-13 has-support"></li>
+        <li class="browser firefox"></li>
+        <li class="browser ie9"></li>
+        <li class="browser opera-12"></li>
+      </ul>
+    </div> 
+  </div>
+ <!-- ********* -->   
+ <div class="item item--svg-clip-path-svg">
+    <div class="demo">
+      <svg width="200" height="300">
+        <image xlink:href="https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg" width="200" height="300" />
+      </svg>
+    </div>  
+    <div class="text">
+      <h3>SVG clip-path for SVG elements</h3>
+      <a href="http://www.w3.org/TR/SVG11/masking.html#EstablishingANewClippingPath">Specification</a>
+      <br /><br />
+      <code class="code--svg"><pre>&lt;clipPath id="clipping">
+  &lt;polygon points="98.4999978 153.75..."/>
+&lt;/clipPath></pre></code>
+      <code class="code--css"><pre>.item {
+  clip-path: url(#clipping);
+  }</pre></code>
+      <ul class="browsers">
+        <li class="browser chrome has-support"></li>
+        <li class="browser safari has-support"></li>
+        <li class="browser opera-13 has-support"></li>
+        <li class="browser firefox has-support"></li>
+        <li class="browser ie9 has-support"></li>
+        <li class="browser opera-12 has-support"></li>
+      </ul>
+    </div>  
+  </div>
+ <!-- ********* -->   
+  <div class="item item--svg-clip-path-html">
+    <div class="demo">
+       <img src="https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg" alt="" />
+    </div>  
+    <div class="text">
+      <h3>SVG clip-path for HTML elements</h3>
+      <a href="http://www.w3.org/TR/2014/WD-css-masking-1-20140213/#svg-clipping-paths">Specification</a>
+      <br /><br />
+      <code class="code--svg"><pre>&lt;clipPath id="clipping">
+  &lt;polygon points="98.4999978 153.75..."/>
+&lt;/clipPath></pre></code>
+      <code class="code--css"><pre>.item {
+  clip-path: url(#clipping);
+  }</pre></code>
+      <ul class="browsers">
+        <li class="browser chrome has-support"></li>
+        <li class="browser safari"></li>
+        <li class="browser opera-13 has-support"></li>
+        <li class="browser firefox has-support"></li>
+        <li class="browser ie9"></li>
+        <li class="browser opera-12"></li>
+      </ul>
+    </div> 
+  </div>
+ 
+ <!-- ********* -->   
+  <div class="item item--css-mask">
+    <div class="demo">
+       <img src="https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg" alt="" />
+    </div>  
+    <div class="text">
+      <h3>CSS mask-image</h3>
+      <a href="http://www.w3.org/TR/2014/WD-css-masking-1-20140213/#the-mask-image">Specification</a>
+      <br /><br />
+      <code class="code--css"><pre>.item {
+  mask-image: url(YOUR.png), 
+                    linear-gradient(-45deg,
+                        rgba(0,0,0,1) 20%, rgba(0,0,0,0) 50%);
+  mask-repeat: space;
+  }</pre></code>
+      Mask image: <a href="https://img-fotki.yandex.ru/get/9492/5091629.9d/0_80e74_9f303e3d_M.png">PNG</a>
+      <ul class="browsers">
+        <li class="browser chrome has-support"></li>
+        <li class="browser safari has-support"></li>
+        <li class="browser opera-13 has-support"></li>
+        <li class="browser firefox has-support"></li>
+        <li class="browser ie9"></li>
+        <li class="browser opera-12"></li>
+      </ul>
+    </div> 
+  </div>
+ <!-- ********* -->
+  <div class="item item--svg-mask-svg">
+    <div class="demo">
+      <svg width="200" height="300">
+      <image xlink:href="https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg"
+      width="200" height="300"
+      /></svg>
+    </div>  
+    <div class="text">
+       <h3>SVG mask for SVG elements</h3>
+      <a href="http://www.w3.org/TR/SVG11/masking.html#Masking">Specification</a>
+      <br /><br />
+      <code class="code--svg"><pre>&lt;mask id="masking" maskUnits="objectBoundingBox" 
+  maskContentUnits="objectBoundingBox">
+  &lt;rect y="0" width="1" height="1" fill="url(#gradient)" />
+  &lt;circle cx=".5" cy=".5" r=".4" fill="gray" />
+  &lt;circle cx=".5" cy=".5" r=".3" fill="white" />
+  ...
+&lt;/mask></pre></code>
+      <code class="code--css"><pre>.item {
+  mask: url(#masking);
+  }</pre></code>
+      <ul class="browsers">
+        <li class="browser chrome has-support"></li>
+        <li class="browser safari has-support"></li>
+        <li class="browser opera-13 has-support"></li>
+        <li class="browser firefox has-support"></li>
+        <li class="browser ie9 has-support"></li>
+        <li class="browser opera-12 has-support"></li>
+      </ul>
+    </div> 
+  </div> 
+<!-- ********* --> 
+  <div class="item item--svg-mask-html">
+    <div class="demo">
+      <img src="https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg" alt="" />
+    </div>  
+    <div class="text">
+      <h3>SVG mask for HTML elements</h3>
+      <a href="http://www.w3.org/TR/2014/WD-css-masking-1-20140213/#the-mask-image">Specification</a>
+      <br /><br />
+      <code class="code--svg"><pre>&lt;mask id="masking" maskUnits="objectBoundingBox" 
+  maskContentUnits="objectBoundingBox">
+  &lt;rect y="0" width="1" height="1" fill="url(#gradient)" />
+  &lt;circle cx=".5" cy=".5" r=".4" fill="gray" />
+  &lt;circle cx=".5" cy=".5" r=".3" fill="white" />
+  ...
+&lt;/mask></pre></code>
+      <code class="code--css"><pre>.item {
+  mask: url(#masking);
+  }</pre></code>
+      <ul class="browsers">
+        <li class="browser chrome"></li>
+        <li class="browser safari"></li>
+        <li class="browser opera-13"></li>
+        <li class="browser firefox has-support"></li>
+        <li class="browser ie9"></li>
+        <li class="browser opera-12"></li>
+      </ul>
+    </div>
+  </div>
+
+ <!-- ********* --> 
+  <div class="item item--css-background-clip">
+    <div class="demo">
+      Text
+    </div>  
+    <div class="text">
+       <h3>background-clip</h3>
+      <a href="https://www.webkit.org/blog/164/background-clip-text/">Documentation</a>
+      <br /><br />
+      <code class="code--css"><pre>.item {
+  background: url(YOUR IMAGE) no-repeat;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  }</pre></code>
+      <ul class="browsers">
+        <li class="browser chrome has-support"></li>
+        <li class="browser safari has-support"></li>
+        <li class="browser opera-13 has-support"></li>
+        <li class="browser firefox has-support"></li>
+        <li class="browser ie9"></li>
+        <li class="browser opera-12"></li>
+      </ul>
+    </div> 
+  </div>
+ <!-- ********* --> 
+  <div class="item item--svg-fill">
+    <div class="demo">
+      <svg width="200" height="200">
+        <text x="0" y="1em">Text</text>
+      </svg>  
+    </div>  
+    <div class="text">
+       <h3>SVG fill</h3>
+      <a href="http://www.w3.org/TR/SVG/painting.html#FillProperties">Specification</a> 
+      <br /><br />
+      <div class="comment">Not real mask, but looks like <code>-webkit-background-clip: text;</code> and has much better support.</div>
+      <br /><br />
+      <code class="code--svg"><pre>&lt;pattern id="pattern" patternUnits="userSpaceOnUse"
+             width="200" height="300" viewbox="0 0 200 300">
+  &lt;image xlink:href="YOUR IMAGE" width="200" height="300" />
+&lt;/pattern></pre></code>
+      <code class="code--css"><pre>text {
+  fill: url(#pattern);
+  }</pre></code>
+      <ul class="browsers">
+        <li class="browser chrome has-support"></li>
+        <li class="browser safari has-support"></li>
+        <li class="browser opera-13 has-support"></li>
+        <li class="browser firefox has-support"></li>
+        <li class="browser ie9 has-support"></li>
+        <li class="browser opera-12 has-support"></li>
+      </ul>
+    </div> 
+  </div> 
+</div>
+
+
+</body>
+<!--  footer -->
+</html>

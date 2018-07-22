@@ -1,0 +1,79 @@
+HTML, BODY {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: #000;
+}
+
+svg {
+    width: 500px;
+    height: 500px;
+    // border: 1px solid #DDD;
+    border-radius: 20px;
+}
+
+.section {
+    fill: url(#grad);
+    // stroke: black;
+    // stroke-width: 2;
+}
+
+$time: 1.5s;
+$max: 10;
+$step: $time/$max;
+
+.stop {
+    stop-color: indigo;
+    animation: colors $time infinite;
+}
+
+$colors: indigo, purple, crimson, orangered, gold, yellowgreen, lightseagreen, teal, darkslateblue, slateblue, indigo;
+
+$step-num: 0;
+
+@each $color in $colors {
+  $step-num: $step-num + 1;  
+  .stop--#{$step-num} {
+    animation-delay: -$step * $step-num;
+  }
+}
+
+
+
+@keyframes colors {
+    0% {
+        stop-color: indigo;
+    }
+    10% {
+        stop-color: purple;
+    }
+    20% {
+        stop-color: crimson;
+    }
+    30% {
+        stop-color: orangered;
+    }
+    40% {
+        stop-color: gold;
+    }
+    50% {
+        stop-color: yellowgreen;
+    }
+    60% {
+        stop-color: lightseagreen;
+    }
+    70% {
+        stop-color: teal;
+    }
+    80% {
+        stop-color: darkslateblue;
+    }
+    90% {
+        stop-color: slateblue;
+    }
+    100% {
+        stop-color: indigo;
+    }
+}

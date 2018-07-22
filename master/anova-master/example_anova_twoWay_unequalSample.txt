@@ -1,0 +1,122 @@
+//Two-Way ANOVA with Unequal Sample Sizes Example
+//Created by John M. Quick
+//http://www.johnmquick.com
+//January 22, 2011
+
+> #read the dataset into an R variable using the read.csv(file) function
+> dataTwoWayUnequalSample <- read.csv("dataset_ANOVA_TwoWayUnequalSample.csv")
+> #display the data
+> dataTwoWayUnequalSample
+   environment instruction math
+1      offline   classroom   50
+2      offline   classroom   55
+3      offline   classroom   70
+4      offline   classroom   75
+5      offline   classroom   85
+6      offline   classroom   80
+7      offline   classroom   90
+8      offline   classroom   90
+9       online   classroom   75
+10      online   classroom   70
+11      online   classroom   50
+12      online   classroom   55
+13      online   classroom   70
+14      online   classroom   75
+15      online   classroom   85
+16      online   classroom   80
+17      online   classroom   90
+18      online   classroom   90
+19      online   classroom   75
+20      online   classroom   70
+21     offline       tutor   70
+22     offline       tutor   75
+23     offline       tutor   80
+24     offline       tutor   75
+25     offline       tutor   80
+26     offline       tutor   90
+27      online       tutor   95
+28      online       tutor   95
+29      online       tutor   80
+30      online       tutor   80
+
+> #use subset(data, condition) to create subsets for each treatment group
+> #offline subset
+> offlineData <- subset(dataTwoWayUnequalSample, dataTwoWayUnequalSample$environment == "offline")
+> #online subset
+> onlineData <- subset(dataTwoWayUnequalSample, dataTwoWayUnequalSample$environment == "online")
+> #classroom subset
+> classroomData <- subset(dataTwoWayUnequalSample, dataTwoWayUnequalSample$instruction == "classroom")
+> #tutor subset
+> tutorData <- subset(dataTwoWayUnequalSample, dataTwoWayUnequalSample$instruction == "tutor")
+
+> #use mean(data) to calculate the weighted means for each treatment group
+> #offline weighted mean
+> mean(offlineData$math)
+[1] 76.07143
+> #online weighted mean
+> mean(onlineData$math)
+[1] 77.1875
+> #classroom weighted mean
+> mean(classroomData$math)
+[1] 74
+> #tutor weighted mean
+> mean(tutorData$math)
+[1] 82
+
+> #use anova(object) to execute the Type I SS ANOVAs
+> #notice that the main effect results are different when the independent variables are ordered differently
+> #environment ANOVA
+> anova(lm(math ~ environment * instruction, dataTwoWayUnequalSample))
+Analysis of Variance Table
+
+Response: math
+                        Df Sum Sq Mean Sq F value  Pr(>F)  
+environment              1    9.3    9.30  0.0647 0.80119  
+instruction              1  467.5  467.50  3.2531 0.08289 .
+environment:instruction  1  153.4  153.40  1.0674 0.31104  
+Residuals               26 3736.5  143.71                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+> #instruction ANOVA
+> anova(lm(math ~ instruction * environment, dataTwoWayUnequalSample))
+Analysis of Variance Table
+
+Response: math
+                        Df Sum Sq Mean Sq F value  Pr(>F)  
+instruction              1  426.7  426.67  2.9689 0.09675 .
+environment              1   50.1   50.14  0.3489 0.55984  
+instruction:environment  1  153.4  153.40  1.0674 0.31104  
+Residuals               26 3736.5  143.71                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+> #use mean(data) and subset(data, condition) to calculate the unweighted means for each treatment group
+> #offline unweighted mean = (classroom offline mean + tutor offline mean) / 2
+> (mean(subset(offlineData$math, offlineData$instruction == "classroom")) + mean(subset(offlineData$math, offlineData$instruction == "tutor"))) / 2
+[1] 76.35417
+> #online unweighted mean = (classroom online mean + tutor online mean) / 2
+> (mean(subset(onlineData$math, onlineData$instruction == "classroom")) + mean(subset(onlineData$math, onlineData$instruction == "tutor"))) / 2
+[1] 80.625
+> #classroom unweighted mean = (offline classroom mean + online classroom mean) / 2
+> (mean(subset(classroomData$math, classroomData$environment == "offline")) + mean(subset(classroomData$math, classroomData$environment == "online"))) / 2
+[1] 74.0625
+> #tutor unweighted mean = (offline tutor mean + online tutor mean) / 2
+> (mean(subset(tutorData$math, tutorData$environment == "offline")) + mean(subset(tutorData$math, tutorData$environment == "online"))) / 2
+[1] 82.91667
+
+> #load the car package (install first, if necessary)
+> library(car)
+> #use the Anova(mod, type) function to conduct the Type III SS ANOVA
+> Anova(lm(math ~ environment * instruction, dataTwoWayUnequalSample), type = "3")
+Anova Table (Type III tests)
+
+Response: math
+                        Sum Sq Df  F value    Pr(>F)    
+(Intercept)              44253  1 307.9336 6.218e-16 ***
+environment                  2  1   0.0130    0.9099    
+instruction                 54  1   0.3738    0.5462    
+environment:instruction    153  1   1.0674    0.3110    
+Residuals                 3736 26                       
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 

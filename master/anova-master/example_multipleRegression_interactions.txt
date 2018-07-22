@@ -1,0 +1,77 @@
+//Interaction Model Example
+//created by John M. Quick
+//http://www.johnmquick.com
+//December 14, 2009
+
+> #read data into variable
+> datavar <- read.csv("dataset_iceCreamConsumption.csv")
+
+> #attach data variable
+> attach(datavar)
+
+> #display all data
+> datavar
+   DATE CONSUME PRICE INC TEMP
+1     1   0.386 0.270  78   41
+2     2   0.374 0.282  79   56
+3     3   0.393 0.277  81   63
+4     4   0.425 0.280  80   68
+5     5   0.406 0.272  76   69
+6     6   0.344 0.262  78   65
+7     7   0.327 0.275  82   61
+8     8   0.288 0.267  79   47
+9     9   0.269 0.265  76   32
+10   10   0.256 0.277  79   24
+11   11   0.286 0.282  82   28
+12   12   0.298 0.270  85   26
+13   13   0.329 0.272  86   32
+14   14   0.318 0.287  83   40
+15   15   0.381 0.277  84   55
+16   16   0.381 0.287  82   63
+17   17   0.470 0.280  80   72
+18   18   0.443 0.277  78   72
+19   19   0.386 0.277  84   67
+20   20   0.342 0.277  86   60
+21   21   0.319 0.292  85   44
+22   22   0.307 0.287  87   40
+23   23   0.284 0.277  94   32
+24   24   0.326 0.285  92   27
+25   25   0.309 0.282  95   28
+26   26   0.359 0.265  96   33
+27   27   0.376 0.265  94   41
+28   28   0.416 0.265  96   52
+29   29   0.437 0.268  91   64
+
+> #create the interaction variable
+> #step 1: center the input variables
+> PRICEc <- PRICE - mean(PRICE)
+> INCc <- INC - mean(INC)
+> #step 2: multiply the input variables
+> PRICEINCi <- PRICEc * INCc
+
+> #create the interaction model using lm(FORMULA, DATAVAR)
+> #predict ice cream consumption by its per pint price, weekly family income, mean temperature, and the interaction between per pint price and weekly family income
+> interactionModel <- lm(CONSUME ~ PRICE + INC + TEMP + PRICEINCi, datavar)
+> #display summary information about the model
+> summary(interactionModel)
+
+Call:
+lm(formula = CONSUME ~ PRICE + INC + TEMP + PRICEINCi, data = datavar)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-0.0575279 -0.0163589 -0.0008483  0.0168662  0.0718922 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.1570203  0.2324673   0.675   0.5058    
+PRICE       -0.1636906  0.7438870  -0.220   0.8277    
+INC          0.0012301  0.0012133   1.014   0.3208    
+TEMP         0.0028231  0.0004171   6.769 5.31e-07 ***
+PRICEINCi   -0.2786003  0.1344397  -2.072   0.0491 *  
+---
+Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1 
+
+Residual standard error: 0.03094 on 24 degrees of freedom
+Multiple R-squared: 0.7411,	Adjusted R-squared: 0.698 
+F-statistic: 17.18 on 4 and 24 DF,  p-value: 8.968e-07

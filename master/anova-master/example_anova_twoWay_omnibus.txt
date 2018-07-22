@@ -1,0 +1,86 @@
+//Two-Way ANOVA Example
+//Created by John M. Quick
+//http://www.johnmquick.com
+//January 16, 2011
+
+> #read the two-way ANOVA dataset into an R variable using the read.csv(file) function
+> dataTwoWay <- read.csv("dataset_ANOVA_TwoWay.csv")
+> #display the data
+> dataTwoWay
+       Group Gender Values
+1    control      M      1
+2    control      M      2
+3    control      M      3
+4    control      M      3
+5    control      M      3
+6    control      F      1
+7    control      F      1
+8    control      F      2
+9    control      F      1
+10   control      F      1
+11   control      M      3
+12   control      M      1
+13   control      M      1
+14   control      M      4
+15   control      M      1
+16   control      F      1
+17   control      F      5
+18   control      F      2
+19   control      F      2
+20   control      F      3
+21   control      M      4
+22   control      M      1
+23   control      M      1
+24   control      M      3
+25   control      M      2
+26   control      F      2
+27   control      F      2
+28   control      F      1
+29   control      F      2
+30   control      F      1
+31 treatment      M      3
+32 treatment      M      3
+33 treatment      M      3
+34 treatment      M      4
+35 treatment      M      5
+36 treatment      F      3
+37 treatment      F      5
+38 treatment      F      5
+39 treatment      F      5
+40 treatment      F      3
+41 treatment      M      4
+42 treatment      M      4
+43 treatment      M      4
+44 treatment      M      3
+45 treatment      M      3
+46 treatment      F      5
+47 treatment      F      4
+48 treatment      F      4
+49 treatment      F      4
+50 treatment      F      4
+51 treatment      M      4
+52 treatment      M      4
+53 treatment      M      3
+54 treatment      M      3
+55 treatment      M      5
+56 treatment      F      5
+57 treatment      F      5
+58 treatment      F      5
+59 treatment      F      4
+60 treatment      F      4
+
+> #use anova(object) to test the omnibus hypothesis in two-way ANOVA
+> #Are the differences between the group means for treatment and gender statistically significant?
+> #Is there a statistically significant interaction between treatment and gender?
+> anova(lm(Values ~ Group * Gender, dataTwoWay))
+Analysis of Variance Table
+
+Response: Values
+             Df Sum Sq Mean Sq F value  Pr(>F)    
+Group         1 60.000  60.000 67.9245 3.1e-11 ***
+Gender        1  0.267   0.267  0.3019 0.58489    
+Group:Gender  1  4.267   4.267  4.8302 0.03212 *  
+Residuals    56 49.467   0.883                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+

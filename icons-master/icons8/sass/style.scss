@@ -1,0 +1,182 @@
+// DEMO PURPOSE
+
+// colors
+$dark: #333030;
+$ocean: #2b90d9;
+$dust: #858583;
+$smoke: rgba(#E0E3DA, .35);
+$flower: #7200da;
+
+$link: $flower;
+
+// font import
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,500);
+
+// font
+$font-face: 'Roboto', sans-serif;
+
+// reset
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    padding: 20px;
+
+    background: white;
+
+    font-family: $font-face;
+    font-size: 16px;
+}
+
+h1 {
+    text-align: center;
+
+    color: $dark;
+
+    font-family: $font-face;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+p {
+    max-width: 520px;
+    margin: 0 auto;
+
+    text-align: center;
+
+    color: $dust;
+
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+strong {
+	color: $dark;
+	font-weight: normal;
+	
+	text-decoration: underline;
+}
+
+p > .emoji-icon,
+small > .emoji-icon {
+    padding: 0;
+
+    cursor: default;
+    vertical-align: middle;
+
+    font-size: 20px !important;
+	
+    &:hover {
+        cursor: default;
+    }
+}
+
+small {
+	font-size: 90%;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+
+    color: $link;
+
+    font-weight: 500;
+    
+    &:hover {
+        opacity: .7;
+    }
+	
+	&:active {
+        opacity: .5;
+    }
+}
+
+.github {
+	fill: $link;
+	vertical-align: middle;
+	
+	width: 22px;
+	height: auto;
+	margin-right: 5px;
+}
+
+.center-me {
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-height: 100%;
+	
+	padding: 30px 0;
+}
+
+.emoji-list {
+    display: flex;
+	flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 20px;
+
+    border-radius: 6px;
+    border: 2px solid darken($smoke, 1%);
+	background: $smoke;
+	
+	font-size: 26px;
+}
+
+.emoji-icon {
+    padding: 4px 7px 2px;
+	border-radius: 3px;
+	
+    transition: transform 100ms ease;
+	
+	&:before {
+		vertical-align: middle;
+		text-shadow: 0 2px 7px rgba(black, .22);
+	}
+
+    &:hover {
+        cursor: default;		
+		background: rgba($flower, .1);
+    }
+	
+	&:nth-child(4n+1) {
+		&:hover {
+			background: rgba(#fbd14b, .5);
+		}
+	}
+	
+	&:nth-child(4n+2) {
+		&:hover {
+			background: rgba(#75D701, .5);
+		}
+	}
+	
+	&:nth-child(4n+3) {
+		&:hover {
+			background: rgba(#45d9fd, .5);
+		}
+	}
+
+}

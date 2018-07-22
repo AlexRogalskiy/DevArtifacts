@@ -1,0 +1,39 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	height: 100vh;
+	width: 100vw;
+}
+
+.load {
+	width: 250px;
+	height: 40px;
+    line-height: 40px;
+	border-radius: 3px;
+	
+	background: linear-gradient(255deg, red, #d200ff, #0063ff, #00ffc1, #0bff66, #16ff00, #f0ff00, red);
+
+	background-size: 1200% 1200%;
+	transform: translateZ(0);
+	
+	animation: loading 7s ease infinite;
+	animation-play-state: paused;
+	
+	&:hover {
+		animation-play-state: running;
+	}
+}
+
+@keyframes loading {
+	0% {
+		background-position: 0 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	to {
+		background-position: 0 50%
+	}
+}

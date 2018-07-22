@@ -1,0 +1,97 @@
+//Regression With Categorical Variables
+//created by John M. Quick
+//http://www.johnmquick.com
+//December 15, 2009
+
+> #read data into variable
+> datavar <- read.csv("dataset_nflQbSalary.csv")
+
+> #attach data variable
+> attach(datavar)
+
+> #display all data
+> datavar
+         TEAM   QB TOTAL CONF
+1       49ERS  900 17256  NFC
+2       BEARS 3000 23074  NFC
+3     BENGALS 1050 20666  AFC
+4       BILLS  650 24249  AFC
+5     BRONCOS  500 21992  AFC
+6      BROWNS  967 19413  AFC
+7  BUCCANEERS  675 19545  NFC
+8   CARDINALS 1450 20397  NFC
+9    CHARGERS 1200 18698  AFC
+10     CHIEFS 1100 25859  AFC
+11      COLTS 2000 22022  AFC
+12    COWBOYS 1750 28349  NFC
+13   DOLPHINS 1400 23738  AFC
+14     EAGLES  425 19325  NFC
+15    FALCONS 2250 25642  NFC
+16     GIANTS 1600 23258  NFC
+17       JETS  800 19063  AFC
+18      LIONS 1525 24644  NFC
+19     OILERS 1700 21399  AFC
+20    PACKERS 1500 23245  NFC
+21   PATRIOTS 2250 23294  AFC
+22    RAIDERS 1300 20390  AFC
+23       RAMS 1500 24378  NFC
+24   REDSKINS 1450 20780  NFC
+25     SAINTS 1200 23695  NFC
+26   SEAHAWKS 1250 25348  AFC
+27   STEELERS 3500 30131  AFC
+28    VIKINGS 1250 23246  NFC
+
+> #represent a categorical variable numerically using as.numeric(VAR)
+> #dummy code the CONF variable into NFC = 1 and AFC = 0
+> dCONF <- as.numeric(CONF) - 1
+
+> #use the plot() function to create a box plot
+> #what does the relationship between conference and team salary look like?
+> plot(CONF, TOTAL, main="Team Salary by Conference", xlab="Conference", ylab="Salary ($1,000s)")
+
+> #what are the mean and standard deviation of conference?
+> mean(dCONF)
+[1] 0.5
+> sd(dCONF)
+[1] 0.5091751
+> #this makes senseÉ there are an even number of teams in both conferences and they are coded as either 0 or 1!
+> #what is the correlation between total team salary and conference?
+> cor(dCONF, TOTAL)
+[1] 0.007019319
+
+> #create a linear model using lm(FORMULA, DATAVAR)
+> #predict team salary using quarterback salary and conference
+> linearModel <- lm(TOTAL ~ QB + dCONF, datavar)
+> #generate model summary
+> summary(linearModel)
+
+Call:
+lm(formula = TOTAL ~ QB + dCONF, data = datavar)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3977.2 -1960.9  -221.3  1669.4  5003.6 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 19099.3562  1183.1760  16.142 9.88e-15 ***
+QB              2.4849     0.6945   3.578  0.00145 ** 
+dCONF        -102.5585   947.5246  -0.108  0.91467    
+---
+Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1 
+
+Residual standard error: 2505 on 25 degrees of freedom
+Multiple R-squared: 0.3387,	Adjusted R-squared: 0.2858 
+F-statistic: 6.402 on 2 and 25 DF,  p-value: 0.005688 
+
+> #input the categorical values to split the linear model into two representations
+> #the original model: TOTAL = 19099 + 2.5 * QB - 103 * dCONF
+> #substitute 0 for dCONF to derive the AFC model: TOTAL = 19099 + 2.5 * QB
+> #substitute 1 for dCONF to derive the NFC model: TOTAL = 18996 + 2.5 * QB
+> #what is the predicted salary for a team with a quarterback salary of $2,000,000 in the AFC and NFC conferences?
+> #AFC prediction
+> 19099 + 2.5 * 2000
+[1] 24099
+> #NFC prediction
+> 18996 + 2.5 * 2000
+[1] 23996

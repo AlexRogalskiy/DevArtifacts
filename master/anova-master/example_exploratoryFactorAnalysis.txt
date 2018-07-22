@@ -1,0 +1,82 @@
+//Exploratory Factor Analysis Example
+//Created by John M. Quick
+//http://www.johnmquick.com
+//October 23, 2011
+
+> #read the dataset into R variable using the read.csv(file) function
+> data <- read.csv("dataset_EFA.csv")
+
+> #display the data (warning: large output - only the first 10 rows are shown here)
+> data
+    BIO GEO CHEM ALG CALC STAT
+1     1   1    1   1    1    1
+2     4   4    3   4    4    4
+3     2   1    3   4    1    1
+4     2   3    2   4    4    3
+5     3   1    2   2    3    4
+6     1   1    1   4    4    4
+7     3   3    3   2    3    1
+8     4   3    4   2    3    2
+9     2   1    3   3    4    3
+10    2   3    3   2    3    4
+
+> #install the package (if necessary)
+> install.packages("psych")
+
+> #load the package (if necessary)
+> library(psych)
+
+> #calculate the correlation matrix
+> corMat  <- cor(data)
+
+> #display the correlation matrix
+> corMat
+           BIO       GEO      CHEM       ALG      CALC      STAT
+BIO  1.0000000 0.6822208 0.7470278 0.1153204 0.2134271 0.2028315
+GEO  0.6822208 1.0000000 0.6814857 0.1353557 0.2045215 0.2316288
+CHEM 0.7470278 0.6814857 1.0000000 0.0838225 0.1364251 0.1659747
+ALG  0.1153204 0.1353557 0.0838225 1.0000000 0.7709303 0.4094324
+CALC 0.2134271 0.2045215 0.1364251 0.7709303 1.0000000 0.5073147
+STAT 0.2028315 0.2316288 0.1659747 0.4094324 0.5073147 1.0000000
+
+> #use fa() to conduct an oblique principal-axis exploratory factor analysis
+> #save the solution to an R variable
+> solution <- fa(r = corMat, nfactors = 2, rotate = "oblimin", fm = "pa")
+
+> #display the solution output
+> solution
+Factor Analysis using method =  pa
+Call: fa(r = corMat, nfactors = 2, rotate = "oblimin", fm = "pa")
+Standardized loadings based upon correlation matrix
+       PA1   PA2   h2    u2
+BIO   0.86  0.02 0.75 0.255
+GEO   0.78  0.05 0.63 0.369
+CHEM  0.87 -0.05 0.75 0.253
+ALG  -0.04  0.81 0.65 0.354
+CALC  0.01  0.96 0.92 0.081
+STAT  0.13  0.50 0.29 0.709
+
+                PA1  PA2
+SS loadings    2.14 1.84
+Proportion Var 0.36 0.31
+Cumulative Var 0.36 0.66
+
+ With factor correlations of 
+     PA1  PA2
+PA1 1.00 0.21
+PA2 0.21 1.00
+
+Test of the hypothesis that 2 factors are sufficient.
+
+The degrees of freedom for the null model are  15  and the objective function was  2.87
+The degrees of freedom for the model are 4  and the objective function was  0.01 
+
+The root mean square of the residuals is  0.01 
+The df corrected root mean square of the residuals is  0.02 
+
+Fit based upon off diagonal values = 1
+Measures of factor score adequacy             
+                                                PA1  PA2
+Correlation of scores with factors             0.94 0.96
+Multiple R square of scores with factors       0.88 0.93
+Minimum correlation of possible factor scores  0.77 0.86

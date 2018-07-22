@@ -1,0 +1,108 @@
+//ANOVA Reshape Example
+//Created by John M. Quick
+//http://www.johnmquick.com
+//January 28, 2011
+
+> #read the datasets into R variables using the read.csv(file) function
+> dataBetween <- read.csv("dataset_ANOVA_reshape_1.csv")
+> dataRepeated <- read.csv("dataset_ANOVA_reshape_2.csv")
+
+> #install the reshape package
+> install.packages("reshape")
+> #load the package
+> library(reshape)
+
+> #between groups ANOVA means
+> #display the between groups data
+> dataBetween
+> dataBetween
+   group value
+1      a     2
+2      a     2
+3      a     3
+4      a     4
+5      a     4
+6      a     5
+7      a     3
+8      a     4
+9      a     4
+10     a     4
+11     b     4
+12     b     4
+13     b     3
+14     b     5
+15     b     4
+16     b     1
+17     b     1
+18     b     2
+19     b     3
+20     b     3
+21     c     1
+22     c     2
+23     c     2
+24     c     2
+25     c     3
+26     c     2
+27     c     3
+28     c     1
+29     c     3
+30     c     1
+
+> #cast the between groups data using cast(data, formula, fun.aggregate) to get the group means
+> cast(dataBetween, formula = ~group, fun.aggregate = mean)
+  value   a b c
+1 (all) 3.5 3 2
+
+> #cast the between groups data using cast(data, formula, fun.aggregate) to get the group means, variances, and standard deviations
+> cast(dataBetween, formula = ~group, fun.aggregate = c(mean, var, sd))
+  value a_mean     a_var      a_sd b_mean    b_var     b_sd c_mean     c_var      c_sd
+1 (all)    3.5 0.9444444 0.9718253      3 1.777778 1.333333      2 0.6666667 0.8164966
+
+> #repeated measures ANOVA pairwise comparisons
+> #display the repeated measures data
+> dataRepeated
+   case valueA valueB valueC
+1    c1      2      4      1
+2    c2      2      4      2
+3    c3      3      3      2
+4    c4      4      5      2
+5    c5      4      4      3
+6    c6      5      1      2
+7    c7      3      1      3
+8    c8      4      2      1
+9    c9      4      3      3
+10  c10      4      3      1
+
+> #melt the repeated measures data using melt(data, id.vars, measure.vars, variable_name) to organize it for pairwise comparisons
+> melt(dataRepeated, id.vars = "case", measure.vars = c("valueA", "valueB", "valueC"), variable_name = "abcValues")
+   case abcValues value
+1    c1    valueA     2
+2    c2    valueA     2
+3    c3    valueA     3
+4    c4    valueA     4
+5    c5    valueA     4
+6    c6    valueA     5
+7    c7    valueA     3
+8    c8    valueA     4
+9    c9    valueA     4
+10  c10    valueA     4
+11   c1    valueB     4
+12   c2    valueB     4
+13   c3    valueB     3
+14   c4    valueB     5
+15   c5    valueB     4
+16   c6    valueB     1
+17   c7    valueB     1
+18   c8    valueB     2
+19   c9    valueB     3
+20  c10    valueB     3
+21   c1    valueC     1
+22   c2    valueC     2
+23   c3    valueC     2
+24   c4    valueC     2
+25   c5    valueC     3
+26   c6    valueC     2
+27   c7    valueC     3
+28   c8    valueC     1
+29   c9    valueC     3
+30  c10    valueC     1

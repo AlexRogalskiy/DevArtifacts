@@ -1,0 +1,145 @@
+//Two-Way ANOVA with Interaction Example
+//Created by John M. Quick
+//http://www.johnmquick.com
+//January 17, 2011
+
+> #read the dataset into an R variable using the read.csv(file) function
+> dataTwoWayInteraction <- read.csv("dataset_ANOVA_TwoWayInteraction.csv")
+> #display the data
+> dataTwoWayInteraction
+   Treatment Gender StressReduction
+1    medical      F               1
+2    medical      F               1
+3    medical      F               1
+4    medical      F               1
+5    medical      F               2
+6    medical      F               2
+7    medical      F               3
+8    medical      F               3
+9    medical      F               3
+10   medical      F               3
+11   medical      M               1
+12   medical      M               1
+13   medical      M               2
+14   medical      M               2
+15   medical      M               2
+16   medical      M               2
+17   medical      M               2
+18   medical      M               2
+19   medical      M               3
+20   medical      M               3
+21    mental      F               3
+22    mental      F               3
+23    mental      F               4
+24    mental      F               4
+25    mental      F               4
+26    mental      F               4
+27    mental      F               4
+28    mental      F               4
+29    mental      F               5
+30    mental      F               5
+31    mental      M               2
+32    mental      M               2
+33    mental      M               2
+34    mental      M               2
+35    mental      M               3
+36    mental      M               3
+37    mental      M               4
+38    mental      M               4
+39    mental      M               4
+40    mental      M               4
+41  physical      F               1
+42  physical      F               1
+43  physical      F               1
+44  physical      F               1
+45  physical      F               2
+46  physical      F               2
+47  physical      F               3
+48  physical      F               3
+49  physical      F               3
+50  physical      F               3
+51  physical      M               3
+52  physical      M               3
+53  physical      M               4
+54  physical      M               4
+55  physical      M               4
+56  physical      M               4
+57  physical      M               4
+58  physical      M               4
+59  physical      M               5
+60  physical      M               5
+
+> #use anova(object) to test the omnibus hypothesis
+> #Are main effects or interaction effects present in the independent variables?
+> anova(lm(StressReduction ~ Treatment * Gender, dataTwoWayInteraction))
+Analysis of Variance Table
+
+Response: StressReduction
+                 Df Sum Sq Mean Sq F value    Pr(>F)    
+Treatment         2 23.333 11.6667    17.5 1.384e-06 ***
+Gender            1  1.667  1.6667     2.5    0.1197    
+Treatment:Gender  2 23.333 11.6667    17.5 1.384e-06 ***
+Residuals        54 36.000  0.6667                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+> #interaction effect is present; investigate simple main effects
+
+> #use subset(data, condition) to divide the original dataset along the treatment groups
+> #medical subset
+> dataMedical <- subset(dataTwoWayInteraction, Treatment == "medical")
+> #mental subset
+> dataMental <- subset(dataTwoWayInteraction, Treatment == "mental")
+> #physical subset
+> dataPhysical <- subset(dataTwoWayInteraction, Treatment == "physical")
+
+> #run ANOVA on the treatment subsets to investigate the impacts of gender within each
+
+> #medical
+> anova(lm(StressReduction ~ Gender, dataMedical))
+Analysis of Variance Table
+
+Response: StressReduction
+          Df Sum Sq Mean Sq   F value Pr(>F)
+Gender     1      0 0.00000 2.958e-31      1
+Residuals 18     12 0.66667                 
+> #mental
+> anova(lm(StressReduction ~ Gender, dataMental))
+Analysis of Variance Table
+
+Response: StressReduction
+          Df Sum Sq Mean Sq F value  Pr(>F)  
+Gender     1      5  5.0000     7.5 0.01350 *
+Residuals 18     12  0.6667                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+> #physical
+> anova(lm(StressReduction ~ Gender, dataPhysical))
+Analysis of Variance Table
+
+Response: StressReduction
+          Df Sum Sq Mean Sq F value    Pr(>F)    
+Gender     1     20 20.0000      30 3.345e-05 ***
+Residuals 18     12  0.6667                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+> #gender differences are statistically significant at the .017 level for the mental and physical conditions, but not the medical condition
+
+> #additional information
+> #treatment group means derived using subset(data, condition)
+> ##mental
+> ###male
+> mean(subset(dataMental$StressReduction, dataMental$Gender == "M"))
+[1] 3
+> ###female
+> mean(subset(dataMental$StressReduction, dataMental$Gender == "F"))
+[1] 4
+> ##physical
+> ###male
+> mean(subset(dataPhysical$StressReduction, dataPhysical$Gender == "M"))
+[1] 4
+> ###female
+> mean(subset(dataPhysical$StressReduction, dataPhysical$Gender == "F"))
+[1] 2

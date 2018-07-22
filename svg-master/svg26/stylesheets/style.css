@@ -1,0 +1,346 @@
+/* line 1, ../sass/style.scss */
+b {
+  font-weight: bold;
+}
+
+/* line 4, ../sass/style.scss */
+i {
+  font-style: italic;
+}
+
+/* line 7, ../sass/style.scss */
+.item--clip .demo {
+  width: 200px;
+  height: 250px;
+}
+
+/* line 11, ../sass/style.scss */
+.item--clip .has-mask {
+  position: absolute;
+  clip: rect(10px, 190px, 190px, 10px);
+}
+
+/* line 16, ../sass/style.scss */
+.item--css-clip-path img {
+  -webkit-clip-path: circle(100px at center);
+  -moz-clip-path: circle(100px, 100px, 100px);
+  clip-path: circle(100px, 100px, 100px);
+}
+
+/* line 22, ../sass/style.scss */
+.item--svg-clip-path-svg image,
+.item--svg-clip-path-html img {
+  clip-path: url(#clipping);
+}
+
+/* line 27, ../sass/style.scss */
+.item--css-mask img {
+  mask-image: url(https://img-fotki.yandex.ru/get/9492/5091629.9d/0_80e74_9f303e3d_M.png), linear-gradient(-45deg, black 20%, transparent 50%);
+  mask-repeat: space;
+}
+
+/* line 34, ../sass/style.scss */
+.item--svg-mask-html img,
+.item--svg-mask-svg image {
+  mask: url(#masking);
+}
+
+/* line 39, ../sass/style.scss */
+.item--css-background-clip .demo {
+  width: 200px;
+  height: 200px;
+  background: url(https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg) no-repeat;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+/* line 47, ../sass/style.scss */
+.item--svg-fill text {
+  fill: url(#pattern);
+}
+
+/* line 51, ../sass/style.scss */
+.demo,
+#clipping,
+#masking text {
+  font: bold italic 7em/1.5 Georgia;
+}
+
+/* Common 
+------------------------------------------- */
+/* line 60, ../sass/style.scss */
+BODY {
+  font: 12px/1.4 "Trebuchet MS", Arial, sans-serif;
+}
+
+/* line 63, ../sass/style.scss */
+A {
+  color: tomato;
+}
+
+/* line 66, ../sass/style.scss */
+H1, H2, H3, H4 {
+  margin-bottom: 1rem;
+  font-family: Georgia, serif;
+  line-height: 1.4;
+}
+
+/* line 71, ../sass/style.scss */
+H1 {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #CCC;
+  text-align: center;
+  text-shadow: 1px 1px 0 white, 2px 2px 0 #555;
+  font-size: 4em;
+  font-style: italic;
+}
+/* line 81, ../sass/style.scss */
+H1:after {
+  content: "Live demo";
+  position: absolute;
+  margin-left: 5px;
+  padding: 1px 5px;
+  vertical-align: top;
+  border-radius: 5px;
+  background: paleturquoise;
+  white-space: nowrap;
+  text-shadow: none;
+  font-size: 1rem;
+  color: #FFF;
+}
+
+/* line 96, ../sass/style.scss */
+H2 {
+  padding-bottom: .3rem;
+  border-bottom: 1px solid #333;
+  font-size: 2.8em;
+  color: #333;
+}
+
+/* line 102, ../sass/style.scss */
+H3 {
+  text-shadow: 1px 1px 0 white, 2px 2px 0 #CCC;
+  font-size: 2.5em;
+  font-style: italic;
+  color: #777;
+}
+
+/* line 109, ../sass/style.scss */
+H4 {
+  font-size: 1.6em;
+  font-style: italic;
+  color: #999;
+}
+
+/* line 119, ../sass/style.scss */
+code {
+  display: block;
+  position: relative;
+  margin-bottom: 1rem;
+  overflow: auto;
+  max-width: 90%;
+  padding: 35px 10px 7px;
+  border-radius: 5px;
+}
+/* line 127, ../sass/style.scss */
+.comment code {
+  display: inline-block;
+  margin: 0;
+  padding: 2px 5px;
+  vertical-align: middle;
+  background: #EEE;
+  color: #777;
+}
+/* line 135, ../sass/style.scss */
+code:before {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 25px;
+  line-height: 25.2px;
+  padding-left: 10px;
+  position: absolute;
+  font-weight: bold;
+  font-style: italic;
+}
+/* line 146, ../sass/style.scss */
+.comment code:before {
+  content: none;
+}
+
+/* line 150, ../sass/style.scss */
+.code--css {
+  background: #f7edba;
+}
+/* line 152, ../sass/style.scss */
+.code--css:before {
+  content: "CSS";
+  background: #f2e18c;
+  color: #8a750f;
+}
+
+/* line 158, ../sass/style.scss */
+.code--svg {
+  background: #e6f4be;
+}
+/* line 160, ../sass/style.scss */
+.code--svg:before {
+  content: "SVG";
+  background: #d6ec93;
+  color: #678217;
+}
+
+/* line 167, ../sass/style.scss */
+.svg-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* line 173, ../sass/style.scss */
+.wrapper {
+  width: 90%;
+  min-width: 500px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  conter-reset: mylist;
+}
+/* line 180, ../sass/style.scss */
+.wrapper:after {
+  content: '';
+  display: table;
+  width: 100%;
+  clear: both;
+}
+
+/* line 188, ../sass/style.scss */
+.item {
+  position: relative;
+  margin-bottom: 2em;
+  padding-bottom: 2em;
+  padding-right: 3em;
+  border-bottom: 1px solid #DDD;
+  counter-increment: mylist;
+}
+/* line 196, ../sass/style.scss */
+.item:before {
+  content: counter(mylist);
+  position: absolute;
+  right: 0;
+  top: 0;
+  font: 2rem/1 Georgia, serif;
+  color: #EEE;
+}
+/* line 204, ../sass/style.scss */
+.item:after {
+  content: '';
+  display: table;
+  width: 100%;
+}
+
+/* line 211, ../sass/style.scss */
+.demo {
+  position: relative;
+  float: left;
+  margin-right: 30px;
+}
+/* line 215, ../sass/style.scss */
+.demo:before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg) no-repeat;
+  opacity: 0;
+  transition: .7s;
+}
+/* line 228, ../sass/style.scss */
+.item:hover .demo:before {
+  opacity: .4;
+}
+
+/* line 232, ../sass/style.scss */
+.text {
+  padding-left: 230px;
+}
+
+/* Browsers
+------------------------------- */
+/* line 238, ../sass/style.scss */
+.browsers {
+  margin-top: 1.5rem;
+}
+
+/* line 241, ../sass/style.scss */
+.browser {
+  display: inline-block;
+  opacity: .2;
+}
+
+/* line 245, ../sass/style.scss */
+.has-support {
+  opacity: 1;
+}
+
+/* line 248, ../sass/style.scss */
+.browser:before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 7px;
+  background: url(https://yoksel.github.io/assets/img/sprite-browsers.png) 0 0 no-repeat;
+  vertical-align: middle;
+}
+
+/* line 258, ../sass/style.scss */
+.firefox:before {
+  background-position: 0 0;
+}
+
+/* line 261, ../sass/style.scss */
+.chrome:before {
+  background-position: -30px 0;
+}
+
+/* line 264, ../sass/style.scss */
+.safari:before {
+  background-position: -60px 0;
+}
+
+/* line 267, ../sass/style.scss */
+.ie8:before {
+  background-position: -90px 0;
+}
+
+/* line 270, ../sass/style.scss */
+.ie9:before {
+  background-position: -90px 0;
+}
+
+/* line 273, ../sass/style.scss */
+.opera-13:before {
+  background-position: -120px 0;
+}
+
+/* line 276, ../sass/style.scss */
+.opera-12:before {
+  background-position: -150px 0;
+}
+
+/* line 279, ../sass/style.scss */
+.opera-mob:before {
+  background-position: -150px 0;
+}
+
+/* line 282, ../sass/style.scss */
+.opera-mini:before {
+  background-position: -150px 0;
+}

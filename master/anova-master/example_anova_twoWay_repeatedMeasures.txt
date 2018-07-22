@@ -1,0 +1,230 @@
+//Two-Way Repeated Measures ANOVA Example
+//Created by John M. Quick
+//http://www.johnmquick.com
+//January 22, 2011
+
+> #read the dataset into an R variable using the read.csv(file) function
+> dataTwoWayRepeatedMeasures <- read.csv("dataset_ANOVA_TwoWayRepeatedMeasures.csv")
+> #display the data
+> #notice the atypical column arrangement for repeated measures data
+> dataTwoWayRepeatedMeasures
+   subject schoolAge10 schoolAge15 schoolAge20 workAge10 workAge15 workAge20
+1        1           5           5           3         1         3         5
+2        2           5           5           3         1         3         5
+3        3           4           3           1         1         2         4
+4        4           4           5           4         2         2         4
+5        5           3           5           4         2         3         3
+6        6           3           1           2         2         2         3
+7        7           2           1           1         1         3         2
+8        8           2           1           1         3         5         5
+9        9           1           2           1         3         5         5
+10      10           1           3           1         1         2         4
+11      11           5           5           3         1         2         4
+12      12           5           5           3         1         2         4
+13      13           5           4           2         2         2         3
+14      14           5           4           2         2         2         3
+15      15           5           5           3         2         2         3
+16      16           4           5           4         1         3         4
+17      17           4           5           5         1         3         3
+18      18           4           5           5         1         3         1
+19      19           4           3           4         1         2         1
+20      20           4           3           1         1         2         3
+21      21           3           4           1         1         2         3
+22      22           3           4           1         1         1         3
+23      23           3           4           2         2         1         4
+24      24           3           4           3         2         1         4
+25      25           3           5           2         2         2         5
+26      26           2           3           2         2         3         5
+27      27           3           2           1         2         3         5
+28      28           4           3           2         1         3         5
+29      29           5           5           3         1         3         4
+30      30           3           4           2         1         3         4
+
+> #read the idata frame into an R variable
+> idataTwoWayRepeatedMeasures <- read.csv("idata_ANOVA_TwoWayRepeatedMeasures.csv")
+> #display the idata frame
+> #notice the text values and correspondence between our idata rows and the columns in our dataset
+> idataTwoWayRepeatedMeasures
+  Interest   Age
+1   school Age10
+2   school Age15
+3   school Age20
+4     work Age10
+5     work Age15
+6     work Age20
+
+> #create the linear model
+
+> #step 1: bind the columns
+> #use cbind() to bind the columns in the original dataset
+> interestBind <- cbind(dataTwoWayRepeatedMeasures$schoolAge10, dataTwoWayRepeatedMeasures$schoolAge15, dataTwoWayRepeatedMeasures$schoolAge20, dataTwoWayRepeatedMeasures$workAge10, dataTwoWayRepeatedMeasures$workAge15, dataTwoWayRepeatedMeasures$workAge20)
+
+> #step 2: define the model
+> #use lm() to generate a linear model using the bound columns from step 4
+> interestModel <- lm(interestBind ~ 1)
+
+> #load the car package (install first, if necessary)
+> library(car)
+> #compose the Anova(mod, idata, idesign) function
+> analysis <- Anova(interestModel, idata = idataTwoWayRepeatedMeasures, idesign = ~Interest * Age)
+
+> #use summary(object) to visualize the results of the repeated measures ANOVA
+> summary(analysis)
+Type III Repeated Measures MANOVA Tests:
+
+------------------------------------------
+ 
+Term: (Intercept) 
+
+ Response transformation matrix:
+     (Intercept)
+[1,]           1
+[2,]           1
+[3,]           1
+[4,]           1
+[5,]           1
+[6,]           1
+
+Sum of squares and products for the hypothesis:
+            (Intercept)
+(Intercept)    9117.633
+
+Sum of squares and products for error:
+            (Intercept)
+(Intercept)    289.3667
+
+Multivariate Tests: (Intercept)
+                 Df test stat approx F num Df den Df     Pr(>F)    
+Pillai            1  0.969239 913.7589      1     29 < 2.22e-16 ***
+Wilks             1  0.030761 913.7589      1     29 < 2.22e-16 ***
+Hotelling-Lawley  1 31.508928 913.7589      1     29 < 2.22e-16 ***
+Roy               1 31.508928 913.7589      1     29 < 2.22e-16 ***
+---
+Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1 
+
+------------------------------------------
+ 
+Term: Interest 
+
+ Response transformation matrix:
+     Interest1
+[1,]         1
+[2,]         1
+[3,]         1
+[4,]        -1
+[5,]        -1
+[6,]        -1
+
+Sum of squares and products for the hypothesis:
+          Interest1
+Interest1  124.0333
+
+Sum of squares and products for error:
+          Interest1
+Interest1  546.9667
+
+Multivariate Tests: Interest
+                 Df test stat approx F num Df den Df   Pr(>F)  
+Pillai            1 0.1848485 6.576208      1     29 0.015778 *
+Wilks             1 0.8151515 6.576208      1     29 0.015778 *
+Hotelling-Lawley  1 0.2267658 6.576208      1     29 0.015778 *
+Roy               1 0.2267658 6.576208      1     29 0.015778 *
+---
+Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1 
+
+------------------------------------------
+ 
+Term: Age 
+
+ Response transformation matrix:
+     Age1 Age2
+[1,]    1    0
+[2,]    0    1
+[3,]   -1   -1
+[4,]    1    0
+[5,]    0    1
+[6,]   -1   -1
+
+Sum of squares and products for the hypothesis:
+          Age1       Age2
+Age1 32.033333 -5.1666667
+Age2 -5.166667  0.8333333
+
+Sum of squares and products for error:
+         Age1     Age2
+Age1 56.96667 15.16667
+Age2 15.16667 30.16667
+
+Multivariate Tests: Age
+                 Df test stat approx F num Df den Df     Pr(>F)    
+Pillai            1 0.4402156 11.00963      2     28 0.00029668 ***
+Wilks             1 0.5597844 11.00963      2     28 0.00029668 ***
+Hotelling-Lawley  1 0.7864021 11.00963      2     28 0.00029668 ***
+Roy               1 0.7864021 11.00963      2     28 0.00029668 ***
+---
+Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1 
+
+------------------------------------------
+ 
+Term: Interest:Age 
+
+ Response transformation matrix:
+     Interest1:Age1 Interest1:Age2
+[1,]              1              0
+[2,]              0              1
+[3,]             -1             -1
+[4,]             -1              0
+[5,]              0             -1
+[6,]              1              1
+
+Sum of squares and products for the hypothesis:
+               Interest1:Age1 Interest1:Age2
+Interest1:Age1       340.0333       259.2333
+Interest1:Age2       259.2333       197.6333
+
+Sum of squares and products for error:
+               Interest1:Age1 Interest1:Age2
+Interest1:Age1      100.96667       78.76667
+Interest1:Age2       78.76667      121.36667
+
+Multivariate Tests: Interest:Age
+                 Df test stat approx F num Df den Df     Pr(>F)    
+Pillai            1  0.771144 47.17392      2     28 1.0811e-09 ***
+Wilks             1  0.228856 47.17392      2     28 1.0811e-09 ***
+Hotelling-Lawley  1  3.369566 47.17392      2     28 1.0811e-09 ***
+Roy               1  3.369566 47.17392      2     28 1.0811e-09 ***
+---
+Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1 
+
+Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
+
+                  SS num Df Error SS den Df        F    Pr(>F)    
+(Intercept)  1519.61      1   48.228     29 913.7589 < 2.2e-16 ***
+Interest       20.67      1   91.161     29   6.5762   0.01578 *  
+Age            12.68      2   23.989     58  15.3261 4.533e-06 ***
+Interest:Age   92.81      2   47.856     58  56.2426 2.633e-14 ***
+---
+Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1 
+
+
+Mauchly Tests for Sphericity
+
+             Test statistic p-value
+Age                 0.86218 0.12542
+Interest:Age        0.88055 0.16849
+
+
+Greenhouse-Geisser and Huynh-Feldt Corrections
+ for Departure from Sphericity
+
+              GG eps Pr(>F[GG])    
+Age          0.87887  1.409e-05 ***
+Interest:Age 0.89330  5.072e-13 ***
+---
+Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1 
+
+              HF eps Pr(>F[HF])    
+Age          0.93113  8.633e-06 ***
+Interest:Age 0.94802  1.112e-13 ***
+---
+Signif. codes:  0 Ô***Õ 0.001 Ô**Õ 0.01 Ô*Õ 0.05 Ô.Õ 0.1 Ô Õ 1 

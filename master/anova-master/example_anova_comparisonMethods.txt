@@ -1,0 +1,147 @@
+//ANOVA Pairwise Comparisons Example
+//Created by John M. Quick
+//http://www.johnmquick.com
+//January 24, 2011
+
+> #read the dataset into an R variable using the read.csv(file) function
+> dataPairwiseComparisons <- read.csv("dataset_ANOVA_OneWayComparisons.csv")
+> #display the data
+> dataPairwiseComparisons
+   Treatment StressReduction
+1     mental               2
+2     mental               2
+3     mental               3
+4     mental               4
+5     mental               4
+6     mental               5
+7     mental               3
+8     mental               4
+9     mental               4
+10    mental               4
+11  physical               4
+12  physical               4
+13  physical               3
+14  physical               5
+15  physical               4
+16  physical               1
+17  physical               1
+18  physical               2
+19  physical               3
+20  physical               3
+21   medical               1
+22   medical               2
+23   medical               2
+24   medical               2
+25   medical               3
+26   medical               2
+27   medical               3
+28   medical               1
+29   medical               3
+30   medical               1
+
+> #use anova(object) to test the omnibus hypothesis
+> #Is there a significant difference amongst the treatment means?
+> anova(lm(StressReduction ~ Treatment, dataPairwiseComparisons))
+Analysis of Variance Table
+
+Response: StressReduction
+          Df Sum Sq Mean Sq F value  Pr(>F)  
+Treatment  2 11.667  5.8333  5.1639 0.01262 *
+Residuals 27 30.500  1.1296                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+> #omnibus test significant; continue to pairwise comparisons
+
+> #use tapply(X, INDEX, FUN) to generate a table displaying each treatment group mean
+> tapply(X = dataPairwiseComparisons$StressReduction, INDEX = list(dataPairwiseComparisons$Treatment), FUN = mean)
+ medical   mental physical 
+     2.0      3.5      3.0 
+
+> #pairwise comparison methods
+
+> #use pairwise.t.test(x, g, p.adj) to test the pairwise comparisons between the treatment group means
+> #no adjustment
+> #note that this can be used in tandem with procedures that are not built into R, such as the Modified Shaffer
+> pairwise.t.test(dataPairwiseComparisons$StressReduction, dataPairwiseComparisons$Treatment, p.adj = "none")
+	Pairwise comparisons using t tests with pooled SD 
+
+data:  dataPairwiseComparisons$StressReduction and dataPairwiseComparisons$Treatment 
+
+         medical mental
+mental   0.0039  -     
+physical 0.0448  0.3022
+
+P value adjustment method: none
+
+> #Bonferroni adjustment
+> #note that this method is generally considered too conservative
+> pairwise.t.test(dataPairwiseComparisons$StressReduction, dataPairwiseComparisons$Treatment, p.adj = "bonferroni")
+	Pairwise comparisons using t tests with pooled SD 
+
+data:  dataPairwiseComparisons$StressReduction and dataPairwiseComparisons$Treatment 
+
+         medical mental
+mental   0.012   -     
+physical 0.135   0.906 
+
+P value adjustment method: bonferroni 
+
+> #holm
+> #note that this procedure is generally considered superior to the Bonferroni adjustment
+> pairwise.t.test(dataPairwiseComparisons$StressReduction, dataPairwiseComparisons$Treatment, p.adj = "holm")
+	Pairwise comparisons using t tests with pooled SD 
+
+data:  dataPairwiseComparisons$StressReduction and dataPairwiseComparisons$Treatment 
+
+         medical mental
+mental   0.012   -     
+physical 0.090   0.302 
+
+P value adjustment method: holm 
+
+> #Fisher LSD
+> #note that this method does not control for Type I error and is generally considered less attractive than other options
+> #load the agricolae package (install first, if necessary)
+> library(agricolae)
+> #use LSD.test(y, trt, DFerror, MSerror) to test the pairwise comparisons between the treatment group means
+> #note that the DFerror and MSerror terms can be found in the omnibus ANOVA table
+> LSD.test(dataPairwiseComparisons$StressReduction, dataPairwiseComparisons$Treatment, 30.5, 1.13)
+Study:
+
+LSD t Test for dataPairwiseComparisons$StressReduction 
+
+Mean Square Error:  1.13 
+
+dataPairwiseComparisons$Treatment,  means and individual ( 95 %) CI
+
+         dataPairwiseComparisons.StressReduction   std.err replication      LCL      UCL
+medical                                      2.0 0.2581989          10 1.473050 2.526950
+mental                                       3.5 0.3073181          10 2.872804 4.127196
+physical                                     3.0 0.4216370          10 2.139494 3.860506
+
+alpha: 0.05 ; Df Error: 30.5
+Critical Value of t: 2.040869 
+
+Least Significant Difference 0.9702183
+Means with the same letter are not significantly different.
+
+Groups, Treatments and means
+a 	 mental   	 3.5 
+a 	 physical 	 3 
+ b 	 medical  	 2 
+
+> #Tukey HSD
+> #note that HSD controls for Type I error and is generally accepted
+> #use TukeyHSD(x), in tandem with aov(formula, data), to test the pairwise comparisons between the treatment group means
+> TukeyHSD(aov(StressReduction ~ Treatment, dataPairwiseComparisons))
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = StressReduction ~ Treatment, data = dataPairwiseComparisons)
+
+$Treatment
+                 diff        lwr       upr     p adj
+mental-medical    1.5  0.3214915 2.6785085 0.0105628
+physical-medical  1.0 -0.1785085 2.1785085 0.1079035
+physical-mental  -0.5 -1.6785085 0.6785085 0.5513904

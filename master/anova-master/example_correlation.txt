@@ -1,0 +1,93 @@
+//Correlational Analysis Example
+//created by John M. Quick
+//http://www.johnmquick.com
+//October 27, 2009
+
+> #read the data into an R variable
+> datavar <- read.csv("dataset_readingTests.csv")
+> #attach the data variable
+> attach(datavar)
+> #display all data in set
+> datavar
+   Subject Group PRE1 PRE2 POST1 POST2 POST3
+1        1 Basal    4    3     5     4    41
+2        2 Basal    6    5     9     5    41
+3        3 Basal    9    4     5     3    43
+4        4 Basal   12    6     8     5    46
+5        5 Basal   16    5    10     9    46
+6        6 Basal   15   13     9     8    45
+7        7 Basal   14    8    12     5    45
+8        8 Basal   12    7     5     5    32
+9        9 Basal   12    3     8     7    33
+10      10 Basal    8    8     7     7    39
+11      11 Basal   13    7    12     4    42
+12      12 Basal    9    2     4     4    45
+13      13 Basal   12    5     4     6    39
+14      14 Basal   12    2     8     8    44
+15      15 Basal   12    2     6     4    36
+16      16 Basal   10   10     9    10    49
+17      17 Basal    8    5     3     3    40
+18      18 Basal   12    5     5     5    35
+19      19 Basal   11    3     4     5    36
+20      20 Basal    8    4     2     3    40
+21      21 Basal    7    3     5     4    54
+22      22 Basal    9    6     7     8    32
+23      23  DRTA    7    2     7     6    31
+24      24  DRTA    7    6     5     6    40
+25      25  DRTA   12    4    13     3    48
+26      26  DRTA   10    1     5     7    30
+27      27  DRTA   16    8    14     7    42
+28      28  DRTA   15    7    14     6    48
+29      29  DRTA    9    6    10     9    49
+30      30  DRTA    8    7    13     5    53
+31      31  DRTA   13    7    12     7    48
+32      32  DRTA   12    8    11     6    43
+33      33  DRTA    7    6     8     5    55
+34      34  DRTA    6    2     7     0    55
+35      35  DRTA    8    4    10     6    57
+36      36  DRTA    9    6     8     6    53
+37      37  DRTA    9    4     8     7    37
+38      38  DRTA    8    4    10    11    50
+39      39  DRTA    9    5    12     6    54
+40      40  DRTA   13    6    10     6    41
+41      41  DRTA   10    2    11     6    49
+42      42  DRTA    8    6     7     8    47
+43      43  DRTA    8    5     8     8    49
+44      44  DRTA   10    6    12     6    49
+45      45 Strat   11    7    11    12    53
+46      46 Strat    7    6     4     8    47
+47      47 Strat    4    6     4    10    41
+48      48 Strat    7    2     4     4    49
+49      49 Strat    7    6     3     9    43
+50      50 Strat    6    5     8     5    45
+51      51 Strat   11    5    12     8    50
+52      52 Strat   14    6    14    12    48
+53      53 Strat   13    6    12    11    49
+54      54 Strat    9    5     7    11    42
+55      55 Strat   12    3     5    10    38
+56      56 Strat   13    9     9     9    42
+57      57 Strat    4    6     1    10    34
+58      58 Strat   13    8    13     1    48
+59      59 Strat    6    4     7     9    51
+60      60 Strat   12    3     5    13    33
+61      61 Strat    6    6     7     9    44
+62      62 Strat   11    4    11     7    48
+63      63 Strat   14    4    15     7    49
+64      64 Strat    8    2     9     5    33
+65      65 Strat    5    3     6     8    45
+66      66 Strat    8    3     4     6    42
+> #How is pretest 1 related to posttest 1?
+> #use cor(VAR1, VAR2) to get the correlation between variable 1 and variable 2
+> cor(PRE1, POST1)
+[1] 0.5659026
+> #How are all of the variables related to each other?
+> #use cor(DATAVAR) to get the correlations between all variables
+> cor(datavar)
+           Subject Group        PRE1       PRE2      POST1       POST2       POST3
+Subject  1.0000000    NA -0.19209882 -0.1182547 0.10308079  0.40518032  0.19488006
+Group           NA     1          NA         NA         NA          NA          NA
+PRE1    -0.1920988    NA  1.00000000  0.3348806 0.56590255  0.08883615 -0.03740325
+PRE2    -0.1182547    NA  0.33488057  1.0000000 0.34514482  0.20580036  0.18093653
+POST1    0.1030808    NA  0.56590255  0.3451448 1.00000000  0.06439532  0.47008487
+POST2    0.4051803    NA  0.08883615  0.2058004 0.06439532  1.00000000 -0.04191999
+POST3    0.1948801    NA -0.03740325  0.1809365 0.47008487 -0.04191999  1.00000000

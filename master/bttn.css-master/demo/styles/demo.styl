@@ -1,0 +1,506 @@
+@import "../../config/config.styl"
+
+*
+  box-sizing: border-box;
+
+body
+  overflow-x: hidden !important
+  margin 0
+  padding 0
+  border 0;
+  background: #FFFDE7;
+  color cDarkBlue;
+  font-family: 'Quicksand', 'arial', sans-serif
+  opacity 0;
+  transition opacity 0.3s anim_func;
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  a
+    color: currentColor;
+    text-decoration: none;
+
+[class*=hint--]:after
+  font-family: 'Quicksand', 'arial', sans-serif;
+
+.footer
+  display: flex;
+  height: 40px;
+  background: #fff;
+  box-shadow: 0 -1px 200px rgba(0, 0, 0, 0.08);
+  align-items: center;
+  justify-content: center
+  a
+    padding 0 10px
+    color: cDarkGrey;
+    text-decoration: none;
+    opacity 0.7
+    transition opacity 0.2s ease-in
+    &:hover
+      opacity 1
+    button
+      color: cDarkGrey;
+
+@media screen and (max-width: 767px)
+  .hidden-xs
+    display none !important
+
+.bttn-logo-box
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -3;
+  width: calc(100% + 20px);
+  height: 380px;
+  background: #FFFDE7;
+  .animated
+    animation-delay 0.35s
+  .bttn-jelly
+    margin: 70px 10px 40px 0
+    padding: 4px 30px;
+    border-radius: 40px;
+    background: transparent;
+    background-image: -webkit-linear-gradient(100deg, cOrange, cYellow)
+    box-shadow none
+    color: cOrange;
+    font-weight fontBold;
+    font-size 60px;
+    opacity 0;
+    transition-duration .5s;
+    transform translateY(30px)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+    &.active
+      box-shadow: 10px 4px #1d89ff,
+              10px 4px 2px rgba(0, 0, 0, 0.3), 20px -4px #feab3a,
+              20px -4px 2px rgba(0, 0, 0, 0.3), 30px 8px #ff5964,
+              30px 8px 2px rgba(0, 0, 0, 0.3), -10px -8px #28b78d,
+              -10px -8px 2px rgba(0, 0, 0, 0.3), -20px 8px #bd2df5,
+              -20px 8px 2px rgba(0, 0, 0, 0.3)
+      opacity 1
+      transform translateY(0)
+      &:before
+        background cWhite
+  h4
+    margin-top: 0
+    margin-bottom: 35px;
+    background-image: -webkit-linear-gradient(92deg, cOrange, cYellow);
+    color cOrange
+    font-weight fontBold
+    transition margin-top 0.3s ease;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  .download-options
+    .download-bttn
+      button
+        font-weight fontBold
+  .author
+    margin-bottom 70px;
+    padding-top: 20px;
+    background: transparent
+    background-image: -webkit-linear-gradient(92deg, cOrange, cYellow);
+    color: cOrange;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    button
+      padding 4px;
+      background: transparent;
+      background-image: -webkit-linear-gradient(92deg, cOrange, cYellow);
+      color: cOrange;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+
+.fancy-box-wrapper
+  position relative;
+  margin-top: 380px;
+  padding-top: 1px;
+  padding-bottom: 1px
+  &:before
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    background: cClean;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, .05);
+    content: '';
+  .box-wrapper
+    overflow hidden;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    max-width: 870px;
+    width: 100%
+    text-align center
+    &.padding-top
+      padding-top 85px
+    .box-animate, .box
+      width 250px
+      height 250px
+      border-radius 4px
+    .box-animate
+      display inline-block
+      margin 40px 20px 0 20px
+      vertical-align top
+      text-align: left;
+    .box
+      position relative;
+      padding: 15px;
+      box-shadow: 0 20px 20px rgba(0, 0, 0, .08);
+      transition: all 250ms anim_func
+      &:hover
+        box-shadow: 0 30px 40px rgba(0, 0, 0, .16);
+        //transform: translate(0, -10px);
+        .download-standalone
+          opacity 1 !important
+          filter grayscale(0) !important
+          transform scale(1) !important
+          &:hover
+            box-shadow: 0 1px 1px #ccc;
+      .title-wrapper
+        margin: 10px 0 15px 0;
+        font-weight: 600;
+        font-size: 20px
+        .title
+          display inline-block
+          width calc(100% - 30px)
+        .download-standalone
+          position: absolute;
+          top: 20px;
+          display: inline-block;
+          padding: 1px;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 30px;
+          opacity 0;
+          filter grayscale(1)
+          cursor: pointer
+          transition transform 0.2s anim_func, filter 0.2s anim_func, opacity 0.2s anim_func, box-shadow 0.2s anim_func
+          transform scale(0.6)
+      hr
+        margin: 15px 0;
+        border-width: 0;
+        border-style: dashed;
+        border-bottom-width: 1px;
+      .classname
+        margin: 20px 0;
+        padding: 12px 5px;
+        border-left: 2px solid;
+        background: #fafafa;
+        font-size: 11px;
+        font-family: monospace;
+      .button-wrapper
+        margin: 32px 0;
+        height: 45px;
+        text-align: center;
+        line-height: 45px;
+        button
+          display: block;
+          margin: 0 auto;
+      .beta
+        position: absolute;
+        bottom: 10px;
+        left: 15px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        font-weight: fontBold;
+        font-size: 10px;
+        opacity 1
+      .code-copy
+        position: absolute;
+        right: 15px;
+        bottom: 10px;
+        overflow hidden;
+        padding: 2px 4px;
+        border-radius: 2px;
+        font-weight: fontBold;
+        font-size: 10px
+        opacity 0
+        cursor pointer
+        transition all 0.3s anim_func
+        transform rotate(0.001deg) translateY(6px)
+        &:before
+          position: absolute
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 2px;
+          background: currentColor;
+          content: '';
+          opacity: 0.2;
+          transition all 0.3s anim_func;
+          z-index -1
+      &:hover
+        .code-copy
+          opacity 1
+          transition all 1s anim_func
+          transform rotate(0.001deg) translateY(0)
+  .options-chooser
+    position relative;
+    z-index: 10
+    margin-bottom -15px
+    height 100px
+    transition box-shadow 0.3s anim_func
+    &.fixed
+      position fixed
+      top: 0
+      width: 100%;
+      background cClean;
+      box-shadow: 0 20px 20px rgba(0, 0, 0, 0.08);
+      .options-chooser-container-small
+        border-bottom 0
+    .options-chooser-container
+      overflow hidden;
+      margin: 0 auto;
+      max-width: 870px;
+      width: 100%
+      height: 60px;
+      border-bottom: 1px solid #f5f5f5;
+      .half
+        display inline-block
+        width 50%
+        height: 100%
+        vertical-align top;
+        flex: 1;
+        &.right
+          text-align right
+      &.options-chooser-container-small
+        height 40px
+        .half
+          padding: 10px;
+      .colors
+        .color-round
+          display: inline-block;
+          margin: 11px 10px;
+          width: 34px;
+          height: 34px;
+          cursor pointer
+        .color
+          width: 34px;
+          height: 34px;
+          border: 2px solid cClean;
+          border-radius: 50%;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+          cursor pointer;
+          transition all 0.3s anim_func
+          transform: scale(0.7)
+          &:hover
+            transform: scale(0.85);
+          &.active
+            border-radius 4px 50% 50% 50%;
+            transform: scale(0.9)
+      .sizes
+        .size-box
+          position relative
+          display inline-block
+          width 240px
+          .size-block
+            display: inline-block;
+            margin: 10px;
+            width: 40px;
+            height: 33px;
+            cursor pointer
+          .size
+            text-align center;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 36px;
+            opacity 0.7
+            cursor pointer
+            transition all 0.3s anim_func
+            transform: scale(0.7)
+            &:hover
+              opacity 0.8;
+              transform: scale(0.9)
+            &.active
+              opacity 1
+              transform: scale(1);
+          .size-slider
+            position: absolute;
+            bottom: -6px;
+            width: 60px;
+            height: 3px;
+            transition transform 0.3s anim_func
+
+.options-checkbox-container
+  margin-left 10px
+  display inline-block
+  vertical-align top
+  cursor pointer
+  .options-checkbox
+    display: none;
+    // add default box-sizing for this scope
+    &,
+    &:after,
+    &:before,
+    & *,
+    & *:after,
+    & *:before,
+    & + .options-checkbox-btn
+      box-sizing: border-box;
+      &::selection
+        background: none;
+    + .options-checkbox-btn
+      outline: 0;
+      display: inline-block;
+      vertical-align bottom
+      width: 40px;
+      height: 20px;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      &:after,
+      &:before
+        position: relative;
+        display: block;
+        content: "";
+        width: 50%;
+        height: 100%;
+      &:after
+        left: 0;
+      &:before
+        display: none;
+    &:checked + .options-checkbox-btn:after
+      left: 50%;
+  .options-checkbox-flat
+    + .options-checkbox-btn
+      padding: 2px;
+      transition: all .2s anim_func;
+      background: cWhite;
+      border: 2px solid cLightGrey;
+      border-radius: 2em;
+      &:after
+        transition: all .2s anim_func;
+        background: cLightGrey;
+        content: "";
+        border-radius: 10px;
+    &:checked + .options-checkbox-btn
+      border: 2px solid cGreen;
+      &:after
+        left: 50%;
+        background: cGreen;
+  .options-checkbox-btn-label
+    font-weight 700
+    color cLightGrey
+    padding-left 4px
+    transition color 0.2s anim_func
+    &.active
+      color cGreen
+
+@media screen and (max-width: 869px)
+  .bttn-logo-box
+    .bttn-jelly
+      margin-top 55px
+
+  .hidden-xs
+    display none !important
+
+  .fancy-box-wrapper
+    padding 1px 15px
+
+  .options-chooser
+    left: 0;
+    height: 120px !important;
+    .options-chooser-container
+      height 120px !important
+      .half
+        width: 100% !important;
+        height: 50% !important;
+        text-align: center !important;
+      .options-chooser-container-small
+        display none
+    &.fixed
+      left: 0;
+      height: 120px;
+      .options-chooser-container
+        height 120px
+        .half
+          width: 100%;
+          height: 50%;
+          text-align: center !important;
+
+  .box-wrapper
+    &.padding-top
+      padding-top 105px !important
+
+  .bttn-logo-box h4
+    padding 0 20px
+
+  .bttn-logo-box .bttn-jelly.active
+    transform: translateY(0) scale(0.9);
+
+  .box-animate
+    display: block !important;
+    width: calc(100% - 40px) !important;
+    .box
+      width: 100% !important;
+      .code-copy
+        display none
+
+
+// Producthunt stuffs
+@media screen and (min-width: 870px)
+  .bttn-logo-box
+    .box
+      animation slide-to-left 0.3s 1.2s anim_func forwards
+    .product-hunt-featured
+      position: absolute;
+      right: 20%;
+      height: 100%;
+      top: 0;
+      width: 25%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h3
+        color #da5630
+        animation-delay 1.8s
+        margin-top: -10px;
+        animation-duration 0.8s
+      img
+        width 100px
+        margin-left 5px
+        animation-delay 1.8s
+        animation-duration 0.8s
+      span
+        transition transform 0.2s 0.2s anim_func
+      span
+        &:hover
+          transform scale(1.1)
+          transition transform 0.2s anim_func
+      &:before
+        content ''
+        position: absolute;
+        background: transparent;
+        width: 0;
+        height: 110%;
+        left: 50%;
+        top: -5%;
+        transform: skewX(-10deg);
+        z-index: -1;
+        box-shadow: inset 20px 0 50px #ecebd6, inset -10px 0 20px #ecebd6;
+        animation expand-from-left 0.3s 1.5s anim_func forwards
+
+  @keyframes slide-to-left {
+    from {
+      transform translateX(0)
+    }
+    to {
+      transform translateX(-150px)
+    }
+  }
+
+  @keyframes expand-from-left {
+    from {
+      width: 0
+      left: 50%;
+    }
+    to {
+      width: 100%;
+      left: 0
+    }
+  }

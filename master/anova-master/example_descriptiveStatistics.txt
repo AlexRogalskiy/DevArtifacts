@@ -1,0 +1,80 @@
+//Summary Statistics Analysis Example
+//created by John M. Quick
+//http://www.johnmquick.com
+//October 31, 2009
+
+#read data into variable
+> datavar <- read.csv("dataset_ageIncome.csv")
+
+#attach data variable
+> attach(datavar)
+
+> #calculate the mean of a variable with mean(VAR)
+> #what is the mean Age in the sample?
+> mean(Age)
+[1] 32.3
+
+> #calculate the mean of all variables in a dataset with mean(DATAVAR)
+> #what is the mean of each variable in the dataset?
+> mean(datavar)
+    Age  Income 
+   32.3 34000.0 
+
+> #calculate the standard deviation of a variable with sd(VAR)
+> #what is the standard deviation of Age in the sample?
+> sd(Age)
+[1] 19.45602
+
+> #calculate the standard deviation of all variables in a dataset with sd(DATAVAR)
+> #what is the standard deviation of each variable in the dataset?
+> sd(datavar)
+        Age      Income 
+   19.45602 32306.10175 
+
+> #calculate the min of a variable with min(VAR)
+> #what is the minimum age found in the sample?
+> min(Age)
+[1] 5
+
+> #calculate the max of a variable with max(VAR)
+> #what is the maximum age found in the sample?
+> max(Age)
+[1] 70
+
+> #calculate the range of a variable with range(VAR)
+> #what range of age values is found in the sample?
+> range(Age)
+[1]  5 70
+
+> #calculate desired percentile values using quantile(VAR, c(PROB1, PROB2,...))
+> #what are the 25th and 75th percentiles for age in the sample?
+> quantile(Age, c(0.25, 0.75))
+  25%   75% 
+17.75 44.25 
+
+> #calculate the default percentile values using quantile(VAR)
+> #what are the 0, 25, 50, 75, and 100 percentiles for age in the sample?
+> quantile(Age)
+   0%   25%   50%   75%  100% 
+ 5.00 17.75 30.00 44.25 70.00 
+
+> #calculate the percentile rank for a given value using the custom formula: length(VAR[VAR <= VAL]) / length(VAR) * 100
+> #in the sample, an age of 45 is at what percentile rank?
+> length(Age[Age <= 45]) / length(Age) * 100
+[1] 75
+
+> #summarize a variable with summary(VAR)
+> summary(Age)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   5.00   17.75   30.00   32.30   44.25   70.00 
+> #summarize a dataset with summary(DATAVAR)
+> summary(dataset)
+      Age            Income      
+ Min.   : 5.00   Min.   :     0  
+ 1st Qu.:17.75   1st Qu.:     0  
+ Median :30.00   Median : 27500  
+ Mean   :32.30   Mean   : 34000  
+ 3rd Qu.:44.25   3rd Qu.: 56250  
+ Max.   :70.00   Max.   :100000
+
+> #there are many uses for the summary(X) function - try it out as you encounter new objects in R
