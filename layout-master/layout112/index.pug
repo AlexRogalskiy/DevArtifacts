@@ -1,0 +1,16 @@
+- var lipsum = ['Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'Autem possimus perspiciatis, eaque quos repudiandae modi labore sed repellat dolorum magnam praesentium expedita esse tempore saepe nulla.','Quam molestiae ipsa sapiente mollitia, nobis.', 'Facere illo pariatur necessitatibus fugit quo impedit, quae, corporis placeat recusandae dolor ipsa nobis!', 'Doloremque quisquam molestias, est laudantium vero aliquid dolorum inventore atque sint perferendis qui dolor voluptas consequuntur non.' , 'Veritatis eos similique eveniet tempora.', 'Voluptates impedit dolore eum nisi quas, velit, iste aut labore recusandae temporibus provident distinctio molestias culpa iusto!', 'Ipsam incidunt assumenda hic veritatis odio mollitia, tempora, aut quo nam quisquam officia consequatur aspernatur.'];
+
+h1 Hover around the boxes below
+
+- var rows = 4;
+.container
+  while rows--
+    .row
+      - var cols = Math.floor(Math.random() * 6 + 1);
+      while cols--
+        - var photo = Math.floor(Math.random() * 300);
+        .col
+          .photo-container(style="background-image:url(https://source.unsplash.com/600x250/?sig=" + photo + ");")
+          h2 Image #{photo} 
+          .slide
+            p #{lipsum[cols]}

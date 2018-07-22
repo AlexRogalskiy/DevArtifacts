@@ -1,0 +1,147 @@
+/*
+  WCAG color contrast formula
+  https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/G18#G18-procedure
+
+  This pen uses the non-standard Sass pow() function
+  https://css-tricks.com/snippets/sass/power-function/
+  Using it outside of CodePen requires you provide your own pow() function with support for decimals
+
+  To generate random colors, we're also using a two-variable random() function includded with compass.
+*/
+.ratio::after {
+  content: "7";
+}
+
+.balance::after {
+  content: "40";
+}
+
+.color-block .color1 {
+  background: #ad1013;
+  color: #fff;
+}
+.color-block .color1::after {
+  content: "#ad1013";
+}
+
+.color-block .color2 {
+  background: #e2169f;
+  color: #fff;
+}
+.color-block .color2::after {
+  content: "#e2169f";
+}
+
+.fix-color .color:nth-child(2) {
+  background: #000;
+  color: #fff;
+}
+.fix-color .color:nth-child(2)::after {
+  content: "#000";
+}
+.fix-color .color:nth-child(3) {
+  background: #fff8ff;
+  color: #000;
+}
+.fix-color .color:nth-child(3)::after {
+  content: "#fff8ff";
+}
+
+.fix-contrast .color:nth-child(2) {
+  background: #680a0b;
+  color: #fff;
+}
+.fix-contrast .color:nth-child(2)::after {
+  content: "#680a0b";
+}
+.fix-contrast .color:nth-child(3) {
+  background: #fba4e0;
+  color: #fff;
+}
+.fix-contrast .color:nth-child(3)::after {
+  content: "#fba4e0";
+}
+
+.best-contrast .color:nth-child(2) {
+  background: #f4d8b4;
+  color: #000;
+}
+.best-contrast .color:nth-child(2)::after {
+  content: "#f4d8b4";
+}
+.best-contrast .color:nth-child(3) {
+  background: #ffffd5;
+  color: #000;
+}
+.best-contrast .color:nth-child(3)::after {
+  content: "#ffffd5";
+}
+
+.scale-luminance .color:nth-child(2) {
+  background: #ef1b1f;
+  color: #fff;
+}
+.scale-luminance .color:nth-child(2)::after {
+  content: "#ef1b1f";
+}
+
+.check-contrast .result::after {
+  content: "false";
+}
+
+.luminance .result::after {
+  content: "0.09302, 0.19246";
+}
+
+body {
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+section {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.color-block {
+  display: inline-block;
+  padding: 0 1rem;
+  vertical-align: top;
+}
+
+.color,
+.result {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  margin: 0.5rem;
+  position: relative;
+  height: 100px;
+  width: 100px;
+}
+.color::after,
+.result::after {
+  display: block;
+  font-weight: bolder;
+  width: 100%;
+  line-height: 1;
+}
+
+.color {
+  box-shadow: inset 0 0 0 8px #fff;
+}
+
+.result {
+  padding: 0.5rem;
+}
+
+br {
+  clear: both;
+}

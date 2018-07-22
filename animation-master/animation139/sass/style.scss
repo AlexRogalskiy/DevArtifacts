@@ -1,0 +1,113 @@
+@import "compass";
+
+$num: 1000; // Number of particles (<2000) Gif is 1900
+$sat: 90; // Color saturation
+$light: 60; // Color lightness
+$dur: 5s; // Animation duration
+
+/* Shape at start of animation */
+// Play with these options...
+$startOptions: (
+  size: 3px,
+  width: 30,
+  height: 30,
+  
+  loops: 10,
+  twists: 10,
+
+  minHue: 180,
+  maxHue: 360
+);
+
+/* Shape at end of animation */
+// ... and these options
+$endOptions: (
+  size: 3px,
+  width: 0.75,
+  height: 0.75,
+  
+  loops: 12,
+  twists: 12,
+  
+  minHue: 0,
+  maxHue: 360
+);
+
+/* Shortcut functions to call options from maps above */
+@function s($option){
+  @return map-get($startOptions,$option);
+}
+
+@function e($option){
+  @return map-get($endOptions,$option);
+}
+
+/* Set color based on min/max hue and current shadow */
+@function hueRange($shadow, $hue) {
+  $minHue: call($shadow, minHue);
+  $maxHue: call($shadow, maxHue);
+	@return $hue / 360 * ($maxHue - $minHue) + $minHue;
+}
+
+/* Lists to hold shadows */
+$start-shadow: ();
+$end-shadow: ();
+
+// Build box-shadow lists
+@for $n from 0 through $num {
+  $start-shadow: append($start-shadow, 
+    sin($n  // position x
+      * s(loops)) 
+      * s(size) 
+      * s(width)
+    
+    cos($n  // position y
+      * s(twists)) 
+      * s(size) 
+      * s(height)
+    
+    0 // blur
+    
+    hsl(hueRange(s,$n),$sat,$light) // color 
+    
+    , comma); 
+
+  // End shadow, same structure as above but with cos/sine reversed
+  $end-shadow: append($end-shadow, cos($n * e(loops)) * e(size) * $n * e(width)
+    sin($n * e(twists)) * e(size) * $n * e(height) 0 hsl(hueRange(e,$n),$sat,$light), comma);
+}
+
+// Body styling
+body {
+  background: hsl(230,70,10);
+}
+
+.one {
+  // Div styling
+  background: transparent;
+  width: s(size);
+  height: s(size);
+  border-radius: 50%;
+  
+  // Center div
+  position: absolute;
+    top: 50%;
+    left: 50%;
+  margin-top: s(size);
+  margin-left: s(size);
+  
+  // Magic
+  animation: anim $dur infinite alternate ease-in-out;
+  box-shadow: $start-shadow;
+}
+
+@keyframes anim {
+  5% {
+    box-shadow: $start-shadow;
+  }
+  95%,100% {
+    box-shadow: $end-shadow;
+    width: e(size);
+    height: e(size);
+  }
+}
