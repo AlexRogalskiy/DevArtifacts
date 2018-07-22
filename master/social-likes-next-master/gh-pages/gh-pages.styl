@@ -1,0 +1,134 @@
+max_width = 1100px;
+sticky_footer_height = 36px;
+base_color = #333;
+link_style = "gradient";
+link-color = #cf6c0a;
+visited-color = link-color;
+hover-color = #ff6900;
+
+@import '../node_modules/tamia/lib/styles/core';
+@import "../node_modules/tamia/lib/styles/bones";
+@import "../node_modules/tamia/lib/styles/classes/links";
+@import "../node_modules/tamia/lib/styles/classes/footer";
+
+.skin_birman {
+	@import '../skins/social-likes_birman';
+}
+.skin_flat {
+	@import '../skins/social-likes_flat';
+}
+.skin_light {
+	@import '../skins/social-likes_light';
+}
+
+body {
+	max-width: max_width;
+	margin: 0 auto;
+	padding: spacer;
+	text-align: center;
+	background: #fff;
+	color: #111;
+	font-size: 18px;
+	line-height: 1.4;
+	font-family: "Helvetica Neue", Tahoma, sans-serif;
+}
+
+.alpha {
+	margin: 0 0 16px;
+	line-height: 1;
+	font-size: 8vw;
+	font-weight: 200;
+	letter-spacing: -.2px;
+
+	+below(500px) {
+		font-size: 40px;
+	}
+	+above(880px) {
+		font-size: 68px;
+	}
+}
+
+.description {
+	margin-bottom: 6vh;
+}
+
+.examples {
+	margin-bottom: 6vh;
+
+	&_vertical {
+		display: flex;
+		justify-content: space-around;
+	}
+
+	+below(800px) {
+		&_vertical {
+			display: block;
+		}
+		.social-likes_vertical .social-likes__widget {
+			margin-side: auto;
+		}
+	}
+}
+
+.skin {
+	margin-bottom: 3vh;
+	margin-side: auto;
+
+	.social-likes {
+		justify-content: center;
+	}
+}
+
+.examples_vertical .skin {
+	display: flex;
+	justify-content: center;
+	width: 310px;
+}
+
+.download {
+	margin-bottom: 10vh;
+}
+
+.the-link {
+	font-size: 48px;
+	font-weight: 200;
+}
+
+.forkme {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 149px;
+	height: 149px;
+	z-index: 999;
+
+	&-i {
+		+link-all-states() {
+			color: #fff;
+		}
+
+		position: relative;
+		right: -37px;
+		top: -22px;
+		display: block;
+		width: 190px;
+		padding: 5px 15px;
+		text-align: center;
+		font-size: 14px;
+		background: #f9970d;
+		text-decoration: none;
+		text-shadow: 0 -1px 0 black(.15);
+		transform-origin: 0 0;
+		transform: rotate(45deg);
+	}
+
+	+below(880px) {
+		display: none;
+	}
+}
+
+.footer {
+	padding: spacer;
+	text-align: center;
+	font-size: 12px;
+}

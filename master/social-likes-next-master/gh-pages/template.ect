@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="<%= @lang %>">
+<head>
+	<meta charset="utf-8">
+	<title><%= @pageTitle %></title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="<%= @content.trim() %>">
+	<meta property="og:type" content="product">
+	<meta property="og:url" content="http://social-likes-next.js.org/">
+	<meta property="og:title" content="<%= @title %>">
+	<meta property="og:description" content="<%= @content.trim() %>">
+	<meta property="og:image" content="<%= @image %>">
+	<meta property="og:image:width" content="729">
+	<meta property="og:image:height" content="379">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@sapegin">
+	<meta name="twitter:creator" content="@sapegin">
+	<link rel="stylesheet" href="<%- @fingerprint 'gh-pages.css' %>">
+</head>
+<body>
+	<div class="forkme">
+		<a href="https://github.com/sapegin/social-likes-next" class="forkme-i">Fork me on GitHub</a>
+	</div>
+
+	<h1 class="alpha"><%= @title %></h1>
+	<div class="description"><%- @content %></div>
+
+	<div class="examples">
+		<div class="skin skin_birman">
+			<div class="social-likes">
+				<% include 'buttons.ect' %>
+			</div>
+		</div>
+		<div class="skin skin_flat">
+			<div class="social-likes">
+				<% include 'buttons.ect' %>
+			</div>
+		</div>
+		<div class="skin skin_light">
+			<div class="social-likes">
+				<% include 'buttons.ect' %>
+			</div>
+		</div>
+	</div>
+
+	<div class="examples examples_vertical">
+		<div class="skin skin_birman">
+			<div class="social-likes social-likes_vertical">
+				<% include 'buttons.ect' %>
+			</div>
+		</div>
+		<div class="skin skin_flat">
+			<div class="social-likes social-likes_vertical">
+				<% include 'buttons.ect' %>
+			</div>
+		</div>
+		<div class="skin skin_light">
+			<div class="social-likes social-likes_vertical">
+				<% include 'buttons.ect' %>
+			</div>
+		</div>
+	</div>
+
+	<div class="examples examples_vertical">
+		<div class="skin skin_birman">
+			<div class="social-likes">
+				<% include 'buttons_notext.ect' %>
+			</div>
+		</div>
+		<div class="skin skin_flat">
+			<div class="social-likes">
+				<% include 'buttons_notext.ect' %>
+			</div>
+		</div>
+		<div class="skin skin_light">
+			<div class="social-likes">
+				<% include 'buttons_notext.ect' %>
+			</div>
+		</div>
+	</div>
+
+	<div class="download">
+		<a href="https://github.com/sapegin/social-likes-next/blob/master/Readme.md" class="link the-link">Get the Buttons</a>
+	</div>
+
+	<div class="footer">
+		© <%= (new Date).getFullYear() %>
+		<a href="https://sapegin.me" class="link">Artem Sapegin</a> and contributors.
+		Flat skin: <a href="http://genn.org/" class="link">Genn Osypenko</a>, Birman skin and icons: <a href="http://ilyabirman.net/" class="link">Ilya Birman</a>
+	</div>
+
+	<script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter6395488 = new Ya.Metrika({ id:6395488, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
+
+	<script src="<%- @fingerprint 'social-likes.min.js' %>"></script>
+</body>
+</html>

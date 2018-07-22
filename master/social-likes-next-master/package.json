@@ -1,0 +1,90 @@
+{
+  "name": "social-likes-next",
+  "version": "1.1.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "dist",
+    "contrib"
+  ],
+  "homepage": "https://github.com/sapegin/social-likes-next",
+  "author": {
+    "name": "Artem Sapegin",
+    "url": "http://sapegin.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sapegin/social-likes-next.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sapegin/social-likes-next/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "dependencies": {
+    "deepmerge": "~0.2.10"
+  },
+  "devDependencies": {
+    "autoprefixer": "~6.3.3",
+    "ava": "~0.13.0",
+    "babel-cli": "~6.6.5",
+    "babel-core": "~6.7.2",
+    "babel-eslint": "~5.0.0",
+    "babel-loader": "~6.2.4",
+    "babel-preset-es2015": "~6.6.0",
+    "babel-register": "~6.7.2",
+    "cpy-cli": "~1.0.0",
+    "cssnano": "~3.5.2",
+    "domino": "~1.0.23",
+    "eslint": "~1.10.3",
+    "eslint-config-tamia": "~1.2.0",
+    "fledermaus": "~4.1.2",
+    "html-webpack-plugin": "~2.10.0",
+    "mkdirp": "~0.5.1",
+    "npm-run-all": "~1.5.3",
+    "postcss-cli": "~2.5.1",
+    "postcss-initial": "~1.5.0",
+    "rimraf": "~2.5.2",
+    "stylus": "~0.54.2",
+    "tamia": "~2.0.3",
+    "webpack": "~1.12.14",
+    "webpack-dev-server": "~1.14.1",
+    "webpack-merge": "~0.8.3"
+  },
+  "scripts": {
+    "test": "npm-run-all -p lint test:ava",
+    "test:ava": "ava",
+    "test:watch": "ava --watch",
+    "start": "webpack-dev-server --port 8506 --host 0.0.0.0 --config build/webpack.config.development.js --content-base lib",
+    "prepublish": "npm-run-all test clean build",
+    "postpublish": "npm run gh-pages",
+    "lint": "eslint src test",
+    "build": "npm-run-all build:* build:*:* skins skins:min",
+    "build:lib": "babel src --out-dir lib",
+    "build:umd": "webpack --config build/webpack.config.umd.js",
+    "build:umd:min": "webpack --config build/webpack.config.umd-min.js",
+    "clean": "rimraf lib dist",
+    "skins": "mkdirp lib && stylus skins --out lib && postcss --use autoprefixer --use postcss-initial -d lib lib/*.css",
+    "skins:min": "mkdirp dist && stylus skins --out dist && postcss --use autoprefixer --use postcss-initial --use cssnano --replace dist/*.css",
+    "skins:watch": "stylus skins --out lib --watch",
+    "gh-pages": "npm-run-all gh-pages:*",
+    "gh-pages:copy": "cpy 'dist/*.min.js' docs",
+    "gh-pages:styles": "stylus gh-pages --out docs && postcss --use autoprefixer --use postcss-initial --use cssnano --use $(pwd)/gh-pages/fixstyles.js --replace docs/*.css",
+    "gh-pages:build": "babel-node gh-pages"
+  },
+  "ava": {
+    "files": [
+      "test/*.spec.js"
+    ],
+    "source": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "babel-register",
+      "./test/avasetup"
+    ],
+    "babel": "inherit"
+  }
+}

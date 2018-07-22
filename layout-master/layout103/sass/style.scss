@@ -1,0 +1,273 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300);
+
+$bg-color: #eeeeee;
+$max-width: 650px;
+
+@function random-color($min: 0, $max: 255, $alpha: 1, $red: null, $green: null, $blue: null) {
+    @if $min < 0 {
+        $min: -1;
+    } @else {
+        $min: $min - 1;
+    }
+    @if $max > 255 {
+        $max: 256;
+    } @else {
+        $max: $max + 1;
+    }
+
+    $range: $max - $min;
+    @if not $red { $red: random($range) + $min; }
+    @if not $green { $green: random($range) + $min; }
+    @if not $blue { $blue: random($range) + $min; }
+
+    @return rgba($red, $green, $blue, $alpha);
+}
+
+
+// ------------------------------------------------------
+
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Open Sans', Helvetica, arial, sans-serif;
+    background-color: $bg-color;
+}
+
+h1,
+h4 {
+    text-align: center;
+    font-family: 'Raleway', 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    overflow: hidden;
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.col {
+    padding: 1rem;
+    
+    @media (min-width: $max-width) {
+        width: 50%;
+        float: left;
+
+        &:nth-of-type(2n+1) {
+            clear: left;
+        }        
+    }
+}
+
+.card {
+    display: block;
+    text-align: center;
+    color: $bg-color;
+    
+    .content {
+        padding: 4rem 1rem;
+    }
+    
+    .title {
+        font-size: 1.25rem;
+        background-color: gray;
+        border-radius: 3px;
+        padding: 0.5rem;
+    }
+}
+    
+@for $i from 1 through 10 {
+    .card-#{$i} {
+        $card-color: random-color($min: 100, $max:200);
+        $card-color-light: lighten($card-color, 15%);
+        $card-color-dark: darken($card-color, 15%);
+        
+        .content {
+            background-color: $card-color-light !important;            
+            border-radius: 3px;
+        }
+
+        &:before,
+        &:after {
+            border-radius: 3px;
+        }
+        
+        &:before {
+            background-color: $card-color !important;
+        }
+
+        .title,
+        &:after {
+            background-color: $card-color-dark !important;
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+
+
+$animation-timing: 0.3s;
+$animation-ease: ease-in-out;
+$animation-ease-bounce: cubic-bezier(0.175,  0.885, 0.320, 1.275);
+[class*='stacked--'] {
+    position: relative;
+    transition: transform $animation-timing $animation-ease;
+    will-change: transform;
+    
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: currentColor;
+        transition: transform $animation-timing $animation-ease;
+        will-change: transform;
+    }
+    
+    &:before {
+        z-index: -1;
+    }
+    
+    &:after {
+        z-index: -2;
+    }
+}
+
+.stacked--left {
+    &:before,
+    &:after {
+        transform-origin: right center;
+    }
+    
+    &:hover {
+        transform: translate(-5px, 0);
+        
+        &:before { transform: translate(5px, 0) scale(0.95); }
+        &:after { transform: translate(10px, 0) scale(0.90); }
+    }
+}
+
+.stacked--right {
+    &:before,
+    &:after {
+        transform-origin: left center;
+    }
+    
+    &:hover {
+        transform: translate(5px, 0);
+        
+        &:before { transform: translate(-5px, 0) scale(0.95); }
+        &:after { transform: translate(-10px, 0) scale(0.90); }
+    }
+}
+
+.stacked--up {
+    &:before,
+    &:after {
+        transform-origin: center bottom;
+    }
+    
+    &:hover {
+        transform: translate(0, -5px);
+        
+        &:before { transform: translate(0, 5px) scale(0.95); }
+        &:after { transform: translate(0, 10px) scale(0.90); }
+    }
+}
+
+.stacked--down {
+    &:before,
+    &:after {
+        transform-origin: center top;
+    }
+    
+    &:hover {
+        transform: translate(0, 5px);
+        
+        &:before { transform: translate(0, -5px) scale(0.95); }
+        &:after { transform: translate(0, -10px) scale(0.90); }
+    }
+}
+
+.stacked--up-left {
+    &:hover {
+        transform: translate(-5px, -5px);
+        
+        &:before { transform: translate(5px, 5px); }
+        &:after { transform: translate(10px, 10px); }
+    }
+}
+
+.stacked--up-right {
+    &:hover {
+        transform: translate(5px, -5px);
+        
+        &:before { transform: translate(-5px, 5px); }
+        &:after { transform: translate(-10px, 10px); }
+    }
+}
+
+.stacked--down-left {
+    &:hover {
+        transform: translate(-5px, 5px);
+        
+        &:before { transform: translate(5px, -5px); }
+        &:after { transform: translate(10px, -10px); }
+    }
+}
+
+.stacked--down-right {
+    &:hover {
+        transform: translate(5px, 5px);
+        
+        &:before { transform: translate(-5px, -5px); }
+        &:after { transform: translate(-10px, -10px); }
+    }
+}
+
+.stacked--fan-left {
+    transform-origin: center bottom;
+    
+    &:before,
+    &:after {
+        transform-origin: center bottom;
+    }
+    
+    &:hover {
+        transform: translate(-2.5px, 0) rotate(-2.5deg);
+        
+        &:before { transform: translate(2.5px, 0) rotate(2.5deg); }
+        &:after { transform: translate(5px, 0) rotate(5deg); }
+    }
+}
+
+.stacked--fan-right {
+    transform-origin: center bottom;
+    
+    &:before,
+    &:after {
+        transform-origin: 50% 100%;
+    }
+    
+    &:hover {
+        transform: translate(2.5px, 0) rotate(2.5deg);
+        
+        &:before { transform: translate(-2.5px, 0) rotate(-2.5deg); }
+        &:after { transform: translate(-5px, 0) rotate(-5deg); }
+    }
+}

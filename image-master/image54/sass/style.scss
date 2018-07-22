@@ -1,0 +1,274 @@
+@function random-color($min: 0, $max: 255, $alpha: 1, $red: null, $green: null, $blue: null) {
+    @if $min < 0 {
+        $min: -1;
+    } @else {
+        $min: $min - 1;
+    }
+    @if $max > 255 {
+        $max: 256;
+    } @else {
+        $max: $max + 1;
+    }
+
+    $range: $max - $min;
+    @if not $red { $red: random($range) + $min; }
+    @if not $green { $green: random($range) + $min; }
+    @if not $blue { $blue: random($range) + $min; }
+
+    @return rgba($red, $green, $blue, $alpha);
+}
+
+@function rand-range($min: 0, $max: 100) {
+    $range: $max - $min;
+
+    @return random($range) + $min;
+}
+
+// Colors
+$primary: random-color($min: 100, $max:200);
+$primary-light: lighten($primary, 15%);
+$primary-dark: darken($primary, 15%);
+$black: #333333;
+$white: #eeeeee;
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300");
+$open-sans: 'Open Sans', Helvetica, arial, sans-serif;
+$raleway: 'Raleway', 'Open Sans', sans-serif;
+
+// Misc
+$max-width: 800px;
+
+
+// ------------------------------------------------------
+
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: $open-sans;
+    color: $black;
+    background-color: $white;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    font-family: $raleway;
+    text-align: center;
+}
+
+a {
+    color: $black;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+.header {
+    position: relative;
+    overflow: visible;
+    
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 50px;
+        height: 2px;
+        background-color: $primary;
+        transform: translateX(-50%);
+    }
+}
+
+.pen__heading {}
+
+.pen__subheading {
+    margin-bottom: 0;
+    
+    a {
+        color: $primary;
+        
+        &:hover,
+        &:focus {
+            color: $primary-light;
+        }
+    }
+}
+
+.container {
+    // overflow: hidden;
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.col {
+    padding: 1rem;
+    
+    @media (min-width: $max-width) {
+        width: 50%;
+        float: left;
+
+        &:nth-of-type(2n+1) {
+            clear: left;
+        }        
+    }
+    
+    &.col--full {
+        width: 100%;
+    }
+}
+
+.main {
+    overflow: hidden;
+}
+
+
+// ------------------------------------------------------
+
+
+$css-animate: false;
+
+// Base styles
+.block--split-image {
+    position: relative;
+    max-width: 400px;        
+    text-align: center;
+    perspective: 50px;
+
+    .block__content {
+        position: relative;
+        display: inline-block;
+        z-index: 1;
+        padding: 3rem 1.5rem;
+        transition: 0.25s ease-in-out;
+        
+        h2 {
+            margin: 0;
+        }
+        
+        &:hover {
+            opacity: 0;
+            transform: translateY(-15px);
+            
+            + .block__image {
+                transition-duration: 0.5s;
+                transform: rotate3d(0, 0, 0, 0deg) !important;
+                
+                @if $css-animate {
+                    animation: none;
+                }
+                
+                .part-1 { transform: translate(-50%, -50%); }
+                .part-2 { transform: translate(50%, -50%); }
+                .part-3 { transform: translate(-50%, 50%); }
+                .part-4 { transform: translate(50%, 50%); }
+            }
+        }
+    }
+    
+    .block__image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        perspective: 50px;
+        transition: 5s ease-in-out;
+
+        .part {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-repeat: no-repeat;
+            transition: 0.25s cubic-bezier(0.175,  0.885, 0.320, 1.275);
+        }
+        
+        .part-1 { background-position: top left; }
+        .part-2 { background-position: top right; }
+        .part-3 { background-position: bottom left; }
+        .part-4 { background-position: bottom right; }
+    }
+}
+
+// Per block styles
+$images: (
+    '1052',
+    '1044',
+    '961',
+    '393'
+);
+
+
+// Loop through the different blocks
+$img-width: 500;
+$img-height: 300;
+@each $image in $images {
+    $block-color: random-color(100, 200);
+    
+    .block--split-image-#{index($images, $image)} {
+        margin: $img-height/2*1.1px auto;
+
+        .block__content {
+            background-color: rgba($block-color, 0.9);
+
+            &:hover {            
+                + .block__image {                    
+                    .part { transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1); }
+                    .part-1 { transition-delay: 0.05s * rand-range(1,5) !important; }
+                    .part-2 { transition-delay: 0.05s * rand-range(1,5) !important; }
+                    .part-3 { transition-delay: 0.05s * rand-range(1,5) !important; }
+                    .part-4 { transition-delay: 0.05s * rand-range(1,5) !important; }
+                }
+            }
+        }
+
+        .block__image {
+            @if $css-animate {
+                animation: orbit-#{index($images, $image)} (rand-range(10,15) * 1s) ease-in-out infinite;
+            }
+            
+            .part {
+                margin-left: -(ceil($img-width/4*1px));
+                margin-top: -(ceil($img-height/4*1px));
+                width: ceil($img-width/2*1px);
+                height: ceil($img-height/2*1px);
+                background-image: url(https://unsplash.it/#{$img-width}/#{$img-height}?image=#{$image});
+            }
+
+            .part-1 {
+                transform: translate(-(rand-range(55,80)) * 1%, -(rand-range(55,80)) * 1%)
+                           rotate3d(1, -1, -1, 3deg);
+            }
+            .part-2 {
+                transform: translate((rand-range(55,80)) * 1%, -(rand-range(55,80)) * 1%)
+                           rotate3d(1, 1, -1, 3deg);
+            }
+            .part-3 {
+                transform: translate(-(rand-range(55,80)) * 1%, (rand-range(55,80)) * 1%)
+                           rotate3d(-1, -1, -1, 3deg);
+            }
+            .part-4 {
+                transform: translate((rand-range(55,80)) * 1%, (rand-range(55,80)) * 1%)
+                           rotate3d(-1, 1, -1, 3deg);
+            }
+        }
+    }
+    
+    @if $css-animate {
+        @keyframes orbit-#{index($images, $image)} {
+            0%, 100% { transform: rotate3d(0, 0, 0, 0deg); }
+            25% { transform: rotate3d(rand-range(-2,2) + (rand-range(1,9) * 0.1), rand-range(-2,2) + (rand-range(1,9) * 0.1), 0, 1deg); }
+            50% { transform: rotate3d(rand-range(-2,2) + (rand-range(1,9) * 0.1), rand-range(-2,2) + (rand-range(1,9) * 0.1), 0, 1deg); }
+            75% { transform: rotate3d(rand-range(-2,2) + (rand-range(1,9) * 0.1), rand-range(-2,2) + (rand-range(1,9) * 0.1), 0, 1deg); }
+        }        
+    }
+}

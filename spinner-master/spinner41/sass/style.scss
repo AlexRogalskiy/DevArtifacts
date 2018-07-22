@@ -1,0 +1,412 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300);
+@import 'addon';
+
+@function random-color($min: 0, $max: 255, $alpha: 1, $red: null, $green: null, $blue: null) {
+    @if $min < 0 {
+        $min: -1;
+    } @else {
+        $min: $min - 1;
+    }
+    @if $max > 255 {
+        $max: 256;
+    } @else {
+        $max: $max + 1;
+    }
+
+    $range: $max - $min;
+    @if not $red { $red: random($range) + $min; }
+    @if not $green { $green: random($range) + $min; }
+    @if not $blue { $blue: random($range) + $min; }
+
+    @return rgba($red, $green, $blue, $alpha);
+}
+
+
+// ------------------------------------------------------
+
+
+$primary: random-color($min: 100, $max: 200);
+$primary-light: lighten($primary, 25%);
+$primary-dark: darken($primary, 25%);
+$black: #333333;
+$bg-color: #eeeeee;
+$max-width: 800px;
+
+html {
+  font-family: 'Open Sans', Helvetica, arial, sans-serif;
+  text-align: center;
+  background-color: $bg-color;
+  color: $black;
+
+  *,
+  *:before,
+  *:after {
+    @include box-sizing(border-box);
+  }
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    text-align: center;
+    font-family: 'Raleway', 'Open Sans', sans-serif;
+}
+
+a {
+  color: $black;
+  text-decoration: none;
+}
+
+
+// ------------------------------------------------------
+
+
+/* Universal styling */
+[class^="shaft-load"] {
+  margin: 50px auto;
+  @include size(60px, 30px);
+  > div {
+    float: left;
+    background: $primary-dark;
+    height: 100%;
+    width: 5px;
+    margin-right: 1px;
+    display: inline-block;
+  }
+  .shaft1 { @include animation-delay(0.05s); }
+  .shaft2 { @include animation-delay(0.1s); }
+  .shaft3 { @include animation-delay(0.15s); }
+  .shaft4 { @include animation-delay(0.2s); }
+  .shaft5 { @include animation-delay(0.25s); }
+  .shaft6 { @include animation-delay(0.3s); }
+  .shaft7 { @include animation-delay(0.35s); }
+  .shaft8 { @include animation-delay(0.4s); }
+  .shaft9 { @include animation-delay(0.45s); }
+  .shaft10 { @include animation-delay(0.5s); }
+}
+
+
+/* Shaft 1 */
+$shaft1: random-color($min: 100, $max: 200);
+$shaft1-dark: darken($shaft1, 25%);
+.shaft-load {
+  > div {
+    background-color: $shaft1-dark;
+    @include animation(loading 1.5s infinite ease-in-out);
+    @include transform(scaleY(0.05) translateX(-10px));
+  }
+}
+
+@include keyframes(loading) {
+  50% { 
+    @include transform(scaleY(1.2) translateX(10px));
+    background-color: $shaft1;
+  }
+}
+
+
+/* Shaft 2 */
+$shaft2: random-color($min: 100, $max: 200);
+$shaft2-dark: darken($shaft2, 25%);
+.shaft-load2 {
+  > div {
+    background-color: $shaft2-dark;
+    @include animation(loading2 1.5s infinite ease-in-out);
+    @include transform(scaleY(0.05) translateX(-5px));
+  }
+}
+
+@include keyframes(loading2) {
+  10% {
+    background: $shaft2;
+  }
+  15% { 
+    @include transform(scaleY(1.2) translateX(10px));
+    background: $shaft2;
+  }
+  90%, 100% { 
+    @include transform(scaleY(0.05) translateX(-5px));
+  }
+}
+
+
+/* Shaft 3 */
+$shaft3: random-color($min: 100, $max: 200);
+$shaft3-dark: darken($shaft3, 25%);
+.shaft-load3 {
+  position: relative;
+  @include square(100px);
+  > div {
+    background: transparent;
+    border: 4px solid transparent;
+    border-color: transparent transparent transparent $shaft3-dark;
+    @include border-radius(100%);
+    @include centerer;
+    @include transform( translate(-50%, -50%) rotate(0));
+    @include animation(loading3 2s infinite ease-in-out);
+  }
+  .shaft1 { @include animation-delay(0.1s); @include square(20px); }
+  .shaft2 { @include animation-delay(0.2s); @include square(25px); }
+  .shaft3 { @include animation-delay(0.3s); @include square(30px); }
+  .shaft4 { @include animation-delay(0.4s); @include square(35px); }
+  .shaft5 { @include animation-delay(0.5s); @include square(40px); }
+  .shaft6 { @include animation-delay(0.6s); @include square(45px); }
+  .shaft7 { @include animation-delay(0.7s); @include square(50px); }
+  .shaft8 { @include animation-delay(0.8s); @include square(55px); }
+  .shaft9 { @include animation-delay(0.9s); @include square(60px); }
+  .shaft10 { @include animation-delay(1.0s); @include square(65px); }
+}
+
+@include keyframes(loading3) {
+  50% {
+    @include transform( translate(-50%, -50%) rotate(360deg));
+    border-color: transparent transparent rgba($shaft3, 0.10) $shaft3;
+  }
+  75% {
+    border-color: rgba($shaft3, 0.10) transparent transparent $shaft3;
+  }
+}
+
+
+/* Shaft 4 */
+$shaft4: random-color($min: 100, $max: 200);
+$shaft4-dark: darken($shaft4, 25%);
+.shaft-load4 {
+  margin-top: 80px;
+  width: 80px;
+  > div {
+    background-color: $shaft4-dark;
+    margin-right: 0;
+    @include animation(loading4 1.5s infinite ease-in-out);
+    width: 8px;
+    @include opacity(0);
+    @include transform(scaleY(0.1));
+  }
+}
+
+@include keyframes(loading4) {
+  50% { 
+    @include transform(scaleY(1.5));
+    background: $shaft4;
+    @include opacity(100);
+  }
+}
+
+
+/* Shaft 5 */
+$shaft5: random-color($min: 100, $max: 200);
+$shaft5-dark: darken($shaft5, 25%);
+$height-start5: 5px;
+$height-end5: 40px;
+.shaft-load5 {
+  height: $height-end5;
+  > div {
+    background-color: $shaft5-dark;
+    @include relative(null, null, 0);
+    margin-top: $height-end5 - $height-start5;
+    height: $height-start5;
+    @include animation(loading5 1.5s infinite ease-in-out);
+  }
+  .shaft1 { @include animation-delay(-1.5s); }
+  .shaft2 { @include animation-delay(-1.4s); }
+  .shaft3 { @include animation-delay(-1.3s); }
+  .shaft4 { @include animation-delay(-1.2s); }
+  .shaft5 { @include animation-delay(-1.1s); }
+  .shaft6 { @include animation-delay(-1.0s); }
+  .shaft7 { @include animation-delay(-0.9s); }
+  .shaft8 { @include animation-delay(-0.8s); }
+  .shaft9 { @include animation-delay(-0.7s); }
+  .shaft10 { @include animation-delay(-0.6s); }
+  .shaft11 { @include animation-delay(-0.5s); }
+}
+
+@include keyframes(loading5) {
+  50% {
+    height: 100%;
+    margin-top: 0;
+    background: $shaft5;
+  }
+}
+
+
+/* Shaft 6 */
+$shaft6: random-color($min: 100, $max: 200);
+$shaft6-dark: darken($shaft6, 25%);
+$height-start6: 3px;
+$height-end6: 40px;
+.shaft-load6 {
+  height: $height-end6;
+  width: 90px;
+  overflow: hidden;
+  > div {
+    background-color: $shaft6-dark;
+    width: 8px;
+    @include relative(null, null, -2px);
+    margin-top: $height-end6 - $height-start6;
+    height: $height-start6;
+    transform: skewY(0deg);
+    @include animation(loading6 1.5s infinite ease-in-out);
+  }
+}
+
+@include keyframes(loading6) {
+  25% {
+    transform: skewY(25deg);;
+  }
+  50% {
+    height: 100%;
+    transform: skewY(0);
+    margin-top: 0;
+    background: $shaft6;
+  }
+  75% {
+    transform: skewY(-25deg);;
+  }
+}
+
+
+/* Shaft 7 */
+$shaft7: random-color($min: 100, $max: 200);
+$shaft7-dark: darken($shaft7, 25%);
+.shaft-load7 {
+  > div {
+    background-color: $shaft7-dark;
+    height: 2px;
+    @include animation(loading7 1s infinite ease-in-out);
+    @include translateY(-10px);
+  }
+}
+
+@include keyframes(loading7) {
+  50% {
+    background: $shaft7;
+    @include translateY(10px);
+  }
+}
+
+
+/* Shaft 8 */
+$shaft8: random-color($min: 100, $max: 200);
+$shaft8-dark: darken($shaft8, 25%);
+.shaft-load8 {
+  width: 92px;
+  > div {
+    background-color: $shaft8-dark;
+    height: 5px;
+    margin-right: 0;
+    @include animation(loading8 1s infinite ease-in-out);
+  }
+}
+
+@include keyframes(loading8) {
+  80% {
+    background: $shaft8;
+    margin-right: 5px;
+    @include translateX(-10px);
+  }
+}
+
+
+/* Shaft 9 */
+$shaft9: random-color($min: 100, $max: 200);
+$shaft9-dark: darken($shaft9, 25%);
+.shaft-load9 {
+  position: relative;
+  @include square(100px);
+  > div {
+    background: transparent;
+    @include opacity(0);
+    border: 1px solid $shaft9-dark;
+    @include border-radius(100%);
+    @include centerer;
+    @include translate(-50%, -50%);
+    @include animation(loading9 1.2s infinite ease-in-out);
+  }
+  .shaft1 {
+    background: $shaft9;
+    @include animation-delay(0.1s);
+    @include square(3px);
+  }
+  .shaft2 { @include animation-delay(0.2s); @include square(10px); }
+  .shaft3 { @include animation-delay(0.3s); @include square(20px); }
+  .shaft4 { @include animation-delay(0.4s); @include square(30px); }
+  .shaft5 { @include animation-delay(0.5s); @include square(40px); }
+  .shaft6 { @include animation-delay(0.6s); @include square(50px); }
+  .shaft7 { @include animation-delay(0.7s); @include square(60px); }
+  .shaft8 { @include animation-delay(0.8s); @include square(70px); }
+  .shaft9 { @include animation-delay(0.9s); @include square(80px); }
+  .shaft10 { @include animation-delay(1.0s); @include square(90px); }
+}
+
+@include keyframes(loading9) {
+  25% {
+    border-color: $shaft9;
+    @include opacity(100);
+  }
+  50% {
+    @include opacity(0);
+  }
+}
+
+
+/* Shaft 10 */
+$shaft10: random-color($min: 100, $max: 200);
+$shaft10-dark: darken($shaft10, 25%);
+.shaft-load10 {
+  > div {
+    background-color: $shaft10-dark;
+    @include animation(loading10 1.5s infinite ease-in-out);
+    @include transform(scaleY(0.05));
+  }
+  .shaft1 { height: 100%; }
+  .shaft2 { height: 110%; }
+  .shaft3 { height: 120%; }
+  .shaft4 { height: 130%; }
+  .shaft5 { height: 140%; }
+  .shaft6 { height: 150%; }
+  .shaft7 { height: 160%; }
+  .shaft8 { height: 170%; }
+  .shaft9 { height: 180%; }
+  .shaft10 { height: 190%; }
+}
+
+@include keyframes(loading10) {
+  50% { 
+    @include transform(scaleY(1.2));
+    background: $shaft10;
+  }
+}
+
+
+/* Shaft 11 */
+$shaft11: random-color($min: 100, $max: 200);
+$shaft11-dark: darken($shaft11, 25%);
+.shaft-load11 {
+  position: relative;
+  @include square(100px);
+  > div {
+    background: transparent;
+    border: 8px solid transparent;
+    border-color: rgba($shaft11-dark, 1) transparent;
+    @include border-radius(100%);
+    @include centerer;
+    @include transform( translate(-50%, -50%) rotate(0));
+    @include animation(loading11 2s infinite ease-in-out);
+  }
+  .shaft1 { @include animation-delay(0.1s); @include square(20px); }
+  .shaft2 { @include animation-delay(0.2s); @include square(25px); }
+  .shaft3 { @include animation-delay(0.3s); @include square(35px); }
+  .shaft4 { @include animation-delay(0.4s); @include square(45px); }
+  .shaft5 { @include animation-delay(0.5s); @include square(55px); }
+  .shaft6 { @include animation-delay(0.6s); @include square(65px); }
+  .shaft7 { @include animation-delay(0.7s); @include square(75px); }
+  .shaft8 { @include animation-delay(0.8s); @include square(80px); }
+  .shaft9 { @include animation-delay(0.9s); @include square(85px); }
+  .shaft10 { @include animation-delay(1.0s); @include square(90px); }
+}
+
+@include keyframes(loading11) {
+  50% {
+    @include transform( translate(-50%, -50%) rotate(360deg));
+    border-color: rgba($shaft11, 1) transparent;
+  }
+}

@@ -1,0 +1,388 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300");
+/* line 46, ../sass/style.scss */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* line 52, ../sass/style.scss */
+html {
+  font-family: "Open Sans", Helvetica, arial, sans-serif;
+  color: #333333;
+  background-color: #eeeeee;
+}
+
+/* line 58, ../sass/style.scss */
+h1, h2, h3,
+h4, h5, h6 {
+  font-family: "Raleway", "Open Sans", sans-serif;
+  text-align: center;
+}
+
+/* line 64, ../sass/style.scss */
+a {
+  color: #333333;
+  text-decoration: none;
+}
+
+/* line 69, ../sass/style.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 73, ../sass/style.scss */
+.header {
+  position: relative;
+  overflow: visible;
+}
+/* line 77, ../sass/style.scss */
+.header:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50px;
+  height: 2px;
+  background-color: #c09485;
+  transform: translateX(-50%);
+}
+
+/* line 91, ../sass/style.scss */
+.pen__subheading {
+  margin-bottom: 0;
+}
+/* line 94, ../sass/style.scss */
+.pen__subheading a {
+  color: #c09485;
+}
+/* line 97, ../sass/style.scss */
+.pen__subheading a:hover, .pen__subheading a:focus {
+  color: #dac0b7;
+}
+
+/* line 104, ../sass/style.scss */
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* line 112, ../sass/style.scss */
+.col {
+  padding: 1rem;
+}
+@media (min-width: 800px) {
+  /* line 112, ../sass/style.scss */
+  .col {
+    width: 50%;
+    float: left;
+  }
+  /* line 119, ../sass/style.scss */
+  .col:nth-of-type(2n+1) {
+    clear: left;
+  }
+}
+/* line 124, ../sass/style.scss */
+.col.col--full {
+  width: 100%;
+}
+
+/* line 129, ../sass/style.scss */
+.main {
+  overflow: hidden;
+}
+
+/* line 140, ../sass/style.scss */
+.block--split-image {
+  position: relative;
+  max-width: 400px;
+  text-align: center;
+  perspective: 50px;
+}
+/* line 146, ../sass/style.scss */
+.block--split-image .block__content {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+  padding: 3rem 1.5rem;
+  transition: 0.25s ease-in-out;
+}
+/* line 153, ../sass/style.scss */
+.block--split-image .block__content h2 {
+  margin: 0;
+}
+/* line 157, ../sass/style.scss */
+.block--split-image .block__content:hover {
+  opacity: 0;
+  transform: translateY(-15px);
+}
+/* line 161, ../sass/style.scss */
+.block--split-image .block__content:hover + .block__image {
+  transition-duration: 0.5s;
+  transform: rotate3d(0, 0, 0, 0deg) !important;
+}
+/* line 169, ../sass/style.scss */
+.block--split-image .block__content:hover + .block__image .part-1 {
+  transform: translate(-50%, -50%);
+}
+/* line 170, ../sass/style.scss */
+.block--split-image .block__content:hover + .block__image .part-2 {
+  transform: translate(50%, -50%);
+}
+/* line 171, ../sass/style.scss */
+.block--split-image .block__content:hover + .block__image .part-3 {
+  transform: translate(-50%, 50%);
+}
+/* line 172, ../sass/style.scss */
+.block--split-image .block__content:hover + .block__image .part-4 {
+  transform: translate(50%, 50%);
+}
+/* line 177, ../sass/style.scss */
+.block--split-image .block__image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  perspective: 50px;
+  transition: 5s ease-in-out;
+}
+/* line 187, ../sass/style.scss */
+.block--split-image .block__image .part {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-repeat: no-repeat;
+  transition: 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+/* line 195, ../sass/style.scss */
+.block--split-image .block__image .part-1 {
+  background-position: top left;
+}
+/* line 196, ../sass/style.scss */
+.block--split-image .block__image .part-2 {
+  background-position: top right;
+}
+/* line 197, ../sass/style.scss */
+.block--split-image .block__image .part-3 {
+  background-position: bottom left;
+}
+/* line 198, ../sass/style.scss */
+.block--split-image .block__image .part-4 {
+  background-position: bottom right;
+}
+
+/* line 217, ../sass/style.scss */
+.block--split-image-1 {
+  margin: 165px auto;
+}
+/* line 220, ../sass/style.scss */
+.block--split-image-1 .block__content {
+  background-color: rgba(193, 185, 155, 0.9);
+}
+/* line 225, ../sass/style.scss */
+.block--split-image-1 .block__content:hover + .block__image .part {
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+/* line 226, ../sass/style.scss */
+.block--split-image-1 .block__content:hover + .block__image .part-1 {
+  transition-delay: 0.25s !important;
+}
+/* line 227, ../sass/style.scss */
+.block--split-image-1 .block__content:hover + .block__image .part-2 {
+  transition-delay: 0.25s !important;
+}
+/* line 228, ../sass/style.scss */
+.block--split-image-1 .block__content:hover + .block__image .part-3 {
+  transition-delay: 0.15s !important;
+}
+/* line 229, ../sass/style.scss */
+.block--split-image-1 .block__content:hover + .block__image .part-4 {
+  transition-delay: 0.15s !important;
+}
+/* line 239, ../sass/style.scss */
+.block--split-image-1 .block__image .part {
+  margin-left: -125px;
+  margin-top: -75px;
+  width: 250px;
+  height: 150px;
+  background-image: url(https://unsplash.it/500/300?image=1052);
+}
+/* line 247, ../sass/style.scss */
+.block--split-image-1 .block__image .part-1 {
+  transform: translate(-57%, -74%) rotate3d(1, -1, -1, 3deg);
+}
+/* line 251, ../sass/style.scss */
+.block--split-image-1 .block__image .part-2 {
+  transform: translate(71%, -64%) rotate3d(1, 1, -1, 3deg);
+}
+/* line 255, ../sass/style.scss */
+.block--split-image-1 .block__image .part-3 {
+  transform: translate(-65%, 63%) rotate3d(-1, -1, -1, 3deg);
+}
+/* line 259, ../sass/style.scss */
+.block--split-image-1 .block__image .part-4 {
+  transform: translate(66%, 57%) rotate3d(-1, 1, -1, 3deg);
+}
+
+/* line 217, ../sass/style.scss */
+.block--split-image-2 {
+  margin: 165px auto;
+}
+/* line 220, ../sass/style.scss */
+.block--split-image-2 .block__content {
+  background-color: rgba(173, 105, 127, 0.9);
+}
+/* line 225, ../sass/style.scss */
+.block--split-image-2 .block__content:hover + .block__image .part {
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+/* line 226, ../sass/style.scss */
+.block--split-image-2 .block__content:hover + .block__image .part-1 {
+  transition-delay: 0.1s !important;
+}
+/* line 227, ../sass/style.scss */
+.block--split-image-2 .block__content:hover + .block__image .part-2 {
+  transition-delay: 0.25s !important;
+}
+/* line 228, ../sass/style.scss */
+.block--split-image-2 .block__content:hover + .block__image .part-3 {
+  transition-delay: 0.2s !important;
+}
+/* line 229, ../sass/style.scss */
+.block--split-image-2 .block__content:hover + .block__image .part-4 {
+  transition-delay: 0.2s !important;
+}
+/* line 239, ../sass/style.scss */
+.block--split-image-2 .block__image .part {
+  margin-left: -125px;
+  margin-top: -75px;
+  width: 250px;
+  height: 150px;
+  background-image: url(https://unsplash.it/500/300?image=1044);
+}
+/* line 247, ../sass/style.scss */
+.block--split-image-2 .block__image .part-1 {
+  transform: translate(-75%, -77%) rotate3d(1, -1, -1, 3deg);
+}
+/* line 251, ../sass/style.scss */
+.block--split-image-2 .block__image .part-2 {
+  transform: translate(66%, -71%) rotate3d(1, 1, -1, 3deg);
+}
+/* line 255, ../sass/style.scss */
+.block--split-image-2 .block__image .part-3 {
+  transform: translate(-73%, 71%) rotate3d(-1, -1, -1, 3deg);
+}
+/* line 259, ../sass/style.scss */
+.block--split-image-2 .block__image .part-4 {
+  transform: translate(78%, 56%) rotate3d(-1, 1, -1, 3deg);
+}
+
+/* line 217, ../sass/style.scss */
+.block--split-image-3 {
+  margin: 165px auto;
+}
+/* line 220, ../sass/style.scss */
+.block--split-image-3 .block__content {
+  background-color: rgba(121, 144, 181, 0.9);
+}
+/* line 225, ../sass/style.scss */
+.block--split-image-3 .block__content:hover + .block__image .part {
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+/* line 226, ../sass/style.scss */
+.block--split-image-3 .block__content:hover + .block__image .part-1 {
+  transition-delay: 0.25s !important;
+}
+/* line 227, ../sass/style.scss */
+.block--split-image-3 .block__content:hover + .block__image .part-2 {
+  transition-delay: 0.15s !important;
+}
+/* line 228, ../sass/style.scss */
+.block--split-image-3 .block__content:hover + .block__image .part-3 {
+  transition-delay: 0.15s !important;
+}
+/* line 229, ../sass/style.scss */
+.block--split-image-3 .block__content:hover + .block__image .part-4 {
+  transition-delay: 0.25s !important;
+}
+/* line 239, ../sass/style.scss */
+.block--split-image-3 .block__image .part {
+  margin-left: -125px;
+  margin-top: -75px;
+  width: 250px;
+  height: 150px;
+  background-image: url(https://unsplash.it/500/300?image=961);
+}
+/* line 247, ../sass/style.scss */
+.block--split-image-3 .block__image .part-1 {
+  transform: translate(-73%, -62%) rotate3d(1, -1, -1, 3deg);
+}
+/* line 251, ../sass/style.scss */
+.block--split-image-3 .block__image .part-2 {
+  transform: translate(72%, -75%) rotate3d(1, 1, -1, 3deg);
+}
+/* line 255, ../sass/style.scss */
+.block--split-image-3 .block__image .part-3 {
+  transform: translate(-78%, 57%) rotate3d(-1, -1, -1, 3deg);
+}
+/* line 259, ../sass/style.scss */
+.block--split-image-3 .block__image .part-4 {
+  transform: translate(57%, 58%) rotate3d(-1, 1, -1, 3deg);
+}
+
+/* line 217, ../sass/style.scss */
+.block--split-image-4 {
+  margin: 165px auto;
+}
+/* line 220, ../sass/style.scss */
+.block--split-image-4 .block__content {
+  background-color: rgba(176, 151, 111, 0.9);
+}
+/* line 225, ../sass/style.scss */
+.block--split-image-4 .block__content:hover + .block__image .part {
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+/* line 226, ../sass/style.scss */
+.block--split-image-4 .block__content:hover + .block__image .part-1 {
+  transition-delay: 0.2s !important;
+}
+/* line 227, ../sass/style.scss */
+.block--split-image-4 .block__content:hover + .block__image .part-2 {
+  transition-delay: 0.15s !important;
+}
+/* line 228, ../sass/style.scss */
+.block--split-image-4 .block__content:hover + .block__image .part-3 {
+  transition-delay: 0.15s !important;
+}
+/* line 229, ../sass/style.scss */
+.block--split-image-4 .block__content:hover + .block__image .part-4 {
+  transition-delay: 0.15s !important;
+}
+/* line 239, ../sass/style.scss */
+.block--split-image-4 .block__image .part {
+  margin-left: -125px;
+  margin-top: -75px;
+  width: 250px;
+  height: 150px;
+  background-image: url(https://unsplash.it/500/300?image=393);
+}
+/* line 247, ../sass/style.scss */
+.block--split-image-4 .block__image .part-1 {
+  transform: translate(-71%, -60%) rotate3d(1, -1, -1, 3deg);
+}
+/* line 251, ../sass/style.scss */
+.block--split-image-4 .block__image .part-2 {
+  transform: translate(74%, -69%) rotate3d(1, 1, -1, 3deg);
+}
+/* line 255, ../sass/style.scss */
+.block--split-image-4 .block__image .part-3 {
+  transform: translate(-80%, 73%) rotate3d(-1, -1, -1, 3deg);
+}
+/* line 259, ../sass/style.scss */
+.block--split-image-4 .block__image .part-4 {
+  transform: translate(76%, 60%) rotate3d(-1, 1, -1, 3deg);
+}

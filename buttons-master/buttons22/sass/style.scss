@@ -1,0 +1,384 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300);
+
+$max-width: 500px;
+$bg-color: #eeeeee;
+
+@function random-color($min: 0, $max: 255, $alpha: 1, $red: null, $green: null, $blue: null) {
+    @if $min < 0 {
+        $min: -1;
+    } @else {
+        $min: $min - 1;
+    }
+    @if $max > 255 {
+        $max: 256;
+    } @else {
+        $max: $max + 1;
+    }
+
+    $range: $max - $min;
+    @if not $red { $red: random($range) + $min; }
+    @if not $green { $green: random($range) + $min; }
+    @if not $blue { $blue: random($range) + $min; }
+
+    @return rgba($red, $green, $blue, $alpha);
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Open Sans', Helvetica, arial, sans-serif;
+    background-color: $bg-color;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    font-family: 'Raleway', 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    overflow: hidden;
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.col {
+    padding: 1rem;
+    
+    @media (min-width: 500px) {
+        width: 50%;
+        float: left;
+
+        &:nth-of-type(2n+1) {
+            clear: left;
+        }        
+    }
+}
+
+@for $i from 1 through 8 {
+    .btn-#{$i} {
+        $btn-color: random-color($min: 100, $max:200);
+        $btn-color-light: lighten($btn-color, 15%);
+        $btn-color-dark: darken($btn-color, 15%);
+        color: $btn-color-dark !important;
+    }
+}
+
+
+// ------------------------------------------------------
+
+
+$line-width: 2px;
+
+.btn {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem;
+    text-decoration: none;
+
+    &:before,
+    &:after,
+    .btn--inner:before,
+    .btn--inner:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        background-color: currentColor;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+.btn--cw,
+.btn--ccw,
+.btn--cw-tlbr,
+.btn--ccw-tlbr,
+.btn--cw-trbl,
+.btn--ccw-trbl {
+    &:after {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: auto;
+    }
+
+    .btn--inner:before {
+        right: 0;
+        left: auto;
+    }
+
+    .btn--inner:after {
+        top: auto;
+        bottom: 0;
+    }
+}
+
+.btn--cw {
+    &:before,
+    &:after {
+        width: 0;
+        height: $line-width;
+    }
+    
+    .btn--inner:before,
+    .btn--inner:after {
+        width: $line-width;
+        height: 0;
+    }
+    
+    &:hover {
+        &:before,
+        &:after {
+            width: 100%;
+        }
+        
+        .btn--inner:before,
+        .btn--inner:after {
+            height: 100%;
+        }
+    }
+}
+
+.btn--ccw {
+    &:before,
+    &:after {
+        width: $line-width;
+        height: 0;
+    }
+    
+    .btn--inner:before,
+    .btn--inner:after {
+        width: 0;
+        height: $line-width;
+    }
+    
+    &:hover {
+        &:before,
+        &:after {
+            height: 100%;
+        }
+        
+        .btn--inner:before,
+        .btn--inner:after {
+            width: 100%;
+        }
+    }
+}
+
+.btn--tlbr {
+    &:before,
+    &:after {
+        width: 0;
+        height: $line-width;
+    }
+    
+    &:after,
+    .btn--inner:after {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: auto;
+    }
+
+    .btn--inner:before,
+    .btn--inner:after {
+        width: $line-width;
+        height: 0;
+    }
+    
+    &:hover {
+        &:before,
+        &:after {
+            width: 100%;
+        }
+        
+        .btn--inner:before,
+        .btn--inner:after {
+            height: 100%;
+        }
+    }
+}
+
+.btn--trbl {
+    &:before,
+    &:after {
+        width: 0;
+        height: $line-width;
+    }
+        
+    &:before,
+    .btn--inner:before {
+        right: 0;
+        left: auto;
+    }
+
+    &:after,
+    .btn--inner:after {
+        top: auto;
+        bottom: 0;
+    }
+
+    .btn--inner:before,
+    .btn--inner:after {
+        width: $line-width;
+        height: 0;
+    }
+    
+    &:hover {
+        &:before,
+        &:after {
+            width: 100%;
+        }
+        
+        .btn--inner:before,
+        .btn--inner:after {
+            height: 100%;
+        }
+    }
+}
+
+.btn--cw-tlbr,
+.btn--ccw-tlbr,
+.btn--cw-trbl,
+.btn--ccw-trbl {
+    &:before,
+    &:after,
+    .btn--inner:before,
+    .btn--inner:after {
+        transition: 0.15s ease-in-out;
+    }
+}
+
+.btn--cw-tlbr {
+    &:before,
+    &:after {
+        width: 0;
+        height: $line-width;
+        transition-delay: 0.15s;
+    }
+    
+    .btn--inner:before,
+    .btn--inner:after {
+        width: $line-width;
+        height: 0;
+        transition-delay: 0s;
+    }
+    
+    &:hover {
+        &:before,
+        &:after {
+            width: 100%;
+            transition-delay: 0s;
+        }
+        
+        .btn--inner:before,
+        .btn--inner:after {
+            height: 100%;
+            transition-delay: 0.15s;
+        }
+    }
+}
+
+.btn--ccw-tlbr {
+    &:before,
+    &:after {
+        width: $line-width;
+        height: 0;
+        transition-delay: 0.15s;
+    }
+    
+    .btn--inner:before,
+    .btn--inner:after {
+        width: 0;
+        height: $line-width;
+        transition-delay: 0s;
+    }
+    
+    &:hover {
+        &:before,
+        &:after {
+            height: 100%;
+            transition-delay: 0s;
+        }
+        
+        .btn--inner:before,
+        .btn--inner:after {
+            width: 100%;
+            transition-delay: 0.15s;
+        }
+    }
+}
+
+.btn--cw-trbl {
+    &:before,
+    &:after {
+        width: 0;
+        height: $line-width;
+        transition-delay: 0s;
+    }
+    
+    .btn--inner:before,
+    .btn--inner:after {
+        width: $line-width;
+        height: 0;
+        transition-delay: 0.15s;
+    }
+    
+    &:hover {
+        &:before,
+        &:after {
+            width: 100%;
+            transition-delay: 0.15s;
+        }
+        
+        .btn--inner:before,
+        .btn--inner:after {
+            height: 100%;
+            transition-delay: 0s;
+        }
+    }
+}
+
+.btn--ccw-trbl {
+    &:before,
+    &:after {
+        width: $line-width;
+        height: 0;
+        transition-delay: 0s;
+    }
+    
+    .btn--inner:before,
+    .btn--inner:after {
+        width: 0;
+        height: $line-width;
+        transition-delay: 0.15s;
+    }
+    
+    &:hover {
+        &:before,
+        &:after {
+            height: 100%;
+            transition-delay: 0.15s;
+        }
+        
+        .btn--inner:before,
+        .btn--inner:after {
+            width: 100%;
+            transition-delay: 0s;
+        }
+    }
+}

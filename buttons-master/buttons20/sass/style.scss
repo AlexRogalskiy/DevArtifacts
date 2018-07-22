@@ -1,0 +1,86 @@
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand+SC);
+*{
+  box-sizing:border-box;
+}
+html, body{
+  width:100%; 
+  min-height:100%;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:#F0F0D8;
+  font-family: 'Patrick Hand SC', cursive;
+  & h1{
+    margin-top:-5rem;
+    text-align:center;
+    color:#41403E;
+    font-size:3rem;
+  }
+  & section{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    width:100%;
+    min-height:100%;
+    margin-bottom:3rem;
+    & button{
+      align-self:center;
+      background:transparent;
+      padding:1rem 1rem;
+      margin:0 1rem;
+      transition:all .5s ease;
+      color:#41403E;
+      font-size:2rem;
+      letter-spacing:1px;
+      outline:none;
+      box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+      /*
+      Above is shorthand for:
+      border-top-left-radius: 255px 15px;
+      border-top-right-radius: 15px 225px;
+      border-bottom-right-radius: 225px 15px;
+      border-bottom-left-radius:15px 255px;
+      */
+       &:hover{
+         box-shadow:2px 8px 4px -6px hsla(0,0%,0%,.3);
+      } 
+      &.lined.thick{
+         border:solid 7px #41403E;
+      }
+      &.dotted.thick{
+         border:dotted 5px #41403E;
+      }
+      &.dashed.thick{
+        border:dashed 5px #41403E;
+      }
+       &.lined.thin{
+         border:solid 2px #41403E;
+      }
+      &.dotted.thin{
+         border:dotted 2px #41403E;
+      }
+      &.dashed.thin{
+        border:dashed 2px #41403E;
+      }
+    }
+  }
+}
+@media (max-width:620px){
+  body{
+    h1{
+      margin-top:2rem;
+    }
+    & section{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      margin-bottom:1rem;
+      & button{
+        align-self:center;
+        margin-bottom:2rem;
+      }
+    }
+  }
+}
