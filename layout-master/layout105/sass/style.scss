@@ -1,0 +1,574 @@
+/* =======================================
+	Imports
+======================================= */
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import url('https://fonts.googleapis.com/css?family=Lobster|Lobster+Two:400,400i,700,700i|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+
+/* =======================================
+	Variables
+======================================= */
+$border-radius: 7px;
+$mobile-padding: 10px;
+$desktop-padding: 20px;
+
+$mobile-player-height: 129px;
+$desktop-player-height: 158px;
+
+$brand-accent: rgb(90,170,230);
+
+$dark-grey: #263238;
+$light-grey: #eceff1;
+$medium-grey: #78909c;
+
+$body-font: 'Raleway', sans-serif;
+$header-font: 'Lobster Two', sans-serif;
+$title-font: 'Lobster', sans-serif;
+
+$blue-glow: 0 4px 15px rgba(90,170,230,1);
+
+$box-shadow-1: 0 1px 5px rgba(38,50,56,0.05), 0 1px 10px rgba(38,50,56,0.08);
+$box-shadow-2: 0 3px 6px rgba(38,50,56,0.1), 0 3px 12px rgba(38,50,56,0.12);
+$box-shadow-3: 0 4px 10px rgba(38,50,56,0.12), 0 4px 20px rgba(38,50,56,0.24);
+$box-shadow-4: 0 5px 12px rgba(38,50,56,0.14), 0 5px 24px rgba(38,50,56,0.3);
+$box-shadow-5: 0 7px 18px rgba(38,50,56,0.2), 0 7px 36px rgba(38,50,56,0.4);
+
+/* =======================================
+	Extensions
+======================================= */
+%clearfix {
+	&:after {
+		clear: both;
+		content: '';
+		display: table;
+	}
+}
+
+/* =======================================
+	Styles
+======================================= */
+*, *:before, *:after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.app {
+	line-height: 1.5;
+	font-family: $body-font;
+	background-color: $light-grey;
+	padding-bottom: $mobile-player-height;
+	
+	@media (min-width:601px) {
+		padding-bottom: $desktop-player-height;
+	}
+}
+
+.page-header {
+	padding: $mobile-padding;
+	
+	@media (min-width:601px) {
+		padding: $desktop-padding;
+	}
+	
+	.page-title {
+		display: flex;
+		font-size: 26px;
+		text-align: center;
+		color: $medium-grey;
+		align-items: center;
+		justify-content: center;
+		font-family: $title-font;
+		
+		@media (min-width:601px) {
+			font-size: 32px;
+		}
+		
+		i {
+			font-size: 32px;
+			margin-right: 2px;
+			color: $brand-accent;
+			
+			@media (min-width:601px) {
+				font-size: 40px;
+			}
+		}
+	}
+}
+
+.songs-wrapper {
+	margin: auto;
+	max-width: 400px;
+	padding: $mobile-padding;
+	
+	@media (min-width:601px) {
+		max-width: 760px;
+		padding: $desktop-padding;
+	}
+	
+	@media (min-width:993px) {
+		max-width: 1080px;
+	}
+	
+	@media (min-width:1301px) {
+		max-width: 1600px;
+	}
+	
+	.song {
+		width: 100%;
+		padding: 50% 0;
+		overflow: hidden;
+		position: relative;
+		background-color: white;
+		box-shadow: $box-shadow-1;
+		border-radius: $border-radius;
+		transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;;
+		
+		.song-image {
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+			display: block;
+			position: absolute;
+			background-size: cover;
+			background-position: center;
+			transition: transform 0.2s ease-in;
+			-webkit-backface-visibility: hidden;
+		}
+		
+		.song-info {
+			left: 0;
+			right: 0;
+			bottom: 0;
+			display: flex;
+			position: absolute;
+			padding: $mobile-padding;
+			box-shadow: $box-shadow-5;
+			justify-content: space-between;
+			background-color: rgba(255,255,255,0.95);
+			
+			@media (min-width:601px) {
+				padding: $desktop-padding;
+			}
+			
+			.song-title {
+				font-size: 16px;
+				color: $medium-grey;
+				font-family: $header-font;
+				
+				@media (min-width:601px) {
+					font-size: 20px;
+				}
+			}
+			
+			.song-artist,
+			.song-time {
+				font-size: 12px;
+				color: $dark-grey;
+				
+				@media (min-width:601px) {
+					font-size: 14px;
+				}
+			}
+		}
+		
+		&:hover,
+		&.active {
+			transform: translateY(-2px);
+			
+			.song-image {
+				transform: scale(1.05);
+			}
+			
+			// .play-button {
+			// 	box-shadow: $box-shadow-1;
+			// }
+		}
+		
+		&:hover {
+			cursor: pointer;
+			box-shadow: $box-shadow-3;
+		}
+		
+		&.active {
+			box-shadow: $blue-glow;
+		}
+	}
+}
+
+.row {
+	@extend %clearfix;
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	margin-right: -$mobile-padding;
+	
+	@media (min-width:601px) {
+		margin-right: -$desktop-padding;
+	}
+	
+	&:last-child {
+		margin-bottom: -$mobile-padding;
+		
+		@media (min-width:601px) {
+			margin-bottom: -$desktop-padding;
+		}
+	}
+
+	.col {
+		@extend %clearfix;
+		flex: 1;
+		margin-left: 0;
+		position: relative;
+		transition: all 0.2s ease-in;
+		padding-right: $mobile-padding;
+		padding-bottom: $mobile-padding;
+		
+		@media (min-width:601px) {
+			padding-right: $desktop-padding;
+			padding-bottom: $desktop-padding;
+		}
+		
+		&.s1 {
+			flex: 0 0 calc(100% * (1/12));
+			max-width: calc(100% * (1/12));
+		}
+		&.s2 {
+			flex: 0 0 calc(100% * (2/12));
+			max-width: calc(100% * (2/12));
+		}
+		&.s3 {
+			flex: 0 0 calc(100% * (3/12));
+			max-width: calc(100% * (3/12));
+		}
+		&.s4 {
+			flex: 0 0 calc(100% * (4/12));
+			max-width: calc(100% * (4/12));
+		}
+		&.s5 {
+			flex: 0 0 calc(100% * (5/12));
+			max-width: calc(100% * (5/12));
+		}
+		&.s6 {
+			flex: 0 0 calc(100% * (6/12));
+			max-width: calc(100% * (6/12));
+		}
+		&.s7 {
+			flex: 0 0 calc(100% * (7/12));
+			max-width: calc(100% * (7/12));
+		}
+		&.s8 {
+			flex: 0 0 calc(100% * (8/12));
+			max-width: calc(100% * (8/12));
+		}
+		&.s9 {
+			flex: 0 0 calc(100% * (9/12));
+			max-width: calc(100% * (9/12));
+		}
+		&.s10 {
+			flex: 0 0 calc(100% * (10/12));
+			max-width: calc(100% * (10/12));
+		}
+		&.s11 {
+			flex: 0 0 calc(100% * (11/12));
+			max-width: calc(100% * (11/12));
+		}
+		&.s12 {
+			flex: 0 0 calc(100% * (12/12));
+			max-width: calc(100% * (12/12));
+		}
+		
+		@media (min-width:601px) {
+			&.m1 {
+				flex: 0 0 calc(100% * (1/12));
+				max-width: calc(100% * (1/12));
+			}
+			&.m2 {
+				flex: 0 0 calc(100% * (2/12));
+				max-width: calc(100% * (2/12));
+			}
+			&.m3 {
+				flex: 0 0 calc(100% * (3/12));
+				max-width: calc(100% * (3/12));
+			}
+			&.m4 {
+				flex: 0 0 calc(100% * (4/12));
+				max-width: calc(100% * (4/12));
+			}
+			&.m5 {
+				flex: 0 0 calc(100% * (5/12));
+				max-width: calc(100% * (5/12));
+			}
+			&.m6 {
+				flex: 0 0 calc(100% * (6/12));
+				max-width: calc(100% * (6/12));
+			}
+			&.m7 {
+				flex: 0 0 calc(100% * (7/12));
+				max-width: calc(100% * (7/12));
+			}
+			&.m8 {
+				flex: 0 0 calc(100% * (8/12));
+				max-width: calc(100% * (8/12));
+			}
+			&.m9 {
+				flex: 0 0 calc(100% * (9/12));
+				max-width: calc(100% * (9/12));
+			}
+			&.m10 {
+				flex: 0 0 calc(100% * (10/12));
+				max-width: calc(100% * (10/12));
+			}
+			&.m11 {
+				flex: 0 0 calc(100% * (11/12));
+				max-width: calc(100% * (11/12));
+			}
+			&.m12 {
+				flex: 0 0 calc(100% * (12/12));
+				max-width: calc(100% * (12/12));
+			}
+		}
+		
+		@media (min-width:993px) {
+			&.l1 {
+				flex: 0 0 calc(100% * (1/12));
+				max-width: calc(100% * (1/12));
+			}
+			&.l2 {
+				flex: 0 0 calc(100% * (2/12));
+				max-width: calc(100% * (2/12));
+			}
+			&.l3 {
+				flex: 0 0 calc(100% * (3/12));
+				max-width: calc(100% * (3/12));
+			}
+			&.l4 {
+				flex: 0 0 calc(100% * (4/12));
+				max-width: calc(100% * (4/12));
+			}
+			&.l5 {
+				flex: 0 0 calc(100% * (5/12));
+				max-width: calc(100% * (5/12));
+			}
+			&.l6 {
+				flex: 0 0 calc(100% * (6/12));
+				max-width: calc(100% * (6/12));
+			}
+			&.l7 {
+				flex: 0 0 calc(100% * (7/12));
+				max-width: calc(100% * (7/12));
+			}
+			&.l8 {
+				flex: 0 0 calc(100% * (8/12));
+				max-width: calc(100% * (8/12));
+			}
+			&.l9 {
+				flex: 0 0 calc(100% * (9/12));
+				max-width: calc(100% * (9/12));
+			}
+			&.l10 {
+				flex: 0 0 calc(100% * (10/12));
+				max-width: calc(100% * (10/12));
+			}
+			&.l11 {
+				flex: 0 0 calc(100% * (11/12));
+				max-width: calc(100% * (11/12));
+			}
+			&.l12 {
+				flex: 0 0 calc(100% * (12/12));
+				max-width: calc(100% * (12/12));
+			}
+		}
+		
+		@media (min-width:1301px) {
+			&.x1 {
+				flex: 0 0 calc(100% * (1/12));
+				max-width: calc(100% * (1/12));
+			}
+			&.x2 {
+				flex: 0 0 calc(100% * (2/12));
+				max-width: calc(100% * (2/12));
+			}
+			&.x3 {
+				flex: 0 0 calc(100% * (3/12));
+				max-width: calc(100% * (3/12));
+			}
+			&.x4 {
+				flex: 0 0 calc(100% * (4/12));
+				max-width: calc(100% * (4/12));
+			}
+			&.x5 {
+				flex: 0 0 calc(100% * (5/12));
+				max-width: calc(100% * (5/12));
+			}
+			&.x6 {
+				flex: 0 0 calc(100% * (6/12));
+				max-width: calc(100% * (6/12));
+			}
+			&.x7 {
+				flex: 0 0 calc(100% * (7/12));
+				max-width: calc(100% * (7/12));
+			}
+			&.x8 {
+				flex: 0 0 calc(100% * (8/12));
+				max-width: calc(100% * (8/12));
+			}
+			&.x9 {
+				flex: 0 0 calc(100% * (9/12));
+				max-width: calc(100% * (9/12));
+			}
+			&.x10 {
+				flex: 0 0 calc(100% * (10/12));
+				max-width: calc(100% * (10/12));
+			}
+			&.x11 {
+				flex: 0 0 calc(100% * (11/12));
+				max-width: calc(100% * (11/12));
+			}
+			&.x12 {
+				flex: 0 0 calc(100% * (12/12));
+				max-width: calc(100% * (12/12));
+			}
+		}
+	}
+}
+
+.play-button {
+	width: 40px;
+	height: 40px;
+	color: white;
+	border: none;
+	outline: none;
+	line-height: 0;
+	border-radius: 50%;
+	box-shadow: $box-shadow-2;
+	background-color: $brand-accent;
+	transition: background-color 0.2s ease-in, box-shadow 0.2s ease-in;
+	
+	@media (min-width:601px) {
+		width: 50px;
+		height: 50px;
+	}
+
+	i {
+		font-size: 26px;
+		transition: transform 0.2s ease-in;
+	}
+
+	&:hover {
+		cursor: pointer;
+		background-color: lighten($brand-accent, 5%);
+	}
+
+	&:active {		
+		i {
+			transform: scale(1.2);
+		}
+	}
+}
+
+.music-player {
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: fixed;
+	color: $dark-grey;
+	padding: $mobile-padding;
+	box-shadow: $box-shadow-5;
+	background-color: rgba(255,255,255,0.99);
+	
+	@media (min-width:601px) {
+		padding: $desktop-padding;
+	}
+	
+	.progress-wrapper {
+		left: 0;
+		right: 0;
+		bottom: 100%;
+		position: absolute;
+		background-color: rgba(255,255,255,0.3);
+		
+		.progress-bar {
+			width: 0;
+			height: 3px;
+			background-color: $brand-accent;
+			animation: play 60s linear 1s infinite;
+		}
+	}
+	
+	.times-row {
+		display: flex;
+		font-size: 12px;
+		color: $dark-grey;
+		pointer-events: none;
+		margin-bottom: $mobile-padding;
+		justify-content: space-between;
+		
+		.current-song {
+			text-align: center;
+			
+			.song-title {
+				font-size: 14px;
+				color: $medium-grey;
+				font-family: $header-font;
+
+				@media (min-width:601px) {
+					font-size: 18px;
+				}
+			}
+			
+			.song-artist {
+				font-size: 10px;
+				color: $dark-grey;
+
+				@media (min-width:601px) {
+					font-size: 12px;
+				}
+			}
+		}
+	}
+	
+	.player-actions {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+		.play-button {
+			width: 60px;
+			height: 60px;
+			
+			i {
+				font-size: 32px;
+			}
+		}
+		
+		.action-button {
+			width: 30px;
+			height: 30px;
+			border: none;
+			outline: none;
+			margin: 0 10px;
+			line-height: 0;
+			border-radius: 50%;
+			color: $medium-grey;
+			background-color: transparent;
+			transition: background-color 0.2s ease-in;
+			
+			&:hover {
+				cursor: pointer;
+				background-color: $light-grey;
+			}
+		}
+	}
+}
+
+@keyframes play {
+		from {
+				width: 0%;
+		}
+		to {
+				width: 100%;
+		}
+}

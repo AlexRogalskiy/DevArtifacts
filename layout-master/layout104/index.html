@@ -1,0 +1,488 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+    
+<!--  header -->
+<body>
+
+<div class="app-container dark chat">
+	<div class="sidebar-wrapper">
+		<div class="sidebar">
+			<div class="sidebar-content">
+				<div class="sidebar-header">
+					<div class="twitch-logo" onClick="toggleSidebar()">
+						<svg class="tw-svg__asset tw-svg__asset--logotwitch tw-svg__asset--inherit" width="94px" height="32px" version="1.1" viewBox="0 0 94 32" x="0px" y="0px"><path clip-rule="evenodd" d="M88,5h-6V0h-9l-6,5h-5.5L59,7.5V5h-5V0H36v5H16l-5-5H0v22l5,5.25L14,32h6v-1.5l3,1.5h12l2-3l1,3h7v-3l3,3h8l0.5-3l2.5,3h10l3-3v3h4l3-3v3h7l7-6V10L88,5z M13,13H8v6h5v6H6l-4-4V2h6v5h5V13z M36,21.5L32.5,25H15V7h6v12h2V7h6v12h2V7h5V21.5z M44,25h-6V7h6V25z M44,5h-6V2h6V5z M57,13h-5v6h5v6h-7l-4-4V2h6v5h5V13z M72,13h-7v6h7v6h-9l-4-4V11l4-4h9V13z M91,25h-6V13h-5v12h-6V2h6v5h7l4,4V25z" fill-rule="evenodd"></path></svg>
+					</div>
+					<div class="search-bar">
+						<input type="text" placeholder="Search to Add Friends" />
+						<i class="material-icons">search</i>
+					</div>
+				</div>
+				<div class="sidebar-group">
+					<div class="sidebar-group-header">
+						<div>Followed Channels</div>
+						<a class="view-all">View All</a>
+					</div>
+					<a class="channel-link">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/10114ec7-b5f3-4804-b23f-8a5136462697-profile_image-70x70.png" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">wonpec</div>
+							<div class="channel-status">
+								<div>Crusader Kings II</div>
+								<div>107 watching</div>
+							</div>
+						</div>
+					</a>
+					<a class="channel-link">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/32a302ff-0f2f-4de3-8a82-72a1160b843e-profile_image-70x70.png" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">StoneZoneGaming</div>
+							<div class="channel-status">
+								<div>Skyrim</div>
+								<div>121 watching</div>
+							</div>
+						</div>
+					</a>
+					<a class="channel-link offline">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/2aef719f-5492-4ff0-923b-0845d9e8658f-profile_image-70x70.png" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">FrivviFox</div>
+							<div class="channel-status">Offline</div>
+						</div>
+					</a>
+					<a class="channel-link offline">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/atimidmouse-profile_image-4cfb21ad6a15feef-70x70.png" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">atimidmouse</div>
+							<div class="channel-status">Offline</div>
+						</div>
+					</a>
+					<a class="channel-link offline">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/nakeyjakeystreamerboy-profile_image-1faef87e3f1a5912-70x70.jpeg" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">NakeyJakeyStreamerBoy</div>
+							<div class="channel-status">Offline</div>
+						</div>
+					</a>
+					<a class="channel-link offline">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/11fc4351ff82c494-profile_image-70x70.jpeg" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">andersonjph</div>
+							<div class="channel-status">Offline</div>
+						</div>
+					</a>
+				</div>
+				<div class="sidebar-group">
+					<div class="sidebar-group-header">
+						<div>Friends</div>
+					</div>
+					<a class="channel-link">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/10114ec7-b5f3-4804-b23f-8a5136462697-profile_image-70x70.png" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">wonpec</div>
+							<div class="channel-status">
+								<div>Crusader Kings II</div>
+								<div>107 watching</div>
+							</div>
+						</div>
+					</a>
+					<a class="channel-link offline">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/atimidmouse-profile_image-4cfb21ad6a15feef-70x70.png" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">atimidmouse</div>
+							<div class="channel-status">Offline</div>
+						</div>
+					</a>
+				</div>
+				<div class="sidebar-group">
+					<div class="sidebar-group-header">
+						<div>Recommended</div>
+						<a class="view-all">View More</a>
+					</div>
+					<a class="channel-link">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/dizzykitten-profile_image-ca899752a83f72a6-70x70.png" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">DizzyKitten</div>
+							<div class="channel-status">
+								<div>Playerunknown's Battlegrounds</div>
+								<div>1.2k watching</div>
+							</div>
+						</div>
+					</a>
+					<a class="channel-link">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/09dd7229-c19d-40e4-936d-a610dc97734e-profile_image-70x70.jpg" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">amouranth</div>
+							<div class="channel-status">
+								<div>IRL</div>
+								<div>101 watching</div>
+							</div>
+						</div>
+					</a>
+					<a class="channel-link">
+						<div class="channel-image">
+							<img src="https://static-cdn.jtvnw.net/jtv_user_pictures/lethalfrag-profile_image-050adf252718823b-70x70.png" />
+						</div>
+						<div class="channel-info">
+							<div class="channel-name">LethalFrag</div>
+							<div class="channel-status">
+								<div>Spelunky</div>
+								<div>10k watching</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="page-overlay" onClick="toggleSidebar()"></div>
+	</div>
+
+	<div class="main-content">
+		<div class="header">
+
+			<div class="logo-wrapper">
+				<i class="material-icons sidebar-toggle" onClick="toggleSidebar()" data-tooltip="Menu" data-tooltip-pos="right">sort</i>
+				<div class="twitch-logo">
+					<svg class="tw-svg__asset tw-svg__asset--logotwitch tw-svg__asset--inherit" width="94px" height="32px" version="1.1" viewBox="0 0 94 32" x="0px" y="0px"><path clip-rule="evenodd" d="M88,5h-6V0h-9l-6,5h-5.5L59,7.5V5h-5V0H36v5H16l-5-5H0v22l5,5.25L14,32h6v-1.5l3,1.5h12l2-3l1,3h7v-3l3,3h8l0.5-3l2.5,3h10l3-3v3h4l3-3v3h7l7-6V10L88,5z M13,13H8v6h5v6H6l-4-4V2h6v5h5V13z M36,21.5L32.5,25H15V7h6v12h2V7h6v12h2V7h5V21.5z M44,25h-6V7h6V25z M44,5h-6V2h6V5z M57,13h-5v6h5v6h-7l-4-4V2h6v5h5V13z M72,13h-7v6h7v6h-9l-4-4V11l4-4h9V13z M91,25h-6V13h-5v12h-6V2h6v5h7l4,4V25z" fill-rule="evenodd"></path></svg>
+				</div>
+				<div class="desktop-search search-bar">
+					<input type="text" placeholder="Search" />
+					<i class="material-icons">search</i>
+				</div>
+			</div>
+
+			<div class="nav">
+				<div class="dropdown">
+					<i class="material-icons dropdown-toggle" data-tooltip="More" data-tooltip-pos="left">more_horiz</i>
+					<div class="dropdown-content">
+						<a class="dropdown-link">About</a>
+						<a class="dropdown-link">Advertisers</a>
+						<a class="dropdown-link">Blog</a>
+						<a class="dropdown-link">Browse</a>
+						<a class="dropdown-link">Community Guidelines</a>
+						<a class="dropdown-link">Cookie Policy</a>
+						<a class="dropdown-link">Creative</a>
+						<a class="dropdown-link">Developers</a>
+						<a class="dropdown-link">Following</a>
+						<a class="dropdown-link">Get Desktop</a>
+						<a class="dropdown-link">Help</a>
+						<a class="dropdown-link">Jobs</a>
+						<a class="dropdown-link">Language</a>
+						<a class="dropdown-link">Music</a>
+						<a class="dropdown-link">Store</a>
+						<a class="dropdown-link">Partners</a>
+						<a class="dropdown-link">Press</a>
+						<a class="dropdown-link">Security</a>
+						<a class="dropdown-link">Terms</a>
+						<a class="dropdown-link">Try Prime</a>
+					</div>
+				</div>
+				<div class="mobile-search dropdown">
+					<i class="material-icons dropdown-toggle" data-tooltip="Search" data-tooltip-pos="left">search</i>
+					<div class="dropdown-content">
+						<div class="search-bar">
+							<input type="text" placeholder="Search" />
+							<i class="material-icons">search</i>
+						</div>
+					</div>
+				</div>
+				<div class="dropdown">
+					<i class="material-icons dropdown-toggle" data-tooltip="Notifications" data-tooltip-pos="left">notifications</i>
+					<div class="dropdown-content">
+						<div class="dropdown-header">
+							<h4>No new notifications</h4>
+						</div>
+					</div>
+				</div>
+
+				<div class="profile-image-wrapper dropdown">
+					<div class="profile-image dropdown-toggle">
+						<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/312465/profile/profile-80.jpg?1513191507" />
+					</div>
+					<div class="dropdown-content">
+						<div class="dropdown-header">
+							<div class="username">cole_waldrip</div>
+							<a class="logout">Logout</a>
+						</div>
+						<div class="dropdown-group">
+							<a class="dropdown-link active">
+								<i class="material-icons">check_box</i>
+								<span>Share My Activity</span>
+							</a>
+							<a class="dropdown-link active" onClick="toggleDarkMode()">
+								<i class="material-icons" id="darkMode">check_box</i>
+								<span>Dark Mode</span>
+							</a>
+						</div>
+						<div class="dropdown-group">
+							<a class="dropdown-link">
+								<i class="material-icons">account_box</i>
+								<span>Channel</span>
+							</a>
+							<a class="dropdown-link">
+								<i class="material-icons">dashboard</i>
+								<span>Dashboard</span>
+							</a>
+							<a class="dropdown-link">
+								<i class="material-icons">movie</i>
+								<span>Video Producer</span>
+							</a>
+							<a class="dropdown-link">
+								<i class="material-icons">settings</i>
+								<span>Settings</span>
+							</a>
+						</div>
+						<div class="dropdown-group">
+							<a class="dropdown-link">
+								<i class="material-icons">people</i>
+								<span>Friends</span>
+							</a>
+							<a class="dropdown-link">
+								<i class="material-icons">email</i>
+								<span>Messages</span>
+							</a>
+							<a class="dropdown-link">
+								<i class="material-icons">credit_card</i>
+								<span>Subscriptions</span>
+							</a>
+							<a class="dropdown-link">
+								<i class="material-icons">local_mall</i>
+								<span>Inventory</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="page-content">
+			<div class="channel-header">
+				<div class="channel-nav">
+					<a class="active">
+						<img class="channel-image" src="https://static-cdn.jtvnw.net/jtv_user_pictures/10114ec7-b5f3-4804-b23f-8a5136462697-profile_image-70x70.png" />
+						<span>wonpec</span>
+					</a>
+					<a>
+						<strong>20</strong>
+						<span>Videos</span>
+					</a>
+					<a>
+						<strong>7</strong>
+						<span>Clips</span>
+					</a>
+					<a>
+						<strong>1</strong>
+						<span>Collection</span>
+					</a>
+					<a>
+						<strong>0</strong>
+						<span>Events</span>
+					</a>
+					<a>
+						<strong>69</strong>
+						<span>Followers</span>
+					</a>
+					<a>
+						<strong>10</strong>
+						<span>Following</span>
+					</a>
+				</div>
+				<div class="channel-header-fixed-buttons">
+					<button class="btn">
+						<i class="material-icons">favorite</i>
+						<span>Follow</span>
+					</button>
+					<button class="btn">
+						<i class="material-icons">credit_card</i>
+						<span>Subscribe</span>
+					</button>
+					<button class="btn">
+						<i class="material-icons">stars</i>
+						<span>Get Bits</span>
+					</button>
+					<div class="icon-button" data-tooltip="More" data-tooltip-pos="left">
+						<i class="material-icons">more_horiz</i>
+					</div>
+					<div class="chat-button" onClick="toggleChat()" data-tooltip="Toggle Chat" data-tooltip-pos="left">
+						<i class="material-icons">chat</i>
+					</div>
+				</div>
+			</div>
+			<div class="stream-container">
+				<div class="video-wrapper">
+					<iframe src="https://player.twitch.tv/?video=v228563919" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+				</div>
+				
+				<div class="video-info">
+					
+					<div class="video-summary">
+						<img src="https://static-cdn.jtvnw.net/ttv-boxart/Crusader%20Kings%20II-138x190.jpg" />
+						<div class="video-text">
+							<div class="video-title">CK2 Ironman Runs</div>
+							<div class="video-category">
+								<i class="material-icons">gamepad</i>
+								<a>Crusader Kings II</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="video-stats">
+						<div class="icon-button red" data-tooltip="Watching Now" data-tooltip-pos="down-left">
+							<i class="material-icons">people</i>
+							<span>107</span>
+						</div>
+						<div class="icon-button" data-tooltip="Total Views" data-tooltip-pos="down-left">
+							<i class="material-icons">visibility</i>
+							<span>2,606</span>
+						</div>
+						<div class="icon-button">
+							<i class="material-icons">share</i>
+							<span>Share</span>
+						</div>
+						<div class="icon-button dropdown-toggle">
+							<i class="material-icons">more_horiz</i>
+							<span>More</span>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			<div class="channel-body">
+				<p><em>It's empty in here</em></p>
+			</div>
+		</div>
+		<div class="chat-page-overlay" onClick="toggleChat()"></div>
+		<div class="chat-window">
+			<div class="close-chat" onClick="toggleChat()" data-tooltip="Close Chat" data-tooltip-pos="right">
+				<i class="material-icons">close</i>
+			</div>
+			<div class="chat-feed">
+				<p><span class="name">rAstley69</span>We're no strangers to love</p>
+				<p><span class="name">rAstley69</span>You know the rules and so do I</p>
+				<p><span class="name">rAstley69</span>A full commitment's what I'm thinking of</p>
+				<p><span class="name">rAstley69</span>You wouldn't get this from any other guy</p>
+				<p><span class="name">rAstley69</span>I just wanna tell you how I'm feeling</p>
+				<p><span class="name">rAstley69</span>Gotta make you understand</p>
+				<p><span class="name">rAstley69</span>Never gonna give you up</p>
+				<p><span class="name">rAstley69</span>Never gonna let you down</p>
+				<p><span class="name">rAstley69</span>Never gonna run around and desert you</p>
+				<p><span class="name">rAstley69</span>Never gonna make you cry</p>
+				<p><span class="name">rAstley69</span>Never gonna say goodbye</p>
+				<p><span class="name">rAstley69</span>Never gonna tell a lie and hurt you</p>
+				<p><span class="name">rAstley69</span>We've known each other for so long</p>
+				<p><span class="name">rAstley69</span>Your heart's been aching but you're too shy to say it</p>
+				<p><span class="name">rAstley69</span>Inside we both know what's been going on</p>
+				<p><span class="name">rAstley69</span>We know the game and we're gonna play it</p>
+				<p><span class="name">rAstley69</span>And if you ask me how I'm feeling</p>
+				<p><span class="name">rAstley69</span>Don't tell me you're too blind to see</p>
+				<p><span class="name">rAstley69</span>Never gonna give you up</p>
+				<p><span class="name">rAstley69</span>Never gonna let you down</p>
+				<p><span class="name">rAstley69</span>Never gonna run around and desert you</p>
+				<p><span class="name">rAstley69</span>Never gonna make you cry</p>
+				<p><span class="name">rAstley69</span>Never gonna say goodbye</p>
+				<p><span class="name">rAstley69</span>Never gonna tell a lie and hurt you</p>
+				<p><span class="name">rAstley69</span>Never gonna give you up</p>
+				<p><span class="name">rAstley69</span>Never gonna let you down</p>
+				<p><span class="name">rAstley69</span>Never gonna run around and desert you</p>
+				<p><span class="name">rAstley69</span>Never gonna make you cry</p>
+				<p><span class="name">rAstley69</span>Never gonna say goodbye</p>
+				<p><span class="name">rAstley69</span>Never gonna tell a lie and hurt you</p>
+				<p><span class="name">rAstley69</span>Never gonna give, never gonna give</p>
+				<p><span class="name">rAstley69</span>(Give you up)</p>
+				<p><span class="name">rAstley69</span>(Ooh) Never gonna give, never gonna give</p>
+				<p><span class="name">rAstley69</span>(Give you up)</p>
+				<p><span class="name">rAstley69</span>We've known each other for so long</p>
+				<p><span class="name">rAstley69</span>Your heart's been aching but you're too shy to say it</p>
+				<p><span class="name">rAstley69</span>Inside we both know what's been going on</p>
+				<p><span class="name">rAstley69</span>We know the game and we're gonna play it</p>
+				<p><span class="name">rAstley69</span>I just wanna tell you how I'm feeling</p>
+				<p><span class="name">rAstley69</span>Gotta make you understand</p>
+				<p><span class="name">rAstley69</span>Never gonna give you up</p>
+				<p><span class="name">rAstley69</span>Never gonna let you down</p>
+				<p><span class="name">rAstley69</span>Never gonna run around and desert you</p>
+				<p><span class="name">rAstley69</span>Never gonna make you cry</p>
+				<p><span class="name">rAstley69</span>Never gonna say goodbye</p>
+				<p><span class="name">rAstley69</span>Never gonna tell a lie and hurt you</p>
+				<p><span class="name">rAstley69</span>Never gonna give you up</p>
+				<p><span class="name">rAstley69</span>Never gonna let you down</p>
+				<p><span class="name">rAstley69</span>Never gonna run around and desert you</p>
+				<p><span class="name">rAstley69</span>Never gonna make you cry</p>
+				<p><span class="name">rAstley69</span>Never gonna say goodbye</p>
+				<p><span class="name">rAstley69</span>Never gonna tell a lie and hurt you</p>
+				<p><span class="name">rAstley69</span>Never gonna give you up</p>
+				<p><span class="name">rAstley69</span>Never gonna let you down</p>
+				<p><span class="name">rAstley69</span>Never gonna run around and desert you</p>
+				<p><span class="name">rAstley69</span>Never gonna make you cry</p>
+			</div>
+
+			<div class="chat-footer">
+				<div class="chat-message-wrapper">
+					<textarea placeholder="Send a message:"></textarea>
+					<div class="chat-message-icons">
+						<div class="icon-button" data-tooltip="Cheer" data-tooltip-pos="up-right">
+							<i class="material-icons">stars</i>
+						</div>
+						<div class="icon-button" data-tooltip="Emote" data-tooltip-pos="up-right">
+							<i class="material-icons">face</i>
+						</div>
+					</div>
+				</div>
+				<div class="button-wrapper">
+					<div>
+						<i class="material-icons" data-tooltip="Chat Settings" data-tooltip-pos="up-left">settings</i>
+						<i class="material-icons" data-tooltip="Viewer List" data-tooltip-pos="up-left">list</i>
+					</div>
+					<button>Send Message</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+
+<!--  footer -->
+</html>

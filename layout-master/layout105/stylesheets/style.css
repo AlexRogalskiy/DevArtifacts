@@ -1,0 +1,624 @@
+/* =======================================
+	Imports
+======================================= */
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import url("https://fonts.googleapis.com/css?family=Lobster|Lobster+Two:400,400i,700,700i|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+/* =======================================
+	Variables
+======================================= */
+/* =======================================
+	Extensions
+======================================= */
+/* line 39, ../sass/style.scss */
+.row:after, .row .col:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+/* =======================================
+	Styles
+======================================= */
+/* line 49, ../sass/style.scss */
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* line 55, ../sass/style.scss */
+.app {
+  line-height: 1.5;
+  font-family: "Raleway", sans-serif;
+  background-color: #eceff1;
+  padding-bottom: 129px;
+}
+@media (min-width: 601px) {
+  /* line 55, ../sass/style.scss */
+  .app {
+    padding-bottom: 158px;
+  }
+}
+
+/* line 66, ../sass/style.scss */
+.page-header {
+  padding: 10px;
+}
+@media (min-width: 601px) {
+  /* line 66, ../sass/style.scss */
+  .page-header {
+    padding: 20px;
+  }
+}
+/* line 73, ../sass/style.scss */
+.page-header .page-title {
+  display: flex;
+  font-size: 26px;
+  text-align: center;
+  color: #78909c;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lobster", sans-serif;
+}
+@media (min-width: 601px) {
+  /* line 73, ../sass/style.scss */
+  .page-header .page-title {
+    font-size: 32px;
+  }
+}
+/* line 86, ../sass/style.scss */
+.page-header .page-title i {
+  font-size: 32px;
+  margin-right: 2px;
+  color: #5aaae6;
+}
+@media (min-width: 601px) {
+  /* line 86, ../sass/style.scss */
+  .page-header .page-title i {
+    font-size: 40px;
+  }
+}
+
+/* line 98, ../sass/style.scss */
+.songs-wrapper {
+  margin: auto;
+  max-width: 400px;
+  padding: 10px;
+}
+@media (min-width: 601px) {
+  /* line 98, ../sass/style.scss */
+  .songs-wrapper {
+    max-width: 760px;
+    padding: 20px;
+  }
+}
+@media (min-width: 993px) {
+  /* line 98, ../sass/style.scss */
+  .songs-wrapper {
+    max-width: 1080px;
+  }
+}
+@media (min-width: 1301px) {
+  /* line 98, ../sass/style.scss */
+  .songs-wrapper {
+    max-width: 1600px;
+  }
+}
+/* line 116, ../sass/style.scss */
+.songs-wrapper .song {
+  width: 100%;
+  padding: 50% 0;
+  overflow: hidden;
+  position: relative;
+  background-color: white;
+  box-shadow: 0 1px 5px rgba(38, 50, 56, 0.05), 0 1px 10px rgba(38, 50, 56, 0.08);
+  border-radius: 7px;
+  transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+}
+/* line 126, ../sass/style.scss */
+.songs-wrapper .song .song-image {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.2s ease-in;
+  -webkit-backface-visibility: hidden;
+}
+/* line 141, ../sass/style.scss */
+.songs-wrapper .song .song-info {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  position: absolute;
+  padding: 10px;
+  box-shadow: 0 7px 18px rgba(38, 50, 56, 0.2), 0 7px 36px rgba(38, 50, 56, 0.4);
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+@media (min-width: 601px) {
+  /* line 141, ../sass/style.scss */
+  .songs-wrapper .song .song-info {
+    padding: 20px;
+  }
+}
+/* line 156, ../sass/style.scss */
+.songs-wrapper .song .song-info .song-title {
+  font-size: 16px;
+  color: #78909c;
+  font-family: "Lobster Two", sans-serif;
+}
+@media (min-width: 601px) {
+  /* line 156, ../sass/style.scss */
+  .songs-wrapper .song .song-info .song-title {
+    font-size: 20px;
+  }
+}
+/* line 166, ../sass/style.scss */
+.songs-wrapper .song .song-info .song-artist,
+.songs-wrapper .song .song-info .song-time {
+  font-size: 12px;
+  color: #263238;
+}
+@media (min-width: 601px) {
+  /* line 166, ../sass/style.scss */
+  .songs-wrapper .song .song-info .song-artist,
+  .songs-wrapper .song .song-info .song-time {
+    font-size: 14px;
+  }
+}
+/* line 177, ../sass/style.scss */
+.songs-wrapper .song:hover, .songs-wrapper .song.active {
+  transform: translateY(-2px);
+}
+/* line 181, ../sass/style.scss */
+.songs-wrapper .song:hover .song-image, .songs-wrapper .song.active .song-image {
+  transform: scale(1.05);
+}
+/* line 190, ../sass/style.scss */
+.songs-wrapper .song:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(38, 50, 56, 0.12), 0 4px 20px rgba(38, 50, 56, 0.24);
+}
+/* line 195, ../sass/style.scss */
+.songs-wrapper .song.active {
+  box-shadow: 0 4px 15px #5aaae6;
+}
+
+/* line 201, ../sass/style.scss */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  margin-right: -10px;
+}
+@media (min-width: 601px) {
+  /* line 201, ../sass/style.scss */
+  .row {
+    margin-right: -20px;
+  }
+}
+/* line 212, ../sass/style.scss */
+.row:last-child {
+  margin-bottom: -10px;
+}
+@media (min-width: 601px) {
+  /* line 212, ../sass/style.scss */
+  .row:last-child {
+    margin-bottom: -20px;
+  }
+}
+/* line 220, ../sass/style.scss */
+.row .col {
+  flex: 1;
+  margin-left: 0;
+  position: relative;
+  transition: all 0.2s ease-in;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+@media (min-width: 601px) {
+  /* line 220, ../sass/style.scss */
+  .row .col {
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+}
+/* line 234, ../sass/style.scss */
+.row .col.s1 {
+  flex: 0 0 calc(100% * (1/12));
+  max-width: calc(100% * (1/12));
+}
+/* line 238, ../sass/style.scss */
+.row .col.s2 {
+  flex: 0 0 calc(100% * (2/12));
+  max-width: calc(100% * (2/12));
+}
+/* line 242, ../sass/style.scss */
+.row .col.s3 {
+  flex: 0 0 calc(100% * (3/12));
+  max-width: calc(100% * (3/12));
+}
+/* line 246, ../sass/style.scss */
+.row .col.s4 {
+  flex: 0 0 calc(100% * (4/12));
+  max-width: calc(100% * (4/12));
+}
+/* line 250, ../sass/style.scss */
+.row .col.s5 {
+  flex: 0 0 calc(100% * (5/12));
+  max-width: calc(100% * (5/12));
+}
+/* line 254, ../sass/style.scss */
+.row .col.s6 {
+  flex: 0 0 calc(100% * (6/12));
+  max-width: calc(100% * (6/12));
+}
+/* line 258, ../sass/style.scss */
+.row .col.s7 {
+  flex: 0 0 calc(100% * (7/12));
+  max-width: calc(100% * (7/12));
+}
+/* line 262, ../sass/style.scss */
+.row .col.s8 {
+  flex: 0 0 calc(100% * (8/12));
+  max-width: calc(100% * (8/12));
+}
+/* line 266, ../sass/style.scss */
+.row .col.s9 {
+  flex: 0 0 calc(100% * (9/12));
+  max-width: calc(100% * (9/12));
+}
+/* line 270, ../sass/style.scss */
+.row .col.s10 {
+  flex: 0 0 calc(100% * (10/12));
+  max-width: calc(100% * (10/12));
+}
+/* line 274, ../sass/style.scss */
+.row .col.s11 {
+  flex: 0 0 calc(100% * (11/12));
+  max-width: calc(100% * (11/12));
+}
+/* line 278, ../sass/style.scss */
+.row .col.s12 {
+  flex: 0 0 calc(100% * (12/12));
+  max-width: calc(100% * (12/12));
+}
+@media (min-width: 601px) {
+  /* line 284, ../sass/style.scss */
+  .row .col.m1 {
+    flex: 0 0 calc(100% * (1/12));
+    max-width: calc(100% * (1/12));
+  }
+  /* line 288, ../sass/style.scss */
+  .row .col.m2 {
+    flex: 0 0 calc(100% * (2/12));
+    max-width: calc(100% * (2/12));
+  }
+  /* line 292, ../sass/style.scss */
+  .row .col.m3 {
+    flex: 0 0 calc(100% * (3/12));
+    max-width: calc(100% * (3/12));
+  }
+  /* line 296, ../sass/style.scss */
+  .row .col.m4 {
+    flex: 0 0 calc(100% * (4/12));
+    max-width: calc(100% * (4/12));
+  }
+  /* line 300, ../sass/style.scss */
+  .row .col.m5 {
+    flex: 0 0 calc(100% * (5/12));
+    max-width: calc(100% * (5/12));
+  }
+  /* line 304, ../sass/style.scss */
+  .row .col.m6 {
+    flex: 0 0 calc(100% * (6/12));
+    max-width: calc(100% * (6/12));
+  }
+  /* line 308, ../sass/style.scss */
+  .row .col.m7 {
+    flex: 0 0 calc(100% * (7/12));
+    max-width: calc(100% * (7/12));
+  }
+  /* line 312, ../sass/style.scss */
+  .row .col.m8 {
+    flex: 0 0 calc(100% * (8/12));
+    max-width: calc(100% * (8/12));
+  }
+  /* line 316, ../sass/style.scss */
+  .row .col.m9 {
+    flex: 0 0 calc(100% * (9/12));
+    max-width: calc(100% * (9/12));
+  }
+  /* line 320, ../sass/style.scss */
+  .row .col.m10 {
+    flex: 0 0 calc(100% * (10/12));
+    max-width: calc(100% * (10/12));
+  }
+  /* line 324, ../sass/style.scss */
+  .row .col.m11 {
+    flex: 0 0 calc(100% * (11/12));
+    max-width: calc(100% * (11/12));
+  }
+  /* line 328, ../sass/style.scss */
+  .row .col.m12 {
+    flex: 0 0 calc(100% * (12/12));
+    max-width: calc(100% * (12/12));
+  }
+}
+@media (min-width: 993px) {
+  /* line 335, ../sass/style.scss */
+  .row .col.l1 {
+    flex: 0 0 calc(100% * (1/12));
+    max-width: calc(100% * (1/12));
+  }
+  /* line 339, ../sass/style.scss */
+  .row .col.l2 {
+    flex: 0 0 calc(100% * (2/12));
+    max-width: calc(100% * (2/12));
+  }
+  /* line 343, ../sass/style.scss */
+  .row .col.l3 {
+    flex: 0 0 calc(100% * (3/12));
+    max-width: calc(100% * (3/12));
+  }
+  /* line 347, ../sass/style.scss */
+  .row .col.l4 {
+    flex: 0 0 calc(100% * (4/12));
+    max-width: calc(100% * (4/12));
+  }
+  /* line 351, ../sass/style.scss */
+  .row .col.l5 {
+    flex: 0 0 calc(100% * (5/12));
+    max-width: calc(100% * (5/12));
+  }
+  /* line 355, ../sass/style.scss */
+  .row .col.l6 {
+    flex: 0 0 calc(100% * (6/12));
+    max-width: calc(100% * (6/12));
+  }
+  /* line 359, ../sass/style.scss */
+  .row .col.l7 {
+    flex: 0 0 calc(100% * (7/12));
+    max-width: calc(100% * (7/12));
+  }
+  /* line 363, ../sass/style.scss */
+  .row .col.l8 {
+    flex: 0 0 calc(100% * (8/12));
+    max-width: calc(100% * (8/12));
+  }
+  /* line 367, ../sass/style.scss */
+  .row .col.l9 {
+    flex: 0 0 calc(100% * (9/12));
+    max-width: calc(100% * (9/12));
+  }
+  /* line 371, ../sass/style.scss */
+  .row .col.l10 {
+    flex: 0 0 calc(100% * (10/12));
+    max-width: calc(100% * (10/12));
+  }
+  /* line 375, ../sass/style.scss */
+  .row .col.l11 {
+    flex: 0 0 calc(100% * (11/12));
+    max-width: calc(100% * (11/12));
+  }
+  /* line 379, ../sass/style.scss */
+  .row .col.l12 {
+    flex: 0 0 calc(100% * (12/12));
+    max-width: calc(100% * (12/12));
+  }
+}
+@media (min-width: 1301px) {
+  /* line 386, ../sass/style.scss */
+  .row .col.x1 {
+    flex: 0 0 calc(100% * (1/12));
+    max-width: calc(100% * (1/12));
+  }
+  /* line 390, ../sass/style.scss */
+  .row .col.x2 {
+    flex: 0 0 calc(100% * (2/12));
+    max-width: calc(100% * (2/12));
+  }
+  /* line 394, ../sass/style.scss */
+  .row .col.x3 {
+    flex: 0 0 calc(100% * (3/12));
+    max-width: calc(100% * (3/12));
+  }
+  /* line 398, ../sass/style.scss */
+  .row .col.x4 {
+    flex: 0 0 calc(100% * (4/12));
+    max-width: calc(100% * (4/12));
+  }
+  /* line 402, ../sass/style.scss */
+  .row .col.x5 {
+    flex: 0 0 calc(100% * (5/12));
+    max-width: calc(100% * (5/12));
+  }
+  /* line 406, ../sass/style.scss */
+  .row .col.x6 {
+    flex: 0 0 calc(100% * (6/12));
+    max-width: calc(100% * (6/12));
+  }
+  /* line 410, ../sass/style.scss */
+  .row .col.x7 {
+    flex: 0 0 calc(100% * (7/12));
+    max-width: calc(100% * (7/12));
+  }
+  /* line 414, ../sass/style.scss */
+  .row .col.x8 {
+    flex: 0 0 calc(100% * (8/12));
+    max-width: calc(100% * (8/12));
+  }
+  /* line 418, ../sass/style.scss */
+  .row .col.x9 {
+    flex: 0 0 calc(100% * (9/12));
+    max-width: calc(100% * (9/12));
+  }
+  /* line 422, ../sass/style.scss */
+  .row .col.x10 {
+    flex: 0 0 calc(100% * (10/12));
+    max-width: calc(100% * (10/12));
+  }
+  /* line 426, ../sass/style.scss */
+  .row .col.x11 {
+    flex: 0 0 calc(100% * (11/12));
+    max-width: calc(100% * (11/12));
+  }
+  /* line 430, ../sass/style.scss */
+  .row .col.x12 {
+    flex: 0 0 calc(100% * (12/12));
+    max-width: calc(100% * (12/12));
+  }
+}
+
+/* line 438, ../sass/style.scss */
+.play-button {
+  width: 40px;
+  height: 40px;
+  color: white;
+  border: none;
+  outline: none;
+  line-height: 0;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(38, 50, 56, 0.1), 0 3px 12px rgba(38, 50, 56, 0.12);
+  background-color: #5aaae6;
+  transition: background-color 0.2s ease-in, box-shadow 0.2s ease-in;
+}
+@media (min-width: 601px) {
+  /* line 438, ../sass/style.scss */
+  .play-button {
+    width: 50px;
+    height: 50px;
+  }
+}
+/* line 455, ../sass/style.scss */
+.play-button i {
+  font-size: 26px;
+  transition: transform 0.2s ease-in;
+}
+/* line 460, ../sass/style.scss */
+.play-button:hover {
+  cursor: pointer;
+  background-color: #70b5e9;
+}
+/* line 466, ../sass/style.scss */
+.play-button:active i {
+  transform: scale(1.2);
+}
+
+/* line 472, ../sass/style.scss */
+.music-player {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  color: #263238;
+  padding: 10px;
+  box-shadow: 0 7px 18px rgba(38, 50, 56, 0.2), 0 7px 36px rgba(38, 50, 56, 0.4);
+  background-color: rgba(255, 255, 255, 0.99);
+}
+@media (min-width: 601px) {
+  /* line 472, ../sass/style.scss */
+  .music-player {
+    padding: 20px;
+  }
+}
+/* line 486, ../sass/style.scss */
+.music-player .progress-wrapper {
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+/* line 493, ../sass/style.scss */
+.music-player .progress-wrapper .progress-bar {
+  width: 0;
+  height: 3px;
+  background-color: #5aaae6;
+  animation: play 60s linear 1s infinite;
+}
+/* line 501, ../sass/style.scss */
+.music-player .times-row {
+  display: flex;
+  font-size: 12px;
+  color: #263238;
+  pointer-events: none;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+/* line 509, ../sass/style.scss */
+.music-player .times-row .current-song {
+  text-align: center;
+}
+/* line 512, ../sass/style.scss */
+.music-player .times-row .current-song .song-title {
+  font-size: 14px;
+  color: #78909c;
+  font-family: "Lobster Two", sans-serif;
+}
+@media (min-width: 601px) {
+  /* line 512, ../sass/style.scss */
+  .music-player .times-row .current-song .song-title {
+    font-size: 18px;
+  }
+}
+/* line 522, ../sass/style.scss */
+.music-player .times-row .current-song .song-artist {
+  font-size: 10px;
+  color: #263238;
+}
+@media (min-width: 601px) {
+  /* line 522, ../sass/style.scss */
+  .music-player .times-row .current-song .song-artist {
+    font-size: 12px;
+  }
+}
+/* line 533, ../sass/style.scss */
+.music-player .player-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* line 538, ../sass/style.scss */
+.music-player .player-actions .play-button {
+  width: 60px;
+  height: 60px;
+}
+/* line 542, ../sass/style.scss */
+.music-player .player-actions .play-button i {
+  font-size: 32px;
+}
+/* line 547, ../sass/style.scss */
+.music-player .player-actions .action-button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  outline: none;
+  margin: 0 10px;
+  line-height: 0;
+  border-radius: 50%;
+  color: #78909c;
+  background-color: transparent;
+  transition: background-color 0.2s ease-in;
+}
+/* line 559, ../sass/style.scss */
+.music-player .player-actions .action-button:hover {
+  cursor: pointer;
+  background-color: #eceff1;
+}
+
+@keyframes play {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
