@@ -1,0 +1,107 @@
+html, body {
+  background: #333 url("https://codepen.io/images/classy_fabric.png");
+}
+
+body * {
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.slider {
+  width: 512px;
+  height: 343px;
+  margin: 0 auto;
+  margin-top: 100px;
+  position: relative;
+  overflow: hidden;
+  -webkit-perspective: 1800;
+}
+
+.slider .blind, .slider .blind:before, .slider .blind:after {
+  top: 0;
+  height: 100%;
+  position: absolute;
+  background-image: url("http://farm9.staticflickr.com/8068/8250438572_d1a5917072_b.jpg");
+  background-size: auto 100%;
+  transition: top 0.5s;
+  transform: translateZ(0);
+}
+
+.slider .blind {
+  width: 11.11111%;
+}
+
+.slider .blind:before, .slider .blind:after {
+  width: 100%;
+  content: "";
+  transition-property: -webkit-transform, top;
+}
+
+.slider .blind:before {
+  left: -100%;
+}
+
+.slider .blind:after {
+  left: 100%;
+}
+
+.slider:hover .blind {
+  top: 100%;
+}
+
+.slider:hover .blind:before, .slider:hover .blind:after {
+  top: 100%;
+  -webkit-transform: translateY(-100%) translateZ(0);
+}
+
+.slider .blind:nth-child(3):before {
+  background-position-x: 75%;
+  transition-delay: 700ms, 600ms;
+}
+
+.slider .blind:nth-child(3) {
+  left: 66.66667%;
+  background-position-x: 87.5%;
+  transition-delay: 700ms;
+}
+
+.slider .blind:nth-child(3):after {
+  background-position-x: 100%;
+  transition-delay: 700ms, 800ms;
+}
+
+.slider .blind:nth-child(2):before {
+  background-position-x: 37.5%;
+  transition-delay: 400ms, 300ms;
+}
+
+.slider .blind:nth-child(2) {
+  left: 33.33333%;
+  background-position-x: 50%;
+  transition-delay: 400ms;
+}
+
+.slider .blind:nth-child(2):after {
+  background-position-x: 62.5%;
+  transition-delay: 400ms, 500ms;
+}
+
+.slider .blind:nth-child(1):before {
+  background-position-x: 0%;
+  transition-delay: 100ms, 0ms;
+}
+
+.slider .blind:nth-child(1) {
+  left: 0%;
+  background-position-x: 12.5%;
+  transition-delay: 100ms;
+}
+
+.slider .blind:nth-child(1):after {
+  background-position-x: 25%;
+  transition-delay: 100ms, 200ms;
+}

@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+@import url('http://weloveiconfonts.com/api/?family=fontawesome');
+@import url('http://weloveiconfonts.com/api/?family=entypo');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:before, :after {
+	display: block;
+	position: absolute;
+}
+
+html, body {
+	min-height: 100%;
+}
+
+body {
+	color: #777;
+	position: relative;
+  background: #f5f5f5;
+	font: 15px Lato, sans-serif;
+}
+
+a {
+	cursor: pointer;
+}
+
+ul {
+	list-style: none;
+}
+
+nav.main {
+	width: 250px;
+	background: #3B4854;
+	height: 100%;
+	position: absolute;
+	z-index: 9;
+	transition: all .4s ease-in-out;
+}
+
+nav.main div {
+	width: 100%;
+	overflow: hidden;
+}
+
+nav.main header {
+	position: relative;
+	height: 80px;
+	width: 250px;
+	padding: 20px 0 0 15px;
+	font-size: 16px;
+	color: #fff;
+	background: #303B45;
+	transition: all .4s ease-in-out;
+}
+
+nav.main header img.thumb {
+	position: relative;
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	margin: 0 10px 0 0;
+	vertical-align: middle;
+	transition: all .4s ease-in-out;
+	border-radius: 50%;
+}
+
+nav.main header a:before {
+	content: '\f053';
+	font: normal 20px FontAwesome;
+	top: 28px;
+	right: 15px;
+}
+
+nav.main a.open {
+	height: 0;
+	display: block;
+	overflow: hidden;
+	transition: all .4s ease-in-out;
+}
+
+nav.main a.open:before {
+	position: static;
+	content: '\f054';
+	font: normal 20px FontAwesome;
+	padding: 15px 19px;
+	color: #fff;
+}
+
+nav.main ul {
+	border-bottom: 1px solid #465563;
+}
+
+nav.main ul li.section {
+	height: 49px;
+	border-top: 1px solid #465563;
+	border-bottom: 1px solid #2D3741;
+}
+
+nav.main ul span {
+	display: block;
+	padding: 15px;
+	color: rgba(255,255,255,.5);
+	text-transform: uppercase;
+}
+
+nav.main ul li {
+	width: 100%;
+	overflow: hidden;
+  white-space: nowrap;
+	transition: all .4s ease-in-out;
+}
+
+nav.main ul a {
+	position: relative;
+	display: block;
+	padding: 15px 15px 17px 50px;
+	color: #fff;
+	border-top: 1px solid #465563;
+	border-bottom: 1px solid #2D3741;
+	background: #3B4854;
+	transition: all .4s ease-in-out;
+}
+
+nav.main ul a:hover,
+nav.main ul a.active,
+nav.main a.open:hover:before{
+	background: #4C5E6D;
+}
+
+nav.main ul a:before {
+	top: 15px;
+	left: 15px;
+  width: 19px;
+  text-align: center;
+	font: normal 20px Entypo;
+	-webkit-font-smoothing: antialiased;
+}
+
+nav.main ul li:nth-child(2) a:before { content: '\F601'; }
+nav.main ul li:nth-child(3) a:before { content: '\1F4C8'; }
+nav.main ul li:nth-child(4) a:before { content: '\E78E'; }
+nav.main ul li:nth-child(5) a:before { content: '\E003'; }
+nav.main ul li:nth-child(6) a:before { content: '\E771'; }
+nav.main ul li:nth-child(7) a:before { content: '\21C6'; }
+nav.main ul li:nth-child(9) a:before { content: ' \2753'; }
+nav.main ul li:nth-child(10) a:before { content: '\2692'; }
+nav.main ul li:nth-child(11) a:before { content: '\E715'; }
+
+/*	Collapsed styles */
+nav.main.collapsed {
+	width: 50px;
+}
+
+nav.main.collapsed a.open { height: 50px; }
+
+nav.main.collapsed header {
+	padding: 0;
+	height: 55px;
+}
+
+nav.main.collapsed header img.thumb {
+	margin: 10px 7px;
+}
+
+nav.main.collapsed ul li:hover {
+	width: 250px;
+	position: relative;
+	z-index: 999;
+}
+
+nav.main.collapsed ul li.section {
+	height: 10px;
+	width: 100%;
+}
+
+main.collapsed, footer.collapsed {
+	margin-left: 50px;
+}
+
+main {
+	padding: 25px;
+	margin-left: 250px;
+  padding-bottom: 85px;
+	transition: all .4s ease-in-out;
+}
+
+main h1 {
+	height: 80px;
+	margin: -25px -25px 25px -25px;
+	padding: 0 25px;
+	line-height: 76px;
+	font-size: 28px;
+	font-weight: 300;
+	text-transform: uppercase;
+	border-bottom: 1px solid #EEE;
+	background: #fafafa;
+}
+
+#flotTip {
+	border-radius: 2px;
+	padding: 3px 6px 6px;
+	color: #666;
+	background: #FFF;
+	border: 1px solid #CCC;
+	font-family: sans-serif;
+	font-size: 12px;
+	transition: all .3s ease-in-out;
+	pointer-events: none;
+	white-space: nowrap;
+}
+
+#flotTip .hover-title {
+	font-weight: bold;
+	margin: 0.25em 0;
+}
+
+#flotTip b {
+	font-size: 13px;
+}
+
+.flot-x-axis div {
+	white-space: nowrap;
+}
+
+.flex-grid {
+	display: flex;
+}
+
+.flex-grid > section {
+	flex: 1;
+	margin: 0 20px 20px 0;
+	padding: 10px;
+	border: 1px solid #d2d2d2;
+	border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+	background: #fff;
+	overflow: hidden;
+}
+
+.flex-grid > section:hover {
+	border: 1px solid #bbb;
+	cursor: pointer;
+}
+
+.flex-grid > section:last-child {
+	margin-right: 0;
+}
+
+.flex-grid > section.seamless {
+	border: none;
+	background: transparent;
+	text-align: center;
+	position: relative;
+	border-radius: 2px;
+}
+
+.flex-grid > section.seamless h3 {
+	font-size: 14px;
+	font-weight: normal;
+	margin-top: 8px;
+}
+
+.flex-grid > section.seamless span {
+	font-size: 34px;
+	color: #62a9dd;
+}
+
+.flex-grid > section.seamless a {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+	color: #666;
+	font-size: 18px;
+	line-height: 73px;
+	position: absolute;
+	text-align: center;
+	border-radius: 2px;
+	text-decoration: none;
+	border: 1px solid #DDD;
+	background: rgba(255, 255, 255, 0.9);
+	transition: .15s opacity ease-in-out;
+}
+
+.flex-grid > section.seamless a span {
+	font-size: 30px;
+	position: relative;
+	top: 3px;
+	color: #666;
+}
+
+.flex-grid > section.seamless:hover a {
+	opacity: 1;
+}
+
+.flex-grid h2 {
+	margin: -10px;
+  margin-bottom: 15px;
+	padding: 10px 15px 9px;
+	font-size: 14px;
+  color: #444;
+	font-family: Arial, sans-serif;
+	border-bottom: 1px solid #ddd;
+}
+
+.flex-grid .chart {
+	position: relative;
+	width: 100%;
+	height: 200px;
+}
+
+.flex-grid .top-jobs h2 {
+	margin-bottom: 0;
+}
+
+.flex-grid .top-jobs table {
+	table-layout: fixed;
+}
+
+.flex-grid .top-jobs thead td {
+	color: #2986CA;
+}
+
+.flex-grid .top-jobs thead td:nth-child(2) {
+	width: 75px;
+}
+
+.flex-grid .top-jobs td {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.flex-grid .top-jobs tbody td:nth-child(2) {
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+}
+
+.flex-grid .status-log li {
+	font-size: 14px;
+	margin-bottom: 12px;
+	overflow: hidden;
+	position: relative;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.flex-grid .account {
+	font-size: 13px;
+}
+
+.flex-grid .account .field {
+	color: #2CA784;
+	font-size: 14px;
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+.flex-grid .account span {
+	line-height: 22px;
+}
+
+.flex-grid .account h3.title {
+	margin: 8px 0 2px 10px;
+	display: block;
+	padding: 0;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	color: #555;
+}
+
+.flex-grid .account .sub-content {
+	padding-left: 12px;
+}
+
+.flex-grid li {
+	position: relative;
+	margin: 0 0 10px;
+	padding: 0 0 0 25px;
+}
+
+.flex-grid li:before {
+	content: '\f00c';
+	font: normal 16px FontAwesome;
+	top: 2px;
+	left: 0;
+	color: #5b5;
+}
+
+.flex-grid li.error { color: #EC5A55; }
+
+.flex-grid li.error:before {
+	content: '\2715';
+	font: normal 24px Entypo;
+	top: -4px;
+	left: 2px;
+	color: #EC5A55;
+}
+
+.flex-grid table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.flex-grid table thead td {
+	color: #555;
+	padding: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.flex-grid table tbody tr:nth-child(odd) {
+	background: #f9f9f9;
+}
+
+.flex-grid table tbody td {
+	padding: 10px;
+	font-size: 12px;
+	border-top: 1px solid #ddd;
+}
+
+footer {
+  left: 0;
+  right: 0;
+  bottom: 0;
+	overflow: hidden;
+  position: absolute;
+	margin-left: 250px;
+	background: #F9F9F9;
+	border-top: 1px solid #EEE;
+	transition: all .4s ease-in-out;
+}
+
+footer p {
+	float: right;
+	margin: 22px;
+	font-size: 12px;
+}
+
+footer nav {
+	margin: 20px;
+	display: inline-block;
+}
+
+footer nav a {
+	color: #777;
+	text-decoration: none;
+	margin: 9px;
+	font-size: 13px;
+}
+
+footer nav a:hover {
+	color: #333;
+}

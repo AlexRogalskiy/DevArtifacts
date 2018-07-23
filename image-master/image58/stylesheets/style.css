@@ -1,0 +1,188 @@
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: linear-gradient(-45deg, #fb29bd, #fdd035 80%);
+  background-size: cover;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+section[class*='unit-'] {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  z-index: 2;
+  transform-style: preserve-3d;
+}
+
+.unit-box {
+  position: relative;
+  width: 75vw;
+  max-width: 1100px;
+  margin: auto;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.box-copy {
+  max-width: 500px;
+  margin: auto;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 0.8;
+  line-height: 1.4em;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+}
+
+.head-large {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 8vw;
+  line-height: 1em;
+  font-weight: 600;
+  text-align: center;
+}
+.unit-1 .head-large {
+  font-size: 18vw;
+}
+@media (min-width: 1100px) {
+  .head-large {
+    font-size: 6rem;
+  }
+}
+
+.head-small {
+  position: relative;
+  display: block;
+  margin-bottom: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 3vw;
+  line-height: 1em;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1.5vw;
+}
+
+.wrap-3d {
+  transform-style: preserve-3d;
+  perspective: 200vw;
+  perspective-origin: 50% 50%;
+}
+
+.unit-bg-rectangle {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: #3c22db;
+  background-image: linear-gradient(rgba(60, 34, 219, 0), #3c22db 80%), linear-gradient(-40deg, #3c22db 45%, #6325e2 45%);
+  transform-style: preserve-3d;
+  transform: translateZ(-70vw) rotateX(25deg) rotateY(25deg);
+}
+.unit-bg-rectangle:before {
+  content: '\0022';
+  position: absolute;
+  top: 40%;
+  right: 5%;
+  font-size: 30vw;
+  line-height: 0;
+  font-family: 'Coustard', serif;
+  color: #fff;
+  transform: translateZ(20vw) translateX(-20%) translateY(8vw);
+}
+
+.unit-rectangle .head-large {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(25deg) rotateY(25deg);
+}
+.unit-rectangle .head-large:before {
+  content: 'Five boxing wizards jump quickly';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  color: black;
+  filter: blur(3px);
+  transform: translateZ(-10vw) translateX(10%);
+  backface-visibilty: visible;
+}
+
+.unit-bg-line {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  width: 5%;
+  height: 100%;
+  background-color: #fff;
+  transform-style: preserve-3d;
+  transform: translateZ(-30vw) translateX(-50%);
+}
+.unit-bg-line:before {
+  content: '';
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  width: 30vw;
+  height: 30vw;
+  border: 2vw solid white;
+  border-image: linear-gradient(135deg, #3c22db, #fb29bd);
+  border-image-slice: 1;
+  transform: translateZ(0vw) translateX(-50%) rotateX(-30deg) rotateY(-30deg);
+}
+
+.unit-bg-triangle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80vw;
+  height: 80vw;
+  background-image: linear-gradient(rgba(60, 34, 219, 0), #3c22db 80%), linear-gradient(-40deg, #3c22db 45%, #6325e2 45%);
+  transform-style: preserve-3d;
+  transform: translateZ(-70vw) translateX(-50%) translateY(-50%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.unit-bg-triangle:before, .unit-bg-triangle:after {
+  content: '';
+  position: absolute;
+  width: 30vw;
+  height: 30vw;
+  border-radius: 50%;
+  background-image: linear-gradient(35deg, #fdfe81, rgba(253, 254, 129, 0));
+}
+.unit-bg-triangle:before {
+  top: 10%;
+  right: -5%;
+  transform: translateZ(70vw) scale(0.5);
+}
+.unit-bg-triangle:after {
+  bottom: 5%;
+  left: -20%;
+  transform: translateZ(-50vw) scale(1.5);
+}

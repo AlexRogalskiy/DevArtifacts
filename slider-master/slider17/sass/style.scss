@@ -1,0 +1,395 @@
+$duration: .7s; /* Specify the duration of all major transitions */
+
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+html, body {
+  min-height: 100%;
+  background: #333 url("https://codepen.io/images/classy_fabric.png");
+}
+
+.slides {
+	padding: 0;
+	width: 640px;
+	height: 425px;
+	display: block;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+.slides * {
+	user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+}
+
+.slides input { display: none; }
+
+.slide-container { display: block; }
+
+.slide {
+	top: 0;
+	opacity: 0;
+	width: 640px;
+	height: 425px;
+	display: block;
+	position: absolute;
+
+	transform: scale(0);
+	transition: all $duration ease-in-out;
+}
+
+.slide img {
+	width: 100%;
+	height: 100%;
+}
+
+.nav label {
+	top: 0;
+	width: 200px;
+	height: 100%;
+	display: none;
+	position: absolute;
+
+	opacity: 0;
+	z-index: 9;
+	cursor: pointer;
+
+	transition: opacity .2s;
+
+	color: #FFF;
+	font-size: 156pt;
+	text-align: center;
+	line-height: 380px;
+	font-family: "Varela Round", sans-serif;
+	background-color: rgba(255, 255, 255, .3);
+	text-shadow: 0px 0px 15px rgb(119, 119, 119);
+}
+
+.slide:hover + .nav label { opacity: 0.5; }
+
+.nav label:hover { opacity: 1; }
+
+.nav .next { right: 0; }
+
+input:checked + .slide-container .slide {
+	opacity: 1;
+	transform: scale(1);
+	transition: opacity 1s ease-in-out;
+}
+
+input:checked + .slide-container .nav label { display: block; }
+
+.nav-dots {
+	width: 100%;
+	bottom: 9px;
+	height: 11px;
+	display: block;
+	position: absolute;
+	text-align: center;
+}
+
+.nav-dots .nav-dot {
+	top: -5px;
+	width: 11px;
+	height: 11px;
+	margin: 0 4px;
+	cursor: pointer;
+	position: relative;
+	border-radius: 100%;
+	display: inline-block;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.nav-dots .nav-dot:hover,
+input#img-1:checked ~ .nav-dots label#img-dot-1,
+input#img-2:checked ~ .nav-dots label#img-dot-2,
+input#img-3:checked ~ .nav-dots label#img-dot-3,
+input#img-4:checked ~ .nav-dots label#img-dot-4,
+input#img-5:checked ~ .nav-dots label#img-dot-5,
+input#img-6:checked ~ .nav-dots label#img-dot-6 {
+	background: rgba(0, 0, 0, 0.8);
+}
+
+
+
+
+
+/*-----------------------------------
+	/ Transitions
+
+	Remove this section to revert to default shrink/opacity transition.
+*/
+
+
+
+/*-----------------------------------
+	/ Transitions / Slices
+*/
+$slices: 8; /* (Multiple of 3) + 2, add one .slice for every 3 extra slices */
+$delay: 100ms;
+
+.slide.slices {
+	opacity: 1;
+	transform: none;
+	position: absolute;
+	background-size: 0 0;
+}
+
+.slices:after,
+.slices:before,
+.slices .slice,
+.slices .slice:before,
+.slices .slice:after {
+	top: -100%;
+	height: 100%;
+	position: absolute;
+	background-image: inherit;
+	background-size: auto 100%;
+	transition: top $duration;
+	transform: translateZ(0);
+}
+
+.slices .slice,
+.slices:before,
+.slices:after {
+	width: (100% / $slices);
+}
+
+.slices:after,
+.slices:before,
+.slices .slice:before,
+.slices .slice:after {
+	content: "";
+	transition-property: transform, top;
+}
+
+.slices .slice:before,
+.slices .slice:after {
+	width: 100%;
+	transform: translateY(100%);
+}
+
+.slices:before {
+	left: 0;
+}
+
+.slices:after {
+	right: 0;
+	background-position-x: 100%;
+	transition-delay: $delay * ($slices - 1);
+}
+
+.slices .slice:before {
+	left: -100%;
+}
+
+.slices .slice:after {
+	left: 100%;
+}
+
+
+$i: $slices - 2;
+@while $i > 1 {
+	.slices .slice:nth-child(#{$i / 3}):before {
+		background-position-x: (100% / ($slices - 1)) * ($i - 2);
+		transition-delay: $delay * ($i - 1), $delay * ($i - 2);
+	}
+
+	.slices .slice:nth-child(#{$i / 3}) {
+		left: (100% / $slices) * ($i - 1);
+		background-position-x: (100% / ($slices - 1)) * ($i - 1);
+		transition-delay: $delay * ($i - 1);
+	}
+
+	.slices .slice:nth-child(#{$i / 3}):after {
+		background-position-x: (100% / ($slices - 1)) * $i;
+		transition-delay: $delay * ($i - 1), $delay * $i;
+	}
+
+	$i: $i - 3;
+}
+
+
+
+/*-----------------------------------
+	/ Transitions / Slices / Active
+*/
+input:checked + .slide-container .slide.slices {
+	transition: all $duration ease-in-out;
+}
+
+input:checked + .slide-container .slide.slices .slice,
+input:checked + .slide-container .slide.slices:after,
+input:checked + .slide-container .slide.slices:before {
+	top: 0%;
+}
+
+input:checked + .slide-container .slide.slices .slice:before,
+input:checked + .slide-container .slide.slices .slice:after {
+	top: 0%;
+	transform: translateY(0);
+}
+
+
+
+
+
+/*----------------------------------
+	/ Transitions / Cascade
+*/
+.slide.slices.cascade {
+	transform: scale(0);
+}
+
+
+
+/*----------------------------------
+	/ Transitions / Cascade
+*/
+input:checked + .slide-container .slide.slices.cascade {
+	transform: none;
+}
+
+
+
+
+
+/*----------------------------------
+	/ Transitions / Underise
+*/
+.slide.slices.underise {
+	transform: scale(0);
+}
+
+.slices.underise:after,
+.slices.underise:before,
+.slices.underise .slice,
+.slices.underise .slice:before,
+.slices.underise .slice:after {
+	top: 100%;
+}
+
+
+
+/*----------------------------------
+	/ Transitions / Underise
+*/
+input:checked + .slide-container .slide.slices.underise {
+	transform: none;
+}
+
+
+
+/*-----------------------------------
+	/ Transitions / Horizontal Slices
+*/
+$hslices: 5; /* (Multiple of 3) + 2, add one .slice for every 3 extra slices */
+$delay: 100ms;
+
+.slide.hslices {
+	opacity: 1;
+	z-index: -1;
+	transform: none;
+	position: absolute;
+	background-size: 0 0;
+}
+
+.hslices:after,
+.hslices:before,
+.hslices .slice,
+.hslices .slice:before,
+.hslices .slice:after {
+	left: 100%;
+	width: 100%;
+	position: absolute;
+	background-image: inherit;
+	background-size: 100% auto;
+	transition: left $duration;
+	transform: translateZ(0);
+}
+
+.hslices .slice,
+.hslices:before,
+.hslices:after {
+	height: (100% / $hslices);
+}
+
+.hslices:after,
+.hslices:before,
+.hslices .slice:before,
+.hslices .slice:after {
+	content: "";
+	transition-property: transform, left;
+}
+
+.hslices .slice:before,
+.hslices .slice:after {
+	height: 100%;
+	transform: translateX(100%);
+}
+
+.hslices:before {
+	top: 0;
+}
+
+.hslices:after {
+	bottom: 0;
+	background-position-y: 100%;
+	transition-delay: $delay * ($hslices - 1);
+}
+
+.hslices .slice:before {
+	top: -100%;
+}
+
+.hslices .slice:after {
+	top: 100%;
+}
+
+
+$i: $hslices - 2;
+@while $i > 1 {
+	.hslices .slice:nth-child(#{$i / 3}):before {
+		background-position-y: (100% / ($hslices - 1)) * ($i - 2);
+		transition-delay: $delay * ($i - 1), $delay * ($i - 2);
+	}
+
+	.hslices .slice:nth-child(#{$i / 3}) {
+		top: (100% / $hslices) * ($i - 1);
+		background-position-y: (100% / ($hslices - 1)) * ($i - 1);
+		transition-delay: $delay * ($i - 1);
+	}
+
+	.hslices .slice:nth-child(#{$i / 3}):after {
+		background-position-y: (100% / ($hslices - 1)) * $i;
+		transition-delay: $delay * ($i - 1), $delay * $i;
+	}
+
+	$i: $i - 3;
+}
+
+
+
+/*-----------------------------------
+	/ Transitions / Horizontal Slices / Active
+*/
+input:checked + .slide-container .slide.hslices {
+	z-index: 0;
+	transition: all $duration ease-in-out;
+}
+
+input:checked + .slide-container .slide.hslices .slice,
+input:checked + .slide-container .slide.hslices:after,
+input:checked + .slide-container .slide.hslices:before {
+	left: 0%;
+}
+
+input:checked + .slide-container .slide.hslices .slice:before,
+input:checked + .slide-container .slide.hslices .slice:after {
+	left: 0%;
+	transform: translateY(0);
+}

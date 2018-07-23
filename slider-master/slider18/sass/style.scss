@@ -1,0 +1,86 @@
+$blinds: 9;
+$delay: 100ms;
+$duration: .5s;
+
+html, body { background: #333 url("https://codepen.io/images/classy_fabric.png"); }
+
+body * {
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.slider {
+  width: 512px;
+  height: 343px;
+  margin: 0 auto;
+  margin-top: 100px;
+  position: relative;
+  overflow: hidden;
+  -webkit-perspective: 1800;
+}
+
+.slider .blind, .slider .blind:before, .slider .blind:after {
+  top: 0;
+  height: 100%;
+  position: absolute;
+  background-image: url("http://farm9.staticflickr.com/8068/8250438572_d1a5917072_b.jpg");
+  background-size: auto 100%;
+  transition: top $duration;
+  transform: translateZ(0);
+}
+
+.slider .blind {
+  width: (100% / $blinds);
+}
+
+.slider .blind:before, .slider .blind:after {
+  width: 100%;
+  content: "";
+  transition-property: -webkit-transform, top;
+}
+
+.slider .blind:before { 
+  left: -100%;
+}
+
+.slider .blind:after { 
+  left: 100%;
+}
+
+.slider:hover .blind {
+  top: 100%;
+}
+
+.slider:hover .blind:before, .slider:hover .blind:after {
+  top: 100%;
+  -webkit-transform: translateY(-100%) translateZ(0);
+}
+  
+  
+
+
+
+$i: $blinds;
+@while $i > 0 {
+  .slider .blind:nth-child(#{$i / 3}):before {
+    background-position-x: (100% / ($blinds - 1)) * ($i - 3); 
+    transition-delay: $delay * ($i - 2), $delay * ($i - 3);
+  }
+
+  .slider .blind:nth-child(#{$i / 3}) {
+    left: (100% / 3) * (($i / 3) - 1);
+    background-position-x: (100% / ($blinds - 1)) * ($i - 2); 
+    transition-delay: $delay * ($i - 2);
+  }
+
+  .slider .blind:nth-child(#{$i / 3}):after {
+    background-position-x: (100% / ($blinds - 1)) * ($i - 1); 
+    transition-delay: $delay * ($i - 2), $delay * ($i - 1);
+  }
+
+  $i: $i - 3;
+}
