@@ -1,0 +1,101 @@
+// All of the commented out things are from the static, pre-dat.gui version that are no longer necessary
+
+//$sideNum: 12;
+//$rectNum: 12;
+
+//$width: 100px;
+//$margin: 1% * 7.3;
+$border: 3px solid #4DA16F; /* Default all same color */
+
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { 
+    background: rgb(30,30,30);
+    font-family: 'Helvatica', sans-serif;
+    color: #FFF;
+    
+    position: relative;
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+}
+.hide { display: none; }
+.faded { opacity: 0; }
+
+.prism {
+    position: absolute;
+    //top: calc(50% - #{$width * 2});
+    //left: calc(50% - #{$width * 0.5});
+    //width: $width;
+    //height: $width * 4;
+    transform-style: preserve-3d;
+    will-change: transform;
+    
+    //animation: rotate 8s linear infinite;
+}
+
+.side {
+    width: 100%;
+    height: 100%;
+    border-top: $border;
+    border-bottom: $border;
+    border-color: currentColor;
+    
+    position: absolute;
+}
+
+.rectangle {    
+    //height: (100% / $rectNum) - 2%;
+    //width: 80%;
+    //margin: 10px auto;
+    border: $border;
+    border-color: currentColor;
+    transition: opacity 150ms;
+}
+
+.solid .rectangle {
+    background: currentColor;
+}
+
+//@for $i from 1 through $sideNum {
+//    .side:nth-child(#{$i}) {
+//        color: hsl(144, 55%, 20% + ($i / $sideNum) * 40%);
+//       
+//        transform: rotateY($i * (360 / $sideNum) + deg) translateZ($width * 1.85) rotateX(180deg); 
+//    }
+//    .side.rainbow:nth-child(#{$i}) {
+//        color: hsl(360*($i / $sideNum), 80%, 55%);
+//    }
+//}
+
+/*
+@keyframes rotate {
+    from { transform: rotateY(0); }
+    to { transform: rotateY(-360deg); }
+}
+*/
+
+
+.musicControls, label {
+    position: absolute;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px;
+}
+.musicControls { 
+    top: 20px;
+    left: 20px;
+}
+
+label {
+    left: 20px;
+    top: 100px;
+    font-style: italic;
+}
+
+
+body.loaded {
+    #loading {
+      display: none;
+    }
+}

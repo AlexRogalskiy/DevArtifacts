@@ -1,0 +1,85 @@
+html, body { background: #EAEAEA; }
+.container { 
+  position: relative;
+  max-width: 100vh;
+  max-height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  cursor: pointer; 
+}
+.container::before {
+    content: "";
+    display: block;
+    margin-top: 100%;
+}
+.o,.b,.g { 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  height: 30%; 
+  width: 30%;  
+  background-size: 66% 66%, 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 100% 100%, 0px 0px; 
+  transform-origin: top left; 
+  transition: 0.5s cubic-bezier(0,0,.3,1) transform; 
+}
+.noload .o,.noload .b,.noload .g,
+.noload .o::before,.noload .b::before,.noload .g::before,
+.noload .o::after,.noload .b::after,.noload .g::fter { 
+  transition: none !important; 
+}
+
+.o { transform: rotate(-120deg) skewY(-30deg) scaleX(0.863) translate(15%, 15%) translateZ(1px); }
+.b { transform: skewY(-30deg) scaleX(0.863) translate(15%, 15%) translateZ(1px); }
+.g { transform: rotate(120deg) skewY(-30deg) scaleX(0.863) translate(15%, 15%) translateZ(1px); }
+.o::before,.b::before,.g::before,.o::after,.b::after,.g::after {
+  content: ''; 
+  position: absolute;
+  right: 0px; 
+  bottom: 0px;
+  background-size: 50% 50%, 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 100% 100%, 0px 0px;
+  transition: 0.5s ease-out transform; 
+}
+.o::before,.b::before,.g::before { 
+  height: 66%; 
+  width: 66%; 
+  transform: translate(33%, 33%); 
+}
+.o::after,.b::after,.g::after { 
+  height: 33%; 
+  width: 33%; 
+  transform: translate(100%, 100%); 
+}
+.o,.o::before { background-image: linear-gradient(0deg,#EAEAEA,#EAEAEA), linear-gradient(0deg,#E46C49,#E46C49); }
+.b,.b::before { background-image: linear-gradient(0deg,#EAEAEA,#EAEAEA), linear-gradient(0deg,#4498BD,#4498BD); }
+.g,.g::before { background-image: linear-gradient(0deg,#EAEAEA,#EAEAEA), linear-gradient(0deg,#96AA37,#96AA37); }
+.o::after { background: #E46C49; }
+.b::after { background: #4498BD; }
+.g::after { background: #96AA37; }
+
+/* Change on click */
+.container:active .o { transform: rotate(-120deg) skewY(-30deg) scaleX(0.863) translate(0%, 0%) translateZ(1px); }
+.container:active .b { transform: skewY(-30deg) scaleX(0.863) translate(0%, 0%) translateZ(1px); }
+.container:active .g { transform: rotate(120deg) skewY(-30deg) scaleX(0.863) translate(0%, 0%) translateZ(1px); }
+.container:active .o::before,.container:active .b::before,.container:active .g::before,
+.container:active .o::after,.container:active .b::after,.container:active .g::after { 
+  transform: translate(0%, 0%); 
+}
+
+.container h1 {
+  position: absolute;
+  left: 50%; 
+  top: 80%;
+  text-rendering: optimizeLegibility;
+  transform: translateX(-50%) translateY(-50%);
+  font-weight: normal;
+  font-family: 'Exo 2', Helvetica, sans-serif;
+  font-size: 80px;
+}
+
+@media (max-width: 750px), (max-height: 450px) { .container h1 { font-size: 50px; } }
+@media (max-width: 450px), (max-height: 350px) { .container h1 { font-size: 40px; } }
+@media (max-width: 280px), (max-height: 250px) { .container h1 { font-size: 30px; } }

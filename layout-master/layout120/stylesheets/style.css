@@ -1,0 +1,119 @@
+/* line 1, ../sass/style.scss */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  position: relative;
+  box-sizing: inherit;
+}
+
+/* line 4, ../sass/style.scss */
+html {
+  background: #F0f0f0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: #221;
+  box-sizing: border-box;
+  padding-bottom: 2rem;
+  counter-reset: nota_margen;
+}
+
+/* line 12, ../sass/style.scss */
+body > * {
+  width: 35rem;
+  max-width: 90%;
+  margin: 1.5rem auto 0;
+}
+
+/* line 17, ../sass/style.scss */
+[data-n_m] {
+  counter-increment: nota_margen;
+  position: static;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.4);
+  cursor: help;
+}
+
+/* line 23, ../sass/style.scss */
+[data-n_m]::after {
+  content: "(" counter(nota_margen) ")";
+  font-size: .9rem;
+  vertical-align: top;
+  color: blue;
+}
+
+/* line 29, ../sass/style.scss */
+[data-n_m]::before {
+  content: "Nota" counter(nota_margen) ": " attr(data-n_m);
+  width: calc((100vw - 40rem) / 2);
+  position: absolute;
+  top: 0;
+  left: calc(-100vw);
+  border-right: 1px solid;
+  padding: 0 .5rem;
+  line-height: 1.3;
+  font-family: initial;
+  font-size: 1rem;
+  text-align: right;
+  font-variant: normal;
+  font-style: italic;
+  z-index: 1;
+  transform: translateX(-100%);
+  transition: .5s;
+}
+
+/* line 47, ../sass/style.scss */
+[data-n_m]:hover::before {
+  left: -.5rem;
+}
+
+/* line 50, ../sass/style.scss */
+h1 {
+  font-size: 2rem;
+  font-weight: 100;
+  text-align: center;
+  font-variant: small-caps;
+  font-style: italic;
+}
+
+/* line 57, ../sass/style.scss */
+p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* line 61, ../sass/style.scss */
+.ital {
+  font-family: garamond, Georgia, Cambria,"Times New Roman",serif;
+  font-style: italic;
+  font-size: 150%;
+  text-align: center;
+  opacity: .8;
+}
+
+@media screen and (max-width: 900px) {
+  /* line 69, ../sass/style.scss */
+  [data-n_m]::before {
+    background: #000;
+    color: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: calc(-100vw);
+    text-align: left;
+    font-size: 1rem;
+    border: 0 none;
+    padding: 1rem;
+  }
+
+  /* line 82, ../sass/style.scss */
+  [data-n_m]:hover::before {
+    left: 0;
+    transform: translateX(0%);
+  }
+
+  /* line 86, ../sass/style.scss */
+  body > :last-child [data-n_m]::before {
+    top: auto;
+    bottom: 100%;
+  }
+}

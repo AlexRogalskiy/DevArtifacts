@@ -1,0 +1,82 @@
+$n: 56;  /* Number of elements (one less than in Haml) */
+$t: 2;   /* Animation duration in seconds */
+$r: 5;   /* Radius of a circle in percent */
+$moveDistance: 300%; /* The percent of the radius that each dot moves in an animation */
+
+$fullPercent: 70%; /* The keyframe at which the dots reach full size */
+$scale: 0.55; /* Max of total size scaled to in animation */
+
+$a: floor($n / 4); /* Divides dots into circles */
+
+body { background-color: black; }
+.container {
+  position: relative;
+  max-width: 100vh;
+  max-height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  &:before {
+    content: "";
+    display: block;
+    margin-top: 100%;
+  }
+}
+.dot {
+  width: $r * 2%;
+  height: $r * 2%;
+  position: absolute;
+  left: 50% - $r;
+  top: 50% - $r;  
+  .inner {
+    width: 100%;
+    height: 100%;
+    animation: move #{$t}s linear infinite;
+    
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      animation: scale #{$t}s linear infinite;
+    }
+  }
+}
+
+@for $i from 1 to $n {
+  .dot:nth-of-type(#{$i}) {
+    transform: rotate(-360deg * $i/$a);
+    .inner {
+      animation-delay: -#{$t * $i/$n}s;
+      &::after {
+        animation-delay: -#{$t * $i/$n}s;
+      }
+    }
+  }
+}
+
+@keyframes move {
+  to { transform: translateX($moveDistance); }
+}
+
+@keyframes scale {
+  /* Scale */
+  0%, 100% { transform: scale(0); }
+  #{$fullPercent} { transform: scale($scale); }
+  
+  /* Colors */
+  /* Offset to not stop transforms */
+  @for $i from 0 through 10 {
+    @if $i < 10 {
+      $scaler: $i * 10;
+      #{$scaler + 0.001%} {
+        background: hsl(360 * $scaler / 100, 80%, 55%); 
+      }
+    }
+    @else {
+      99.999% {
+        background: hsl(360, 80%, 55%); 
+      }
+    }
+  }
+}

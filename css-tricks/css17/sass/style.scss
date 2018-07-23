@@ -1,0 +1,17 @@
+div {
+  width:200px; height:200px;
+  background:rgba(0,0,255,.5);
+  animation:flipAround 8s infinite;
+  transform-origin:right;
+}
+@keyframes flipAround {
+  25% { transform-origin:right; animation-mode:forwards; transform:rotateY(-180deg); }
+  25.001% { transform-origin:bottom; transform:translateX(200px); }
+  50% { transform-origin:bottom; transform:translateX(200px) rotateX(-180deg); }
+  50.001% { transform-origin:left; transform:translateX(200px) translateY(200px); }
+  75% { transform-origin:left; transform-origin:left; transform:translateX(200px) translateY(200px) rotateY(180deg); }
+  75.001% { transform-origin:top; transform:translateY(200px); }
+  100% { transform-origin:top; transform-origin:top; transform:translateY(200px) rotateX(180deg); }
+}
+
+body { background:rgb(20,20,20); }

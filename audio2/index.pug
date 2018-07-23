@@ -1,0 +1,15 @@
+.musicControls
+    input#audiofile(type='file')
+    //- button.listenButton ...or listen to one of mine // Silly CORS
+    button.playPauseButton ▶
+label#loading(for="audiofile") Select an audio file...
+
+// This should match the values in the js
+- var maxSideNum = 24
+- var maxRectangleNum = 24
+
+.prism
+    - for (var x = 0; x < maxSideNum; x++)
+        .side.hide
+            - for (var y = 0; y < maxRectangleNum; y++)
+                .rectangle.hide

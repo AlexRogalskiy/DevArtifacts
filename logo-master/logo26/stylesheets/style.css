@@ -1,0 +1,166 @@
+/* line 1, ../sass/style.scss */
+html, body {
+  background: #EAEAEA;
+}
+
+/* line 2, ../sass/style.scss */
+.container {
+  position: relative;
+  max-width: 100vh;
+  max-height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* line 10, ../sass/style.scss */
+.container::before {
+  content: "";
+  display: block;
+  margin-top: 100%;
+}
+
+/* line 15, ../sass/style.scss */
+.o, .b, .g {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 30%;
+  width: 30%;
+  background-size: 66% 66%, 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 100% 100%, 0px 0px;
+  transform-origin: top left;
+  transition: 0.5s cubic-bezier(0, 0, 0.3, 1) transform;
+}
+
+/* line 27, ../sass/style.scss */
+.noload .o, .noload .b, .noload .g,
+.noload .o::before, .noload .b::before, .noload .g::before,
+.noload .o::after, .noload .b::after, .noload .g::fter {
+  transition: none !important;
+}
+
+/* line 33, ../sass/style.scss */
+.o {
+  transform: rotate(-120deg) skewY(-30deg) scaleX(0.863) translate(15%, 15%) translateZ(1px);
+}
+
+/* line 34, ../sass/style.scss */
+.b {
+  transform: skewY(-30deg) scaleX(0.863) translate(15%, 15%) translateZ(1px);
+}
+
+/* line 35, ../sass/style.scss */
+.g {
+  transform: rotate(120deg) skewY(-30deg) scaleX(0.863) translate(15%, 15%) translateZ(1px);
+}
+
+/* line 36, ../sass/style.scss */
+.o::before, .b::before, .g::before, .o::after, .b::after, .g::after {
+  content: '';
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  background-size: 50% 50%, 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 100% 100%, 0px 0px;
+  transition: 0.5s ease-out transform;
+}
+
+/* line 46, ../sass/style.scss */
+.o::before, .b::before, .g::before {
+  height: 66%;
+  width: 66%;
+  transform: translate(33%, 33%);
+}
+
+/* line 51, ../sass/style.scss */
+.o::after, .b::after, .g::after {
+  height: 33%;
+  width: 33%;
+  transform: translate(100%, 100%);
+}
+
+/* line 56, ../sass/style.scss */
+.o, .o::before {
+  background-image: linear-gradient(0deg, #EAEAEA, #EAEAEA), linear-gradient(0deg, #E46C49, #E46C49);
+}
+
+/* line 57, ../sass/style.scss */
+.b, .b::before {
+  background-image: linear-gradient(0deg, #EAEAEA, #EAEAEA), linear-gradient(0deg, #4498BD, #4498BD);
+}
+
+/* line 58, ../sass/style.scss */
+.g, .g::before {
+  background-image: linear-gradient(0deg, #EAEAEA, #EAEAEA), linear-gradient(0deg, #96AA37, #96AA37);
+}
+
+/* line 59, ../sass/style.scss */
+.o::after {
+  background: #E46C49;
+}
+
+/* line 60, ../sass/style.scss */
+.b::after {
+  background: #4498BD;
+}
+
+/* line 61, ../sass/style.scss */
+.g::after {
+  background: #96AA37;
+}
+
+/* Change on click */
+/* line 64, ../sass/style.scss */
+.container:active .o {
+  transform: rotate(-120deg) skewY(-30deg) scaleX(0.863) translate(0%, 0%) translateZ(1px);
+}
+
+/* line 65, ../sass/style.scss */
+.container:active .b {
+  transform: skewY(-30deg) scaleX(0.863) translate(0%, 0%) translateZ(1px);
+}
+
+/* line 66, ../sass/style.scss */
+.container:active .g {
+  transform: rotate(120deg) skewY(-30deg) scaleX(0.863) translate(0%, 0%) translateZ(1px);
+}
+
+/* line 67, ../sass/style.scss */
+.container:active .o::before, .container:active .b::before, .container:active .g::before,
+.container:active .o::after, .container:active .b::after, .container:active .g::after {
+  transform: translate(0%, 0%);
+}
+
+/* line 72, ../sass/style.scss */
+.container h1 {
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  text-rendering: optimizeLegibility;
+  transform: translateX(-50%) translateY(-50%);
+  font-weight: normal;
+  font-family: 'Exo 2', Helvetica, sans-serif;
+  font-size: 80px;
+}
+
+@media (max-width: 750px), (max-height: 450px) {
+  /* line 83, ../sass/style.scss */
+  .container h1 {
+    font-size: 50px;
+  }
+}
+@media (max-width: 450px), (max-height: 350px) {
+  /* line 84, ../sass/style.scss */
+  .container h1 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 280px), (max-height: 250px) {
+  /* line 85, ../sass/style.scss */
+  .container h1 {
+    font-size: 30px;
+  }
+}

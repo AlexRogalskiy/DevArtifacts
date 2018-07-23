@@ -1,0 +1,196 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:300);
+/* line 2, ../sass/style.scss */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  position: relative;
+}
+
+/* line 3, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* line 4, ../sass/style.scss */
+html {
+  box-sizing: border-box;
+  background: #0D757D;
+  font-size: 1rem;
+  color: #e6eff0;
+  font-family: Roboto Slab;
+}
+
+/* line 11, ../sass/style.scss */
+h1 {
+  font-weight: normal;
+  font-variant: small-caps;
+  text-align: center;
+}
+
+/* line 16, ../sass/style.scss */
+table * {
+  height: auto;
+  min-height: none;
+}
+
+/* fixed ie9 & <*/
+/* line 17, ../sass/style.scss */
+table {
+  background: #15BFCC;
+  table-layout: fixed;
+  margin: 1rem auto;
+  width: 98%;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.4);
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 0 none;
+}
+
+/* line 27, ../sass/style.scss */
+thead {
+  background: #FF7361;
+  text-align: center;
+  z-index: 2;
+}
+
+/* line 32, ../sass/style.scss */
+thead tr {
+  padding-right: 17px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+/* line 37, ../sass/style.scss */
+th {
+  border-right: 2px solid rgba(0, 0, 0, 0.2);
+  padding: .7rem 0;
+  font-size: 1.5rem;
+  font-weight: normal;
+  font-variant: small-caps;
+}
+
+/* line 44, ../sass/style.scss */
+tbody {
+  display: block;
+  height: calc(50vh - 1px);
+  min-height: calc(200px + 1 px);
+  /*use calc for fixed ie9 & <*/
+  overflow-Y: scroll;
+  color: #000;
+}
+
+/* line 52, ../sass/style.scss */
+tr {
+  display: block;
+  overflow: hidden;
+}
+
+/* line 56, ../sass/style.scss */
+tbody tr:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* line 59, ../sass/style.scss */
+th, td {
+  width: 21%;
+  float: left;
+}
+
+/* line 63, ../sass/style.scss */
+td {
+  padding: .5rem 0 .5rem 1rem;
+  border-right: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+/* line 67, ../sass/style.scss */
+td:nth-child(2n) {
+  color: #fff;
+}
+
+/* line 68, ../sass/style.scss */
+[data-campo='Mail'] {
+  width: 30%;
+}
+
+/* line 71, ../sass/style.scss */
+th:last-child, td:last-child {
+  width: 7%;
+  text-align: center;
+  border-right: 0 none;
+  padding-left: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  /* line 80, ../sass/style.scss */
+  table {
+    border-top: 1px solid;
+  }
+
+  /* line 83, ../sass/style.scss */
+  thead {
+    display: none;
+  }
+
+  /* line 84, ../sass/style.scss */
+  tbody {
+    height: auto;
+    max-height: 55vh;
+  }
+
+  /* line 88, ../sass/style.scss */
+  tr {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.35);
+  }
+
+  /* line 91, ../sass/style.scss */
+  tbody tr:nth-child(odd) {
+    background: #15BFCC;
+  }
+
+  /* line 92, ../sass/style.scss */
+  tbody tr:nth-child(even) {
+    background: #FF7361;
+  }
+
+  /* line 93, ../sass/style.scss */
+  td {
+    display: block;
+    width: 100%;
+    min-width: 100%;
+    padding: .4rem .5rem .4rem 40%;
+    border-right: 0 none;
+  }
+
+  /* line 100, ../sass/style.scss */
+  td:before {
+    content: attr(data-campo);
+    background: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    min-width: 37%;
+    padding-left: .5rem;
+    font-family: monospace;
+    font-size: 150%;
+    font-variant: small-caps;
+    line-height: 1.8;
+  }
+
+  /* line 115, ../sass/style.scss */
+  tbody td:last-child {
+    text-align: left;
+    padding-left: 40%;
+  }
+
+  /* line 119, ../sass/style.scss */
+  td:nth-child(even) {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
+/* line 123, ../sass/style.scss */
+a {
+  color: #FF7361;
+}

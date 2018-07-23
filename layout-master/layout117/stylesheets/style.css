@@ -1,0 +1,234 @@
+/* line 1, ../sass/style.scss */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  position: relative;
+}
+
+/* line 1, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* line 2, ../sass/style.scss */
+:root {
+  --cebra: repeating-linear-gradient(-25deg, transparent, transparent 20px, rgba(255, 255, 255, 0.02) 20px, rgba(255, 255, 255, 0.02) 40px);
+  --negro: #252525;
+  --bg1: #496b7b;
+  --bg2: #500c44;
+  --cl1: #F3FFBD;
+  --cl2: #a8f0c5;
+  --cl3: #e2a8f0;
+  --cl4: #9199d8;
+  --cl5: #feaca3;
+}
+
+/* line 13, ../sass/style.scss */
+html {
+  box-sizing: border-box;
+}
+
+/*
+CRITICAL-R header
+*/
+/* line 18, ../sass/style.scss */
+.critical-r {
+  background-image: var(--cebra), linear-gradient(-25deg, var(--bg1), var(--bg2));
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  padding-top: 12rem;
+  overflow: hidden;
+  font-family: sans-serif;
+  z-index: 5;
+}
+
+/* line 29, ../sass/style.scss */
+.critical-r h1 {
+  background-image: linear-gradient(var(--cl1), var(--cl1)), linear-gradient(var(--cl2), var(--cl2)), linear-gradient(var(--cl3), var(--cl3)), linear-gradient(var(--cl4), var(--cl4)), linear-gradient(var(--cl5), var(--cl5)), linear-gradient(var(--cl1), var(--cl1)), linear-gradient(var(--cl2), var(--cl2)), linear-gradient(var(--cl3), var(--cl3)), linear-gradient(var(--cl4), var(--cl4)), linear-gradient(var(--cl5), var(--cl5));
+  background-size: 100% 3rem;
+  background-repeat: repeat-x;
+  background-position: 0 1.5rem, 0 7.5rem, 0 13.5rem, 0 19.5rem, 0 25.5rem, 0 31.5rem, 0 37.5rem;
+  bottom: -9rem;
+  max-width: 800px;
+  margin-top: auto;
+  padding: 0 1rem 0 30vw;
+  text-align: right;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 6rem;
+  transform-origin: 0 100%;
+  transform: rotate(-25deg);
+  transition: .5s;
+}
+
+/* line 56, ../sass/style.scss */
+.critical-r h1::after {
+  content: '\29BF';
+  position: absolute;
+  top: -20vh;
+  bottom: -25vh;
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  right: -2.9rem;
+  color: var(--cl1);
+  padding-top: 9rem;
+  font-size: 4rem;
+  transform: scaleX(-1);
+}
+
+/* line 69, ../sass/style.scss */
+.critical-r h1::before {
+  content: '\23DA';
+  position: absolute;
+  top: -20vh;
+  bottom: 0vh;
+  border-right: 1px solid;
+  right: -1px;
+  transform: rotate(65deg) translate(-3vh, 35vh);
+  transform-origin: 100% 100%;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 3rem;
+  line-height: 0;
+}
+
+/* line 82, ../sass/style.scss */
+.critical-r .published {
+  background-image: linear-gradient(to right, currentColor 2px, transparent 2px), linear-gradient(to right, currentColor 2px, transparent 2px);
+  background-repeat: repeat-x;
+  background-size: 4px 10px, 20px 25px;
+  background-position: 0 0;
+  color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  bottom: -3.5rem;
+  left: 20vw;
+  right: -5ch;
+  height: 5rem;
+  font-family: monospace;
+  font-size: 2ch;
+  line-height: 4.5ch;
+  text-align: right;
+  padding-right: 0ch;
+  transition: .5s;
+}
+
+/* line 102, ../sass/style.scss */
+.critical-r .esC-Ks {
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 90%;
+  font-weight: 300;
+  z-index: 1;
+  padding: 1rem;
+}
+
+/* line 112, ../sass/style.scss */
+.critical-r .esC-Ks a {
+  color: var(--cl1);
+}
+
+@media (min-width: 1100px) {
+  /* line 116, ../sass/style.scss */
+  .critical-r h1 {
+    max-width: 800px;
+  }
+}
+@media (max-width: 800px) {
+  /* line 121, ../sass/style.scss */
+  .critical-r h1 {
+    bottom: -5rem;
+    max-width: 100vw;
+    padding-left: 50vw;
+  }
+
+  /* line 126, ../sass/style.scss */
+  .critical-r .published {
+    right: 0;
+  }
+}
+@media (max-width: 500px) {
+  /* line 132, ../sass/style.scss */
+  .critical-r {
+    padding: 4rem 0 3rem;
+  }
+
+  /* line 135, ../sass/style.scss */
+  .critical-r h1 {
+    max-width: none;
+    transform: none;
+    margin: 0vw;
+    bottom: auto;
+    padding: 0 1rem;
+    text-align: left;
+  }
+
+  /* line 143, ../sass/style.scss */
+  .critical-r h1::before,
+  .critical-r h1::after {
+    display: none;
+  }
+
+  /* line 147, ../sass/style.scss */
+  .critical-r .published {
+    left: 0;
+  }
+}
+/*
+FIN CRITICAL-R
+*/
+/*********************************
+* From here not pay more attention
+**********************************/
+/* line 158, ../sass/style.scss */
+article {
+  font-family: El Messiri, sans-serif;
+  word-break: break-word;
+  hyphens: auto;
+  text-align: justify;
+}
+
+/* line 164, ../sass/style.scss */
+section {
+  padding: 0 2rem;
+  font-family: El Messiri, sans-serif;
+  max-width: 50rem;
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+
+/* line 171, ../sass/style.scss */
+h2 {
+  font-size: calc(1.5vw + 1vh + 1.5rem);
+  font-weight: 600;
+  line-height: 1.35;
+  text-align-last: center;
+  margin: 2.5rem 1.5rem;
+}
+
+/* line 178, ../sass/style.scss */
+p {
+  margin-bottom: 1rem;
+  text-align-last: right;
+}
+
+/* line 182, ../sass/style.scss */
+p:last-child {
+  background: var(--bg1);
+  text-align-last: center;
+  padding: 3rem 0;
+  color: #fff;
+}
+
+/* line 188, ../sass/style.scss */
+p:last-child a {
+  color: var(--cl3);
+}
+
+/* line 191, ../sass/style.scss */
+q {
+  font-family: serif;
+  font-style: italic;
+  opacity: .8;
+}

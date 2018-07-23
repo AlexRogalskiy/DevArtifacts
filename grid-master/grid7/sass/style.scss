@@ -1,0 +1,123 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:300);
+* {margin:0;padding:0; border: 0 none; position: relative;}
+*, *:before, *:after {box-sizing: inherit;}
+html{
+  box-sizing: border-box;
+  background: #0D757D;
+  font-size: 1rem;
+  color: #e6eff0;
+  font-family: Roboto Slab;
+}
+h1 {
+  font-weight: normal;
+  font-variant: small-caps;
+  text-align: center;
+}
+table * {height: auto; min-height: none;} /* fixed ie9 & <*/
+table {
+  background: #15BFCC;
+  table-layout: fixed;
+  margin: 1rem auto;
+  width: 98%;
+  box-shadow: 0 0 4px 2px rgba(0,0,0,.4);
+  border-collapse: collapse;
+  border: 1px solid rgba(0,0,0,.5);
+  border-top: 0 none;
+}
+thead {
+  background: #FF7361;
+  text-align: center;
+  z-index: 2;
+}
+thead tr {
+  padding-right: 17px;
+  box-shadow: 0 4px 6px rgba(0,0,0,.6);
+  z-index: 2;
+}
+th {
+  border-right: 2px solid rgba(0,0,0,.2);
+  padding: .7rem 0;
+  font-size: 1.5rem;
+  font-weight: normal;
+  font-variant: small-caps;
+}
+tbody {
+  display: block;
+  height: calc(50vh - 1px);
+  min-height: calc(200px + 1 px);
+  /*use calc for fixed ie9 & <*/
+  overflow-Y: scroll;
+  color: #000;
+}
+tr {
+  display: block;
+  overflow: hidden;
+}
+tbody tr:nth-child(odd) {
+  background: rgba(0,0,0,.2);
+}
+th, td {
+  width: 21%;
+  float:left;
+}
+td {
+  padding: .5rem 0 .5rem 1rem;
+  border-right: 2px solid rgba(0,0,0,.2);
+}
+td:nth-child(2n) {color: #fff;}
+[data-campo='Mail'] {
+  width: 30%;
+}  
+th:last-child, td:last-child {
+  width: 7%;
+  text-align: center;
+  border-right: 0 none;
+  padding-left: 0;
+}
+
+
+@media only screen and (max-width:800px) {
+  table {
+    border-top: 1px solid ;
+  }
+  thead {display: none;}
+  tbody {
+    height: auto;
+    max-height: 55vh;
+  }
+  tr {
+    border-bottom: 2px solid rgba(0,0,0,.35);
+  }
+  tbody tr:nth-child(odd) {background: #15BFCC;}
+  tbody tr:nth-child(even) {background:#FF7361;}
+  td {
+    display: block;
+    width: 100%;
+    min-width: 100%;
+    padding: .4rem .5rem .4rem 40%;
+    border-right: 0 none;
+  }
+  td:before {
+    content: attr(data-campo);
+    background: rgba(0,0,0,.1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    min-width: 37%;
+    padding-left: .5rem;
+    font-family: monospace;
+    font-size: 150%;
+    font-variant: small-caps;
+    line-height: 1.8;
+  }
+  tbody td:last-child {
+    text-align: left;
+    padding-left: 40%;
+  }
+  td:nth-child(even) {
+    background: rgba(0,0,0,.2);
+  }
+}
+a {color: #FF7361}

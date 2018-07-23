@@ -1,0 +1,255 @@
+@import "https://fonts.googleapis.com/css?family=Amatic+SC:400,700";
+/* Not actually used currently... */
+/* line 9, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 10, ../sass/style.scss */
+html {
+  font-family: 'Amatic SC', cursive;
+  text-rendering: optimizeLegibility;
+  background: #84596B;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* line 17, ../sass/style.scss */
+body {
+  font-size: 100%;
+}
+
+/* line 19, ../sass/style.scss */
+button {
+  /* Remove default styling */
+  background: none;
+  border: none;
+  outline: 0;
+  font-family: inherit;
+  /* Add my styles */
+  background-color: #B58AA5;
+  color: #fff;
+  font-size: 0.7em;
+  padding: 0.3em 0.5em;
+  border-radius: 0.2em;
+  cursor: pointer;
+}
+
+/* line 35, ../sass/style.scss */
+.container {
+  width: 90%;
+  max-width: 700px;
+  min-width: 330px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* line 42, ../sass/style.scss */
+.absolute {
+  position: absolute;
+}
+
+/* line 43, ../sass/style.scss */
+.center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* line 47, ../sass/style.scss */
+.head {
+  white-space: nowrap;
+}
+/* line 49, ../sass/style.scss */
+.head h2, .head h3 {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+
+/* line 56, ../sass/style.scss */
+.font-larger {
+  font-size: 1.15em;
+}
+
+/* line 57, ../sass/style.scss */
+.font2 {
+  font-size: 2em;
+}
+
+/* line 58, ../sass/style.scss */
+.font3 {
+  font-size: 3em;
+}
+
+/* line 59, ../sass/style.scss */
+.text-center {
+  text-align: center;
+}
+
+/* line 61, ../sass/style.scss */
+.main-text {
+  top: 3em;
+  overflow: hidden;
+  padding-bottom: 0.5em;
+}
+/* line 65, ../sass/style.scss */
+.main-text h4 {
+  margin: 0.5em 0 0 0;
+  animation-delay: 1s;
+}
+/* line 69, ../sass/style.scss */
+.main-text p {
+  font-size: .8em;
+  margin-top: .3em;
+  margin-bottom: 0;
+}
+/* line 74, ../sass/style.scss */
+.main-text .first {
+  animation-delay: 2.5s;
+}
+/* line 75, ../sass/style.scss */
+.main-text .second {
+  margin-top: 0.25em;
+  animation-delay: 4s;
+}
+
+/* line 81, ../sass/style.scss */
+.call-to-action {
+  animation-delay: 6s;
+  margin: 0 auto;
+}
+
+/* Animations */
+/* line 87, ../sass/style.scss */
+.hello {
+  transform: translate3d(-3000px, 0, 0);
+  animation: bounceInLeft .75s forwards;
+}
+
+/* line 91, ../sass/style.scss */
+.date-name {
+  transform: translate3d(3000px, 0, 0);
+  animation: bounceInRight .5s .4s forwards;
+}
+
+/* line 95, ../sass/style.scss */
+.flip-down {
+  transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+  animation-name: flipInX;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+/* line 101, ../sass/style.scss */
+.fade-in {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+  animation-name: fadeInUp;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+/* From Animate.css https://github.com/daneden/animate.css/blob/master/animate.css */
+@keyframes bounceInLeft {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3000px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+    transform: translate3d(25px, 0, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes bounceInRight {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(3000px, 0, 0);
+    transform: translate3d(3000px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(-25px, 0, 0);
+    transform: translate3d(-25px, 0, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+    transform: translate3d(-5px, 0, 0);
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes flipInX {
+  0% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -ms-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    opacity: 0;
+  }
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -ms-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+  }
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    -ms-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    -ms-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+  100% {
+    -webkit-transform: perspective(400px);
+    -ms-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    -ms-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+}
