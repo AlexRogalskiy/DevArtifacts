@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+}
+
+$gutter: 4rem;
+$breakpoint: 992px;
+
+:root {
+  font-size: 14px;
+  
+  @media screen and (max-width: $breakpoint) {
+    font-size: 16px;
+  }
+}
+
+body {
+  background: #EDEFF4;
+  padding: 3rem;
+  font-family: sans-serif;
+  color: #22252E;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 0 0 .82rem;
+  color: #019CDE;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0;
+  margin: auto;
+  max-width: 900px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 $gutter;
+  position: relative;
+  &:last-child { margin-bottom: 0; }
+  
+  @media screen and (min-width: $breakpoint) {
+    width: calc(50% - #{$gutter / 2});
+    &:nth-child(odd) {  margin-right: $gutter / 2; }
+    &:nth-child(even) {  margin-left: $gutter / 2; }
+    &:nth-last-child(2) { margin-bottom: 0 }
+  }
+}
+
+div {
+  $size: 3rem;
+  
+  display: flex;
+  clip-path: polygon(calc(100% - #{$size}) 0, 100% 50%, calc(100% - #{$size }) 100%, 0 100%, 0 0);
+  background: white;
+  padding: 2rem;
+  padding-right: 3.5rem;
+  font-size: 1.1rem;
+  width: 100%;
+  margin-right: 3rem;
+  flex-direction: column;
+  justify-content: center;
+  height: 130px;
+  overflow: hidden;
+}
+
+span {
+  $size: 5rem;
+  background: #2E3F73;
+  color: white;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  text-align: center;
+  right: 0;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  font-size: 2.2rem;
+  font-weight: bold;
+}

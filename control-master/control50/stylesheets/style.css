@@ -1,0 +1,180 @@
+/* line 1, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: border-box;
+  transition: .25s ease-in-out;
+}
+
+/* line 6, ../sass/style.scss */
+*::selection {
+  background: #ff202f;
+  color: white;
+}
+
+/* line 10, ../sass/style.scss */
+body {
+  background-color: #04b8ad;
+}
+
+/* line 14, ../sass/style.scss */
+form {
+  max-width: 500px;
+  margin: 100px auto 0 auto;
+  font-family: roboto;
+  font-weight: 200;
+  font-size: 40px;
+  line-height: 60px;
+  color: white;
+}
+/* line 22, ../sass/style.scss */
+form .input-container {
+  border-bottom: 1px dashed #007a73;
+  color: #007a73;
+  padding: 6px;
+  margin-left: -6px;
+  margin-right: -6px;
+  display: inline-block;
+  position: relative;
+}
+/* line 30, ../sass/style.scss */
+form .input-container.no-overflow {
+  max-width: 100%;
+}
+/* line 32, ../sass/style.scss */
+form .input-container.no-overflow .input {
+  max-width: 100%;
+}
+/* line 34, ../sass/style.scss */
+form .input-container.no-overflow .input input {
+  max-width: 100%;
+}
+/* line 39, ../sass/style.scss */
+form .input-container:hover {
+  border-bottom: 1px dashed #004f4a;
+  color: #004f4a;
+  cursor: pointer;
+}
+/* line 44, ../sass/style.scss */
+form .input-container.active {
+  z-index: 5000;
+  border-bottom: 1px dashed #004f4a;
+  color: #004f4a;
+  cursor: default;
+}
+/* line 49, ../sass/style.scss */
+form .input-container.active:before {
+  content: '';
+  display: block;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+/* line 60, ../sass/style.scss */
+form .input-container.active .input {
+  visibility: visible;
+  opacity: 1;
+}
+/* line 65, ../sass/style.scss */
+form .input-container .newOption {
+  padding: 6px 46px 6px 6px;
+  background: white;
+  position: relative;
+}
+/* line 69, ../sass/style.scss */
+form .input-container .newOption:hover {
+  background: #ff202f;
+  color: white;
+}
+/* line 72, ../sass/style.scss */
+form .input-container .newOption:hover:after {
+  color: white !important;
+}
+/* line 77, ../sass/style.scss */
+form .input-container .newOption.selected:after {
+  content: '\f00c';
+  font-family: FontAwesome;
+  color: #ff202f;
+  display: block;
+  top: 0;
+  right: 0;
+  height: 72px;
+  width: 46px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 72px;
+  position: absolute;
+}
+/* line 93, ../sass/style.scss */
+form .input-container .placeholder {
+  position: relative;
+  z-index: 1;
+}
+/* line 97, ../sass/style.scss */
+form .input-container .input {
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+/* line 108, ../sass/style.scss */
+form input[type="text"], form select[type="text"] {
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 6px;
+  font-weight: 200;
+  font-size: 40px;
+  line-height: 60px;
+  display: block;
+}
+/* line 118, ../sass/style.scss */
+form input.hidden, form select.hidden {
+  position: absolute;
+  left: -5000px;
+}
+/* line 123, ../sass/style.scss */
+form button {
+  display: block;
+  background: white;
+  border: none;
+  padding: 10px 55px 10px 20px;
+  font-size: 30px;
+  font-weight: 200;
+  margin: 30px 0 0 0;
+  box-shadow: inset 0px 0px 0px #ff202f;
+  position: relative;
+}
+/* line 133, ../sass/style.scss */
+form button i {
+  transition: 0s 0s ease-in-out;
+}
+/* line 136, ../sass/style.scss */
+form button:after {
+  content: '\f105';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 55px;
+  width: 55px;
+  font-family: FontAwesome;
+  line-height: 55px;
+  text-align: center;
+  color: #ff202f;
+}
+/* line 149, ../sass/style.scss */
+form button:hover {
+  box-shadow: inset 350px 0 0 #ff202f;
+  color: white;
+  cursor: pointer;
+}
+/* line 153, ../sass/style.scss */
+form button:hover:after {
+  color: white;
+}
