@@ -1,0 +1,134 @@
+*
+  box-sizing border-box
+  margin 0
+
+body
+  background linear-gradient(45deg, #539FA2 0%, #72B1A4 33%, #C4DBB4 67%, #ABCCB1), linear-gradient(125deg, #539FA2 0%, #72B1A4 33%, #C4DBB4 67%, #ABCCB1)
+  min-height 100vh
+
+.cover
+  position absolute
+  width 100%
+  height 100%
+  top 0
+.first-cover
+  background linear-gradient(-45deg, rgba(100,100,255,.5), rgba(255,255,255,0))
+  -webkit-animation fadeInOut 10s infinite 5s
+
+.user-location
+  padding-left 0
+
+.content
+  background rgba(255,255,255,0)
+  color white
+  width 50%
+  min-width 20rem
+  margin 2rem auto
+  min-height 50vh
+  position relative
+  padding 2rem
+  h2
+    margin-bottom 1rem
+    text-align center
+  .location
+    border-bottom 1px solid rgba(255,255,255,.5)
+    transition background .25s ease, opacity .8s ease-out
+    cursor pointer
+    &.current
+      background rgba(255,255,255,.3)
+      cursor default
+      .zip
+          right 2.25rem
+      .remove
+          right .5rem
+          cursor pointer
+    &:not(.current):hover
+      background rgba(255,255,255,.1)
+    p
+      padding .5rem
+      font-weight bold
+      position relative
+      width 100%
+      overflow hidden
+      span
+        position absolute
+        font-weight normal
+        right .5rem
+        transition right .25s ease
+      .remove
+        right -1.25rem
+        font-size 2rem
+        line-height 1.375rem
+        
+  input
+    margin .5rem 0 0 0
+    padding-left .5rem
+    height 2rem
+    border 1px solid rgba(255,255,255,.5)
+    width 100%
+    background transparent    
+    color white
+    transition outline .25s ease, background .25s ease
+    outline 8px solid rgba(255,255,255,0)
+    &:focus
+      outline 2px solid rgba(255,255,255,.9)
+.btn
+  background transparent
+  border 1px solid rgba(255,255,255,.5)
+  color white
+  transition background .25s ease, border-color .25s ease, outline .25s ease
+  margin 1rem auto
+  display block
+  padding .5rem
+  outline 8px solid rgba(255,255,255,0)
+  &:hover
+  &:focus
+    outline 2px solid rgba(255,255,255,.9)
+  &:active
+    background rgba(0,0,0,.05)
+  &.inactive
+    pointer-events none
+
+#save-and-return
+  font-weight bold
+  margin-top 1.5rem
+
+.input-wrapper
+  position relative
+  margin 0 auto
+  max-width 20rem
+
+#add
+  display inline-block
+  position absolute
+  padding 9px
+  margin 0
+  top .625rem
+  right 0
+  width 20%
+  line-height .75rem
+  transition opacity .25s ease, outline .25s ease
+  border none
+  outline none
+  &:active
+    background transparent
+  &:hover
+    outline none
+  &.inactive
+    opacity 0
+    pointer-events none
+
+@-webkit-keyframes fadeInOut
+  0%, 100%
+    opacity 0
+  50%
+    opacity 1
+
+::-webkit-input-placeholder
+   color rgba(255,255,255,.7)
+:-moz-placeholder
+   color rgba(255,255,255,.7)
+::-moz-placeholder
+   color rgba(255,255,255,.7)
+:-ms-input-placeholder
+   color rgba(255,255,255,.7)

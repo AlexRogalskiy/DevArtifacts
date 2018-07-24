@@ -1,0 +1,259 @@
+*, *:before, *:after
+  box-sizing border-box
+
+body
+  font-family "Open Sans"
+  font-weight 300
+  margin 2rem
+  background #4a4a4a
+  -webkit-backface-visibility hidden
+
+h1
+  text-align center
+  color white
+  font-weight 300
+  margin-bottom 4rem
+
+.container
+  width 80%
+  margin 0 auto
+
+.switch
+  margin: 4rem auto
+
+/* main styles */
+.switch
+  width 24rem
+  position relative
+  & input
+    position absolute
+    top 0
+    z-index 2
+    opacity 0
+    cursor pointer
+    &:checked
+      z-index 1
+      & + label
+        opacity 1
+        cursor default
+    &:not(:checked) + label:hover
+      opacity .5
+  & label
+    color white
+    opacity .33
+    transition opacity .25s ease
+    cursor pointer
+  & .toggle-outside
+    height 100%
+    border-radius 2rem
+    padding .25rem
+    overflow hidden
+    transition .25s ease all
+  & .toggle-inside
+    border-radius 5rem
+    background #4a4a4a
+    position absolute
+    transition .25s ease all
+
+.switch--horizontal
+  width 18rem
+  height 3rem
+  margin 0 auto
+  font-size 0
+  margin-bottom 1rem
+  & input
+    height 3rem
+    width 6rem
+    left 6rem
+    margin 0
+  & label
+    font-size 1.5rem
+    line-height 3rem
+    display inline-block
+    width 6rem
+    height 100%
+    margin 0
+    text-align center
+  & label:last-of-type 
+    margin-left 6rem
+  & .toggle-outside
+    background white
+    position absolute
+    width 6rem
+    left 6rem
+  & .toggle-inside 
+    height 2.5rem
+    width 2.5rem
+  & input:checked ~ .toggle-outside .toggle-inside
+    left .25rem
+  & input ~ input:checked ~ .toggle-outside .toggle-inside
+    left 3.25rem
+
+.switch--vertical
+  width 12rem
+  height 6rem
+  & input
+    height 100%
+    width 3rem
+    right 0
+    margin 0
+  & label
+    font-size 1.5rem
+    line-height 3rem
+    display block
+    width 8rem
+    height 50%
+    margin 0
+    text-align center
+  & .toggle-outside
+    background white
+    position absolute
+    width 3rem
+    height 100%
+    right 0
+    top 0
+  & .toggle-inside 
+    height 2.5rem
+    left .25rem
+    top .25rem
+    width 2.5rem
+  & input:checked ~ .toggle-outside .toggle-inside
+    top .25rem
+  & input ~ input:checked ~ .toggle-outside .toggle-inside
+    top 3.25rem
+
+.switch--no-label  
+  & label
+    width 0
+    height 0
+    visibility hidden
+    overflow hidden
+  & input:checked ~ .toggle-outside .toggle-inside
+    background rgba(0,0,0,.2)
+    border 1px solid rgba(0,0,0,.2)
+  & input ~ input:checked ~ .toggle-outside
+    // background #2c3e50
+    background #fff
+  & input ~ input:checked ~ .toggle-outside .toggle-inside
+    background #2ecc71
+  &.switch--vertical
+    width 3rem
+  &.switch--horizontal
+    width 6rem
+    & input
+    & .toggle-outside
+      left 0
+
+
+.switch--expanding-inner
+  & input:checked + label:hover ~ .toggle-outside .toggle-inside
+      height 2.5rem
+      width 2.5rem
+  &.switch--horizontal
+    & input:hover ~ .toggle-outside .toggle-inside
+      width 3.5rem
+    & input:hover ~ input:checked ~ .toggle-outside .toggle-inside
+      left 2.25rem
+  &.switch--vertical
+    & input:hover ~ .toggle-outside .toggle-inside
+      height 3.5rem
+    & input:hover ~ input:checked ~ .toggle-outside .toggle-inside
+      top 2.25rem
+
+/* mixin */
+switch(w = 6em, h = 3em, padding = .25em, outer-bg = #fff, inner-bg = #4a4a4a )
+  position relative
+  & input
+    position absolute
+    top 0
+    z-index 2
+    opacity 0
+    cursor pointer
+    &:checked
+      z-index 1
+      & + label
+        opacity 1
+        cursor default
+    &:not(:checked) + label:hover
+      opacity .5
+  & label
+    color white
+    opacity .33
+    transition opacity .25s ease
+    cursor pointer
+  & .toggle-outside
+    height 100%
+    border-radius 2rem
+    padding .25rem
+    overflow hidden
+    transition .25s ease all
+  & .toggle-inside
+    border-radius 5rem
+    background inner-bg
+    position absolute
+    transition .25s ease all
+  &.switch--horizontal
+    width 3 * w
+    height h
+    margin 0 auto
+    font-size 0
+    margin-bottom 1rem
+    & input
+      height h
+      width w
+      left w
+      margin 0
+    & label
+      font-size h / 2
+      line-height h
+      display inline-block
+      width w
+      height 100%
+      margin 0
+      text-align center
+    & label:last-of-type 
+      margin-left 6rem
+    & .toggle-outside
+      background white
+      position absolute
+      width w
+      left w
+    & .toggle-inside 
+      height (h - 2 * padding)
+      width (h - 2 * padding)
+    & input:checked ~ .toggle-outside .toggle-inside
+      left padding
+    & input ~ input:checked ~ .toggle-outside .toggle-inside
+      left (w - h - 3 * padding)
+  &.switch--vertical
+    width 2 * w
+    height 2 * h
+    & input
+      height 100%
+      width w
+      right 0
+      margin 0
+    & label
+      font-size h / 2
+      line-height h
+      display block
+      width w * 1.5
+      height 50%
+      margin 0
+      text-align center
+    & .toggle-outside
+      background white
+      position absolute
+      width w / 2
+      height 100%
+      right 0
+      top 0
+    & .toggle-inside 
+      height h - ( 2 * padding )
+      width h - ( 2 * padding )
+      left padding
+      top padding
+    & input:checked ~ .toggle-outside .toggle-inside
+      top padding
+    & input ~ input:checked ~ .toggle-outside .toggle-inside
+      top ( ( 2 * h ) - ( h - 3 * padding ) )

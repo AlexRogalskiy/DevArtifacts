@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+/* line 1, ../sass/style.scss */
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  margin: 2rem;
+  color: #444;
+}
+
+/* line 8, ../sass/style.scss */
+a {
+  color: #4481c4;
+}
+
+/* line 12, ../sass/style.scss */
+input:not([type]),
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="search"] {
+  padding: .25rem;
+  border-radius: .125rem;
+  border: 2px solid #ccc;
+  transition: padding .1s linear, margin .1s linear, box-shadow .1s linear;
+  background: transparent;
+  position: relative;
+  width: 50%;
+  color: inherit;
+}
+
+/* line 27, ../sass/style.scss */
+input:focus {
+  /* box-shadow: 0 0 4px 0 rgb(68,129,196); */
+  border-color: rgba(68, 129, 196, 0.75);
+  outline: none;
+}
+
+/* need to have a relatively positioned element wrapping each input and label.float-label */
+/* line 35, ../sass/style.scss */
+.float-label-wrapper {
+  position: relative;
+  /* crucial */
+  margin-top: 1rem;
+}
+
+/* styles that apply to all float-labels */
+/* refactor? */
+/* line 42, ../sass/style.scss */
+.float-label-outer,
+.float-label-inner {
+  position: absolute;
+  float: left;
+  top: .375rem;
+  /* positioning is important */
+  left: .3125rem;
+  /* ditto */
+  color: #bbb;
+  animation: pulse-color 2s linear infinite;
+  -webkit-transition: font-size .1s linear, color .1s linear;
+  -moz-transition: font-size .1s linear, color .1s linear;
+  -ms-transition: font-size .1s linear, color .1s linear;
+  -o-transition: font-size .1s linear, color .1s linear;
+  transition: font-size .1s linear, color .1s linear;
+}
+
+/* replace these with any styles you want for active and filled labels */
+/* line 58, ../sass/style.scss */
+.float-label-filled,
+.float-label-active {
+  font-size: .75rem;
+  font-weight: bold;
+  animation: none;
+}
+
+/* filled label styles - has content but not focused */
+/* line 66, ../sass/style.scss */
+.float-label-filled {
+  color: #bbb;
+  animation: none;
+}
+
+/* active label styles - focused but depends on behavior choice */
+/* line 72, ../sass/style.scss */
+.float-label-active {
+  color: rgba(68, 129, 196, 0.75);
+}
+
+/* specific to float labels presented outside of the target input */
+/* line 77, ../sass/style.scss */
+.float-label-outer.float-label-filled,
+.float-label-outer.float-label-active {
+  top: -.125rem;
+  left: 0;
+}
+
+/* specific to labels for which float labels are presented inside of the target input */
+/* line 84, ../sass/style.scss */
+.float-label-inner.float-label-filled + input,
+.float-label-inner.float-label-active + input {
+  padding-top: 1.25rem;
+}
+
+/* specific to labels for which float labels are presented outside of the target input */
+/* line 90, ../sass/style.scss */
+.float-label-outer.float-label-filled + input,
+.float-label-outer.float-label-active + input {
+  margin-top: 1rem;
+}
+
+/* use this when the label is on top of the input, along with the JS snippet. */
+/* 
+.outer-label:not(.label-filled),
+.inner-label:not(.label-filled) {
+  cursor: text;
+} 
+*/
+/* line 103, ../sass/style.scss */
+.divider {
+  width: 50%;
+  margin: 2rem auto;
+  height: 1px;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+@keyframes pulse-color {
+  0% {
+    color: #bbb;
+  }
+  50% {
+    color: rgba(68, 129, 196, 0.75);
+  }
+  100% {
+    color: #bbb;
+  }
+}

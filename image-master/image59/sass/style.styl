@@ -1,0 +1,307 @@
+$delay = 1s
+
+$dur = 2.5s
+
+*, *:before, *:after
+  box-sizing border-box
+  animation-fill-mode backwards
+
+html
+  font-size 125%
+  -webkit-backface-visibility hidden
+
+body
+  font-family 'Open Sans', sans-serif
+  color white
+  background #555
+  text-shadow 0 0 1px rgba(255,255,255,0.3)
+
+.original
+  margin 1rem 0
+  text-align center
+  font-size .5rem
+  a
+    color white
+    &:visited
+      color #eee
+    &:active
+      color tomato
+
+.poster
+  box-sizing content-box
+  border .5rem solid white
+  box-shadow 0 0 .5rem rgba(0,0,0,.45)
+  width 18rem
+  height 24rem
+  display block
+  margin 1rem auto 0 auto
+  background tomato
+  position relative
+  overflow hidden
+  & > *
+    position absolute
+    
+.pie
+  width 12.5rem
+  height 12.5rem
+  top 8rem
+  left 2rem
+  border .25rem solid white
+  border-radius 8rem
+  animation 1s ease pie backwards
+
+.dash
+  transform rotate(-50deg)
+  width 30rem
+  height 1px
+  border-bottom .125rem dashed white
+  bottom 8rem
+  left -8.25rem
+  &:after
+    content ""
+    position absolute
+    top 0
+    left 30rem
+    width 100%
+    height .25rem
+    background tomato
+    animation $dur ease-out dasher $delay backwards
+
+.horiz
+.slant
+  animation $dur fade-in ease-out $delay backwards
+
+.horiz
+  width 6.25rem
+  height 0
+  left 2rem
+  border-bottom .125rem dashed white
+  top 14.125rem
+
+.slant
+  width 12rem
+  height 0
+  transform rotate(79deg)
+  border-bottom .125rem solid white
+  top 20rem
+  left 3.25rem
+
+.cutter
+  position absolute
+  transform rotate(-50deg)
+  top 4rem
+  left 13.5rem
+  animation $dur ease-out cutter $delay backwards
+  .blade
+    width 2.5rem
+    height 2.5rem
+    border-radius 3rem
+    background white
+    position absolute
+    &:after
+      content ""
+      width .25rem
+      height .25rem
+      border-radius .5rem
+      border .125rem solid tomato
+      position absolute
+      left 1.125rem
+      top 1.125rem
+  .handle
+    position absolute
+    top .75rem
+    left 3rem
+    width 6rem
+    height 1rem
+    border-radius .75rem
+    background white
+    &:after
+      content ""
+      position absolute
+      width 2rem
+      height .25rem
+      background white
+      left -1rem
+      top .375rem
+
+.address
+  position absolute
+  width 200%
+  bottom .25rem
+  left -6.75rem
+  letter-spacing 1px
+  font-weight bold
+  color white
+  font-size 1em
+  text-transform uppercase
+  transform scale(.35)
+  animation address $dur ease-out $delay backwards
+  .right
+    padding-left 1rem
+    animation $dur ease-out address-right $delay backwards
+
+.salvando
+  position absolute
+  font-family stint-ultra-condensed, serif
+  font-size 1.25rem
+  top 17.25rem
+  right 1.5rem
+  line-height .9
+  span
+    display block
+    text-align center
+    position relative
+    animation-delay .5s
+    animation-duration $dur
+    animation-timing-function ease-out
+    animation-fill-mode backwards
+    &:nth-of-type(1)
+      animation-name slide-down
+    &:nth-of-type(3)
+      animation-name slide-from-left
+    &:nth-of-type(5)
+      animation-name slide-from-right
+    &:nth-of-type(even)
+      animation-name slide-up
+    &:last-of-type:after
+      content "°"
+      font-family open-sans
+      position absolute
+      font-size .75rem
+      right -.5rem
+      bottom -.25rem
+
+.la-pizza
+  position absolute
+  font-family stint-ultra-condensed, serif
+  // font-weight bold
+  top 2.75rem
+  left .5rem
+  font-size 2.5rem
+  line-height .9
+  letter-spacing .1rem
+  text-transform uppercase
+  span
+    position relative
+    display block
+    &:first-of-type
+      animation $dur ease-out slide-from-left $delay backwards
+    &:last-of-type
+      animation $dur ease-out slide-from-right $delay backwards
+
+.five
+  font-family "Open Sans Condensed", open-sans-condensed
+  font-weight bold
+  position absolute
+  font-size 2.5rem
+  top 13rem
+  -webkit-text-fill-color tomato
+  -webkit-text-stroke-width .03125em
+  -webkit-text-stroke-color white
+  animation $dur ease-out fade-in .5s backwards
+  span:last-of-type
+    font-size 1.5rem
+    position relative
+    top -1rem
+
+.pizzaiolo
+  font-family "Open Sans Condensed", open-sans-condensed
+  position absolute
+  top -.625rem
+  left .5rem
+  line-height 1em
+  text-transform uppercase
+  font-size 2.75rem
+  letter-spacing .55rem
+  font-weight bold
+  color tomato
+  -webkit-text-fill-color tomato
+  -webkit-text-stroke-width .03125em
+  -webkit-text-stroke-color white
+  animation 1s slide-from-left ease .5s backwards
+
+.aniversario
+.telefono
+.date
+  text-transform uppercase
+  font-size 1rem 
+  font-weight bold
+  padding .25rem
+  background tomato
+  animation $dur ease-out fade-in $delay backwards
+    
+.aniversario
+  text-transform uppercase
+  top 13.4375rem
+  left -.625rem
+  letter-spacing .4rem
+  transform scale(.4)
+
+.telefono
+  letter-spacing .1rem
+  transform scale(.4) rotate(79deg)
+  top 16.5rem
+  left 1.5rem
+
+.date
+  transform scale(.4) rotate(-50deg)
+  top 20.75rem
+  left -4.75rem
+  letter-spacing .5rem
+  sup
+    font-size .5rem
+    position relative
+    top -.375rem
+
+@keyframes cutter 
+  from
+    top: 28rem
+    left: -7rem
+
+@keyframes dasher 
+  from
+    left: 0; 
+  to
+    left: 30rem;
+
+@keyframes slide-down
+  from 
+    top -20rem
+
+@keyframes slide-up
+  from 
+    top 10rem
+
+@keyframes pizzaiolo
+  from
+    top: -3rem;
+
+@keyframes slide-from-left
+  from 
+    left: -18rem;
+
+@keyframes slide-from-right
+  from
+    right: -18rem;
+
+@keyframes pie
+  from 
+    transform scale(3)
+  50%
+    transform scale(.25)
+  to
+    transform scale(1)
+
+@keyframes address
+  from
+    width 750%
+    left -50rem
+
+@keyframes address-right
+  from
+    padding-left 90rem
+
+@keyframes fade-in
+  from
+    opacity 0
+

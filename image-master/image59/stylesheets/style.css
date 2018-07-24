@@ -1,0 +1,537 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  animation-fill-mode: backwards;
+}
+html {
+  font-size: 125%;
+  -webkit-backface-visibility: hidden;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  background: #555;
+  text-shadow: 0 0 1px rgba(255,255,255,0.3);
+}
+.original {
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 0.5rem;
+}
+.original a {
+  color: #fff;
+}
+.original a:visited {
+  color: #eee;
+}
+.original a:active {
+  color: #ff6347;
+}
+.poster {
+  box-sizing: content-box;
+  border: 0.5rem solid #fff;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.45);
+  width: 18rem;
+  height: 24rem;
+  display: block;
+  margin: 1rem auto 0 auto;
+  background: #ff6347;
+  position: relative;
+  overflow: hidden;
+}
+.poster > * {
+  position: absolute;
+}
+.pie {
+  width: 12.5rem;
+  height: 12.5rem;
+  top: 8rem;
+  left: 2rem;
+  border: 0.25rem solid #fff;
+  border-radius: 8rem;
+  animation: 1s ease pie backwards;
+}
+.dash {
+  transform: rotate(-50deg);
+  width: 30rem;
+  height: 1px;
+  border-bottom: 0.125rem dashed #fff;
+  bottom: 8rem;
+  left: -8.25rem;
+}
+.dash:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 30rem;
+  width: 100%;
+  height: 0.25rem;
+  background: #ff6347;
+  animation: 2.5s ease-out dasher 1s backwards;
+}
+.horiz,
+.slant {
+  animation: 2.5s fade-in ease-out 1s backwards;
+}
+.horiz {
+  width: 6.25rem;
+  height: 0;
+  left: 2rem;
+  border-bottom: 0.125rem dashed #fff;
+  top: 14.125rem;
+}
+.slant {
+  width: 12rem;
+  height: 0;
+  transform: rotate(79deg);
+  border-bottom: 0.125rem solid #fff;
+  top: 20rem;
+  left: 3.25rem;
+}
+.cutter {
+  position: absolute;
+  transform: rotate(-50deg);
+  top: 4rem;
+  left: 13.5rem;
+  animation: 2.5s ease-out cutter 1s backwards;
+}
+.cutter .blade {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 3rem;
+  background: #fff;
+  position: absolute;
+}
+.cutter .blade:after {
+  content: "";
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 0.5rem;
+  border: 0.125rem solid #ff6347;
+  position: absolute;
+  left: 1.125rem;
+  top: 1.125rem;
+}
+.cutter .handle {
+  position: absolute;
+  top: 0.75rem;
+  left: 3rem;
+  width: 6rem;
+  height: 1rem;
+  border-radius: 0.75rem;
+  background: #fff;
+}
+.cutter .handle:after {
+  content: "";
+  position: absolute;
+  width: 2rem;
+  height: 0.25rem;
+  background: #fff;
+  left: -1rem;
+  top: 0.375rem;
+}
+.address {
+  position: absolute;
+  width: 200%;
+  bottom: 0.25rem;
+  left: -6.75rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 1em;
+  text-transform: uppercase;
+  transform: scale(0.35);
+  animation: address 2.5s ease-out 1s backwards;
+}
+.address .right {
+  padding-left: 1rem;
+  animation: 2.5s ease-out address-right 1s backwards;
+}
+.salvando {
+  position: absolute;
+  font-family: stint-ultra-condensed, serif;
+  font-size: 1.25rem;
+  top: 17.25rem;
+  right: 1.5rem;
+  line-height: 0.9;
+}
+.salvando span {
+  display: block;
+  text-align: center;
+  position: relative;
+  animation-delay: 0.5s;
+  animation-duration: 2.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: backwards;
+}
+.salvando span:nth-of-type(1) {
+  animation-name: slide-down;
+}
+.salvando span:nth-of-type(3) {
+  animation-name: slide-from-left;
+}
+.salvando span:nth-of-type(5) {
+  animation-name: slide-from-right;
+}
+.salvando span:nth-of-type(even) {
+  animation-name: slide-up;
+}
+.salvando span:last-of-type:after {
+  content: "°";
+  font-family: open-sans;
+  position: absolute;
+  font-size: 0.75rem;
+  right: -0.5rem;
+  bottom: -0.25rem;
+}
+.la-pizza {
+  position: absolute;
+  font-family: stint-ultra-condensed, serif;
+  top: 2.75rem;
+  left: 0.5rem;
+  font-size: 2.5rem;
+  line-height: 0.9;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+.la-pizza span {
+  position: relative;
+  display: block;
+}
+.la-pizza span:first-of-type {
+  animation: 2.5s ease-out slide-from-left 1s backwards;
+}
+.la-pizza span:last-of-type {
+  animation: 2.5s ease-out slide-from-right 1s backwards;
+}
+.five {
+  font-family: "Open Sans Condensed", open-sans-condensed;
+  font-weight: bold;
+  position: absolute;
+  font-size: 2.5rem;
+  top: 13rem;
+  -webkit-text-fill-color: #ff6347;
+  -webkit-text-stroke-width: 0.03125em;
+  -webkit-text-stroke-color: #fff;
+  animation: 2.5s ease-out fade-in 0.5s backwards;
+}
+.five span:last-of-type {
+  font-size: 1.5rem;
+  position: relative;
+  top: -1rem;
+}
+.pizzaiolo {
+  font-family: "Open Sans Condensed", open-sans-condensed;
+  position: absolute;
+  top: -0.625rem;
+  left: 0.5rem;
+  line-height: 1em;
+  text-transform: uppercase;
+  font-size: 2.75rem;
+  letter-spacing: 0.55rem;
+  font-weight: bold;
+  color: #ff6347;
+  -webkit-text-fill-color: #ff6347;
+  -webkit-text-stroke-width: 0.03125em;
+  -webkit-text-stroke-color: #fff;
+  animation: 1s slide-from-left ease 0.5s backwards;
+}
+.aniversario,
+.telefono,
+.date {
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.25rem;
+  background: #ff6347;
+  animation: 2.5s ease-out fade-in 1s backwards;
+}
+.aniversario {
+  text-transform: uppercase;
+  top: 13.4375rem;
+  left: -0.625rem;
+  letter-spacing: 0.4rem;
+  transform: scale(0.4);
+}
+.telefono {
+  letter-spacing: 0.1rem;
+  transform: scale(0.4) rotate(79deg);
+  top: 16.5rem;
+  left: 1.5rem;
+}
+.date {
+  transform: scale(0.4) rotate(-50deg);
+  top: 20.75rem;
+  left: -4.75rem;
+  letter-spacing: 0.5rem;
+}
+.date sup {
+  font-size: 0.5rem;
+  position: relative;
+  top: -0.375rem;
+}
+@-moz-keyframes cutter {
+  from {
+    top: 28rem;
+    left: -7rem;
+  }
+}
+@-webkit-keyframes cutter {
+  from {
+    top: 28rem;
+    left: -7rem;
+  }
+}
+@-o-keyframes cutter {
+  from {
+    top: 28rem;
+    left: -7rem;
+  }
+}
+@keyframes cutter {
+  from {
+    top: 28rem;
+    left: -7rem;
+  }
+}
+@-moz-keyframes dasher {
+  from {
+    left: 0;
+  }
+  to {
+    left: 30rem;
+  }
+}
+@-webkit-keyframes dasher {
+  from {
+    left: 0;
+  }
+  to {
+    left: 30rem;
+  }
+}
+@-o-keyframes dasher {
+  from {
+    left: 0;
+  }
+  to {
+    left: 30rem;
+  }
+}
+@keyframes dasher {
+  from {
+    left: 0;
+  }
+  to {
+    left: 30rem;
+  }
+}
+@-moz-keyframes slide-down {
+  from {
+    top: -20rem;
+  }
+}
+@-webkit-keyframes slide-down {
+  from {
+    top: -20rem;
+  }
+}
+@-o-keyframes slide-down {
+  from {
+    top: -20rem;
+  }
+}
+@keyframes slide-down {
+  from {
+    top: -20rem;
+  }
+}
+@-moz-keyframes slide-up {
+  from {
+    top: 10rem;
+  }
+}
+@-webkit-keyframes slide-up {
+  from {
+    top: 10rem;
+  }
+}
+@-o-keyframes slide-up {
+  from {
+    top: 10rem;
+  }
+}
+@keyframes slide-up {
+  from {
+    top: 10rem;
+  }
+}
+@-moz-keyframes pizzaiolo {
+  from {
+    top: -3rem;
+  }
+}
+@-webkit-keyframes pizzaiolo {
+  from {
+    top: -3rem;
+  }
+}
+@-o-keyframes pizzaiolo {
+  from {
+    top: -3rem;
+  }
+}
+@keyframes pizzaiolo {
+  from {
+    top: -3rem;
+  }
+}
+@-moz-keyframes slide-from-left {
+  from {
+    left: -18rem;
+  }
+}
+@-webkit-keyframes slide-from-left {
+  from {
+    left: -18rem;
+  }
+}
+@-o-keyframes slide-from-left {
+  from {
+    left: -18rem;
+  }
+}
+@keyframes slide-from-left {
+  from {
+    left: -18rem;
+  }
+}
+@-moz-keyframes slide-from-right {
+  from {
+    right: -18rem;
+  }
+}
+@-webkit-keyframes slide-from-right {
+  from {
+    right: -18rem;
+  }
+}
+@-o-keyframes slide-from-right {
+  from {
+    right: -18rem;
+  }
+}
+@keyframes slide-from-right {
+  from {
+    right: -18rem;
+  }
+}
+@-moz-keyframes pie {
+  from {
+    transform: scale(3);
+  }
+  50% {
+    transform: scale(0.25);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes pie {
+  from {
+    transform: scale(3);
+  }
+  50% {
+    transform: scale(0.25);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@-o-keyframes pie {
+  from {
+    transform: scale(3);
+  }
+  50% {
+    transform: scale(0.25);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes pie {
+  from {
+    transform: scale(3);
+  }
+  50% {
+    transform: scale(0.25);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@-moz-keyframes address {
+  from {
+    width: 750%;
+    left: -50rem;
+  }
+}
+@-webkit-keyframes address {
+  from {
+    width: 750%;
+    left: -50rem;
+  }
+}
+@-o-keyframes address {
+  from {
+    width: 750%;
+    left: -50rem;
+  }
+}
+@keyframes address {
+  from {
+    width: 750%;
+    left: -50rem;
+  }
+}
+@-moz-keyframes address-right {
+  from {
+    padding-left: 90rem;
+  }
+}
+@-webkit-keyframes address-right {
+  from {
+    padding-left: 90rem;
+  }
+}
+@-o-keyframes address-right {
+  from {
+    padding-left: 90rem;
+  }
+}
+@keyframes address-right {
+  from {
+    padding-left: 90rem;
+  }
+}
+@-moz-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@-o-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

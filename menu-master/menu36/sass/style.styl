@@ -1,0 +1,98 @@
+*
+  box-sizing border-box
+
+body
+  font-family "Open Sans", open-sans, sans-serif
+
+.toggle-holder
+  position relative
+  height 2rem
+
+.toggle
+  display none
+
+.toggle-label
+  display block
+  position fixed
+  top 1rem
+  right 1rem
+  width 2rem
+  height 2rem
+  cursor pointer
+  z-index 1
+
+.toggle:checked + .toggle-label
+  z-index -1
+
+.icon
+  position fixed
+  right 1rem
+  top 1rem
+  width 2rem
+  height 1.75rem
+  padding .25rem
+  i
+    display block
+    width 100%
+    height .25rem
+    background black
+    transform rotate(0deg)
+    transition transform .5s ease, opacity .5s ease
+    &:not(:first-of-type)
+      margin-top .25rem
+
+/* this is where the magic happens. HTML structure is important due to use of sibling ("~") selectors. */
+#menu-open:checked
+  ~ .nav-menu
+    transform translate3d(0,0,0)
+  ~ .icon
+    i
+      &:first-of-type
+        transform rotate(45deg) translate3d(33%, 90%, 0)
+      &:nth-of-type(2)
+        opacity 0
+      &:last-of-type
+        transform rotate(-45deg) translate3d(30%, -90%, 0)
+
+.nav-menu
+  position fixed
+  top 0
+  height 100vh
+  width 10rem
+  background #333
+  transition transform .5s ease-in-out
+  transform translate3d(-100%,0,0)
+  p
+  a
+    padding .25rem .5rem
+    display block
+    color white
+  a:visited
+    color #eee
+  a:hover
+    background #444
+    color tomato
+  ul
+    list-style-type none
+    padding 0
+    -webkit-margin-before 0
+    -webkit-margin-after 0
+    -webkit-margin-start 0
+    -webkit-margin-end 0
+    -webkit-padding-start 0
+  li
+    &:not(:first-of-type)
+      a
+        border-top 1px solid #444
+    &:not(:last-of-type)
+      a
+        border-bottom 1px solid #222
+.content
+  margin-top 1rem
+  padding 0 1rem
+
+body
+  margin 0
+  padding 0
+  width 100%
+  overflow-x hidden
