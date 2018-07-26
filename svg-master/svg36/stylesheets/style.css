@@ -1,0 +1,61 @@
+body {
+  background: #eee;
+}
+
+svg {
+  margin: auto;
+  max-height: 90vh;
+}
+
+.rau * {
+  transform-origin: 50% 50%;
+}
+
+.rau path {
+  stroke: #16a085;
+  stroke-opacity: 0;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: offset .5s linear forwards, fill-it .5s 1s forwards, shine .3s 2.5s ease-out;
+}
+
+.rau path:nth-of-type(1) {
+  stroke-dasharray: 233;
+  stroke-dashoffset: 233;
+}
+
+.rau path:nth-of-type(2) {
+  stroke-dasharray: 255;
+  stroke-dashoffset: 255;
+  animation-delay: .5s, 1.5s, 2.6s;
+}
+
+.rau path:nth-of-type(3) {
+  stroke-dasharray: 392;
+  stroke-dashoffset: 392;
+  animation-delay: 1s, 2s, 2.7s;
+}
+
+@keyframes offset {
+  100% {
+    stroke-opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fill-it {
+  100% {
+    fill: #16a085;
+  }
+}
+@keyframes shine {
+  0% {
+    fill: #16a085;
+  }
+  50% {
+    fill: #1abc9c;
+  }
+  100% {
+    fill: #16a085;
+  }
+}
