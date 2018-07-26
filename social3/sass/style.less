@@ -1,0 +1,122 @@
+//
+// Variables
+// ----------------------
+
+@gray-dark: #111;
+@gray: #333;
+@gray-light: #555;
+@gray-lighter: #aaa;
+@space: 40px;
+@blue: #428bca;
+@blue-dark: darken(@blue, 5%);
+
+
+//
+// Icons
+// ----------------------
+
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+
+//
+// Body
+// ----------------------
+
+body{
+  color: @gray;
+  font-family: 'Helvetica', arial;
+}
+
+.wrap{
+  padding: @space;
+  text-align: center;
+}
+
+hr {
+  clear: both;
+  margin-top: @space;
+  margin-bottom: @space;
+  border: 0;
+  border-top: 1px solid @gray-lighter;
+}
+
+h1{
+  font-size: 30px;
+  margin-bottom: @space;
+}
+
+p{
+  margin-bottom: @space/2;
+}
+
+ul{
+  list-style: none;
+  margin: 0;
+}
+
+//
+// Social Media
+// ----------------------
+
+.social-media{ 
+  position: relative;
+}
+
+.btn-share{
+  background-color: @blue;
+  border-color: @blue-dark;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 100px;
+  position: absolute; top: 0; left: 0;
+  text-align: center;
+  padding: 0 20px;
+  text-decoration: none;
+  z-index: 10; 
+  
+  &:hover{
+    background: @blue-dark;
+  }
+}
+
+
+.social-list{ 
+  li {
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    z-index: 5;    
+    transition: all 0.2s linear 0s;
+    
+    #share-open:checked ~ &{
+      opacity: 1;
+    } 
+    #share-open:checked ~ &.item-1 {
+      left: 170px;
+    }
+    #share-open:checked ~ &.item-2 {
+      left: 290px;
+    }
+    #share-open:checked ~ &.item-3 {
+      left: 410px;
+    }
+    
+  }
+}
+
+.social-link{
+  color: @gray;
+  font-size: 90px;
+  text-decoration: none;
+  
+  &:hover{
+    color: @gray-light;
+  }
+}

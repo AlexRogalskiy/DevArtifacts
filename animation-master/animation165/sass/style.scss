@@ -1,0 +1,73 @@
+$bg-sun: #f39c12;
+$bg-day: #f1c40f;
+$bg-eclipse: #111;
+$duration: 30s;
+
+$anim-orbit: orbit $duration linear forwards;
+$anim-sun: sunflare $duration linear forwards;
+$anim-bg: background $duration ease-in-out;
+
+body {
+  background-color: $bg-day;
+  animation: $anim-bg;
+  overflow: hidden;
+}
+.sun, .moon {
+  position: absolute;
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+  display: block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: $bg-sun;
+}
+.sun {
+  box-shadow: 0 0 20px $bg-sun;
+  animation: $anim-sun;
+}
+.moon {
+  top: calc(50% + 300px);
+  left: calc(50% - 100px);
+  background-color: $bg-day;
+  animation: $anim-orbit, $anim-bg;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(-60deg) translateX(400px) rotate(60deg);
+  }
+  100% {
+    transform: rotate(-120deg) translateX(400px) rotate(120deg);
+  }
+}
+
+@keyframes background {
+  0% {
+    background-color: $bg-day;
+  }
+  50% {
+    background-color: $bg-eclipse;
+  }
+  100% {
+    background-color: $bg-day;
+  }
+}
+
+@keyframes sunflare {
+  0% {
+    box-shadow: 0 0 20px $bg-sun;
+  }
+  45% {
+    box-shadow: 0 0 20px $bg-sun;
+  }
+  50% {
+    box-shadow: 0 0 80px $bg-sun;
+  }
+  55% {
+    box-shadow: 0 0 20px $bg-sun;
+  }
+  100% {
+    box-shadow: 0 0 20px $bg-sun;
+  }
+}
