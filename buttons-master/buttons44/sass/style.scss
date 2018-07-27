@@ -1,0 +1,156 @@
+$darkgray: #808080;
+$gray:#B3B2B3;
+$lightgray: #E5E5E4;
+
+$darkblue: #115980;
+$blue: #2A95D2;
+$lightblue: #92D9F8;
+
+.checkbox-example-wrap {
+  width: 260px;
+  margin: 20px;
+  p {
+    padding: 0 20px;
+    color: #444;
+  }
+  
+}
+
+.checkbox-example {
+  position: relative;
+  width: 200px;
+  background: #EEE;
+  padding: 20px;
+  margin:0px;
+  display: block;
+  
+}
+
+// Toggle Switch
+
+input[type="checkbox"].checkbox-toggle {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+
+}
+
+label.checkbox-toggle-label {
+  color: $gray;
+  
+  span.on {
+    position: absolute;
+    top: 22px;
+    right:65px;
+    display:none;
+    
+  }
+  span.off{
+    position: absolute;
+    top: 22px;
+    right: 38px;
+    display:inline-block;
+  }
+  
+}
+
+label.checkbox-toggle-label:before   {
+    content: '';
+    background: $lightgray;
+    border: 1px solid $darkgray;
+    width: 68px; 
+    height: 36px;
+    position: absolute;
+    top: 14px;
+    right:30px;
+}
+
+
+label.checkbox-toggle-label:after   {
+      content: '';
+      position: absolute;
+      right: 70px;
+      top: 22px;
+      width: 20px;
+      height: 20px;
+      background: $gray;
+      transition: .1s ease-in;
+}
+
+input.checkbox-toggle {
+  visibility: hidden; 
+   &:checked + label.checkbox-toggle-label:after {
+      opacity: 1;
+      transform: translateX(32px);
+      background: $blue;
+      
+    }   
+    &:checked + label.checkbox-toggle-label:before {
+      background: $lightblue;
+      border: 1px solid $darkblue;
+
+    } 
+    &:checked + label.checkbox-toggle-label {
+      color: $blue;
+      
+       span.on {
+         
+          display:inline-block;
+
+        }
+      
+      span.off {
+         
+          display:none;
+
+        }
+      
+    }
+}
+
+
+// form pill 
+
+label.checkbox-toggle-pill-label:before {
+  border-radius: 10px;
+}
+
+label.checkbox-toggle-pill-label:after {
+  border-radius: 5px;
+}
+
+
+
+
+// base page styles
+body {
+  font-family: 'Open Sans';
+  background-color: #CCC;
+}
+
+.page-wrap {
+  width: 100%;
+}
+
+.col-1-3 {
+  width: 32%;
+  display: inline-block;
+  float: left;
+}
+
+div.intro {
+ text-align: center;
+  h1 { 
+    font-weight: 400;
+    margin-bottom: 0px;
+  }
+  p {
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-1-3 {
+    width: 100%;
+  }
+}

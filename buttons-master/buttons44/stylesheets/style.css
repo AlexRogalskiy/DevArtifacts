@@ -1,0 +1,123 @@
+.checkbox-example-wrap {
+  width: 260px;
+  margin: 20px;
+}
+.checkbox-example-wrap p {
+  padding: 0 20px;
+  color: #444;
+}
+
+.checkbox-example {
+  position: relative;
+  width: 200px;
+  background: #EEE;
+  padding: 20px;
+  margin: 0px;
+  display: block;
+}
+
+input[type="checkbox"].checkbox-toggle {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+}
+
+label.checkbox-toggle-label {
+  color: #B3B2B3;
+}
+label.checkbox-toggle-label span.on {
+  position: absolute;
+  top: 22px;
+  right: 65px;
+  display: none;
+}
+label.checkbox-toggle-label span.off {
+  position: absolute;
+  top: 22px;
+  right: 38px;
+  display: inline-block;
+}
+
+label.checkbox-toggle-label:before {
+  content: '';
+  background: #E5E5E4;
+  border: 1px solid #808080;
+  width: 68px;
+  height: 36px;
+  position: absolute;
+  top: 14px;
+  right: 30px;
+}
+
+label.checkbox-toggle-label:after {
+  content: '';
+  position: absolute;
+  right: 70px;
+  top: 22px;
+  width: 20px;
+  height: 20px;
+  background: #B3B2B3;
+  transition: .1s ease-in;
+}
+
+input.checkbox-toggle {
+  visibility: hidden;
+}
+input.checkbox-toggle:checked + label.checkbox-toggle-label:after {
+  opacity: 1;
+  transform: translateX(32px);
+  background: #2A95D2;
+}
+input.checkbox-toggle:checked + label.checkbox-toggle-label:before {
+  background: #92D9F8;
+  border: 1px solid #115980;
+}
+input.checkbox-toggle:checked + label.checkbox-toggle-label {
+  color: #2A95D2;
+}
+input.checkbox-toggle:checked + label.checkbox-toggle-label span.on {
+  display: inline-block;
+}
+input.checkbox-toggle:checked + label.checkbox-toggle-label span.off {
+  display: none;
+}
+
+label.checkbox-toggle-pill-label:before {
+  border-radius: 10px;
+}
+
+label.checkbox-toggle-pill-label:after {
+  border-radius: 5px;
+}
+
+body {
+  font-family: 'Open Sans';
+  background-color: #CCC;
+}
+
+.page-wrap {
+  width: 100%;
+}
+
+.col-1-3 {
+  width: 32%;
+  display: inline-block;
+  float: left;
+}
+
+div.intro {
+  text-align: center;
+}
+div.intro h1 {
+  font-weight: 400;
+  margin-bottom: 0px;
+}
+div.intro p {
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .col-1-3 {
+    width: 100%;
+  }
+}
