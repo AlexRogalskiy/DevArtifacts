@@ -1,0 +1,204 @@
+@import compass
+
+// WEB FONTS
+// ========================================
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro|Lustria|Arbutus+Slab|Noto+Sans|Droid+Sans|Lato|Arvo|Cabin|Sorts+Mill+Goudy|Lora|PT+Sans|Cabin+Sketch|PT+Sans+Narrow|Cabin+Condensed|Istok+Web|Noto+Serif|Ubuntu|Gudea|PT+Mono|Droid+Sans+Mono|Bitter|PT+Serif|Kameron|Anton|Rokkitt|Libre+Baskerville|Muli|Great+Vibes|Ubuntu+Condensed|Droid+Serif|Open+Sans|Oswald|Open+Sans+Condensed:300|Roboto+Condensed|Roboto|Merriweather|Vollkorn|Merriweather+Sans|Alike|Gentium+Book+Basic|Montserrat|Qwigley|Bree+Serif|Patua+One|Poly|Karla|Actor|Quattrocento|Crimson+Text|Dancing+Script|Yanone+Kaffeesatz|Ledger|Bevan|Pontano+Sans)
+
+
+// MIXINS
+// ========================================
+@mixin glossy($base-color: #676767)
+  $lightnessFactor: lightness($base-color)
+  $gradientOpacity: 0.05 + 0.25 * ($lightnessFactor / 100) 
+  $innerglow: inset 0 0 17px rgba(255,255,190,.41)
+  $dropshadow: 0 2px 1px rgba(0,0,0,.2) 
+  $dividerColor1: adjust-color($base-color, $lightness: -7%, $alpha: 0.7)
+  $dividerColor2: adjust-color($base-color, $lightness: 10%, $alpha: 0.7)
+  border-top: solid 1px adjust-color($base-color, $lightness: 10%)
+  border-bottom: solid 1px adjust-color($base-color, $lightness: -10%)
+  +box-shadow($dropshadow, $innerglow )
+  
+  // Text
+  a
+    font-family: 'Palatino Linotype', sans-serif
+    //text-transform: uppercase
+    color: rgba(white, 0.9)
+    text-shadow: 1px 1px 2px adjust-color($base-color,$lightness: -20%)
+  
+  // Background
+  background-color: $base-color
+  
+  // Setup background
+  @if $lightnessFactor < .50
+    // Gradient with fixed opacity
+    +background-image(linear-gradient(top, rgba(white,0) 0, rgba(white,0) 50%, rgba(white,0) 51% ) )
+    
+  @else
+    // Gradient with dynamic opacity
+    +background-image(linear-gradient(top, rgba(white,$gradientOpacity) 0, rgba(white,$gradientOpacity - 0.05) 50%, rgba(white,0) 51% ) )
+  
+  li
+    +box-shadow(1px 0 0 0 rgba($dividerColor2,0.5), 2px 0 0 0 rgba($dividerColor1,0.7),  3px 0 0 0 rgba($dividerColor2, 0.5))
+    &:last-child 
+      +box-shadow(none)
+  a 
+    +transition(all 0.3s ease-in-out)
+  a:hover 
+    +box-shadow( inset 0 0 25px 0 rgba(lighten(desaturate($base-color, 20%), 30%), 0.6) )
+    //background-color: rgba(adjust-color($base-color, $lightness: 5%), 0.6)
+    
+  a:active 
+    +box-shadow( inset 8px 0 22px -11px rgba(black, 0.8), inset -8px 0 22px -11px rgba(black, 0.8) )
+    background-color: rgba(adjust-color($base-color, $lightness: -15%), 0.6)
+      
+@mixin pattern-diagnol($thickness: 2px, $angle: 45deg, $color1: silver, $color2: gray)
+  +background-image(linear-gradient($angle, $color1 25%, $color2 25%, $color2 50%, $color1 50%, $color1 75%, $color2 75%, $color2 ) )
+  background-size: $thickness $thickness
+ 
+@mixin widget()
+  +box-shadow( 0 -3px 1px rgba(255,255,255,.6), inset 0 2px 1px rgba(255,255,255,.97), 0 0 3px -1px rgba(0,0,0,.7) )
+  +background-image(linear-gradient(rgba(249,249,249,1) 50%, rgba(240,240,240,1)100%) )
+  
+  &:hover 
+    +background-image(linear-gradient(rgba(249,249,249,1) 50%, rgba(224,224,224,1) 100%) )
+
+  
+body
+  width: 95%
+  max-width: 1200px
+  margin: 25px auto
+  //+pattern-diagnol(4px, 45deg)
+ul 
+  margin: 0
+  padding: 0
+
+img 
+  border: 0
+  
+// MENU
+// ========================================
+.menu
+  ul
+    width: 100%
+    padding: 0
+    overflow: hidden
+    +border-radius(5px)
+    font-size: 0
+    text-align: center  
+    +glossy(#676767) // macify #676767; raspberry #b30026; blueberry #394eb9; Lime #84a00d; Lemon #FDC23A; Plum #4f0e35; Peach #f57d56
+
+  li 
+    +inline-block
+    width: 12.5%
+    list-style: none
+    font-size: 16px
+    
+  a 
+    display: block
+    margin: 0
+    padding: 0.5em 2em
+    vertical-align: top
+    text-decoration: none
+
+  .icon 
+    width: 100px
+    height: 36px
+    background: url(https://www.apple.com/global/nav/images/globalnav_text.png)
+    background-position: 50% 3px
+    
+
+// PROMO1
+// ========================================
+.promos 
+  width: 98%
+  margin: 25px auto 200px
+  
+  ul 
+    zoom: 1
+    font-size: 0
+    text-align: center
+    
+  li 
+    display: inline-block
+    width: 24%
+    max-width: 237px 
+    margin-left: 1%
+    _marging-left: 1%
+    border-top: 1px solid #f2f2f2
+    +border-radius(5px)
+    +box-shadow(rgba(0,0,0,.15) 0 1px 3px)
+    font-size: 12px
+    
+  .curve-down
+    +box-shadow( 0 8px 3px -5px rgba(0,0,0,.2))
+    +border-radius( 100%, 33px  )
+  a 
+    display: block
+    +widget()
+    
+  img 
+    width: 100%
+    height: auto
+  
+.slider 
+  margin-top: 50px 
+  text-align: center
+  img 
+    margin: 25px auto
+    
+    
+    
+// PROMO2
+// ========================================
+
+.promo2
+  margin: 75px 0
+  
+  div.span 
+    float: left
+    display: inline-block
+    width: 50%
+    //+background-image(radial-gradient(50% 50%, circle, #fcfcfc 20%, #d2d2d2 150%))
+
+  .inner 
+    padding: 5%
+    
+  .gift-cards
+    position: relative
+    width: 300px
+    height: 400px
+    +perspective(800px)
+    +perspective-origin( 50% -80%)
+    
+  figure
+    position: absolute
+    left: 80%
+    width: 218px
+    margin-left: -25px
+    +transition( all 0.9s cubic-bezier(0.94,-0.97,0.29,1.7)) // Animation builder http://cubic-bezier.com/#.81,-0.97,.29,1.7
+    +transform( translate3d( 0, 20px, 0) )
+    
+  
+  //Position cards in 3d space
+  $numCards: 4
+  $factor: 15
+  $xOffset: -50px
+  $zOffset: 50px
+  $rotOffset: -15deg
+  
+  @for $i from 0 to $numCards
+    .gift-cards:hover
+      .card_#{$i} 
+        +transform( translate3d(($xOffset * $i + $factor), 20px, ($zOffset * $i )) rotate3d(0, 1, 0, $rotOffset * $i)  )
+      //-webkit-filter: blur(0.4px * ($numCards - $i))
+      //+box-shadow(5px -5px 15px -6px rgba(black, 0.5))
+    
+  h3 
+    font: normal normal normal 35px/38px Droid Sans
+    color: #333
+  em 
+    //font-weight: bold
+    font-style: normal
+  p 
+    font-family: Istok Web
+ 

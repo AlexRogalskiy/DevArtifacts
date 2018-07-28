@@ -1,0 +1,142 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+*, ::after, ::before {
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(top, #fff 10%, #eee 90%);
+  font-family: "Open Sans", sans-serif;
+}
+
+.wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.music {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 15px -10px rgba(0, 0, 0, 0.2);
+  transition: background-position 0.5s;
+  background-image: url(http://files.nialler9.com/wp-content/uploads/2014/02/Jamie-Jones.jpg?a49495);
+  background-position: 0% 80%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.music:hover {
+  background-position: 10% 80%;
+}
+.music-song {
+  padding: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 16px;
+  color: 222;
+  opacity: 0;
+}
+.music-song--artist {
+  font-weight: 600;
+  transform: translateY(-20px);
+}
+.music-song--name {
+  color: gray;
+  transform: translateY(20px);
+}
+.music-player {
+  padding: 0 30px;
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+}
+.music-player--button {
+  opacity: 0;
+  transform: translateY(100px);
+}
+.music-player--button .button--pause {
+  display: flex;
+  justify-content: space-between;
+  height: 18px;
+  width: 13px;
+}
+.music-player--button .button--pause:hover:after, .music-player--button .button--pause:hover:before {
+  border-color: #373238;
+}
+.music-player--button .button--pause:after, .music-player--button .button--pause:before {
+  content: "";
+  border-left: 3px solid #000;
+}
+.music-player--timeline {
+  position: relative;
+  display: flex;
+}
+.music-player--timeline .timeline-line {
+  display: block;
+  width: 250px;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+}
+.music-player--timeline .timeline-line:after {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 3px;
+  background: #000;
+  transition: all 0.7s;
+}
+.music-player--timeline .timeline-cursor {
+  display: flex;
+  background: #fff;
+  width: 13px;
+  height: 13px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: scale(1) translateY(-50%);
+  border-radius: 50%;
+  transition: left 0.7s, transform 0.2s;
+}
+.music-player--timeline .timeline-cursor:hover {
+  transform: scale(1.1) translateY(-50%);
+}
+.music:hover {
+  background-position: 7% 80%;
+}
+.music:hover .music-song {
+  opacity: 1;
+}
+.music:hover .music-song--artist {
+  transform: translateY(0);
+}
+.music:hover .music-song--name {
+  transform: translateY(0);
+}
+.music:hover .music-player {
+  opacity: 1;
+}
+.music:hover .music-player--button {
+  opacity: 1;
+  transform: translateY(0);
+}
+.music:hover .music-player--timeline .timeline-line:after {
+  width: 70px;
+}
+.music:hover .music-player--timeline .timeline-cursor {
+  left: 70px;
+}

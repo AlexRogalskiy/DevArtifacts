@@ -1,0 +1,85 @@
+*
+	transition: all 250ms ease-in-out
+.container
+	position: absolute
+	transform: translateY(-50%) translateX(-50%)
+	top: 50%
+	left: 50%
+
+.block
+	height: 100px
+	line-height: 100px
+	text-align: center
+	font-family: 'Playfair Display', serif
+	.citation
+		font-size: 25px
+		line-height: 35px
+	.author
+		font-family: 'Roboto', sans-serif
+		color: #838eca
+		text-transform: uppercase
+		font-size: 10px
+		letter-spacing: 2px
+		line-height: 35px
+		transform: translateY(-50px)
+		opacity: 0
+.first:hover 
+	.citation
+		transform: scale(1.2)
+		letter-spacing: 1px
+	.author
+		transform: translateY(-0)
+		opacity: 1
+.second
+	position: relative
+	
+	.author
+		border-top: 1px solid
+		border-bottom: 1px solid
+		width: 150px
+		margin: 0 auto
+		position: absolute
+		transform: translateX(-50%)
+		left: 50%
+		right: 50%
+		top: 0
+	&:hover
+		.citation
+			transform: scale(1.2)
+			letter-spacing: 1px
+			opacity: 0.1
+		.author
+			opacity: 1
+			font-weight: bold
+			color: #000
+			transform: translateX(-50%)
+			width: 180px
+.third
+	position: relative
+	.citation
+		transform: translateX(0)
+	.author
+		bottom: 10px
+		position: absolute
+		right: 0
+		opacity: 0
+	&:hover
+		.citation
+			transform: translateX(-30px)
+		.author
+			right: -50px
+			opacity: 1
+			color: #ea8273
+.fourth
+	position: relative
+	.author
+		opacity: 0
+		color: #bf1f5d
+		transform: translateY(-50px)
+	&:hover
+		.citation
+			opacity: 0
+			transform: translateY(10px)
+		.author
+			opacity: 1
+			transform: translateY(-30px)

@@ -1,0 +1,44 @@
+.menu {
+  margin-top: 24px;
+  font-size: 16px;
+  background: #aaa;
+  overflow: hidden;
+}
+
+.menu-item {
+  float: left;
+  border-left: 1px solid white;
+  border-right: 1px solid #bbb;
+  background: #ddd;
+  a { 
+    display: block;
+    min-width: 155px;
+    padding: 15px 0;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none; 
+    color: #333;
+  }
+}
+
+// Wishlist Count
+.menu-item .count {
+  display: inline-block;
+  position: relative;
+  height: 1.1em;
+  padding: 0 6px 0 6px;
+
+	&:after { 
+    content: attr(data-count);
+    position: absolute;
+    margin-top: 0.1em;
+    width: 1.8em;
+    line-height: 1.8em;
+    border-radius: 50%;
+    text-align: center;
+    font-family: monospace;
+    font-size: 11px;
+    color: white;
+    background-color: green;
+  }
+}
