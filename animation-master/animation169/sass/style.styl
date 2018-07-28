@@ -1,0 +1,99 @@
+@import "../node_modules/nib"
+
+body
+  background #34495e
+
+.container
+  position relative
+  width 120px
+  margin 150px auto 100px auto
+
+#tea
+  width 50px
+  height 70px
+  background #EEE8E8
+  position absolute
+  bottom 130%
+  left 25px
+  border-radius .7em/.3em
+  background linear-gradient(to top, 0% #9A7272, 33% #9A7272, 90% #EEE8E8)
+  animation teaBagging 5s 1s infinite
+
+  &::before
+    content ""
+    position absolute
+    bottom 60px
+    left 15px
+    width 20px
+    height 20px
+    transform rotate(45deg)
+    background #CBC6C6
+    box-shadow 1px 1px 0 #B1B1B1
+
+  &::after
+    content ""
+    position absolute
+    width 2px
+    height 999px
+    bottom 110%
+    left 24px
+    background black
+    
+
+#cup
+  width 100px
+  height 150px
+  background rgba(255,255,255,0.7)
+  border-radius 0 0 .3em .3em
+  position relative
+
+  &::before
+    content ""  
+    position absolute
+    display block
+    top 30%
+    left 50%
+    width 75px
+    height 70px
+    border-radius 50%
+    box-shadow 15px 0 0 rgba(255,255,255,0.7)
+
+  &::after
+    content ""
+    position absolute
+    top 20%
+    left 2px
+    bottom 2px
+    right 2px
+    display block
+    border-radius 0 0 .3em .3em
+    background #F5F5F5
+    animation changeColor 5s 1s infinite
+
+@keyframes changeColor
+  from
+    background #F5F5F5
+  50%
+    background #F5F5F5
+  80%
+    background #CB6262
+  95%
+    background #CB6262
+  to
+    background #F5F5F5
+
+@keyframes teaBagging
+  from
+    bottom 130%
+  30%
+    bottom 100%
+  80%
+    bottom 20%
+  to
+    bottom 130%
+
+p
+  font 300% Arial, sans-serif
+  text-align center
+  color rgba(255,255,255,0.4)
+  text-transform uppercase

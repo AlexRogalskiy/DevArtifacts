@@ -1,0 +1,563 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Averia+Serif+Libre:700);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+h1, h2 {
+  font-family: 'Averia Serif Libre', sans-serif;
+  margin: 0 0 20px 0;
+}
+
+h2 {
+  font-size: 200%;
+}
+
+.small-caps {
+  font-variant: small-caps;
+}
+
+/* Tooltip for links */
+a:hover {
+  position: relative;
+}
+
+a[data-tooltip]:hover:after {
+  content: attr(data-tooltip);
+  position: absolute;
+  padding: 4px 8px;
+  color: #2C3E50;
+  background: #D8D8D8;
+  border-radius: .2em;
+  left: -50%;
+  bottom: 120%;
+  white-space: nowrap;
+  z-index: 20px;
+}
+
+/***********************************************\
+|           header                              |  
+\***********************************************/
+header {
+  background: white;
+}
+header h1 {
+  text-align: center;
+  padding-top: 25px;
+  font-size: 250%;
+}
+header #campfire {
+  position: relative;
+  z-index: 2;
+  margin: -25px auto 0 auto;
+  width: 90px;
+  height: 100px;
+  background: white;
+  border-radius: 50%;
+  transform: translate(0, 20px);
+}
+header #campfire #flames div {
+  position: absolute;
+  width: 0px;
+  height: 50px;
+  border-bottom: 50px solid #ff5a05;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-radius: 100%;
+}
+header #campfire #flames div:nth-of-type(1) {
+  -webkit-animation: flames1 .3s .2s infinite;
+  -moz-animation: flames3 .3s .2s infinite;
+}
+header #campfire #flames div:nth-of-type(2) {
+  top: 0;
+  left: 20px;
+  -webkit-animation: flames2 .3s infinite;
+  -moz-animation: flames2 .3s infinite;
+}
+header #campfire #flames div:nth-of-type(3) {
+  top: 0;
+  left: 40px;
+  -webkit-animation: flames3 .3s .1s infinite;
+  -moz-animation: flames3 .3s .1s infinite;
+}
+header #campfire #logs div {
+  position: absolute;
+  top: 35px;
+  left: 8px;
+  width: 75px;
+  height: 25px;
+  background: #564737;
+  border-radius: 10px/20px;
+}
+header #campfire #logs div:nth-of-type(1) {
+  transform: rotate(15deg);
+}
+header #campfire #logs div:nth-of-type(2) {
+  transform: rotate(-15deg);
+}
+
+/***********************************************\
+|           main                                |  
+\***********************************************/
+/* Intro */
+.recipe-text .intro {
+  background: #e74c3c;
+  color: white;
+  padding: 50px calc(50% - 960px/2);
+  /*http://lea.verou.me/more-css-secrets/#padding-auto*/
+}
+.recipe-text .intro p {
+  float: right;
+  width: 55%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 5%;
+  font-size: 120%;
+}
+.recipe-text .intro .preview-img {
+  position: relative;
+  width: 40%;
+  float: right;
+  padding: 5px 5px 25px 5px;
+  background: #E3E3E3;
+  border: 1px solid #333;
+  transform: rotate(2deg);
+}
+
+/* Ingredients */
+.ingredients {
+  padding: 50px calc(50% - 960px/2);
+  background: #D8D8D8;
+  width: 100%;
+  font: 110%/1.5 Arial, sans-serif;
+  /* Checkbox */
+  /* Calculate */
+}
+.ingredients ul {
+  width: 34%;
+  float: left;
+  margin-left: 3%;
+}
+.ingredients ul li {
+  list-style-type: none;
+}
+.ingredients input[type="checkbox"] {
+  display: none;
+}
+.ingredients input[type="checkbox"] + label span {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 0 5px 0 0;
+  vertical-align: middle;
+  background: #b3b3b3;
+  cursor: pointer;
+  border-radius: 3px;
+  overflow: hidden;
+  transition: background .3s .3s;
+  line-height: 1;
+}
+.ingredients input[type="checkbox"]:checked + label span {
+  background: transparent;
+}
+.ingredients input[type="checkbox"] + label span:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: rotate(180deg);
+  transition: top .3s, left .3s, transform .3s;
+}
+.ingredients input[type="checkbox"]:checked + label span:before {
+  content: "тЬУ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(0deg);
+}
+.ingredients input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+  color: #444;
+}
+.ingredients label {
+  cursor: pointer;
+}
+.ingredients .calculate {
+  float: left;
+  width: 60%;
+}
+.ingredients .calculate p {
+  font: italic 120% Georgia, serif;
+  text-align: center;
+}
+.ingredients .calculate a.ready {
+  display: block;
+  width: 50%;
+  padding: 1em .5em;
+  margin: 50px auto;
+  background: #27ae60;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: .6em;
+}
+.ingredients .calculate a.ready:hover, .ingredients .calculate a.ready:focus {
+  background: #2ecc71;
+}
+
+/* Directions */
+.recipe-directions {
+  padding: 50px calc(50% - 960px/2);
+  background: tan;
+}
+.recipe-directions li {
+  position: relative;
+  float: left;
+  width: 46%;
+  height: 250px;
+  padding: 10px 10px 60px 10px;
+  margin: 2%;
+  background: rgba(255, 255, 255, 0.2);
+  font: 125%/1.5 Arial, sans-serif;
+  vertical-align: top;
+  list-style-type: none;
+  border-radius: .5em;
+}
+.recipe-directions li span[class^="icon"] {
+  color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  font-size: 400%;
+}
+.recipe-directions li:last-of-type {
+  width: 96%;
+  font: italic 200% Georgia, serif;
+  text-align: center;
+  padding: 40px 10px 50px 10px;
+}
+
+/* .recipe-directions */
+/***********************************************\
+|           footer                              |  
+\***********************************************/
+footer {
+  width: 100%;
+  padding: 50px calc(50% - 960px/2);
+  background: #2c3e50;
+  color: #ddd;
+  text-align: center;
+  font: 100%/1.5 Arial, sans-serif;
+}
+footer a {
+  color: #ddd;
+  text-decoration: none;
+  padding: 2px 3px;
+}
+footer p {
+  margin-bottom: 25px;
+}
+footer span {
+  color: white;
+  transition: color .3s;
+}
+
+footer:hover a {
+  border-bottom: 1px dotted;
+}
+footer:hover a:hover {
+  background: #ddd;
+  color: #2c3e50;
+  border: none;
+}
+footer:hover span {
+  color: red;
+}
+
+/***********************************************\
+|           animations                          |  
+\***********************************************/
+/* flames 1 */
+@keyframes flames1 {
+  from {
+    transform: rotate(-5deg) scale(1, 1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: rotate(5deg) scale(0.8, 0.8);
+    opacity: 0.8;
+  }
+  to {
+    transform: rotate(-5deg) scale(1, 1);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes flames1 {
+  from {
+    -webkit-transform: rotate(-5deg) scale(1, 1);
+    opacity: 0.9;
+  }
+  50% {
+    -webkit-transform: rotate(5deg) scale(0.8, 0.8);
+    opacity: 0.8;
+  }
+  to {
+    -webkit-transform: rotate(-5deg) scale(1, 1);
+    opacity: 1;
+  }
+}
+@-moz-keyframes flames1 {
+  from {
+    -moz-transform: rotate(-5deg) scale(1, 1);
+    opacity: 0.9;
+  }
+  50% {
+    -moz-transform: rotate(5deg) scale(0.8, 0.8);
+    opacity: 0.8;
+  }
+  to {
+    -moz-transform: rotate(-5deg) scale(1, 1);
+    opacity: 1;
+  }
+}
+/* flames2 */
+@keyframes flames2 {
+  from {
+    transform: rotate(0deg) scale(1, 1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(-5deg) scale(0.8, 0.8);
+    opacity: 0.9;
+  }
+  to {
+    transform: rotate(0deg) scale(1, 1);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes flames2 {
+  from {
+    -webkit-transform: rotate(0deg) scale(1, 1);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: rotate(-5deg) scale(0.8, 0.8);
+    opacity: 0.9;
+  }
+  to {
+    -webkit-transform: rotate(0deg) scale(1, 1);
+    opacity: 1;
+  }
+}
+@-moz-keyframes flames2 {
+  from {
+    -moz-transform: rotate(0deg) scale(1, 1);
+    opacity: 1;
+  }
+  50% {
+    -moz-transform: rotate(-5deg) scale(0.8, 0.8);
+    opacity: 0.9;
+  }
+  to {
+    -moz-transform: rotate(0deg) scale(1, 1);
+    opacity: 1;
+  }
+}
+/* flames 3 */
+@keyframes flames3 {
+  from {
+    transform: rotate(0deg) scale(1, 1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: rotate(5deg) scale(0.9, 0.9);
+    opacity: 1;
+  }
+  to {
+    transform: rotate(0deg) scale(1, 1);
+    opacity: 0.9;
+  }
+}
+@-webkit-keyframes flames3 {
+  from {
+    -webkit-transform: rotate(0deg) scale(0.9, 0.9);
+    opacity: 0.9;
+  }
+  50% {
+    -webkit-transform: rotate(5deg) scale(1, 1);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: rotate(0deg) scale(0.9, 0.9);
+    opacity: 0.9;
+  }
+}
+@-moz-keyframes flames3 {
+  from {
+    -moz-transform: rotate(0deg) scale(0.9, 0.9);
+    opacity: 0.9;
+  }
+  50% {
+    -moz-transform: rotate(5deg) scale(1, 1);
+    opacity: 1;
+  }
+  to {
+    -moz-transform: rotate(0deg) scale(0.9, 0.9);
+    opacity: 0.9;
+  }
+}
+/* Clearfix */
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+html[xmlns] .clearfix {
+  display: block;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+/***********************************************\
+|           responsive                          |  
+\***********************************************/
+/* Tablet */
+@media only screen and (max-width: 768px) {
+  .recipe-text {
+    /* .ingredients */
+  }
+  .recipe-text .intro p {
+    float: none;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    padding: 20px 30px;
+    margin: 2% 0 0 0;
+    font-size: 120%;
+  }
+  .recipe-text .intro .preview-img {
+    position: relative;
+    width: 100%;
+    float: none;
+    padding: 0;
+    background: #E3E3E3;
+    border: none;
+    transform: rotate(0deg);
+  }
+  .recipe-text .ingredients ul {
+    width: 100%;
+    margin: 0 0 3% 5%;
+    float: none;
+    column-count: 2;
+    column-gap: 60px;
+    column-rule: 1px solid #555;
+  }
+  .recipe-text .ingredients input[type="checkbox"] + label span {
+    display: none;
+  }
+  .recipe-text .ingredients .calculate {
+    float: none;
+    width: 100%;
+  }
+  .recipe-text .ingredients .calculate p {
+    padding: 10px;
+  }
+  .recipe-text .ingredients .calculate a.ready {
+    width: 90%;
+  }
+
+  /* .recipe-text */
+  footer a {
+    border-bottom: 1px dotted;
+  }
+  footer a:hover {
+    background: #ddd;
+    color: #2c3e50;
+    border: none;
+  }
+  footer span {
+    color: red;
+  }
+}
+/* media query */
+/* Smartphone */
+@media only screen and (max-width: 480px) {
+  body {
+    font-size: 120%;
+  }
+
+  .recipe-text {
+    /* .ingredients */
+  }
+  .recipe-text .ingredients ul {
+    width: 100%;
+    margin: 0 0 3% 5%;
+    float: none;
+    column-count: 1;
+  }
+  .recipe-text .ingredients input[type="checkbox"] + label span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
+
+  /* .recipe-text */
+  .recipe-directions li {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    margin: 2% 0;
+    background: rgba(255, 255, 255, 0.2);
+    font: 125%/1.5 Arial, sans-serif;
+    list-style-type: none;
+    border-radius: 0;
+    overflow-y: hidden;
+  }
+  .recipe-directions li span[class^="icon"] {
+    color: rgba(0, 0, 0, 0.4);
+    position: static;
+    font-size: 100%;
+  }
+  .recipe-directions li:last-of-type {
+    width: 100%;
+    font: italic 125% Georgia, serif;
+    text-align: center;
+    padding: 40px 10px 50px 10px;
+    background: transparent;
+  }
+
+  /* .recipe-directions */
+  footer a {
+    border-bottom: 1px dotted;
+  }
+  footer a:hover {
+    background: #ddd;
+    color: #2c3e50;
+    border: none;
+  }
+  footer span {
+    color: red;
+  }
+}
+/* media query */

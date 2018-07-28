@@ -1,0 +1,103 @@
+@charset "UTF-8";
+#screen {
+  width: 300px;
+  height: 200px;
+  background: #5337A5 linear-gradient(-75deg, #5337A5 72.2%, rgba(255, 255, 255, 0.25) 72.2%);
+  margin: 50px auto 0 auto;
+  position: relative;
+  transition: all .5s;
+}
+#screen::after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  background: #1D1D1D linear-gradient(-75deg, #1D1D1D 70%, rgba(255, 255, 255, 0.25) 70%);
+  border-top-left-radius: .7em;
+  border-top-right-radius: .7em;
+  z-index: -2;
+  transition: all .5s;
+}
+#screen::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  top: -10px;
+  left: calc(50% - 5px);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all .5s;
+}
+
+#keyboard {
+  width: 440px;
+  height: 15px;
+  background: #D8D8D8;
+  margin: 10px auto;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.45);
+  border-bottom-left-radius: .4em;
+  border-bottom-right-radius: .4em;
+  position: relative;
+  transition: all .5s;
+}
+#keyboard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 43%;
+  right: 43%;
+  bottom: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom-left-radius: .3em;
+  border-bottom-right-radius: .3em;
+  box-shadow: inset 5px 0 5px -5px rgba(0, 0, 0, 0.5), inset -5px 0 5px -5px rgba(0, 0, 0, 0.5);
+  transition: all .5s;
+}
+
+@media screen and (max-width: 900px) {
+  #screen {
+    width: 240px;
+    height: 155px;
+    background: #5337A5 linear-gradient(-75deg, #5337A5 72.9%, rgba(255, 255, 255, 0.25) 72.9%);
+  }
+  #screen::after {
+    border-radius: .7em;
+  }
+  #screen::before {
+    background: transparent;
+  }
+
+  #keyboard {
+    width: 0;
+    height: 0;
+  }
+}
+@media screen and (max-width: 650px) {
+  #screen {
+    width: 90px;
+    height: 155px;
+  }
+  #screen::after {
+    left: -5px;
+    right: -5px;
+  }
+  #screen::before {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+body {
+  background: #3498db;
+}
+body::after {
+  content: "Resize Browser Window тЖТ";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 15px 20px;
+  border-top-left-radius: 1em;
+  font: 17px 'Varela Round', sans-serif;
+}
