@@ -1,0 +1,50 @@
+/**
+ * Animations
+ */
+
+.animated {
+  animation-fill-mode: both;
+}
+
+/**
+ * Intensifies
+ * - Slowly increases in shaking and madness
+ */
+
+@keyframes shakeit {
+
+  @for $i from 0 through 100 {
+    
+    #{$i * 1%} {
+
+
+      // Rotate between left and right
+      $sign: -1;
+      @if $i % 2 == 0 { 
+        $sign: 1;
+      }
+
+      // Rotation capped at 8
+      $rotation: 8;
+      @if $i < 10 { 
+        $rotation: $i;
+      }
+
+      // Final frame is set back to 0
+      @if $i != 100 { 
+        transform: translate($sign * $i * 2px, 0) rotate($sign * $rotation + deg);
+      } @else {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      
+    } 
+  }
+
+}
+
+.shakeit {
+  animation-timing-function: ease-in;
+  transform-origin: bottom center;
+  animation-name: shakeit;
+  animation-duration: 12s;
+}
