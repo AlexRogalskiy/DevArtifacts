@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+
+<div id="container">
+	<label class="to-back-label" for="to-back"><i class="fa fa-bars fa-lg">Flip</i></label>
+	<input type="checkbox" id="to-back"><!-- playlist toggle -->
+	<canvas id="progress" width="320" height="320"></canvas><!-- progress bar -->
+	<div id="player">
+		<audio id="audio" controls >
+			<source src="https://archive.org/download/StanWilliamsLastTrail/StanWilliamsLastTrail.mp3" type="audio/mpeg" codecs="mp3"></source>		
+		</audio>
+		<img src="https://stan.stream/wp-content/uploads/2018/07/Stan-Williams-Peace-Pipe-mp3-image.jpg"><!-- album cover -->
+		<label class="to-lyrics-label" for="to-lyrics"><i class="fa fa-caret-down fa-lg"></i></label>
+		<input type="checkbox" id="to-lyrics"><!-- lyrics toggle -->
+		<div class="cover">
+			<div class="controls">
+<!-- <button id="backward" title="Backward"><i class="fa fa-retweet fa-lg"></i></button>
+				<button id="backward" title="Backward"><i class="fa fa-backward fa-2x"></i></button> --->
+				<button id="play-pause" title="Play" onclick="togglePlayPause()"><i class="fa fa-play fa-3x"></i></button>
+				<!-- <button id="forward" title="Forward"><i class="fa fa-forward fa-2x"></i></button> --->
+				<!-- <button id="backward" title="Backward"><i class="fa fa-random fa-lg"></i></button> --->
+				<input id="volume" name="volume" min="0" max="1" step="0.1" type="range" onchange="setVolume()" />
+			</div><!-- #controls -->
+			<div class="info">
+				<p class="song"></p>
+			</div><!-- #info -->
+			<div class="lyrics">
+				<p>About: Last Trail by Stan Williams
+
+This song was recorded at Mira Vista Studios June 7th 2007.Music composed by Stan Williams
+www.stanwilliamsmusic.com.
+This audio is part of the collection: Community Audio.
+Artist/Composer: Stan J. Williams BMI
+Date: 2007-06-07</p>
+			</div><!-- #lyrics -->
+			<p class="scroll">scroll down</p>
+  </div><!-- #cover -->
+</div><!-- #player -->
+<div id="flip-back">
+  <ul class="playlist">
+			<h3>Links</h3>
+			<li><a href="https://twitter.com/StansSongs/" target="_blank"> Twitter</a></li>
+			<li><a href="https://facebook.com/stanwilliamsmusic/" target="_blank"> Facebook</a></li>
+			<li><a href="http://stanwilliams.org/" target="_blank" style="color:#26C5CB;"><i class="fa fa-play" style="margin-right:4px;"></i> www.Stanwilliams.org</a></li>
+			<li><a href="http://stanwilliamsmusic.com/" target="_blank""> Official Music Website</a></li>
+			<li><a href="https://plus.google.com/u/0/+StanWilliams/" target="_blank"> Google +</a></li>
+			<li><a href="https://www.websitedesign.trade/" target="_blank"> Site Crafters</a></li>
+			<li><a href="http://myspace.com/stanwilliams/" target="_blank"> Stan on Myspace</a></li>
+			<li><a href="https://soundcloud.com/stanwmusic" target="_blank">Sound Cloud</a></li>
+			<li><a href="https://www.pinterest.com/stanssongs/" target="_blank"> Pinterest</a></li>
+			<li><a href="http://www.last.fm/music/Stan+Williams/Peace+Pipe" target="_blank"> Last FM</a></li>
+		</ul>
+	</div><!-- #flip-back -->
+</div><!-- #container -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.0/dat.gui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+<!--  footer -->
+</html>
