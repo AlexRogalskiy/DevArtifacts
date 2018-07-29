@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #cecbc4;
+  background-image: -webkit-gradient(linear, center top, center bottom, color-stop(0%, #fbfbfb), color-stop(100%, #cecbc4));
+  background-image: -webkit-linear-gradient(top, #fbfbfb 0%, #cecbc4 100%);
+  background-image: -moz-linear-gradient(top, #fbfbfb 0%, #cecbc4 100%);
+  background-image: -ms-linear-gradient(top, #fbfbfb 0%, #cecbc4 100%);
+  background-image: -o-linear-gradient(top, #fbfbfb 0%, #cecbc4 100%);
+  background-image: linear-gradient(to bottom, #fbfbfb 0%, #cecbc4 100%);
+}
+
+div#loader_container {
+  width: 300px;
+  margin: 50px auto;
+  text-align: center;
+  padding-top: 50px;
+}
+
+div#bar_container {
+  height: 24px;
+  background: #dcdbd7;
+  border-radius: 20px;
+  border-top: 1px solid #cfcec9;
+  border-bottom: 1px solid #f7f6f4;
+  box-shadow: 0 -1px 0 #bab9b4;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+div#progress_bar {
+  background-color: #dcf1c6;
+  background-image: -webkit-gradient(linear, center top, center bottom, color-stop(0%, #9fbff4), color-stop(100%, #555bb4));
+  background-image: -webkit-linear-gradient(top, #9fbff4 0%, #555bb4 100%);
+  background-image: -moz-linear-gradient(top, #9fbff4 0%, #555bb4 100%);
+  background-image: -ms-linear-gradient(top, #9fbff4 0%, #555bb4 100%);
+  background-image: -o-linear-gradient(top, #9fbff4 0%, #555bb4 100%);
+  background-image: linear-gradient(to bottom, #9fbff4 0%, #555bb4 100%);
+  height: 110%;
+  position: absolute;
+  top: -3px;
+  left: 0px;
+  border-top: 1px solid #e5ebf4;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px #717171;
+  width: 10%;
+  transition: width 0.1s ease-in-out;
+}
+
+div#progress_percentage {
+  position: absolute;
+  top: -40px;
+  right: -10px;
+  width: 40px;
+  height: 24px;
+  padding-top: 6px;
+  background: #edeef2;
+  background-image: -webkit-gradient(linear, center top, center bottom, color-stop(0%, #edeef2), color-stop(100%, #c9c9d3));
+  background-image: -webkit-linear-gradient(top, #edeef2 0%, #c9c9d3 100%);
+  background-image: -moz-linear-gradient(top, #edeef2 0%, #c9c9d3 100%);
+  background-image: -ms-linear-gradient(top, #edeef2 0%, #c9c9d3 100%);
+  background-image: -o-linear-gradient(top, #edeef2 0%, #c9c9d3 100%);
+  background-image: linear-gradient(to bottom, #edeef2 0%, #c9c9d3 100%);
+  border-top: 1px solid white;
+  border-right: 1px solid #d2d2d0;
+  border-bottom: 1px solid #999999;
+  border-left: 1px solid #d2d2d0;
+  border-radius: 7px;
+  font-size: 10px;
+  color: #737371;
+  text-shadow: 0 0 2px #bebfc3;
+  box-shadow: 0 2px 5px #c1c1bf;
+}
+
+div#progress_percentage::before {
+  /* used for the border of the arrow */
+  content: "";
+  position: absolute;
+  left: 14px;
+  bottom: -11px;
+  border-top: 5px solid #999;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+div#progress_percentage::after {
+  /* the actual little arrow in the baloon */
+  content: "";
+  position: absolute;
+  left: 14px;
+  bottom: -10px;
+  border-top: 5px solid #c9c9d3;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+div#text_container {
+  color: #757575;
+  font-weight: bold;
+  font-size: 22px;
+  text-shadow: -1px 1px 1px #d1d0cc;
+}
+
+div#text_container span {
+  display: block;
+  font-weight: normal;
+  font-size: 11px;
+  margin-top: 6px;
+}

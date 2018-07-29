@@ -1,0 +1,205 @@
+$primaryColor: red;
+$textColor: #222;
+
+.box {
+        display: block;
+        position: relative;
+        background: white;
+        border: 1px solid #DDE3EB;
+        border-radius: 3px;
+        color: $primaryColor;
+        text-align: left;
+        text-decoration: none;
+        transition: box-shadow .3s, transform .3s;
+        margin: 10px 0;
+        overflow: hidden;
+
+        &.disabled {
+          cursor: default;
+        }
+
+        .vp1, .vp2, .vp3, .vp4 {
+          width: 10px;
+          height: 10px;
+          position: absolute;
+          background: white;
+          border: 2px solid #1065D7;
+          opacity: 0;
+        }
+
+        .vp1 {
+          left: -6px;
+          top: -6px;
+        }
+
+        .vp2 {
+          right: -6px;
+          top: -6px;
+        }
+
+        .vp3 {
+          left: -6px;
+          bottom: -6px;
+        }
+
+        .vp4 {
+          bottom: -6px;
+          right: -6px;
+        }
+
+        figure {
+          background: #f9f9f9;
+          height: 280px;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+          border-bottom: 1px solid #f9f9f9;
+
+          img {
+            max-width: 250px;
+            max-height: 185px;
+            display: block;
+            margin: 0 auto;
+          }
+
+          figcaption {
+            font-size: 14px;
+            display: block;
+            padding: 15px 10px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.5);
+            text-align: center;
+            opacity: 0;
+            transition: opacity .2s;
+
+            span {
+              display: inline-block;
+              color: white;
+              position: relative;
+              top: 90%;
+              //transform: translateY(-50%);
+              text-align: center;
+              font-size: 18px;
+              padding: 10px 15px;
+              background: $primaryColor;
+              transition: top .2s, transform .2s;
+            }
+          }
+        }
+
+        .title {
+          color: #4A86E8;
+          font-size: 20px;
+          color: $textColor;
+          padding: 1.5rem 1.5rem 0.75rem;
+          text-align: left;
+
+          .material-icons {
+            display: inline-block;
+            color: $primaryColor;
+            vertical-align: bottom;
+            float: right;
+            font-size: 20px;
+          }
+        }
+
+        .content {
+          color: $textColor;
+          font-size: 15px;
+          line-height: 1.47;
+          padding: 0 1.5rem 1.5rem;
+          text-align: left;
+          opacity: 0.8;
+
+          strong {
+            display: inline-block;
+            font-weight: 500;
+          }
+        }
+
+        .button {
+          display: block;
+          width: 250px;
+          max-width: 100%;
+          margin: 0 auto;
+          background: #4A86E8;
+          color: white;
+          border-radius: 5px;
+          padding: 12px 15px;
+          text-transform: uppercase;
+          font-size: 16px;
+          font-weight: 500;
+          letter-spacing: 1px;
+        }
+
+        &:hover {
+          transform: translate(0, -4px);
+          z-index: 1;
+          border-color: #1065D7;
+          box-shadow: 5px 5px 0 #DDE3EB;
+          overflow: visible;
+          transition: box-shadow .2s, transform .2s, overflow .2s;
+          text-decoration: none;
+
+          .title {
+            color: #1065D7;
+          }
+
+          .content {
+            opacity: 0.9;
+
+            strong {
+              color: #333;
+            }
+          }
+
+          .button {
+            background: #FF307F;
+            color: white;
+          }
+
+          figure {
+            border-color: #1065D7;
+
+            figcaption {
+              opacity: 1;
+              transition: opacity .2s;
+
+              span {
+                top: 50%;
+                transform: translateY(-50%);
+                transition: top .2s, transform .2s;
+              }
+            }
+          }
+
+          .vp1, .vp2, .vp3, .vp4 {
+            opacity: 1;
+            transition: opacity .2s;
+          }
+        }
+      }
+
+
+
+/** Generic **/
+body {
+  background: #fefefe;
+  
+  section {
+    padding: 100px 0;
+    
+    .credit {
+      display: block;
+      margin-top: 50px;
+      font-size: 13px;
+      text-align: center;
+    }
+  }
+}

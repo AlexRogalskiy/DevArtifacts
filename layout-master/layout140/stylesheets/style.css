@@ -1,0 +1,173 @@
+.box {
+  display: block;
+  position: relative;
+  background: white;
+  border: 1px solid #DDE3EB;
+  border-radius: 3px;
+  color: red;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .3s, transform .3s;
+  margin: 10px 0;
+  overflow: hidden;
+}
+.box.disabled {
+  cursor: default;
+}
+.box .vp1, .box .vp2, .box .vp3, .box .vp4 {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background: white;
+  border: 2px solid #1065D7;
+  opacity: 0;
+}
+.box .vp1 {
+  left: -6px;
+  top: -6px;
+}
+.box .vp2 {
+  right: -6px;
+  top: -6px;
+}
+.box .vp3 {
+  left: -6px;
+  bottom: -6px;
+}
+.box .vp4 {
+  bottom: -6px;
+  right: -6px;
+}
+.box figure {
+  background: #f9f9f9;
+  height: 280px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 1px solid #f9f9f9;
+}
+.box figure img {
+  max-width: 250px;
+  max-height: 185px;
+  display: block;
+  margin: 0 auto;
+}
+.box figure figcaption {
+  font-size: 14px;
+  display: block;
+  padding: 15px 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.box figure figcaption span {
+  display: inline-block;
+  color: white;
+  position: relative;
+  top: 90%;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 15px;
+  background: red;
+  transition: top .2s, transform .2s;
+}
+.box .title {
+  color: #4A86E8;
+  font-size: 20px;
+  color: #222;
+  padding: 1.5rem 1.5rem 0.75rem;
+  text-align: left;
+}
+.box .title .material-icons {
+  display: inline-block;
+  color: red;
+  vertical-align: bottom;
+  float: right;
+  font-size: 20px;
+}
+.box .content {
+  color: #222;
+  font-size: 15px;
+  line-height: 1.47;
+  padding: 0 1.5rem 1.5rem;
+  text-align: left;
+  opacity: 0.8;
+}
+.box .content strong {
+  display: inline-block;
+  font-weight: 500;
+}
+.box .button {
+  display: block;
+  width: 250px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #4A86E8;
+  color: white;
+  border-radius: 5px;
+  padding: 12px 15px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.box:hover {
+  transform: translate(0, -4px);
+  z-index: 1;
+  border-color: #1065D7;
+  box-shadow: 5px 5px 0 #DDE3EB;
+  overflow: visible;
+  transition: box-shadow .2s, transform .2s, overflow .2s;
+  text-decoration: none;
+}
+.box:hover .title {
+  color: #1065D7;
+}
+.box:hover .content {
+  opacity: 0.9;
+}
+.box:hover .content strong {
+  color: #333;
+}
+.box:hover .button {
+  background: #FF307F;
+  color: white;
+}
+.box:hover figure {
+  border-color: #1065D7;
+}
+.box:hover figure figcaption {
+  opacity: 1;
+  transition: opacity .2s;
+}
+.box:hover figure figcaption span {
+  top: 50%;
+  transform: translateY(-50%);
+  transition: top .2s, transform .2s;
+}
+.box:hover .vp1, .box:hover .vp2, .box:hover .vp3, .box:hover .vp4 {
+  opacity: 1;
+  transition: opacity .2s;
+}
+
+/** Generic **/
+body {
+  background: #fefefe;
+}
+body section {
+  padding: 100px 0;
+}
+body section .credit {
+  display: block;
+  margin-top: 50px;
+  font-size: 13px;
+  text-align: center;
+}
