@@ -1,0 +1,67 @@
+:root {
+  --days: 10;
+  --dayWidth: 140px;
+  --doubleDayWidth: 280px;
+  --events: 5;
+  --eventHeight: 40px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #2d2a4e;
+  color: #c0c0d4;
+  font-family: sans-serif;
+}
+.timeliner {
+  max-width: 1200px;
+  margin: auto;
+  overflow-x: auto;
+  padding-top: 20px;
+  border-left: 1px solid #c0c0d4;
+}
+h1 {
+  letter-spacing: 1.5px;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 50px auto 20px;
+  max-width: 1200px;
+}
+#app {
+  display: grid;
+  grid-template-columns: repeat(var(--days), var(--dayWidth));
+  grid-template-rows: repeat(var(--events), var(--eventHeight));
+  grid-row-gap: 10px;
+  background: repeating-linear-gradient(90deg, transparent, transparent var(--dayWidth), #32325d var(--dayWidth), #32325d var(--doubleDayWidth));
+}
+.day {
+  position: relative;
+  color: #6c73a2;
+  font-size: 10px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  border-top: 1px solid #6c73a2;
+}
+.day:before {
+  content: "";
+  height: 10px;
+  border-left: 1px solid #6c73a2;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.day .day__name {
+  margin-top: -15px;
+  margin-left: -15px;
+  display: block;
+}
+.event {
+  background: hotpink;
+  border-radius: 20px;
+  padding: 0px 15px;
+  color: white;
+  letter-spacing: 1px;
+  font-size: 12px;
+  line-height: var(--eventHeight);
+  margin: 0 10px 0 0;
+}

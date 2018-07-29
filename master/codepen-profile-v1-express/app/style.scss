@@ -1,0 +1,41 @@
+@import './assets/css/reset.css';
+
+body {
+  background: #FAFAFA;
+  color: #2C2C2C;
+  font-family: -apple-system, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  line-height: 1.125rem;
+}
+
+.app {
+  padding: 80px 0 24px;
+  box-sizing: border-box;
+
+  &--mobile {
+    height: 100%;
+    padding: 80px 24px 74px;
+  }
+
+  .button--back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+    background: #FFF;
+    border: 1px solid #EEE;
+    border-right: 0;
+    transition: 0.2s ease;
+
+    &,
+    &.button--hidden {
+      transform: translate(100%, 0);
+    }
+
+    &.button--visible {
+      transform: none;
+    }
+  }
+}

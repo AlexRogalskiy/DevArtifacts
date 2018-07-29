@@ -1,0 +1,53 @@
+@import '../../helpers/colors';
+@import '../../helpers/fonts';
+
+.button {
+  outline: none;
+  display: inline-block;
+  background: 0;
+  height: 40px;
+  border: 0;
+  border-radius: 2px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  color: $text-primary;
+  font-size: 0.75rem;
+  font-weight: $font-semibold;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  &--default {
+    background: $white;
+    box-shadow: inset 0 0 0 1px rgba($black, 0.1);
+
+    &.button--elevate {
+      box-shadow: inset 0 0 0 1px rgba($black, 0.1), 0 2px 4px rgba($black, 0.1);
+    }
+  }
+
+  &--primary {
+    background: $accent;
+    box-shadow: inset 0 0 0 1px rgba($black, 0.1);
+    color: $white;
+
+    &.button--elevate {
+      box-shadow: inset 0 0 0 1px rgba($black, 0.1), 0 2px 4px rgba($accent, 0.1);
+    }
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  .icon,
+  .ion {
+    font-size: 0.875rem;
+    vertical-align: middle;
+  }
+}

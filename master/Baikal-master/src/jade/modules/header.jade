@@ -1,0 +1,98 @@
+mixin header(type, color)
+  if type === 1
+    // Header (Block)
+    header.header.header--type-1(class=color ? 'header--text-#{color}': '')
+
+      // Content (Element)
+      .header__content
+
+        // Toggle (Element)
+        .header__toggle
+          span
+          span
+          span
+
+        // Nav (Block)
+        nav.nav.nav--center
+
+          // Menu (Element)
+          ul.nav__menu
+
+            each link, name in menu.main
+              // Item (Element)
+              li.nav__item: a(href=link)= name
+
+        // Nav (Block)
+        nav.nav.nav--right
+
+          // Menu (Element)
+          ul.nav__menu
+
+            each link, name in menu.secondary
+              // Item (Element)
+              li.nav__item: a(href=link)= name
+
+  else if type === 2
+    // Header (Block)
+    header.header.header--type-2(class=color ? 'header--text-#{color}': '')
+
+      // Brand (Element)
+      .header__brand
+
+      // Content (Element)
+      .header__content
+
+        // Nav (Block)
+        nav.nav.nav--right
+
+          // Menu (Element)
+          ul.nav__menu
+
+            each link, name in menu.main
+              // Item (Element)
+              li.nav__item: a(href=link)= name
+
+        // Nav (Block)
+        nav.nav.nav--right
+
+          // Menu (Element)
+          ul.nav__menu
+
+            each link, name in menu.secondary
+              // Item (Element)
+              li.nav__item: a(href=link)= name
+
+        // Toggle (Element)
+        .header__toggle
+          span
+          span
+          span
+
+  else if type === 3
+    header.header.header--type-3(class=color ? 'header--text-#{color}': '')
+  else if type === 4
+    header.header.header--type-4(class=color ? 'header--text-#{color}': '')
+  else if type === 5
+    header.header.header--type-5(class=color ? 'header--text-#{color}': '')
+  else if type === 6
+    header.header.header--type-6(class=color ? 'header--text-#{color}': '')
+  else if type === 7
+    header.header.header--type-7(class=color ? 'header--text-#{color}': '')
+  else if type === 8
+    header.header.header--type-8(class=color ? 'header--text-#{color}': '')
+  else if type === 9
+    header.header.header--type-9(class=color ? 'header--text-#{color}': '')
+  else if type === 10
+    header.header.header--type-10(class=color ? 'header--text-#{color}': '')
+  else if type === 11
+    header.header.header--type-11(class=color ? 'header--text-#{color}': '')
+  else if type === 12
+    header.header.header--type-12(class=color ? 'header--text-#{color}': '')
+  else if type === 13
+    header.header.header--type-13(class=color ? 'header--text-#{color}': '')
+  else if type === 14
+    header.header.header--type-14(class=color ? 'header--text-#{color}': '')
+  else if type === 15
+    header.header.header--type-15(class=color ? 'header--text-#{color}': '')
+  else
+    - console.log('Parameter cannot be blank. Please enter a value.')

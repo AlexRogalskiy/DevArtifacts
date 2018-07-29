@@ -1,0 +1,144 @@
+.article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 100px;
+  box-sizing: border-box;
+  font-size: rem(16);
+  line-height: rem(32);
+
+  &__header {
+    margin: 0 0 40px;
+  }
+
+  &__date {
+    display: inline-block;
+    color: $text-secondary;
+    font-family: $header-font;
+    font-size: rem(12);
+    font-weight: $font-medium;
+    text-transform: uppercase;
+  }
+
+  &__tags {
+    display: inline-block;
+    color: $text-secondary;
+    font-family: $header-font;
+    font-size: rem(12);
+    font-weight: $font-medium;
+
+    a {
+      color: $accent;
+      text-decoration: none;
+    }
+  }
+
+  &__title {
+    color: $text-primary;
+    font-size: rem(40);
+    font-weight: $font-bold;
+    line-height: rem(48);
+
+    &,
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &__sub-title {
+    color: $text-body;
+    font-family: $body-font;
+    font-size: rem(24);
+    font-weight: $font-regular;
+    line-height: rem(28);
+  }
+
+  &__thumbnail {
+    margin: 0 -60px 40px;
+  }
+
+  &__content {
+    margin: 0 0 60px;
+
+    blockquote,
+    pre,
+    .third-party-block {
+      margin-right: -60px;
+      margin-left: -60px;
+    }
+
+    blockquote {
+      padding: 20px 0;
+
+      @media (max-width: 600px) {
+        padding: 20px 60px;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 40px 0 20px;
+    }
+
+    pre {
+      @media (max-width: 600px) {
+        margin-right: -20px;
+        margin-left: -20px;
+        padding: 40px;
+      }
+    }
+
+    .third-party-block {
+      &__title {
+        margin: 0 0 10px;
+      }
+    }
+  }
+
+  &__footer {
+    position: relative;
+    border-top: 1px solid $border-color;
+    padding: 40px 0;
+
+    .author {
+      margin-right: 180px;
+
+      &__avatar {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      @media (max-width: 600px) {
+        margin-right: 0;
+      }
+    }
+
+    .social-share {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      width: 140px;
+
+      @max-width (max-width: 768px) {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-bottom: 40px;
+      }
+    }
+
+    .subscribe {
+      margin-right: -60px;
+      margin-left: -60px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    padding: 0 60px;
+  }
+}

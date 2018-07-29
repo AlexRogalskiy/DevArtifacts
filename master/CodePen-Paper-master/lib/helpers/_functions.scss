@@ -1,0 +1,34 @@
+// PX to REM Function
+$default-browser-font-size: 16;
+
+@function rem($pixels, $context: $default-browser-font-size) {
+  @if unitless($pixels) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if unitless($context) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1rem;
+}
+
+// Base Colors Function
+@function base-color($color) {
+  @return map-get($base-colors, $color);
+}
+
+// Text Colors Function
+@function text-color($color) {
+  @return map-get($text-colors, $color);
+}
+
+// Theme Colors Function
+@function theme-color($color) {
+  @return map-get($theme-colors, $color);
+}
+
+// Font Weights Function
+@function font-weight($weight) {
+  @return map-get($font-weights, $weight);
+}

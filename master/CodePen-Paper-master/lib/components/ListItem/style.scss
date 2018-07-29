@@ -1,0 +1,60 @@
+@import '../../helpers/base';
+
+/**
+ * List Item (Block)
+ */
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid base-color(border);
+  padding: 15px 0;
+  box-sizing: border-box;
+}
+
+/**
+ * List Item (Elements)
+ */
+.list-item {
+  &__content,
+  &__left-column,
+  &__right-column {
+    margin-left: 15px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    height: 40px;
+  }
+
+  &__heading {
+    margin: 0;
+    color: text-color(primary);
+    font-size: rem(14);
+    font-weight: font-weight(regular);
+    line-height: rem(24);
+  }
+
+  &__sub-heading {
+    color: text-color(body);
+    font-size: rem(12);
+    line-height: rem(16);
+  }
+}
+
+/**
+ * List Item (Modifiers)
+ */
+.list-item {
+  &:first-child {
+    border-top: 0;
+  }
+
+  &.is-link {
+    cursor: pointer;
+  }
+}

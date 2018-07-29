@@ -1,0 +1,74 @@
+// Button
+.button {
+  outline: none;
+  display: inline-block;
+  background: transparent;
+  height: 32px;
+  border: 0;
+  border-radius: 4px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  color: $text-primary;
+  font-size: 0.875rem;
+  font-weight: $font-regular;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  zoom: 1;
+  user-select: none;
+
+  &:hover {
+    color: $primary;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+}
+
+// Button (Color)
+.button {
+  &--primary {
+    background: $primary;
+    color: $white;
+
+    &:hover {
+      background: darken($primary, 5%);
+      color: $white;
+    }
+
+    &:active {
+      background: darken($primary, 10%);
+      color: $white;
+    }
+  }
+}
+
+// Button (Type)
+.button {
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  &--outline {
+    border: 1px solid #B0B8BF;
+
+    &:hover {
+      border-color: $primary;
+      color: $primary;
+    }
+
+    &:active {
+      border-color: darken($primary, 10%);
+      color: darken($primary, 10%);
+    }
+  }
+
+  &--round {
+    border-radius: 100px;
+  }
+}

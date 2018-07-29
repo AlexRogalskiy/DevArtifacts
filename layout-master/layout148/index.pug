@@ -1,0 +1,277 @@
+// Suit Mixin
+mixin suit(type, color, dimension)
+
+  if color == 'black'
+    - var color = '#363636'
+  if color == 'red'
+    - var color = '#d64c4c';
+
+  - var width = '100%';
+  - var height = '100%';
+
+  if type == 'Spade'
+
+    if dimension == 'true'
+      - var width = '37px'
+      - var height = '39px'
+
+    svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="#{width}" height="#{height}" viewBox="0 0 18.6 19.5" enable-background="new 0 0 18.6 19.5" xml:space="preserve")
+      g
+        <path fill="#{color}" d="M17.2,9.5L17.2,9.5L9.3,0l-8,9.5h0c-0.8,0.8-1.3,2-1.3,3.3c0,2.6,2.1,4.6,4.6,4.6c2.5,0,4.6-2.1,4.6-4.6h0 c0,2.5,2.1,4.6,4.6,4.6c2.6,0,4.6-2.1,4.6-4.6C18.6,11.4,18,10.3,17.2,9.5z"/>
+        <polygon fill="#{color}" points="6.8,19.5 11.8,19.5 9.3,15.1"/>
+
+  else if type == 'Heart'
+
+    if dimension == 'true'
+      - var width = '36px'
+      - var height = '34px'
+
+    svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="#{width}" height="#{height}" viewBox="0 0 18.2 17" enable-background="new 0 0 18.2 17" xml:space="preserve")
+      <path fill="#{color}" d="M18.2,4.5c0-2.5-2-4.5-4.5-4.5c-2.5,0-4.5,2-4.5,4.5h0C9.1,2,7,0,4.5,0C2,0,0,2,0,4.5 c0,1.2,0.5,2.4,1.3,3.2h0L9.1,17l7.8-9.3h0C17.7,6.9,18.2,5.8,18.2,4.5z"/>
+
+  else if type == 'Diamond'
+
+    if dimension == 'true'
+      - var width = '37px'
+      - var height = '44px'
+
+    svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="#{width}" height="#{height}" viewBox="0 0 18.2 21.7" enable-background="new 0 0 18.2 21.7" xml:space="preserve")
+      g
+        <polygon fill="#{color}" points="9.1,0 0,10.8 9.1,21.7 18.2,10.8"/>
+
+  else if type == 'Club'
+
+    if dimension == 'true'
+      - var width = '36px'
+      - var height = '37px'
+
+    svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="#{width}" height="#{height}" viewBox="0 0 18.2 19.1" enable-background="new 0 0 18.2 19.1" xml:space="preserve")
+        g
+          <path fill="#{color}" d="M13.6,7.7c-0.6,0-1.2,0.1-1.7,0.3c1.1-0.8,1.7-2.1,1.7-3.6c0-2.5-2-4.5-4.5-4.5S4.5,2,4.5,4.5 c0,1.4,0.7,2.7,1.7,3.6C5.7,7.9,5.2,7.7,4.5,7.7C2,7.7,0,9.8,0,12.3s2,4.5,4.5,4.5s4.5-2,4.5-4.5c0,0,0,0,0,0l0,0l0,0c0,0,0,0,0,0 c0,2.5,2,4.5,4.5,4.5c2.5,0,4.5-2,4.5-4.5S16.1,7.7,13.6,7.7z"/>
+          <polygon fill="#{color}" points="6.6,19.1 11.6,19.1 9.1,14.7"/>
+
+mixin royal(type, color)
+  if type == 'Jack'
+
+    if color == 'red'
+      - var colorOne = '#d74b4c'
+      - var colorTwo = '#c84145'
+    else
+      - var colorOne = '#0c79bc';
+      - var colorTwo = '#025490';
+
+    svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="113px" height="52px" viewBox="0 0 56.5 27.7" enable-background="new 0 0 56.5 27.7" xml:space="preserve")
+      g
+        <rect id="XMLID_5_" x="34.7" y="9.7" fill="#E55125" width="9.1" height="4"/>
+        <rect id="XMLID_4_" x="12.9" y="9.7" fill="#F57E20" width="9.1" height="4"/>
+        <polygon id="XMLID_3_" fill="#FEBB18" points="28.2,27.7 28.2,0 21.3,2 21.3,13.4 15,13.2 12.9,5.7 0,5.7 5.6,27.7"/>
+        <polygon id="XMLID_2_" fill="#F49221" points="28.2,27.7 28.2,0 35.2,2 35.2,13.4 41.4,13.2 43.5,5.7 56.5,5.7 50.8,27.7"/>
+        <polygon fill="#{colorOne}" points="3.1,17.9 4.5,23.4 28.2,23.4 28.2,17.9"/>
+        <polygon fill="#{colorTwo}" points="53.3,17.9 51.9,23.4 28.2,23.4 28.2,17.9"/>
+  else if type == 'Queen'
+
+    if color == 'red'
+      - var colorOne = '#F59090'
+      - var colorTwo = '#F37B7B'
+      - var colorThree = '#EB5451'
+      - var colorFour = '#e43532'
+      - var colorFive = '#F15753'
+      - var colorSix = '#E14E4B'
+      - var colorSeven = '#A81F23'
+      - var colorEight = '#B62026'
+    else
+      - var colorOne = '#7DA3D5'
+      - var colorTwo = '#6795CE'
+      - var colorThree = '#3480C3'
+      - var colorFour = '#0075BC'
+      - var colorFive = '#3C82C4'
+      - var colorSix = '#0A79BF'
+      - var colorSeven = '#005490'
+      - var colorEight = '#005A9A'
+
+    svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="123px" height="75px" viewBox="0 0 61.1 37.2" enable-background="new 0 0 61.1 37.2" xml:space="preserve")
+      <polygon id="XMLID_16_" fill="#E55125" points="46.8,23 42.5,17 61.1,3.7"/>
+      <polygon id="XMLID_15_" fill="#F57E20" points="14.4,23 0,3.7 18.6,17"/>
+      <polygon id="XMLID_14_" fill="#FEBB18" points="8.8,37.2 0,3.7 14.4,23 30.6,0 30.6,37.2"/>
+      <polygon id="XMLID_13_" fill="#F49221" points="52.3,37.2 61.1,3.7 46.8,23 30.6,0 30.6,37.2"/>
+      g
+        <polygon id="XMLID_12_" fill="#{colorFive}" points="30.6,23 23.9,23 27.2,27.9"/>
+        <polygon id="XMLID_11_" fill="#{colorTwo}" points="23.9,23 30.6,23 27.2,18.1"/>
+        <polygon id="XMLID_10_" fill="#{colorOne}" points="27.2,18.1 30.6,23 30.6,18.1 30.6,13.1"/>
+        <polygon id="XMLID_9_" fill="#{colorThree}" points="30.6,13.1 30.6,18.1 30.6,23 33.9,18.1"/>
+        <polygon id="XMLID_8_" fill="#{colorEight}" points="37.3,23 30.6,23 33.9,27.9"/>
+        <polygon id="XMLID_7_" fill="#{colorFour}" points="30.6,23 37.3,23 33.9,18.1"/>
+        <polygon id="XMLID_6_" fill="#{colorSix}" points="27.2,27.9 30.6,32.9 30.6,27.9 30.6,23"/>
+        <polygon id="XMLID_5_" fill="#{colorSeven}" points="30.6,23 30.6,27.9 30.6,32.9 33.9,27.9"/>
+      <polygon id="XMLID_3_" fill="#E38825" points="37.3,23 30.6,32.9 30.6,37.2 46.3,37.2"/>
+      <path id="XMLID_2_" fill="#FFFFFF" d="M30.6,19.8c-1.8,0-3.3-1.5-3.3-3.3c0,1.8-1.5,3.3-3.3,3.3c1.8,0,3.3,1.5,3.3,3.3 C27.3,21.2,28.8,19.8,30.6,19.8z"/>
+
+  else if type == 'King'
+
+    if color == 'red'
+      - var colorOne = '#F59090'
+      - var colorTwo = '#F37B7B'
+      - var colorThree = '#EB5451'
+      - var colorFour = '#e43532'
+      - var colorFive = '#F15753'
+      - var colorSix = '#E14E4B'
+      - var colorSeven = '#A81F23'
+      - var colorEight = '#B62026'
+    else
+      - var colorOne = '#7DA3D5'
+      - var colorTwo = '#6795CE'
+      - var colorThree = '#3480C3'
+      - var colorFour = '#0075BC'
+      - var colorFive = '#3C82C4'
+      - var colorSix = '#0A79BF'
+      - var colorSeven = '#005490'
+      - var colorEight = '#005A9A'
+
+    svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="120px" height="67px" viewBox="0 0 59.4 35.5" enable-background="new 0 0 59.4 35.5" xml:space="preserve")
+      <rect id="XMLID_16_" x="36.2" y="10.9" fill="#E55125" width="9.1" height="4"/>
+      <rect id="XMLID_15_" x="14.4" y="10.9" fill="#F57E20" width="9.1" height="4"/>
+      <polygon id="XMLID_14_" fill="#F49221" points="51.5,35.5 59.4,4.8 46.7,6.8 43.6,14.4 36.7,14.6 36.7,2 29.7,0 29.7,35.5"/>
+      <polygon id="XMLID_13_" fill="#E38825" points="36.4,22.4 29.7,32.3 29.7,35.5 45.3,35.5"/>
+      <polygon id="XMLID_12_" fill="#FEBB18" points="8,35.5 0,4.8 12.8,6.8 15.8,14.4 22.8,14.6 22.8,2 29.7,0 29.7,35.5"/>
+      g
+        <polygon id="XMLID_11_" fill="#{colorFive}" points="29.8,22.4 23.1,22.4 26.4,27.4"/>
+        <polygon id="XMLID_10_" fill="#{colorTwo}" points="23.1,22.4 29.8,22.4 26.4,17.5"/>
+        <polygon id="XMLID_9_" fill="#{colorOne}" points="26.4,17.5 29.8,22.4 29.8,17.5 29.8,12.6"/>
+        <polygon id="XMLID_8_" fill="#{colorThree}" points="29.8,12.6 29.8,17.5 29.8,22.4 33.1,17.5"/>
+        <polygon id="XMLID_7_" fill="#{colorEight}" points="36.5,22.4 29.8,22.4 33.1,27.4"/>
+        <polygon id="XMLID_6_" fill="#{colorFour}" points="29.8,22.4 36.5,22.4 33.1,17.5"/>
+        <polygon id="XMLID_5_" fill="#{colorSix}" points="26.4,27.4 29.8,32.3 29.8,27.4 29.8,22.4"/>
+        <polygon id="XMLID_4_" fill="#{colorSeven}" points="29.8,22.4 29.8,27.4 29.8,32.3 33.1,27.4"/>
+      <path id="XMLID_2_" fill="#FFFFFF" d="M29.8,19.2c-1.8,0-3.3-1.5-3.3-3.3c0,1.8-1.5,3.3-3.3,3.3c1.8,0,3.3,1.5,3.3,3.3 C26.5,20.7,28,19.2,29.8,19.2z"/>
+
+// Panel Mixin
+mixin panel(position, suit, rank, color)
+
+  if rank == 1
+    - var rank = 'Ace';
+  else if rank == 11
+    - var rank = 'Jack';
+  else if rank == 12
+    - var rank = 'Queen';
+  else if rank == 13
+    - var rank = 'King';
+
+  if color == 'black'
+    - var color = '#363636'
+  if color == 'red'
+    - var color = '#d64c4c';
+
+  .panel(class=position style='background-color: #{color}')
+    .rank
+      if rank == 'Ace' || rank == 'Jack' || rank == 'Queen' || rank == 'King'
+        =rank.charAt(0)
+      else
+        =rank
+    .suit
+      | #{rank} of #{suit}s
+    .icon
+      +suit(suit, color, 'false')
+
+// Card Mixin
+mixin card(suit, rank, color)
+  if rank == '1'
+    - var className = 'one'
+  else if rank == '2'
+    - var className = 'two'
+  else if rank == '3'
+    - var className = 'three'
+  else if rank == '4'
+    - var className = 'four'
+  else if rank == '5'
+    - var className = 'five'
+  else if rank == '6'
+    - var className = 'six'
+  else if rank == '7'
+    - var className = 'seven'
+  else if rank == '8'
+    - var className = 'eight'
+  else if rank == '11'
+    - var className = 'jack'
+  else if rank == '12'
+    - var className = 'queen'
+  else if rank == '13'
+    - var className = 'king'
+
+  .card
+  
+    // Demo Purposes
+    .ripple
+    .ripple
+    
+    +panel('top', suit, rank, color)
+
+    .content(class='#{className}')
+
+      div
+
+        if rank == '11'
+          +royal('Jack', color)
+          span(class='#{color}')
+          +royal('Jack', color)
+        else if rank == '12'
+          +royal('Queen', color)
+          span(class='#{color}')
+          +royal('Queen', color)
+        else if rank == '13'
+          +royal('King', color)
+          span(class='#{color}')
+          +royal('King', color)
+        else
+          - for (var i = 0; i < rank; ++i) {
+            +suit(suit, color, 'true')
+          - }
+
+    +panel('bottom', suit, rank, color)
+
+// Begin
+
+// Pen Title
+.pen-title
+  h1
+    <span>(Tutorial)</span>
+    | Material Playing Card
+  span
+    | Pen <i class='fa fa-code'></i> by <a href='http://andytran.me'>Andy Tran</a>
+    
+// Rerun Button    
+.rerun
+  a(href='') Rerun Pen
+  
+// Playing Card
++card('Heart', '12', 'red')
+  
+// Tip
+#tip
+  h1 How to create a card?
+  p It's really simple... If you have basic knowledge of Jade. Simple fill out the paramaters in the mixin below, drop it below this box, and watch as magic happens!
+  code
+   h1 Jade
+   p 
+     | Please note that these are case sensitive.
+     <br>
+     | // Suits: Spade, Heart, Diamond, Club
+     <br>
+     | // Ranks: 1 - 13
+     <br>     
+     | // Colors: black or red
+   p <span>+card</span>(<span>Suit</span>, <span>Rank</span>, <span>Color</span>)
+  h1 Browser Support?
+  p Tested on the latest versions of <b>Chrome</b>, <b>Firefox</b>, <b>Safari</b>, <b>Internet Explorer</b>, &amp; <b>Opera</b>.
+  p Best viewed in Firefox incase Chrome hack doesn't work due to it's overflow and scaling bug.
+  
+// Portfolio
+a#portfolio(href='http://andytran.me/' title='View my portfolio!')
+  i.fa.fa-link
+  
+// CodePen
+a#codepen(href='https://codepen.io/andytran/' title='Follow me!')
+  i.fa.fa-codepen
+  
+// Scroll To Bottom
+a#scrollToBottom(href='#tip' title='Check out the tutorial!')
+  i.material-icons &#xE313;

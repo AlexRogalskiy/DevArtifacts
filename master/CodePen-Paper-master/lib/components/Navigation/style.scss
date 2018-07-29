@@ -1,0 +1,34 @@
+@import '../../helpers/base';
+
+/**
+ * Navigation (Block)
+ */
+.navigation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+/**
+ * Navigation (Modifiers)
+ */
+.navigation {
+  &.is-vertical {
+    flex-direction: column;
+
+    .navigation-item {
+      padding: 10px 0;
+
+      &.is-large {
+        padding: 8px 0;
+      }
+    }
+  }
+
+  &.is-large {
+    .navigation-item {
+      font-size: rem(16);
+      line-height: rem(16);
+    }
+  }
+}

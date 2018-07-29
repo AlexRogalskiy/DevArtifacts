@@ -1,0 +1,190 @@
+.section {
+  padding: 80px 0;
+
+  //Section Header
+  &-header {
+    margin: 0 0 80px;
+    text-align: center;
+
+    // Alt Header
+    &.alt {
+      h1 {
+        color: map-get($white, 100);
+      }
+    }
+
+    span {
+      display: block;
+      margin: 0 0 20px;
+      color: map-get($black, 40);
+      font-weight: $bold;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+/* Intro Section */
+.intro {
+  // Border
+  &:before {
+    content: '';
+    display: block;
+    background: url("../img/border.svg") repeat-x;
+    width: 100%;
+    height: 57px;
+    margin: 0 0 80px;
+  }
+
+  // Intro BG
+  &-bg {
+    position: relative;
+    background: url("../img/border-bg.svg") no-repeat center center;
+  }
+
+  // Pin
+  &-pin {
+    position: absolute;
+    top: 40px;
+    left: 175px;
+
+    &:before {
+      @extend .fa;
+
+      content: '';
+      color: #CB5151;
+      font-size: 72px;
+      animation: pin 6s infinite;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      background: map-get($black, 10);
+      width: 60%;
+      height: 2px;
+      border-radius: 100%;
+      box-shadow: 0 0 4px map-get($black, 10);
+      margin: 0 auto;
+    }
+  }
+
+  // Cloud
+  &-cloud {
+    &:before,
+    &:after {
+      @extend .fa;
+
+      content: '';
+      z-index: 3;
+      position: absolute;
+      top: 280px;
+      right: 100px;
+      color: map-get($white, 100);
+      font-size: 72px;
+      text-shadow: -2px 2px 0 map-get($black, 10);
+      animation: cloud 6s infinite;
+    }
+
+    &:before {
+      z-index: 1;
+      top: 100px;
+      right: 60px;
+      font-size: 48px;
+      animation: cloud 8s infinite;
+    }
+  }
+
+  // Plane
+  &-plane {
+    &:before,
+    &:after {
+      @extend .fa;
+
+      z-index: 2;
+      content: '';
+      position: absolute;
+      top: 100px;
+      right: 0;
+      color: $accent;
+      font-size: 260px;
+    }
+
+    &:before {
+      z-index: 1;
+      right: 30px;
+      color: map-get($black, 10);
+    }
+  }
+
+  // Intro Text
+  &-text {
+    &.one {
+      margin: 200px 0 0 60px;
+    }
+
+    &.two {
+      margin: 120px -40px 0 100px;
+    }
+
+    &.three {
+      margin: 400px 70px 0 -20px;
+    }
+
+    h3 {
+      color: $accent;
+    }
+  }
+}
+
+/* Features Section */
+.features {
+  background: $accent url("../img/overlay.png");
+  box-shadow: inset 0 4px 0 map-get($black, 10), inset 0 -4px 0 map-get($black, 10);
+  text-align: center;
+  color: map-get($white, 100);
+
+  h3 {
+    color: inherit;
+  }
+
+  p {
+    font-size: 18px;
+  }
+}
+
+/* Promo Section */
+.promo {
+  &-video {
+    background: url("../img/promo-bg.png") no-repeat center top;
+
+    &-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: map-get($black, 60);
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+
+      &:before {
+        @extend .fa;
+
+        content: '';
+        color: map-get($white, 100);
+        font-size: 60px;
+        line-height: 100px;
+      }
+    }
+  }
+
+  .laptop {
+    background: url("../img/laptop.png") no-repeat center;
+    background-size: contain;
+    margin: 100px auto 0;
+  }
+}

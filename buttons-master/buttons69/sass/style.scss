@@ -1,0 +1,70 @@
+.ripple,
+[ripple] {
+  position: relative;
+  overflow: hidden;  
+  cursor: pointer;
+
+  &:active {
+    .ripple {
+      // opacity: 0.1;
+    }
+  }
+}
+
+.ripple-effect {
+  position: absolute;
+  background: #000; // Default Background
+  width: 200px; // Default Size
+  height: 200px; // Default Size
+  border-radius: 100%;
+  transform: scale(2,2);
+  opacity: 0;
+  animation: ripple-effect 1s linear;
+  transition: 0.3s linear;
+}
+
+@keyframes ripple-effect {
+  0% {
+    opacity: 0.3;
+    transform: scale(0,0);
+  }
+}
+
+
+
+
+
+// Demo
+body {
+  background: #F3F3F3;
+}
+
+.title {
+  margin: 80px auto 40px;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  
+  h1 {
+    color: #03A9F4;
+    font-size: 36px;
+    font-weight: 300;
+  }
+}
+
+.card {
+  background: #FFF;
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 4px 20px rgba(#000, 0.1);
+  margin: 40px auto;
+  color: #03A9F4;
+  font-weight: 300;
+  line-height: 200px;
+  text-align: center;
+  transition: 0.3s ease;
+
+  &:active,
+  &:focus {
+    box-shadow: 0 8px 30px rgba(#000, 0.2);
+  }
+}

@@ -1,0 +1,142 @@
+// $accent: #F1404B;
+$accent: #6C2EB9;
+
+// Used by <ButtonGroup />
+.button-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+// Used by <Button />
+.button {
+  position: relative;
+  outline: none;
+  background: $accent;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 100px;
+  box-shadow: inset 0 0 0 1px rgba(#000, 0.2), 0 2px 0 rgba($accent, 0.2);
+  margin: 0 12px;
+  color: #FFF;
+  cursor: pointer;
+  
+  &--large {
+    z-index: 1;
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+  
+  &:hover {
+    .tooltip {
+      top: -100%;
+      opacity: 1;
+    }
+  }
+}
+
+// Used by inside <Button />
+.icon {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: background 0.3s ease;
+
+  &,
+  &:before,
+  &:after {
+    position: absolute;
+    display: block;
+    background: #FFF;
+    width: 6px;
+    height: 6px;
+    border-radius: 10px;
+  }
+  
+  &:before,
+  &:after {
+    content: '';
+    transition: all 100ms ease,
+      right 100ms 100ms ease,
+      left 100ms 100ms ease;
+  }
+  
+  &:before {
+    left: -11px;
+    transform: translateX(-50%);
+  }
+  
+  &:after {
+    right: -11px;
+    transform: translateX(50%);
+  }
+  
+  &.active {
+    background: transparent;
+    transition: background 0.3s ease;
+    
+    &,
+    &:before,
+    &:after {
+      height: 3px;
+    }
+    
+    &:before,
+    &:after {
+      width: 20px;
+      transform-origin: 50% 50%;
+      transition: all 100ms ease, 
+        width 100ms 100ms ease, 
+        transform 300ms 200ms cubic-bezier(0.28, 0.55, 0.385, 1.65);
+    }
+    
+    &:before {
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+    }
+    
+    &:after {
+      right: 50%;
+      transform: translateX(50%) rotate(-45deg);
+    }
+  }
+}
+
+// Used by <Tooltip />
+.tooltip {
+  position: absolute;
+  top: -80%;
+  left: 50%;
+  display: inline-block;
+  background: rgba(#000, 0.8);
+  border-radius: 2px;
+  padding: 4px;
+  box-sizing: border-box;
+  transform: translate(-50%, 50%);
+  color: #FFF;
+  font-size: 10px;
+  opacity: 0;
+  transition: 200ms ease;
+}
+
+// Demo Purposes
+body {
+  background: #F3F3F3;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin: 0 auto;
+  transform-origin: center;
+  transform: translate(-50%, -50%) scale(1, 1);
+}

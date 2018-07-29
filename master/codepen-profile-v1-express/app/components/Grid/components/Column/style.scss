@@ -1,0 +1,21 @@
+$columns: 12;
+$gutters: 24px;
+
+/* Column */
+.column {
+  flex-basis: 100%;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  padding: 0 ($gutters / 2);
+  box-sizing: border-box;
+
+  @for $i from 1 through $columns {
+    &--#{$i} {
+      flex-basis: percentage($i / $columns);
+      width: percentage($i / $columns);
+      max-width: percentage($i / $columns);
+      min-width: percentage($i / $columns);
+    }
+  }
+}

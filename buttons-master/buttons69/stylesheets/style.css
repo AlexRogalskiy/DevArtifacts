@@ -1,0 +1,55 @@
+.ripple,
+[ripple] {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ripple-effect {
+  position: absolute;
+  background: #000;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  transform: scale(2, 2);
+  opacity: 0;
+  animation: ripple-effect 1s linear;
+  transition: 0.3s linear;
+}
+
+@keyframes ripple-effect {
+  0% {
+    opacity: 0.3;
+    transform: scale(0, 0);
+  }
+}
+body {
+  background: #F3F3F3;
+}
+
+.title {
+  margin: 80px auto 40px;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+.title h1 {
+  color: #03A9F4;
+  font-size: 36px;
+  font-weight: 300;
+}
+
+.card {
+  background: #FFF;
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+  color: #03A9F4;
+  font-weight: 300;
+  line-height: 200px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+.card:active, .card:focus {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,53 @@
+.sidebar {
+  position: relative;
+  background: $white;
+  width: $sidebar-width;
+  height: 100%;
+  max-height: 100%;
+  box-shadow: inset 1px 0 0 $border-color;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &__content {
+    height: 100%;
+    padding: 60px 60px 0;
+    box-sizing: border-box;
+    overflow-y: scroll;
+  }
+
+  &__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: $white;
+    width: 100%;
+    box-shadow: inset 1px 0 0 $border-color, inset 0 1px 0 $border-color;
+    padding: 30px 60px;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    box-shadow: inset  0 1px 0 $border-color;
+    overflow: initial;
+
+    &__content {
+      height: auto;
+      overflow: initial;
+    }
+
+    &__footer {
+      // position: relative;
+    }
+
+    .input {
+      flex-grow: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
+}

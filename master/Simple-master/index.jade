@@ -1,0 +1,105 @@
+include inc/mixin
+doctype html
+html
+  head
+    // Meta
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='vietport', content='width=device-width, initial-scale=1')
+    meta(description='', content='')
+    meta(keywords='', content='')
+    meta(author='', content='Andy Tran')
+
+    // Open Graph
+    meta(property='og:title', content='')
+    meta(property='og:site_name', content='')
+    meta(property='og:url', content='')
+    meta(property='og:type', content='')
+    meta(property='og:image', content='')
+    meta(property='og:description', content='')
+
+    // Twitter Cards
+    meta(name='twitter:card', content='')
+    meta(name='twitter:site', content='')
+    meta(name='twitter:title', content='')
+    meta(name='twitter:description', content='')
+    meta(name='twitter:image', content='')
+
+    // Schema.org
+    meta(itemprop='name', content='')
+    meta(itemprop='description', content='')
+    meta(itemprop='image', content='')
+
+    // Title
+    title Simple &middot; Portfolio Page
+
+    // Fonts
+    link(type='text/css', media='screen', rel='stylesheet', href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,100|Montserrat:400,700')
+
+    // Stylesheets
+    // bower:css
+    // endbower
+    link(type='text/css', media='screen', rel='stylesheet', href='assets/css/main.css')
+  body
+    // Navbar
+    header.navbar
+      .container: .row
+          .brand Simple
+            span  / Portfolio
+          nav.nav
+            ul
+              li: a.active(href='#home') Home
+              li: a(href='https://about.me/andy.tran') About
+              li: a(href='#projects') Projects
+              li: a(href='#contact') Contact
+
+    // Hero Section
+    section.hero#home
+      .container: .row
+        h1 Hello there,
+        p <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <br> <b>Lorem Ipsum</b> has been the industry's standard dummy text ever.
+        a(href='#projects').btn View My Work
+
+    // Section
+    section.projects#projects
+      .container
+        .row
+          .col-4
+            .section-title
+              h2 My <b>Work</b>
+              p All of the projects that I have worked on.
+        .row
+          .col-4
+            ul#tab-nav
+              li: a.btn.active(href='#tab-all' data-filter='all') All
+              li: a.btn(href='#tab-branding' data-filter='branding') Branding
+              li: a.btn(href='#tab-graphicdesign' data-filter='graphicdesign') Graphic Design
+        .row
+          +project('#', 'graphicdesign', 'http://placehold.it/400x400')
+          +project('#', 'branding', 'http://placehold.it/400x400')
+          +project('#', 'graphicdesign', 'http://placehold.it/400x400')
+          +project('#', 'graphicdesign', 'http://placehold.it/400x400')
+          +project('#', 'branding', 'http://placehold.it/400x400')
+          +project('#', 'graphicdesign', 'http://placehold.it/400x400')
+          +project('#', 'graphicdesign', 'http://placehold.it/400x400')
+
+    // Footer
+    footer.footer#contact
+      .container: .row
+        .col-4
+          h2 Let's Connect
+          p Feel free to shot me a message!
+          ul
+            li: a(href='#'): i.fa.fa-dribbble
+            li: a(href='#'): i.fa.fa-behance
+            li: a(href='#'): i.fa.fa-twitter
+            li: a(href='#'): i.fa.fa-linkedin
+            li: a(href='#'): i.fa.fa-envelope
+    .footer-bottom
+      .container: .row
+        p Copyright © 2015 <a href='/index.html'>Simple</a>. All rights reserved.
+        p Built with <i class='fa fa-code'></i> by <a href='http://andytran.me'>Andy Tran</a>
+    // JavaScript
+    // bower:js
+    // endbower
+    script(src='assets/js/script.js')
