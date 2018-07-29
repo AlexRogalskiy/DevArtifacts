@@ -1,0 +1,22 @@
+h1 {
+  color: #444;
+}
+
+th.bg-success {
+  position: relative;
+  &::after {
+    position: absolute;
+    content: '';
+    border: 1px solid #fff;
+    border-width: 1px 0 0 1px;
+    height: .75rem;
+    width: .75rem;
+    right: 1rem;
+    top: 50%;
+    transform: translate(0, -50%) rotate(45deg);
+    transition: all .3s ease-out;
+  }
+  &.is-asc::after {
+    transform: translate(0, -50%) rotate(225deg);
+  }
+}

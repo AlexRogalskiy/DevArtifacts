@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Glimmer.js sortable table</h1>
+  <p>Click to select a row.</p>
+  <p>Click on the table header to sort.</p>
+
+  <table class="table table-bordered mt-5">
+    <thead class="thead-inverse">
+      <tr>
+        <th class="{{iff (eq selectedTh 'id') 'bg-success'}} {{iff sortType 'is-asc'}}" onclick={{action sortColumn 'id'}} role="button">ID</th>
+        <th class="{{iff (eq selectedTh 'firstName') 'bg-success'}} {{iff sortType 'is-asc'}}" onclick={{action sortColumn 'firstName'}} role="button">First Name</th>
+        <th class="{{iff (eq selectedTh 'lastName') 'bg-success'}} {{iff sortType 'is-asc'}}" onclick={{action sortColumn 'lastName'}} role="button">Last Name</th>
+        <th class="{{iff (eq selectedTh 'knownFor') 'bg-success'}} {{iff sortType 'is-asc'}}" onclick={{action sortColumn 'knownFor'}} role="button">Known For</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each newArry key="@index" as |alias index|}}
+      <tr class="{{iff (eq activeRow index) 'bg-info'}}" onclick={{action setRowActive index}}>
+        <td>{{alias.id}}</td>
+        <td>{{alias.firstName}}</td>
+        <td>{{alias.lastName}}</td>
+        <td>{{alias.knownFor}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</div>
