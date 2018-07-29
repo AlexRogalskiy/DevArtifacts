@@ -1,0 +1,87 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+$orange: #F37848;
+$blue-light: lighten(#29AAFF, 10);
+$blue-dark: darken($blue-light, 20);
+$yellow: #FFDB3D;
+$green: #65DE63;
+
+$colors: $blue-dark, $yellow, $green, $orange, $yellow, $green, $orange, $blue-dark, $green, $blue-dark, $yellow, $green, $blue-dark, $yellow, $green, $orange, $yellow, $green, $orange, $blue-dark, $yellow, $orange, $blue-dark, $yellow, $green, $blue-dark, $orange, $blue-dark, $yellow, $green, $orange, $yellow, $green, $orange, $blue-dark, $green, $blue-dark, $yellow, $green, $blue-dark, $yellow, $green, $orange, $yellow, $green, $orange, $blue-dark, $yellow, $orange, $blue-dark, $yellow, $green, $blue-dark, $orange;
+
+$w: sqrt(5000) * 1px; //a² + b² = 100 yup good ol' pythagoras
+
+$sans: 'open sans';
+
+body {
+  padding: 0.25rem;
+  margin: 0 auto;
+  background: $blue-light;
+  padding-bottom: 10rem;
+  border-bottom: 3rem solid $blue-dark;
+}
+
+main {
+  width: 80%;
+  @media (min-width: 40rem){
+    width: 65%;
+  }
+  margin: 0 auto;
+  font-family: $sans;
+  position: relative;
+  //font-weight: bold;
+  color: white;
+  font-size: 1.42rem;
+  line-height: 1.50em;
+  //letter-spacing: -.03em;
+  //word-spacing: -0.5em;
+  text-shadow: 2px 3px 0 darken($blue-light, 7);
+  
+  p {
+    position: relative;
+    z-index: 100;
+  }
+}
+
+hr {
+  border: none;
+  background: $yellow;
+  height: 100px - 30px;
+  overflow: hidden;
+  position: relative;
+  left: -30%;
+  width: 200%;
+  display: block;
+  margin-bottom: 2rem;
+  box-shadow: 0rem 0rem 0 3px $blue-dark;
+  
+  &:before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 14px;
+    left: -40px;
+    background: $orange;
+    height: $w;
+    width: $w;
+    transform: rotate(45deg);
+    transform-origin: center;
+    $a: 19px;
+    $shadow: 0;
+    @for $i from 1 to 55 {
+      $shadow: $shadow + ($i * $a) (($a * $i * -1)-17) 0px nth($colors, $i);
+      $shadow: $shadow + unquote(', ');
+    }
+    $shadow: $shadow + '0 0 0 black';
+    box-shadow: $shadow;
+  }
+}
+
+h1 {
+  font-family: $sans;
+  font-weight: bold;
+  color: $blue-dark;
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}

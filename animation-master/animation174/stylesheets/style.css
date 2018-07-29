@@ -1,0 +1,123 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #506772;
+  background-image: radial-gradient(farthest-side circle at left top, #3a484e, #315257, #4b5451, #344a55);
+}
+
+.scene {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  background-color: #3f6186;
+  width: 12em;
+  height: 12em;
+  border: 1em solid #cbe3e9;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.4), 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+.scene::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  bottom: -50%;
+  left: -50%;
+  border-radius: 0 100% 0 0;
+  width: 120%;
+  height: 120%;
+  background-color: #203b58;
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  -webkit-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+}
+.scene::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  bottom: -66%;
+  right: -66%;
+  border-radius: 100% 0 0 0;
+  width: 150%;
+  height: 150%;
+  background-color: #254260;
+  box-shadow: -0.1875em 0.375em 0.1875em rgba(0, 0, 0, 0.3);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -webkit-transform: rotate(20deg);
+  transform: rotate(20deg);
+}
+
+.moon {
+  position: absolute;
+  top: 16%;
+  left: 24%;
+  width: 24%;
+  height: 24%;
+  border-radius: 50%;
+  background-color: white;
+}
+.moon::before {
+  content: '';
+  position: absolute;
+  left: 16%;
+  top: -4%;
+  width: 84%;
+  height: 84%;
+  border-radius: 50%;
+  background-color: #3f6186;
+}
+
+.star {
+  position: absolute;
+  border-radius: 12em;
+  background-color: rgba(203, 227, 233, 0.8);
+}
+
+.star--large {
+  width: 0.48em;
+  height: 0.48em;
+}
+
+.star--medium {
+  width: 0.4em;
+  height: 0.4em;
+}
+
+.star--tiny {
+  width: 0.3em;
+  height: 0.3em;
+}
+
+.star--one {
+  top: 11%;
+  left: 44%;
+}
+
+.star--two {
+  top: 20%;
+  left: 48%;
+}
+
+.star--three {
+  top: 20%;
+  left: 60%;
+}
+
+.star--four {
+  top: 38%;
+  left: 16%;
+}
+
+.scene:hover {
+  overflow: visible;
+}
+.scene:hover .moon::before {
+  background-color: #cbe3e9;
+}

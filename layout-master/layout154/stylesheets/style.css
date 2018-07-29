@@ -1,0 +1,197 @@
+@charset "UTF-8";
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+* {
+  box-sizing: border-box;
+}
+
+.btn, .btn-primary, .btn-secondary {
+  color: white;
+  text-decoration: none;
+  padding: .7rem;
+  font-weight: bold;
+  border-radius: 3px;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.btn-primary {
+  background: #FF6087;
+  border: 2px solid #FF6087;
+  margin-right: .5rem;
+}
+.btn-primary:hover, .btn-primary:focus {
+  background: #ff7a9a;
+}
+
+.btn-secondary {
+  border: 2px solid #0683f3;
+}
+.btn-secondary:hover, .btn-secondary:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+header {
+  background: #1E2D40;
+  padding: 1rem;
+  color: white;
+  font-family: helvetica;
+  font-weight: bold;
+}
+header h1 {
+  background-image: url(https://d13yacurqjgara.cloudfront.net/assets/logo-small-6211913b000fc7eb5dbe90343e1ae746.png);
+  background-repeat: no-repeat;
+  background-position: center left;
+  color: transparent;
+  display: inline-block;
+  height: 2rem;
+  width: 50%;
+}
+header .search {
+  float: right;
+  padding: .5rem;
+  width: 40%;
+  border: none;
+  border-radius: 2px;
+}
+
+.shots {
+  column-count: 2;
+  column-gap: 0;
+}
+@media (min-width: 45rem) {
+  .shots {
+    column-count: 3;
+  }
+}
+.shots li {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: -3px;
+}
+.shots li:hover .desc {
+  opacity: 1;
+  background-position: center 10px;
+}
+.shots li:hover .shot-title, .shots li:hover .shot-desc, .shots li:hover .stats {
+  transform: translateY(0);
+}
+.shots img {
+  width: 100%;
+  display: block;
+}
+
+.desc {
+  position: absolute;
+  z-index: 100;
+  transition: .3s;
+  bottom: 0;
+  padding: 1rem;
+  color: white;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  font-family: helvetica;
+  background-image: linear-gradient(transparent 0%, transparent 30%, rgba(0, 0, 0, 0.9) 100%);
+  background-position: center 50px;
+  background-repeat: no-repeat;
+}
+
+.shot-title, .shot-desc, .stats {
+  transition: .35s;
+}
+
+.shot-title {
+  position: absolute;
+  bottom: 3rem;
+  font-weight: bold;
+  transform: translateY(20px);
+}
+
+.shot-desc {
+  position: absolute;
+  bottom: 1.4rem;
+  transform: translateY(34px);
+}
+
+.signup {
+  background: #3CA0FA;
+  padding: 3rem 4%;
+  color: white;
+  font-size: 1.2rem;
+  font-family: helvetica;
+}
+.signup em {
+  font-weight: bold;
+}
+
+.stats {
+  background: rgba(255, 255, 255, 0.75);
+  color: #323232;
+  display: inline-block;
+  padding: .3rem;
+  font-size: .85rem;
+  transform: translateY(-10px);
+}
+.stats span {
+  margin-right: 1em;
+}
+.stats span:before {
+  margin-right: .2em;
+  font-size: .9em;
+}
+
+.stats-hearts:before {
+  font-family: fontawesome;
+  content: "";
+}
+
+.stats-views:before {
+  font-family: fontawesome;
+  content: "";
+}
+
+main {
+  margin-bottom: 2rem;
+}
+
+footer {
+  padding: 4%;
+  font-family: helvetica;
+  column-count: 3;
+}
+@media (min-width: 45rem) {
+  footer {
+    width: 66%;
+  }
+}
+footer div {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+}
+footer h2 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+footer li {
+  color: #3CA0FA;
+  margin-bottom: .5rem;
+}
+footer li:hover, footer li:focus {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dribbbeled {
+  font-family: helvetica;
+  padding: 4%;
+}
+.dribbbeled .number {
+  position: absolute;
+  font-size: 5rem;
+  font-weight: bold;
+  color: #FF6087;
+  padding-bottom: 2rem;
+}

@@ -1,0 +1,30 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+@keyframes jump {
+	0% {transform: translateY(0)}
+	100% {transform: translateY(-35px)}
+}
+
+body {
+	font-family: "Press Start 2P";
+	background: #FFDC14;
+	padding-top: 35vh;
+}
+
+.jumpy {
+	font-size: 7vw;
+	text-align: center;
+	letter-spacing: -.45em;
+	color: white;
+	.letter {
+		display: inline-block;
+		text-shadow: .13em .13em 0 rgba(red, .6);
+		animation: jump 500ms infinite ease-out alternate;
+		
+		@for $i from 0 to 12 {
+			&:nth-of-type(#{$i}){
+				animation-delay: 500ms + 200ms * $i;
+			}
+		}
+	}
+}

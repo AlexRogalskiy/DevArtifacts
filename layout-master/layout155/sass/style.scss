@@ -1,0 +1,116 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+@import url(https://fonts.googleapis.com/css?family=Volkhov:400,400italic|Roboto+Slab:400,300,700|Arvo:400,700,400italic,700italic|Source+Sans+Pro:400,700,400italic,600,600italic|Open+Sans:400,300,600,700,400italic,600italic,300italic);
+
+@mixin bp($point) {
+@if $point == l {
+@media (min-width: 65rem) { @content; }
+}
+@else if $point == m {
+@media (min-width: 45rem) { @content; }
+}
+@else if $point == s {
+@media (min-width: 35rem) { @content; }
+}
+}
+
+
+$sans: 'raleway';
+$serif: georgia;
+$pixel: 'press start 2p';
+
+$black: rgb(30, 30, 35);
+$accent: rgb(255, 120, 100);
+$blue: #1CD1FF;
+* {
+  @include box-sizing(border-box);
+}
+
+body {
+  font-family: $serif;}
+
+a {
+  color: $blue;
+}
+
+p {
+  line-height: 1.55em;
+  font-family: $serif;
+  font-size: 1.1rem;
+  @include bp(s){
+    font-size: 1.3rem;
+  }
+  color: $black;
+}
+
+header, article {
+  padding: 0 15%;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  margin: 0 auto;
+  background: white;
+}
+
+.articles li{
+  @for $i from 0 to 10 {
+    &:nth-of-type(#{$i}) article{
+      background: adjust-hue($blue, $i * 7);
+    }
+  }
+}
+
+header {
+  padding-bottom: 15%;
+  background: $accent;
+  h1 {
+    margin-bottom: 2rem;  
+    color: white;
+  }
+}
+
+h1 {
+  font-size: 1.7rem;
+  
+  @include bp(s){
+    font-size: 2rem;
+  }
+  
+  @include bp(m){
+    font-size: 2.7rem;
+  }
+  font-family: $pixel;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+    
+  &:hover, &:focus {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.post-meta {
+  font-style: italic;
+  margin-bottom: 2rem;
+  
+}
+
+.btn {
+  color: white;
+  background: $accent;
+  font-family: $pixel;
+  padding: .5em;
+  border-radius: 5px;
+  font-size: 12px;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: top;
+  font-weight: bold;
+  
+  &:hover, &:focus {
+    background: lighten($accent, 5);
+  }
+}

@@ -1,0 +1,118 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+body { font-family: 'Droid Sans'; background: #ecf0f1; }
+* { -moz-box-sizing: border-box; box-sizing: border-box; }
+
+// The Mixin from awesomephant https://codepen.io/awesomephant/pen/mAxHz
+// ==========
+
+@mixin long-shadow($type, $color, $length, $fadeout: true, $skew: false, $direction: right) {
+  $shadow: '';
+
+  // Generate initial shadow
+  @if $skew == false or $type == text {
+    @if $direction == right {
+      @for $i from 0 to $length - 1 {
+        $shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + $color + ',';
+      }
+    }
+    @if $direction == left {
+      @for $i from 0 to $length - 1 {
+        $shadow: $shadow + $i * -1 + 'px ' + $i + 'px 0 ' + $color + ',';
+      }
+    }
+  }
+
+  // Fade out
+  @if $fadeout == true {
+    @for $i from 1 to $length - 1 {
+      @if $type == text or $skew == false {
+        @if $direction == right{
+          $shadow: $shadow + $i + 'px ' + $i + 'px 0 ' +       rgba($color, 1 - $i / $length) + ',';
+        }
+        @if $direction == left{
+          $shadow: $shadow + $i * -1 + 'px ' + $i + 'px 0 ' +       rgba($color, 1 - $i / $length) + ',';
+        }
+      }
+      @if ($type == box) and $skew == true {
+        @if $direction == right {
+          $shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + $i * .2 + 'px ' + rgba($color, 1 - $i / $length) + ',';
+        }
+        @if $direction == left {
+          $shadow: $shadow + $i * -1 + 'px ' + $i + 'px 0 ' + $i * .2 + 'px ' + rgba($color, 1 - $i / $length) + ',';
+        }
+      }
+    }
+
+    $shadow: $shadow + $length + 'px ' + $length + 'px 0 ' + rgba($color, 0);
+  }
+
+  // No fade
+  @if $fadeout == false {
+    @if $skew == true and ( $type == box ) {
+      @for $i from 0 to $length - 1 {
+        $shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + $i * .1 + 'px ' + $color + ',';
+      }
+    }
+
+    $shadow: $shadow + $length + 'px ' + $length + 'px 0 ' + rgba(0,0,0,0);
+  }
+
+  $shadow: unquote($shadow);
+
+  @if $type == 'box' {
+    box-shadow: $shadow;
+  }
+  @if $type == 'text' {
+    text-shadow: $shadow;
+  }
+}
+
+
+$river: #2980b9;
+$btnBackground: lighten($river, 10);
+$depth: 35;
+$fontSize: 3rem;
+$vPadding: (8/16) + 0rem;
+$hPadding: (18/16) + 0rem;
+$initialScale: 0.5;
+$easing: ease;
+
+.btn {
+  display: inline-block;
+  padding: $vPadding $hPadding;
+  font-size: $fontSize;
+  color: white;
+  overflow: hidden;
+  background-color: $btnBackground;
+  transition: .2s $easing;
+}
+
+.shadow {
+  margin: 0;
+  @include long-shadow(text, $river, $depth, false, false, right);
+  transition: .2s $easing;
+  transform: translate( #{$depth*2}px, #{$depth*2}px ) scale($initialScale) translateZ(0);
+  
+  &.shown {
+    transform: translate(0, 0) scale(1) translateZ(0);
+  }
+        
+  &.faded {
+    opacity: 0;
+  }
+}
+
+.flex-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+}
+
+.flex-item {
+  margin: auto;
+}

@@ -1,0 +1,199 @@
+@import "compass/css3";
+
+$pink: #e34981;
+
+
+button, input, select, textarea {
+  /* I want my default button style back */
+  font-size: 90%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: url(https://www.toptal.com/designers/subtlepatterns/patterns/furley_bg_@2X.png) ;
+  background-size: 600px 600px;
+}
+
+.container {
+  margin: 20px;
+  width: calc(100% - 40px);
+  height: auto;
+}
+
+button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  transition: background-color .2s ease-out;
+}
+
+$loader-size: 200px;
+$animation-length: 5s;
+.loading-anim {
+  position: relative;
+  width: $loader-size;
+  height: $loader-size;
+  margin: auto;
+  
+  perspective: 800px;
+  transform-style: preserve-3d;
+  transform: translateZ(-100px) rotateY(-90deg) rotateX(90deg) rotateZ(90deg) scale(.5);
+  opacity: 0;
+  
+  transition: all .2s ease-out;
+  
+  
+  .circle {
+    width: 100%;
+    height: 100%;
+    
+    animation: spin $animation-length linear infinite;
+  }
+  
+  .border {
+    position: absolute;    
+    border-radius: 50%;
+    border: 3px solid $pink;    
+  }
+  
+  $out: 70%;
+  .out {
+    top: (100% - $out) / 2;
+    left: (100% - $out) / 2;
+    width: $out;
+    height: $out;
+    
+    border-left-color: transparent;
+    border-right-color: transparent;
+    
+    animation: spin 2s linear reverse infinite;
+  }
+  
+  $in: 64%;
+  .in {
+    top: (100% - $in) / 2;
+    left: (100% - $in) / 2;
+    width: $in;
+    height: $in;
+    
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    
+    animation: spin 2s linear infinite;
+  }
+  
+  $mid: 20%;
+  .mid {
+    top: (100% - $mid) / 2;
+    left: (100% - $mid) / 2;
+    width: $mid;
+    height: $mid;
+    
+    border-left-color: transparent;
+    border-right-color: transparent;    
+    
+    animation: spin 1s linear infinite;
+  }
+}
+
+.loading .loading-anim {
+  transform: translateZ(0) rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1);
+  opacity: 1;
+}
+
+.loading .loading-overlay {
+  background: rgba(255, 255, 255, .5);
+}
+
+
+$size: 20px;
+.dot {
+  position: absolute;
+  display: block;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: $pink;
+  
+  animation:
+      jitter $animation-length ease-in-out infinite,
+      fade-in-out $animation-length linear infinite;
+}
+
+$points: 12;
+$slice: 2 * pi() / $points;
+$radius: ($loader-size / 2) - ($size / 2);
+$centerX: ($loader-size / 2) - ($size / 2);
+$centerY: ($loader-size / 2) - ($size / 2);
+@for $i from 0 through ($points - 1) {
+  $angle: $slice * $i;
+  $x: $centerX + ($radius * cos($angle));
+  $y: $centerY + ($radius * sin($angle));
+  .dot:nth-child(#{$i + 1}) { 
+    top: round($y);
+    left: round($x);
+    animation-delay: $i * ($animation-length / $points);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes jitter {
+  0% {
+    transform: scale(1, 1);
+  }
+  
+  25% {
+    transform: scale(0.7, 0.7);
+  }
+  
+  50% {
+    transform: scale(1, 1);
+  }
+  
+  75% {
+    transform: scale(1.3, 1.3);
+  }
+  
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0.8;
+  }
+  
+  25% {
+    opacity: 0.2;
+  }
+  
+  75% {
+    opacity: 1;
+  }
+  
+  100% {
+    opacity: 0.8;
+  }
+}

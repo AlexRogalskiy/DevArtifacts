@@ -1,0 +1,152 @@
+@import "compass/css3";
+
+// Change the size!
+$size: 12em;
+
+$light: #cbe3e9;
+$night: #3f6186;
+
+html {
+  height: 100%;
+}
+
+// Background gradient
+body {
+  background-color: #506772;
+  background-image: radial-gradient( farthest-side circle at left top, #3a484e, #315257, #4b5451, #344a55 );
+}
+
+.scene {
+  // Center it
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  
+  background-color: $night;
+  width: $size;
+  height: $size;
+  border: ($size / 12) solid $light;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow:
+      inset 0 2px 3px rgba(0, 0, 0, 0.4),
+      0 2px 3px rgba(0, 0, 0, 0.2);
+  
+  // Left circle
+  $leftSize: 120%;
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    bottom: -50%;
+    left: -50%;
+    border-radius: 0 100% 0 0;
+    width: $leftSize;
+    height: $leftSize;
+    background-color: #203b58;
+    
+    @include rotate(-30deg);
+  }
+  
+  $rightSize: 150%;
+  // 3px at size of 10em
+  $shadowLength: ($size / (( $size * 16 ) / 3)) + 0em;
+  $shadowOffset: $shadowLength * 2;
+  // Right circle
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    bottom: -66%;
+    right: -66%;
+    border-radius: 100% 0 0 0;
+    width: $rightSize;
+    height: $rightSize;
+    background-color: #254260;
+    box-shadow: -$shadowLength $shadowOffset $shadowLength rgba(0, 0, 0, 0.3);
+    @include rotate(20deg);
+  }
+}
+
+// Moon
+$moonSize: 24%;
+.moon {
+  position: absolute;
+  top: 16%;
+  left: 24%;
+  width: $moonSize;
+  height: $moonSize;
+  border-radius: 50%;
+  background-color: white;
+  
+  $crescent: 84%;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 16%;
+    top: -4%;
+    width: $crescent;
+    height: $crescent;
+    border-radius: 50%;
+    background-color: $night;
+  }
+}
+
+// Stars
+.star {
+  position: absolute;
+  border-radius: $size;
+  background-color: rgba( $light, 0.8 );
+}
+
+$largeStar: max( $size / 25, 0.25em );
+.star--large {
+  width: $largeStar;
+  height: $largeStar;
+}
+
+$mediumStar: max( $size / 30, 0.1875em );
+.star--medium {
+  width: $mediumStar;
+  height: $mediumStar;
+}
+
+$tinyStar: max( $size / 40, 0.125em );
+.star--tiny {
+  width: $tinyStar;
+  height: $tinyStar;
+}
+
+
+.star--one {
+  top: 11%;
+  left: 44%;
+}
+
+.star--two {
+  top: 20%;
+  left: 48%;
+}
+
+.star--three {
+  top: 20%;
+  left: 60%;
+}
+
+.star--four {
+  top: 38%;
+  left: 16%;
+}
+
+.scene:hover {
+  overflow: visible;
+  
+  .moon::before {
+    background-color: $light;
+  }
+}
+
+
