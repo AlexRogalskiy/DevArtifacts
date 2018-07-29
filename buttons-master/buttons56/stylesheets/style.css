@@ -1,0 +1,49 @@
+html {
+  font-size: 20px;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.rolling_tiles {
+  border: 5px #4b0082 solid;
+  color: current;
+  display: block;
+  font-family: 'trebuchet ms';
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.rolling_tiles::before {
+  content: "";
+  background-color: #ff0;
+  box-shadow: -10px 10px 0 #ff93a6, -20px 20px 0 #0cc;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4.25rem;
+  width: 102%;
+  transform: translate(-15px, 10px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform, box-shadow;
+  z-index: -1;
+}
+
+.rolling_tiles:hover::before {
+  box-shadow: none;
+  transform: translate(0, 0);
+}
