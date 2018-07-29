@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+
+	<!-- for Google -->
+	<meta name="description" content="We want to have you see the world like you never have before. Enhance humankind to finally perceive life as beautiful as it really is."/>
+	<meta name="keywords" content="omnisense, the new humanity, O+, Gobelins, CRMA2014, Florian Morel, Louis Ansa, Corentin Bac"/>
+	<meta name="application-name" content="Omnisense - The new Humanity"/>
+
+	<!-- for Facebook -->          
+	<meta property="og:title" content="Omnisense - The new Humanity"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="http://omnisense.net/img/socials/facebook_thumbnail.jpg"/>
+	<meta property="og:url" content="http://omnisense.net/"/>
+	<meta property="og:description" content="We want to have you see the world like you never have before. Enhance humankind to finally perceive life as beautiful as it really is."/>
+
+	<title>Omnisense</title>
+	<base href="/"/>
+	<link rel="icon" href="img/favicon.png">
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700italic&subset=latin,vietnamese" rel="stylesheet" type="text/css" />
+
+
+<link type="text/css" rel="stylesheet" href="stylesheets/style.css" />
+</head>
+<body v-class="noScroll: noScroll">
+	<div class="mobile-only">
+	    <div class="not-sync-message">
+	        <img src="img/logo.png" width="42" height="41" alt="logo"/>
+	        <p>Experience on Desktop.</p>
+	        <p class="blue">Please visit this website on your desktop to begin the experiment.</p>
+	    </div>
+	</div>
+
+	<section v-if="preloadComplete" class="desktop-only">
+		<div v-component="omn-navbar" v-with="translations : translations"></div>
+		<div class="view-container" v-view="currentView" v-with="translations : translations" v-ref="currentView" v-effect="pageTransition"></div>
+		<div v-component="omn-credits" v-with="translations : translations"></div>
+		<div v-component="omn-footer" v-with="translations : translations"></div>
+	</section>
+
+	<div v-if="showPreload" v-component="omn-preloader" v-effect="preloaderTransition"></div>
+	<div v-component="omn-transition-handler"></div>
+
+	<!--[if lt IE 10]>
+ 	<script src='libs/raf.min.js'></script>
+	<![endif]-->
+
+
+	<script type="text/javascript" src="js/script.js"></script>
+
+</body>
+</html>
