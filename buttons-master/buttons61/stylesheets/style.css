@@ -1,0 +1,93 @@
+input[type="checkbox"] {
+  display: none;
+  /* Hide the Checkbox */
+  position: absolute;
+  bottom: 10px;
+  left: 47%;
+}
+
+label {
+  display: inline-block;
+  /* Just for floating, "block" is okay a well*/
+  width: 100px;
+  height: 30px;
+  background: #f6f6f6;
+  border-radius: 30px;
+  border: 1px solid #bbb;
+  box-shadow: 0px 1px 3px 0px #aaa inset;
+  cursor: pointer;
+  margin: 0 15px;
+  transition: all 300ms ease;
+}
+
+#switch + label i {
+  display: block;
+  position: relative;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-shadow: 1px 0px 6px -2px #000, 0px 1px 0.6px 0px rgba(255, 255, 255, 0.4) inset;
+  background: -webkit-radial-gradient(center, ellipse cover, #92af37 0%, #92b237 24%, #9dbb40 55%, #a6c24e 100%);
+  transition: all 300ms ease;
+}
+
+#switch:checked + label {
+  /*When checkbox is checked.. style the next label*/
+  background-color: #efefef;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 15px, rgba(255, 255, 255, 0.5) 15px, rgba(255, 255, 255, 0.5) 30px);
+}
+
+#switch:checked + label i {
+  right: -70px;
+  /*this will place the button tuo the right of the label.*/
+}
+
+section {
+  width: 300px;
+  height: 300px;
+  border: 1px solid #ddd;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10%;
+  padding-top: 100px;
+  box-sizing: border-box;
+  background-color: #efefef;
+  position: relative;
+}
+
+span {
+  display: inline-block;
+  position: relative;
+  bottom: 10px;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: bold;
+  color: #999;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5), 0 -1px 1px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+span.on {
+  left: -150px;
+}
+
+span.off {
+  left: -25px;
+}
+
+#switch:checked ~ span.off {
+  text-shadow: 0px 0px 8px #f66f6f, 0px 0px 8px #f66f6f;
+}
+
+#switch:checked ~ span.on {
+  text-shadow: none;
+}
+
+#switch ~ span.off {
+  text-shadow: none;
+}
+
+#switch ~ span.on {
+  text-shadow: 0px 0px 4px #bada55, 0px 0px 8px #bada55, 0px 0px 4px #bada55;
+}

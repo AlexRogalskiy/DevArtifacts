@@ -1,0 +1,863 @@
+/* =============================== Fonts ====================================*/
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+/* Setting up entypo*/
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+/* =============================== Beginning ================================*/
+
+* {
+  box-sizing: border-box;
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0 ;
+  background: url(http://ipad.wallpapersus.com/wallpapers/2012/10/Blurred-Lights-2048x2048.jpg) no-repeat center center fixed; 
+  font-size:62.5%;
+  background-size: auto;
+  background-size: cover;
+} 
+
+.origin {
+  position: absolute;
+  z-index: 9999;
+  width: 90%;
+  height: 80%;
+  top: 0;
+  padding-top: 20px;
+  margin: 0 5%;
+  pointer-events: none;
+}
+.origin button {
+  width: 160px;
+  background: #f6f6f6;
+  border: none;
+  border-bottom: 4px solid #ddd;
+  border-top: 2px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 12px -4px #000;
+  color: #999;
+  font: 400 1.6rem 'Source Sans Pro', sans-serif;
+  padding: 10px 0;
+  cursor: pointer;
+  pointer-events: auto;
+} 
+.origin button:hover {
+  color: #777;
+}
+.origin button:active {
+  border-bottom: 2px solid #ddd;
+  border-top: 4px solid #ddd;
+}
+.origin button:before {
+  content: "See ";
+}
+.origin.visible button:before {
+  content: "Hide ";
+}
+
+.origin img {
+  vertical-align: middle;
+  display: block;
+  width: 0;
+  border: 10px solid #f6f6f6;
+  border-radius: 4px;
+  margin-top: 30px;
+  opacity: 0.0;
+  transition: opacity 0.5s, width 0.5s;
+  pointer-events: auto;
+  box-shadow: 0 0 12px -4px #000;
+}
+.origin.visible img {
+  opacity: 1.0;
+  width: 100%;
+} 
+
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 100px;
+  height: 582px;
+  transition: width 0.5s;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Columns ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+div[class*="column"]{
+  height: 100%;
+  float: left;
+}
+.column-left, .column-right {
+  width: 27%;
+}
+.column-middle {
+  width: 40%;
+  margin: 0 3%;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Widgets grid ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.login, .search, .social, .weather, .twitter, .shop, .video, .profile  {
+  border-radius: 6px;
+  position: relative;
+  box-shadow: 0 0 20px -7px #000;
+}
+/* Column left */
+.login {
+  width: 100%;
+  height: 250px;
+  background: #f6f6f6;
+}
+.search {
+  width: 100%;
+  height: 45px;
+  background: #f6f6f6;
+  margin-top: 30px;
+}
+.social {
+  width: 100%;
+  height: 45px;
+  background: #f6f6f6;
+  margin-top: 30px;
+}
+
+.weather {
+  width: 100%;
+  height: 150px;
+  background: #f6f6f6;
+  margin-top: 30px;
+}
+
+/* Column middle*/
+
+.twitter {
+  width: 100%;
+  height: 350px;
+  background: #f6f6f6;
+}
+
+.shop {
+  width: 100%;
+  height: 200px;
+  background: #f6f6f6;
+  margin-top: 30px;
+}
+
+/* Column right */ 
+
+.video {
+  width: 100%;
+  height: 180px;
+  background: #f6f6f6;
+}
+
+.profile {
+  width: 100%;
+  height: 370px;
+  background: #f6f6f6;
+  margin-top: 30px;
+}
+
+
+
+/* 
+=================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Widgets content ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=================================================================================
+*/
+
+/* --------- Login ------------*/
+
+.login header {
+  width: 100%;
+  height: 35px;
+  background: #A7CC6E;
+  border-radius: 6px 6px 0 0;
+}
+.login header h1 {
+  margin: 0;
+  text-align: center;
+  color: #f6f6f6;
+  font: 600 1.8rem/35px 'Source Sans Pro', sans-serif;
+  text-transform: uppercase;
+}
+
+.login input {
+  width: 90%;
+  height: 45px;
+  border-radius: 4px;
+  margin: 15px auto 0;
+  display: block;
+  font: 400 1.5rem 'Source Sans Pro', sans-serif;
+}
+.login input[type="email"] {
+  border: 1px solid #ddd;
+  padding-left: 50px;
+}
+.login span.entypo-user:before {
+  _content: ""; 
+  width: 40px;
+  height: 43px;
+  background: #efefef;
+  display: block;
+  position: absolute;
+  top: 51px;
+  left: calc( 5% + 1px);
+  border-radius: 4px 0 0 4px;
+  border-right: 1px solid #ddd;
+  font-size: 2rem;
+  line-height: 45px;
+  text-align: center;
+  color: #b9b7b0;  
+}
+
+.login input[type="password"] {
+  border: 1px solid #ddd;
+  padding-left: 50px;
+}
+.login span.entypo-lock:before {
+  _content: ""; 
+  width: 40px;
+  height: 43px;
+  background: #efefef;
+  display: block;
+  position: absolute;
+  top: 111px;
+  left: calc( 5% + 1px);
+  border-radius: 4px 0 0 4px;
+  border-right: 1px solid #ddd;
+  font-size: 2rem;
+  line-height: 45px;
+  text-align: center;
+  color: #b9b7b0;  
+}
+/* Input pseudos */
+.login input[type="email"]:focus, .login input[type="password"]:focus{
+  outline:none;
+  box-shadow: 0px 0px 3px 0px #bada55;
+
+}
+
+.login section {
+  height: 80px;
+  width: 100%;
+  background: #efefef;
+  border-radius: 0 0 6px 6px;
+  margin-top: 15px;
+  padding: 10px 5% 0 5%;
+}
+.login section button {
+  height: 55px;
+  width: 100%;
+  margin: 0 auto;
+  background: #ea7272;
+  border-radius: 4px;
+  border: none;
+  border-bottom: 3px solid #e24848;
+  color: #f6f6f6;
+  font: 600 1.7rem 'Source Sans Pro', sans-serif;
+  text-transform: uppercase;
+  text-indent: 10px;
+  cursor: pointer;
+}
+
+.login section button.entypo-right-dir:before{
+  position: relative;
+  background: #e24848;
+  padding: 4px 9px;
+  border-radius: 50%;
+  font-size: 2rem;
+  color: #f6f6f6;
+  text-indent: 2px;
+  left: -10px;
+  top: 2px;
+}
+/* Button  pseudos*/
+.login section button:hover {
+  background: #ef7572;
+}
+.login section button:active {
+  border-bottom: 2px solid #e24848;
+}
+
+
+/* --------- Search ------------*/
+
+.search input[type="search"] {
+  width: 75%;
+  height: 100%;
+  border-radius: 6px 0 0 6px;
+  border: none;
+  float: left;
+  padding-left: 5%;
+  font: 400 1.7rem 'Source Sans Pro', sans-serif;
+  
+}
+.search input[type="search"]:focus {
+  outline:none;
+  box-shadow: 0px 0px 3px 0px #bada55;
+}
+.search input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ddd;
+  font-family: 'Entypo';
+  text-align: center;
+  line-height: 22px;
+  cursor: pointer;
+}
+input[type="search"]::-webkit-search-cancel-button:before {
+  content: "\2715";
+  color: #fff;
+  font-size: 1.9rem;
+}
+
+.search input[type="submit"] {
+  width: 25%;
+  height: 100%;
+  border-radius: 0 6px 6px 0;
+  border: none;
+  background: #A7CC6E;  
+  cursor: pointer;
+  font-family: 'entypo', sans-serif;
+}
+.search span {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  text-align: center;
+  line-height: 45px;
+  font-size: 2rem;
+  color: #f6f6f6;
+  cursor: pointer;
+}
+
+
+/* --------- Social ------------*/
+.social span[class*="dribbble"], span[class*="twitter"], span[class*="facebook"]{
+ width: 33%;
+ height: 100%;
+ display: block;
+ float: left;
+ text-align: center;
+ line-height: 45px;
+ font-size: 2.5rem;
+ opacity: 0.7; /* Pastell-look der Farben */ 
+ cursor: pointer;
+}
+
+.social span[class*="dribbble"]:hover , span[class*="twitter"]:hover, span[class*="facebook"]:hover {
+  opacity: 1;
+}
+
+.social span[class*="dribbble"]{
+  color: #ea4c89;
+}
+span[class*="twitter"]{
+ border-left: 2px solid #ddd;
+ border-right: 2px solid #ddd;
+ color: #00ACED;  
+}
+span[class*="facebook"]{
+  color: #3B5998;
+}
+
+/* --------- Weather ------------*/
+
+.weather .weather-icon{
+  width: 40%;
+  height: 100%;
+  background: #8DC9C8;
+  display: block;
+  float: left;
+  font-size: 4rem;
+  text-align: center;
+  line-height: 150px;
+  color: #f6f6f6;
+  border-radius: 6px 0 0 6px;
+}
+
+.weather h2.degree {
+  text-align: center;
+  padding-top: 30px;
+  font: 400 4.5rem 'Source Sans Pro', sans-serif;
+  color: #999;
+  margin: 0;
+}
+
+.weather span.city {
+  text-align: center;
+  display: block;
+  font: 400 1.8rem 'Source Sans Pro', sans-serif;
+  text-transform: uppercase;
+  color: #999;
+}
+
+/* --------- Twitter ------------*/
+
+.twitter header {
+  height: 130px;
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  background: #8DC9C8;
+  padding: 15px 20px;
+}
+.twitter header .border {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: 1px solid #f6f6f6;
+  padding: 7px;
+  box-sizing: content-box;
+  float: left;
+  margin-right: 10px;
+}
+.twitter header .dude {
+  width: 100%;
+  height: 100%;
+  background: url(http://lorempixel.com/100/100/people);
+  border-radius: 50%;
+}
+
+.twitter header h2.name {
+  margin: 0;
+  margin-top: 20px;
+  font: 400 2.6rem 'Source Sans Pro', sans-serif;
+  color: #f6f6f6;
+  text-transform: uppercase;
+}
+
+.twitter header span {
+  font: 400 1.5rem 'Source Sans Pro', sans-serif;
+  color: #f6f6f6;
+}
+
+.twitter section.stats {
+  height: 70px;
+  width: 100%;
+  background: #efefef;
+  padding-top: 15px;
+}
+
+.twitter section.stats span {
+  width: 33%;
+  height: 70%;
+  display: block;
+  float: left;
+  text-align: center;
+  border-left: 1px solid #ddd;
+  font: 300 1rem 'Source Sans Pro', sans-serif;
+  text-transform: uppercase;
+  color: #ada595;
+}
+.twitter section.stats span b {
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: #9A8F7D;
+}
+
+.twitter textarea {
+  resize: none;
+  width: 90%;
+  height: 60px;
+  margin: 15px auto;
+  display: block;
+  padding: 10px;
+  font: 400 1.7rem 'Source Sans Pro', sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 4px;  
+}
+.twitter textarea:focus {
+  outline:none;
+  box-shadow: 0px 0px 3px 0px #bada55; 
+}
+
+.twitter section.menu {
+  width: 100%;
+  height: 60px;
+  background: #efefef;
+  border-radius: 0 0  6px 6px;
+  padding: 10px 10px 10px 20px;
+}
+
+.twitter section.menu .camera,.twitter section.menu .location {
+  height: 100%;
+  width: 15%;
+  background: #8E826D;
+  border: none;
+  border-bottom: 3px solid #7F735C;
+  border-radius: 3px;
+  margin-right: 10px;
+  font-size: 2rem;
+  color: #f6f6f6;
+  float: left;
+  cursor: pointer;
+}
+
+.twitter section.menu .send {
+  height: 100%;
+  width: 50%;
+  width: calc(100% - 30% - 30px);
+  background: #ea7272;
+  border: none;
+  border-bottom: 3px solid #e24848;
+  color: #f6f6f6;
+  border-radius: 3px;
+  font: 600 1.7rem 'Source Sans Pro', sans-serif;
+  text-transform: uppercase; 
+  cursor: pointer;
+}
+.twitter section.menu .send:before {
+  position: relative;
+  left: -10px;
+  background: #e24848;
+  padding: 6px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+}
+/* Menu Pseudos */
+.twitter section.menu .camera:active, .twitter section.menu .location:active {
+  border-bottom: 1px solid #7F735C; 
+}
+
+.twitter section.menu .send:active {
+  border-bottom: 1px solid #e24848; 
+}
+
+
+/*-----------Shop--------------*/
+
+
+.shop header {
+  width: 100%;
+  height: 35px;
+  background: #A7CC6E;
+  border-radius: 6px 6px 0 0;
+  padding-left: 20px;
+}
+.shop header h1 {
+  margin: 0;
+  color: #f6f6f6;
+  font: 600 1.8rem/35px 'Source Sans Pro', sans-serif;
+  text-transform: uppercase;
+}
+
+.shop section.item, .shop section.item2 {
+  width: 100%;
+  height: 120px;
+  padding: 15px;
+  position: absolute;
+}
+
+
+.shop section img {
+  width: 25%;
+  max-height: 100px;
+  vertical-align: middle;
+  border-radius: 4px;
+  float: left;
+  margin-right: 15px; 
+}
+.shop section.item p, .shop section.item2 p {
+  font: 400 1.4rem/1.5em 'Source Sans Pro', sans-serif;
+  margin-top: 0;
+  color: #999;
+}
+
+.shop section.menu {
+  _background: #efefef; /* I like the bg but its not in the original image*/
+  width: 100%;
+  height: 45px; 
+  border-radius: 0 0 6px 6px;
+  padding: 10px 15px;
+  position: absolute;
+  bottom: 0;
+}
+
+.shop section.menu .entypo-left-dir,.shop section.menu .entypo-right-dir {
+  height: 100%;
+  width: 10%;
+  background: #8E826D;
+  border: none;
+  border-bottom: 3px solid #7F735C;
+  border-radius: 3px;
+  margin-right: 10px;
+  font-size: 2rem;
+  color: #f6f6f6;
+  float: right;
+  cursor: pointer;
+}
+
+.shop section.menu .order {
+  height: 100%;
+  width: 30%;
+  background: #ea7272;
+  border: none;
+  border-bottom: 3px solid #e24848;
+  color: #f6f6f6;
+  border-radius: 3px;
+  font: 600 1.3rem 'Source Sans Pro', sans-serif;
+  text-transform: uppercase; 
+  cursor: pointer;
+}
+
+/* Menu Pseudos*/
+
+.shop section.menu .entypo-left-dir:active,.shop section.menu .entypo-right-dir:active {
+   border-bottom: 1px solid #7F735C;  
+}
+
+.shop section.menu .order:active {
+   border-bottom: 1px solid #e24848; 
+}
+
+/*-------------- Video -------------------*/
+
+.video {
+  overflow: hidden;
+}
+.video-js {
+  background-color: #f6f6f6;
+}
+.video-js .vjs-tech {
+  width: auto !important;
+}
+
+.vjs-poster {
+  display: none;
+}
+
+.vjs-default-skin .vjs-control-bar {
+  /* Showing the controls by default */
+  display: block;
+}
+
+
+
+
+
+/*---------------- Profile ---------------*/
+
+.profile header {
+  height: 120px;
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  background: #A7CC6E;
+  padding: 15px;
+}
+.profile header .border {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 1px solid #f6f6f6;
+  padding: 7px;
+  box-sizing: content-box;
+  float: left;
+  margin-right: 10px;
+}
+.profile header .dude {
+  width: 100%;
+  height: 100%;
+  background: url(http://lorempixel.com/100/100/cats);
+  border-radius: 50%;
+}
+
+.profile header h2.name {
+  margin: 0;
+  margin-top: 10px;
+  font: 600 1.8rem 'Source Sans Pro', sans-serif;
+  color: #f6f6f6;
+  text-transform: uppercase;
+}
+
+.profile header span {
+  font: 400 1.5rem 'Source Sans Pro', sans-serif;
+  color: #f6f6f6;
+}
+                                       
+.profile ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.profile ul li {
+  width: 100%;
+  height: 50px;
+  padding-left: 15px;
+  font: 400 1.8rem/50px 'Source Sans Pro', sans-serif;
+  color: #9A8F7D;                                         
+}
+.profile ul li:before {
+  _content: "";
+  position: absolute;
+  font-size: 2.5rem;
+  display: block;
+  width: 20px;
+  right: 20px;
+  text-align: center;
+} 
+.profile ul li:hover {
+  background: #efefef;
+}
+.profile ul li.active {
+  border-left: 3px solid #ea7272;
+  padding-left: 12px;
+  background: #efefef;
+}
+.profile ul li.active:before {
+  color: #ea7272;
+}
+
+.profile input[type="button"] {
+  width: 40%;
+  height: 30px;
+  background: #ea7272;
+  border: none;
+  border-bottom: 3px solid #e24848;
+  color: #f6f6f6;
+  border-radius: 3px;
+  font: 600 1.3rem 'Source Sans Pro', sans-serif;
+  text-transform: uppercase; 
+  cursor: pointer;
+  margin: 0 auto; 
+  display: block;
+  opacity: 0.7;
+  transition: opacity 0.4s;
+}
+
+/* Profile Button Pseudos */
+
+.profile input[type="button"]:hover {
+  opacity: 1;
+}
+.profile input[type="button"]:active {
+   border-bottom: 1px solid #e24848; 
+}
+
+
+
+ /*
+===============================================================
+============= Responsive Grid =================================
+===============================================================
+*/
+
+@media screen and (max-width: 985px)and (min-width: 560px){
+  
+          .wrapper {
+            width: 60%;
+          }
+          .column-left, .column-right, .column-middle {
+            width: 100%;
+            margin: 0;
+            margin-top: 30px;
+          }
+} 
+@media screen and (max-width: 560px ) {
+  .wrapper {
+    width: 95%;
+  }
+  .column-left, .column-right, .column-middle {
+    width: 100%;
+    margin: 0;
+    margin-top: 30px;
+  }
+  
+}
+ /*
+===============================================================
+============= Responsive Video Controls =======================
+===============================================================
+*/
+
+@media screen and (max-width: 1220px) and (min-width: 1100px){
+
+          .vjs-default-skin .vjs-progress-control {   
+            width: 55%;  
+          }            
+}
+ 
+@media screen and (max-width: 2000px) and (min-width: 1330px) {
+  
+          .vjs-default-skin .vjs-duration {
+            display: none; 
+          }
+          .vjs-time-divider{
+            display: none;
+          }
+          .vjs-default-skin .vjs-progress-control{
+            width: 50%;
+            left: 70px;
+          } 
+}
+
+@media screen and (max-width: 1330px) and (min-width: 985px){
+  .vjs-default-skin .vjs-progress-control{
+    width: 30%;
+    left: 70px;    
+  }
+   .vjs-default-skin .vjs-duration {
+     display: none; 
+  }
+  .vjs-time-divider{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 985px) and (min-width: 630px){
+  .vjs-default-skin .vjs-progress-control{
+    width: 60%;
+    left: 38px;    
+  }
+   .vjs-default-skin .vjs-duration {
+     display: none; 
+  }
+  .vjs-time-divider{
+    display: none;
+  }
+  .vjs-default-skin .vjs-current-time{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 630px){
+  .vjs-default-skin .vjs-progress-control{
+    width: 90%;
+    left: 5%;    
+  }
+   .vjs-default-skin .vjs-duration {
+     display: none; 
+  }
+  .vjs-time-divider{
+    display: none;
+  }
+  .vjs-default-skin .vjs-current-time{
+    display: none;
+  }
+  .vjs-default-skin .vjs-play-control {
+    display: none;
+  }
+  .vjs-default-skin .vjs-mute-control,
+  .vjs-default-skin .vjs-volume-menu-button {
+    position: absolute;
+    top: -95%;
+    right: 25px;
+  }
+  
+  .vjs-default-skin .vjs-fullscreen-control{
+    position: absolute;
+    top: -95%;
+    right: 0;
+  }
+  
+}

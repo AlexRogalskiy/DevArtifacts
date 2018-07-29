@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #f66f6f;
+}
+
+.open-close {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  border: 6px solid #f6f6f6;
+  margin: 0 auto;
+  margin-top: 100px;
+  position: relative;
+  transition: 0.5s;
+}
+.open-close:before {
+  content: "";
+  display: block;
+  width: 6%;
+  height: 80%;
+  background: #f6f6f6;
+  position: absolute;
+  top: 10%;
+  left: 47%;
+}
+.open-close:after {
+  content: "";
+  display: block;
+  width: 80%;
+  height: 6%;
+  background: #f6f6f6;
+  position: absolute;
+  bottom: 47%;
+  left: 10%;
+}
+
+.open {
+  border: 6px solid transparent;
+  background: #f6f6f6;
+  transform: rotate(225deg);
+}
+.open:before, .open:after {
+  background: #f66f6f;
+}
+
+/*---------------------Box----------------------------------*/
+.box {
+  width: 20%;
+  height: 0px;
+  background: #f6f6f6;
+  margin: 0 auto;
+  margin-top: 2%;
+  transition: height 0.5s 0.5s, width 0.5s 1s, color 0.5s 1s, font-size 0.5s 1s;
+  overflow: hidden;
+  text-align: center;
+  line-height: 150px;
+  font-size: 3em;
+  font-family: Impact, sans-serif;
+  color: transparent;
+  white-space: nowrap;
+}
+
+.no + .box {
+  transition: width 0.5s, color 0.5s, font-size 0.5s, height 0.5s 0.5s;
+}
+
+.open + .box {
+  height: 200px;
+  width: 60%;
+  color: #f66f6f;
+  font-size: 7em;
+}
+
+/*----------------Text Blocks---------------------------------*/
+.text, .text2 {
+  width: 20%;
+  line-height: 1.7em;
+  font-size: 0.8em;
+  color: #f6f6f6;
+  position: absolute;
+  top: 420px;
+  transition: 0.5s 1.5s;
+}
+
+.text {
+  left: -20%;
+}
+
+.text2 {
+  right: -20%;
+  text-align: right;
+}
+
+.open ~ .text {
+  left: 20%;
+}
+
+.open ~ .text2 {
+  right: 20%;
+}
+
+.no ~ .text, .no ~ .text2 {
+  transition: 0.5s;
+}
+
+/*-------------------------Info------------------------------------*/
+.info {
+  text-align: center;
+  position: relative;
+  top: -170px;
+  color: #f6f6f6;
+  background: rgba(255, 255, 255, 0.4);
+  width: 30%;
+  margin: 0 auto;
+  padding: 5px;
+  opacity: 0.0;
+  transition: 0.5s;
+  font-weight: medium;
+}
+
+.info:after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  bottom: -15px;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 15px solid rgba(255, 255, 255, 0.4);
+}
+
+.no:hover ~ .info {
+  opacity: 1.0;
+  transition: 0.5s 1.5s;
+}
+
+.open:hover ~ .info {
+  opacity: 0.0;
+}
