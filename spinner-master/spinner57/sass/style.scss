@@ -1,0 +1,158 @@
+@import "compass/css3";
+
+* { box-sizing: border-box; }
+
+html {
+ 	height: 100%; 
+}
+
+body {
+  background: #151515;
+  position: relative;
+  height: 100%;
+} 
+
+.wrapper {
+ 	width: 300px;
+  height: 30px;
+  background: #2c2c2c;
+  border-radius: 30px;
+  position: relative;
+  top: 130px;
+  margin: 0 auto;
+  transform: rotate(-90Deg) scale(0.85);
+  
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    inset 0 -3px 2px rgba(0,0,0,0.12),
+    0 5px 5px rgba(0,0,0,0.4),
+    0 0 5px rgba(0,0,0,0.4),
+    inset 0 -15px 10px rgba(0,0,0,0.25),
+    0 0 100px 50px #252525;
+}
+
+.wrapper:before {
+ 	content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  left: -10px;
+  top: 50%;
+  margin-top: -22px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    inset 0 -3px 2px rgba(0,0,0,0.12),
+    0 5px 5px rgba(0,0,0,0.4),
+    0 0 5px rgba(0,0,0,0.4),
+    inset 0 -15px 10px rgba(0,0,0,0.25);
+}
+
+
+.wrapper:after {
+ 	content: "";
+  height: 100%;
+  width: 10px;
+  background: #2c2c2c;
+  position: absolute;
+  left: 28px;
+  top: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    inset 0 -3px 2px rgba(0,0,0,0.3),
+    0 5px 2px rgba(0,0,0,0.2),
+    inset 0 -15px 0px rgba(0,0,0,0.25); 
+}
+
+.loader {
+  width: 95%;
+  height: 50%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -8px;
+  background: #404040;
+  border-radius: inherit;
+  z-index: 100;
+	box-shadow:
+    inset 0 0 7px rgba(0,0,0,0.4),
+    inset 0 3px 3px rgba(0,0,0,0.5),
+    inset 0 -5px 5px rgba(0,0,0,0.4),
+    0 1px 0 rgba(255,255,255,0.1);
+}
+
+.inner {
+ 	width: 0%;
+  height: 100%;
+  background: #2b8095;
+  background: -webkit-linear-gradient(left, #237686, #34476f, #5b426c, #965666, #ba835c, #d0c746);
+  background: linear-gradient(to right, #237686, #34476f, #5b426c, #965666, #ba835c, #d0c746);
+  animation: loader 5s ease-out infinite;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 8px 1px rgba(255,255,255,0.1),
+    inset 0 -2px 1px rgba(255,255,255,0.1);
+}
+
+.inner:after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #2b8095;
+  background: linear-gradient(#63b5c0, #146a77);
+  left: -3px;
+  top: 50%;
+  margin-top: -15px;
+  box-shadow: 
+    inset 0 2px 3px rgba(255,255,255,0.2),
+    inset 0 -4px 2px rgba(255,255,255,0.1);
+}
+
+.inner:before {
+ 	content: "";
+  position: absolute;
+  height: 100%;
+  background: -webkit-linear-gradient(left, #2b8095, rgba(64,64,64,0));
+  background: linear-gradient(to right, #2b8095, rgba(64,64,64,0));
+  width: 20px;
+  top: 0;
+  left: 25px;
+  z-index: 200;
+}
+
+/*
+.loader {
+  content: "";
+  height: 50%;
+  width: 95%;
+  position: absolute;
+  margin-top: -8px;
+  position: absolute;
+  left: 0;
+  border-radius: inherit;
+  background: #404040;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.inner:after {
+  content: "";
+ 	width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  left: -3px;
+  background: inherit;
+  top: 50%;
+  margin-top: -15px;
+}
+*/
+
+@keyframes loader {
+  100% { width: 100%; } 
+}
