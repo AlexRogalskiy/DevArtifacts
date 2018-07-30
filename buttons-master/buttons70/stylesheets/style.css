@@ -1,0 +1,71 @@
+.floating-menu {
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+}
+
+.btn.is-primary {
+  z-index: 2;
+  border: 0;
+  font-size: 20px;
+  color: #FFF;
+  background: linear-gradient(to right, #4EABFF, #0F8DFF);
+  opacity: 1;
+}
+
+.btn.is-primary:hover {
+  background: linear-gradient(to right, #4EABFF, #0F8DFF);
+}
+
+.btn.is-primary.is-activate {
+  box-shadow: 0 0 0;
+  transform: translateY(3px);
+}
+
+.btn span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  transition: all .275s;
+}
+
+.btn.is-primary.is-activate span {
+  transform: rotate(1turn);
+}
+
+.is-floating {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  color: #479CE8;
+  text-decoration: none;
+  font-weight: bold;
+  line-height: .8;
+  background: #FFF;
+  border-radius: 50%;
+  box-shadow: 0 10px 10px -7px rgba(153, 153, 153, 0.35);
+  cursor: pointer;
+  transition: all .275s;
+  border: 1px solid #eee;
+  opacity: 0;
+}
+
+.is-floating:hover {
+  background: #F2F2F2;
+}
+
+.is-activate ~ .is-floating {
+  opacity: 1;
+  transform: translateX(125%) translateY(70%);
+}
+
+.is-activate ~ .is-floating:nth-of-type(2) {
+  opacity: 1;
+  transform: translateX(125%) translateY(-70%);
+}

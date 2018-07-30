@@ -1,0 +1,32 @@
+:root {
+  --size: 6px;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Open Sans", sans-serif;
+}
+
+body, div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: var(--size) double currentColor;
+}
+
+div::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  bottom: 30%;
+  right: 22%;
+  left: 22%;
+  border-top: calc(var(--size)/6) solid currentColor;
+  border-bottom: calc(var(--size)/6) solid currentColor;
+}

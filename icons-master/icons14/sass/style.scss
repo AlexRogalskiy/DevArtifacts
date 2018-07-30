@@ -1,0 +1,124 @@
+.burger {
+	position: relative;
+	display: block;
+	width: 28px;
+	height: 4px;
+	margin: 0 auto;
+	background: #5A3B5D;
+	transform: skew(5deg);
+	transition: all .275s;
+}
+
+.burger:after,
+.burger:before {
+	content: '';
+	display: block;
+	height: 100%;
+	background: #5A3B5D;
+	transition: all .275s;
+}
+
+.burger:after {
+	transform: translateY(-12px) translateX(-2px) skew(-20deg);
+}
+
+.burger:before {
+	transform: translateY(-16px) skew(-10deg);
+}
+
+/* Toggle State part */
+.is-open .burger {
+	transform: skew(5deg) translateY(-8px) rotate(-45deg);
+}
+
+.is-open .burger:before {
+	transform: translateY(0px) skew(-10deg) rotate(75deg);
+}
+
+.is-open .burger:after {
+	transform: translateY(-12px) translateX(10px) skew(-20deg);
+    opacity: 0;
+}
+
+/* MENU Text part */
+
+.burger-text {
+	display: block;
+	font-size: .675rem;
+	letter-spacing: .05em;
+	margin-top: .5em;
+	text-transform: uppercase;
+	font-weight: 500;
+	text-align: center;
+	color: #5A3B5D;
+}
+
+
+
+
+
+/* Decoration & Demo Tools */
+html, body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 35px;
+	text-align: center;
+}
+.open-main-nav {
+	padding-top: 18px;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	transition: .275s;
+}
+
+button:focus {
+	outline: none;
+}
+
+[id="slowmo"] {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	padding: 10px;
+	border: 0;
+	font-size: 1rem;
+	background: #FEDC2A;
+	color: #5A3B5D;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all .275s;
+}
+
+[id="slowmo"] span {
+	display: block;
+	font-weight: normal;
+}
+
+[id="slowmo"]:hover,
+[id="slowmo"]:focus {
+	background: #5A3B5D;
+	color: #FEDC2A;
+}
+
+[id="slowmo"].is-slowmo span:after {
+	content: 'Activated';
+	display: block;
+	font-weight: bold;
+}
+
+/* Zoom and slowmo activated */
+.is-slowmo + .open-main-nav {
+	transform: scale(2);
+}
+
+.is-slowmo + .open-main-nav .burger,
+.is-slowmo + .open-main-nav .burger:before,
+.is-slowmo + .open-main-nav .burger:after {
+	transition-duration: 3s;
+}
