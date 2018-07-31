@@ -1,0 +1,95 @@
+/* line 1, ../sass/style.scss */
+body {
+  background: #222;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 7, ../sass/style.scss */
+.wrapper {
+  position: absolute;
+  top: 80px;
+  left: calc(50% - 220px);
+  transform: scale(1);
+}
+
+/* line 14, ../sass/style.scss */
+input {
+  position: absolute;
+  width: 500px;
+  height: 30px;
+  border: 0px solid #fff;
+  top: 130px;
+  left: calc(50% - 250px);
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: Helvetica Neue, Arial;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* line 30, ../sass/style.scss */
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #424eff;
+}
+
+/* line 35, ../sass/style.scss */
+.flip {
+  position: relative;
+  float: left;
+  margin-left: 5px;
+  width: 20px;
+  height: 35px;
+  border-radius: 3px;
+  background: #111;
+  color: #ffcc01;
+  font-family: Helvetica Neue, Arial;
+  font-size: 18px;
+  padding-left: 4px;
+  overflow: hidden;
+}
+
+/* line 50, ../sass/style.scss */
+.flip:after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: calc(50% - 1px);
+  border-bottom: 1px solid #000;
+  background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.45) 100%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* line 62, ../sass/style.scss */
+.flip:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, transparent 100%);
+  z-index: 2;
+}
+
+/* line 73, ../sass/style.scss */
+.flip ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0px;
+}
+
+/* line 81, ../sass/style.scss */
+.flip ul li {
+  height: 63px;
+  width: 16px;
+  text-align: center;
+  padding-top: 7px;
+}

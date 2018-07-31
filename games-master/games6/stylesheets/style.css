@@ -1,0 +1,1067 @@
+/* 
+GOOGLE CHROME & FIREFOX ONLY
+-----------------------------------
+Use Keys A and S to rotate blocks
+Use Arrow keys to move left and right
+*/
+/* line 8, ../sass/style.scss */
+body {
+  margin: 0;
+  padding: 0;
+  background: #222;
+}
+
+/* TETRIS BLOCKS */
+/* line 16, ../sass/style.scss */
+.cube {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 15px;
+  height: 15px;
+  -webkit-transform: rotateX(45deg) rotateZ(45deg) translate3d(0, 0, 0);
+  -moz-transform: rotateX(45deg) rotateZ(45deg) translate3d(0, 0, 0);
+  -o-transform: rotateX(45deg) rotateZ(45deg) translate3d(0, 0, 0);
+  transform: rotateX(45deg) rotateZ(45deg) translate3d(0, 0, 0);
+}
+
+/* line 28, ../sass/style.scss */
+.tpiece {
+  position: absolute;
+  top: 214px;
+  left: 36px;
+}
+
+/* line 34, ../sass/style.scss */
+.tpiece .cube {
+  background: #ffce54;
+}
+
+/* line 38, ../sass/style.scss */
+.tpiece .cube:after {
+  background: #ddac32;
+}
+
+/* line 42, ../sass/style.scss */
+.tpiece .cube:before {
+  background: #bb8a10;
+}
+
+/* line 46, ../sass/style.scss */
+.tpiece.deg0 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 52, ../sass/style.scss */
+.tpiece.deg0 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 58, ../sass/style.scss */
+.tpiece.deg0 .c4 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 64, ../sass/style.scss */
+.tpiece.deg90 .c4 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 70, ../sass/style.scss */
+.tpiece.deg90 .c2 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 76, ../sass/style.scss */
+.tpiece.deg90 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 0px;
+}
+
+/* line 82, ../sass/style.scss */
+.tpiece.deg90 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 88, ../sass/style.scss */
+.tpiece.deg180 .c4 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 94, ../sass/style.scss */
+.tpiece.deg180 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 100, ../sass/style.scss */
+.tpiece.deg180 .c2 {
+  position: absolute;
+  top: 18px;
+  left: 0px;
+}
+
+/* line 106, ../sass/style.scss */
+.tpiece.deg180 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/* line 112, ../sass/style.scss */
+.tpiece.deg270 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 118, ../sass/style.scss */
+.tpiece.deg270 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 124, ../sass/style.scss */
+.tpiece.deg270 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 0px;
+}
+
+/* line 130, ../sass/style.scss */
+.tpiece.deg270 .c4 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/* line 138, ../sass/style.scss */
+.lpiece {
+  position: absolute;
+  top: 214px;
+  left: 36px;
+}
+
+/* line 144, ../sass/style.scss */
+.lpiece .cube {
+  background: #4fc1e9;
+}
+
+/* line 148, ../sass/style.scss */
+.lpiece .cube:after {
+  background: #2da0c7;
+}
+
+/* line 152, ../sass/style.scss */
+.lpiece .cube:before {
+  background: #0b80a5;
+}
+
+/* line 156, ../sass/style.scss */
+.lpiece.deg0 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 162, ../sass/style.scss */
+.lpiece.deg0 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 168, ../sass/style.scss */
+.lpiece.deg0 .c4 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 174, ../sass/style.scss */
+.lpiece.deg270 .c1 {
+  position: absolute;
+  top: -9px;
+  left: 36px;
+}
+
+/* line 180, ../sass/style.scss */
+.lpiece.deg270 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 186, ../sass/style.scss */
+.lpiece.deg270 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 192, ../sass/style.scss */
+.lpiece.deg270 .c4 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 198, ../sass/style.scss */
+.lpiece.deg180 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/* line 204, ../sass/style.scss */
+.lpiece.deg180 .c2 {
+  position: absolute;
+  top: 9px;
+  left: -12px;
+}
+
+/* line 210, ../sass/style.scss */
+.lpiece.deg180 .c4 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 216, ../sass/style.scss */
+.lpiece.deg180 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 222, ../sass/style.scss */
+.lpiece.deg90 .c4 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 228, ../sass/style.scss */
+.lpiece.deg90 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 0px;
+}
+
+/* line 234, ../sass/style.scss */
+.lpiece.deg90 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 240, ../sass/style.scss */
+.lpiece.deg90 .c1 {
+  position: absolute;
+  top: -9px;
+  left: 12px;
+}
+
+/* line 247, ../sass/style.scss */
+.lrpiece {
+  position: absolute;
+  top: 214px;
+  left: 36px;
+}
+
+/* line 253, ../sass/style.scss */
+.lrpiece .cube {
+  background: #48cfad;
+}
+
+/* line 257, ../sass/style.scss */
+.lrpiece .cube:after {
+  background: #26ad8b;
+}
+
+/* line 261, ../sass/style.scss */
+.lrpiece .cube:before {
+  background: #048b6a;
+}
+
+/* line 265, ../sass/style.scss */
+.lrpiece.deg0 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 271, ../sass/style.scss */
+.lrpiece.deg0 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 277, ../sass/style.scss */
+.lrpiece.deg0 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 48px;
+}
+
+/* line 283, ../sass/style.scss */
+.lrpiece.deg0 .c4 {
+  position: absolute;
+  top: 27px;
+  left: 36px;
+}
+
+/* line 289, ../sass/style.scss */
+.lrpiece.deg270 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 48px;
+}
+
+/* line 295, ../sass/style.scss */
+.lrpiece.deg270 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 301, ../sass/style.scss */
+.lrpiece.deg270 .c4 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 307, ../sass/style.scss */
+.lrpiece.deg270 .c3 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 313, ../sass/style.scss */
+.lrpiece.deg180 .c1 {
+  position: absolute;
+  top: -9px;
+  left: 36px;
+}
+
+/* line 319, ../sass/style.scss */
+.lrpiece.deg180 .c3 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 325, ../sass/style.scss */
+.lrpiece.deg180 .c4 {
+  position: absolute;
+  top: 18px;
+  left: 48px;
+}
+
+/* line 331, ../sass/style.scss */
+.lrpiece.deg180 .c2 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 337, ../sass/style.scss */
+.lrpiece.deg90 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 60px;
+}
+
+/* line 343, ../sass/style.scss */
+.lrpiece.deg90 .c3 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 349, ../sass/style.scss */
+.lrpiece.deg90 .c4 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 355, ../sass/style.scss */
+.lrpiece.deg90 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 48px;
+}
+
+/* line 361, ../sass/style.scss */
+.cpiece {
+  position: absolute;
+  top: 214px;
+  left: 36px;
+}
+
+/* line 367, ../sass/style.scss */
+.cpiece .cube {
+  background: #ac92ec;
+}
+
+/* line 371, ../sass/style.scss */
+.cpiece .cube:after {
+  background: #8a70ca;
+}
+
+/* line 375, ../sass/style.scss */
+.cpiece .cube:before {
+  background: #6850a8;
+}
+
+/* line 379, ../sass/style.scss */
+.cpiece.deg0 .c1 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 385, ../sass/style.scss */
+.cpiece.deg0 .c2 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 391, ../sass/style.scss */
+.cpiece.deg0 .c3 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 397, ../sass/style.scss */
+.cpiece.deg0 .c4 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 403, ../sass/style.scss */
+.cpiece.deg270 .c1 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 409, ../sass/style.scss */
+.cpiece.deg270 .c2 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 415, ../sass/style.scss */
+.cpiece.deg270 .c3 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 421, ../sass/style.scss */
+.cpiece.deg270 .c4 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 427, ../sass/style.scss */
+.cpiece.deg180 .c1 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 433, ../sass/style.scss */
+.cpiece.deg180 .c2 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 439, ../sass/style.scss */
+.cpiece.deg180 .c3 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 445, ../sass/style.scss */
+.cpiece.deg180 .c4 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 451, ../sass/style.scss */
+.cpiece.deg90 .c1 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 457, ../sass/style.scss */
+.cpiece.deg90 .c2 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 463, ../sass/style.scss */
+.cpiece.deg90 .c3 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 469, ../sass/style.scss */
+.cpiece.deg90 .c4 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 476, ../sass/style.scss */
+.spiece {
+  position: absolute;
+  top: 214px;
+  left: 36px;
+}
+
+/* line 482, ../sass/style.scss */
+.spiece .cube {
+  background: #fc826a;
+}
+
+/* line 486, ../sass/style.scss */
+.spiece .cube:after {
+  background: #da6048;
+}
+
+/* line 490, ../sass/style.scss */
+.spiece .cube:before {
+  background: #b84026;
+}
+
+/* line 494, ../sass/style.scss */
+.spiece.deg270 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/* line 500, ../sass/style.scss */
+.spiece.deg270 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 506, ../sass/style.scss */
+.spiece.deg270 .c3 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 512, ../sass/style.scss */
+.spiece.deg270 .c4 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 518, ../sass/style.scss */
+.spiece.deg0 .c4 {
+  position: absolute;
+  top: -9px;
+  left: 36px;
+}
+
+/* line 524, ../sass/style.scss */
+.spiece.deg0 .c1 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 530, ../sass/style.scss */
+.spiece.deg0 .c2 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 536, ../sass/style.scss */
+.spiece.deg0 .c3 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 542, ../sass/style.scss */
+.spiece.deg90 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/* line 548, ../sass/style.scss */
+.spiece.deg90 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 554, ../sass/style.scss */
+.spiece.deg90 .c3 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 560, ../sass/style.scss */
+.spiece.deg90 .c4 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 567, ../sass/style.scss */
+.spiece.deg180 .c4 {
+  position: absolute;
+  top: -9px;
+  left: 36px;
+}
+
+/* line 573, ../sass/style.scss */
+.spiece.deg180 .c1 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 579, ../sass/style.scss */
+.spiece.deg180 .c2 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 585, ../sass/style.scss */
+.spiece.deg180 .c3 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 591, ../sass/style.scss */
+.srpiece {
+  position: absolute;
+  top: 205px;
+  left: 36px;
+}
+
+/* line 597, ../sass/style.scss */
+.srpiece .cube {
+  background: #d770ad;
+}
+
+/* line 601, ../sass/style.scss */
+.srpiece .cube:after {
+  background: #b5508b;
+}
+
+/* line 605, ../sass/style.scss */
+.srpiece .cube:before {
+  background: #933069;
+}
+
+/* line 609, ../sass/style.scss */
+.srpiece.deg0 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 12px;
+}
+
+/* line 615, ../sass/style.scss */
+.srpiece.deg0 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 0px;
+}
+
+/* line 621, ../sass/style.scss */
+.srpiece.deg0 .c3 {
+  position: absolute;
+  top: 0px;
+  left: 36px;
+}
+
+/* line 627, ../sass/style.scss */
+.srpiece.deg0 .c4 {
+  position: absolute;
+  top: 9px;
+  left: 24px;
+}
+
+/* line 633, ../sass/style.scss */
+.srpiece.deg270 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 12px;
+}
+
+/* line 639, ../sass/style.scss */
+.srpiece.deg270 .c4 {
+  position: absolute;
+  top: 27px;
+  left: 24px;
+}
+
+/* line 645, ../sass/style.scss */
+.srpiece.deg270 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 24px;
+}
+
+/* line 651, ../sass/style.scss */
+.srpiece.deg270 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 12px;
+}
+
+/* line 657, ../sass/style.scss */
+.srpiece.deg180 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 12px;
+}
+
+/* line 663, ../sass/style.scss */
+.srpiece.deg180 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 0px;
+}
+
+/* line 669, ../sass/style.scss */
+.srpiece.deg180 .c3 {
+  position: absolute;
+  top: 0px;
+  left: 36px;
+}
+
+/* line 675, ../sass/style.scss */
+.srpiece.deg180 .c4 {
+  position: absolute;
+  top: 9px;
+  left: 24px;
+}
+
+/* line 681, ../sass/style.scss */
+.srpiece.deg90 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 12px;
+}
+
+/* line 687, ../sass/style.scss */
+.srpiece.deg90 .c4 {
+  position: absolute;
+  top: 27px;
+  left: 24px;
+}
+
+/* line 693, ../sass/style.scss */
+.srpiece.deg90 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 24px;
+}
+
+/* line 699, ../sass/style.scss */
+.srpiece.deg90 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 12px;
+}
+
+/* line 706, ../sass/style.scss */
+.ipiece {
+  position: absolute;
+  top: 214px;
+  left: 36px;
+}
+
+/* line 712, ../sass/style.scss */
+.ipiece .cube {
+  background: #a0d468;
+}
+
+/* line 716, ../sass/style.scss */
+.ipiece .cube:after {
+  background: #80b246;
+}
+
+/* line 720, ../sass/style.scss */
+.ipiece .cube:before {
+  background: #689004;
+}
+
+/* line 724, ../sass/style.scss */
+.ipiece.deg0 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/* line 730, ../sass/style.scss */
+.ipiece.deg0 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 736, ../sass/style.scss */
+.ipiece.deg0 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 742, ../sass/style.scss */
+.ipiece.deg0 .c4 {
+  position: absolute;
+  top: 27px;
+  left: 36px;
+}
+
+/* line 748, ../sass/style.scss */
+.ipiece.deg270 {
+  position: absolute;
+  top: 100px;
+  left: 500px;
+}
+
+/* line 754, ../sass/style.scss */
+.ipiece.deg270 .c1 {
+  position: absolute;
+  top: 9px;
+  left: 36px;
+}
+
+/* line 760, ../sass/style.scss */
+.ipiece.deg270 .c2 {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+}
+
+/* line 766, ../sass/style.scss */
+.ipiece.deg270 .c3 {
+  position: absolute;
+  top: 27px;
+  left: 12px;
+}
+
+/* line 772, ../sass/style.scss */
+.ipiece.deg270 .c4 {
+  position: absolute;
+  top: 36px;
+  left: 0px;
+}
+
+/* line 780, ../sass/style.scss */
+.ipiece.deg180 {
+  position: absolute;
+  top: 200px;
+  left: 500px;
+}
+
+/* line 786, ../sass/style.scss */
+.ipiece.deg180 .c1 {
+  position: absolute;
+  top: 9px;
+  left: -12px;
+}
+
+/* line 792, ../sass/style.scss */
+.ipiece.deg180 .c2 {
+  position: absolute;
+  top: 18px;
+  left: 0px;
+}
+
+/* line 798, ../sass/style.scss */
+.ipiece.deg180 .c3 {
+  position: absolute;
+  top: 27px;
+  left: 12px;
+}
+
+/* line 804, ../sass/style.scss */
+.ipiece.deg180 .c4 {
+  position: absolute;
+  top: 36px;
+  left: 24px;
+}
+
+/* line 810, ../sass/style.scss */
+.ipiece.deg90 {
+  position: absolute;
+  top: 300px;
+  left: 500px;
+}
+
+/* line 816, ../sass/style.scss */
+.ipiece.deg90 .c1 {
+  position: absolute;
+  top: 0px;
+  left: 24px;
+}
+
+/* line 822, ../sass/style.scss */
+.ipiece.deg90 .c2 {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+}
+
+/* line 828, ../sass/style.scss */
+.ipiece.deg90 .c3 {
+  position: absolute;
+  top: 18px;
+  left: 0px;
+}
+
+/* line 834, ../sass/style.scss */
+.ipiece.deg90 .c4 {
+  position: absolute;
+  top: 27px;
+  left: -12px;
+}
+
+/* line 840, ../sass/style.scss */
+.cube:after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 7px;
+  width: 15px;
+  height: 15px;
+  -webkit-transform: skew(45deg);
+  -moz-transform: skew(45deg);
+  -o-transform: skew(45deg);
+  transform: skew(45deg);
+}
+
+/* line 853, ../sass/style.scss */
+.cube:before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  width: 15px;
+  height: 15px;
+  -webkit-transform: skew(0deg, 45deg);
+  -moz-transform: skew(0deg, 45deg);
+  -o-transform: skew(0deg, 45deg);
+  transform: skew(0deg, 45deg);
+}
+
+/* PLAYING FIELD */
+/* line 869, ../sass/style.scss */
+.field {
+  position: absolute;
+  top: 146px;
+  left: 52px;
+  width: 756px;
+  height: 375px;
+  background-color: #111;
+  z-index: 0;
+  /*background-image:       linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 32%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 80%, rgba(255, 255, 255, .05) 85%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 32%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 80%, transparent 77%, transparent);
+background-size:35px 35px;*/
+  -webkit-transform: rotateX(45deg) rotateZ(45deg) translate3d(0, 0, 0);
+  -moz-transform: rotateX(45deg) rotateZ(45deg) translate3d(0, 0, 0);
+  -o-transform: rotateX(45deg) rotateZ(45deg) translate3d(0, 0, 0);
+  transform: rotateX(45deg) rotateZ(45deg) translate3d(0, 0, 0);
+}
+
+/* line 885, ../sass/style.scss */
+.ref {
+  display: none;
+}
+
+/* line 889, ../sass/style.scss */
+.cube {
+  z-index: 1;
+}
+
+/* line 893, ../sass/style.scss */
+.points_title {
+  position: absolute;
+  top: 316px;
+  left: 14px;
+  width: 80px;
+  font-family: Arial;
+  color: #555;
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+  -webkit-transform: rotateX(-45deg) rotateZ(-45deg);
+  -moz-transform: rotateX(-45deg) rotateZ(-45deg);
+  -o-transform: rotateX(-45deg) rotateZ(-45deg);
+  transform: rotateX(-45deg) rotateZ(-45deg);
+}
+
+/* line 909, ../sass/style.scss */
+.points {
+  position: absolute;
+  top: 320px;
+  left: 50px;
+  width: 80px;
+  font-family: Arial;
+  color: #555;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  background-color: #111;
+  -webkit-transform: rotateX(-45deg) rotateZ(-45deg);
+  -moz-transform: rotateX(-45deg) rotateZ(-45deg);
+  -o-transform: rotateX(-45deg) rotateZ(-45deg);
+  transform: rotateX(-45deg) rotateZ(-45deg);
+}
+
+/* line 926, ../sass/style.scss */
+.points span {
+  font-size: 15px;
+}
