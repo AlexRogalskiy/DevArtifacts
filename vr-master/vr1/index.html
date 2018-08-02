@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>		
+<html lang="en">
+    <head>
+        <title>Effect Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    </head>
+<!--  header -->
+<body>
+
+<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+<script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+<script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+<script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+
+<a-scene vr-mode-ui="enabled: true">
+  <a-assets>
+    <img id="city" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
+    
+    <img id="city-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
+    <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
+    <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+    <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+    <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
+    <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+
+    <!-- Image link template to be reused. -->
+    <script id="link" type="text/html">
+      <a-entity class="link"
+      geometry="primitive: plane; height: 1; width: 1"
+      material="shader: flat; src: ${thumb}"
+      event-set__1="_event: mousedown; scale: 1 1 1"
+      event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+      event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+      event-set__4="_event: mouseleave; scale: 1 1 1"
+      set-image="on: click; target: #image-360; src: ${src}"
+      sound="on: click; src: #click-sound"></a-entity>
+    </script>
+  </a-assets>
+
+  <!-- 360-degree image. -->
+  <a-sky id="image-360" radius="10" src="#city"></a-sky>
+
+  <!-- Image links. -->
+  <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
+    <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
+    <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
+    <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
+  </a-entity>
+
+  <!-- Camera + cursor. -->
+  <a-camera>
+    <a-cursor id="cursor"></a-cursor>
+  </a-camera>
+  
+</a-scene>
+
+<script src="js/script.js" type="text/javascript"></script>
+
+</body>
+<!--  footer -->
+</html>
