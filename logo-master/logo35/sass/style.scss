@@ -1,0 +1,105 @@
+@import "compass";
+
+$orbitWidth: 25px;
+
+$outerRadius: 100px;
+$innerRadius: 50px;
+$electronRadius: $orbitWidth / 2;
+$electronBorderWidth: 5px;
+
+$cHoleRadius: 75px;
+
+$backgroundColor: #363F48;
+$outerOrbitColor: #E9EAEB;
+$innerOrbitColor: #FD8204;
+$electronColor: #A9A8AB;
+
+html, body {
+  @include display-flex();
+  @include flex-direction(column);
+  @include align-items(center);
+  @include justify-content(center);
+  
+  width: 100%;
+  height: 100%;
+  background: #363F48;
+}
+
+@mixin circle( $radius ) {
+  border-radius: 50%;
+  width: $radius * 2;
+  height: $radius * 2;
+}
+
+@mixin rotateElectrons( $number, $radius, $speed, $direction:"normal" ) {
+  @for $i from 1 through $number {
+    @include keyframes(rotate#{$i}of#{$number}) {
+      0% { @include transform(rotateZ((360deg/$number) * ($i - 1)) translateX($radius)); }
+      100% { @include transform(rotateZ(360deg + (360deg/$number) * ($i - 1)) translateX($radius)); }
+    }
+
+    &:nth-child(#{$i}) {
+      @include animation(rotate#{$i}of#{$number} $speed infinite linear unquote($direction));
+    }
+  }
+}
+
+.logo {
+  position: relative;
+  width: ($outerRadius + $orbitWidth) * 2 + (522px - 62px);
+  height: ($outerRadius + $orbitWidth) * 2;
+}
+
+.logo__orbit {
+  border: $orbitWidth solid;
+  position: absolute;
+}
+
+.logo__orbit--outer {
+  @include circle( $outerRadius );
+  border-color: $outerOrbitColor;
+  
+  > .logo__electron {
+    top: $outerRadius - $electronRadius - $electronBorderWidth;
+    left: $outerRadius - $electronRadius - $electronBorderWidth;
+    @include rotateElectrons( 4, $outerRadius + $electronRadius, 4s );
+  }
+}
+
+.logo__orbit--inner {
+  @include circle( $innerRadius );
+  
+  position: absolute;
+  top: $outerRadius - $innerRadius - $orbitWidth;
+  left: $outerRadius - $innerRadius - $orbitWidth;
+    
+  border-color: $innerOrbitColor;
+  
+  > .logo__electron {
+    top: $innerRadius - $electronRadius - $electronBorderWidth;
+    left: $innerRadius - $electronRadius - $electronBorderWidth;
+    @include rotateElectrons( 2, $innerRadius + $electronRadius, 4s, "reverse" );
+  }
+}
+
+.logo__electron {
+  @include circle( $electronRadius );
+  position: absolute;
+  background: $electronColor;
+  border: $electronBorderWidth $backgroundColor solid;
+}
+
+.logo__c {
+  position: absolute;
+  top: $outerRadius - $cHoleRadius + $electronRadius;
+  left: (($outerRadius + $orbitWidth) * 2) - $cHoleRadius - $electronRadius * 2;
+  
+  @include circle( $electronRadius );
+  border: $cHoleRadius $backgroundColor solid;
+}
+
+.logo__arbon {
+  position: absolute;
+  top: 7px;
+  left: (($outerRadius + $orbitWidth) * 2) - 62px;
+}

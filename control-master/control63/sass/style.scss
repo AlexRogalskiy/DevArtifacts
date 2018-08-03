@@ -1,0 +1,140 @@
+@import 'compass/reset';
+@import 'compass/css3';
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+/* fontawesome */
+[class*="fa-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+body
+{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1em;
+
+    text-align: center;
+
+    color: #444444;
+    background-color: #d0d0d0;
+}
+h1
+{
+    font-size: 2.5em;
+
+    margin: 2em 0 1em;
+}
+h2
+{
+    margin-bottom: 3em;
+}
+em,
+strong
+{
+    font-weight: 700;
+}
+input
+{
+    display: none;
+}
+header p 
+{
+    margin-bottom: 2em;
+}
+section
+{
+    margin-bottom: 2em;
+    padding: 0;
+    &:last-of-type
+    {
+        margin-bottom: 0;
+    }
+}
+p
+{
+    line-height: 1.5em;
+}
+.container
+{
+    z-index: 1;
+    margin-bottom: 4em;
+}
+
+
+.pure-tree
+{
+    text-align: left;
+    display: block;
+    &.main-tree
+    {
+        width: 30em;
+        display: inline-block;
+    }
+    &:not(.main-tree)
+    {
+        padding-left: 1.2em;
+        li
+        {
+            overflow: hidden;
+            height: 0;
+            display: block;
+        }
+    }
+    label
+    {
+        display: block;
+        cursor: pointer;
+        color: #717780;
+        border-bottom: 1px dashed #B0B9C5;
+        padding: 1.125em 1.125em 1.125em 0;
+        &:before
+        {
+            width: 1em;
+            height: 1em;
+            line-height: 1em;
+            display: inline-block;
+            font-family: 'FontAwesome', sans-serif;
+            content: "\f114";
+            padding-right: .75em;
+        }
+        &:hover
+        {
+            color: #434a58;
+            border-bottom-color: #434a58;
+        }
+    }
+    .pure-tree_link
+    {
+        a
+        {
+            padding: 1.500em 1.125em 0.750em 0;
+            display: block;
+            border-radius: .2em;
+            color: #717780;
+            text-decoration: none;
+            &:hover
+            {
+                color: #434a58;
+            }
+        }
+    }
+    &.nested
+    {
+        padding-left: 1.7em;
+    }
+    [type="checkbox"]
+    {
+        display: none;
+        &:checked + label 
+        {
+            color: #434a58;
+            border-bottom-color: #434a58;
+        }
+        &:checked ~ ul > li
+        {
+            height: auto;
+        }
+    }
+}

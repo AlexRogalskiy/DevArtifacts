@@ -1,0 +1,808 @@
+@import compass
+
+@import compass/css3
+
+// === Color Variables
+
+$background-color: #333
+$number-color: #F09004
+$gear-color: #242424
+$gear-border-color: #1F1F1F
+$structure-color: #464A4C
+$structure-border-color: #555
+
+$number-size: 75px
+$border-size: 1px
+
+// Hour Gearbox
+$h-spider-color: $structure-color
+$h-sg-color: $gear-color
+$h-pg-color: $gear-color
+$h-g-border-color: $gear-border-color
+$h-number-color: $number-color
+
+// Minute Gearbox
+$mg-spider-color: #464A4C
+$mg-cg-color: #242424
+$mg-pg-color: #242424
+$mg-g-border-color: #1F1F1F
+$mg-number-color: #F09004
+
+// Tens Disk
+$t-disk-color: #1f1f1f
+$t-d-border-color: #1F1F1F
+$t-number-color: #F09004
+
+// Pulsating Colon
+$pc-zipper-color: #242424
+$pc-frame-color: #464A4C
+
+$number-size: 75px
+
+// === End: Color Variables
+
+// === Constants
+
+$cos-72: 0.309016994
+$sin-54: 0.809016994
+$cos-54: 0.587785252
+$sin-18: 0.309016994
+$cos-18: 0.951056516
+
+// === End: Constants
+
+// === Functions
+
+@function black($opacity)
+  @return rgba(0,0,0,$opacity)
+
+@function white($opacity)
+  @return rgba(255,255,255,$opacity)
+
+@function strip-units($number)
+  @return $number / ($number * 0 + 1)
+  
+@function to_px($in)
+  $stripped: strip-units($in)
+  @return $stripped * 1px
+
+// === End: Functions
+// === Keyframes Mixin
+
+=keyframes($name)
+  @-webkit-keyframes #{$name}
+    @content
+  @-moz-keyframes #{$name}
+    @content
+
+// === End: Keyframes Mixin
+// === Keyframes
+
++keyframes(clockwise)
+  0%
+    +transform(rotate(0deg))
+  100%
+    +transform(rotate(360deg))
++keyframes(counter-clockwise)
+  0%
+    +transform(rotate(0deg))
+  100%
+    +transform(rotate(-360deg))
+
+// === End: Keyframes
+
+*
+  +box-sizing(border-box)
+
+html
+  height: 100%
+
+body
+  background: $background-color
+  position: relative
+  height: 100%
+  margin: 0px
+
+.container
+  position: absolute
+  top: 50%
+  left: 50%
+
+.hours
+  $h-number-size: $number-size
+  $h-sg-size: ($h-number-size * 16) / 5
+  $h-sg-center: $h-sg-size / 2
+  $h-pg-size: ($h-sg-size * 3) / 4
+  $h-pg-center: $h-pg-size / 2
+
+  $h-bar-width: $h-sg-size / 10
+  $h-bar-height: $h-sg-size / 25
+  
+  position: absolute
+  left: - $h-sg-center - $h-pg-center - $h-pg-size + ($h-pg-size * .25)
+    
+  .gearbox
+    position: absolute
+      
+    .solar-gear
+      position: absolute
+      height: $h-sg-size
+      width: $h-sg-size
+      +border-radius($h-sg-size / 2)
+      left: - $h-sg-center
+      top: - $h-sg-center
+      
+      .body
+        position: relative
+        height: 100%
+        width: 100%
+        background: $h-sg-color
+        +border-radius($h-sg-size / 2)
+        border: 1px solid $h-g-border-color
+          
+      .bar
+        $actual-height: $h-bar-width
+        $actual-width: ($h-bar-height * 2) + $h-sg-size
+        background: $h-sg-color
+        height: $actual-height
+        width: $actual-width
+        position: absolute
+        left: 50%
+        margin-left: -($actual-width / 2)
+        top: 50%
+        margin-top: -($actual-height / 2)
+        +border-radius( $h-bar-height / 2 )
+        border-left: 1px solid $h-g-border-color
+        border-right: 1px solid $h-g-border-color
+
+        &:nth-child(2)
+          +transform(rotate(22.5deg))
+        &:nth-child(3)
+          +transform(rotate(45deg))
+        &:nth-child(4)
+          +transform(rotate(67.5deg))
+        &:nth-child(5)
+          +transform(rotate(90deg))
+        &:nth-child(6)
+          +transform(rotate(112.5deg))
+        &:nth-child(7)
+          +transform(rotate(135deg))
+        &:nth-child(8)
+          +transform(rotate(157.5deg))
+            
+    .gears
+      width: 100%
+      height: 100%
+      
+    .gear
+      position: absolute
+      height: $h-pg-size
+      width: $h-pg-size
+      +border-radius($h-pg-size / 2)
+      
+      $g1-center-y: - ($h-pg-size/2)
+        
+      &.one
+        left: $h-sg-center + $h-bar-height
+        top: $g1-center-y
+        
+      &.two
+        left: - $h-pg-center
+        top: $h-sg-center + $h-bar-height
+        .numbers
+          +transform(rotate(90deg))
+      &.three
+        left: - $h-sg-center - $h-bar-height - $h-pg-size
+        top: $g1-center-y
+        .numbers
+          +transform(rotate(180deg))
+      &.four
+        left: - $h-pg-center
+        top: - $h-sg-center - $h-pg-size - $h-bar-height
+        .numbers
+          +transform(rotate(270deg))
+      .body
+        position: relative
+        height: 100%
+        width: 100%
+        background: $h-pg-color
+        +border-radius($h-pg-size / 2)
+        border: 1px solid $h-g-border-color
+          
+      .numbers
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 50%
+        margin-top: - $h-pg-center
+          
+        .number
+          position: absolute
+          width: 100%
+          font-size: $number-size
+          line-height: $number-size
+          color:  $h-number-color
+          top: (($h-pg-size - 2px) - $number-size) / 2
+          padding-left: ($h-pg-center * 9) / 8
+          
+          &:nth-child(1)
+            
+          &:nth-child(2)
+            +transform(rotate(120deg))
+          &:nth-child(3)
+            +transform(rotate(240deg))
+      .bars
+        width: 100%
+        height: 100%
+        +transform(rotate(15deg))
+          
+        .bar
+          $actual-height: $h-bar-width
+          $actual-width: ($h-bar-height * 2) + $h-pg-size
+          background: $h-pg-color
+          height: $actual-height
+          width: $actual-width
+          position: absolute
+          left: 50%
+          margin-left: -($actual-width / 2)
+          top: 50%
+          margin-top: -($actual-height / 2)
+          +border-radius($h-bar-height / 2)
+          border-left: 1px solid $h-g-border-color
+          border-right: 1px solid $h-g-border-color
+
+          &:nth-child(2)
+            +transform(rotate(30deg))
+          &:nth-child(3)
+            +transform(rotate(60deg))
+          &:nth-child(4)
+            +transform(rotate(90deg))
+          &:nth-child(5)
+            +transform(rotate(120deg))
+          &:nth-child(6)
+            +transform(rotate(150deg)) 
+  .spider
+    $body-size: $h-sg-size * 0.75
+    $body-center: $body-size / 2
+    
+    position: absolute
+    height: $body-size
+    width: $body-size
+    left: - $body-center
+    top: - $body-center
+    
+    & > .body
+      position: relative
+      height: 100%
+      width: 100%
+      background: $h-spider-color
+      +border-radius($body-size / 2)
+      border: 1px solid $structure-border-color
+      
+      .ring
+        $size: $body-size / 2
+        position: absolute
+        width: $size
+        height: $size
+        +border-radius($size / 2)
+        border: $border-size solid $structure-border-color
+        top: ($body-size / 2) - ($size / 2)
+        left: ($body-size / 2) - ($size / 2)  
+        
+      .bars
+        width: 100%
+        height: 100%
+        .bar
+          $s-bar-width: ($h-sg-size * 2) / 25
+          $s-bar-height: ($h-sg-size/2) + ($h-pg-size/2) + $h-bar-height + ($s-bar-width/2)
+          
+          $s-actual-width: $s-bar-height * 2
+          $s-actual-height: $s-bar-width
+          
+          height: $s-actual-height
+          width: $s-actual-width
+          position: absolute
+          left: 50%
+          margin-left: -($s-actual-width / 2)
+          top: 50%
+          margin-top: -($s-actual-height / 2)
+          
+          &:nth-child(2)
+            +transform(rotate(90deg))
+          &:nth-child(3)
+            +transform(rotate(180deg))
+          &:nth-child(4)
+            +transform(rotate(270deg))
+          &:nth-child(5)
+            +transform(rotate(360deg))
+            
+          .body
+            position: absolute
+            height: $s-actual-height
+            width: $s-actual-width/2
+            background: $h-spider-color
+            +border-radius($s-bar-width / 2)
+          .screw
+            $screw-size: $s-actual-height / 2
+            position: absolute
+            height: $screw-size
+            width: $screw-size
+            background: #242424
+            +border-radius($s-actual-height / 2)
+            top: $s-actual-height / 4
+            left: $s-actual-height / 4
+            .slot
+              $slot-width: $screw-size * 0.7
+              $slot-height: $screw-size * 0.3
+              position: absolute 
+              height: $slot-height
+              width: $slot-width
+              background: #1f1f1f
+              left: ($screw-size/2) - ($slot-width/2)
+              top: ($screw-size/2) - ($slot-height/2)
+
+.minute-container
+  $cg-size: 250px
+  $cg-center: $cg-size/2
+  $gear-size: (2*$cg-size)/5
+  $gear-center: $gear-size/2
+  $number-size: $gear-size * 0.75
+
+  $bar-width: ($cg-size * 2) / 25
+  $bar-height: ($cg-size * 4) / 125
+  
+  position: absolute
+  left: $cg-center + ($gear-size * 1.5)
+  
+  .minute-gearbox
+    position: absolute
+
+    $cg-size: 250px
+    $cg-center: $cg-size/2
+    $gear-size: (2*$cg-size)/5
+    $gear-center: $gear-size/2
+    $number-size: $gear-size * 0.75
+
+    $bar-width: ($cg-size * 2) / 25
+    $bar-height: ($cg-size * 4) / 125
+
+    $pentagon-r: ($gear-size/2) + $cg-center + $bar-height
+    // Law of cosines a^2 = b^2 + c^2 - 2bc * cosA
+    // r = b = c
+    $pentagon-r2: $pentagon-r * $pentagon-r
+    $pentagon-s2: 2 * ($pentagon-r2  - ($pentagon-r2 * $cos-72))
+    $pentagon-side: to_px(sqrt($pentagon-s2))
+          
+    .central-gear
+      position: absolute
+      height: $cg-size
+      width: $cg-size
+      +border-radius($cg-size / 2)
+      left: - $cg-center
+      top: - $cg-center
+      
+      .gear-inner
+        position: relative
+        height: 100%
+        width: 100%
+        background: $mg-cg-color
+        +border-radius($cg-size / 2)
+        border: 1px solid $mg-g-border-color
+          
+      .bar
+        $actual-height: $bar-width
+        $actual-width: ($bar-height * 2) + $cg-size
+        background: $mg-cg-color
+        height: $actual-height
+        width: $actual-width
+        position: absolute
+        left: 50%
+        margin-left: -($actual-width / 2)
+        top: 50%
+        margin-top: -($actual-height / 2)
+        +border-radius( $bar-height / 2 )
+        border-left: 1px solid $mg-g-border-color
+        border-right: 1px solid $mg-g-border-color
+
+        &:nth-child(2)
+          +transform(rotate(18deg))
+        &:nth-child(3)
+          +transform(rotate(36deg))
+        &:nth-child(4)
+          +transform(rotate(54deg))
+        &:nth-child(5)
+          +transform(rotate(72deg))
+        &:nth-child(6)
+          +transform(rotate(90deg))
+        &:nth-child(7)
+          +transform(rotate(108deg))
+        &:nth-child(8)
+          +transform(rotate(126deg))
+        &:nth-child(9)
+          +transform(rotate(144deg))
+        &:nth-child(10)
+          +transform(rotate(162deg))
+            
+    .gears
+      width: 100%
+      height: 100%
+      
+    .gear
+      position: absolute
+      height: $gear-size
+      width: $gear-size
+      +border-radius($gear-size / 2)
+      
+      $g1-center-x: - ($gear-size/2) - $pentagon-r
+      $g1-center-y: - ($gear-size/2) 
+      &.one
+        left: $g1-center-x
+        top: $g1-center-y
+        .bars
+          +transform(rotate(22deg))
+        .numbers
+      &.two
+        left: $g1-center-x + ($pentagon-side * $cos-54)
+        top:  $g1-center-y - ($pentagon-side * $sin-54)
+        .bars
+          +transform(rotate(4deg))
+        .numbers
+          +transform(rotate(72deg))
+      &.three
+        left: $g1-center-x + $pentagon-side * ($cos-18 + $cos-54)
+        top: $g1-center-y + $pentagon-side * ($sin-18 - $sin-54)
+        .bars
+          +transform(rotate(31deg))
+        .numbers
+          +transform(rotate(144deg))
+      &.four
+        left: $g1-center-x + $pentagon-side * ($cos-18 + $cos-54)
+        top: $g1-center-y + $pentagon-side * ($sin-54 - $sin-18)
+        .bars
+          +transform(rotate(13deg))
+        .numbers
+          +transform(rotate(216deg))
+      &.five
+        left: $g1-center-x + ($pentagon-side * $cos-54)
+        top: $g1-center-y + ($pentagon-side * $sin-54)
+        .bars
+          +transform(rotate(40deg))
+        .numbers
+          +transform(rotate(288deg))
+            
+      .gear-inner
+        position: relative
+        height: 100%
+        width: 100%
+        background: $mg-pg-color
+        +border-radius($gear-size / 2)
+        border: 1px solid $mg-g-border-color
+          
+      .numbers
+        position: absolute
+        width: 100%
+        height: 100%
+        left: 50%
+        margin-left: -($gear-size / 2)
+        top: 50%
+        margin-top: -($gear-size / 2)
+          
+        .number
+          font-size: $number-size
+          line-height: $number-size
+          color:  $mg-number-color
+          position: absolute
+          top: (($gear-size - 2px) - $number-size) / 2
+          
+          &:nth-child(1)
+            left: 2px
+            
+          &:nth-child(2)
+            +transform(rotate(180deg))
+            right: 2px
+      .bars
+        width: 100%
+        height: 100%
+        
+        .bar
+          $actual-height: $bar-width
+          $actual-width: ($bar-height * 2) + $gear-size
+          background: $mg-pg-color
+          height: $actual-height
+          width: $actual-width
+          position: absolute
+          left: 50%
+          margin-left: -($actual-width / 2)
+          top: 50%
+          margin-top: -($actual-height / 2)
+          +border-radius($bar-height / 2)
+          border-left: 1px solid $mg-g-border-color
+          border-right: 1px solid $mg-g-border-color
+
+          &:nth-child(2)
+            +transform(rotate(45deg))
+          &:nth-child(3)
+            +transform(rotate(90deg))
+          &:nth-child(4)
+            +transform(rotate(135deg))
+    .spider
+      $body-size: $cg-size * 0.75
+      $body-center: $body-size / 2
+      
+      position: absolute
+      height: $body-size
+      width: $body-size
+      left: - $body-center
+      top: - $body-center
+      
+      & > .body
+        position: relative
+        height: 100%
+        width: 100%
+        background: $mg-spider-color
+        +border-radius($body-size / 2)
+        border: 1px solid $mg-spider-color
+          
+        .ring
+          $size: $body-size / 2
+          position: absolute
+          width: $size
+          height: $size
+          +border-radius($size / 2)
+          border: $border-size solid $structure-border-color
+          top: ($body-size / 2) - ($size / 2)
+          left: ($body-size / 2) - ($size / 2)
+        
+        .bars
+          width: 100%
+          height: 100%
+          .bar
+            $s-bar-width: ($cg-size * 2) / 25
+            $s-bar-height: ($cg-size/2) + ($gear-size/2) + $bar-height + ($s-bar-width/2)
+            
+            $s-actual-width: $s-bar-height * 2
+            $s-actual-height: $s-bar-width
+            
+            height: $s-actual-height
+            width: $s-actual-width
+            position: absolute
+            left: 50%
+            margin-left: -($s-actual-width / 2)
+            top: 50%
+            margin-top: -($s-actual-height / 2)
+            
+            &:nth-child(2)
+              +transform(rotate(72deg))
+            &:nth-child(3)
+              +transform(rotate(144deg))
+            &:nth-child(4)
+              +transform(rotate(216deg))
+            &:nth-child(5)
+              +transform(rotate(288deg))
+              
+            .body
+              position: absolute
+              height: $s-actual-height
+              width: $s-actual-width/2
+              background: $mg-spider-color
+              +border-radius($s-bar-width / 2)
+            .screw
+              $screw-size: $s-actual-height / 2
+              position: absolute
+              height: $screw-size
+              width: $screw-size
+              background: #242424
+              +border-radius($s-actual-height / 2)
+              top: $s-actual-height / 4
+              left: $s-actual-height / 4
+              .slot
+                $slot-width: $screw-size * 0.7
+                $slot-height: $screw-size * 0.3
+                position: absolute 
+                height: $slot-height
+                width: $slot-width
+                background: #1f1f1f
+                left: ($screw-size/2) - ($slot-width/2)
+                top: ($screw-size/2) - ($slot-height/2)
+            
+$t-number-size: $number-size
+$t-disk-size: ($t-number-size * 8) / 3
+.tens-container
+  position: absolute
+  top: - ($t-disk-size/2) + ($t-number-size/2)
+.tens-disk
+  position: absolute
+  width: $t-disk-size
+  height: $t-disk-size
+  top: - ($t-disk-size/2)
+  left: - ($t-disk-size/2)
+    
+  .body
+    position: relative
+    height: 100%
+    width: 100%
+    background: $t-disk-color
+    +border-radius($t-disk-size / 2)
+    border: 1px solid $t-d-border-color 
+      
+    .numbers
+      position: absolute
+      width: 100%
+      height: 100%
+      left: 50%
+      top: 50%
+      margin-left: -($t-disk-size / 2)
+      margin-top: -($t-disk-size / 2)
+      
+      .bar
+        position: absolute
+        width: 100%
+        height: 100%
+        &:nth-child(2)
+          +transform(rotate(60deg))
+        &:nth-child(3)
+          +transform(rotate(120deg))
+        &:nth-child(4)
+          +transform(rotate(180deg))
+        &:nth-child(5)
+          +transform(rotate(240deg))
+        &:nth-child(6)
+          +transform(rotate(300deg))
+      .number
+        position: absolute
+        font-size: $t-number-size
+        line-height: $t-number-size
+        color:  $t-number-color
+        left: $t-disk-size / 2
+        top: $t-disk-size - $t-number-size
+          
+$pc-colon-size: $t-disk-size / 20          
+$zipper-width: $pc-colon-size * 2
+$zipper-height: ($t-disk-size * 3) / 2
+$pc-z-teeth-width: $t-disk-size / 40
+$pc-z-teeth-height: $t-disk-size / 50
+$pc-frame-width: $pc-colon-size * 3
+$pc-frame-height: $pc-colon-size * 10
+
+.pulsating-colon
+  position: absolute
+    
+  .zipper
+    position: absolute
+    width: $zipper-width
+    height: $zipper-height
+    background: $pc-zipper-color
+    +border-radius(2px)
+    border: 1px solid $t-d-border-color
+    top: - $zipper-height + ($t-disk-size / 2)
+    left: - $zipper-width - ($pc-colon-size / 2)
+    
+    .tooth
+      position: absolute
+      width: 100%
+      height: 100%
+      .teeth
+        position: absolute
+        width: $pc-z-teeth-height * 1.5
+        height: $pc-z-teeth-width
+        background: $pc-zipper-color
+        top: $pc-z-teeth-width
+        right: - $pc-z-teeth-height
+        border-right: 1px solid $t-d-border-color
+        
+        &:nth-child(2)
+          +transform(translateY(1 * $pc-z-teeth-width * 2))
+        &:nth-child(3)
+          +transform(translateY(2 * $pc-z-teeth-width * 2))
+        &:nth-child(4)
+          +transform(translateY(3 * $pc-z-teeth-width * 2))
+        &:nth-child(5)
+          +transform(translateY(4 * $pc-z-teeth-width * 2))
+        &:nth-child(6)
+          +transform(translateY(5 * $pc-z-teeth-width * 2))
+        &:nth-child(7)
+          +transform(translateY(6 * $pc-z-teeth-width * 2))
+        &:nth-child(8)
+          +transform(translateY(7 * $pc-z-teeth-width * 2))
+        &:nth-child(9)
+          +transform(translateY(8 * $pc-z-teeth-width * 2))
+        &:nth-child(10)
+          +transform(translateY(9 * $pc-z-teeth-width * 2))
+    .bars
+      position: absolute
+      width: 100%
+      height: 100%
+      
+      .bar
+        position: absolute
+        // - (2 * border-size)
+        width: $zipper-width - 2
+        height: $pc-colon-size
+        background: $t-number-color
+        top: $zipper-height - ($number-size/2) + ($pc-colon-size/2)
+          
+        &:nth-child(2)
+          +transform(translateY(- ($pc-colon-size * 2) ))
+  .gear
+    $gear-size: 26px
+      
+    position: absolute
+    height: $gear-size
+    width: $gear-size
+    +border-radius($gear-size / 2)
+    top: - ($t-disk-size / 2) - $gear-size - (($pc-z-teeth-width * 11) / 16)
+    left: - ($pc-z-teeth-width/4)
+      
+    .body
+      position: relative
+      height: 100%
+      width: 100%
+      background: $pc-zipper-color
+      +border-radius($gear-size / 2)
+      border: 1px solid $t-d-border-color
+      
+      .bars
+        width: 100%
+        height: 100%
+      
+      .bar
+        $actual-height: $pc-z-teeth-width
+        $actual-width: ($pc-z-teeth-height * 2) + $gear-size
+        background: $pc-zipper-color
+        height: $actual-height
+        width: $actual-width
+        position: absolute
+        left: 50%
+        margin-left: -($actual-width / 2)
+        top: 50%
+        margin-top: -($actual-height / 2)
+        +border-radius($pc-z-teeth-height / 2)
+        border-left: 1px solid $t-d-border-color
+        border-right: 1px solid $t-d-border-color
+        &:nth-child(2)
+          +transform(rotate(36deg))
+        &:nth-child(3)
+          +transform(rotate(72deg))
+        &:nth-child(4)
+          +transform(rotate(108deg))
+        &:nth-child(5)
+          +transform(rotate(144deg))
+        
+  .frame
+    position: absolute
+    width: $pc-frame-width
+    height: $pc-frame-height
+    top: + ($t-disk-size/2) - ($t-number-size/2) - $pc-frame-height + ($pc-colon-size * 2.5) + 1
+    left: - ($pc-colon-size * 3)
+      
+    .vertical-bars
+      position: absolute
+      width: 100%
+      height: 100%
+      .bar
+        position: absolute
+        width: $pc-colon-size
+        height: 100%
+        background: $pc-frame-color
+        
+        &:nth-child(2)
+          +transform(translateX($pc-colon-size * 2))
+    .horizontal-bars
+      position: absolute
+      width: 100%
+      height: 100%
+      .bar
+        position: absolute
+        width: $pc-frame-width
+        height: $pc-colon-size
+        background: $pc-frame-color
+        
+        &:nth-child(1)
+          +transform(translateY($pc-frame-height - (1 * $pc-colon-size)))
+        &:nth-child(2)
+          +transform(translateY($pc-frame-height - (3 * $pc-colon-size)))
+    .body
+      position: absolute
+      width: $pc-frame-width
+      height: $pc-colon-size * 6
+      background: $pc-frame-color
