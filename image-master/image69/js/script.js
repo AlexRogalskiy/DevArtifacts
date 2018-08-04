@@ -1,0 +1,6 @@
+var swing = new TimelineMax({repeat:-1})
+	swing.to('#right',.5,{rotation:-35,ease:Power1.easeOut,transformOrigin:'50% 0%'},'-=.05') 
+	.to('#right',.5,{rotation:0,ease:Power1.easeIn,transformOrigin:'50% 0%'},'+=.05')
+	.to('#left',.5,{rotation:35,ease:Power1.easeOut,transformOrigin:'50% 0%'},'-=.05')
+	.to('#left',.5,{rotation:0,ease:Power1.easeIn,transformOrigin:'50% 0%'},'+=.05')
+   swing.timeScale(2)
