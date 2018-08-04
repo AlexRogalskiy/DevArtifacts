@@ -1,0 +1,46 @@
+*{
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-weight: bold;
+  letter-spacing: -1px;
+  font-size: 80px;
+}
+
+body{
+  background: hsla(80,29%,89%,1);
+  color: #222;
+}
+
+#container{
+  margin-top: 2.2em;
+}
+
+div{
+  display: inline-block;
+}
+
+#table{
+  animation-timing-function: linear;
+  animation: table-flip 2s infinite;
+  position: relative;
+}
+
+.arm{
+  animation-timing-function: linear;
+  animation: arm-rotate 2s infinite;
+  position: relative;
+}
+
+@keyframes table-flip {
+  0% {  left: 0px; top: 0em; transform: rotate(-180deg);  }
+  24% {  top: -2em;  }
+  60% { left: 2.5em; top: 0em; transform: rotate(0deg); }
+  80% { left: 2.5em; top: 0em; transform: rotate(0deg); }
+  100% {  left: 0px; top: 0em; transform: rotate(-180deg);  }
+}
+
+@keyframes arm-rotate {
+  0% { top: 0.2em; transform: rotate(90deg); }
+  20% { top: 0em;transform: rotate(0deg); }
+  50% { top: 0em;transform: rotate(0deg); }
+  100% { top: 0.2em;transform: rotate(90deg); }
+}
