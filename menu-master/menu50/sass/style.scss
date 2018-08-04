@@ -1,0 +1,476 @@
+/*******************************************************************************
+ *
+ * Fonts
+ *
+ */
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
+
+
+/*******************************************************************************
+ *
+ * Reset
+ *
+ */
+
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+}
+
+body {
+  font: .8rem/1 'Open Sans', sans-serif;
+  color: #333;
+  background-color: #eee;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+
+
+/*******************************************************************************
+ *
+ * Layout
+ *
+ */
+
+
+
+header {
+  height: 50px;
+  line-height: 48px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  color: #999;
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.nav {
+  position: sticky;
+  top: 50px;
+  float: right;
+  width: 180px;
+  margin-top: 120px;
+}
+
+.nav li a {
+  display: block;
+  padding: 12px 0 13px 30px;
+  color: #999;
+}
+
+.nav li a:hover {
+  color: #333;
+}
+
+.nav li a.nav-active {
+  font-weight: 700;
+  color: #333;
+  border-right: 3px solid #999;
+  background-color: rgba(0,0,0,.05);
+}
+
+.content {
+  width: 820px;
+}
+
+.section:first-child { padding-top:    100px; margin-top: -50px; }
+.section:last-child  { padding-bottom: 100px; }
+
+.section:first-child .box { border-radius: 3px 3px 0 0; }
+.section:last-child  .box { border-radius: 0 0 3px 3px; }
+
+.box {
+  padding: 25px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.box:empty {
+  min-height: 500px;
+}
+
+.section:not(:last-child) .box {
+  border-bottom: 0;
+}
+
+
+
+/*******************************************************************************
+ *
+ * Code Grid
+ *
+ */
+
+
+
+.grid-code {
+  display: flex;
+  margin: 25px -25px;
+}
+
+.grid-code > pre {
+  flex: 1;
+}
+
+.grid-code > pre:nth-child(2) {
+  border-left: 1px solid #ddd;
+}
+
+
+
+/*******************************************************************************
+ *
+ * Code Examples
+ *
+ */
+
+
+
+pre {
+  position: relative;
+  display: block;
+  padding: 0 50px;
+  white-space: pre;
+  color: #999;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #fafafa;
+  overflow: auto;
+}
+
+pre, code {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.lang {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px;
+  color: #333;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.code-in-text {
+  padding: 2px 5px;
+  font-family: 'Source Code Pro', monospace;
+  color: #999;
+  white-space: nowrap;
+  background-color: #eee;
+}
+
+.code-element { color: #59d; }
+.code-class   { color: #37b; }
+.code-content { color: #222; }
+
+
+
+/*******************************************************************************
+ *
+ * Code Lines
+ *
+ */
+
+
+
+.lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 5px 0 15px;
+  text-align: right;
+  color: #bbb;
+  border-right: 1px solid #ddd;
+  user-select: none;
+}
+
+.lines > i {
+  display: block;
+  counter-increment: linenumber;
+}
+
+.lines > i::before {
+  content: counter(linenumber);
+  font-style: normal;
+}
+
+
+
+/*******************************************************************************
+ *
+ * Grid
+ *
+ */
+
+
+
+.grid {
+  display: flex;
+}
+
+.grid .column {
+  flex: 1;
+  padding: 25px;
+}
+
+
+
+/*******************************************************************************
+ *
+ * Placeholder
+ *
+ */
+
+
+
+      ::-webkit-input-placeholder { color: #aaa; }
+:hover::-webkit-input-placeholder { color: #ddd; }
+:focus::-webkit-input-placeholder { color: transparent; }
+
+      ::-moz-placeholder { color: #aaa; }
+:hover::-moz-placeholder { color: #ddd; }
+:focus::-moz-placeholder { color: transparent; }
+
+      :-ms-input-placeholder { color: #aaa !important; }
+:hover:-ms-input-placeholder { color: #ddd !important; }
+:focus:-ms-input-placeholder { color: transparent !important; }
+
+
+
+/*******************************************************************************
+ *
+ * Forms
+ *
+ */
+
+
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+button, .c-button,
+input[type='text'],
+select,
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  line-height: 1.2;
+  outline: 0;
+  border-radius: 0;
+  border: 0;
+  background-color: #eee;
+}
+
+button, .c-button {
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+  background: #79b;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select {
+  background-position: right center;
+  background-origin: content-box;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='4'><polygon points='0,0 8,0 4,4' fill='dimgrey'></polygon></svg>");
+}
+
+
+
+/*******************************************************************************
+ *
+ * Checkboxes and Radios
+ *
+ */
+
+
+
+.c-check {
+  position: relative;
+  display: inline-block;
+}
+
+.c-check:not(:last-child) {
+  margin-right: 15px;
+}
+
+.c-check input {
+  display: none;
+}
+
+.c-check label {
+  padding-left: 28px;
+  color: #aaa;
+}
+
+.c-check label::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  background-color: #eee;
+}
+
+.c-check :checked ~ label {
+  color: #79b;
+}
+
+.c-check [type='checkbox']:checked ~ label::before {
+  background-color: #79b;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-2 -2 24 24'><polyline points='18,4 7,15 2,10' stroke='white' fill='none' stroke-width='3'></polyline></svg>");
+}
+
+.c-check [type='radio']:checked ~ label::before {
+  background-color: #79b;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-10 -10 20 20'><circle r='2.5' fill='white'></circle></svg>");
+}
+
+.c-check [type='radio'] ~ label::before {
+  border-radius: 50%;
+}
+
+
+
+/*******************************************************************************
+ *
+ * Tabs
+ *
+ */
+
+
+
+.c-tabs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c-tabs input[type='checkbox'],
+.c-tabs input[type='radio'] {
+  display: none;
+}
+
+.c-tabs label {
+  flex: 1;
+  padding: 10px 0;
+  font-weight: 600;
+  text-align: center;
+  color: #79b;
+  border: 1px solid #79b;
+  border-left-width: 0;
+}
+
+.c-tabs label:nth-child(2) {
+  border-left-width: 1px;
+}
+
+.c-tabs input:checked + label {
+  color: #fff;
+  background-color: #79b;
+}
+
+
+
+/*******************************************************************************
+ *
+ * Tabs Content
+ *
+ */
+
+
+
+.c-tabs-with-content label {
+  flex: none;
+  padding: 10px 15px;
+  border: 0;
+}
+
+.c-content {
+  display: none;
+  width: 100%;
+  padding: 15px;
+  background-color: #eee;
+}
+
+#c-tab-11:checked ~ #c-content-11,
+#c-tab-12:checked ~ #c-content-12,
+#c-tab-13:checked ~ #c-content-13 {
+  display: block;
+}
+
+
+
+/*******************************************************************************
+ *
+ * IE 10/11 Bugfixing
+ *
+ */
+
+
+
+@media screen and (min-width: 0\0) {
+
+  select {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4'%3E%3Cpolygon points='0,0 8,0 4,4' fill='dimgrey'%3E%3C/polygon%3E%3C/svg%3E");
+  }
+
+  .c-check [type='checkbox']:checked ~ label::before {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-2 -2 24 24'%3E%3Cpolyline points='18,4 7,15 2,10' stroke='white' fill='none' stroke-width='3'%3E%3C/polyline%3E%3C/svg%3E");
+  }
+
+  .c-check [type='radio']:checked ~ label::before {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-10 -10 20 20'%3E%3Ccircle r='2.5' fill='white'%3E%3C/circle%3E%3C/svg%3E");
+  }
+
+}

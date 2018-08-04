@@ -1,0 +1,154 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:before, *:after {
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+html, body {
+  height: 100vh;
+}
+
+body {
+  font: 14px/1 'Open Sans', sans-serif;
+  color: #555;
+  background: #222;
+}
+
+.landscape {
+  position: relative;
+  height: 350px;
+  padding: 0 20px;
+  background: #ddd;
+}
+
+.inner {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.title {
+  padding: 40px 0 25px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.text {
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.test input {
+  position: absolute;
+  opacity: 0;
+}
+
+.test label {
+  position: relative;
+  padding: 0 0 0 28px;
+  cursor: pointer;
+}
+
+.test label:before {
+  content: '\f00c';
+  top: 1px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  font-family: fontawesome;
+  line-height: 18px;
+  text-align: center;
+  color: #fff;
+  border: 1px solid #555;
+  background: #fff;
+}
+
+.test input:checked ~ label:before {
+  color: #555;
+}
+
+.part {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  border: 1px solid #333;
+  border-bottom: 0;
+  background: #333;
+}
+
+.bricks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bricks.hidden {
+  overflow: hidden;
+}
+
+$brick: rgb(100,120,140);
+
+.bricks:after {
+  top: 0;
+  left: 0;
+  width: 9px;
+  height: 4px;
+  background: $brick;
+}
+
+@function brick($c,$w,$h) {
+  $val: 0px 0px $c;
+  $col: floor($w/10);
+  $row-odd-end: floor($h/10) - 1;
+  $row-even-start: $row-odd-end + 2;
+  $row-even-end: floor($h/5);
+  $row-even-pos: $h + 5;
+  @for $i from 0 through $col {
+    @for $j from 0 through $row-odd-end {
+      $da: random(10);
+      $val: #{$val}, #{$i*10}px #{$j*10}px darken($c, $da + 0%);
+    }
+    @for $j from $row-even-start through $row-even-end {
+      $da: random(10);
+      $val: #{$val}, #{($i*10) - 5}px #{($j*10) - $row-even-pos}px darken($c, $da + 0%);
+    }
+  }
+  @return $val;
+}
+
+@mixin generator($w,$h) {
+  width: $w + px;
+  height: $h + px;
+  .bricks:after {
+    box-shadow: brick($brick,$w,$h);
+  }
+}
+
+.part:nth-child(1) {
+  @include generator(50,120);
+  margin-left: -200px;
+}
+
+.part:nth-child(2) {
+  @include generator(200,30);
+  margin-left: -100px;
+}
+
+.part:nth-child(3) {
+  @include generator(80,80);
+  margin-left: 150px;
+  border-radius: 50%;
+  .bricks {
+    border-radius: 50%;
+  }
+}
