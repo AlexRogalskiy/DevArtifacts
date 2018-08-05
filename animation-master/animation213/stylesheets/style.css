@@ -1,0 +1,154 @@
+@import url(https://fonts.googleapis.com/css?family=Cabin);
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Cabin', sans-serif;
+}
+
+body {
+  background: #aee6f5;
+  font-size: 1em;
+  min-width: 350px;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0) translateX(0) translateY(0);
+}
+body:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.wrap {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.head {
+  width: 10em;
+  height: 10em;
+  background: #B7DD42;
+  border-radius: 100%;
+  position: relative;
+}
+.head .eye {
+  width: 5em;
+  height: 2em;
+  display: inline-block;
+  overflow: hidden;
+  background: white;
+  border-radius: 100%;
+  border-top: 3em solid #B7DD42;
+  position: absolute;
+  top: 0;
+  box-shadow: 0 1px 0 1px rgba(58, 66, 73, 0.1);
+  transition: height 0.4s, border-top-width 0.4s, transform 0.4s;
+  vertical-align: middle;
+}
+.head .eye.o {
+  left: -1em;
+  transform: rotate(-35deg);
+}
+.head .eye.t {
+  right: -1em;
+  transform: rotate(35deg);
+}
+.head .eye:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  transition: height 0.4s;
+  vertical-align: middle;
+}
+.head .eye:after {
+  content: '';
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background: #3A4249;
+  border-radius: 100%;
+  vertical-align: middle;
+}
+.head:before {
+  content: '';
+  display: inline-block;
+  width: 60%;
+  height: 50%;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 0em;
+  left: 1.998em;
+  background: #fad250;
+}
+.head .m {
+  box-shadow: inset 0 0.4em 0 -0.2em #3A4249;
+  transition: height 0.4s;
+  width: 5em;
+  height: 0.5em;
+  min-height: 1px;
+  position: absolute;
+  left: 2.5em;
+  top: 6.5em;
+  border-radius: 100%;
+}
+.head .m:after {
+  content: '';
+  display: inline-block;
+  height: 0em;
+  width: 2.5em;
+  background: #f2294a;
+  border-radius: 20% 20% 100% 100%;
+  position: absolute;
+  top: 0;
+  left: 1.25em;
+  transition: height 0.4s;
+  box-shadow: 0 2px 0 0 rgba(58, 66, 73, 0.2), inset 0 0.2em 0 0 rgba(58, 66, 73, 0.3);
+}
+.head:hover {
+  transform-origin: center 80%;
+  animation: wig 0.6s 1s linear infinite;
+}
+.head:hover .eye {
+  height: 4em;
+  border-top-width: 1em;
+}
+.head:hover .eye.o {
+  transform: rotate(-45deg);
+}
+.head:hover .eye.t {
+  transform: rotate(45deg);
+}
+.head:hover .eyes:hover .eye {
+  border-top-width: 5em;
+  height: 0.04em;
+}
+.head:hover .m {
+  transition: height 0.4s,top 0.4s;
+  box-shadow: inset 0 -0.4em 0 -0.2em #3A4249;
+  height: 1em;
+  top: 6em;
+}
+.head:hover .m:after {
+  transition: height 0.4s,top 0.4s;
+  height: 2em;
+  top: 0.75em;
+}
+
+@keyframes wig {
+  0% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(1deg);
+  }
+  80% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

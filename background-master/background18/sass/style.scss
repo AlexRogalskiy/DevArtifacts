@@ -1,0 +1,129 @@
+/*
+// ALPHA MIXIN - PARAMATERS
+
+$color - Required
+Foreground color that are wanting to become semi-transparent and to which provide a hex fallback for.
+
+$alpha - Optional
+Transparency amount of foreground color, as a percentage inc % unit. Defaults to 50%.
+
+$bgcolor - Optional but highly recomended
+Color that appears behind the semi-transparent foreground color. Defaults to white.
+
+$property - Optional
+Which CSS property the semi-transparent color is to be applied to. Defaults to background-color.
+
+*/
+
+
+@mixin alpha($color, $alpha: 50%, $bgcolor: #fff, $property: background-color) {
+  // Opacify any rgba value that may be passed through
+  $color-hex: opacify($color, 1);
+  $bgcolor-hex: opacify($bgcolor, 1);
+  // Set max and min percentages to avoid errors
+  @if $alpha > 100% { $alpha: 100%; }
+  @if $alpha < 0% { $alpha: 0%; }
+  // Creates decimal version of percentage value stripping unit and dividing by 100
+  $decimal: ($alpha / ($alpha * 0 + 1) / 100);
+
+  // Creates styles outputting: 
+  // - Property Name - default background-color
+  // - Fallback style with Hex value
+  // - Proper style with RGBA value
+  #{$property}: mix($color-hex,$bgcolor-hex, $alpha);
+  #{$property}: rgba($color-hex, $decimal);
+  
+  
+  //REMOVE THIS - JUST FOR EXAMPLE TO SHOW HEX VALUES IS RBGA COMPATIBILE BROWSER...
+  .ie8 & {
+    #{$property}: mix($color-hex,$bgcolor-hex, $alpha);
+  }
+  //END OF SECTION TO BE REMOVED
+}
+
+.red {
+  background: #aaa;
+}
+
+@for $i from 1 through 10 {
+  .red li:nth-child(#{$i}) {
+    @include alpha($color: red, $bgcolor: #aaa, $alpha: ($i * 10%));
+  }
+}
+
+.blue {
+  background: #aaa;
+}
+
+@for $i from 1 through 10 {
+  .blue li:nth-child(#{$i}) {
+    @include alpha($color: blue, $bgcolor: #aaa, $alpha: ($i * 10%));
+  }
+}
+
+.green {
+  background: #aaa;
+}
+
+@for $i from 1 through 10 {
+  .green li:nth-child(#{$i}) {
+    @include alpha($color: green, $bgcolor: #aaa, $alpha: ($i * 10%));
+  }
+}
+
+
+
+
+
+body, html{
+  background: #f6f0ee;
+}
+
+* {
+  box-sizing: border-box;
+}
+div {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+ul,li {
+  margin: 0;
+  list-style: none;
+}
+
+ul {
+  //margin: 20px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+li {
+  width: 20%;
+  text-align: center;
+  padding: 20px 0;
+  float: left;
+  color: white;
+}
+
+.toggle {
+  background: black;
+  padding: 10px; 
+  display: block;
+  text-align: center; 
+  border-bottom: 2px #666 solid;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  margin-bottom: 20px;
+  cursor: pointer;
+  &:hover{
+    background: #333;
+  }
+  &.hex:before {
+    content: 'View with RGBA Values';
+  }
+  &.rgba:before {
+    content: 'View with Hex Values';
+  } 
+}

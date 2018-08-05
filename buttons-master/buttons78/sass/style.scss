@@ -1,0 +1,55 @@
+body{
+  margin: 0;
+  background: rebeccapurple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+button{
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  background: #639;
+  border: 2px solid #fff;
+  padding: 0;
+  height: 40px;
+  width: 200px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+button::before,
+button::after{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 0;
+  background-color: #fff;
+  left: 0;
+  z-index: -1;
+  transition: all .25s;
+}
+
+button::before{
+  top: 50%;
+}
+
+button::after{
+  bottom: 50%;
+}
+
+button:hover{
+  color: #639;
+}
+
+button:hover::before,
+button:hover::after{
+  height: 50%;
+}

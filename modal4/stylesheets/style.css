@@ -1,0 +1,147 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  background: #6643B5;
+  position: relative;
+}
+
+.btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  width: 250px;
+  border: 2px solid #fff;
+  outline: 0;
+  line-height: 3;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 3px;
+  box-shadow: 8px 8px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transition: all .5s;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: #fff;
+  left: -25%;
+  transform: skewX(20deg) translateX(-100%);
+  z-index: -1;
+  transition: all .5s;
+}
+
+.btn:hover {
+  color: #6643B5;
+}
+
+.btn:hover:after {
+  transform: skewX(20deg) translateX(0);
+}
+
+.modal {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  transform: translateX(-50%) translateY(-350%);
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+  z-index: 9;
+  transition: all .5s;
+  /* display: none; */
+}
+
+.modal.is_open {
+  /* display: block; */
+  transform: translateX(-50%) translateY(-50%);
+  transition: all .5s;
+}
+
+.modal.is_open + .modal_overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 8;
+}
+
+.container {
+  padding: 20px;
+}
+
+.modal_header {
+  background: #ebebeb;
+  position: relative;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.modal_header h1 {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.close {
+  width: 20px;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.modal_body h2 {
+  margin-bottom: 15px;
+}
+
+.modal_body p {
+  font-size: 14px;
+}
+
+p + p {
+  margin-top: 10px;
+}
+
+.modal_footer {
+  max-height: 72px;
+  background: #ebebeb;
+  box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2);
+  text-align: right;
+}
+
+.btn_cancel {
+  width: 125px;
+  font-size: 16px;
+  line-height: 2;
+  font-family: "Montserrat", sans-serif;
+  border: 2px solid #fff;
+  background: #fff;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  outline: 0;
+}

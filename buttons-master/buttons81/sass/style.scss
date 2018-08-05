@@ -1,0 +1,152 @@
+body {
+    text-align: center;
+    padding: 30px;
+}
+
+$outline-width: 6px;
+$shadow-width: 4px;
+
+$button-background: #92CD41;
+$sec-button-background: #76c442;
+$shadow-color:  #4AA52E;
+
+$alt-button-background: #F7D51D;
+$alt-sec-button-background: #F2C409;
+$alt-shadow-color:  #E59400;
+
+$reset-button-background: #E76E55;
+$reset-sec-button-background: #CE372B;
+$reset-shadow-color:  #8C2022;
+
+.eightbit-btn {
+    background: $button-background;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+    font-family: 'Press Start 2P', cursive;
+    text-decoration: none; 
+    color: white;
+    box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $shadow-color;
+
+    &:hover,
+    &:focus {
+        background: $sec-button-background;
+        box-shadow: inset (-$shadow-width*1.5) (-$shadow-width*1.5) 0px 0px $shadow-color;
+    }
+
+    &:active {
+        box-shadow: inset $shadow-width $shadow-width 0px 0px $shadow-color;
+    }
+
+    &:before,
+    &:after {
+    content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: content-box;
+    }
+
+    &:before {
+        top: -$outline-width;
+        left: 0;
+        border-top: $outline-width black solid;
+        border-bottom: $outline-width black solid;
+    }
+
+    &:after {
+        left: -$outline-width;
+        top: 0;
+        border-left: $outline-width black solid;
+        border-right: $outline-width black solid;
+    }
+
+    &--reset {
+        background: $reset-button-background;
+        box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $reset-shadow-color;
+
+        &:hover,
+        &:focus {
+            background: $reset-sec-button-background;
+            box-shadow: inset (-$shadow-width*1.5) (-$shadow-width*1.5) 0px 0px $reset-shadow-color;
+        }
+
+        &:active {
+            box-shadow: inset $shadow-width $shadow-width 0px 0px $reset-shadow-color;
+        }
+
+    }
+
+    &--proceed {
+        background: $alt-button-background;
+        box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $alt-shadow-color;
+
+        &:hover,
+        &:focus {
+            background: $alt-sec-button-background;
+            box-shadow: inset (-$shadow-width*1.5) (-$shadow-width*1.5) 0px 0px $alt-shadow-color;
+        }
+
+        &:active {
+            box-shadow: inset $shadow-width $shadow-width 0px 0px $alt-shadow-color;
+        }
+
+    }
+}
+
+
+
+////////////////////////////////////////
+// GLOBAL SETUP 
+////////////////////////////////////////
+
+$wrapper-max-width: 1000px;
+
+*,*:before,*:after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    max-width: $wrapper-max-width;
+    margin: 0 auto;
+    padding: 30px;
+    font-family: 'Maven Pro', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.8rem;
+    line-height: 3.4rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h1,h2 {
+    font-family: 'Press Start 2P', cursive;
+}
+
+p {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+hr {
+    margin: 40px auto;
+    max-width: 100px;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    padding: 0; 
+}
+
+.pen-intro {
+    text-align: center;
+}
+
+

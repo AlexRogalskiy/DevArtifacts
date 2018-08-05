@@ -1,0 +1,407 @@
+////////////////////////////////////////
+// DRAW OUTLINE 
+////////////////////////////////////////
+
+$outline-border-width: 2px;
+$outline-border-color: black;
+$sec-outline-border-color: #37b2b2;
+$outline-button-padding: 16px 28px;
+$outline-text-color: black;
+$sec-outline-text-color: #37b2b2;
+$outline-transition-time: 1.5s;
+$outline-fade: 0.35s;
+$outline-active-scale: 1.05;
+
+.draw-outline {
+  display: inline-block;
+  padding: $outline-button-padding;
+  border: $outline-border-width $outline-border-color solid;
+  text-align: center;
+  text-decoration: none;
+  color: $outline-text-color;
+  position: relative;
+  transition: border-color 0.35s ease-in-out;
+  z-index: 1;
+  
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    box-sizing: content-box;
+    z-index: -1;
+    transition: transform 0.25s ease-in-out;
+    padding-left: $outline-border-width;
+  }
+  
+  &:before {
+    top: -$outline-border-width;
+    left: -$outline-border-width;
+    border-top: $outline-border-width transparent solid;
+    border-right: $outline-border-width transparent solid;
+  }
+  
+  &:after {
+    bottom: -$outline-border-width;
+    right: -$outline-border-width;
+    border-bottom: $outline-border-width transparent solid;
+    border-left: $outline-border-width transparent solid;
+  }
+  
+  &:hover {
+    color: $sec-outline-text-color;
+    transition: color $outline-fade ease-in-out,  border-color $outline-fade ease-in-out;
+    border-color: $outline-border-color;
+    animation: outline-reset $outline-fade 1  forwards;
+    &:before {
+      animation: top-right-border $outline-transition-time/2 1 $outline-fade forwards;
+    }
+    &:after {
+      animation: bottom-left-border $outline-transition-time/2 1 ($outline-transition-time/2)+$outline-fade forwards;
+    }
+  } 
+  &--tandem:hover {
+    &:after {
+      animation: bottom-left-border $outline-transition-time/2 1 $outline-fade forwards;
+    }  
+  }
+  &:active {
+    &:before,
+    &:after {
+      transform: scale($outline-active-scale);
+    }
+  }
+}
+
+@keyframes outline-reset {
+  0% {
+    border-color: $outline-border-color;
+  }
+  100% {
+    border-color: transparent;
+  }
+}
+
+
+@keyframes top-right-border {
+  0% {
+    border-color: $sec-outline-border-color;
+    width: 0px;
+    height: 0;
+  }
+  50% {
+    width: 100%;
+    height: 0;
+  }
+  100% {
+    border-color: $sec-outline-border-color;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@keyframes bottom-left-border {
+  0% {
+    border-color: $sec-outline-border-color;
+    width: 0px;
+    height: 0;
+  }
+  50% {
+    width: 100%;
+    height: 0;
+  }
+  100% {
+    border-color: $sec-outline-border-color;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+
+////////////////////////////////////////
+// SWIPE FILL
+////////////////////////////////////////
+
+$swipe-fill-border-width: 2px;
+$swipe-fill-border-color: black;
+$sec-swipe-fill-border-color: black;
+$swipe-fill-button-padding: 16px 28px;
+$swipe-fill-text-color: black;
+$sec-swipe-fill-text-color: white;
+$swipe-fill-border-radius: 0px;
+$swipe-fill-background: white;
+$sec-swipe-fill-background: #666;
+$swipe-fill-transition-time: 0.25s;
+
+.swipe-fill {
+  display: inline-block;
+  padding: $swipe-fill-button-padding;
+  border: $swipe-fill-border-width $swipe-fill-border-color solid;
+  text-align: center;
+  text-decoration: none;
+  color: $swipe-fill-text-color;
+  background: $swipe-fill-background;
+  position: relative;
+  overflow: hidden;
+  transition: color $swipe-fill-transition-time ease-in-out,  border-color $swipe-fill-transition-time ease-in-out;
+  z-index: 1;
+  border-radius: $swipe-fill-border-radius;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $sec-swipe-fill-background;
+    transition: transform $swipe-fill-transition-time ease-in-out;
+    z-index: -1;
+  }
+  
+  &--up {
+    &:before {
+      transform: translate3d(0, 100%, 0);
+    }
+  }
+  
+  &--down {
+    &:before {
+      transform: translate3d(0, -100%, 0);
+    }
+  }
+  
+  &--left {
+    &:before {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  
+  &--right {
+    &:before {
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+  
+  &:hover {
+    color: $sec-swipe-fill-text-color;
+    border: $swipe-fill-border-width $sec-swipe-fill-border-color solid;
+    &:before {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+
+
+////////////////////////////////////////
+// BOX FILL 
+////////////////////////////////////////
+
+$box-fill-border-width: 2px;
+$box-fill-border-color: black;
+$sec-box-fill-border-color: black;
+$box-fill-button-padding: 16px 28px;
+$box-fill-text-color: black;
+$sec-box-fill-text-color: white;
+$box-fill-border-radius: 0px;
+$box-fill-background: white;
+$sec-box-fill-background: #666;
+$box-fill-transition-time: 0.35s;
+
+.box-fill {
+  display: inline-block;
+  padding: $box-fill-button-padding;
+  border: $box-fill-border-width $box-fill-border-color solid;
+  text-align: center;
+  text-decoration: none;
+  color: $box-fill-text-color;
+  position: relative;
+  overflow: hidden;
+  background: $box-fill-background;
+  transition: color $box-fill-transition-time ease-in-out;
+  z-index: 1;
+  border-radius: $box-fill-border-radius;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $sec-box-fill-background;
+    transition: transform $box-fill-transition-time ease-in-out, opacity $box-fill-transition-time ease-in-out;
+    transform: scale(0);
+    z-index: -1;
+    opacity: 0;
+  }
+  
+  &:hover {
+    color: $sec-box-fill-text-color;
+    &:before {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  &--out {
+    color: $sec-box-fill-text-color;
+    &:before {
+      transform: scale(1);
+      opacity: 1;
+    }
+    &:hover {
+      color: $box-fill-text-color;
+    }
+    &:hover:before {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+}
+
+
+
+////////////////////////////////////////
+// CROSS FADE 
+////////////////////////////////////////
+
+$cross-fade-border-width: 2px;
+$cross-fade-border-color: black;
+$sec-cross-fade-border-color: black;
+$cross-fade-button-padding: 16px 28px;
+$cross-fade-text-color: black;
+$sec-cross-fade-text-color: white;
+$cross-fade-border-radius: 0px;
+$cross-fade-background: white;
+$sec-cross-fade-background: #666;
+$cross-fade-transition-time: 0.75s;
+
+.cross-fade {
+  display: inline-block;
+  padding: $cross-fade-button-padding;
+  border: $cross-fade-border-width $cross-fade-border-color solid;
+  text-align: center;
+  text-decoration: none;
+  color: $cross-fade-text-color;
+  position: relative;
+  overflow: hidden;
+  transition: color $cross-fade-transition-time ease-in-out;
+  z-index: 1;
+  border-radius: $cross-fade-border-radius;
+  
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -25%;
+    width: 150%;
+    height: 100%;
+    background: rgba($sec-cross-fade-background, 0.5);
+    transition: transform $cross-fade-transition-time ease-in-out;
+    z-index: -1;
+  }
+  
+  &:before {
+    transform: translate3d(100%, 0, 0) skew(20deg);
+    transform-origin: 0 0;
+  }
+  
+  &:after {
+    transform: translate3d(-100%, 0, 0) skew(20deg);
+    transform-origin: 100% 100%;
+  }
+  
+  &:hover {
+    color: $sec-cross-fade-text-color;
+    &:before,
+    &:after {
+      transform: translate3d(0, 0, 0) skew(20deg);
+    }
+  }
+}
+
+
+
+////////////////////////////////////////
+// UNDERLINE ANIMATION 
+////////////////////////////////////////
+
+$link-color: #37b2b2;
+
+a:not([class]) {
+  text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;
+  text-decoration: none;
+  background-image: linear-gradient($link-color 50%, $link-color 50%);
+  background-size: 10000px 1px;
+  color: $link-color;
+  background-repeat: no-repeat;
+  background-position: 0 1em;
+  background-position: -10000px 1em;
+  &:hover {
+    background-position: 0 1em;
+    transition: background-position 2s ease-in-out;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////
+// GLOBAL SETUP 
+////////////////////////////////////////
+$wrapper-max-width: 1000px;
+
+body {
+  font-family: sans-serif;
+  max-width: $wrapper-max-width;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: 'Maven Pro', sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.8rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h1,h2 {
+  font-family: 'Yrsa', cursive;
+}
+
+p {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+hr {
+  margin: 40px auto;
+  max-width: 100px;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  padding: 0; 
+}
+
+.pen-intro {
+  text-align: center;
+}
+
+.button-container {
+  a {
+    margin: 0 10px;
+  }
+}

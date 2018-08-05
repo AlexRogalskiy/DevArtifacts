@@ -1,0 +1,106 @@
+*,
+*:before,
+*:after{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html{
+	font-size: 16px;
+}
+
+body{
+	height: 100vh;
+	font-family: 'Montserrat', sans-serif;
+	background: #2ecc71;
+}
+
+.wrapper{
+	padding: 2rem;
+}
+
+ul{
+	list-style: none;
+}
+
+.navbar{
+	background: #27ae60;
+}
+
+.navbar > ul{
+	display: flex;
+	justify-content: center;
+}
+
+.navbar li{
+	padding: 0 15px;
+	margin: 0 15px;
+	position: relative;
+}
+
+.navbar a{
+	line-height: 2.5;
+	color: #fff;
+	text-decoration: none;
+	display: block;
+}
+
+.arrow{
+	width: .8rem;
+	position: relative;
+	top: 3px;
+	transform: rotate(0deg);
+	transition: all .35s;
+}
+
+.submenu{
+	position: absolute;
+	background: #27ae60;
+	left: 0;
+	top: 150%;
+	min-width: 11rem;
+	left: -2.5rem;
+	visibility: hidden;
+	opacity: 0;
+	transform: translateY(-1rem);
+	transition: all .35s;
+}
+
+.navbar > ul > li:hover .arrow{
+	transform: rotate(180deg);
+}
+
+.navbar > ul > li:hover .submenu{
+	visibility: visible;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.submenu::before{
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 20px;
+	top: -20px;
+	left: 0;
+	background: transparent;
+}
+
+.submenu::after{
+	position: absolute;
+	content: "";
+	width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	
+	border-bottom: 10px solid #27ae60;
+	top: -10px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.submenu li:not(:last-child){
+	border-bottom: 1px solid #fcfcfc;
+}

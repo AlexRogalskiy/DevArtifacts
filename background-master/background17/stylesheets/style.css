@@ -1,0 +1,1225 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  background-image: url("http://i59.tinypic.com/3499qfm.png");
+}
+
+.hexagon-container {
+  float: left;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+  -ms-transform: perspective(1000px);
+  -moz-transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+}
+
+.front, .back {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: rotateY(0deg);
+  -moz-transition: 0.6s;
+  -moz-transform-style: preserve-3d;
+  -moz-transform: rotateY(0deg);
+  -o-transition: 0.6s;
+  -o-transform-style: preserve-3d;
+  -o-transform: rotateY(0deg);
+  -ms-transition: 0.6s;
+  -ms-transform-style: preserve-3d;
+  -ms-transform: rotateY(0deg);
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.front {
+  transform: scale(1) rotateY(0deg);
+  z-index: 3000;
+}
+
+.back {
+  transform: scale(1) rotateY(-180deg);
+  background: red !important;
+  z-index: 2000;
+}
+
+.hexagon-container.hover,
+.hexagon-container.flipped {
+  position: relative;
+  z-index: 3000;
+}
+
+.hexagon-container.hover .front {
+  transform: scale(2) rotateY(0deg);
+  z-index: 100;
+}
+
+.hexagon-container.hover .back {
+  transform: scale(2) rotateY(-180deg);
+  z-index: 99;
+}
+
+.hexagon-container.flipped .front {
+  transform: scale(2) rotateY(180deg);
+}
+
+.hexagon-container.flipped .back {
+  transform: scale(2) rotateY(0deg);
+}
+
+.hexagon {
+  cursor: pointer;
+  background-image: url(http://csshexagon.com/img/meow.jpg);
+  background-position: center;
+}
+.hexagon.super-back {
+  background: white !important;
+  transform: scale(1.05);
+}
+
+.hexTop,
+.hexBottom {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background: inherit;
+}
+
+/*counter transform the bg image on the caps*/
+.hexTop:after,
+.hexBottom:after {
+  content: "";
+  position: absolute;
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  background: inherit;
+}
+
+.hexTop:after {
+  background-position: center top;
+}
+
+.hexBottom:after {
+  background-position: center bottom;
+}
+
+.hexagon:after {
+  content: "";
+  position: absolute;
+  top: 0.0000px;
+  left: 0;
+  z-index: 2;
+  background: inherit;
+}
+
+@media screen and (min-width: 400px) {
+  body, html {
+    background-position: 99px 178px;
+    background-size: 42px auto;
+  }
+
+  .container {
+    width: 208px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 40px;
+    height: 23.094px;
+    margin: 6.548px 2px 6.548px 0;
+    background-size: auto 46.18802px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 21px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 40px;
+    height: 23.094px;
+    background-size: auto 46.18802px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 28.284px;
+    height: 28.284px;
+    left: 5.858px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 40px;
+    height: 23.09401px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-11.547px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-11.547px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-11.547px);
+  }
+
+  .hexTop {
+    top: -14.14214px;
+  }
+
+  .hexBottom {
+    bottom: -14.14214px;
+  }
+
+  .hexagon:after {
+    width: 40px;
+    height: 23.094px;
+  }
+}
+@media screen and (min-width: 500px) {
+  body, html {
+    background-position: 98.5px 187px;
+    background-size: 63px auto;
+  }
+
+  .container {
+    width: 312px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 60px;
+    height: 34.641px;
+    margin: 9.822px 3px 9.822px 0;
+    background-size: auto 69.28203px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 31.5px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 60px;
+    height: 34.641px;
+    background-size: auto 69.28203px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 42.426px;
+    height: 42.426px;
+    left: 8.787px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 60px;
+    height: 34.64102px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-17.3205px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-17.3205px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-17.3205px);
+  }
+
+  .hexTop {
+    top: -21.21321px;
+  }
+
+  .hexBottom {
+    bottom: -21.21321px;
+  }
+
+  .hexagon:after {
+    width: 60px;
+    height: 34.641px;
+  }
+}
+@media screen and (min-width: 600px) {
+  body, html {
+    background-position: 98px 196px;
+    background-size: 84px auto;
+  }
+
+  .container {
+    width: 416px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 80px;
+    height: 46.188px;
+    margin: 13.096px 4px 13.096px 0;
+    background-size: auto 92.37604px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 42px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 80px;
+    height: 46.188px;
+    background-size: auto 92.37604px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 56.568px;
+    height: 56.568px;
+    left: 11.716px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 80px;
+    height: 46.18802px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-23.094px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-23.094px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-23.094px);
+  }
+
+  .hexTop {
+    top: -28.28428px;
+  }
+
+  .hexBottom {
+    bottom: -28.28428px;
+  }
+
+  .hexagon:after {
+    width: 80px;
+    height: 46.188px;
+  }
+}
+@media screen and (min-width: 700px) {
+  body, html {
+    background-position: 97.5px 205px;
+    background-size: 105px auto;
+  }
+
+  .container {
+    width: 520px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 100px;
+    height: 57.735px;
+    margin: 16.37px 5px 16.37px 0;
+    background-size: auto 115.47005px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 52.5px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 100px;
+    height: 57.735px;
+    background-size: auto 115.47005px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 70.71px;
+    height: 70.71px;
+    left: 14.645px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 100px;
+    height: 57.73503px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-28.8675px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-28.8675px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-28.8675px);
+  }
+
+  .hexTop {
+    top: -35.35535px;
+  }
+
+  .hexBottom {
+    bottom: -35.35535px;
+  }
+
+  .hexagon:after {
+    width: 100px;
+    height: 57.735px;
+  }
+}
+@media screen and (min-width: 800px) {
+  body, html {
+    background-position: 97px 214px;
+    background-size: 126px auto;
+  }
+
+  .container {
+    width: 624px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 120px;
+    height: 69.282px;
+    margin: 19.644px 6px 19.644px 0;
+    background-size: auto 138.56406px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 63px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 120px;
+    height: 69.282px;
+    background-size: auto 138.56406px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 84.852px;
+    height: 84.852px;
+    left: 17.574px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 120px;
+    height: 69.28203px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-34.641px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-34.641px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-34.641px);
+  }
+
+  .hexTop {
+    top: -42.42642px;
+  }
+
+  .hexBottom {
+    bottom: -42.42642px;
+  }
+
+  .hexagon:after {
+    width: 120px;
+    height: 69.282px;
+  }
+}
+@media screen and (min-width: 900px) {
+  body, html {
+    background-position: 96.5px 223px;
+    background-size: 147px auto;
+  }
+
+  .container {
+    width: 728px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 140px;
+    height: 80.829px;
+    margin: 22.918px 7px 22.918px 0;
+    background-size: auto 161.65807px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 73.5px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 140px;
+    height: 80.829px;
+    background-size: auto 161.65807px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 98.994px;
+    height: 98.994px;
+    left: 20.503px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 140px;
+    height: 80.82904px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-40.4145px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-40.4145px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-40.4145px);
+  }
+
+  .hexTop {
+    top: -49.49749px;
+  }
+
+  .hexBottom {
+    bottom: -49.49749px;
+  }
+
+  .hexagon:after {
+    width: 140px;
+    height: 80.829px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  body, html {
+    background-position: 96px 232px;
+    background-size: 168px auto;
+  }
+
+  .container {
+    width: 832px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 160px;
+    height: 92.376px;
+    margin: 26.192px 8px 26.192px 0;
+    background-size: auto 184.75208px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 84px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 160px;
+    height: 92.376px;
+    background-size: auto 184.75208px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 113.136px;
+    height: 113.136px;
+    left: 23.432px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 160px;
+    height: 92.37604px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-46.188px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-46.188px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-46.188px);
+  }
+
+  .hexTop {
+    top: -56.56856px;
+  }
+
+  .hexBottom {
+    bottom: -56.56856px;
+  }
+
+  .hexagon:after {
+    width: 160px;
+    height: 92.376px;
+  }
+}
+@media screen and (min-width: 1100px) {
+  body, html {
+    background-position: 95.5px 241px;
+    background-size: 189px auto;
+  }
+
+  .container {
+    width: 936px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 180px;
+    height: 103.923px;
+    margin: 29.466px 9px 29.466px 0;
+    background-size: auto 207.84609px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 94.5px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 180px;
+    height: 103.923px;
+    background-size: auto 207.84609px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 127.278px;
+    height: 127.278px;
+    left: 26.361px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 180px;
+    height: 103.92305px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-51.9615px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-51.9615px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-51.9615px);
+  }
+
+  .hexTop {
+    top: -63.63963px;
+  }
+
+  .hexBottom {
+    bottom: -63.63963px;
+  }
+
+  .hexagon:after {
+    width: 180px;
+    height: 103.923px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  body, html {
+    background-position: 95px 250px;
+    background-size: 210px auto;
+  }
+
+  .container {
+    width: 1040px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 200px;
+    height: 115.47px;
+    margin: 32.74px 10px 32.74px 0;
+    background-size: auto 230.9401px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 105px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 200px;
+    height: 115.47px;
+    background-size: auto 230.9401px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 141.42px;
+    height: 141.42px;
+    left: 29.29px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 200px;
+    height: 115.47005px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-57.735px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-57.735px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-57.735px);
+  }
+
+  .hexTop {
+    top: -70.7107px;
+  }
+
+  .hexBottom {
+    bottom: -70.7107px;
+  }
+
+  .hexagon:after {
+    width: 200px;
+    height: 115.47px;
+  }
+}
+@media screen and (min-width: 1300px) {
+  body, html {
+    background-position: 94.5px 259px;
+    background-size: 231px auto;
+  }
+
+  .container {
+    width: 1144px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 220px;
+    height: 127.017px;
+    margin: 36.014px 11px 36.014px 0;
+    background-size: auto 254.03411px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 115.5px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 220px;
+    height: 127.017px;
+    background-size: auto 254.03411px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 155.562px;
+    height: 155.562px;
+    left: 32.219px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 220px;
+    height: 127.01706px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-63.5085px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-63.5085px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-63.5085px);
+  }
+
+  .hexTop {
+    top: -77.78177px;
+  }
+
+  .hexBottom {
+    bottom: -77.78177px;
+  }
+
+  .hexagon:after {
+    width: 220px;
+    height: 127.017px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  body, html {
+    background-position: 94px 268px;
+    background-size: 252px auto;
+  }
+
+  .container {
+    width: 1248px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 240px;
+    height: 138.564px;
+    margin: 39.288px 12px 39.288px 0;
+    background-size: auto 277.12812px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 126px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 240px;
+    height: 138.564px;
+    background-size: auto 277.12812px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 169.704px;
+    height: 169.704px;
+    left: 35.148px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 240px;
+    height: 138.56406px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-69.282px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-69.282px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-69.282px);
+  }
+
+  .hexTop {
+    top: -84.85284px;
+  }
+
+  .hexBottom {
+    bottom: -84.85284px;
+  }
+
+  .hexagon:after {
+    width: 240px;
+    height: 138.564px;
+  }
+}
+@media screen and (min-width: 1500px) {
+  body, html {
+    background-position: 93.5px 277px;
+    background-size: 273px auto;
+  }
+
+  .container {
+    width: 1352px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 260px;
+    height: 150.111px;
+    margin: 42.562px 13px 42.562px 0;
+    background-size: auto 300.22213px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 136.5px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 260px;
+    height: 150.111px;
+    background-size: auto 300.22213px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 183.846px;
+    height: 183.846px;
+    left: 38.077px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 260px;
+    height: 150.11107px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-75.0555px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-75.0555px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-75.0555px);
+  }
+
+  .hexTop {
+    top: -91.92391px;
+  }
+
+  .hexBottom {
+    bottom: -91.92391px;
+  }
+
+  .hexagon:after {
+    width: 260px;
+    height: 150.111px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  body, html {
+    background-position: 93px 286px;
+    background-size: 294px auto;
+  }
+
+  .container {
+    width: 1456px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 280px;
+    height: 161.658px;
+    margin: 45.836px 14px 45.836px 0;
+    background-size: auto 323.31614px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 147px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 280px;
+    height: 161.658px;
+    background-size: auto 323.31614px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 197.988px;
+    height: 197.988px;
+    left: 41.006px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 280px;
+    height: 161.65808px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-80.829px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-80.829px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-80.829px);
+  }
+
+  .hexTop {
+    top: -98.99498px;
+  }
+
+  .hexBottom {
+    bottom: -98.99498px;
+  }
+
+  .hexagon:after {
+    width: 280px;
+    height: 161.658px;
+  }
+}
+@media screen and (min-width: 1700px) {
+  body, html {
+    background-position: 92.5px 295px;
+    background-size: 315px auto;
+  }
+
+  .container {
+    width: 1560px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 300px;
+    height: 173.205px;
+    margin: 49.11px 15px 49.11px 0;
+    background-size: auto 346.41015px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 157.5px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 300px;
+    height: 173.205px;
+    background-size: auto 346.41015px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 212.13px;
+    height: 212.13px;
+    left: 43.935px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 300px;
+    height: 173.20508px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+  }
+
+  .hexTop {
+    top: -106.06605px;
+  }
+
+  .hexBottom {
+    bottom: -106.06605px;
+  }
+
+  .hexagon:after {
+    width: 300px;
+    height: 173.205px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  body, html {
+    background-position: 92px 304px;
+    background-size: 336px auto;
+  }
+
+  .container {
+    width: 1664px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 320px;
+    height: 184.752px;
+    margin: 52.384px 16px 52.384px 0;
+    background-size: auto 369.50416px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 168px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 320px;
+    height: 184.752px;
+    background-size: auto 369.50416px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 226.272px;
+    height: 226.272px;
+    left: 46.864px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 320px;
+    height: 184.75209px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-92.376px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-92.376px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-92.376px);
+  }
+
+  .hexTop {
+    top: -113.13712px;
+  }
+
+  .hexBottom {
+    bottom: -113.13712px;
+  }
+
+  .hexagon:after {
+    width: 320px;
+    height: 184.752px;
+  }
+}
+@media screen and (min-width: 1900px) {
+  body, html {
+    background-position: 91.5px 313px;
+    background-size: 357px auto;
+  }
+
+  .container {
+    width: 1768px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 340px;
+    height: 196.299px;
+    margin: 55.658px 17px 55.658px 0;
+    background-size: auto 392.59817px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 178.5px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 340px;
+    height: 196.299px;
+    background-size: auto 392.59817px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 240.414px;
+    height: 240.414px;
+    left: 49.793px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 340px;
+    height: 196.29909px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-98.1495px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-98.1495px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-98.1495px);
+  }
+
+  .hexTop {
+    top: -120.20819px;
+  }
+
+  .hexBottom {
+    bottom: -120.20819px;
+  }
+
+  .hexagon:after {
+    width: 340px;
+    height: 196.299px;
+  }
+}
+@media screen and (min-width: 2000px) {
+  body, html {
+    background-position: 91px 322px;
+    background-size: 378px auto;
+  }
+
+  .container {
+    width: 1872px;
+    padding: 160px 100px;
+  }
+
+  .hexagon-container {
+    width: 360px;
+    height: 207.846px;
+    margin: 58.932px 18px 58.932px 0;
+    background-size: auto 415.69218px;
+  }
+  .hexagon-container:nth-child(9n+5) {
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n+1) {
+    margin-left: 189px;
+    clear: left;
+  }
+  .hexagon-container:nth-child(9n) {
+    margin-right: 0;
+  }
+
+  .hexagon {
+    width: 360px;
+    height: 207.846px;
+    background-size: auto 415.69218px;
+  }
+
+  .hexTop,
+  .hexBottom {
+    width: 254.556px;
+    height: 254.556px;
+    left: 52.722px;
+  }
+
+  /*counter transform the bg image on the caps*/
+  .hexTop:after,
+  .hexBottom:after {
+    width: 360px;
+    height: 207.8461px;
+    -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-103.923px);
+    -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-103.923px);
+    transform: rotate(45deg) scaleY(1.7321) translateY(-103.923px);
+  }
+
+  .hexTop {
+    top: -127.27926px;
+  }
+
+  .hexBottom {
+    bottom: -127.27926px;
+  }
+
+  .hexagon:after {
+    width: 360px;
+    height: 207.846px;
+  }
+}
+.container {
+  zoom: 1;
+}
+.container:before, .container:after {
+  content: " ";
+  display: table;
+}
+.container:after {
+  clear: both;
+}
