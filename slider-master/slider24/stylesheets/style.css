@@ -1,0 +1,174 @@
+body, .slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  background: linear-gradient(15deg, #00375F, #00989B);
+  min-height: 100vh;
+}
+
+input[name="next"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+}
+input[name="next"]:nth-child(1):checked ~ .slider .images .container {
+  --x: 0px;
+}
+input[name="next"]:nth-child(1):checked ~ .slider .images {
+  --w: 600px;
+  --h: 400px;
+}
+input[name="next"]:nth-child(1):checked ~ .slider .positions label:nth-child(1):after {
+  background: #ED680F;
+  border: 1px solid #a5480a;
+}
+input[name="next"]:nth-child(2):checked ~ .slider .images .container {
+  --x: -600px;
+}
+input[name="next"]:nth-child(2):checked ~ .slider .images {
+  --w: 266px;
+  --h: 500px;
+}
+input[name="next"]:nth-child(2):checked ~ .slider .positions label:nth-child(2):after {
+  background: #ED680F;
+  border: 1px solid #a5480a;
+}
+input[name="next"]:nth-child(3):checked ~ .slider .images .container {
+  --x: -933px;
+}
+input[name="next"]:nth-child(3):checked ~ .slider .images {
+  --w: 600px;
+  --h: 400px;
+}
+input[name="next"]:nth-child(3):checked ~ .slider .positions label:nth-child(3):after {
+  background: #ED680F;
+  border: 1px solid #a5480a;
+}
+input[name="next"]:nth-child(4):checked ~ .slider .images .container {
+  --x: -1533px;
+}
+input[name="next"]:nth-child(4):checked ~ .slider .images {
+  --w: 400px;
+  --h: 500px;
+}
+input[name="next"]:nth-child(4):checked ~ .slider .positions label:nth-child(4):after {
+  background: #ED680F;
+  border: 1px solid #a5480a;
+}
+input[name="next"]:nth-child(5):checked ~ .slider .images .container {
+  --x: -1933px;
+}
+input[name="next"]:nth-child(5):checked ~ .slider .images {
+  --w: 417px;
+  --h: 400px;
+}
+input[name="next"]:nth-child(5):checked ~ .slider .positions label:nth-child(5):after {
+  background: #ED680F;
+  border: 1px solid #a5480a;
+}
+input[name="next"]:nth-child(6):checked ~ .slider .images .container {
+  --x: -2350px;
+}
+input[name="next"]:nth-child(6):checked ~ .slider .images {
+  --w: 304px;
+  --h: 400px;
+}
+input[name="next"]:nth-child(6):checked ~ .slider .positions label:nth-child(6):after {
+  background: #ED680F;
+  border: 1px solid #a5480a;
+}
+input[name="next"]:nth-child(7):checked ~ .slider .images .container {
+  --x: -2655px;
+}
+input[name="next"]:nth-child(7):checked ~ .slider .images {
+  --w: 600px;
+  --h: 400px;
+}
+input[name="next"]:nth-child(7):checked ~ .slider .positions label:nth-child(7):after {
+  background: #ED680F;
+  border: 1px solid #a5480a;
+}
+input[name="next"]:nth-child(8):checked ~ .slider .images .container {
+  --x: -3256px;
+}
+input[name="next"]:nth-child(8):checked ~ .slider .images {
+  --w: 266px;
+  --h: 400px;
+}
+input[name="next"]:nth-child(8):checked ~ .slider .positions label:nth-child(8):after {
+  background: #ED680F;
+  border: 1px solid #a5480a;
+}
+input[name="next"]:nth-child(9):checked ~ .slider .images .container {
+  --x: -3522px;
+}
+input[name="next"]:nth-child(9):checked ~ .slider .images {
+  --w: 273px;
+  --h: 400px;
+}
+input[name="next"]:nth-child(9):checked ~ .slider .positions label:nth-child(9):after {
+  background: #ED680F;
+  border: 1px solid #a5480a;
+}
+
+.positions {
+  display: flex;
+}
+.positions label {
+  --d: 20px;
+  width: var(--d);
+  height: var(--d);
+  background: #D5D5D5;
+  display: block;
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.positions label:not(last-child) {
+  margin-right: 10px;
+}
+.positions label:after {
+  --d: 8px;
+  content: '';
+  width: var(--d);
+  height: var(--d);
+  background: #c8c8c8;
+  position: absolute;
+  border-radius: 50%;
+  top: calc(50% - 5px);
+  left: calc(50% - 5px);
+  border: 1px solid #afafaf;
+  transition: all 100ms;
+}
+
+.slider {
+  flex-direction: column-reverse;
+}
+.slider .positions {
+  margin-top: 2em;
+}
+
+.images {
+  --w: 50vw;
+  --h: 400px;
+  width: var(--w);
+  max-width: 605px;
+  overflow: hidden;
+  height: var(--h);
+  border-radius: 4px;
+  box-shadow: 0 1px 18px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: all 300ms ease;
+}
+.images .container {
+  --x: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: all 250ms ease;
+  transform: translateX(var(--x));
+}

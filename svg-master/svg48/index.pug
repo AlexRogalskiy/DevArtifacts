@@ -1,0 +1,11 @@
+.container
+	.core
+	svg(viewBox="0 0 150 150")
+		//circle(cx="75" cy="75" r="8" fill="white" id="core")
+		- var n = 4
+		while n-- > 0
+			g
+				path(d="M5,75a70,25 0 1,0 140,0a70,25 0 1,0 -140,0" class="orbit" id="ellipse")
+				circle(cx="" cy="" r="3" class="electron")
+					animateMotion(dur="5s" repeatCount="indefinite" keyPoints=`2;0` )
+						mpath(xlink:href="#ellipse")

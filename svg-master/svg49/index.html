@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>		
+<html lang="en">
+    <head>
+        <title>Effect Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700">
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+<h1>Quadratic Curve Viewer</h1>
+<blockquote>
+	The <b>quadratic curve</b> called with <b>Q</b>, is actually a simpler curve than the cubic one. It requires <b>one control point</b> which <b>determines the slope of the curve</b> at both the start point and the end point. It takes two arguments: the control point and the end point of the curve.
+	<cite><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#Bezier_Curves">https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths#Bezier_Curves</a></cite>
+</blockquote>
+<div class="c">
+	<input type="range" id="control">
+	<span id="output">M0 320 Q 320 320, 640 320</span>
+</div>
+<svg width="640" height="640" viewBox="0 0 640 640">	
+	<!-- This is the grid -->
+	<pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+	  <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/>
+	</pattern>
+	<rect width="100%" height="100%" fill="url(#grid)" />
+	<!-- End of grid -->
+
+	<!-- Curve (black line) -->
+	<path id="curve" d="M0 320 Q 320 320, 640 320"></path>
+	<!-- control point (Red circle) -->
+	<circle id="controlPoint" cx="320" cy="320" r="5" fill="red"></circle>
+	<!-- Dashed line -->
+	<path id="indicator" d="M0 320 l 320 0 l 640 0"></path>		
+</svg>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='js/script.js'></script>
+
+</body>
+<!--  footer -->
+</html>

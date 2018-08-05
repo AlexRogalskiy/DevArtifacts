@@ -1,0 +1,49 @@
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  background: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+input#check {
+  position: absolute;
+  opacity: 0;
+}
+input#check:checked + label svg path {
+  stroke-dashoffset: 0;
+}
+input#check:focus + label {
+  transform: scale(1.03);
+}
+
+#check + label {
+  display: block;
+  border: 13px solid #333;
+  width: var(--d);
+  height: var(--d);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+#check + label:active {
+  transform: scale(1.05);
+  border-radius: 30px;
+}
+#check + label svg {
+  pointer-events: none;
+}
+#check + label svg path {
+  fill: none;
+  stroke: #333;
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 101;
+  transition: all 350ms cubic-bezier(1, 0, 0.37, 0.91);
+}

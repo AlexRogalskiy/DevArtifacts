@@ -1,0 +1,144 @@
+body {
+	background: whitesmoke;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 100vh;
+	box-sizing: border-box;
+}
+
+*, *:after, *:before {
+	box-sizing: inherit;
+}
+
+#signup {
+	&:checked ~ .container .form {
+		transform: translate3d(30%, -3em, 0);
+	}
+}
+
+#login {
+	&:checked ~ .container .form {
+		transform: translate3d(120%, -3em, 0);
+		& .inputs {
+			transform: translate3d(0, -95%, 0);
+		}
+		& button .content {
+			transform: translatey(-25px);
+		}
+	}		
+}
+
+.hide {
+	position: absolute;
+	visibility: hidden;
+}
+.attribution {
+	margin-bottom: 6em;
+	color: gray;
+}
+.container {
+	border: 2px solid purple;
+	width: 90vmin;
+	height: 450px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	position: relative;
+	
+	.form {
+		position: absolute;
+		background: #fff;
+		padding: 1em 2em;
+		width: 40%;
+		height: 430px;
+		transition: all 250ms linear;
+		transform: translate3d(30%, -3em, 0);
+		box-shadow: 0 0 55px rgba(129, 129, 129, 0.5);
+		
+		form {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			overflow: hidden;
+			
+			.inputs {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				flex: 1;
+				transition: all 320ms ease-out;
+			}
+			input {
+				border: none;
+				border-bottom: 1px solid #eee;
+				color: #111;
+				padding: 1em;
+				margin-bottom: 2em;
+				&:nth-of-type(4) {
+					margin-bottom: 1em;
+				}				
+			}
+			button {
+				color: white;
+				background: #47c373;
+				border: 1px solid #eee;
+				border-radius: 5px;
+				width: 100%;
+				padding: .8em 0;
+				transition: all 300ms ease-out;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				overflow: hidden;
+				
+				&:hover {
+					background: #6edaaa;
+				}
+				
+				& > span {opacity: 0;}
+				.content {				
+					position: absolute;
+					transform: translateY(25px);
+					transition: all 300ms ease-out;
+					span {
+						display: block;
+						&:first-child {
+							margin-bottom: 2em;
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	
+}
+
+.signup, .login {
+	
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	padding: 5em 2em;
+	
+	label.button {
+		border: 1px solid purple;
+		padding: 1em 3em;
+		color: #454da5;
+		cursor: pointer;
+		transition: all 600ms ease;
+		&:hover {
+			background: #1948e1;
+			color: white;
+			border: 1px solid #1948e1;
+		}
+	}		
+	
+	&:hover {
+		background: darken(whitesmoke, 5%);
+	}
+}

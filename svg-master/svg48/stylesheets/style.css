@@ -1,0 +1,70 @@
+.center, body, .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(at 0 0 at 0 0, #111111, #222222);
+  box-sizing: border-box;
+}
+
+*, *:after, *:before {
+  box-sizing: inherit;
+}
+
+.container {
+  width: 60vmin;
+  height: 60vmin;
+  background: linear-gradient(20deg, #3321e3, #1724b7);
+  border-radius: 50%;
+}
+
+svg {
+  width: 80%;
+  animation: rotation 30s linear infinite;
+}
+@keyframes rotation {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.core {
+  width: 4vmin;
+  height: 4vmin;
+  background: #fff;
+  position: absolute;
+  border-radius: 50%;
+  animation: pulse 5s linear infinite;
+}
+@keyframes pulse {
+  50% {
+    transform: scale(1.5);
+  }
+}
+g {
+  transform-origin: center;
+}
+
+g:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+g:nth-child(3) {
+  transform: rotate(90deg);
+}
+
+g:nth-child(4) {
+  transform: rotate(-45deg);
+}
+
+.orbit {
+  fill: none;
+  stroke-width: 1px;
+  stroke: white;
+}
+
+.electron {
+  fill: white;
+}

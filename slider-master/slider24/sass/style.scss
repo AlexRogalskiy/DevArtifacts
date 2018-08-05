@@ -1,0 +1,111 @@
+$grey: #D5D5D5;
+$orange: #ED680F;
+$blue: #00375F;
+$green: #00989B;
+
+$sizes: (w: 600px, h: 400px, x: 0px),
+		(w: 266px, h: 500px, x: 600px),
+		(w: 600px, h: 400px, x: 933px),
+		(w: 400px, h: 500px, x: 1533px),
+		(w: 417px, h: 400px, x: 1933px),
+		(w: 304px, h: 400px, x: 2350px),
+		(w: 600px, h: 400px, x: 2655px),
+		(w: 266px, h: 400px, x: 3256px),
+		(w: 273px, h: 400px, x: 3522px);
+
+%center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+body {
+	background: linear-gradient(15deg, $blue, $green);
+	min-height: 100vh;
+	@extend %center;
+}
+
+input[name="next"] {
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+	
+	@for $i from 1 through 9 {
+		&:nth-child(#{$i}):checked ~ .slider .images .container {
+			--x: #{map-get(nth($sizes, $i), "x") * - 1};			
+		}
+		
+		&:nth-child(#{$i}):checked ~ .slider .images {
+			--w: #{map-get(nth($sizes, $i), "w")};
+			--h: #{map-get(nth($sizes, $i), "h")};
+		}
+		
+		&:nth-child(#{$i}):checked ~ .slider .positions label:nth-child(#{$i}):after {
+			background: $orange;
+			border: 1px solid darken($orange, 15%);
+		}
+	}
+}
+
+.positions {	
+	display: flex;	
+	label {
+		--d: 20px;
+		width: var(--d);
+		height: var(--d);
+		background: $grey;
+		display: block;
+		position: relative;
+		border-radius: 50%;
+		cursor: pointer;
+		&:not(last-child) {
+			margin-right: 10px;
+		}
+		&:after {
+			--d: 8px;
+			content: '';
+			width: var(--d);
+			height: var(--d);
+			background: darken($grey, 5%);
+			position: absolute;
+			border-radius: 50%;
+			top: calc(50% - 5px);
+			left: calc(50% - 5px);
+			border: 1px solid darken($grey, 15%);
+			transition: all 100ms;
+		}
+	}
+}
+
+.slider {
+	flex-direction: column-reverse;
+	@extend %center;
+	
+	.positions {
+		margin-top: 2em;		
+	}
+}
+
+.images {
+	--w: 50vw;
+	--h: 400px;
+	width: var(--w);
+	max-width: 605px;
+	overflow: hidden;
+	height: var(--h);	
+	border-radius: 4px;
+	box-shadow: 0 1px 18px rgba(0,0,0,0.4);
+	border: 1px solid rgba(0,0,0,0.2);
+	transition: all 300ms ease;
+	
+	.container {
+		--x: 0px;		
+		width: 100%;
+		height: 100%;
+		display: flex;
+		transition: all 250ms ease;
+		transform: translateX(var(--x));
+	}
+}
