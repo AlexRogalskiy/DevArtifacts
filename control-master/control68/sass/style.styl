@@ -1,0 +1,57 @@
+html, body
+  height: 100%
+
+body
+  display: grid
+
+.check
+  cursor: pointer
+  position: relative
+  margin: auto
+  width: 18px
+  height: 18px
+  -webkit-tap-highlight-color: transparent
+  transform: translate3d(0,0,0)
+  &:before
+    content: ""
+    position: absolute
+    top: -15px
+    left: -15px
+    width: 48px
+    height: 48px
+    border-radius: 50%
+    background: rgba(#223254,.03)
+    opacity: 0
+    transition: opacity .2s ease
+  svg
+    position: relative
+    z-index: 1
+    fill: none
+    stroke-linecap: round
+    stroke-linejoin: round
+    stroke: #C8CCD4
+    stroke-width: 1.5
+    transform: translate3d(0,0,0)
+    transition: all .2s ease
+    path
+      stroke-dasharray: 60
+      stroke-dashoffset: 0
+    polyline 
+      stroke-dasharray: 22
+      stroke-dashoffset: 66
+  &:hover 
+    &:before
+      opacity: 1
+    svg
+      stroke: #4285F4
+
+#cbx:checked + .check
+  svg
+    stroke: #4285F4
+    path
+      stroke-dashoffset: 60
+      transition: all .3s linear
+    polyline
+      stroke-dashoffset: 42
+      transition: all .2s linear
+      transition-delay: .15s

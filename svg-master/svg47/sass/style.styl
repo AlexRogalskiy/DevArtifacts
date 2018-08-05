@@ -1,0 +1,35 @@
+// Set your hex color
+$primary = #3BD3AB
+
+.indicator
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%,-50%) scale(2)
+  svg
+    polyline
+      fill: none
+      stroke-width: 2
+      stroke-linecap: round
+      stroke-linejoin: round
+      &#back
+        stroke: rgba($primary,.3)
+      &#front
+        stroke: $primary
+        stroke-dasharray: 12, 36 //Dash 12 & Gap 36
+        stroke-dashoffset: 48
+        animation: dash 1s linear infinite
+        
+@keyframes dash 
+  62.5%
+    opacity: 0
+  to 
+    stroke-dashoffset: 0
+    
+    
+.cta
+  position: fixed
+  bottom: 20px
+  right: 30px
+  color: #222
+  font-weight: bold

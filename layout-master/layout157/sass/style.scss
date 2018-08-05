@@ -1,0 +1,165 @@
+@charset "UTF-8";
+@import "compass/css3";
+@import "addon3";
+
+$emw--list-alpha: 
+  'Lato', 
+  'Quicksand', 
+  'Francois One', 
+  'Geo', 
+  'Krona One',
+  'Michroma',
+  'Voltaire',
+  'Julius Sans One' 
+;
+
+$emw--list-beta: 
+  #2ecc71, 
+  #27ae60,
+  #f1c40f,
+  #f39c12,
+  #3498db,
+  #2980b9,
+  #e74c3c,
+  #c0392b,
+  #9b59b6,
+  #8e44ad, 
+  #1abc9c,
+  #16a085
+;
+
+
+
+
+
+// # of different jobtitle classes
+$emw--unit-alpha: length($emw--list-beta); 
+$emw--unit-beta: 0.85s;
+
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  font: 1em sans-serif;
+  
+  @include breakpoint(small) {
+    font-size: .7em;
+  }
+}
+
+
+
+
+
+.bullshitjobtitlegenerator {
+  text-align: center;
+  
+  span {
+    &.alpha {
+      padding: 1em;
+    }
+  }
+  
+  a {
+    color: #666;
+    text-decoration: none;
+    
+    &:hover {
+      color: #000;
+    }
+  }
+  
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 1337;
+  }
+  
+  h1 {
+    padding: .5em;
+    display: inline-block;
+    margin: 0;
+    font: 1.5em sans-serif;
+  }
+  
+  h2 {
+    position: relative;
+    width: 100%;
+    color: #fff;
+    padding: .25em 0;
+    margin: .75em 0 0 0;
+    animation: animation--alpha $emw--unit-beta 1 forwards;
+    text-shadow: .025em .025em .025em rgba(0, 0, 0, .15);
+    
+    // Counter
+    &:before {
+      position:absolute;
+      left: .15em;
+      top: .15em;
+      font: .75em sans-serif;
+      z-index: 1;
+      content: "#" attr(data-position);
+      color: rgba(#fff, 1);
+      background: rgba(#fff, .2);
+      text-shadow: none;
+      padding: .15em;
+      opacity: .35;
+      box-shadow: .025em .025em .025em 0 rgba(#000, .15);
+      
+      @include breakpoint(small) {
+        content: '';
+        opacity: 0;
+      }
+    }
+  }
+  
+  button {
+    border: .01em solid #fff;
+    background: #000;
+    color: #fff;
+    font: 2em sans-serif;
+    padding: .5em;
+    margin: 0;
+    cursor: pointer;
+    
+    &:active {
+      @include transform(scale(.9, .9));
+    }
+  }
+  
+  .generated {
+    font-weight: bold;
+    color: rgba(0, 0, 0, .5);
+  }
+}
+
+
+
+
+
+@keyframes animation--alpha {
+  0% {
+    @include transform(scale(.1, .1) translateY(-2em) rotateZ(10deg));
+  }
+}
+
+
+
+
+
+@for $i from 1 through $emw--unit-alpha {
+  .bullshit-title-#{$i} { 
+    font: 4em nth($emw--list-alpha, random(length($emw--list-alpha)));
+    background: nth($emw--list-beta, $i);
+  }
+}

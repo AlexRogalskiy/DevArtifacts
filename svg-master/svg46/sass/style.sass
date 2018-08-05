@@ -1,0 +1,62 @@
+#btn-download
+  cursor: pointer
+  display: block
+  width: 48px
+  height: 48px
+  border-radius: 50%
+  -webkit-tap-highlight-color: transparent
+  //transform: scale(2)
+  //centering
+  position: absolute
+  top: calc(50% - 24px)
+  left: calc(50% - 24px)
+  &:hover
+    background: rgba(#223254,.03)
+  svg
+    margin: 16px 0 0 16px
+    fill: none
+    transform: translate3d(0,0,0)
+    polyline,
+    path
+      stroke: #0077FF
+      stroke-width: 2
+      stroke-linecap: round
+      stroke-linejoin: round
+      transition: all .3s ease
+      transition-delay: .3s
+    path#check
+      stroke-dasharray: 38
+      stroke-dashoffset: 114
+      transition: all .4s ease
+  &.downloaded
+    svg
+      .svg-out
+        opacity: 0
+        animation: drop .3s linear
+        transition-delay: .4s
+      path#check
+        stroke: #20CCA5
+        stroke-dashoffset: 174
+        transition-delay: .4s
+        
+@keyframes drop
+  20%
+    transform: (translate(0, -3px))
+  80%
+    transform: (translate(0, 2px))
+  95%
+    transform: (translate(0, 0))
+  
+//dribbble 
+.credit
+  position: fixed
+  right: 20px
+  bottom: 20px
+  transition: all .2s ease
+  -webkit-user-select: none
+  user-select: none
+  opacity: .6
+  img
+    width: 72px
+  &:hover
+    transform: scale(.95)

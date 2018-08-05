@@ -1,0 +1,179 @@
+body {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0d0d2d;
+  min-width: 760px;
+}
+body .right {
+  position: absolute;
+  width: 35%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  opacity: 0.5;
+}
+body .right:hover ~ .wrap:before {
+  margin-left: -5px;
+  box-shadow: inset -2.5px 2.5px 0 0 #f7beb1;
+}
+body .right:hover ~ .wrap .cube .face:nth-of-type(1) {
+  transform: rotateY(-88deg) translateZ(360px);
+  background-position: 50% 0px;
+}
+body .right:hover ~ .wrap .cube .face:nth-of-type(1):before {
+  transform: rotateY(110deg) translateZ(10px);
+}
+body .right:hover ~ .wrap .cube .face:nth-of-type(2) {
+  margin-top: 10px;
+  transform: rotateX(-90deg) translateZ(400px) skewY(1deg);
+}
+body .left {
+  position: absolute;
+  width: 35%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  opacity: 0.5;
+}
+body .left:hover ~ .wrap:before {
+  margin-left: 5px;
+  box-shadow: inset -6px 2.5px 0 0 #f7beb1;
+}
+body .left:hover ~ .wrap .cube .face:nth-of-type(1) {
+  transform: rotateY(-92deg) translateZ(420px);
+  background-position: 50% 0px;
+}
+body .left:hover ~ .wrap .cube .face:nth-of-type(1):before {
+  transform: rotateY(110deg) translateZ(-40px);
+}
+body .left:hover ~ .wrap .cube .face:nth-of-type(2) {
+  margin-top: 10px;
+  transform: rotateX(-90deg) translateZ(400px) skewY(-2deg);
+}
+body .leaf {
+  width: 760px;
+  height: 760px;
+  position: absolute;
+}
+body .leaf:before, body .leaf:after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 400px;
+  background: #f7beb1;
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: 50% 100%;
+  z-index: 3;
+  -webkit-clip-path: polygon(4% 89%, 11% 80%, 26% 88%, 25% 84%, 16% 78%, 13% 75%, 32% 79%, 41% 83%, 47% 89%, 47% 94%, 49% 86%, 43% 74%, 38% 72%, 13% 68%, 16% 64%, 28% 64%, 50% 59%, 60% 56%, 39% 57%, 29% 59%, 21% 60%, 26% 56%, 49% 54%, 65% 52%, 62% 50%, 52% 50%, 41% 51%, 30% 53%, 40% 45%, 74% 44%, 67% 42%, 54% 42%, 42% 43%, 46% 41%, 73% 38%, 52% 37%, 44% 39%, 58% 34%, 91% 27%, 68% 29%, 50% 34%, 64% 25%, 83% 17%, 96% 8%, 81% 13%, 70% 17%, 60% 21%, 53% 25%, 47% 31%, 63% 9%, 63% 6%, 53% 15%, 48% 23%, 44% 29%, 43% 22%, 39% 14%, 32% 12%, 19% 11%, 32% 18%, 40% 23%, 41% 28%, 42% 35%, 41% 38%, 37% 29%, 32% 23%, 26% 21%, 17% 21%, 28% 25%, 34% 30%, 37% 34%, 39% 40%, 34% 37%, 27% 30%, 18% 25%, 12% 21%, 11% 24%, 21% 32%, 28% 38%, 35% 44%, 32% 47%, 27% 49%, 26% 42%, 19% 35%, 13% 28%, 5% 27%, 7% 32%, 14% 39%, 16% 44%, 18% 51%, 18% 55%, 7% 68%, 2% 77%);
+  clip-path: polygon(4% 89%, 11% 80%, 26% 88%, 25% 84%, 16% 78%, 13% 75%, 32% 79%, 41% 83%, 47% 89%, 47% 94%, 49% 86%, 43% 74%, 38% 72%, 13% 68%, 16% 64%, 28% 64%, 50% 59%, 60% 56%, 39% 57%, 29% 59%, 21% 60%, 26% 56%, 49% 54%, 65% 52%, 62% 50%, 52% 50%, 41% 51%, 30% 53%, 40% 45%, 74% 44%, 67% 42%, 54% 42%, 42% 43%, 46% 41%, 73% 38%, 52% 37%, 44% 39%, 58% 34%, 91% 27%, 68% 29%, 50% 34%, 64% 25%, 83% 17%, 96% 8%, 81% 13%, 70% 17%, 60% 21%, 53% 25%, 47% 31%, 63% 9%, 63% 6%, 53% 15%, 48% 23%, 44% 29%, 43% 22%, 39% 14%, 32% 12%, 19% 11%, 32% 18%, 40% 23%, 41% 28%, 42% 35%, 41% 38%, 37% 29%, 32% 23%, 26% 21%, 17% 21%, 28% 25%, 34% 30%, 37% 34%, 39% 40%, 34% 37%, 27% 30%, 18% 25%, 12% 21%, 11% 24%, 21% 32%, 28% 38%, 35% 44%, 32% 47%, 27% 49%, 26% 42%, 19% 35%, 13% 28%, 5% 27%, 7% 32%, 14% 39%, 16% 44%, 18% 51%, 18% 55%, 7% 68%, 2% 77%);
+  animation: waving 3s ease-in-out infinite;
+}
+@keyframes waving {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(-50%);
+    clip-path: polygon(4% 89%, 11% 80%, 26% 88%, 25% 84%, 16% 78%, 13% 75%, 32% 79%, 41% 83%, 47% 89%, 47% 94%, 49% 86%, 43% 74%, 38% 72%, 13% 68%, 16% 64%, 28% 64%, 50% 59%, 60% 56%, 39% 57%, 29% 59%, 21% 60%, 26% 56%, 49% 54%, 65% 52%, 62% 50%, 52% 50%, 41% 51%, 30% 53%, 40% 45%, 74% 44%, 67% 42%, 54% 42%, 42% 43%, 46% 41%, 73% 38%, 52% 37%, 44% 39%, 58% 34%, 91% 27%, 68% 29%, 50% 34%, 64% 25%, 83% 17%, 96% 8%, 81% 13%, 70% 17%, 60% 21%, 53% 25%, 47% 31%, 63% 9%, 63% 6%, 53% 15%, 48% 23%, 44% 29%, 43% 22%, 39% 14%, 32% 12%, 19% 11%, 32% 18%, 40% 23%, 41% 28%, 42% 35%, 41% 38%, 37% 29%, 32% 23%, 26% 21%, 17% 21%, 28% 25%, 34% 30%, 37% 34%, 39% 40%, 34% 37%, 27% 30%, 18% 25%, 12% 21%, 11% 24%, 21% 32%, 28% 38%, 35% 44%, 32% 47%, 27% 49%, 26% 42%, 19% 35%, 13% 28%, 5% 27%, 7% 32%, 14% 39%, 16% 44%, 18% 51%, 18% 55%, 7% 68%, 2% 77%);
+  }
+  70% {
+    transform: translateY(-50%) rotate(3deg);
+    clip-path: polygon(4% 89%, 11% 80%, 26% 88%, 25% 84%, 16% 78%, 13% 75%, 32% 79%, 41% 83%, 47% 89%, 47% 94%, 49% 86%, 43% 74%, 38% 72%, 13% 68%, 16% 64%, 28% 65%, 50% 60%, 60% 56%, 39% 57%, 29% 59%, 21% 60%, 26% 56%, 49% 54%, 65% 53%, 62% 50%, 52% 51%, 41% 51%, 30% 53%, 40% 45%, 74% 44%, 67% 42%, 54% 42%, 42% 43%, 46% 41%, 73% 38%, 52% 37%, 44% 41%, 58% 34%, 92% 28%, 68% 29%, 50% 34%, 64% 25%, 83% 17%, 97% 9%, 81% 13%, 70% 17%, 60% 21%, 53% 25%, 47% 31%, 63% 9%, 63% 6%, 53% 15%, 48% 23%, 44% 29%, 43% 22%, 39% 14%, 32% 12%, 19% 11%, 32% 18%, 40% 23%, 41% 28%, 42% 35%, 41% 38%, 37% 29%, 32% 23%, 26% 21%, 17% 21%, 28% 25%, 34% 30%, 37% 34%, 39% 40%, 34% 37%, 27% 30%, 18% 25%, 12% 21%, 11% 24%, 21% 32%, 28% 38%, 35% 44%, 32% 47%, 27% 49%, 26% 42%, 19% 35%, 13% 28%, 5% 27%, 7% 32%, 14% 39%, 16% 44%, 18% 51%, 18% 55%, 7% 68%, 0% 80%);
+  }
+  100% {
+    transform: translateY(-50%);
+    clip-path: polygon(4% 89%, 11% 80%, 26% 88%, 25% 84%, 16% 78%, 13% 75%, 32% 79%, 41% 83%, 47% 89%, 47% 94%, 49% 86%, 43% 74%, 38% 72%, 13% 68%, 16% 64%, 28% 64%, 50% 59%, 60% 56%, 39% 57%, 29% 59%, 21% 60%, 26% 56%, 49% 54%, 65% 52%, 62% 50%, 52% 50%, 41% 51%, 30% 53%, 40% 45%, 74% 44%, 67% 42%, 54% 42%, 42% 43%, 46% 41%, 73% 38%, 52% 37%, 44% 39%, 58% 34%, 91% 27%, 68% 29%, 50% 34%, 64% 25%, 83% 17%, 96% 8%, 81% 13%, 70% 17%, 60% 21%, 53% 25%, 47% 31%, 63% 9%, 63% 6%, 53% 15%, 48% 23%, 44% 29%, 43% 22%, 39% 14%, 32% 12%, 19% 11%, 32% 18%, 40% 23%, 41% 28%, 42% 35%, 41% 38%, 37% 29%, 32% 23%, 26% 21%, 17% 21%, 28% 25%, 34% 30%, 37% 34%, 39% 40%, 34% 37%, 27% 30%, 18% 25%, 12% 21%, 11% 24%, 21% 32%, 28% 38%, 35% 44%, 32% 47%, 27% 49%, 26% 42%, 19% 35%, 13% 28%, 5% 27%, 7% 32%, 14% 39%, 16% 44%, 18% 51%, 18% 55%, 7% 68%, 2% 77%);
+  }
+}
+body .leaf:after {
+  z-index: 4;
+  background: #0d0d2d;
+  margin-top: 5px;
+  margin-left: -1px;
+}
+body .wrap {
+  perspective: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: 760px;
+  width: 760px;
+  height: 760px;
+  max-height: 760px;
+  overflow: hidden;
+  transform: translateX(-50%) translateY(-50%);
+  transition: 0.5s ease-in-out;
+}
+body .wrap:before {
+  content: '';
+  position: absolute;
+  width: 75px;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 100% 100% 0 0 / 75% 75% 0 0;
+  box-shadow: inset -5px 2.5px 0 0 #f7beb1;
+  transition: 0.5s ease-in-out;
+}
+body .wrap .cube {
+  width: 760px;
+  height: 760px;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+body .wrap .cube .face {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+}
+body .wrap .cube .face:nth-of-type(1) {
+  height: 500px;
+  transform: rotateY(-90deg) translateZ(400px);
+  background: repeating-linear-gradient(to right, #0d0d2d, #0d0d2d 5px, transparent 5px, transparent 30px, #0d0d2d 30px), repeating-linear-gradient(to bottom, #0d0d2d, #0d0d2d 10px, transparent 10px, transparent 30px, #0d0d2d 30px), repeating-linear-gradient(to right, transparent 0px, transparent 75px, #0d0d2d 75px, #0d0d2d 100px);
+  background: #f7beb1;
+  transition: 0.5s ease-in-out;
+  z-index: 2;
+  overflow: hidden;
+}
+body .wrap .cube .face:nth-of-type(1):after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: repeating-linear-gradient(to right, #0d0d2d, #0d0d2d 5px, transparent 5px, transparent 30px, #0d0d2d 30px), repeating-linear-gradient(to bottom, #0d0d2d, #0d0d2d 10px, transparent 10px, transparent 30px, #0d0d2d 30px), repeating-linear-gradient(to right, transparent 0px, transparent 75px, #0d0d2d 75px, #0d0d2d 100px);
+  z-index: -1;
+  transform: translateZ(10px);
+}
+body .wrap .cube .face:nth-of-type(1):before {
+  content: '';
+  position: absolute;
+  left: 35%;
+  top: 20%;
+  width: 200px;
+  height: 200px;
+  background: #dd6750;
+  border-radius: 100%;
+  transition: 1.5s ease-in-out;
+  z-index: -3;
+  transform: rotateY(110deg) translateZ(-20px);
+}
+body .wrap .cube .face:nth-of-type(2) {
+  transform: rotateX(-90deg) translateZ(400px);
+  background: #0d0d2d;
+  transition: 0.5s ease-in-out;
+  background: repeating-linear-gradient(to bottom, #0d0d2d, #0d0d2d 5px, transparent 5px, transparent 30px, #0d0d2d 30px), repeating-linear-gradient(to right, #0d0d2d, #0d0d2d 10px, transparent 10px, transparent 30px, #0d0d2d 30px), linear-gradient(to right, #0d0d2d, #0d0d2d 10%, transparent 10%, transparent 90%, #0d0d2d 90%), repeating-linear-gradient(to bottom, #f7beb1 0px, #f7beb1 75px, #0d0d2d 75px, #0d0d2d 100px);
+}

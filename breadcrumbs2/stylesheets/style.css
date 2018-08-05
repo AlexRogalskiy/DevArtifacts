@@ -1,0 +1,167 @@
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+}
+.back {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  width: 100px;
+}
+.back ul {
+  display: block;
+  margin-bottom: 0;
+  list-style: none;
+}
+.back ul li {
+  white-space: nowrap;
+}
+.back ul li a {
+  text-decoration: none;
+}
+.back ul.nav-history {
+  padding-left: 36px;
+  padding-top: 25px;
+  pointer-events: none;
+}
+.back ul.nav-history li {
+  margin-bottom: 5px;
+}
+.back ul.nav-history li::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e8eaed;
+  transform: scale(0.9);
+  transition: all 0.2s ease;
+}
+.back ul.nav-history li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 17px;
+  margin-top: 10px;
+  width: 2px;
+  height: 28px;
+  background: #e8eaed;
+  transition: all 0.2s ease;
+}
+.back ul.nav-history li.active {
+  pointer-events: none;
+}
+.back ul.nav-history li.active::after {
+  background: #e8eaed;
+}
+.back ul.nav-history li.active a {
+  color: #5a667f;
+}
+.back ul.nav-history li a {
+  color: #418ad8;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+}
+.back ul.nav-history li a:hover {
+  color: #2b7cd2;
+}
+.back ul.nav-links {
+  position: absolute;
+  transform: translateY(-10px);
+  margin-top: 20px;
+  padding-left: 12px;
+  opacity: 0;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+.back ul.nav-links li:not(:last-child) {
+  margin-bottom: 5px;
+}
+.back ul.nav-links li a {
+  font-size: 14px;
+  font-weight: 600;
+  color: #c8ccd4;
+  transition: color 0.2s ease;
+}
+.back ul.nav-links li a:hover {
+  color: #9098a9;
+}
+.back:hover {
+  width: auto;
+}
+.back:hover .menu-back {
+  opacity: 1;
+  transform: translateY(0);
+}
+.back:hover .btn-back div {
+  background: rgba(65,138,216,0.25);
+}
+.back:hover .btn-back div svg path,
+.back:hover .btn-back div svg polyline {
+  stroke: #418ad8;
+}
+.back:hover .btn-back span {
+  transform: translateX(0);
+  opacity: 1;
+}
+.back:hover ul.nav-history {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back:hover ul.nav-history li {
+  margin-bottom: 8px;
+}
+.back:hover ul.nav-history li::after {
+  background: #418ad8;
+  transform: translateY(6px);
+}
+.back:hover ul.nav-history li.active::after {
+  background: #5a667f;
+}
+.back:hover ul.nav-history li a {
+  opacity: 1;
+  transform: translateY(0);
+}
+.back:hover ul.nav-links {
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.btn-back {
+  display: inline-block;
+}
+.btn-back div {
+  position: relative;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e8eaed;
+  float: left;
+}
+.btn-back div svg {
+  fill: none;
+  transform: translate(10px, 7px);
+}
+.btn-back div svg path,
+.btn-back div svg polyline {
+  stroke: #9098a9;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.btn-back span {
+  display: inline-block;
+  color: #418ad8;
+  margin-left: 10px;
+  line-height: 34px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.2s ease;
+}
+.btn-back:hover span {
+  color: #2b7cd2;
+}

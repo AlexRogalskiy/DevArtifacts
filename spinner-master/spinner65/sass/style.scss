@@ -1,0 +1,84 @@
+@import "compass/css3";
+
+$n: 36; 
+$m: 12; 
+$d: 1.65em;
+$r: 45em;
+
+$unit--animation-loading: 20.37s; 
+
+
+
+
+
+@mixin size($r) {
+  width: $r; 
+  height: $r;
+  margin: -($r / 2) 0 0 -($r / 2);
+}
+
+
+
+
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html { 
+  background: #000;
+  overflow: hidden;
+}
+
+
+
+
+
+.loading {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  animation: animation--loading $unit--animation-loading ease-in-out infinite forwards;
+  background: transparent;
+  border-radius: 50%;
+  
+  @include size($d);
+  @include transition(box-shadow .45s ease-in-out);
+}
+
+
+
+
+
+@keyframes animation--loading {
+  @for $i from 0 through $n {
+    #{$i * 100% / $n} {
+      $sh: ();
+      
+      @for $j from 0 to $n {        
+        $cr: (($i + $j)%($n/$m))*2*$r/$n;
+        $cr: 2*$d + min($cr, 2*$r/$m - $cr);
+        $offx: $cr*cos($j*2*pi()/$n);
+        $offy: $cr*sin($j*2*pi()/$n);
+        $sh: $sh, $offx $offy hsla($j*360/$n, 100%, 50%, (random(10) * .1));
+      }
+      
+      box-shadow: $sh;
+    }
+
+  }
+  
+  0% {
+      @include transform(
+        rotate(0)
+      );
+  }
+  
+  100% {
+      @include transform(
+        rotate(940deg)
+      );
+  }
+}
