@@ -1,0 +1,33 @@
+- var n = 5;
+- var base_angle_rad = 2*Math.PI/n;
+- var base_angle_deg = 360/n;
+- var base_r = 450;
+- var dim = 2*base_r;
+- var r_outer = .35*base_r;
+- var r_inner = .5*r_outer;
+- var r_circ = ~~(.65*r_outer);
+- var spark_start = ~~(1.65*r_inner);
+- var spark_end = ~~(2.45*r_inner);
+
+mixin star(n, r1, r2, id)
+	- var points = '';
+	- for(var i = 0; i < 2*n; i++) {
+		- var curr_r = (i%2)?r2:r1;
+		- var curr_a = (i*base_angle_rad - Math.PI)*.5;
+		- var x = curr_r*Math.cos(curr_a);
+		- var y = curr_r*Math.sin(curr_a);
+		- points += ~~x + ',' + ~~y + ' ';
+	-}
+	polygon(points=points.trim() id=id)
+
+svg(viewbox=[-base_r, -base_r, dim, dim].join(' '))
+	defs
+		line#spark(x1=spark_start x2=spark_end)
+	
+	circle(r=r_circ)
+	+star(n, r_outer, r_inner, 'star')
+	g#sparks
+		while n--
+			use(xlink:href='#spark' transform=`rotate(${90 + n*base_angle_deg})`)
+
+<p><a href='https://en.wikipedia.org/wiki/Colectiv_nightclub_fire' target='_blank'>don't you ever forget</a></p>

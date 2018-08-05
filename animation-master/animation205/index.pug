@@ -1,0 +1,56 @@
+- var ns = 6, ba = 2*Math.PI/ns;
+- var bri = .5/Math.tan(.5*ba);
+- var lf = [[.75, .9], [.65, .93], [.5, 1]];
+- var nl = lf.length, dy = 0, f = .5;
+- var d = 900, o = -.5*d, r = .2*d;
+- var fd = 200, fo = -.5*(fd - 100);
+- var p = 125;
+
+mixin scomp(s, c, n)
+	- var c = c || 'level', n = n || ns;
+	div(class=c style=s)
+		- for(var i = 0; i < n; i++)
+			.side
+
+mixin poly(c, r, n, f)
+	- var n = n || ns, r = r || 100;
+	- var c = c || null, f = f || null;
+	- var ba = 2*Math.PI/n;
+	- var vx = [];
+	- for(var i = 0; i < n; i++) {
+		- var ca = i*ba;
+		- var x = Math.round(r*Math.cos(ca));
+		- var y = Math.round(r*Math.sin(ca));
+		- vx.push([x, y]);
+	- }
+	path(d=`M${vx.join(',')}` class=c filter=f)
+
+style
+	- for(var i = 0; i < ns; i++)
+		| .side:nth-child(#{i + 1}) { --i: #{i} }
+section.scene(style=`--ns: ${ns}; --rri: ${bri}; --rax: 0deg`)
+	.assembly
+		.floor
+			svg(viewBox=[o, o, d, d].join(' '))
+				filter#b(x=`${fo}%` y=`${fo}%` width=`${fd}%` height=`${fd}%`)
+					feGaussianBlur(in='SourceGraphic' stdDeviation='15')
+				+poly('light', r)
+				g(transform=`translate(${.5*r})`)
+					+poly('shadow', 1.05*r, ns, 'url(#b)')
+		.tree
+			+scomp(null, 'trunk')
+			.crown
+				- for(var i = 0; i < nl; i++) {
+					- var rri = bri*lf[i][0];
+					- var rax = 90 - 180/Math.PI*Math.acos(rri/lf[i][1]);
+					- var rhp = Math.sqrt(Math.pow(lf[i][1], 2) - rri*rri);
+					+scomp(`--j: ${i}; --rl: ${lf[i][0]}; --rh: ${lf[i][1]};
+									--rri: ${rri}; --rax: ${rax}deg; --rdy: ${dy}`)
+					- dy += f*rhp
+				- }
+		.snow
+			while p--
+				.flake(style=`--x: ${+Math.random().toFixed(2)};
+											--z: ${+Math.random().toFixed(2)};
+											--f: ${+(.25 + .5*Math.random()).toFixed(2)};
+											--p: ${+Math.random().toFixed(2)};`)

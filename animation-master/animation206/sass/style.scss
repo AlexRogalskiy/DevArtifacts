@@ -1,0 +1,245 @@
+@import 'compass/css3';
+
+$fa: 180deg/pi(); // angular factor
+$gc: #FAAB00 #F90050;
+$ctrl-hl: #DAF204;
+$ctrl-ll: #aaa;
+$track-w: 14em;
+$track-h: .25em;
+$thumb-d: 1.25em;
+$check-d: 1.25em;
+$n-opts: 2;
+
+// 3gon = polygon (2D shape) with 3 vertices (edges)
+$rc3gon: 10em; // circumradius for triangle
+$n3gon: 3; // number of vertices
+$dc3gon: 2*$rc3gon;
+$ca3gon: 360deg/$n3gon; // central angle
+$a3gon: ($n3gon - 2)*180deg/$n3gon; // vertex angle
+$l3gon: 2*$rc3gon*sin(.5*$ca3gon); // edge
+$ri3gon: $rc3gon*cos(.5*$ca3gon); // inradius
+$h3gon: $l3gon*sin($a3gon); // height
+
+// 4hedron = polyhedron (3D shape) with 4 faces
+$n4hedron: 4;
+$da4hedron: acos($ri3gon/$h3gon)*$fa;
+$ri4hedron: $rc3gon/tan($da4hedron);
+
+// 8hedron = polyhedron (3D shape) with 8 faces
+$n8hedron: 8;
+
+* { margin: 0; padding: 0; }
+
+html { overflow: hidden; }
+
+polygon {
+	fill: rgba(whitesmoke, .35);
+	stroke: currentColor;
+	stroke-width: 20vmin;
+	//vector-effect: non-scaling-stroke;
+}
+
+@for $i from 0 to $n-opts {
+	[id='ps-#{$i}'] {
+		clip-path: url(#cp-#{$i});
+		color: nth($gc, $i + 1);
+	}
+}
+
+.scene {
+	overflow: hidden;
+	position: absolute;
+	top: 0; left: 0;
+	width: 100vw; height: 100vh;
+	perspective: 20em;
+	background: #000;
+	
+	div {
+		position: absolute;
+		top: 50%; left: 50%;
+		transform-style: preserve-3d;
+	}
+	
+	svg { width: inherit; height: inherit; }
+}
+
+.s3d {
+	animation: r 20s linear infinite;
+}
+
+@keyframes r {
+	to { 
+		transform: rotateY(1turn) 
+							 rotateX(1turn);
+	}
+}
+
+@for $i from 0 to $n8hedron {
+	$j: $i%2;
+	$j1: floor($i/2)%2;
+	$k: floor($i/$n4hedron);
+	$ay: $j*180deg - $j1*90deg + $k*90deg;
+	
+	.pos:nth-child(#{$i + 1}) {
+		transform: 
+			rotate($j1*.5turn) 
+			rotateY($ay) 
+			rotateX(-.5*$da4hedron) 
+			translateZ($ri4hedron);
+	}
+}
+
+.s2d {
+	margin: -$rc3gon;
+	width: $dc3gon; height: $dc3gon;
+	-moz-backface-visibility: hidden;
+	//-webkit-filter: drop-shadow(0 0 1px #fff);
+	//filter: drop-shadow(0 0 1px #fff);
+}
+
+@mixin track() {
+	width: $track-w; height: $track-h;
+	background: $ctrl-ll;
+}
+
+@mixin fill() { background: $ctrl-hl; }
+
+@mixin thumb() {
+	border: none;
+	width: $thumb-d; height: $thumb-d;
+	border-radius: 50%;
+	background: $ctrl-hl;
+}
+
+form {
+	position: absolute;
+	top: 0; left: 0;
+	padding: 0 .25em;
+	background: rgba(#222, .32);
+	text-align: center;
+	font: 1em trebuchet ms, sans-serif;
+}
+
+section {
+	margin: .25em auto;
+	padding: .5em;
+	
+	&:hover { background: rgba(#000, .65); }
+	
+	> * {
+		display: block;
+		margin: 0 auto .5em;
+		width: $track-w;
+	}
+	
+	> label { margin-bottom: 0; }
+}
+
+.multi {
+	display: flex;
+	flex-direction: column;
+	
+	* { order: 1; }
+	
+	[type='range'] + label { order: 0; }
+}
+
+label { color: $ctrl-ll; }
+
+[type='checkbox'] {
+	position: absolute;
+	left: -100vw;
+	
+	+ label {
+		display: block;
+		border: solid 0 transparent;
+		border-width: .125em 1em .25em;
+		color: $ctrl-ll;
+		line-height: 2;
+		text-align: left;
+		cursor: pointer;
+		
+		&:before {
+			box-sizing: border-box;
+			display: inline-block;
+			position: relative;
+			top: 50%; left: 0;
+			margin: -$check-d/2 $check-d/4;
+			border: solid .125em $ctrl-ll;
+			padding: .25em;
+			width: $check-d; height: $check-d;
+			color: transparent;
+			font: 900 1em/.5 sans-serif;
+			text-indent: -.125em;
+			transition: .3s ease-out;
+			content: '✓';
+		}
+	}
+	
+	&:focus + label {
+		outline: solid 1px $ctrl-hl;
+	}
+	
+	&:checked + label {
+		&, &:before { color: $ctrl-hl; }
+	}
+}
+
+[type='range'] {
+	border: solid 0 transparent;
+	border-width: 0 1em;
+	padding: 0;
+	width: $track-w; height: $track-h + 2em;
+	background: none;
+	font-size: 1em;
+	cursor: pointer;
+	
+	&, 
+	&::-webkit-slider-runnable-track, 
+	&::-webkit-slider-thumb {
+		-webkit-appearance: none;
+	}
+	
+	&::-webkit-slider-runnable-track {
+		@include track();
+	}
+	&::-moz-range-track {
+		@include track();
+	}
+	&::-ms-track {
+		border: none;
+		@include track();
+		color: transparent;
+	}
+	
+	&::-moz-range-progress {
+		@include fill();
+	}
+	&::-ms-fill-lower {
+		@include fill();
+	}
+	
+	&::-webkit-slider-thumb {
+		margin-top: .5*($track-h - $thumb-d);
+		@include thumb();
+	}
+	&::-moz-range-thumb {
+		@include thumb();
+	}
+	&::-ms-thumb {
+		@include thumb();
+	}
+	
+	&:focus {
+		outline: solid 1px $ctrl-hl;
+	}
+	
+	+ output { order: 0; }
+}
+
+output {
+	border-radius: 3px;
+	background: $ctrl-hl;
+	
+	&:empty { opacity: 0; }
+}

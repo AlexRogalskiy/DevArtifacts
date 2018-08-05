@@ -1,0 +1,51 @@
+- var ncomps = 2;
+- var n4hedron = 4; //- tetrahedron faces
+- var n3gon = 3;
+- var n4gon = 4;
+- var obb = 'objectBoundingBox';
+- var rc = .425;
+- var rr = .05; //- rounding radius
+- var r0 = rc - rr;
+- var p = 3;
+- var f = Math.pow(10, 3);
+
+mixin roundpoly(n)
+	- var d = ''; //-init path data
+	- var ca = 2*Math.PI/n;
+	- var va = (n - 2)*Math.PI/n;
+	- var oa = .5*(Math.PI - va);
+	- var m = (1 + n)%2;
+	- for(var i = 0; i < n; i++) {
+		- var a0 = (i - .5*m)*ca - .5*Math.PI;
+		- var x0 = .5 + r0*Math.cos(a0);
+		- var y0 = .5 + r0*Math.sin(a0);
+		- var sa = a0 - oa; //- start angle
+		- var ea = a0 + oa; //- end angle
+		- var sx = Math.round(f*(x0 + rr*Math.cos(sa)))/f;
+		- var sy = Math.round(f*(y0 + rr*Math.sin(sa)))/f;
+		- d += (i?'L':'M') + sx + ' ' + sy;
+		- d += 'A' + rr + ' ' + rr + ' 0 0  1';
+		- var ex = x0 + rr*Math.cos(ea);
+		- var ey = y0 + rr*Math.sin(ea);
+		- var ex = Math.round(f*(x0 + rr*Math.cos(ea)))/f;
+		- var ey = Math.round(f*(y0 + rr*Math.sin(ea)))/f;
+		- d += ex + ' ' + ey;
+	- }
+	clipPath(id=`o${n}` clipPathUnits=obb)
+		path(d=d)
+
+svg(width='0' height='0')
+	+roundpoly(n3gon)
+	+roundpoly(n4gon)
+
+.a3d
+	while ncomps--
+		.s3d
+			.rot
+				- var n = .5*n4hedron*(n3gon + 1);
+				while n--
+					.s2d.s3gon
+				.s2d.s4gon
+
+p also check out 
+	a(href='https://codepen.io/thebabydino/details/QNwoqE/' target='_blank') my next pyramorphix demo

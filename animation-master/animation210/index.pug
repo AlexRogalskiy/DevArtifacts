@@ -1,0 +1,101 @@
+- var n_teeth = 12; // number of cog teeth
+- var ca_deg = 360/(2*n_teeth);
+- var tooth_hr = .15; // height ratio
+- var rco = 50; // outer poly circumradius
+- var ddo = 2*rco;
+- var aa = [0, -1/6, -1/12, -1/3, 1/4, -1/6, 1/4, 1/3, 5/12, -2/3];
+- var ma = [0, 0, 1, 0, 2, 0, 0, 1, 0, 3];
+- var n2 = 2;
+- var n1 = aa.length - n2;
+- var dr = (2 - tooth_hr)*rco;
+- var x = -50;
+- var y = 450;
+
+mixin cog(n_teeth, rco, tooth_wr, tooth_hr)
+	- var n_poly = 2*n_teeth;
+	- var ca = 2*Math.PI/n_poly;
+	- var rio = rco*Math.cos(.5*ca);
+	- var eo = 2*rco*Math.sin(.5*ca);
+	- var f = 1 - tooth_hr;
+	- var rii = f*rio;
+	- var ei = f*eo;
+	- var b = .5*tooth_wr*ei;
+	- var lo = Math.sqrt(rio*rio + b*b);
+	- var li = Math.sqrt(rii*rii + b*b);
+	- var ao = Math.atan(b/rio);
+	- var ai = Math.atan(b/rii);
+	- var v = []; // vertex matrix
+	- for(var i = 0; i < n_poly; i++) {
+		- var j = i%2;
+		- var r = j?lo:li;
+		- for(var k = 0; k < 2; k++) {
+			- var a = i*ca - Math.pow(-1, k)*(j?ao:ai);
+			- var x = Math.round(r*Math.cos(a));
+			- var y = Math.round(r*Math.sin(a));
+			- v.push([x, y]);
+		- }
+	- }
+	polygon#cog(points=v.join(' '))
+
+mixin item(x, y, i, k)
+	- var m = 'url(#m' + ma[i] + ')';
+	- var ra = (((i%2)?ca_deg:0) + k*ca_deg)%(2*ca_deg);
+	- var t = 'translate(' + x + ' ' + y + ')';
+	- if(ra) t += 'rotate(' + ra + ')'
+	g.cog(transform=t)
+		use(xlink:href='#cog' mask=m)
+
+mixin mask(r1, r2, cross, nholes)
+	rect(x=-rco y=-rco width=ddo height=ddo)
+	circle(r=r1)
+	- if(cross) {
+		- var ca = 90/cross;
+		- for(var i = 0; i < cross; i++) {
+			- var ct = i?'rotate(' + i*ca + ')':null;
+			- var b = 8/(i + 1);
+			g(transform=ct)
+				rect(x=-rco y=-.5*b width=ddo height=b)
+				rect(x=-.5*b y=-rco width=b height=ddo)
+		- }
+	- }
+	- if(nholes) {
+		- var ha = 360/nholes;
+		- var hr = 2*(r1 - 1);
+		- for(var i = 0; i < nholes; i++) {
+			- var ht = (i?'rotate(' + i*ha + ')':'') +  'translate(' + hr + ')'
+			circle(r=r2 transform=ht)
+		- }
+	- }
+	- else
+		circle(r=r2)
+
+svg(viewBox='0 0 560 560')
+	defs
+		mask#m0
+			+mask(28, 5)
+		mask#m1
+			+mask(28, 13, 1)
+			circle(r='8')
+		mask#m2
+			+mask(15, 4, 0, 3)
+		mask#m3
+			+mask(28, 13, 2)
+			circle(r='8')
+		+cog(n_teeth, rco, .8, tooth_hr)
+	
+	g
+		- for(var i = 0; i < n1; i++) {
+			- var a = aa[i]*Math.PI;
+			- x += Math.round(dr*Math.cos(a));
+			- y += Math.round(dr*Math.sin(a));
+			+item(x, y, i, 0)
+			- for(var j = 0; j < n2; j++) {
+				- if(i - j == 4) {
+					- var a = aa[n1 + j]*Math.PI;
+					- var x1 = Math.round(x + dr*Math.cos(a));
+					- var y1 = Math.round(y + dr*Math.sin(a));
+					+item(x1, y1, n1 + j, 1)
+				- }
+			- }
+		- }
+	text(x=20 y=35 font-size=40) programmatically created gears

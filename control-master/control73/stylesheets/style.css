@@ -1,0 +1,65 @@
+*, :before, :after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(#edecea, #d8d7d1);
+}
+
+h3 {
+  font: 700 3em nanum brush script, cursive;
+}
+
+input {
+  position: absolute;
+  left: -100vw;
+}
+input:checked + label {
+  --s: 1;
+}
+
+label {
+  --s: 0;
+  display: block;
+  position: relative;
+  --c: #5ff2e6;
+  text-indent: -100vw;
+  filter: blur(0.5px);
+  cursor: pointer;
+}
+label, label:before {
+  border: solid 0.3125em transparent;
+  width: 6em;
+  height: 2.625em;
+  border-radius: 1.3125em;
+  box-shadow: inset 0 0.125em 0.75em rgba(0, 0, 0, 0.5);
+  background: repeating-linear-gradient(-45deg, rgba(119, 119, 119, 0.04) 0, rgba(119, 119, 119, 0.04) 2px, transparent 0, transparent 5px) padding-box, repeating-linear-gradient(45deg, rgba(119, 119, 119, 0.04) 0, rgba(119, 119, 119, 0.04) 2px, transparent 0, transparent 5px) padding-box, linear-gradient(transparent, rgba(0, 0, 0, 0.32)) padding-box, linear-gradient(var(--c), var(--c)) padding-box, linear-gradient(#bebebb, #fdfdfc) border-box;
+}
+label:before, label:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+}
+label:before {
+  margin: -0.3125em;
+  opacity: calc(1 - var(--s));
+  --c: #f89183;
+  transition: .2s opacity;
+}
+label:after {
+  border: solid 3px transparent;
+  width: 2.6875em;
+  height: 2em;
+  border-radius: 1em;
+  transform: translate(calc(var(--s)*100%));
+  box-shadow: 0 2px 9px rgba(0, 0, 0, 0.8);
+  background: linear-gradient(#d1d1d1, #edede9) padding-box, linear-gradient(#fcfcfc, #b2b2b2) border-box;
+  transition: .2s transform ease-in;
+}

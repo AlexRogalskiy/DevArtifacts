@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css?family=Calligraffitti');
+@import "addons";
+
+$s: 32em;
+$t: 8s;
+$p: calc(58% - var(--j)*8%);
+$f: .25;
+$m: radial-gradient(#000, transparent 65%);
+
+$l: .29*$s;
+
+$back-c: (dark: #606ab2, light: #7d86c5);
+$leaf-c: (dark: #233749, light: #5ea1a5);
+$bark-c: #442a26;
+
+* { margin: 0 }
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	height: 100vh;
+	background: linear-gradient(
+		map-get($back-c, dark), 
+		map-get($back-c, light) 50%);
+	
+	&:after {
+		right: 0; top: 0; left: 0;
+		font: 700 5em/ 2 Calligraffitti, cursive;
+	color: #101;
+	text-shadow: 0 0 5px #000;
+		text-align: center;
+		content: 'Winter Scene'
+	}
+}
+
+div, :before, :after {
+	--cy: 0;
+	--cz: calc(1 - var(--cy));
+	position: absolute;
+	transform-style: preserve-3d
+}
+
+.scene {
+	--ba: calc(360deg/var(--ns));
+	--oa: 0deg;
+	width: $s; height: $s;
+	border-radius: 3px;
+	perspective: .5*$s;
+	perspective-origin: calc(50% - #{.25*$l}) calc(50% - #{.75*$l});
+	
+	> div { top: 50%; left: 50% }
+}
+
+.floor {
+	margin: (.5 + $f)*$l - .5*$s (-.5*$s);
+	width: $s; height: $s;
+	transform: rotatex(90deg);
+	
+	svg {
+		transform: translatez(2px);
+	}
+	
+	&:before, &:after {
+		top: 0; left: 0;
+		width: 100%; height: 100%;
+		content: ''
+	}
+	
+	&:before {
+		--oa: calc(.5*var(--ba));
+		transform: rotate(var(--oa));
+		background: repeating-conic-gradient(
+			map-get($back-c, light) 0%, 
+			map-get($back-c, dark) var(--ba), 
+			map-get($back-c, light) var(--ba));
+		-webkit-mask: $m 47% 50%, $m 50% 53%, $m 53% 47%
+	}
+	
+	&:after {
+		transform: translatez(1px);
+		background: linear-gradient(90deg, 
+			rgba(map-get($back-c, light), 0) 39%,
+			map-get($back-c, light) 75%)
+	}
+}
+
+.light { fill: mix(map-get($back-c, light), map-get($back-c, dark)) }
+
+.shadow { fill: mix(#000, map-get($back-c, dark)) }
+
+.floor:before, path, .tree {
+	animation: r $t linear infinite
+}
+
+.tree {
+	--cy: 1;
+	margin-top: -$f*$l;
+	animation-direction: reverse;
+}
+
+@keyframes r { to { transform: rotate3d(0, var(--cy), var(--cz), calc(var(--oa) + 1turn)) } }
+
+.trunk {
+	margin-top: $l;
+	transform-origin: 50% 0;
+	transform: scale3d($f, $f, $f);
+	color: $bark-c;
+}
+
+.crown { color: map-get($leaf-c, light) }
+
+.level {
+	transform: translatey(calc(var(--rdy)*#{-$l}))
+}
+
+.side {
+	overflow: hidden;
+	margin: -.5*$l;
+	width: $l; height: $l;
+	transform-origin: 50% 100%;
+	transform: rotatey(calc(var(--i)*var(--ba)))
+		translatez(calc(var(--rri)*#{$l}))
+		rotatex(var(--rax));
+	background: currentcolor;
+	clip-path: polygon(
+		50% calc(100%*(1 - var(--rh))) /* mid top*/, 
+		calc(50%*(1 - var(--rl))) 100% /* left down */, 
+		calc(50%*(1 + var(--rl))) 100% /* right down */);
+	
+	&:before, &:after {
+		opacity: .9;
+		background: map-get($leaf-c, dark);
+		animation: shade .5*$t ease-out infinite calc(((var(--i) + .5)/var(--ns) - 1)*#{$t}) alternate;
+		content: ''
+	}
+
+	&:before {
+		width: 100%; height: 100%;
+	}
+	
+	.level:not(:last-child) &:after {
+		top: $p; left: calc(50% - .5*#{$p});
+		width: $p; height: calc(.29*#{$p});
+		background: radial-gradient(
+			rgba(map-get($leaf-c, dark), .7), 
+			rgba(map-get($leaf-c, dark), 0) 85%);
+		animation-name: pulse
+	}
+}
+
+@keyframes shade { 0% { opacity: .001 } }
+
+@keyframes pulse { to { transform: scale(.25); opacity: .2 } }
+
+.flake {
+	padding: 1px;
+	border-radius: 50%;
+	transform: translate3d(
+			calc((var(--x) - .5)*#{2*$l}),
+			-50vh, 
+			calc((var(--z) + .25)*#{2*$l}));
+	box-shadow: 0 0 .25em currentcolor;
+	background: currentcolor;
+	filter: blur(1px);
+	color: #fff;
+	--t: calc(var(--f)*#{2*$t});
+	animation: fall var(--t) calc(var(--p)*-1*var(--t)) infinite;
+	animation-name: fall, fade;
+	animation-timing-function: ease-in, cubic-bezier(.91, .03, .69, .21)
+}
+
+@keyframes fall {
+	to {
+		transform: translate3d(
+				calc((var(--x) - .5)*#{2*$l}),
+				calc(var(--f)*50vh), 
+				calc((var(--z) - .5)*#{2*$l}))
+	}
+}
+
+@keyframes fade { to { opacity: 0 } }
