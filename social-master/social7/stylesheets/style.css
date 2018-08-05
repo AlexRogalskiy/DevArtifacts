@@ -1,0 +1,51 @@
+.icon {
+  fill: #f1f1f1;
+  width: 24px;
+  height: 24px;
+  transition: fill .2s;
+}
+.icon--floating {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  animation-name: rise;
+  animation-timing-function: linear;
+}
+
+.link {
+  display: inline-block;
+  margin: .5rem .4rem;
+  position: relative;
+  z-index: 2;
+}
+.link--twitter .icon, .link--twitter:hover ~ .icon--twitter {
+  fill: #55acee;
+}
+.link--github .icon, .link--github:hover ~ .icon--github {
+  fill: #333;
+}
+.link--codepen .icon, .link--codepen:hover ~ .icon--codepen {
+  fill: #111;
+}
+.link--dribbble .icon, .link--dribbble:hover ~ .icon--dribbble {
+  fill: #ea4c89;
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100vh - 24px));
+  }
+}

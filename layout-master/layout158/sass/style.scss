@@ -1,0 +1,350 @@
+$color-accent: #a56a44;
+$color-neutral: #898979;
+$color-text: white;
+$easing: cubic-bezier(0.39, 0.575, 0.565, 1);
+
+html,
+body {
+	height: 100%;
+	min-height: 100%;
+	background: $color-accent;
+	color: $color-text;
+	font-family: 'Roboto', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-size: calc(.2vw + 12px);
+	line-height: 1.4;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;
+	span {
+		vertical-align: middle;
+	}
+	span + span {
+		display: inline-flex;
+		align-items: center;
+	}
+	span + span::before {
+		display: inline-block;
+		content: "";
+		width: 3.5em;
+		height: 1px;
+		background: white;
+		margin: 0 .5em 0 .3em;
+	}
+}
+
+h1,
+.h1,
+.nav {
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	font-size: 2.4rem;
+	margin-bottom: 0;
+}
+
+h2, h3, .nav {
+	font-family: 'PT Serif', serif;
+	font-weight: 700;
+}
+
+
+h2 {
+	font-size: 2rem;
+	margin-bottom: 0;
+	padding-bottom: .6rem;
+}
+
+h4 {
+	margin-bottom: 0;
+	padding-bottom: 1.6rem;
+}
+
+a {
+	color: inherit;
+}
+
+svg {
+	fill: currentColor;
+}
+
+img,
+svg {
+	vertical-align: middle;
+}
+
+.logo {
+	text-decoration: none;
+	transition: .3s ease-in-out;
+}
+
+.header {
+	position: relative;
+	min-height: 100vh;
+	display: grid;
+	grid-template: repeat(3, minmax(25vh, 1fr)) / repeat(12, 1fr);
+	@media (max-width: 700px) {
+		grid-template: repeat(3, 1fr) / repeat(6, 1fr);
+	}
+	will-change: transform, width;
+	transition: .5s transform $easing;
+	&[data-menustate="open"] {
+		transform: translateX(50%);
+		animation: expand .5s $easing 1;
+		.grid-item {
+			animation: shuffle .5s $easing 1;
+		}
+		.logo {
+		opacity: 0;
+			pointer-events: none;
+			visibility: hidden;
+		}
+	}
+}
+
+.article {
+	padding: 1.6rem 3rem 1.8rem 1.4rem;
+	+ .article {
+		margin-top: auto;
+		padding-top: 0;
+	}
+	&--align-right {
+		text-align: right;
+	}
+}
+
+.rotate {
+	display: inline-block;
+	margin: 0;
+	&--right {
+		transform: rotate(-90deg);
+		transform-origin: center right;
+	}
+}
+
+.object-fit {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.nav,
+.nav-toggle {
+	position: absolute;
+	color: $color-text;
+}
+
+.nav {
+	width: 50%;
+	@media (max-width: 700px) {
+		width: 100%;
+	}
+	height: 100vh;
+	right: 100%;
+	z-index: 1;
+	background: $color-accent;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: left;
+	will-change: right;
+	transition: .5s $easing;
+	a {
+		text-decoration: none;
+		will-change: color, blur;
+		transition: .5s ease-in-out;
+		transition-delay: var(--delay, .5s);
+		opacity: 0;
+		filter: blur(2px);
+		margin-left: 18vw;
+		+ a {
+			margin-top: .6em;
+		}
+	}
+	&[data-state="open"] {
+		right: 50%;
+		@media (max-width: 700px) {
+			right: 10%;
+		}
+		color: $color-text;
+		a {
+			opacity: 1;
+			margin-left: 20vw;
+			filter: blur(0);
+		}
+	}
+}
+
+.nav-toggle {
+	top: 1rem;
+	left: 1rem;
+	z-index: 2;
+	background: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	svg {
+		pointer-events: none;
+	}
+	.icon--close {
+		display: none;
+	}
+	&[data-menustate="open"] {
+		.icon--close {
+			display: initial;
+		}
+		.icon--menu {
+			display: none;
+		}
+	}
+}
+
+.grid-item {
+	background: $color-accent;
+	position: relative;
+	will-change: border;
+	&::after {
+		content: "";
+		position: absolute;
+		z-index: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 0%;
+		background: $color-accent;
+		animation: background-swipe-out 1s cubic-bezier(0.785, 0.135, 0.15, 0.86) 2.1s 1;
+	}
+	&--primary {
+		grid-area: span 3 / span 6;
+		display: grid;
+		align-items: center;
+		justify-items: start;
+		> img,
+		> .logo {
+			grid-area: 1 / 1 / -1 / -1;
+		}
+	}
+	&--secondary {
+		grid-area: span 2 / span 3;
+		animation-duration: 1.4s;
+	}
+	&--tertiary {
+		background: $color-neutral;
+		grid-area: span 1 / span 2;
+		animation-duration: 1.8s;
+	}
+	&--content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	
+	.logo {
+		transform: rotate(90deg);
+	}
+}
+
+.loading-overlay {	
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: grid;
+	place-items: center;
+	margin: -200vh -200vw;
+	
+	will-change: transform, padding, opacity;
+	animation: hide-overlay 2.4s $easing 1;
+	opacity: 0;
+	pointer-events: none;
+	visibility: hidden;
+	&__content {
+		position: relative;
+		transform: rotate(90deg);
+		padding: 50vw 50vh;
+		will-change: transform, padding, opacity;
+		animation: rotate-expand-out 2.4s $easing 1;
+	}
+	&__content::after {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		background: $color-accent;
+		will-change: width;
+		animation: background-swipe-in .3s $easing 1;
+	}
+}
+
+@keyframes background-swipe-in {
+	from { width: 0%; }
+}
+
+@keyframes background-swipe-out {
+	0%, 65% { width: 100%; }
+	100% { width: 0%; }
+}
+
+@keyframes rotate-expand-out {
+	0%, 15%, 30%, 50%, 65%, 95%, 100% {
+		transform: rotate(-90deg);
+		padding: .2em 2em;
+		opacity: 1;
+	}
+	30%, 50% {
+		transform: rotate(0deg);
+		padding: 4em 2.4em;
+	}
+	65%, 95% {
+		transform: rotate(90deg);
+		padding: 50vw 50vh;
+	}
+	100% {
+		transform: rotate(90deg);
+		padding: 50vw 50vh;
+	}
+}
+
+@keyframes hide-overlay {
+	0%, 90% {
+		opacity: 1;
+		visibility: visible;
+		background: $color-text;
+	}
+	95% {
+		background: transparent;
+	}
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+@keyframes expand {
+	0%, 100% {
+		width: 100%;
+	}
+	50% {
+		width: 110vw;
+	}
+}
+
+@keyframes shuffle {
+	0%, 90% {
+		border-left: 0 solid $color-accent;
+	}
+	50% {
+		border-left: 2vw solid $color-accent;
+	}
+}

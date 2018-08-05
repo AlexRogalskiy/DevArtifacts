@@ -1,0 +1,116 @@
+body {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+body .wrap {
+  width: 250px;
+  height: 100px;
+  position: absolute;
+  left: calc(50% - 125px);
+  top: calc(50% - 50px);
+}
+body .wrap:first-of-type {
+  margin-top: -50px;
+}
+body .wrap:first-of-type .inner {
+  transition: 0.4s ease-in-out;
+  transition-delay: 0s;
+}
+body .wrap:first-of-type .outer {
+  transition: transform 0.4s ease-in-out;
+  transition-delay: 0.4s;
+}
+body .wrap:first-of-type .outer:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 80px;
+  background: linear-gradient(to right, #03001e, #7303c0, #ec38bc);
+}
+body .wrap:first-of-type input:checked ~ .outer {
+  animation: shift 0.8s ease-in-out 1 forwards;
+  transform: rotate(180deg);
+}
+body .wrap:first-of-type input:checked ~ .outer:before {
+  background: linear-gradient(to left, #03001e, #7303c0, #ec38bc);
+}
+@keyframes shift {
+  0% {
+    width: 250px;
+    transform: rotate(0deg);
+  }
+  25% {
+    width: 100px;
+    transform: rotate(0deg);
+  }
+  50% {
+    width: 100px;
+    transform: rotate(180deg);
+  }
+  100% {
+    width: 250px;
+    transform: translateX(150px) rotate(180deg);
+  }
+}
+body .wrap:first-of-type input:checked ~ .outer ~ .inner {
+  transition-delay: 0.4s;
+  transform: translateX(150px);
+  box-shadow: inset 5px -10px 15px 0 rgba(0, 0, 0, 0.5);
+}
+body .wrap:nth-of-type(2) {
+  margin-top: 75px;
+}
+body .wrap:nth-of-type(2) input:checked {
+  z-index: 7;
+}
+body .wrap:nth-of-type(2) input:checked ~ .outer {
+  transform: rotate(180deg);
+  margin-left: 150px;
+}
+body .wrap:nth-of-type(2) input:checked ~ .inner {
+  margin-left: 150px;
+  box-shadow: inset 5px -10px 15px 0 rgba(0, 0, 0, 0.5);
+}
+body .outer, body input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  border-radius: 80px;
+  opacity: 0;
+}
+body .outer:nth-of-type(2), body input:nth-of-type(2) {
+  z-index: 8;
+}
+body .outer {
+  background: linear-gradient(to right, #03001e, #7303c0, #ec38bc);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25), 0 0 20px 0 rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  z-index: 0;
+  transform-origin: 50px 50px;
+  transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+  transition-delay: 0s, 0.3s;
+}
+body .inner {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: #fff;
+  box-shadow: inset -5px -10px 15px 0 rgba(0, 0, 0, 0.5);
+  background-position: -35px -30px;
+  background-size: 120%;
+  position: absolute;
+  left: calc(50% - 115px);
+  top: calc(50% - 40px);
+  border-radius: 500%;
+  transition: margin 0.3s ease-in-out, box-shadow 0.6s ease-in-out;
+  transition-delay: 0.3s, 0s;
+}

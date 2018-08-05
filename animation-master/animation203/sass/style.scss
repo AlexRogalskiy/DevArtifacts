@@ -1,0 +1,124 @@
+html {
+	height: 100%;
+	perspective: 800px;
+	perspective-origin: 50% 80px;
+	font-size: 16px;
+	line-height: 1.2rem;
+	background: #333;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.booth {
+	height: 240px;
+	width: 120px;
+	position: absolute;
+	top: calc(50vh - 120px);
+	left: calc(50vw - 60px);
+	display: flex;
+	flex-wrap: wrap;
+	cursor: pointer;
+}
+
+.frame {
+	position: relative;
+	width: 50%;
+	height: 50%;
+	transform-style: preserve-3d;
+	&--top {
+		margin-right: 50%;
+		height: 25%;
+		transform: rotateY(-45deg) rotateX(90deg);
+		transform-origin: bottom right;
+	}
+	&--left {
+		transform: rotateY(-45deg);
+		transform-origin: top right;
+		overflow-x: hidden;
+	}
+	&--right {
+		transform: rotateY(45deg);
+		transform-origin: top left;
+		overflow-x: hidden;
+	}
+	&--bottom {
+		height: 25%;
+		transform: rotateY(-45deg) rotateX(-90deg);
+		transform-origin: top right;
+		z-index: -1;
+	}
+}
+
+.side {
+	height: 100%;
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	width: 100%;
+	background: #adadad;
+	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
+	line-height: 0;
+	will-change: transform;
+	transition: ease-in 1s;
+	&--top {
+		transform-style: preserve-3d;
+	}
+	&--bottom {
+		box-shadow: 0 0 60px #000;
+	}
+	&--left {
+		background: #a1a1a1;
+	}
+	&--right {
+		background: #8a8a8a;
+	}
+}
+
+.sign {
+	display: inline-block;
+	width: 80%;
+	height: 7%;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: 600;
+	letter-spacing: .1rem;
+	font-size: .35rem;
+	line-height: .55rem;
+	background: #fff;
+	margin: 9% 10% 0;
+	box-shadow: 0 0 4px #fff;
+}
+
+.panel {
+	height: 40%;
+	width: 20%;
+	margin: 0 0 0 10%;
+	background: #97272c;
+	box-shadow: inset 0 0 0 2px rgba(0,0,0,0.4);
+	&--door {
+		width: 35%;
+	}
+	&--glass {
+		background: #bdd1e5;
+	}
+}
+
+.booth:hover {
+	.side {
+		box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3), 0 0 30px #9ae2f5;
+		&--left,
+		&--right {
+			transform: translateY(120px);
+		}
+		&--top {
+			transform: translateZ(-120px);
+			background: #fff;
+		}
+		&--bottom {
+			box-shadow: none;
+		}
+	}
+}

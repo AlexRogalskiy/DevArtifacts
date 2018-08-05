@@ -1,0 +1,48 @@
+body {
+  background: #212425;
+  text-align: center;
+  padding-top: 45vh;
+  height: 100%;
+}
+
+[href*="ghost.org"] {
+  display: inline-block;
+  position: relative;
+  background-clip: content-box;
+  background-color: #718087;
+  padding: 16px 0;
+  height: 8px;
+  width: 40px;
+  transition: .2s;
+  -webkit-transition: .2s;
+  -webkit-filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0));
+}
+[href*="ghost.org"]:before, [href*="ghost.org"]:after {
+  transition: .2s;
+  -webkit-transition: .2s;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: inherit;
+  width: 8px;
+  border-left: 24px solid #718087;
+  border-right: 8px solid #718087;
+}
+[href*="ghost.org"]:after {
+  bottom: 0;
+  top: auto;
+  border-left-width: 14px;
+  border-right-width: 18px;
+}
+[href*="ghost.org"]:hover {
+  -webkit-filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.2));
+}
+[href*="ghost.org"]:hover:before {
+  border-left-width: 8px;
+  border-right-width: 24px;
+}
+[href*="ghost.org"]:hover:after {
+  border-left-width: 18px;
+  border-right-width: 14px;
+}
