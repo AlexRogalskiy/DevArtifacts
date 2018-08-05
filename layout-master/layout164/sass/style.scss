@@ -1,0 +1,155 @@
+@import 'scut';
+
+$color-teal: #1ca9b0;
+$color-gray--light: #f0f0f0;
+$color-offblack: #595959;
+$color-white: #fff;
+
+@mixin max-width($threshold) {
+  @media screen and (max-width: scut-em($threshold)) {
+    @content;
+  }
+}
+
+body {
+  padding: 2rem 0 0 2rem;
+}
+
+
+.CardList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: block;
+  width: 100%;
+}
+
+.CardList-item {
+  width: 48%;
+  max-width: 500px;
+  height: 300px;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  perspective: 3000px;
+  /* perspective: sets the intensity of the 3d effect. This is placed on the parent of the animating object.
+  mdn def: https://developer.mozilla.org/en-US/docs/Web/CSS/perspective
+  */
+
+  &:nth-child(even) {
+    margin-left: 2rem;
+  }
+
+  @include max-width(785px) {
+    display: block;
+    width: 80%;
+    margin: 0 auto 1.5rem;
+
+    &:nth-child(even) {
+      margin-left: auto;
+    }
+  }
+}
+
+.CardList-itemInnerWrapper {
+  //the actual item we're rotating.
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: 1px solid $color-teal;
+  transform: rotateY(0deg); //some browsers break without default orientation
+  transition: transform 700ms;
+  transform-style: preserve-3d;
+  // ^ children of this element should be positioned in 3d space.
+
+  .CardList-item.is-active & {
+    //when active, flip this "card" around.
+    transform: rotateY(180deg);
+
+    .no-csstransforms3d &,
+    .is-IE & {
+      //ie 9, 10, and 11 have some issues. use a different animation via javascript like jQuery's slideDown(); method.
+      transform: rotateY(0deg);
+    }
+  }
+
+  .CardList-item.is-active.no-action & {
+    transform: rotateY(0deg);
+  }
+}
+
+.CardList-title,
+.CardList-description {
+  //Title is the front of the card.
+  //description is the back.
+  backface-visibility: hidden;
+  //3D transform property. Normally, the "back" of an element is transparent letting the reverse side of an element show through if rotated. Changing to hidden makes this effect function as expected.
+  // MDN Link: https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.CardList-title {
+  margin-top: 0;
+  background: $color-gray--light;
+  color: $color-offblack;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  transition: color 300ms ease-out;
+  z-index: 2;
+  transform: rotateY(0deg);
+  //front starts with no rotation and a higher z-index than the back.
+
+  .CardList-item:hover & {
+    color: $color-teal;
+  }
+
+  &InnerWrapper {
+    @include scut-center-transform;
+    width: 80%;
+  }
+}
+
+.CardList-description {
+  background: $color-teal;
+  color: $color-white;
+  z-index: 1;
+  transform: rotateY(180deg);
+  /*lower z-index than the front. Rotated 180 so the card starts in a reversed state.
+  
+  This means that when the parent wrapper is rotated, this will "rotate" to 0deg at the same time.
+  */
+
+  .no-csstransforms3d &,
+  .is-IE & {
+    display: none;
+    transform: none;
+    z-index: 3;
+    //if we can't do animations via css, changing the z-index puts it on top.
+    //rotateY is a 3D transform so it would stay readable in unsupported browsers.
+  }
+
+  &InnerWrapper {
+    @include scut-center-transform;
+    width: 80%;
+  }
+}
+
+.CardList-icon {
+  @include scut-size(scut-rem(48));
+  fill: none;
+  stroke: $color-teal;
+  stroke-linecap: square;
+  stroke-miterlimit: 10;
+  stroke-width: 2px;
+  display: block;
+  margin: 0 auto 1rem;
+}
+

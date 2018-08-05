@@ -1,0 +1,58 @@
+@charset "UTF-8";
+:root {
+  font-size: 100px;
+  --blue: #0074D9;
+  --darkblue: #005FB2;
+}
+
+body {
+  background: #111111;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input + label {
+  font-size: 1.2rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.1rem solid var(--blue);
+  border-radius: 50%;
+  background: var(--darkblue);
+  transition: .1s all;
+  cursor: pointer;
+  z-index: 999 !important;
+}
+
+input + label:hover {
+  transform: scale(0.95);
+}
+
+input + label:after {
+  content: "🤜";
+}
+
+input:checked + label {
+  background: var(--blue);
+  transform: scale(1.1);
+}
+
+input:checked + label:hover {
+  background: var(--blue);
+  transform: scale(1.05);
+}
+
+input:checked + label:after {
+  content: "👍";
+}

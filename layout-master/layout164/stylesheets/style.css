@@ -1,0 +1,144 @@
+/*
+* Scut, a collection of Sass utilities
+* to ease and improve our implementations of common style-code patterns.
+* v1.4.0
+* Docs at http://davidtheclark.github.io/scut
+*/
+body {
+  padding: 2rem 0 0 2rem;
+}
+
+.CardList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: block;
+  width: 100%;
+}
+
+.CardList-item {
+  width: 48%;
+  max-width: 500px;
+  height: 300px;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  perspective: 3000px;
+  /* perspective: sets the intensity of the 3d effect. This is placed on the parent of the animating object.
+  mdn def: https://developer.mozilla.org/en-US/docs/Web/CSS/perspective
+  */
+}
+.CardList-item:nth-child(even) {
+  margin-left: 2rem;
+}
+@media screen and (max-width: 49.0625em) {
+  .CardList-item {
+    display: block;
+    width: 80%;
+    margin: 0 auto 1.5rem;
+  }
+  .CardList-item:nth-child(even) {
+    margin-left: auto;
+  }
+}
+
+.CardList-itemInnerWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: 1px solid #1ca9b0;
+  transform: rotateY(0deg);
+  transition: transform 700ms;
+  transform-style: preserve-3d;
+}
+.CardList-item.is-active .CardList-itemInnerWrapper {
+  transform: rotateY(180deg);
+}
+.no-csstransforms3d .CardList-item.is-active .CardList-itemInnerWrapper, .is-IE .CardList-item.is-active .CardList-itemInnerWrapper {
+  transform: rotateY(0deg);
+}
+.CardList-item.is-active.no-action .CardList-itemInnerWrapper {
+  transform: rotateY(0deg);
+}
+
+.CardList-title,
+.CardList-description {
+  backface-visibility: hidden;
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.CardList-title {
+  margin-top: 0;
+  background: #f0f0f0;
+  color: #595959;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  transition: color 300ms ease-out;
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+.CardList-item:hover .CardList-title {
+  color: #1ca9b0;
+}
+.CardList-titleInnerWrapper {
+  position: absolute;
+  top: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+  left: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 80%;
+}
+
+.CardList-description {
+  background: #1ca9b0;
+  color: #fff;
+  z-index: 1;
+  transform: rotateY(180deg);
+  /*lower z-index than the front. Rotated 180 so the card starts in a reversed state.
+  
+  This means that when the parent wrapper is rotated, this will "rotate" to 0deg at the same time.
+  */
+}
+.no-csstransforms3d .CardList-description, .is-IE .CardList-description {
+  display: none;
+  transform: none;
+  z-index: 3;
+}
+.CardList-descriptionInnerWrapper {
+  position: absolute;
+  top: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+  left: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 80%;
+}
+
+.CardList-icon {
+  width: 3rem;
+  height: 3rem;
+  fill: none;
+  stroke: #1ca9b0;
+  stroke-linecap: square;
+  stroke-miterlimit: 10;
+  stroke-width: 2px;
+  display: block;
+  margin: 0 auto 1rem;
+}

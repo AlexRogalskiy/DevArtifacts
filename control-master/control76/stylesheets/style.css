@@ -1,0 +1,52 @@
+/*
+* Scut, a collection of Sass utilities
+* to ease and improve our implementations of common style-code patterns.
+* v1.4.0
+* Docs at http://davidtheclark.github.io/scut
+*/
+.progressBar {
+  width: 100%;
+  height: 0.3125rem;
+  background-color: #9AA3AC;
+  position: relative;
+  --step: 1;
+  --total: 1;
+}
+.progressBar:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  background-color: #54E0C7;
+  height: 0.3125rem;
+  /* The magic.
+  The formula below gives us a percentage back to calculate the width.
+  2 / 4 * 100% = 50% width, or halfway through.
+  The fallback 100% width is for browsers that don't support css variables. 
+  Show those browsers a colored bar. 
+  */
+  width: 100%;
+  width: calc(var(--step) / var(--total) * 100%);
+  /*init with js then add the transition.
+  This is because the total variable will be updated at runtime,
+  which will cause the calc width to recalculate and animate the change.
+  Don't want that to happen during init.
+  */
+}
+.js-initialized.progressBar:before {
+  transition: all 400ms ease-out;
+}
+
+.actions {
+  margin-top: 1.5rem;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #D1D7DC;
+}
+
+.wrapper {
+  max-width: 37.5rem;
+  margin: 6.25rem auto;
+}
