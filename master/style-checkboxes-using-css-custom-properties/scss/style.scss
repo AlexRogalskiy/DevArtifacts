@@ -1,0 +1,1043 @@
+@import "compass";
+
+////////////////////
+/// Typhography ///
+//
+// Font Family
+$font-family: Montserrat;
+//
+// Font Weights
+$fw-300: 300;
+$fw-400: 400;
+$fw-500: 500;
+$fw-600: 600;
+//
+// Font Size
+$fs-small: 12px;
+$fs-medium: 14px;
+$fs-default: 16px;
+$fs-large: 18px;
+$fs-extra-large: 24px;
+//
+////////////////////
+///    colors   /// 
+//
+// Base Colors
+$white: #fff;
+$black: #000;
+$gray: #333;
+$puple: #b95ed5;
+$pink: #f79494;
+//
+// Text Colors
+$font-white: $white;
+$font-black: $black;
+$font-gray: $gray;
+$font-puple: $puple;
+$font-pink: $pink;
+//
+// Background Colors
+$background-white: $white;
+$background-black: $black;
+$background-gray: $gray;
+$background-puple: $puple;
+$background-pink: $pink; 
+//
+// Border Colors
+$border-white: $white;
+$border-black: $black;
+$border-gray: $gray;
+$border-pink: $pink;
+
+// Create mixin for font-weight and font-size properties
+@mixin custom-font($fontsize, $fontweight) {
+    font-weight: $fontweight;
+    font-size: $fontsize;
+}
+
+// Create mixin for transition property
+@mixin transition($time, $type, $property) {
+    transition: $time $type $property;
+    -moz-transition: $time $type $property;
+    -webkit-transition: $time $type $property;
+}
+
+// Create mixin for transition property with transition dela
+@mixin transition-with-delay($tim, $dela, $typ, $propert) {
+    transition: $tim $dela $typ $propert;
+    -moz-transition: $tim $dela $typ $propert;
+    -webkit-transition: $tim $dela $typ $propert;
+}
+
+// Create mixin for border-radius property
+@mixin border-radius($radius) {
+    border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+}
+
+// Create mixin for transition property
+@mixin box-shadow($shadow) {
+    box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700i,800,800i,900,900i');
+
+/*======================
+  Reset Default Styles 
+========================*/
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: $font-family, sans-serif;
+}
+
+a,
+h1,
+h2,
+img,
+li,
+p,
+section,
+ul,
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline
+}
+
+section {
+    display: block
+}
+
+ul {
+    list-style: none
+}
+
+a {
+    outline: 0 !important;
+    text-decoration: none !important;
+}
+
+
+/*======================
+ Common Style 
+========================*/
+
+body {
+    background-color: $background-pink;
+}
+
+a.back-to-article {
+    width: 100%;
+    float: left;
+    padding: 10px 0px;
+    margin-bottom: 30px;
+    background: $background-gray;
+    color: $font-white;
+    text-align: left;
+    text-indent: 20px;
+    font-size: $fs-small;
+    text-transform: uppercase;
+    text-decoration: none;
+    &.back-to-article:hover {
+        color: $font-puple;
+    }
+}
+
+a.github {
+    width: 150px;
+    right: -32px;
+    top: 27px;
+    position: fixed;
+    padding: 5px 0 8px;
+    color: $font-white;
+    @include custom-font($fs-medium,
+    $fw-500);
+    background-color: $background-puple;
+    text-transform: capitalize;
+    text-align: center;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    z-index: 111;
+    @include box-shadow(1px 1px 1px 1px rgba(0, 0, 0, 0.5));
+    &:hover {
+        background-color: $background-white;
+        color: $font-puple;
+    }
+}
+
+main {
+    width: 95%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px 0;
+    h1 {
+        color: $font-white;
+        @include custom-font($fs-extra-large,
+        $fw-600);
+        text-align: center;
+        text-transform: none;
+    }
+    h2 {
+        padding: 15px 20px;
+        color: $font-white;
+        @include custom-font($fs-default,
+        $fw-600);
+        text-align: left;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    section {
+        width: 100%;
+        height: auto;
+        float: left;
+        display: block;
+        margin: 0 auto;
+        padding: 30px 0 0;
+        li,
+        a {
+            display: block;
+        }
+        li {
+            width: 12.25%;
+            height: auto;
+            float: left;
+            position: relative;
+            padding: 30px 0;
+            &:nth-child(8n+1) {
+                clear: left;
+            }
+        }
+    }
+}
+
+
+/*---- View < 1024px ----*/
+
+@media(max-width:1024px) {
+    main section li {
+        width: 50%;
+        &:nth-child(4n+1) {
+            clear: none;
+        }
+        &:nth-child(2n+1) {
+            clear: left;
+        }
+    }
+}
+
+
+/*---- View < 450px ----*/
+
+@media(max-width:450px) {
+    main section li {
+        width: 100%;
+    }
+}
+
+/*======================
+Check Boxes Styles
+========================*/
+
+input[type='checkbox'] {
+    opacity: 0;
+    z-index: -1;
+}
+
+input[type='checkbox']+label {
+    width: 40px;
+    height: 40px;
+    display: block;
+    position: relative;
+    margin: auto;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-indent: -999px;
+    overflow: hidden;
+    border: 1px solid $border-white;
+    cursor: pointer;
+}
+
+/*-------------------
+  #checkbox-a style
+  ------------------*/
+
+input[type='checkbox']#checkbox-a+label {
+    border: 1px solid $border-white;
+    background: transparent;
+    @include transition(0.5s, ease, all);
+}
+
+input[type='checkbox']#checkbox-a:checked+label {
+    border: 1px solid $border-white;
+    background: $background-white;
+}
+
+/*-------------------
+  #checkbox-b style
+  ------------------*/
+
+input[type='checkbox']#checkbox-b+label {
+    border: 1px solid $border-white;
+    background: transparent;
+    @include transition(0.5s, ease, all);
+}
+
+input[type='checkbox']#checkbox-b:checked+label {
+    border: 8px solid $border-white;
+}
+
+/*-------------------
+  #checkbox-c style
+  ------------------*/
+
+input[type='checkbox']#checkbox-c+label {
+    border: 1px solid $border-white;
+    background-color: transparent;
+    @include transition(0.8s, ease, border);
+}
+
+input[type='checkbox']#checkbox-c:checked+label {
+    border: 8px solid $border-white;
+    background: rgba(0, 0, 0, 0.5);
+    @include transition(0.5s, ease, all);
+}
+
+/*-------------------
+  #checkbox-d style
+  ------------------*/
+
+input[type='checkbox']#checkbox-d+label {
+    border: 1px solid $border-white;
+    background-color: transparent;
+    @include transition(0.8s, ease, border);
+}
+
+input[type='checkbox']#checkbox-d:checked+label {
+    border-left: 10px solid $border-white;
+    border-right: 10px solid $border-white;
+    background: rgba(0, 0, 0, 0.5);
+    @include transition(0.5s, ease, all);
+}
+
+/*-------------------
+  #checkbox-e style
+  ------------------*/
+
+input[type='checkbox']#checkbox-e+label {
+    border: 1px solid $border-white;
+    background-color: transparent;
+    @include transition(0.8s, ease, border);
+}
+
+input[type='checkbox']#checkbox-e:checked+label {
+    border-top: 10px solid $border-white;
+    border-bottom: 10px solid $border-white;
+    background: rgba(0, 0, 0, 0.5);
+    @include transition(0.5s, ease, all);
+}
+
+/*-------------------
+  #checkbox-f style
+  ------------------*/
+
+input[type='checkbox']#checkbox-f+label {
+    border: 1px solid $border-white;
+    background: transparent;
+    @include transition(0.5s, ease, background);
+    background-position: cennter;
+    background-size: 40px 40px;
+}
+
+input[type='checkbox']#checkbox-f:checked+label {
+    background: transparent url(http://katheermizal.info/works/working-with-checkbox/assets/images/tick-icon-white.png) no-repeat;
+}
+
+/*-------------------
+  #checkbox-g style
+  ------------------*/
+
+input[type='checkbox']#checkbox-g+label {
+    border: 1px solid $border-white;
+    background: transparent url(http://katheermizal.info/works/working-with-checkbox/assets/images/tick-icon-transparent.png) no-repeat;
+    background-position: center;
+    background-size: 40px 40px;
+    @include transition(0.4s, ease, background);
+}
+
+input[type='checkbox']#checkbox-g:checked+label {
+    background: transparent url(http://katheermizal.info/works/working-with-checkbox/assets/images/tick-icon-white.png) no-repeat;
+}
+
+/*-------------------
+  #checkbox-h style
+  ------------------*/
+
+input[type='checkbox']#checkbox-h+label {
+    border: 1px solid $border-white;
+    background: transparent url(http://katheermizal.info/works/working-with-checkbox/assets/images/tick-icon.png) no-repeat;
+    background-position: 50% 0;
+    background-size: 40px 80px;
+    @include transition(0.4s, ease, background);
+}
+
+input[type='checkbox']#checkbox-h:checked+label {
+    background-position: 50% -40px;
+}
+
+/*-------------------
+  #checkbox-i style
+  ------------------*/
+
+input[type='checkbox']#checkbox-i+label {
+    border: 1px solid $border-white;
+    background: transparent;
+}
+
+input[type='checkbox']#checkbox-i+label:before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    top: -60px;
+    bottom: 0;
+    left: -60px;
+    right: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    @include transition(0.2s, ease, all);
+}
+
+input[type='checkbox']#checkbox-i:checked+label:before {
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+}
+
+/*-------------------
+  #checkbox-j style
+  ------------------*/
+
+input[type='checkbox']#checkbox-j+label {
+    border: 1px solid $border-white;
+    background: transparent;
+}
+
+input[type='checkbox']#checkbox-j+label:before,
+input[type='checkbox']#checkbox-j+label:after {
+    content: '';
+    width: 10px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    @include transition(0.2s, ease, all);
+}
+
+input[type='checkbox']#checkbox-j+label:before {
+    left: -22px;
+}
+
+input[type='checkbox']#checkbox-j+label:after {
+    right: -22px;
+}
+
+input[type='checkbox']#checkbox-j:checked+label:before {
+    left: 9px;
+}
+
+input[type='checkbox']#checkbox-j:checked+label:after {
+    right: 9px;
+}
+
+/*-------------------
+  #checkbox-k style
+  ------------------*/
+
+input[type='checkbox']#checkbox-k+label {
+    border: 1px solid $border-white;
+    background: transparent;
+}
+
+input[type='checkbox']#checkbox-k+label:before,
+input[type='checkbox']#checkbox-k+label:after {
+    content: '';
+    width: 20px;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    @include transition(0.2s, ease, all);
+}
+
+input[type='checkbox']#checkbox-k+label:before {
+    top: -22px;
+}
+
+input[type='checkbox']#checkbox-k+label:after {
+    bottom: -22px;
+}
+
+input[type='checkbox']#checkbox-k:checked+label:before {
+    top: 9px;
+}
+
+input[type='checkbox']#checkbox-k:checked+label:after {
+    bottom: 9px;
+}
+
+/*-------------------
+  #checkbox-l style
+  ------------------*/
+
+input[type='checkbox']#checkbox-l+label {
+    border: 1px solid $border-white;
+    background: $background-white;
+}
+
+input[type='checkbox']#checkbox-l+label:before,
+input[type='checkbox']#checkbox-l+label:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+input[type='checkbox']#checkbox-l+label:before {
+    width: 100%;
+    height: 100%;
+    background: $background-pink;
+    @include transition(0.2s, ease, all);
+}
+
+input[type='checkbox']#checkbox-l+label:after {
+    width: 0;
+    height: 0;
+    background: $background-white;
+    @include transition(0.2s, ease, all);
+    transition-delay: 0.2s;
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+}
+
+input[type='checkbox']#checkbox-l:checked+label:before {
+    width: 25px;
+    height: 25px;
+}
+
+input[type='checkbox']#checkbox-l:checked+label:after {
+    width: 13px;
+    height: 13px;
+}
+
+/*-------------------
+  #checkbox-m style
+  ------------------*/
+
+input[type='checkbox']#checkbox-m+label {
+    border: 1px solid $border-white;
+    background: transparent;
+}
+
+input[type='checkbox']#checkbox-m+label:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    background-color: $background-white;
+    opacity: 0;
+    z-index: -1;
+    @include transition(0.4s, ease-in-out, all);
+}
+
+input[type='checkbox']#checkbox-m:checked+label:before {
+    opacity: 1;
+    z-index: 1;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+}
+
+/*-------------------
+  #checkbox-n style
+  ------------------*/
+
+input[type='checkbox']#checkbox-n+label {
+    border: 1px solid $border-white;
+    background: transparent;
+}
+
+input[type='checkbox']#checkbox-n+label:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    transition: all 0.4s cubic-bezier(1, 0, 0.4, 0.5);
+    -webkit-transition: all 0.4s cubic-bezier(1, 0, 0.4, 0.5);
+}
+
+input[type='checkbox']#checkbox-n:checked+label:before {
+    transition: all 0.4s cubic-bezier(1, 0, 0.4, 1);
+    -webkit-transition: all 0.4s cubic-bezier(1, 0, 0.4, 1);
+    transform: scale(1);
+    -webkit-transform: scale(1);
+}
+
+/*-------------------
+  #checkbox-o style
+  ------------------*/
+
+input[type='checkbox']#checkbox-o+label {
+    border: 1px solid $border-white;
+    background: transparent;
+}
+
+input[type='checkbox']#checkbox-o+label:before {
+    content: '';
+    width: 25px;
+    height: 25px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.5) url(http://katheermizal.info/works/working-with-checkbox/assets/images/tick-icon-white.png) no-repeat;
+    background-position: center;
+    background-size: 20px;
+    @include transition(0.4s, ease, all);
+}
+
+input[type='checkbox']#checkbox-o:checked+label:before {
+    opacity: 1;
+    z-index: 1;
+}
+
+/*-------------------
+  #checkbox-p style
+  ------------------*/
+
+input[type='checkbox']#checkbox-p+label {
+    border: 1px solid $border-white;
+    background: transparent;
+    overflow: visible;
+    @include transition(0.4s, ease, border);
+}
+
+input[type='checkbox']#checkbox-p+label:before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    top: -54px;
+    left: 0;
+    bottom: 0;
+    right: -54px;
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    margin: auto;
+    background: rgb(123, 74, 74) url(http://katheermizal.info/works/working-with-checkbox/assets/images/tick-icon-white.png) no-repeat;
+    background-position: center;
+    background-size: 13px;
+    @include transition(0.4s, ease, all);
+}
+
+input[type='checkbox']#checkbox-p:checked+label {
+    border: 8px solid $border-white;
+}
+
+input[type='checkbox']#checkbox-p:checked+label:before {
+    opacity: 1;
+    z-index: 1;
+    top: -38px;
+    left: 0;
+    bottom: 0;
+    right: -37px;
+}
+
+/*-------------------
+  #checkbox-q style
+  ------------------*/
+
+input[type='checkbox']#checkbox-q+label {
+    border: 1px solid $border-white;
+    background: $background-white;
+}
+
+input[type='checkbox']#checkbox-q+label:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    background: $background-pink;
+    @include border-radius(0);
+    @include transition(0.4s, ease, all);
+}
+
+input[type='checkbox']#checkbox-q:checked+label:before {
+    width: 20px;
+    height: 20px;
+    @include border-radius(50%);
+}
+
+/*-------------------
+  #checkbox-r style
+  ------------------*/
+
+input[type='checkbox']#checkbox-r+label {
+    border: 1px solid $border-white;
+}
+
+input[type='checkbox']#checkbox-r+label:before,
+input[type='checkbox']#checkbox-r+label:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    opacity: 0;
+    z-index: -1;
+    @include transition(0.2s, ease, all);
+}
+
+input[type='checkbox']#checkbox-r+label:before {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+input[type='checkbox']#checkbox-r+label:after {
+    background: $background-white;
+    transition-delay: 0.3s;
+    -webkit-transition-delay: 0.3s;
+    -moz-transition-delay: 0.3s;
+}
+
+input[type='checkbox']#checkbox-r:checked+label:before {
+    width: 26px;
+    height: 26px;
+    opacity: 1;
+    z-index: 1;
+    @include transition(0.2s, ease, all);
+    transition-delay: 0.3s;
+    -webkit-transition-delay: 0.3s;
+    -moz-transition-delay: 0.3s;
+}
+
+input[type='checkbox']#checkbox-r:checked+label:after {
+    opacity: 1;
+    z-index: 1;
+    @include transition(0.2s, ease, all);
+}
+
+/*-------------------
+  #checkbox-s style
+  ------------------*/
+
+input[type='checkbox']#checkbox-s+label {
+    border: 1px solid $border-white;
+    background: tranparent;
+    @include border-radius(10px);
+}
+
+input[type='checkbox']#checkbox-s+label:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    background: $background-pink;
+    @include border-radius(2px);
+    @include transition(0.4s, ease, all);
+}
+
+input[type='checkbox']#checkbox-s:checked+label:before {
+    background: $background-white;
+    @include border-radius(50%);
+}
+
+/*-------------------
+  #checkbox-t style
+  ------------------*/
+
+input[type='checkbox']#checkbox-t+label {
+    border: 1px solid $border-white;
+    background: tranparent;
+    @include border-radius(50%);
+}
+
+input[type='checkbox']#checkbox-t+label:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    bottom: -60px;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    background: $background-white;
+    @include border-radius(50%);
+    @include transition(0.2s, ease, all);
+}
+
+input[type='checkbox']#checkbox-t:checked+label:before {
+    bottom: 0;
+}
+
+/*-------------------
+  #checkbox-u style
+  ------------------*/
+
+input[type='checkbox']#checkbox-u+label {
+    border: 1px solid $border-white;
+    background: transparent;
+}
+
+input[type='checkbox']#checkbox-u+label:before,
+input[type='checkbox']#checkbox-u+label:after {
+    content: '';
+    width: 20px;
+    height: 4px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    background: transparent;
+    @include transition(0.2s, ease, all);
+}
+
+input[type='checkbox']#checkbox-u:checked+label:before,
+input[type='checkbox']#checkbox-u:checked+label:after {
+    @include transition(0.4s, ease, all);
+    background: $background-white;
+}
+
+input[type='checkbox']#checkbox-u:checked+label:before {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+input[type='checkbox']#checkbox-u:checked+label:after {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+/*-------------------
+  #checkbox-v style
+  ------------------*/
+
+input[type='checkbox']#checkbox-v+label {
+    border: 1px solid $border-white;
+    background: transparent;
+    overflow: visible
+}
+
+input[type='checkbox']#checkbox-v+label:before,
+input[type='checkbox']#checkbox-v+label:after {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    @include transition(0.5s, ease, all);
+}
+
+input[type='checkbox']#checkbox-v+label:before {
+    content: '';
+    width: 1px;
+    left: 0;
+    right: 0;
+    bottom: calc(100% + 3px);
+    margin: auto;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 9px solid $border-white;
+}
+
+input[type='checkbox']#checkbox-v+label:after {
+    content: attr(data-input-value);
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+    @include border-radius(4px);
+    background-color: $background-white;
+    color: $font-pink;
+    @include custom-font($fs-small, $fw-400);
+    text-align: center;
+    text-transform: none;
+    bottom: calc(100% + 10px);
+    text-indent: 0;
+    overflow: hidden;
+}
+
+input[type='checkbox']#checkbox-v:checked+label {
+    background: $background-white;
+}
+
+input[type='checkbox']#checkbox-v:checked+label:before,
+input[type='checkbox']#checkbox-v:checked+label:after {
+    opacity: 1;
+    z-index: 11;
+    @include transition(0.25s, ease, all);
+}
+
+/*-------------------
+  #checkbox-w style
+  ------------------*/
+
+input[type='checkbox']#checkbox-w+label {
+    border: 1px solid $border-white;
+    background: transparent;
+    overflow: visible
+}
+
+input[type='checkbox']#checkbox-w+label:before,
+input[type='checkbox']#checkbox-w+label:after {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    @include transition(0.5s, ease, all);
+}
+
+input[type='checkbox']#checkbox-w+label:before {
+    content: '';
+    width: 1px;
+    left: 0;
+    right: 0;
+    top: calc(100% + 3px);
+    margin: auto;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid $border-white;
+}
+
+input[type='checkbox']#checkbox-w+label:after {
+    content: attr(data-input-value);
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+    @include border-radius(4px);
+    background-color: $background-white;
+    color: $font-pink;
+    @include custom-font($fs-small, $fw-400);
+    text-align: center;
+    text-transform: none;
+    top: calc(100% + 10px);
+    text-indent: 0;
+    overflow: hidden;
+}
+
+input[type='checkbox']#checkbox-w:checked+label {
+    background: $background-white;
+}
+
+input[type='checkbox']#checkbox-w:checked+label:before,
+input[type='checkbox']#checkbox-w:checked+label:after {
+    opacity: 1;
+    z-index: 11;
+    @include transition(0.25s, ease, all);
+}
+
+/*-------------------
+  #checkbox-x style
+  ------------------*/
+
+input[type='checkbox']#checkbox-x+label {
+    background: transparent;
+    border-top: 5px solid $border-white;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+
+input[type='checkbox']#checkbox-x+label:before,
+input[type='checkbox']#checkbox-x+label:after {
+    content: '';
+    height: 5px;
+    right: 0;
+    position: absolute;
+    background: $background-white;
+    @include transition(0.2s, ease, all);
+}
+
+input[type='checkbox']#checkbox-x+label:before {
+    top: 10px;
+    width: 25px;
+}
+
+input[type='checkbox']#checkbox-x+label:after {
+    top: 25px;
+    width: 15px;
+}
+
+input[type='checkbox']#checkbox-x:checked+label {
+    border-top: 0px solid transparent;
+}
+
+input[type='checkbox']#checkbox-x:checked+label:before,
+input[type='checkbox']#checkbox-x:checked+label:after {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 30px;
+    height: 5px;
+}
+
+input[type='checkbox']#checkbox-x:checked+label:before {
+    transform: rotate(-315deg);
+    -webkit-transform: rotate(-315deg);
+}
+
+input[type='checkbox']#checkbox-x:checked+label:after {
+    transform: rotate(315deg);
+    -webkit-transform: rotate(315deg);
+}
