@@ -1,0 +1,165 @@
+// mixin for transitions _____________
+
+@mixin transition($time , $type, $property) {
+	transition:  $time  $type  $property;
+	-moz-transition:  $time  $type  $property;
+	-webkit-transition:  $time  $type  $property;
+}
+
+// mixin for links  _____________
+
+@mixin anchor-links( $font-size, $font-weight ,  $color , $hover-color) {
+	a {
+		font-size: $font-size;
+		font-weight: $font-weight;
+		color: $color;
+		@include transition(0.4s, ease, all);
+		* {
+			color: $color;
+			@include transition(0.4s, ease, all);
+		}
+		&:focus,
+		&:active,
+		&:visited,
+		&:link {
+			color: $color;
+			* {
+				color: $color;
+			}
+		}
+		&.active {	
+			color: $hover-color;
+			* {
+				color: $hover-color;
+			}
+		}
+		&:hover {
+			color: $hover-color;
+			* {
+				color: $hover-color;
+			}
+		}
+	}
+}
+
+/// Common ___________
+
+html,
+body,
+body * {
+	padding: 0;
+	margin: 0;
+}
+
+p, h2, h3 {
+	text-align: center;
+	margin: 20px 0;
+}
+
+/// Header ___________
+
+$top-nav-container-bg-color:  #101010 ;
+
+// 
+// Top nav links variables
+//________________
+$top-nav-link-font-size: 13px;
+$top-nav-link-line-height: 16px;
+$top-nav-link-font-weight: 600;
+$top-nav-link-color:  #fff ; 
+$top-nav-link-hover-active-color:  #d60800 ;
+
+
+header {
+	background-color: $top-nav-container-bg-color;
+	ul {
+		display: block;
+		text-align: center;
+		li {
+			display: inline-block;
+			position: relative;
+			margin: 0 10px;
+			a {
+				padding-top: 24px;
+				padding-bottom: 19px;
+				display: block;
+				line-height: $top-nav-link-line-height;
+				text-transform: uppercase;
+				text-decoration: none;
+				letter-spacing: 0.65px;
+			}
+			@include anchor-links( $top-nav-link-font-size, $top-nav-link-font-weight ,  $top-nav-link-color , $top-nav-link-hover-active-color);
+
+			&.current-menu-item {
+				a {
+					color: $top-nav-link-hover-active-color;	
+				}
+			}
+
+			&:last-child {
+				a {	
+					&:after { display: none; }
+				}
+			}
+		}
+	}
+}
+
+@media(min-width:768px){
+	header {
+		ul {
+			li {
+				a {
+					padding-top: 24px;
+					padding-bottom: 19px;
+				}
+			}
+		}
+	}
+}
+
+@media(max-width:767px){
+	header {
+		ul {
+			li {
+				width: 100%;
+				display: inline-block;
+				a {
+					padding-top: 16px;
+				    padding-bottom: 15px;
+				    border-bottom: 1px solid rgba(0, 0, 0, 0.29);
+					&:hover {
+						color: $top-nav-link-color;
+					}
+					&.active {
+						color: $top-nav-link-hover-active-color;
+					}
+					&:after {
+						display: none;
+					}
+				}
+				&.current-menu-item {
+					a {
+						color: $top-nav-link-hover-active-color;	
+					}
+				}
+			}
+		}
+	}
+}
+
+
+Section {
+	height: calc(100vh - 60px);
+	&:nth-child(even){
+		background-color: #f5f5f5;
+	}
+	h2 {
+		padding: 50px 0;
+	}
+}
+
+footer {
+	padding: 50px 0;
+	background-color: #eee;
+}
