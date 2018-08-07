@@ -1,0 +1,135 @@
+.loader {
+  position: relative;
+  display: flex;
+  font-size: 12px;
+}
+.loader::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - .15em);
+  left: -5vw;
+  height: .3em;
+  width: calc(100% + 10vw);
+  border-radius: 50%;
+  background-color: currentColor;
+  transform: translateZ(0);
+  filter: blur(0.05em) contrast(2);
+  box-shadow: 0 0 1em #ccf, 0 0 2em #ccf;
+}
+
+.o {
+  position: relative;
+  left: -42px;
+  z-index: 1;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: currentColor;
+  margin-left: 3em;
+  margin-right: 3em;
+  animation: translateX 1s linear infinite;
+  filter: blur(0.3em) contrast(5);
+  box-shadow: 0 0 0.15em, 0 0 1em 0.25em #9999ff, 0 0 3em 1.5em rgba(153, 153, 255, 0.2), 0 0 5em rgba(153, 153, 255, 0.5);
+}
+.o:first-child {
+  animation-name: translateX, hide-show;
+  animation-timing-function: linear, step-end;
+}
+.o:last-child {
+  transform-origin: -99px 50%;
+  animation-name: helf-rotate;
+  animation-timing-function: cubic-bezier(0.25, 0, 0.4, 1.25);
+}
+@keyframes translateX {
+  100% {
+    transform: translateX(84px);
+  }
+}
+@keyframes helf-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(180deg);
+  }
+  50.1%, 100% {
+    opacity: 0;
+  }
+}
+@keyframes hide-show {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.box {
+  position: relative;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.box:hover * {
+  animation-play-state: paused;
+}
+.box:active * {
+  animation-play-state: running;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin: 0;
+  line-height: 1.4;
+  color: #fff;
+  background-color: #000;
+}
+
+.intro {
+  width: 90%;
+  max-width: 50rem;
+  padding-top: .5em;
+  padding-bottom: 1rem;
+  margin: 0 auto 1em;
+  font-size: calc(1rem + 2vmin);
+  text-transform: capitalize;
+  text-align: center;
+  font-family: serif;
+}
+.intro small {
+  display: block;
+  text-align: right;
+  opacity: .5;
+  font-style: italic;
+  text-transform: none;
+  border-top: 1px dashed rgba(255, 255, 255, 0.75);
+}
+
+.info {
+  margin: 0;
+  padding: 1em;
+  font-size: .9em;
+  font-style: italic;
+  font-family: serif;
+  text-align: right;
+  opacity: .75;
+}
+.info a {
+  color: inherit;
+}

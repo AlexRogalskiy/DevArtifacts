@@ -1,0 +1,17 @@
+h1.intro Happy Pi Day Challenge
+  small rolling number with `π`
+
+mixin rolling-number(limit)
+  - limit = limit || 10;
+  .ring-wrap
+    ul.ring: while (limit--)
+      li.ring__num
+
+.box
+  .precision
+    input#js-range(type="range", step="1", min="1", max="6", value="6", autofocus)
+  .ring-box
+    +rolling-number()
+
+blockquote.info
+  | Codepen Creative Challenge(#[a(href="https://twitter.com/cccpens") #ccc]): #[a(href="https://codepen.io/DonKarlssonSan/post/happy-pi-day-challenge") Happy Pi Day Challenge]

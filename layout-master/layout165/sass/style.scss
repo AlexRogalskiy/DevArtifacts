@@ -1,0 +1,222 @@
+$colors: #fe0190, #9869b7, #21e4e6;
+$bgcs: #94abd5, #f7faff;
+$svg-base: "https://rawgit.com/rplus/d36646d8b5788d6df704/raw/";
+
+.order-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 66.6%;
+  border-radius: .6vw;
+  background-color: nth($colors, 2);
+  background-image:
+    radial-gradient(
+      circle at 95% 15%,
+      nth($colors, 1) 5%,
+      nth($colors, 2) 45%,
+      nth($colors, 3) 100%
+    );
+  box-shadow:
+    0 60px 120px -30px rgba(darken(nth($bgcs, 1), 10%), .5),
+    0 60px 150px -10px rgba(darken(nth($bgcs, 1), 20%), .2);
+
+  &::before {
+    content: "";
+    display: block;
+    visibility: hidden;
+    padding-bottom: 3/8 * 100%;
+  }
+}
+
+.order-img {
+  position: absolute;
+  top: 0;
+  left: 5%;
+  width: 30%;
+  background: url("../images/1.svg") no-repeat 0% / contain;//url("#{$svg-base}鯨魚旗.svg") no-repeat 0% / contain;
+  transform: translate3d(0, -15%, 0);
+  transition: all .5s;
+
+  &::after {
+    content: "";
+    display: block;
+    padding-bottom: 130%;
+    background: inherit;
+    opacity: .25;
+    transform: translate(5%, 5%) scale(.95);
+    filter: url("#blur");
+
+    // when native CSS blur supports
+    // overwrite the blur effect in svg polyfill
+    @supports (filter: blur(1px)) {
+      opacity: .7;
+      filter: blur(2.5vw);
+    }
+  }
+
+  @media (max-width: 560px) {
+    width: 40%;
+    transform: translate3d(50%, -30%, 0);
+  }
+}
+
+.order-info {
+  position: absolute;
+  left: 40%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 5%;
+  font-weight: 100;
+  font-family: Lato, sans-serif;
+  color: #fff;
+
+  @media (max-width: 560px) {
+    position: relative;
+    left: 0;
+    margin-left: 20%;
+    padding-bottom: 2em;
+  }
+}
+
+.order-title {
+  font-size: 4vw;
+  margin-bottom: .3em;
+  text-indent: -.1em;
+}
+
+.order-subtitle {
+  margin-bottom: 1.5em;
+  font-size: 1.75vw;
+  opacity: .5;
+}
+
+.order-icons {
+  font-size: 3.5vw;
+  cursor: default;
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: .1em;
+  padding: 1%;
+  border-radius: 50%;
+  box-shadow: 0 0 0 .05em rgba(#fff, .25);
+  background: no-repeat 50% / contain;
+  background-clip: content-box;
+  opacity: .8;
+  transition: opacity .3s, transform .3s;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  &:nth-of-type(1) { background-image: url('../images/2.svg'); }//url("#{$svg-base}台灣.svg"); }
+  &:nth-of-type(2) { background-image: url('../images/3.svg'); }//url("#{$svg-base}台灣玉山.svg"); }
+  &:nth-of-type(3) { background-image: url('../images/4.svg'); }//url("#{$svg-base}台灣鄭南榕.svg"); }
+  &:nth-of-type(4) { background-image: url('../images/5.svg'); }//url("#{$svg-base}台灣黑熊.svg"); }
+}
+
+.order-button {
+  position: absolute;
+  right: 6%;
+  bottom: 0;
+  transform: translate3d(0, 33.3%, 0);
+  width: 70%;
+  padding-top: .7em;
+  padding-bottom: .7em;
+  border-radius: 10em;
+  font-size: 2.25vw;
+  font-weight: 900;
+  text-align: center;
+  text-transform: capitalize;
+  color: mix(nth($colors, 1), nth($colors, 2), 75%);
+  text-decoration: none;
+  background-color: #fff;
+  box-shadow:
+    0 30px 80px -15px rgba(darken(nth($bgcs, 1), 10%), .5),
+    0 15px 80px -15px rgba(darken(nth($bgcs, 1), 20%), .2);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  position: relative;
+  height: 600px;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #ffd;
+  background-image:
+    radial-gradient(
+      circle at 100% 50%,
+      nth($bgcs, 1),
+      nth($bgcs, 2)
+    );
+}
+
+.intro {
+  width: 80%;
+  max-width: 30rem;
+  padding-bottom: 1rem;
+  margin: 0 auto 1em;
+  padding-top: .5em;
+  color: #fff;
+  text-shadow: 1px 1px rgba(#000, .3);
+  text-align: center;
+  text-transform: capitalize;
+  border-bottom: 1px dashed #fff;
+
+  small {
+    display: block;
+    opacity: .5;
+    font-style: italic;
+    text-transform: none;
+  }
+}
+
+.info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 1em;
+  font-size: .9em;
+  font-style: italic;
+  font-family: serif;
+  text-align: right;
+  color: #666;
+  opacity: .5;
+  transition: opacity .3s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.ib {
+  display: inline-block;
+}
