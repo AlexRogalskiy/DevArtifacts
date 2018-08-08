@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css?family=Unica+One');
+$black:#a3395f;
+$back:#150d2d;
+.back{
+  background:$back;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.text{
+  font-family:'Unica One', sans-serif;
+  color:$black;
+  font-size:30px;
+  position: fixed;
+  width:100%;
+  text-align:center;
+  top:50%;
+  margin:175px 0 0;
+}
+.corners{
+  animation:test 5s ease infinte;
+}
+.spinner{
+  width:300px;
+  height:300px;
+  position: fixed;
+  left:50%;
+  top:50%;
+  box-sizing:border-box;
+  margin:-150px;
+  cursor:pointer;
+  transform:rotateZ(-90deg);
+  &.clicked{
+    animation: rotate 6s cubic-bezier(0.1, -0.29, 0, 1) 1;
+    div:nth-child(n+2):after{
+      animation: blur 6s cubic-bezier(0.1, -0.29, 0, 1) 1;
+    }
+    div:nth-child(n+2):before{
+      animation: blur_corners 6s cubic-bezier(0.1, -0.29, 0, 1) 1;
+    }
+  }
+  div:nth-child(1){
+    position: absolute;
+    width:60%;
+    height:60%;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    background:#ff6666;
+    border-radius:100%;
+    box-shadow:inset 0 0 0 55px $black;
+  }
+  div:nth-child(n+2){
+    background:none;
+    position: absolute;
+    width:50%;
+    height:25%;
+    left:50%;
+    top:37.5%;
+    transform-origin:left center;
+    transform:rotateZ(0);
+    &:before{
+      content:'';
+      width:60%;
+      height:120%;
+      position: absolute;
+      right:0;
+      top:-10%;
+      background:$back;
+      box-shadow:inset 0 0 0 20px #ff6666, inset 0 0 0 30px $black;
+      border-radius:100%;
+    }
+    &:after{
+      content: '';
+      width: 80%;
+      height: 160%;
+      position: absolute;
+      left: -5.5%;
+      z-index: 10;
+      top: 90%;
+      background: $back;
+      border-radius: 100%;
+    }
+  }
+  div:nth-child(3){
+    transform:rotateZ(120deg);
+  }
+  div:nth-child(4){
+    transform:rotateZ(-120deg);
+  }
+}
+@keyframes rotate{
+  100% {
+    transform: rotateZ(3510deg);
+  }
+}
+@keyframes blur{
+  4%{
+    filter: none;
+  }
+  5%{
+    filter: url('#main');    
+  }
+  35%{
+    filter: url('#main');
+  }
+  36%{    
+    filter: none;
+  }
+}
+@keyframes blur_corners{
+  4%{
+    filter: none;
+  }
+  5%{
+    filter: url('#corners');    
+  }
+  35%{
+    filter: url('#corners');
+  }
+  36%{    
+    filter: none;
+  }
+}

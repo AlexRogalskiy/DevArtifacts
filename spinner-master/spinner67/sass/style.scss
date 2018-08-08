@@ -1,0 +1,36 @@
+svg{
+  position: fixed;
+  left:50%;
+  top:50%;
+  margin:-50px;
+  cursor:pointer;
+  transform:scale(1.4);
+  &:hover .line-movement{
+    animation-play-state: running;
+  }
+}
+.beton-lines{
+  clip-path: url(#beton-mask);
+}
+body{
+  background:black;
+}
+.line-movement{
+  animation:beton-lines .5s infinite linear;
+  //animation-play-state: paused;
+}
+@keyframes beton-lines{
+  100%{
+    transform: translateX(-20%);
+  }
+}
+p{
+  position: fixed;
+  width:100%;
+  color:white;
+  text-align:center;
+  top:52%;
+  font-family:monospace;
+  font-size:20px;
+  display:none;
+}
