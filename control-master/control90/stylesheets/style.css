@@ -1,0 +1,105 @@
+@import "https://fonts.googleapis.com/css?family=Poiret+One";
+body {
+  background: #123456;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poiret One", cursive;
+  color: #fff;
+  font-size: 100%;
+  height: 100vh;
+}
+
+/* Custom Code Here */
+.container .checkboxes {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.container .check input {
+  display: none;
+}
+.container .check input:checked + label .box {
+  animation: animOnTransform 1s 1 forwards;
+  background: rgba(0, 0, 0, 0.5);
+}
+.container .check input:checked + label .box i {
+  transform: translate(-50%, -50%) scale(1);
+  transition-duration: 200ms;
+  transition-delay: 400ms;
+  opacity: 1;
+}
+.container .check label {
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  min-height: 60px;
+  cursor: pointer;
+}
+.container .check label .box {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  transition: background 300ms ease;
+}
+.container .check label .box:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+.container .check label .box i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 20px;
+  display: inline-block;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+  transition-delay: 200ms;
+  transform: translate(-50%, -50%) scale(4);
+}
+
+@keyframes animOn {
+  40% {
+    height: 20px;
+    width: 100px;
+  }
+  50% {
+    height: 60px;
+    width: 30px;
+  }
+  60% {
+    height: 40px;
+    width: 70px;
+  }
+  70% {
+    height: 55px;
+    width: 45px;
+  }
+  100% {
+    height: 50px;
+    width: 50px;
+  }
+}
+@keyframes animOnTransform {
+  40% {
+    transform: scale(1.5, 0.5);
+  }
+  50% {
+    transform: scale(0.5, 1.5);
+  }
+  60% {
+    transform: scale(1.3, 0.6);
+  }
+  70% {
+    transform: scale(0.8, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+/* end of custom code */

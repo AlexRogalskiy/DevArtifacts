@@ -1,0 +1,61 @@
+@import 'https://fonts.googleapis.com/css?family=Gaegu';
+
+body {
+	background: #123456;
+	font-family: 'Gaegu', cursive;
+	color: #fff;
+	font-size: 100%;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	height: calc(100vh - 50px);
+}
+
+.footer {
+	height: 50px;
+	background: darken(#123456, 5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 500;
+	font-size: 18px
+}
+
+/* Custom Code Here */
+.words {
+	max-width: 700px;
+	text-align: center;
+	line-height: 1.2;
+	font-size: 40px;
+	
+	&.loaded {
+		> span {
+			> span {
+				transform: scaleX(0)
+			}
+		}
+	}
+	
+	> span {
+		position: relative;
+		
+		> span {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: #fff;
+			transform-origin: right center;
+			transition: transform 800ms ease;
+		}
+	}
+}
+
+
+/* end of custom code */
