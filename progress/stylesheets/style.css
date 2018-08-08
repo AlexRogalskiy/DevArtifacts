@@ -1,0 +1,806 @@
+.progress-steps-wrap {
+  width: 100%;
+  margin-bottom: 18px;
+  margin-top: 72px;
+  text-align: center;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.progress-steps {
+  display: inline-block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.progress-steps::before {
+  display: block;
+  position: relative;
+  top: 3px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #bfbfbf;
+  content: '';
+}
+.progress-steps a {
+  display: inline-block;
+  position: relative;
+  padding-top: 12px;
+  padding-right: 36px;
+  padding-left: 36px;
+  color: #666;
+  font-size: .875rem;
+  font-weight: bold;
+  letter-spacing: -.0125rem;
+  cursor: pointer;
+}
+.progress-steps a::before {
+  display: block;
+  position: relative;
+  top: -12px;
+  left: -36px;
+  width: 0;
+  height: 3px;
+  background: #4d7298;
+  content: '';
+  z-index: 2;
+}
+.progress-steps a:first-child {
+  padding-left: 18px;
+}
+.progress-steps a:first-child::before {
+  left: -18px;
+}
+.progress-steps a:first-child::after {
+  left: calc(50% - 24px);
+}
+.progress-steps a:last-child {
+  padding-right: 18px;
+}
+.progress-steps a:last-child::after {
+  left: 50%;
+}
+.progress-steps a::after {
+  display: block;
+  position: absolute;
+  top: -12px;
+  left: calc(50% - 12px);
+  width: 24px;
+  height: 18px;
+  opacity: 0;
+  z-index: 3;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 50%;
+  background: #4d7298;
+  color: #fefefe;
+  font-size: .875rem;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+  content: attr(data-index);
+}
+.progress-steps a.active {
+  color: #0a0a0a;
+}
+.progress-steps a.active::before {
+  width: calc(50% + 36px);
+}
+.progress-steps a.active::after {
+  opacity: 1;
+}
+.progress-steps a.active:first-child::before {
+  width: calc(50% + 18px);
+}
+.progress-steps a.active:last-child::before {
+  width: calc(50% + 36px);
+}
+.progress-steps a.done {
+  color: #bfbfbf;
+}
+.progress-steps a.done::before {
+  width: calc(100% + 72px);
+}
+.progress-steps a.done:first-child::before, .progress-steps a.done:last-child::before {
+  width: calc(100% + 54px);
+}
+.progress-steps a::before {
+  transition-delay: 0.2s;
+  transition-duration: 0.2s;
+  transition-property: width;
+  transition-timing-function: linear;
+}
+.progress-steps .active::before {
+  transition-timing-function: ease-out;
+}
+.progress-steps[data-count='1'] a:nth-child(1)::before, .progress-steps[data-count='1'].reverse a:nth-child(1)::before {
+  transition-delay: 0s;
+}
+.progress-steps[data-count='1'] a:nth-child(2)::before, .progress-steps[data-count='1'].reverse a:nth-child(2)::before {
+  transition-delay: -0.2s;
+}
+.progress-steps[data-count='1'] a:nth-child(3)::before, .progress-steps[data-count='1'].reverse a:nth-child(3)::before {
+  transition-delay: -0.4s;
+}
+.progress-steps[data-count='1'] a:nth-child(4)::before, .progress-steps[data-count='1'].reverse a:nth-child(4)::before {
+  transition-delay: -0.6s;
+}
+.progress-steps[data-count='1'] a:nth-child(5)::before, .progress-steps[data-count='1'].reverse a:nth-child(5)::before {
+  transition-delay: -0.8s;
+}
+.progress-steps[data-count='1'] a:nth-child(6)::before, .progress-steps[data-count='1'].reverse a:nth-child(6)::before {
+  transition-delay: -1s;
+}
+.progress-steps[data-count='1'] a:nth-child(7)::before, .progress-steps[data-count='1'].reverse a:nth-child(7)::before {
+  transition-delay: -1.2s;
+}
+.progress-steps[data-count='1'] a:nth-child(8)::before, .progress-steps[data-count='1'].reverse a:nth-child(8)::before {
+  transition-delay: -1.4s;
+}
+.progress-steps[data-count='2'] a:nth-child(1)::before, .progress-steps[data-count='2'].reverse a:nth-child(1)::before {
+  transition-delay: 0.2s;
+}
+.progress-steps[data-count='2'] a:nth-child(2)::before, .progress-steps[data-count='2'].reverse a:nth-child(2)::before {
+  transition-delay: 0s;
+}
+.progress-steps[data-count='2'] a:nth-child(3)::before, .progress-steps[data-count='2'].reverse a:nth-child(3)::before {
+  transition-delay: -0.2s;
+}
+.progress-steps[data-count='2'] a:nth-child(4)::before, .progress-steps[data-count='2'].reverse a:nth-child(4)::before {
+  transition-delay: -0.4s;
+}
+.progress-steps[data-count='2'] a:nth-child(5)::before, .progress-steps[data-count='2'].reverse a:nth-child(5)::before {
+  transition-delay: -0.6s;
+}
+.progress-steps[data-count='2'] a:nth-child(6)::before, .progress-steps[data-count='2'].reverse a:nth-child(6)::before {
+  transition-delay: -0.8s;
+}
+.progress-steps[data-count='2'] a:nth-child(7)::before, .progress-steps[data-count='2'].reverse a:nth-child(7)::before {
+  transition-delay: -1s;
+}
+.progress-steps[data-count='2'] a:nth-child(8)::before, .progress-steps[data-count='2'].reverse a:nth-child(8)::before {
+  transition-delay: -1.2s;
+}
+.progress-steps[data-count='3'] a:nth-child(1)::before, .progress-steps[data-count='3'].reverse a:nth-child(1)::before {
+  transition-delay: 0.4s;
+}
+.progress-steps[data-count='3'] a:nth-child(2)::before, .progress-steps[data-count='3'].reverse a:nth-child(2)::before {
+  transition-delay: 0.2s;
+}
+.progress-steps[data-count='3'] a:nth-child(3)::before, .progress-steps[data-count='3'].reverse a:nth-child(3)::before {
+  transition-delay: 0s;
+}
+.progress-steps[data-count='3'] a:nth-child(4)::before, .progress-steps[data-count='3'].reverse a:nth-child(4)::before {
+  transition-delay: -0.2s;
+}
+.progress-steps[data-count='3'] a:nth-child(5)::before, .progress-steps[data-count='3'].reverse a:nth-child(5)::before {
+  transition-delay: -0.4s;
+}
+.progress-steps[data-count='3'] a:nth-child(6)::before, .progress-steps[data-count='3'].reverse a:nth-child(6)::before {
+  transition-delay: -0.6s;
+}
+.progress-steps[data-count='3'] a:nth-child(7)::before, .progress-steps[data-count='3'].reverse a:nth-child(7)::before {
+  transition-delay: -0.8s;
+}
+.progress-steps[data-count='3'] a:nth-child(8)::before, .progress-steps[data-count='3'].reverse a:nth-child(8)::before {
+  transition-delay: -1s;
+}
+.progress-steps[data-count='4'] a:nth-child(1)::before, .progress-steps[data-count='4'].reverse a:nth-child(1)::before {
+  transition-delay: 0.6s;
+}
+.progress-steps[data-count='4'] a:nth-child(2)::before, .progress-steps[data-count='4'].reverse a:nth-child(2)::before {
+  transition-delay: 0.4s;
+}
+.progress-steps[data-count='4'] a:nth-child(3)::before, .progress-steps[data-count='4'].reverse a:nth-child(3)::before {
+  transition-delay: 0.2s;
+}
+.progress-steps[data-count='4'] a:nth-child(4)::before, .progress-steps[data-count='4'].reverse a:nth-child(4)::before {
+  transition-delay: 0s;
+}
+.progress-steps[data-count='4'] a:nth-child(5)::before, .progress-steps[data-count='4'].reverse a:nth-child(5)::before {
+  transition-delay: -0.2s;
+}
+.progress-steps[data-count='4'] a:nth-child(6)::before, .progress-steps[data-count='4'].reverse a:nth-child(6)::before {
+  transition-delay: -0.4s;
+}
+.progress-steps[data-count='4'] a:nth-child(7)::before, .progress-steps[data-count='4'].reverse a:nth-child(7)::before {
+  transition-delay: -0.6s;
+}
+.progress-steps[data-count='4'] a:nth-child(8)::before, .progress-steps[data-count='4'].reverse a:nth-child(8)::before {
+  transition-delay: -0.8s;
+}
+.progress-steps[data-count='5'] a:nth-child(1)::before, .progress-steps[data-count='5'].reverse a:nth-child(1)::before {
+  transition-delay: 0.8s;
+}
+.progress-steps[data-count='5'] a:nth-child(2)::before, .progress-steps[data-count='5'].reverse a:nth-child(2)::before {
+  transition-delay: 0.6s;
+}
+.progress-steps[data-count='5'] a:nth-child(3)::before, .progress-steps[data-count='5'].reverse a:nth-child(3)::before {
+  transition-delay: 0.4s;
+}
+.progress-steps[data-count='5'] a:nth-child(4)::before, .progress-steps[data-count='5'].reverse a:nth-child(4)::before {
+  transition-delay: 0.2s;
+}
+.progress-steps[data-count='5'] a:nth-child(5)::before, .progress-steps[data-count='5'].reverse a:nth-child(5)::before {
+  transition-delay: 0s;
+}
+.progress-steps[data-count='5'] a:nth-child(6)::before, .progress-steps[data-count='5'].reverse a:nth-child(6)::before {
+  transition-delay: -0.2s;
+}
+.progress-steps[data-count='5'] a:nth-child(7)::before, .progress-steps[data-count='5'].reverse a:nth-child(7)::before {
+  transition-delay: -0.4s;
+}
+.progress-steps[data-count='5'] a:nth-child(8)::before, .progress-steps[data-count='5'].reverse a:nth-child(8)::before {
+  transition-delay: -0.6s;
+}
+.progress-steps[data-count='6'] a:nth-child(1)::before, .progress-steps[data-count='6'].reverse a:nth-child(1)::before {
+  transition-delay: 1s;
+}
+.progress-steps[data-count='6'] a:nth-child(2)::before, .progress-steps[data-count='6'].reverse a:nth-child(2)::before {
+  transition-delay: 0.8s;
+}
+.progress-steps[data-count='6'] a:nth-child(3)::before, .progress-steps[data-count='6'].reverse a:nth-child(3)::before {
+  transition-delay: 0.6s;
+}
+.progress-steps[data-count='6'] a:nth-child(4)::before, .progress-steps[data-count='6'].reverse a:nth-child(4)::before {
+  transition-delay: 0.4s;
+}
+.progress-steps[data-count='6'] a:nth-child(5)::before, .progress-steps[data-count='6'].reverse a:nth-child(5)::before {
+  transition-delay: 0.2s;
+}
+.progress-steps[data-count='6'] a:nth-child(6)::before, .progress-steps[data-count='6'].reverse a:nth-child(6)::before {
+  transition-delay: 0s;
+}
+.progress-steps[data-count='6'] a:nth-child(7)::before, .progress-steps[data-count='6'].reverse a:nth-child(7)::before {
+  transition-delay: -0.2s;
+}
+.progress-steps[data-count='6'] a:nth-child(8)::before, .progress-steps[data-count='6'].reverse a:nth-child(8)::before {
+  transition-delay: -0.4s;
+}
+.progress-steps[data-count='7'] a:nth-child(1)::before, .progress-steps[data-count='7'].reverse a:nth-child(1)::before {
+  transition-delay: 1.2s;
+}
+.progress-steps[data-count='7'] a:nth-child(2)::before, .progress-steps[data-count='7'].reverse a:nth-child(2)::before {
+  transition-delay: 1s;
+}
+.progress-steps[data-count='7'] a:nth-child(3)::before, .progress-steps[data-count='7'].reverse a:nth-child(3)::before {
+  transition-delay: 0.8s;
+}
+.progress-steps[data-count='7'] a:nth-child(4)::before, .progress-steps[data-count='7'].reverse a:nth-child(4)::before {
+  transition-delay: 0.6s;
+}
+.progress-steps[data-count='7'] a:nth-child(5)::before, .progress-steps[data-count='7'].reverse a:nth-child(5)::before {
+  transition-delay: 0.4s;
+}
+.progress-steps[data-count='7'] a:nth-child(6)::before, .progress-steps[data-count='7'].reverse a:nth-child(6)::before {
+  transition-delay: 0.2s;
+}
+.progress-steps[data-count='7'] a:nth-child(7)::before, .progress-steps[data-count='7'].reverse a:nth-child(7)::before {
+  transition-delay: 0s;
+}
+.progress-steps[data-count='7'] a:nth-child(8)::before, .progress-steps[data-count='7'].reverse a:nth-child(8)::before {
+  transition-delay: -0.2s;
+}
+.progress-steps[data-count='8'] a:nth-child(1)::before, .progress-steps[data-count='8'].reverse a:nth-child(1)::before {
+  transition-delay: 1.4s;
+}
+.progress-steps[data-count='8'] a:nth-child(2)::before, .progress-steps[data-count='8'].reverse a:nth-child(2)::before {
+  transition-delay: 1.2s;
+}
+.progress-steps[data-count='8'] a:nth-child(3)::before, .progress-steps[data-count='8'].reverse a:nth-child(3)::before {
+  transition-delay: 1s;
+}
+.progress-steps[data-count='8'] a:nth-child(4)::before, .progress-steps[data-count='8'].reverse a:nth-child(4)::before {
+  transition-delay: 0.8s;
+}
+.progress-steps[data-count='8'] a:nth-child(5)::before, .progress-steps[data-count='8'].reverse a:nth-child(5)::before {
+  transition-delay: 0.6s;
+}
+.progress-steps[data-count='8'] a:nth-child(6)::before, .progress-steps[data-count='8'].reverse a:nth-child(6)::before {
+  transition-delay: 0.4s;
+}
+.progress-steps[data-count='8'] a:nth-child(7)::before, .progress-steps[data-count='8'].reverse a:nth-child(7)::before {
+  transition-delay: 0.2s;
+}
+.progress-steps[data-count='8'] a:nth-child(8)::before, .progress-steps[data-count='8'].reverse a:nth-child(8)::before {
+  transition-delay: 0s;
+}
+.progress-steps[data-count] .done:nth-child(1)::before,
+.progress-steps[data-count] .active:nth-child(1)::before {
+  transition-delay: 0s;
+}
+.progress-steps[data-count] .done:nth-child(2)::before,
+.progress-steps[data-count] .active:nth-child(2)::before {
+  transition-delay: 0.2s;
+}
+.progress-steps[data-count] .done:nth-child(3)::before,
+.progress-steps[data-count] .active:nth-child(3)::before {
+  transition-delay: 0.4s;
+}
+.progress-steps[data-count] .done:nth-child(4)::before,
+.progress-steps[data-count] .active:nth-child(4)::before {
+  transition-delay: 0.6s;
+}
+.progress-steps[data-count] .done:nth-child(5)::before,
+.progress-steps[data-count] .active:nth-child(5)::before {
+  transition-delay: 0.8s;
+}
+.progress-steps[data-count] .done:nth-child(6)::before,
+.progress-steps[data-count] .active:nth-child(6)::before {
+  transition-delay: 1s;
+}
+.progress-steps[data-count] .done:nth-child(7)::before,
+.progress-steps[data-count] .active:nth-child(7)::before {
+  transition-delay: 1.2s;
+}
+.progress-steps[data-count] .done:nth-child(8)::before,
+.progress-steps[data-count] .active:nth-child(8)::before {
+  transition-delay: 1.4s;
+}
+.progress-steps a::after {
+  transition-delay: 0.2s;
+  transition-duration: 0.1s;
+  transition-property: opacity;
+  transition-timing-function: ease-in;
+}
+.progress-steps .active::after {
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+}
+.progress-steps[data-count='1'] a:nth-child(1)::after, .progress-steps[data-count='1'].reverse a:nth-child(1)::after {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='1'] a:nth-child(2)::after, .progress-steps[data-count='1'].reverse a:nth-child(2)::after {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='1'] a:nth-child(3)::after, .progress-steps[data-count='1'].reverse a:nth-child(3)::after {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='1'] a:nth-child(4)::after, .progress-steps[data-count='1'].reverse a:nth-child(4)::after {
+  transition-delay: -0.5s;
+}
+.progress-steps[data-count='1'] a:nth-child(5)::after, .progress-steps[data-count='1'].reverse a:nth-child(5)::after {
+  transition-delay: -0.7s;
+}
+.progress-steps[data-count='1'] a:nth-child(6)::after, .progress-steps[data-count='1'].reverse a:nth-child(6)::after {
+  transition-delay: -0.9s;
+}
+.progress-steps[data-count='1'] a:nth-child(7)::after, .progress-steps[data-count='1'].reverse a:nth-child(7)::after {
+  transition-delay: -1.1s;
+}
+.progress-steps[data-count='1'] a:nth-child(8)::after, .progress-steps[data-count='1'].reverse a:nth-child(8)::after {
+  transition-delay: -1.3s;
+}
+.progress-steps[data-count='2'] a:nth-child(1)::after, .progress-steps[data-count='2'].reverse a:nth-child(1)::after {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='2'] a:nth-child(2)::after, .progress-steps[data-count='2'].reverse a:nth-child(2)::after {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='2'] a:nth-child(3)::after, .progress-steps[data-count='2'].reverse a:nth-child(3)::after {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='2'] a:nth-child(4)::after, .progress-steps[data-count='2'].reverse a:nth-child(4)::after {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='2'] a:nth-child(5)::after, .progress-steps[data-count='2'].reverse a:nth-child(5)::after {
+  transition-delay: -0.5s;
+}
+.progress-steps[data-count='2'] a:nth-child(6)::after, .progress-steps[data-count='2'].reverse a:nth-child(6)::after {
+  transition-delay: -0.7s;
+}
+.progress-steps[data-count='2'] a:nth-child(7)::after, .progress-steps[data-count='2'].reverse a:nth-child(7)::after {
+  transition-delay: -0.9s;
+}
+.progress-steps[data-count='2'] a:nth-child(8)::after, .progress-steps[data-count='2'].reverse a:nth-child(8)::after {
+  transition-delay: -1.1s;
+}
+.progress-steps[data-count='3'] a:nth-child(1)::after, .progress-steps[data-count='3'].reverse a:nth-child(1)::after {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='3'] a:nth-child(2)::after, .progress-steps[data-count='3'].reverse a:nth-child(2)::after {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='3'] a:nth-child(3)::after, .progress-steps[data-count='3'].reverse a:nth-child(3)::after {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='3'] a:nth-child(4)::after, .progress-steps[data-count='3'].reverse a:nth-child(4)::after {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='3'] a:nth-child(5)::after, .progress-steps[data-count='3'].reverse a:nth-child(5)::after {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='3'] a:nth-child(6)::after, .progress-steps[data-count='3'].reverse a:nth-child(6)::after {
+  transition-delay: -0.5s;
+}
+.progress-steps[data-count='3'] a:nth-child(7)::after, .progress-steps[data-count='3'].reverse a:nth-child(7)::after {
+  transition-delay: -0.7s;
+}
+.progress-steps[data-count='3'] a:nth-child(8)::after, .progress-steps[data-count='3'].reverse a:nth-child(8)::after {
+  transition-delay: -0.9s;
+}
+.progress-steps[data-count='4'] a:nth-child(1)::after, .progress-steps[data-count='4'].reverse a:nth-child(1)::after {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count='4'] a:nth-child(2)::after, .progress-steps[data-count='4'].reverse a:nth-child(2)::after {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='4'] a:nth-child(3)::after, .progress-steps[data-count='4'].reverse a:nth-child(3)::after {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='4'] a:nth-child(4)::after, .progress-steps[data-count='4'].reverse a:nth-child(4)::after {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='4'] a:nth-child(5)::after, .progress-steps[data-count='4'].reverse a:nth-child(5)::after {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='4'] a:nth-child(6)::after, .progress-steps[data-count='4'].reverse a:nth-child(6)::after {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='4'] a:nth-child(7)::after, .progress-steps[data-count='4'].reverse a:nth-child(7)::after {
+  transition-delay: -0.5s;
+}
+.progress-steps[data-count='4'] a:nth-child(8)::after, .progress-steps[data-count='4'].reverse a:nth-child(8)::after {
+  transition-delay: -0.7s;
+}
+.progress-steps[data-count='5'] a:nth-child(1)::after, .progress-steps[data-count='5'].reverse a:nth-child(1)::after {
+  transition-delay: 0.9s;
+}
+.progress-steps[data-count='5'] a:nth-child(2)::after, .progress-steps[data-count='5'].reverse a:nth-child(2)::after {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count='5'] a:nth-child(3)::after, .progress-steps[data-count='5'].reverse a:nth-child(3)::after {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='5'] a:nth-child(4)::after, .progress-steps[data-count='5'].reverse a:nth-child(4)::after {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='5'] a:nth-child(5)::after, .progress-steps[data-count='5'].reverse a:nth-child(5)::after {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='5'] a:nth-child(6)::after, .progress-steps[data-count='5'].reverse a:nth-child(6)::after {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='5'] a:nth-child(7)::after, .progress-steps[data-count='5'].reverse a:nth-child(7)::after {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='5'] a:nth-child(8)::after, .progress-steps[data-count='5'].reverse a:nth-child(8)::after {
+  transition-delay: -0.5s;
+}
+.progress-steps[data-count='6'] a:nth-child(1)::after, .progress-steps[data-count='6'].reverse a:nth-child(1)::after {
+  transition-delay: 1.1s;
+}
+.progress-steps[data-count='6'] a:nth-child(2)::after, .progress-steps[data-count='6'].reverse a:nth-child(2)::after {
+  transition-delay: 0.9s;
+}
+.progress-steps[data-count='6'] a:nth-child(3)::after, .progress-steps[data-count='6'].reverse a:nth-child(3)::after {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count='6'] a:nth-child(4)::after, .progress-steps[data-count='6'].reverse a:nth-child(4)::after {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='6'] a:nth-child(5)::after, .progress-steps[data-count='6'].reverse a:nth-child(5)::after {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='6'] a:nth-child(6)::after, .progress-steps[data-count='6'].reverse a:nth-child(6)::after {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='6'] a:nth-child(7)::after, .progress-steps[data-count='6'].reverse a:nth-child(7)::after {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='6'] a:nth-child(8)::after, .progress-steps[data-count='6'].reverse a:nth-child(8)::after {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='7'] a:nth-child(1)::after, .progress-steps[data-count='7'].reverse a:nth-child(1)::after {
+  transition-delay: 1.3s;
+}
+.progress-steps[data-count='7'] a:nth-child(2)::after, .progress-steps[data-count='7'].reverse a:nth-child(2)::after {
+  transition-delay: 1.1s;
+}
+.progress-steps[data-count='7'] a:nth-child(3)::after, .progress-steps[data-count='7'].reverse a:nth-child(3)::after {
+  transition-delay: 0.9s;
+}
+.progress-steps[data-count='7'] a:nth-child(4)::after, .progress-steps[data-count='7'].reverse a:nth-child(4)::after {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count='7'] a:nth-child(5)::after, .progress-steps[data-count='7'].reverse a:nth-child(5)::after {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='7'] a:nth-child(6)::after, .progress-steps[data-count='7'].reverse a:nth-child(6)::after {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='7'] a:nth-child(7)::after, .progress-steps[data-count='7'].reverse a:nth-child(7)::after {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='7'] a:nth-child(8)::after, .progress-steps[data-count='7'].reverse a:nth-child(8)::after {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='8'] a:nth-child(1)::after, .progress-steps[data-count='8'].reverse a:nth-child(1)::after {
+  transition-delay: 1.5s;
+}
+.progress-steps[data-count='8'] a:nth-child(2)::after, .progress-steps[data-count='8'].reverse a:nth-child(2)::after {
+  transition-delay: 1.3s;
+}
+.progress-steps[data-count='8'] a:nth-child(3)::after, .progress-steps[data-count='8'].reverse a:nth-child(3)::after {
+  transition-delay: 1.1s;
+}
+.progress-steps[data-count='8'] a:nth-child(4)::after, .progress-steps[data-count='8'].reverse a:nth-child(4)::after {
+  transition-delay: 0.9s;
+}
+.progress-steps[data-count='8'] a:nth-child(5)::after, .progress-steps[data-count='8'].reverse a:nth-child(5)::after {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count='8'] a:nth-child(6)::after, .progress-steps[data-count='8'].reverse a:nth-child(6)::after {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='8'] a:nth-child(7)::after, .progress-steps[data-count='8'].reverse a:nth-child(7)::after {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='8'] a:nth-child(8)::after, .progress-steps[data-count='8'].reverse a:nth-child(8)::after {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count] .done:nth-child(1)::after,
+.progress-steps[data-count] .active:nth-child(1)::after {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count] .done:nth-child(2)::after,
+.progress-steps[data-count] .active:nth-child(2)::after {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count] .done:nth-child(3)::after,
+.progress-steps[data-count] .active:nth-child(3)::after {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count] .done:nth-child(4)::after,
+.progress-steps[data-count] .active:nth-child(4)::after {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count] .done:nth-child(5)::after,
+.progress-steps[data-count] .active:nth-child(5)::after {
+  transition-delay: 0.9s;
+}
+.progress-steps[data-count] .done:nth-child(6)::after,
+.progress-steps[data-count] .active:nth-child(6)::after {
+  transition-delay: 1.1s;
+}
+.progress-steps[data-count] .done:nth-child(7)::after,
+.progress-steps[data-count] .active:nth-child(7)::after {
+  transition-delay: 1.3s;
+}
+.progress-steps[data-count] .done:nth-child(8)::after,
+.progress-steps[data-count] .active:nth-child(8)::after {
+  transition-delay: 1.5s;
+}
+.progress-steps a {
+  transition-delay: 0.2s;
+  transition-duration: 0.1s;
+  transition-property: color;
+  transition-timing-function: ease-in;
+}
+.progress-steps .active {
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+}
+.progress-steps[data-count='1'] a:nth-child(1), .progress-steps[data-count='1'].reverse a:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='1'] a:nth-child(2), .progress-steps[data-count='1'].reverse a:nth-child(2) {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='1'] a:nth-child(3), .progress-steps[data-count='1'].reverse a:nth-child(3) {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='1'] a:nth-child(4), .progress-steps[data-count='1'].reverse a:nth-child(4) {
+  transition-delay: -0.5s;
+}
+.progress-steps[data-count='1'] a:nth-child(5), .progress-steps[data-count='1'].reverse a:nth-child(5) {
+  transition-delay: -0.7s;
+}
+.progress-steps[data-count='1'] a:nth-child(6), .progress-steps[data-count='1'].reverse a:nth-child(6) {
+  transition-delay: -0.9s;
+}
+.progress-steps[data-count='1'] a:nth-child(7), .progress-steps[data-count='1'].reverse a:nth-child(7) {
+  transition-delay: -1.1s;
+}
+.progress-steps[data-count='1'] a:nth-child(8), .progress-steps[data-count='1'].reverse a:nth-child(8) {
+  transition-delay: -1.3s;
+}
+.progress-steps[data-count='2'] a:nth-child(1), .progress-steps[data-count='2'].reverse a:nth-child(1) {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='2'] a:nth-child(2), .progress-steps[data-count='2'].reverse a:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='2'] a:nth-child(3), .progress-steps[data-count='2'].reverse a:nth-child(3) {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='2'] a:nth-child(4), .progress-steps[data-count='2'].reverse a:nth-child(4) {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='2'] a:nth-child(5), .progress-steps[data-count='2'].reverse a:nth-child(5) {
+  transition-delay: -0.5s;
+}
+.progress-steps[data-count='2'] a:nth-child(6), .progress-steps[data-count='2'].reverse a:nth-child(6) {
+  transition-delay: -0.7s;
+}
+.progress-steps[data-count='2'] a:nth-child(7), .progress-steps[data-count='2'].reverse a:nth-child(7) {
+  transition-delay: -0.9s;
+}
+.progress-steps[data-count='2'] a:nth-child(8), .progress-steps[data-count='2'].reverse a:nth-child(8) {
+  transition-delay: -1.1s;
+}
+.progress-steps[data-count='3'] a:nth-child(1), .progress-steps[data-count='3'].reverse a:nth-child(1) {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='3'] a:nth-child(2), .progress-steps[data-count='3'].reverse a:nth-child(2) {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='3'] a:nth-child(3), .progress-steps[data-count='3'].reverse a:nth-child(3) {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='3'] a:nth-child(4), .progress-steps[data-count='3'].reverse a:nth-child(4) {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='3'] a:nth-child(5), .progress-steps[data-count='3'].reverse a:nth-child(5) {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='3'] a:nth-child(6), .progress-steps[data-count='3'].reverse a:nth-child(6) {
+  transition-delay: -0.5s;
+}
+.progress-steps[data-count='3'] a:nth-child(7), .progress-steps[data-count='3'].reverse a:nth-child(7) {
+  transition-delay: -0.7s;
+}
+.progress-steps[data-count='3'] a:nth-child(8), .progress-steps[data-count='3'].reverse a:nth-child(8) {
+  transition-delay: -0.9s;
+}
+.progress-steps[data-count='4'] a:nth-child(1), .progress-steps[data-count='4'].reverse a:nth-child(1) {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count='4'] a:nth-child(2), .progress-steps[data-count='4'].reverse a:nth-child(2) {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='4'] a:nth-child(3), .progress-steps[data-count='4'].reverse a:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='4'] a:nth-child(4), .progress-steps[data-count='4'].reverse a:nth-child(4) {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='4'] a:nth-child(5), .progress-steps[data-count='4'].reverse a:nth-child(5) {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='4'] a:nth-child(6), .progress-steps[data-count='4'].reverse a:nth-child(6) {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='4'] a:nth-child(7), .progress-steps[data-count='4'].reverse a:nth-child(7) {
+  transition-delay: -0.5s;
+}
+.progress-steps[data-count='4'] a:nth-child(8), .progress-steps[data-count='4'].reverse a:nth-child(8) {
+  transition-delay: -0.7s;
+}
+.progress-steps[data-count='5'] a:nth-child(1), .progress-steps[data-count='5'].reverse a:nth-child(1) {
+  transition-delay: 0.9s;
+}
+.progress-steps[data-count='5'] a:nth-child(2), .progress-steps[data-count='5'].reverse a:nth-child(2) {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count='5'] a:nth-child(3), .progress-steps[data-count='5'].reverse a:nth-child(3) {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='5'] a:nth-child(4), .progress-steps[data-count='5'].reverse a:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='5'] a:nth-child(5), .progress-steps[data-count='5'].reverse a:nth-child(5) {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='5'] a:nth-child(6), .progress-steps[data-count='5'].reverse a:nth-child(6) {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='5'] a:nth-child(7), .progress-steps[data-count='5'].reverse a:nth-child(7) {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='5'] a:nth-child(8), .progress-steps[data-count='5'].reverse a:nth-child(8) {
+  transition-delay: -0.5s;
+}
+.progress-steps[data-count='6'] a:nth-child(1), .progress-steps[data-count='6'].reverse a:nth-child(1) {
+  transition-delay: 1.1s;
+}
+.progress-steps[data-count='6'] a:nth-child(2), .progress-steps[data-count='6'].reverse a:nth-child(2) {
+  transition-delay: 0.9s;
+}
+.progress-steps[data-count='6'] a:nth-child(3), .progress-steps[data-count='6'].reverse a:nth-child(3) {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count='6'] a:nth-child(4), .progress-steps[data-count='6'].reverse a:nth-child(4) {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='6'] a:nth-child(5), .progress-steps[data-count='6'].reverse a:nth-child(5) {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='6'] a:nth-child(6), .progress-steps[data-count='6'].reverse a:nth-child(6) {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='6'] a:nth-child(7), .progress-steps[data-count='6'].reverse a:nth-child(7) {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='6'] a:nth-child(8), .progress-steps[data-count='6'].reverse a:nth-child(8) {
+  transition-delay: -0.3s;
+}
+.progress-steps[data-count='7'] a:nth-child(1), .progress-steps[data-count='7'].reverse a:nth-child(1) {
+  transition-delay: 1.3s;
+}
+.progress-steps[data-count='7'] a:nth-child(2), .progress-steps[data-count='7'].reverse a:nth-child(2) {
+  transition-delay: 1.1s;
+}
+.progress-steps[data-count='7'] a:nth-child(3), .progress-steps[data-count='7'].reverse a:nth-child(3) {
+  transition-delay: 0.9s;
+}
+.progress-steps[data-count='7'] a:nth-child(4), .progress-steps[data-count='7'].reverse a:nth-child(4) {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count='7'] a:nth-child(5), .progress-steps[data-count='7'].reverse a:nth-child(5) {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='7'] a:nth-child(6), .progress-steps[data-count='7'].reverse a:nth-child(6) {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='7'] a:nth-child(7), .progress-steps[data-count='7'].reverse a:nth-child(7) {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count='7'] a:nth-child(8), .progress-steps[data-count='7'].reverse a:nth-child(8) {
+  transition-delay: -0.1s;
+}
+.progress-steps[data-count='8'] a:nth-child(1), .progress-steps[data-count='8'].reverse a:nth-child(1) {
+  transition-delay: 1.5s;
+}
+.progress-steps[data-count='8'] a:nth-child(2), .progress-steps[data-count='8'].reverse a:nth-child(2) {
+  transition-delay: 1.3s;
+}
+.progress-steps[data-count='8'] a:nth-child(3), .progress-steps[data-count='8'].reverse a:nth-child(3) {
+  transition-delay: 1.1s;
+}
+.progress-steps[data-count='8'] a:nth-child(4), .progress-steps[data-count='8'].reverse a:nth-child(4) {
+  transition-delay: 0.9s;
+}
+.progress-steps[data-count='8'] a:nth-child(5), .progress-steps[data-count='8'].reverse a:nth-child(5) {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count='8'] a:nth-child(6), .progress-steps[data-count='8'].reverse a:nth-child(6) {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count='8'] a:nth-child(7), .progress-steps[data-count='8'].reverse a:nth-child(7) {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count='8'] a:nth-child(8), .progress-steps[data-count='8'].reverse a:nth-child(8) {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count] .done:nth-child(1),
+.progress-steps[data-count] .active:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.progress-steps[data-count] .done:nth-child(2),
+.progress-steps[data-count] .active:nth-child(2) {
+  transition-delay: 0.3s;
+}
+.progress-steps[data-count] .done:nth-child(3),
+.progress-steps[data-count] .active:nth-child(3) {
+  transition-delay: 0.5s;
+}
+.progress-steps[data-count] .done:nth-child(4),
+.progress-steps[data-count] .active:nth-child(4) {
+  transition-delay: 0.7s;
+}
+.progress-steps[data-count] .done:nth-child(5),
+.progress-steps[data-count] .active:nth-child(5) {
+  transition-delay: 0.9s;
+}
+.progress-steps[data-count] .done:nth-child(6),
+.progress-steps[data-count] .active:nth-child(6) {
+  transition-delay: 1.1s;
+}
+.progress-steps[data-count] .done:nth-child(7),
+.progress-steps[data-count] .active:nth-child(7) {
+  transition-delay: 1.3s;
+}
+.progress-steps[data-count] .done:nth-child(8),
+.progress-steps[data-count] .active:nth-child(8) {
+  transition-delay: 1.5s;
+}

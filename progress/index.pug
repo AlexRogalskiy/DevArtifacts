@@ -1,0 +1,25 @@
+
+- 
+  var steps = [{
+    name: 'My First Step',
+    status: 'done', // done, active or null
+  },
+  {
+    name: 'My Next Step',
+    status: 'done'
+  },
+  {
+    name: 'Another Step',
+    status: 'active'
+  },
+  {
+    name: 'My Final Step'
+  }]
+
+.progress-steps-wrap
+  - var count = steps.length || 0
+  .progress-steps(data-count=count)
+    if steps
+      each step, i in steps
+        a.step(href=step.link, class=step.status, data-index=i + 1)= step.name
+        

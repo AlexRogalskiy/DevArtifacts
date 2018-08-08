@@ -1,0 +1,119 @@
+
+$red: #d7062a;
+$green: #50ac5d;
+$black: #040405;
+$white: #fefefe;
+$border-colour: #d6d6d6;
+$background-colour: #e4e8e8;
+
+$width: 72px;
+$height: $width / 2;
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.toggler {
+  width: $width;
+  margin: 40px auto;
+  
+  input {
+    display: none;
+  }
+
+  label {
+    display: block;
+    position: relative;
+    width: $width;
+    height: $height;
+    border: 1px solid $border-colour;
+    border-radius: $height;
+    background: $background-colour;
+    cursor: pointer;
+
+    &::after {
+      display: block;
+      border-radius: 100%;
+      background-color: $red;
+      content: '';
+      animation-name: toggler-size;
+      animation-duration: .15s;
+      animation-timing-function: ease-out;
+      animation-direction: forwards;
+      animation-iteration-count: 1;
+      animation-play-state: running;
+    }
+
+    &::after,
+    .toggler-on,
+    .toggler-off {
+      position: absolute;
+      top: 50%;
+      left: 25%;
+      width: $height - 10px;
+      height: $height - 10px;
+      transform: translateY(-50%) translateX(-50%);
+      transition: left .15s ease-in-out, background-color .2s ease-out, width .15s ease-in-out, height .15s ease-in-out, opacity .15s ease-in-out;
+    }
+  }
+
+  input:checked + label {
+    &::after,
+    .toggler-on,
+    .toggler-off {
+      left: 75%;
+    }
+
+    &::after {
+      background-color: $green;
+      animation-name: toggler-size2;
+    }
+  }
+
+  .toggler-on,
+  .toggler-off {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  input:checked + label .toggler-off,
+  input:not(:checked) + label .toggler-on {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  .path {
+    fill: none;
+    stroke: $white;
+    stroke-width: 7px;
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+  }
+}
+
+@keyframes toggler-size {
+  0%,
+  100% {
+    width: $height - 10px;
+    height: $height - 10px;
+  }
+
+  50% {
+    width: $height - 16px;
+    height: $height - 16px;
+  }
+}
+
+@keyframes toggler-size2 {
+  0%,
+  100% {
+    width: $height - 10px;
+    height: $height - 10px;
+  }
+
+  50% {
+    width: $height - 16px;
+    height: $height - 16px;
+  }
+}

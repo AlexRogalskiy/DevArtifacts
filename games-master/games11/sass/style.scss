@@ -1,0 +1,257 @@
+//Color Functions
+$hue: 225;
+$shift: 30;
+$color: hsl($hue,30%,60%);
+$light: lighten(adjust-hue($color,$shift), 20%);
+$lighter: lighten(adjust-hue($color,$shift*2), 40%);
+$dark: darken(adjust-hue($color,-$shift), 10%);
+$darker: darken(adjust-hue($color,-$shift*2), 20%);
+$pop:  hsl($hue - 180,80%,60%);
+
+//Config Vars
+$base: 1.2vh;
+$short: 200ms;
+$mid: 600ms;
+$long: 2000ms;
+$ease-in: cubic-bezier(0.755, 0.050, 0.855, 0.060); 
+$ease-out: cubic-bezier(0.230, 1.000, 0.320, 1.000); 
+$grid-size: 10rem;
+$rows: 5;
+$cols: 5;
+
+@mixin abfab{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+//the rest of my typically messy styling
+.level{
+  transition: transform $mid $ease-out, opacity $mid $ease-out;
+  opacity: 0;
+  transform: translateY(-$grid-size*2)  translateX($grid-size*2);
+  pointer-events: none;
+  &[l="1"]{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0)  translateX(0);
+  }
+  &:hover .finish{
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    transition: transform $short $ease-out, opacity $short linear;
+  }
+}
+
+input{
+  opacity: 0;
+  pointer-events: none;
+}
+
+input:checked + .level + input + .level{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0)  translateX(0);
+}
+
+input:checked + .level{
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY($grid-size*2)  translateX(-$grid-size*2) !important;
+}
+
+.button, .goal{
+  position: absolute;
+  top: 5%;
+  left: 20%;
+  width: 75%;
+  height: 75%;
+  border-radius: $grid-size;
+  background: $pop;
+  text-align: center;
+  line-height: $grid-size*0.8;
+  box-shadow: -$grid-size*0.05 $grid-size*0.05 $grid-size*0.05 $color;
+  transition: box-shadow $short $ease-out, transform $short $ease-out;
+  &:hover{
+    transform: translateX($grid-size*0.05) translateY(-$grid-size*0.05);
+    box-shadow: -$grid-size*0.2 $grid-size*0.2 $grid-size*0.3 $color;
+  }
+  &:active{
+    transform: translateX($grid-size*-0.05) translateY(-$grid-size*-0.05);
+    box-shadow: -$grid-size*0 $grid-size*0 $grid-size*0 $color;
+  }
+  cursor: pointer;
+}
+
+.button{
+  background: $light;
+}
+
+input:checked + .button{
+  pointer-events: none;
+  transform: translateX($grid-size*-0.05) translateY(-$grid-size*-0.05);
+  box-shadow: -$grid-size*0 $grid-size*0 $grid-size*0 $color;
+}
+
+#level-one{
+  position: absolute;
+  z-index: 10000;
+}
+
+.step{
+  width: $grid-size*1.01;
+  height: $grid-size*1.01;
+  background: $light;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY($grid-size/2)  translateX(-$grid-size/2);
+  pointer-events: none;
+  transition: transform $mid $ease-in, opacity $mid linear;
+  
+  &:before, &:after{
+    content: '';
+    @include abfab;
+    pointer-events: none !important;
+  }
+  &:before{
+    left: -20%;
+    background: $dark;
+    transform-origin: 100% 100%;
+    transform: skewy(-45deg);
+    width: 20%;
+  }
+  
+  &:after{
+    top: 100%;
+    background: $color;
+    transform-origin: 0% 0%;
+    transform: skewX(-45deg);
+    height: 20%;
+  }
+  
+  &.start, &.finish{
+    &:before{
+      left: -50%;
+      width: 50%;
+    }
+    &:after{
+      height: 50%;
+    }
+  }
+  
+  &.start,
+  &:hover, 
+  &:hover + .step, 
+  &:hover + .path > .step:first-child, 
+  &:hover + .path + .step,
+  &:hover + .bridge > input:checked + .step,
+  &:hover + .bridge > input:not(:checked) + .step + .step{
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    transition: transform $short $ease-out, opacity $short linear;
+  }
+  
+  @for $r from 1 through 4 {
+    &[r="#{$r}"]{
+      top: $r*10rem;
+    }
+  }
+  
+  @for $c from 1 through 4 {
+    &[c="#{$c}"]{
+      left: $c*10rem;
+    }
+  }
+  
+  @for $r from 0 through 4 {
+    @for $c from 0 through 4 {
+      &[c="#{$c}"][r="#{$r}"]{
+        z-index: ( $r + 1 ) * ( $cols - $c );
+      }
+    }
+  }
+
+}
+
+.bridge{
+  pointer-events: none;
+}
+
+.center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: $grid-size * $cols;
+  height: $grid-size * $rows;
+  transform: perspective(100rem) translate3d(-50%,-50%,0) rotateZ(-45deg);
+}
+
+html{
+  font-size: $base;
+  
+}
+
+body{
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: $darker;
+  color: white;
+  font-size: 2rem;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+h1{
+  font-size: 10rem;
+  margin: 0;
+  font-family: 'Teko', sans-serif;
+}
+p{
+  margin-top: 0;
+}
+
+.share{
+  display: inline-block;
+  margin-top: 2rem;
+  text-decoration: none;
+  padding: 2rem;
+  border-radius: 5rem;
+  background: $pop;
+  font-family: 'Teko', sans-serif;
+  color: darken($darker,10%);
+  box-shadow: -$grid-size*0.05 $grid-size*0.05 $grid-size*0.05 darken($darker,10%);
+  transition: box-shadow $short $ease-out, transform $short $ease-out;
+  &:hover{
+    transform: translateX($grid-size*0.1) translateY(-$grid-size*0.1);
+    box-shadow: -$grid-size*0.15 $grid-size*0.15 $grid-size*0.25 darken($darker,10%);
+  }
+  &:active{
+    transform: translateX($grid-size*-0.05) translateY(-$grid-size*-0.05);
+    box-shadow: -$grid-size*0 $grid-size*0 $grid-size*0 darken($darker,10%);
+  }
+  cursor: pointer;
+}
+.message{
+  transform: rotate(45deg) translatey(-10rem);
+  text-align: center;
+  width: 40rem;
+}
+
+
+
+.sig{
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 100;
+  font-family: sans-serif;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+}
