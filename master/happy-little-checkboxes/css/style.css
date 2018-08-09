@@ -1,0 +1,122 @@
+@import 'https://fonts.googleapis.com/css?family=Poiret+One';
+body {
+  background: #123456;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poiret One", cursive;
+  color: #fff;
+  font-size: 100%;
+  height: 100vh;
+}
+
+/* Custom Code Here */
+.container .check input {
+  display: none;
+}
+.container .check input:checked + label .box {
+  -webkit-animation: animOn 0.6s 1 forwards;
+          animation: animOn 0.6s 1 forwards;
+  background: rgba(0, 0, 0, 0.5);
+}
+.container .check input:checked + label .box i {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  opacity: 1;
+}
+.container .check label {
+  min-width: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  min-height: 60px;
+  cursor: pointer;
+}
+.container .check label .box {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  -webkit-transition: background 300ms ease;
+  transition: background 300ms ease;
+}
+.container .check label .box:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+.container .check label .box i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 20px;
+  display: inline-block;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition-delay: 200ms;
+          transition-delay: 200ms;
+  -webkit-transform: translate(-50%, -50%) scale(6);
+          transform: translate(-50%, -50%) scale(6);
+}
+
+@-webkit-keyframes animOn {
+  40% {
+    height: 20px;
+    width: 100px;
+  }
+  60% {
+    height: 60px;
+    width: 40px;
+  }
+  75% {
+    height: 35px;
+    width: 60px;
+  }
+  100% {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+@keyframes animOn {
+  40% {
+    height: 20px;
+    width: 100px;
+  }
+  60% {
+    height: 60px;
+    width: 40px;
+  }
+  75% {
+    height: 35px;
+    width: 60px;
+  }
+  100% {
+    height: 50px;
+    width: 50px;
+  }
+}
+/* end of custom code */

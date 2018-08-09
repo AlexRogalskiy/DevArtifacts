@@ -1,0 +1,59 @@
+.cbx
+  position relative
+  top 1px
+  width 17px
+  height 17px
+  border 1px solid #C8CCD4
+  border-radius 3px
+  vertical-align middle
+  transition background .1s ease
+  cursor pointer
+  &:after
+    content ''
+    position absolute
+    top 1px
+    left 5px
+    width 5px
+    height 11px
+    opacity 0
+    transform rotate(45deg) scale(0)
+    border-right 2px solid white
+    border-bottom 2px solid white
+    transition all .3s ease
+    transition-delay .15s 
+
+.lbl
+  margin-left 5px
+  vertical-align middle
+  cursor pointer
+  
+#cbx:checked ~ .cbx
+  border-color transparent
+  background #6871F1
+  animation jelly .6s ease
+  &:after
+    opacity 1
+    transform rotate(45deg) scale(1)
+   
+@keyframes jelly
+  from
+    transform scale(1, 1)
+  30%
+    transform scale(1.25, 0.75)
+  40%
+    transform scale(0.75, 1.25)
+  50%
+    transform scale(1.15, 0.85)
+  65%
+    transform scale(.95, 1.05)
+  75%
+    transform scale(1.05, .95)
+  to
+    transform scale(1, 1)
+
+.cntr
+  position absolute
+  top 50%
+  left 0
+  width 100%
+  text-align center
