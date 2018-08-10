@@ -1,0 +1,32 @@
+# Test against this version of Node.js
+environment:
+  nodejs_version: "4.1.1"
+  SIGN_TOOL: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Bin\signtool.exe'
+  PUBLISH_TOKEN:
+    secure: w/pAoJMD7xgxclssGbzQOfgs81EQyiAfkRJMeH6e6bPiJXyUHtr403v9z10zb4GZ
+  WIN_CERTIFICATE_PASSWORD:
+    secure: XiZURshRBagjOmfggTF+jxSgikSYaNFr79q/zSPKkQo=
+
+platform:
+  - x86
+
+branches:
+  only:
+    - release
+
+# Install scripts. (runs after repo cloning)
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - nuget install secure-file -ExcludeVersion
+  - secure-file\tools\secure-file -decrypt tools\windows\livestyle.pfx.enc -secret %WIN_CERTIFICATE_PASSWORD% -out tools\windows\livestyle.pfx
+  - npm install
+
+test_script:
+  - npm test
+  - npm run publish
+
+artifacts:
+  - path: dist\win32\installer
+
+# Don't actually build.
+build: off

@@ -1,0 +1,96 @@
+*
+	box-sizing: border-box
+
+$font-headline: 'Poppins', sans-serif
+$font-context: 'Roboto', sans-serif
+
+body
+	background: #1b1b1b
+	margin: 0
+
+.wrapper
+	position: absolute
+	top: 50%
+	left: 50%
+	transform: translate(-50%, -50%)
+
+.mt-30
+	margin: 30px 0 0 0
+.row, .column
+	display: flex
+.row
+	flex-direction: row
+.column
+	flex-direction: column
+.btn:not([disabled])
+	cursor: pointer
+
+.poll
+	&-box
+		background: linear-gradient(#803af7, #500cc4)
+		border-radius: 3px
+		box-shadow: 0px 5px 11px -7px #000
+		text-align: center
+	&-container
+		padding: 25px 30px
+		position: relative
+	&-question
+		width: max-content 
+		max-width: 700px
+		color: #FFF
+		font-family: $font-headline
+	&-panel.poll-voted
+		overflow: hidden
+		border-radius: 50px
+		.poll-panel-btn
+			&.--user-choice
+				background: #FFF
+				color: #000
+				&:hover
+					color: #000
+					background: #FFF
+			&
+				background: #676464
+				color: #FFF
+				border-radius: 0
+				margin: 0
+				border: 0
+				position: relative
+				&:hover
+					color: #FFF
+					background: #676464
+				&:after
+					content: attr(data-result)
+					font-size: 9px
+					display: block
+					opacity: 0.5
+					animation: slideWithFade .2s ease
+				&:active
+					transform: inherit
+				span
+					display: block
+		
+	&-panel
+		width: 100%
+		&-btn
+			padding: 7px 10px
+			font-family: $font-context
+			font-size: .7rem
+			width: 100%
+			border-radius: 50px
+			border: 1px solid #FFF
+			margin: 0 20px
+			color: #FFF
+			transition: .15s cubic-bezier(.17,.67,.79,1.24)
+			&:hover
+				background: #FFF
+				color: #000
+			&:active
+				transform: scale(.95)
+		
+@keyframes slideWithFade
+	0%
+		opacity: 0
+		transform: translateY(10px)
+	100%
+		opacity: 1
