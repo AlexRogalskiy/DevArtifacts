@@ -1,0 +1,102 @@
+$xyz: 3em, 3em, 15em;
+
+@import "compass/css3";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @include background(linear-gradient(#1d0a5c, #cc6b64));
+
+  height: 100vh;
+  overflow: hidden;
+}
+
+.cubes-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  @include transform(translate(-50%, 50%));
+}
+
+.cubes-view {
+  @include transform(rotateX(60deg) rotateZ(45deg) translateZ(-25em));
+
+  grid-template-columns: auto auto auto;
+
+  @include perspective(65em);
+
+  display: grid;
+  grid-gap: 4vmin;
+
+  @include transform-style(preserve-3d);
+
+  .cube {
+    cursor: pointer;
+    width: nth($xyz, 1);
+    height: nth($xyz, 2);
+
+    @include transform(translateZ(nth($xyz, 3)));
+    @include transform-style(preserve-3d);
+    @include transition(0.2s all cubic-bezier(0.2, 0.65, 0.8, 1.3));
+  }
+}
+
+@for $i from 1 to 10 {
+  .cube:nth-child(#{$i}) {
+    &:active {
+      @include transform(translateZ(nth($xyz, 3) - 0.5));
+
+      & .cube-face {
+        opacity: 0.4 !important;
+      }
+    }
+
+    .cube-face {
+      position: absolute;
+
+      @for $i from 1 to 7 {
+        &:nth-child(#{$i}) {
+          $transform: 0;
+          $x: nth($xyz, 1);
+          $y: nth($xyz, 2);
+          $z: nth($xyz, 3) / 2;
+          $height: nth($xyz, 2);
+          $width: nth($xyz, 1);
+
+          @if $i < 3 {
+            $transform: translateZ(pow(-1, $i) * $z);
+          }
+
+          @if $i > 2 and $i < 5 {
+            $height: $z * 2;
+            $center: $y / 2 - $height / 2;
+            $transform: translateY($center + pow(-1, $i) * $y / 2) rotateX(90deg);
+          }
+
+          @if $i > 4 and $i < 7 {
+            $width: nth($xyz, 3);
+            $center: $x / 2 - $width / 2;
+            $transform: translateX($center + pow(-1, $i) * $x / 2) rotateY(90deg);
+          }
+
+          height: $height;
+          width: $width;
+          background: darken(invert(#111), 5 * $i);
+
+          @include transform($transform);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .cube {
+    .cube-face {
+      cursor: default;
+    }
+  }
+}

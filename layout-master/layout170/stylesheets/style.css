@@ -1,0 +1,168 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+}
+
+.notify__notification-container {
+  width: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.notify__notification-box.--light-theme {
+  background: #FFF;
+}
+.notify__notification-box.--dark-theme {
+  background: #404044;
+}
+.notify__notification-box.--dark-theme .notify__notification-onhover span {
+  color: #FFF;
+}
+.notify__notification-box.--dark-theme .notify__notification-description {
+  color: #a5a5a5;
+}
+.notify__notification-box.--dark-theme .notify__notification-icon svg {
+  stroke: #9c9c9c;
+  stroke-width: 2;
+}
+.notify__notification-box:not(:first-child) {
+  margin: 7px 0 0 0;
+}
+.notify__notification-box {
+  cursor: pointer;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.35);
+  transition: 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+.notify__notification-box:hover {
+  border: 1px solid #dadada;
+  box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.6);
+}
+.notify__notification-box:hover .notify__notification-description {
+  color: #d0d0d0;
+}
+.notify__notification-box:hover .notify__notification-onhover {
+  opacity: 0.7;
+  -moz-transform: translateY(0rem);
+  -ms-transform: translateY(0rem);
+  -webkit-transform: translateY(0rem);
+  transform: translateY(0rem);
+}
+.notify__notification-states {
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  -webkit-align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.notify__notification-onhover {
+  user-select: none;
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  left: -25px;
+  opacity: 0;
+  -moz-transform: translateY(-1rem);
+  -ms-transform: translateY(-1rem);
+  -webkit-transform: translateY(-1rem);
+  transform: translateY(-1rem);
+  -moz-transition: all 0.2s cubic-bezier(0.2, 0.65, 0.8, 1.3);
+  -o-transition: all 0.2s cubic-bezier(0.2, 0.65, 0.8, 1.3);
+  -webkit-transition: all 0.2s cubic-bezier(0.2, 0.65, 0.8, 1.3);
+  transition: all 0.2s cubic-bezier(0.2, 0.65, 0.8, 1.3);
+}
+.notify__notification-onhover span {
+  font-family: "Roboto", sans-serif;
+  font-size: 9px;
+}
+.notify__notification-icon {
+  line-height: 0;
+  width: 1rem;
+  position: relative;
+  -moz-transition: all 0.2s cubic-bezier(0.2, 0.65, 0.8, 1.3);
+  -o-transition: all 0.2s cubic-bezier(0.2, 0.65, 0.8, 1.3);
+  -webkit-transition: all 0.2s cubic-bezier(0.2, 0.65, 0.8, 1.3);
+  transition: all 0.2s cubic-bezier(0.2, 0.65, 0.8, 1.3);
+}
+.notify__notification-icon::before {
+  content: "";
+  position: absolute;
+  background: #f9f9f9;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  z-index: -1;
+  padding: 4px;
+  margin: -4px;
+  -moz-transition: ease 0.3s;
+  -o-transition: ease 0.3s;
+  -webkit-transition: ease 0.3s;
+  transition: ease 0.3s;
+}
+.notify__notification-icon svg {
+  stroke: #9c9c9c;
+  stroke-width: 1.5;
+}
+.notify__notification-message {
+  margin: 0 0 0 15px;
+}
+.notify__notification-state {
+  font-family: "Lato", sans-serif;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  width: fit-content;
+  padding: 1px 8px;
+  border-radius: 50px;
+  user-select: none;
+  color: #fff;
+}
+.notify__notification-state.--warning {
+  background: #fca311;
+}
+.notify__notification-state.--warning::before {
+  content: "warning";
+}
+.notify__notification-state.--error {
+  background: #f76f6f;
+}
+.notify__notification-state.--error::before {
+  content: "error";
+}
+.notify__notification-state.--info {
+  background: #5db7ff;
+}
+.notify__notification-state.--info::before {
+  content: "info";
+}
+.notify__notification-state.--success {
+  background: #43d27d;
+}
+.notify__notification-state.--success::before {
+  content: "success";
+}
+.notify__notification-description {
+  margin: 7px 2px 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+  color: #949494;
+  -moz-transition: ease 0.2s;
+  -o-transition: ease 0.2s;
+  -webkit-transition: ease 0.2s;
+  transition: ease 0.2s;
+}

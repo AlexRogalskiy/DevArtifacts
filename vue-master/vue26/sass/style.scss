@@ -1,0 +1,154 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed:300';
+$primary-color: #d573ee;
+$primary-color-dark: darken( $primary-color, 10% );
+$primary-color-tint: lighten( $primary-color, 20% );
+$primary-font: "Roboto Condensed", sans-serif;
+$black: #444;
+$white: #fff;
+
+* { box-sizing: border-box; }
+body {
+	display: flex;
+	justify-content: center;
+	background-color: $primary-color;
+	font-family: $primary-font;
+	font-size: 16px;
+	line-height: 1.875em;
+}
+.container {
+	flex: 1 0 auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	// padding: 30px;
+	max-width: 500px;
+	box-shadow: 10px 10px 0 $primary-color-dark;
+	background-color: $white;
+}
+
+.small {
+	font-size: 0.75em;
+	line-height: 1.5em;
+}
+.disabled {
+	color: lighten($black, 50%);
+}
+
+.chat-wrapper {
+	display: flex;
+	flex-direction: column;
+	// justify-content: space-between;
+	// align-items: flex-end;
+	padding: 30px;
+	height: 400px;
+	overflow-y: auto;
+}
+
+.bubble {
+	position: relative;
+	width: auto;
+	max-width: 350px;
+	margin-bottom: 20px;
+	padding: 20px 40px;
+	border-radius: 25px;
+	// box-shadow: 0 1px 8px 0 rgba(0,0,0,0.1),0 3px 4px 0 rgba(0,0,0,0.12),0 3px 3px -2px rgba(0,0,0,0.10);
+	box-shadow: 5px 5px 0 $primary-color-dark;
+	font-weight: 300;
+	transform: scale(0);
+	animation-name: scaleAll;
+	animation-duration: 0.35s;
+	animation-timing-function: cubic-bezier(0,0.51,0.31,1.51);
+	animation-fill-mode: forwards;
+	
+	&-right {
+		margin-left: auto;
+		border-bottom-right-radius: 3px;
+		background-color: $primary-color-tint;
+		transform-origin: bottom right;
+	}
+	
+	&-left {
+		margin-right: auto;
+		border-bottom-left-radius: 3px;
+		background-color: $primary-color;
+		color: $white;
+		transform-origin: bottom left;
+	
+		+ .bubble-left {
+			animation-delay: 1s;
+	
+			+ .bubble-left {
+				animation-delay: 2s;
+			}
+		}
+	}
+	
+	.dot {
+		margin: 0 2px;
+		height: 10px;
+		width: 10px;
+		border-radius: 50%;
+		background-color: rgba($primary-color-dark, 0.7);
+		line-height: 1em;
+		display: inline-block;
+		animation-name: bouncyBlink;
+		animation-duration: 0.9s;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+
+		&:nth-child(2) {
+			animation-delay: 0.1s;
+			-webkit-animation-delay: 0.1s;
+		}
+		&:nth-child(3) {
+			animation-delay: 0.2s;
+			-webkit-animation-delay: 0.2s;
+		}
+	}
+}
+	
+.input-control {
+	padding: 15px 20px;
+	font-family: $primary-font;
+	border-radius: 3px;
+	border: none;
+	font-size: 1em;
+}
+.input-button {
+	background-color: $primary-color-dark;
+	color: $white;
+	transition: 0.35s;
+	cursor: pointer;
+	
+	&:hover {
+		background-color: $primary-color;
+	}
+}
+
+.chat-input {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px;
+	background-color: $primary-color-tint;
+	
+	.input-text {
+		flex: 1 80%;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.input-button {
+		flex: 1 auto;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}
+
+@keyframes scaleAll {
+	from { transform: scale(0) }
+	to { transform: scale(1) }
+}
+
+@keyframes bouncyBlink {
+	0%, 45%, 100% { background-color: rgba($primary-color-dark, 0.5); transform: translateY(0) }
+	25% { background-color: rgba($primary-color-dark, 1); transform: translateY(-10px) }
+	35% { background-color: rgba($primary-color-dark, 0.75); transform: translateY(5px) }
+}

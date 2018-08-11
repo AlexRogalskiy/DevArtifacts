@@ -1,0 +1,393 @@
+@import 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,700';
+$black: #222;
+$white: #fff;
+$grey: #999;
+$yellow-peach: #f6deac;
+$burly-wood: #debd8b;
+$carnation: #f6626a;
+$asparagus: #83b473;
+$kabul: #624a39;
+
+$primary-color: $yellow-peach;
+$primary-color-dark: darken( $primary-color, 10% );
+$primary-color-tint: lighten( $primary-color, 10% );
+$primary-font: "Work Sans", sans-serif;
+
+* { box-sizing: border-box; }
+body {
+	display: flex;
+	justify-content: center;
+	background-color: $primary-color;
+	font-family: $primary-font;
+	font-size: 16px;
+	line-height: 1.875em;
+	font-weight: 300;
+}
+.wrapper {
+	display: flex;
+	margin-top: 50px;
+	width: 100%;
+	min-width: 500px;
+	max-width: 600px;
+}
+.container {
+	flex: 1 0 50%;
+	padding: 30px 0;
+	// min-width: 200px;
+	max-width: 500px;
+	min-height: 280px;
+	background-color: $white;
+	
+	&-controls {
+		overflow: hidden;	
+	}
+	
+	&-burg {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		background-color: $primary-color-tint;
+	}
+}
+
+.input-checkbox {
+	.checkbox-label {
+		position: relative;
+		display: block;
+		padding: 0.1875em 2.375em;
+		color: $grey;
+		cursor: pointer;
+		transition: 0.25s;
+		
+		&::before {
+			content: '+';
+			position: absolute;
+			left: 2.625em;
+			transform: translateX(-10px);
+			font-weight: 700;
+			font-size: 0.75em;
+			opacity: 0;
+			transition: 0.35s;
+		}
+	}
+	.checkbox-control {
+		position: absolute;
+		opacity: 0;
+		
+		&:checked {
+			&:hover {
+				+ .checkbox-label {
+					&::before {
+						content: '-';
+					}
+				}
+			}
+			
+			+ .checkbox-label {
+				color: $black;
+				font-weight: 400;
+			}
+		}
+		
+		&:hover,
+		&:checked {
+			+ .checkbox-label {
+				padding-left: 3.375em;
+				
+				&::before {
+					transform: translateX(0);
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+.button {
+	transform-origin: top center;
+	padding: 0.75em 1.25em;
+	border: none;
+	background-color: $kabul;
+	color: $white;
+	font-family: $primary-font;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1em;
+	text-align: center;
+	cursor: pointer;
+	transition: 0.25s;
+	
+	&:hover {
+		background-color: lighten($kabul, 10%)
+	}
+	
+	&-large {
+		font-size: 1.25rem;
+	}
+	
+	&-block {
+		width: 100%;
+	}
+	
+	&-reset {
+		border: none;
+		background-color: transparent;
+		color: $white;
+		font-family: $primary-font;
+		font-weight: 400;
+		font-size: 0.75rem;
+		cursor: pointer;
+	}
+}
+ 
+.burg-deets,
+.burg-bun, 
+.burg-topping,
+.burg-box,
+.pop,
+.fries {
+	stroke: $kabul;
+	stroke-miterlimit: 10;
+	fill: none;
+}
+
+.burg-deets {
+	stroke-linecap: round;
+	stroke-width: 1px;
+}
+
+.burg-bun,
+.burg-box,
+.pop-cup,
+.fries-container {
+	stroke-width: 4px;
+}
+
+.pop-straw,
+.fries-fry{
+	stroke-width: 2px;
+}
+
+.burg-topping {
+	stroke-width: 2px;
+	
+	&-red {
+		fill: $carnation;
+	}
+	&-yellow {
+		fill: $yellow-peach;
+	}
+	&-green {
+		fill: $asparagus;
+	}
+	&-brown {
+		fill: $kabul;
+	}
+}
+
+.burg-topping-container {
+	position: relative;
+	height: 25px;
+	transform-origin: center;
+	overflow: visible;
+	
+	@for $i from 1 through 6 {
+		&:nth-child(#{$i}) { z-index: 6 - $i }
+	}
+}
+
+#toppingLettuce {
+	z-index: 10;
+}
+
+.burg-topping-img {
+	width: 100%;
+	height: 45px;
+	overflow: visible;
+}
+
+#svgLettuce {
+	position: relative;
+	top: -3px;
+}
+
+.burg-bun-container {
+	height: 40px;
+}
+
+.burg-box,
+.fries-fry {
+	fill: $yellow-peach
+}
+
+.pop-straw {
+	fill: $white;
+}
+
+.pop-cup,
+.fries-container {
+	fill: $carnation;
+}
+
+.burg-box-img {
+	position: absolute;
+	z-index: 20;
+	width: 100%;
+	height: 80px;
+}
+
+#svgBoxTop {
+	bottom: calc(50% - 15px);
+	transform-origin: top center;
+}
+#svgBoxBottom {
+	top: 50%;
+	transform-origin: bottom center;
+}
+
+.pop-img {
+	position: absolute;
+	z-index: 19;
+	left: 20%;
+	bottom: calc(50% - 50px);
+	height: 320px;
+	transform-origin: bottom center;
+}
+
+.fries-img {
+	position: absolute;
+	right: 15%;
+	bottom: calc(50% - 50px);
+	height: 250px;
+	transform-origin: bottom center;
+}
+
+.burg-completed {
+	.burg {
+		transform: scaleY(0.7);
+		transition: 0.25s 1s;
+	}
+}
+
+.fade-squish {
+	&-enter-active,
+	&-leave-active {
+		transition-duration: 0.3s ease-in-out;
+	}
+	&-enter,
+	&-leave-to {
+		transform: scaleY(0);
+		opacity: 0;
+	}
+}
+
+.squish-width {
+	&-enter-active,
+	&-leave-active {
+		transition: 0.45s ease-in-out;
+		transition-delay: 0.35s;
+	}
+	&-enter,
+	&-leave-to {
+		max-width: 0;
+	}
+}
+
+.fade {
+	&-enter-active {
+		transition: 0.35s 1s;
+	}
+	&-leave-active {
+		transition: 0.2s;
+	}
+	&-enter,
+	&-leave-to {
+		opacity: 0;
+	}
+}
+
+.fade-up {
+	&-enter-active,
+	&-leave-active {
+		transition: 0.4s ease-in-out;
+		transition-delay: 0.9s;
+	}
+	&-enter,
+	&-leave-to {
+		transform: scaleY(0.3) translateY(50px);
+		opacity: 0;
+	}
+}
+
+.fade-down {
+	&-enter-active,
+	&-leave-active {
+		transition: 0.4s ease-in-out;
+		transition-delay: 0.9s;
+	}
+	&-enter,
+	&-leave-to {
+		transform: scaleY(0.3) translateY(-50px);
+		opacity: 0;
+	}
+}
+
+.drop-down {
+	&-enter-active {
+		transition: 0.45s 1.2s ease-in-out;
+		animation-duration: 0.25s;
+		animation-delay: 1.5s;
+		animation-name: bounce;
+		
+		.pop-straw {
+			transition: 0.3s 2.7s ease-in-out;
+		}
+		
+		.fries-fry {
+			transition: 0.25s ease-in-out;
+		}
+		
+		@for $i from 1 to 9 {
+			#fry#{$i} {
+				transition-delay: 1.9 + ($i * .075) + s;
+			}
+		}
+	}
+	&-leave-active {
+		transition: 0.25s ease-in-out;
+	}
+	&-enter {
+		.pop-straw,
+		.fries-fry {
+			transform: translateY(-300px);
+		}
+	}
+	&-enter,
+	&-leave-to {
+		transform: translateY(-200%);
+	}
+}
+
+.pop-straw,
+.fries-fry {
+	transition: 0.25s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1)
+  }
+  20% {
+    transform: scaleY(0.5)
+  }
+  35% {
+    transform: scaleY(1.1)
+  }
+  55% {
+    transform: scaleY(0.7)
+  }
+  80% {
+    transform: scaleY(1.05)
+  }
+}

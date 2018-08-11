@@ -1,0 +1,179 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed:300';
+$primary-color: #f700d4;
+$primary-color-dark: darken( $primary-color, 10% );
+$primary-color-tint: lighten( $primary-color, 15% );
+$secondary-color: #2affc8;
+$primary-font: "Roboto Condensed", sans-serif;
+$black: #434343;
+$white: #fff;
+$grey: #888;
+
+* { box-sizing: border-box; }
+body {
+	height: 100vh;
+	background-color: $grey;
+	font-family: $primary-font;
+	font-size: 16px;
+	line-height: 1.875em;
+	color: $white;
+}
+#app {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.pattern-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.pattern-bg {
+	position: absolute;
+	width: 100%;
+	opacity: 0.05;
+}
+
+.castle-fill {
+	fill: $white;
+}
+.castle-pattern {
+	fill: url(#castleBrick);
+}
+
+$booPosX: translateX(calc(var(--pos-x) * 0.7px));
+$booPosY: translateY(calc(var(--pos-y) * 1px));
+#boo {
+	width: 120px;
+	transform: $booPosX $booPosY;
+	transform-origin: center center;
+	transition: 0.4s;
+	perspective: 500px;
+	
+	.inner-wrapper {
+		transform-origin: 75px 75px;
+		transition: 0.45s;
+	}
+	
+	.mirror {
+		transform: rotateY(180deg);
+	}
+	
+	.cover {
+		#pinky .boo-pink-fill {
+			opacity: 0.05;
+			transition-delay: 0.2s;
+		}
+		
+		// #mouthClosed {
+		// 	d: path('M38.41,103.33s1.26-3.15,4-3.26,5.69,2,9.26,4.34');
+		// }
+	}
+}
+
+.boo-shadow-fill {
+	fill: $secondary-color;
+	mix-blend-mode: overlay;
+}
+
+.boo-body-stroke,
+.boo-inner-stroke {
+	stroke: $black;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: none;
+}
+.boo-inner-stroke {
+	stroke-width: 1px;
+}
+.boo-body-stroke {
+	stroke-width: 3px;
+}
+
+.boo-body-fill {
+	fill: $white;
+}
+
+.boo-stroke-fill {
+	fill: $black;
+}
+
+.boo-highlight-fill {
+	fill: $white;
+}
+
+.boo-pink-fill {
+	fill: $primary-color;
+	
+	&-dark {
+		fill: $primary-color-dark;
+	}
+}
+
+.no-fill-for-you {
+	fill: none;
+}
+
+#armRight {
+	transform-origin: 85px 72px;
+}
+#armLeft {
+	transform-origin: 20px 72px
+}
+
+#eyeRight {
+	.boo-eye {
+		transform-origin: 45px 52px;
+	}
+	.boo-eyelid {
+		transform-origin: 29px 48px;
+	}
+}
+#eyeLeft {
+	.boo-eye {
+		transform-origin: 45px 52px;
+	}
+	.boo-eyelid {
+		transform-origin: 48px 48px;
+	}
+}
+.boo-eyelid {
+	transition: 0.2s;
+}
+
+.boo-mouth {
+	&-closed {
+		fill: $white;
+	}
+}
+
+#mouthOpen {
+	transform-origin: 42px 80px;
+}
+
+#pinky {
+	.boo-pink-fill {
+		opacity: 0;
+		transition-duration: 0.3s;
+	}
+}
+
+.fade-y {
+	&-enter-active,
+	&-leave-active {
+		transition-duration: 0.15s;
+	}
+	&-enter-active {
+		transition-delay: 0.1s;
+	}
+	&-enter,
+	&-leave-to {
+		transform: translateY(-10px);
+		opacity: 0;
+	}
+}

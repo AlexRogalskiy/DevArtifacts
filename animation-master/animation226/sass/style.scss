@@ -1,0 +1,545 @@
+@font-face {
+	font-family: 'Pokemon GB';
+	src: url('https://cdn.rawgit.com/Superpencil/pokemon-font/d36892e5/fonts/pokemon-font.eot');
+	src: url('https://cdn.rawgit.com/Superpencil/pokemon-font/d36892e5/fonts/pokemon-font.woff');
+	font-weight: 400;
+}
+
+$black: #555;
+$white: #fff;
+
+$colors: (
+	pallet: #b888f8,
+	viridian: #7ff71f,
+	pewter: #909078,
+	cerulean: #2840f8,
+	vermillion: #f89800,
+	lavender: #c820f8,
+	celadon: #28f828,
+	saffron: #f8f800,
+	fuschia: #f87878,
+	cinnabar: #f84040
+);
+
+$secondary-color: #58b8f8;
+
+$primary-font: 'Pokemon GB', monospace;
+
+$pixel: 0.25rem;
+$roof-skew: 24deg;
+
+@function calcRelativeSize($val) {
+	@return calc(100% - (#{$pixel} * #{$val}));
+}
+
+@mixin windowDeets($shineSize, $shadowHeight: $pixel, $shineColor: var(--primary-color), $shadowColor: var(--secondary-color)) {
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+	}
+
+	&::before {
+		top: 0;
+		left: 0;
+		height: 0;
+		width: 0;
+		border-left: solid ($pixel * $shineSize) $shineColor;
+		border-top: solid ($pixel * $shineSize) $shineColor;
+		border-bottom: solid ($pixel * $shineSize) transparent;
+		border-right: solid ($pixel * $shineSize) transparent;
+	}
+
+	&::after {
+		bottom: 0;
+		height: $shadowHeight;
+		width: 100%;
+		background-color: $shadowColor;
+	}
+}
+
+@mixin pokeFont($size: 1) {
+	font-family: 'Pokemon GB', monospace;
+	font-weight: 400;
+	font-size: 10px * $size;
+	text-transform: uppercase;
+	font-smooth: never;
+  -webkit-font-smoothing: none;
+}
+
+@mixin dialogStyles() {
+	padding: $pixel * 3;
+	border-radius: $pixel * 2;
+	border: double $pixel * 3 $black;
+	box-shadow: inset 0 $pixel 0 $black, 0 $pixel 0 $black;
+	background-color: var(--base-color);
+	color: $black;
+}
+
+* { box-sizing: border-box; }
+:root {
+	--base-color: #{$white};
+	--primary-color: #{map-get($colors, pallet)};
+	--secondary-color: #{$secondary-color};
+}
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-color: #eaeaea;
+	font-family: $primary-font;
+	font-size: 16px;
+	line-height: 1.875em;
+}
+.container {
+	flex: 0 0 auto;
+}
+
+.house {
+	position: relative;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		left: -$pixel * 4;
+		width: calc(100% + #{$pixel} * 8);
+		height: $pixel * 16;
+		bottom: -$pixel;
+		border-radius: $pixel * 2;
+		background-color: var(--primary-color);
+	}
+	
+	@each $color, $val in $colors {
+		&.#{$color} {
+			--primary-color: #{$val};
+		}
+	}
+	
+	&-base {
+		position: relative;
+		height: $pixel * 26;
+		width: $pixel * 54;
+		border: solid $pixel $black;
+		border-radius: $pixel * 2;
+		background-color: var(--base-color);
+		overflow: hidden;
+		
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			width: calc(100% - (#{$pixel} * 2));
+			height: $pixel * 2;
+			border-top: solid $pixel var(--primary-color);
+			border-left: solid $pixel var(--primary-color);
+			border-right: solid $pixel var(--primary-color);
+			background-color: var(--secondary-color);
+		}
+		
+		.house {
+			&-window-wrapper {
+				bottom: $pixel * 6;
+				left: $pixel * 26;
+			}
+		}
+		
+		&-detail {
+			position: absolute;
+			z-index: 1;
+			bottom: $pixel * 5;
+			height: $pixel;
+			background-color: var(--primary-color);
+			width: 100%;
+			
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				left: 50%;
+				width: calcRelativeSize(4);
+				height: $pixel;
+				background-color: var(--primary-color);
+				transform: translateX(-50%);
+			}
+			
+			&::before {
+				top: -$pixel * 4;
+			}
+			
+			&::after {
+				top: -$pixel * 8;
+			}
+		}
+	}
+		
+	&-door {
+		position: absolute;
+		bottom: 0;
+		left: $pixel;
+		height: 100%;
+		width: calcRelativeSize(2);
+		border: solid $pixel $black;
+		border-bottom: 0;
+		background-color: var(--secondary-color);
+		
+		&-window {
+			position: absolute;
+			top: $pixel;
+			left: $pixel;
+			height: $pixel * 6;
+			width: calcRelativeSize(2);
+			border: solid $pixel $black;
+			background-color: $white;
+			
+			@include windowDeets(2);
+		}
+		
+		&-detail {
+			position: absolute;
+			left: $pixel;
+			bottom: $pixel;
+			height: $pixel * 4;
+			width: calcRelativeSize(2);
+			border: solid $pixel $black;
+			border-top: 0;
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: $pixel;
+				width: calcRelativeSize(4);
+				height: 100%;
+				border-left: solid $pixel $black;
+				border-right: solid $pixel $black;
+			}
+		}
+		
+		&-wrapper {
+			position: absolute;
+			z-index: 3;
+			bottom: 0;
+			left: $pixel * 10;
+			height: $pixel * 14;
+			width: $pixel * 16;
+			border-top: solid $pixel var(--primary-color);
+			border-left: solid $pixel var(--secondary-color);
+			border-right: solid $pixel var(--secondary-color);
+			background-color: $white;
+		}
+	}
+	
+	&-window {
+		position: relative;
+		height: $pixel * 7;
+		width: $pixel * 8;
+		border: solid $pixel $black;
+		background-color: $white;
+
+		@include windowDeets(2.5);
+		
+		&-wrapper {
+			position: absolute;
+			z-index: 4;
+			display: flex;
+		}
+	}
+	
+	&-sandwich {
+		position: absolute;
+		z-index: 2;
+		bottom: $pixel * 15;
+		left: -$pixel * 2;
+		height: $pixel * 8;
+		width: $pixel * 58;
+		border: solid $pixel $black;
+		box-shadow: inset ($pixel * 4) 0 0 var(--primary-color), inset (-$pixel * 4) 0 0 var(--primary-color);
+		background-color: var(--secondary-color);
+	}
+	
+	&-upper {
+		position: absolute;
+		z-index: 3;
+		bottom: $pixel * 17;
+		left: -$pixel;
+		height: $pixel * 15;
+		width: $pixel * 56;
+		border: solid $pixel $black;
+		background-color: var(--base-color);
+		
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: $pixel * 3;
+			width: calcRelativeSize(6);
+			height: $pixel * 4;
+			background-color: var(--primary-color);
+		}
+		
+		.house {
+			&-window-wrapper {
+				bottom: $pixel * 5;
+				left: $pixel * 26;
+			}
+		}
+		
+		> .house-window {
+			position: absolute;
+			z-index: 3;
+			bottom: $pixel * 5;
+			left: $pixel * 12;
+		}
+		
+		&-detail {
+			position: absolute;
+			z-index: 1;
+			bottom: 0;
+			left: 0;
+			height: $pixel;
+			width: 100%;
+			background-color: var(--primary-color);
+			
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				height: $pixel;
+			}
+			
+			&::before {
+				width: calcRelativeSize(6);
+				bottom: $pixel * 4;
+				border-left: solid ($pixel * 3) var(--primary-color);
+				border-right: solid ($pixel * 3) var(--primary-color);
+				background-color: var(--secondary-color);
+			}
+			
+			&::after {
+				left: $pixel * 20;
+				width: $pixel * 8;
+				bottom: $pixel * 8;
+				background-color: var(--primary-color);
+			}
+		}
+		
+		&-shadow {
+			position: absolute;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			height: $pixel;
+			width: 100%;
+			background-color: var(--primary-color);
+			
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				width: $pixel * 13;
+				height: $pixel * 5;
+				background-color: var(--primary-color);
+			}
+			
+			&::before {
+				transform: skewY(-$roof-skew);
+			}
+			
+			&::after {
+				right: 0;
+				transform: skewY($roof-skew);
+			}
+		}
+	}
+	
+	&-roof {
+		position: absolute;
+		z-index: 5;
+		bottom: $pixel * 33;
+		left: $pixel * 10;
+		width: $pixel * 34;
+		height: $pixel * 14;
+		border-top: solid $pixel $black;
+		border-bottom: solid $pixel $black;
+		background-color: var(--primary-color);
+		
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: -$pixel * 3;
+			width: 100%;
+			height: $pixel;
+			border-bottom: solid $pixel $black;
+			background-color: var(--secondary-color);
+		}
+			
+		&-side {
+			content: '';
+			position: absolute;
+			top: $pixel * 2.5;
+			width: $pixel * 15;
+			height: $pixel * 14;
+			border-top: solid $pixel $black;
+			border-bottom: solid $pixel $black;
+			background-color: var(--secondary-color);
+		
+			&::before {
+				content: '';
+				position: absolute;
+				bottom: -$pixel * 3;
+				width: calcRelativeSize(1);
+				height: $pixel;
+				border-bottom: solid $pixel $black;
+				background-color: var(--secondary-color);
+			}
+
+			&-left {
+				right: 100%;
+				border-top-left-radius: $pixel * 2;
+				border-bottom-left-radius: $pixel * 2;
+				border-left: solid $pixel $black;
+				box-shadow: inset $pixel $pixel 0 var(--base-color);
+				transform: skewY(-$roof-skew);
+					
+				&::before {
+					border-bottom-left-radius: $pixel * 2;
+					border-left: solid $pixel $black;
+				}
+			}
+
+			&-right {
+				left: 100%;
+				border-top-right-radius: $pixel * 2;
+				border-bottom-right-radius: $pixel * 2;
+				border-right: solid $pixel $black;
+				box-shadow: inset (-$pixel) $pixel 0 var(--base-color);
+				transform: skewY($roof-skew);
+					
+				&::before {
+					right: 0;
+					border-bottom-right-radius: $pixel * 2;
+					border-right: solid $pixel $black;
+				}
+			}
+		}
+		
+		&-detail {
+			position: absolute;
+			bottom: $pixel * 4;
+			left: 0;
+			width: 100%;
+			height: $pixel;
+			background-color: var(--secondary-color);
+			
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				width: 100%;
+				height: $pixel;
+			}
+			
+			&::before {
+				bottom: $pixel * 4;
+				background-color: var(--secondary-color);
+			}
+			
+			&::after {
+				bottom: $pixel * 7;
+				background-color: var(--base-color);
+			}
+		}
+	}
+}
+
+.color-controls {
+	position: absolute;
+	z-index: 99;
+	left: 50%;
+	bottom: $pixel * 3;
+	max-width: $pixel * 150;
+	width: 100%;
+	margin-top: $pixel * 5;
+	transform: translateX(-50%);
+	
+	@include dialogStyles;
+	
+	p {
+		@include pokeFont(2);
+	}
+	
+	&-button {
+		flex-shrink: 0;
+		padding: 0;
+		margin: $pixel $pixel * 3;
+		height: $pixel * 6;
+		width: $pixel * 6;
+		// border-radius: $pixel * 2;
+		border: solid $pixel $black;
+		cursor: pointer;
+		
+		&:focus {
+			outline: 0;
+		}
+		
+		&:hover {
+			&::before {
+				transform: translateY(0);
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+		
+		&::before {
+			content: attr(data-color);
+			position: absolute;
+			right: -$pixel * 3;
+			bottom: calc(100% + (#{$pixel} * 6));
+			transform: translateY($pixel);
+			opacity: 0;
+			visibility: hidden;
+			transition: 0.25s;
+			
+			@include pokeFont(2);
+			@include dialogStyles;
+		}
+		
+		&::after {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: $pixel * 2 0 $pixel * 2 $pixel * 2;
+			border-color: transparent transparent transparent $black;
+			transform: translate(-250%, -50%);
+			opacity: 0;
+			transition: 0.25s;
+		}
+		
+		@each $color, $val in $colors {
+			&.#{$color} {
+				background-color: $val;
+			}
+		}
+		
+		&.active {
+			// box-shadow: 0 $pixel 0 $black;
+			
+			&::after {
+				transform: translate(-300%, -50%);
+				opacity: 1;
+			}
+		}
+		
+		&-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			margin-top: $pixel * 2;
+		}
+	}
+}

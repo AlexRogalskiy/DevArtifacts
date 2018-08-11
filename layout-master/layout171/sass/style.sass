@@ -1,0 +1,184 @@
+// Colors
+$white: #ffffff
+$purple: #7b1fe4
+$grey: #ececec
+
+// Fonts
+$roboto: 'Roboto', sans-serif
+$poppins: 'Poppins', sans-serif
+$opensans: 'Open Sans', sans-serif
+
+// Mixin
+@mixin stroke($width, $color) 
+	$shadow: () 
+	@for $i from -$width through $width 
+		$shadow: append($shadow,#{$width}px #{$i}px $color, comma) 
+		$shadow: append($shadow,#{-$width}px #{$i}px $color, comma) 
+		$shadow: append($shadow,#{$i}px #{$width}px $color, comma) 
+		$shadow: append($shadow,#{$i}px #{-$width}px $color, comma) 
+	text-shadow: $shadow
+
+// ... reset
+*, *::before, *::after
+	-webkit-box-sizing: border-box
+	-moz-box-sizing: border-box
+	box-sizing: border-box
+
+button
+	cursor: pointer
+button, input
+	user-select: none
+	outline: none
+	margin: 0
+	border: 0
+	background: 0
+
+body
+	margin: 0
+	background: #ebebeb
+
+// ----
+
+.list
+	margin: 0
+	border: 0
+	list-style-type: none
+	padding: 0
+
+.row
+	display: flex
+	flex-direction: row
+	&.column
+		flex-direction: column
+	
+.btn
+	outline: none
+	height: auto
+	margin: 0
+	border: 0
+	background: 0
+	&.btn-icon 
+		svg
+			width: 100%
+			display: block
+	
+#app
+	max-width: 600px
+	width: 100%
+	height: auto
+	background: $white
+	overflow: hidden
+
+.app__header
+	height: 370px
+	background: url(https://goo.gl/bcrwbv) no-repeat
+	background-position: center
+	background-size: cover
+	position: relative
+	
+	.header__nav
+		.information
+			position: absolute
+			right: 0
+			width: 30px
+			padding: 5px
+			line-height: 0
+			margin: 17px
+			& svg
+				fill: $white
+		
+	.headline-wrapper
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translate(-70%, -50%)
+	
+		.heading
+			font-family: $poppins
+			font-weight: bold
+			color: $white
+			font-size: 2.3rem
+			line-height: 1.3
+			@include stroke(1, rgba(0, 0, 0, 0.1)) 
+	
+		.heading-label
+			margin: 10px 0
+			font-family: $poppins
+			font-weight: bold
+			color: $white
+			background: $purple
+			padding: 1px 10px
+			font-size: 1.2rem
+			width: fit-content
+			text-transform: uppercase
+		
+.app__main
+	position: relative
+	padding: 20px
+
+	.search-wrapper
+		margin: -40px 0 30px
+		position: relative
+		border-radius: 50px
+		background: $white
+		align-items: center
+		box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.2)
+	
+		.search__input
+			padding: 13px 25px
+			width: 100%
+			font-size: .8rem
+		
+		.search__button
+			margin: 12px
+			width: 25px
+			padding: 5px
+			background: $grey
+			border-radius: 50%
+		
+	.section
+		.section__header
+			align-items: center
+			justify-content: space-between
+	
+			.section__title
+				font-size: 1rem
+				font-family: $roboto
+				font-weight: 900
+		
+			.section__nav
+				.btn-text
+					font-family: $opensans
+					font-weight: bold
+					background: $purple
+					padding: 4px 10px
+					border-radius: 20px
+					font-size: .5rem
+					color: $white
+		
+		.section__main
+			padding: 20px 0
+			.categories-list
+				.category-item
+					display: inline-block
+					margin: 0 2px 7px
+					.category-button
+						font-family: $opensans
+						font-size: .7rem
+						padding: 8px 12px
+						background: $white
+						border: 2px solid $grey
+						border-radius: 5px
+			
+@media only screen and (max-width: 600px)
+	body
+		background: #FFF
+@media only screen and (min-width: 600px)
+	#app
+		width: 350px
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -50%)
+		box-shadow: 0px 0px 55px -10px #2b2b2b
+	
