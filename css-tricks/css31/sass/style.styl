@@ -1,0 +1,54 @@
+$color--primary = #076848
+
+.box
+  position relative
+  width 100%
+  height 340px
+
+.box-image
+  position absolute
+  top 0
+  left 0
+  right 36%
+  bottom 0
+  background-image url('http://pngimg.com/uploads/american_football/american_football_PNG142.png')
+  background-size auto 100%
+  background-position 10% 0
+  background-repeat no-repeat
+
+  @supports (clip-path polygon(0 0, 100% 0, 47% 100%, 7.5% 100%, 0 75%))
+    clip-path polygon(0 0, 100% 0, 47% 100%, 7.5% 100%, 0 75%)
+  
+.box-shape
+  position absolute
+  top 40px
+  left 0
+  right 50%
+  bottom 0
+  background-color $color--primary
+  
+  @supports (clip-path polygon(0 40px, 100% 40px, 50% 100%, 8% 100%, 0 75%))
+    top 0
+    right 40%
+    clip-path polygon(0 40px, 100% 40px, 50% 100%, 8% 100%, 0 75%)
+
+.box-background
+  position absolute
+  top 40px
+  left 0
+  right 0
+  bottom 0
+  background-image url('https://picsum.photos/2000/300?image=618')
+  background-repeat no-repeat
+  background-size cover
+  background-position center
+
+  &:before
+    content ''
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    background-color $color--primary
+    opacity 0.5

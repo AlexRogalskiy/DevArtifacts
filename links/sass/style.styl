@@ -1,0 +1,68 @@
+$color--white = #FFFFFF
+$color--off-white = #E6E6E6
+$color--grey = #CECECE
+$color--link = #2AA1C0
+$color--link-hover = #0E647D
+$color--tag = #F44336
+$color--tag-hover = #D32F2F
+
+*
+  box-sizing border-box
+
+body
+  background $color--off-white
+  text-align center
+  font-family 'Alegreya Sans', sans-serif
+
+.container
+  display inline-block
+  padding 20px 40px
+  margin 20px
+  background $color--white
+  border-bottom 1px solid $color--grey
+  text-align left
+  
+    
+li
+  margin-bottom 20px
+  font-size 40px
+  color $color--grey
+  
+a
+  text-decoration none
+  color $color--link
+  border-right 60px solid $color--tag
+  
+  &:after
+    content 'NEW'
+    position absolute
+    padding 2px 5px
+    border-width 15px 5px 15px 15px
+    border-style solid
+    border-color $color--white
+    font-size 15px
+    font-weight 700
+    color $color--white
+
+  &:hover
+    color $color--link-hover
+    border-color $color--tag-hover
+
+  &:visited
+  &:visited:hover
+    color $color--grey
+    border-color $color--white
+  
+@media screen and (max-width: 600px)
+  .container
+    margin 10px
+    padding 10px
+  
+  li
+    font-size 20px
+    
+  a
+    border-right-width 53px
+    
+  a:after
+    border-width 3px 3px 3px 10px
