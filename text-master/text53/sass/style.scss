@@ -1,0 +1,28 @@
+body {
+  background-attachment: blue;
+  height: 100%;
+}
+
+header, section {
+  height: 100vh;
+  position: relative;
+  background: white;
+  &:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 200px;
+    background: linear-gradient(rgba(white, 0), rgba(white,1) 50%);
+  }
+}
+
+.constrain {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+}

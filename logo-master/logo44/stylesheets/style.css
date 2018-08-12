@@ -1,0 +1,71 @@
+.container {
+  width: 180px;
+  height: 180px;
+  position: relative;
+  background: #000;
+  border-radius: 100%;
+  margin: 20px auto;
+}
+
+#cube {
+  width: 90px;
+  height: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -45px;
+  margin-top: -30px;
+  transform-style: preserve-3d;
+  transform: rotateX(45deg) rotateY(45deg);
+  transition: transform 1s;
+}
+#cube:hover {
+  transform: rotateX(315deg) rotateY(315deg);
+}
+
+#cube figure {
+  width: 70px;
+  height: 40px;
+  display: block;
+  position: absolute;
+  border: 10px solid #fff;
+  box-shadow: 0 0 0 2px #fff;
+  font-size: 40px;
+  color: #fff;
+  border-radius: 3px;
+}
+
+#cube .front {
+  transform: rotateY(0deg) translateZ(45px);
+}
+
+#cube .back {
+  transform: rotateX(180deg) translateZ(45px);
+}
+
+#cube .right {
+  transform: rotateY(90deg) translateZ(45px);
+}
+
+#cube .left {
+  transform: rotateY(-90deg) translateZ(45px);
+}
+
+#cube .top {
+  height: 70px;
+  transform: rotateX(90deg) translateZ(45px);
+}
+
+#cube .bottom {
+  height: 70px;
+  transform: rotateX(-90deg) translateZ(15px);
+}
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  text-indent: -9999px;
+  overflow: hidden;
+  background: url(https://dl.dropbox.com/u/15746367/images/codepen.png) center no-repeat;
+}

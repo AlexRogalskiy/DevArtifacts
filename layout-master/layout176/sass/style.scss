@@ -1,0 +1,71 @@
+@import "compass/css3";
+
+.promos{
+  width:980px;
+  margin:auto;
+  ul{
+    list-style-type:none;
+    padding:0;
+  } 
+  li,a,img{
+    border-radius: 5px;
+  }
+  li{
+    float:left;
+    position:relative;
+    border-top: 1px solid #F2F2F2;
+    box-shadow: rgba(0, 0, 0, .15) 0 1px 3px;
+    margin-left:11px;
+    &:first-child{
+      margin-left:0;
+    }
+    &:last-child{
+      margin-left:10px;
+    }
+  }
+  a,img{
+    display:block;
+  }
+  a{
+    box-shadow: 0 -3px 1px rgba(255, 255, 255, .6), inset 0 2px 1px rgba(255, 255, 255, .97), 0 0 3px -1px rgba(0, 0, 0, .7);
+    background-color:  #f0f0f0; // Old browsers
+  @include filter-gradient(#f9f9f9, #f0f0f0, vertical); // IE6-9
+  @include background-image(linear-gradient(top, #f9f9f9 50%, #F0F0F0 100%));
+    &:hover{
+    background-color:  #f6f6f6; // Old browsers
+  @include filter-gradient(#f9f9f9, #E0E0E0, vertical); // IE6-9
+  @include background-image(linear-gradient(top, #f9f9f9 50%, #E0E0E0 100%));
+      .play{
+        opacity:1;
+        background-position:left bottom;
+      }
+    }
+    
+  }
+  .curve-down{
+    box-shadow: 0 8px 3px -5px rgba(0, 0, 0, .2);
+    border-radius: 100% / 32px;
+  }
+  .play {
+  width: 46px;
+  height: 46px;
+  position: absolute;
+  left: 95px;
+  top: 70px;
+  opacity: .8;
+  background: url(https://dl.dropbox.com/u/15746367/images/video_play_medium.png) 0 0 no-repeat;
+    opacity:0.8;
+  }
+}
+
+
+.clearfix{ 
+  &:before,
+  &:after {
+    content: " "; 
+    display: table; 
+  }
+  &:after {
+    clear: both;
+  }
+}

@@ -1,0 +1,118 @@
+$b: 20px;
+
+body, html {
+  margin:0;
+  padding:0;
+}
+
+body {
+  background: #999;
+  padding: $b;
+  font: 16px/1.5 "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  color: rgba(black, .5);
+}
+
+.wrapper {
+  background: #ddd;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: $b $b;
+}
+
+
+
+
+
+
+
+/**
+ * Grid
+ */
+
+.grid {
+  &:before, &:after {
+    content: " "; display: table;
+  }
+  &:after { clear: both; }
+  margin-left: -$b;
+}
+
+.grid__item {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  padding-left: $b;
+  box-sizing: border-box;
+}
+
+.grid--seperator {
+  overflow: hidden;
+  .grid__item {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: -$b/2;
+      width: 1px;
+      background: #999;
+    }
+  }
+}
+
+
+
+
+
+
+/**
+ * Widths
+ */
+
+.width--1of3 {
+  width: 33.3333%;
+}
+
+.width--1of2 {
+  width: 50%;
+}
+
+.width--1of4 {
+  width: 25%;
+}
+
+
+
+
+
+
+
+/**
+ * Grid content
+ */
+
+.grid-content {
+  background: rgba(black, .05);
+  line-height: 4em;
+  text-align: center;
+  overflow: hidden;
+  
+  /**
+   * Nested items
+   */
+  .grid .grid & {
+    background: rgba(blue, .4);
+    color: rgba(white, .8);
+  }
+  .grid .grid .grid & {
+    background: rgba(blue, .5);
+  }
+  .grid .grid .grid .grid & {
+    background: rgba(blue, .6);
+  }
+  .grid .grid .grid .grid .grid & {
+    background: rgba(blue, .7);
+  }
+}

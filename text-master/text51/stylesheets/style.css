@@ -1,0 +1,38 @@
+body {
+  font-size: 28px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  line-height: 1.5;
+  padding: 20px;
+}
+
+a {
+  transition: .3s;
+  background-position: top left;
+  background-image: url(https://i.imgur.com/cKTYD7Y.png);
+  color: #fff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+a:before {
+  position: absolute;
+  content: '';
+  background: #4A90E2;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 5px;
+  transition: .3s .1s;
+}
+a:hover {
+  transition: .6s .1s;
+  background-position: bottom right;
+}
+a:hover:before {
+  transition: .3s;
+  transform: translateY(-100%) scaleY(0);
+  opacity: 0;
+}

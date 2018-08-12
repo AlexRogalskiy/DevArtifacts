@@ -1,0 +1,70 @@
+code {
+  font-family: consolas, monaco, monospace;
+}
+
+.centered {
+  display: block;
+  text-align: center;
+  color: #666;
+}
+
+.header {
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 30px;
+  font-weight: normal;
+  padding: 45px 0 30px;
+  margin: 10px 0;
+  display: inline-block;
+  position: relative;
+}
+
+.blue {
+  color: #08c;
+}
+
+.magenta {
+  color: #c08;
+}
+
+[data-supertext], [data-subtext] {
+  display: inline-block;
+  position: relative;
+}
+[data-supertext]:before, [data-supertext]:after, [data-subtext]:before, [data-subtext]:after {
+  position: absolute;
+  width: 100%;
+  line-height: 1;
+}
+[data-supertext]:before, [data-subtext]:before {
+  content: attr(data-supertext);
+  z-index: 1000;
+  font-family: sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+  text-align: center;
+  top: 5px;
+}
+[data-supertext]:after, [data-subtext]:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 15px;
+  border: 2px dotted #B7B6B1;
+  border-bottom: none;
+  overflow: hidden;
+  z-index: 10;
+  top: 20px;
+}
+
+[data-subtext]:before {
+  top: auto;
+  bottom: 5px;
+  content: attr(data-subtext);
+}
+[data-subtext]:after {
+  top: auto;
+  bottom: 20px;
+  border: 2px dotted #B7B6B1;
+  border-top: none;
+}
