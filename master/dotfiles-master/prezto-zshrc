@@ -1,0 +1,65 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+export NVM_LAZY_LOAD=true
+source ~/.zsh-nvm/zsh-nvm.plugin.zsh
+
+# include z.sh
+. ~/z.sh
+
+# Aliases
+
+alias zshconfig="vim ~/.zshrc"
+alias prezconfig="vim ~/.zpreztorc"
+alias gitconfig="vim ~/.gitconfig"
+alias vimconfig="vim ~/.vimrc"
+alias resize-50="ogrify *.JPG -resize 50% *"
+alias optimizejpeg="convert -strip -interlace Plane -gaussian-blur 0.05 -quality 93% shop$1 $2"
+alias ffww="find $2 -type f -exec grep $1 {} /dev/null \;"
+
+alias downloads="cd ~/Downloads"
+alias odownloads="open ~/Downloads"
+alias serve="http-server"
+alias dops="docker ps"
+alias dokl="docker kill $1"
+alias dorm="docker rm $1"
+
+# Git aliases
+
+alias master="git co master"
+alias dev="git co develop"
+alias ghp="git co gh-pages"
+alias st="git st"
+alias fp="git fp"
+alias fpmm="git fp && git mm"
+alias lg="git lg"
+alias gs="git s"
+alias gsp="git sp"
+alias prevcommit="git checkout `git rev-list --topo-order HEAD..$1 | tail -1`"
+alias tagnpush="npm version patch && git push origin master --tags"
+
+alias etchost="sudo vim /etc/hosts"
+
+export EDITOR=/usr/bin/vim
+
+# Get back the ctrl-R shortcut
+bindkey '^r' history-incremental-search-backward
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# To enable ctrl+* shortcuts which get disabled with prezto history_substring
+bindkey -e
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

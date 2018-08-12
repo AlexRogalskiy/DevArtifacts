@@ -1,0 +1,55 @@
+[user]
+	name = Kushagra Gour
+	email = chinchang457@gmail.com
+[alias]
+	branch-name = "!git rev-parse --abbrev-ref HEAD"
+	ci = commit
+	cin = commit -n
+	co = checkout
+	cob = checkout -b
+	st = status
+	di = diff
+	dsf = "!git diff --color $@ | diff-so-fancy"
+	s = stash
+	p = "!git push origin $(git branch-name)"
+	ro = "!git reset --hard origin/$(git branch-name)"
+	pm = push origin master
+	pgp = push origin gh-pages
+	ap = add -p
+	sp = stash pop
+	sl = stash list
+	fp = fetch --prune
+	rbm = rebase origin/master
+	rbd = rebase origin/develop
+	mgm = merge origin/master
+	mgd = merge origin/develop
+	rc = rebase --continue
+	ra = rebase --abort
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	lgg = log --pretty=format:'[%an] %s'
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	rank = shortlog -sn
+	pr = pull --rebase
+	rh1 = reset --hard HEAD~1
+	r1 = reset HEAD~1
+	rb2 = rebase -i HEAD~2
+	rb3 = rebase -i HEAD~3
+	changelog = log --merges --format='%an: %s' live..HEAD
+	save = !git add -A && git commit -m 'SAVEPOINT'
+	wip = commit -am "WIP"
+	recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+[core]
+	editor = vim
+[color]
+	diff = auto
+    	status = auto
+    	branch = auto
+    	interactive = auto
+    	ui = true
+    	pager = true
+[color "status"]
+    	added = green
+    	changed = yellow
+    	untracked = red
+[merge]
+	tool = meld

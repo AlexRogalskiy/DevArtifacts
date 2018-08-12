@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <title>Gifme</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1" />
+    <link rel="stylesheet" href="<%= stylesheet_path 'style' %>" />
+  </head>
+  <body>
+    <form action="/" method="GET">
+      <input name="s" type="search" class="search js-search" placeholder="Search" autofocus />
+    </form>
+    <ul class="thumbnails">
+      <% images.each do |item| %>
+        <% item.slice! "./public/gifs/" %>
+        <% item = CGI.escape(item) %>
+        <li>
+          <a class="thumbnails__item" href="<%= item %>">
+            <img class="item__img js-thumb" data-name="<%= item %>" src="https://degif.imgix.net/<%= item %>?fm=jpg&q=25&w=350" />
+            <p class="item__info">
+              <%= item %>
+            </p>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+    <script src="<%= javascript_path 'app' %>" async defer></script>
+    <!-- Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+      fbq('init', '1066410076773301');
+      fbq('track', "PageView");</script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1066410076773301&ev=PageView&noscript=1"
+      /></noscript>
+    <!-- End Facebook Pixel Code -->
+  </body>
+</html>
