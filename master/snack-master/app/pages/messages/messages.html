@@ -1,0 +1,41 @@
+<div layout-fill layout="column">
+  <md-toolbar md-whiteframe="4"> 
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" ng-click="ctrl.toggleSidebar()" hide-gt-sm>
+        <md-icon>menu</md-icon>
+      </md-button>
+      <md-truncate flex># {{ ctrl.channel.name }}</md-truncate>
+    </div>
+  </md-toolbar>
+
+  <div ng-if="ctrl.loading" flex layout="row" layout-align="center center">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+  </div>
+
+  <md-content ng-if="!ctrl.loading" flex class="flip" style="background-color: #fff;">
+    <md-list>
+      <md-list-item class="flip md-2-line" ng-repeat="message in ctrl.messages | orderBy:'-timestamp'">
+        <img ng-src="{{ message.photoURL }}" class="md-avatar" alt="{{item.who}}" />
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ message.displayName }}</h3>
+          <p>{{ message.body }}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+
+  <md-divider></md-divider>
+  <form ng-submit="ctrl.sendMessage(ctrl.message);" ng-if="ctrl.UserService.user.uid">
+    <md-toolbar md-colors="{background: 'default-background-hue-2', color: 'default-background-500'}">
+      <div class="md-toolbar-tools">
+        <div class="toolbar-input" flex>
+          <input ng-model="ctrl.message.body" required placeholder="Message">
+        </div>
+
+        <md-button type="submit" class="md-icon-button" aria-label="Send">
+          <md-icon md-colors="{color: 'default-background-500'}">send</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  </form>
+</div>

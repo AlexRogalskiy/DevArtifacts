@@ -1,0 +1,62 @@
+<div layout-fill layout="row">
+  <md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-sm')"
+        md-whiteframe="4">
+
+    <md-toolbar md-whiteframe="4"> 
+      <div class="md-toolbar-tools">
+        <md-button ng-if="!ctrl.user.uid" ng-click="ctrl.signIn()">Sign in</md-button>
+        <md-menu style="margin-left: -8px;" ng-if="ctrl.user.uid">
+          <md-button aria-label="Open menu" class="md-icon-button" style="margin-left: 0;" ng-click="ctrl.openMenu($mdMenu, $event)">
+            <md-icon md-menu-origin>person</md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ng-click="ctrl.signOut()">
+                <md-icon>power_settings_new</md-icon>
+                Sign out
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+        <md-truncate flex>{{ ctrl.user.displayName }}</md-truncate>
+
+        <md-button ng-click="ctrl.toggleSidebar()" class="md-icon-button" hide-gt-sm>
+          <md-icon>close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-content flex>
+
+      <div layout="row" layout-align="start center">
+        <p class="md-title"
+           style="margin-left: 16px;"
+           flex>
+         Channels
+        </p>
+        <md-button class="md-icon-button md-accent"
+                   style="margin-right: 0;"
+                   ng-disabled="!ctrl.user.uid"
+                   ng-click="ctrl.addChannel()">
+          <md-icon>add</md-icon>
+        </md-button>
+      </div>
+
+      <md-list ng-if="ctrl.channels">
+        <md-list-item ng-repeat="channel in ctrl.channels | orderBy:'name'"
+                      ng-click="ctrl.openMessages(channel.id, $mdMedia('gt-sm'))"
+                      ng-class="{'active': ctrl.$stateParams.channelId === channel.id}">
+          # {{ channel.name }}
+        </md-list-item>
+      </md-list>
+
+      <div ng-if="ctrl.loading" flex layout="row" layout-align="center center">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      </div>
+
+    </md-content>
+  </md-sidenav>
+  <div flex ui-view></div>
+</div>
