@@ -1,0 +1,59 @@
+/**
+ ==================================================================
+ * PROJECT SPECIFIC STUFF BELOW
+ ==================================================================
+ */
+
+/**
+ * Warning: this styling may create line-height issue as we are resetting the value to an "arbitrary" number
+ * Check: http://cssmojo.com/magic_boxes/#things-you-should-know-about
+ */
+.SpaceBetween {
+    text-align: justify;
+    line-height: 0; /* kill extra white space below the container */
+}
+
+.SpaceBetween:after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.SpaceBetween > * {
+    display: inline-block;
+    vertical-align: middle;
+    /* line-height is reset in base.css near <body> rule */
+}
+
+/**
+ * Fancy lists
+ ==================================================================
+ */
+.ul-list {
+    list-style-type: disc;
+    padding-left: 2em;
+}
+
+.ol-list {
+    list-style-type: decimal;
+    padding-left: 2em;
+}
+
+.dl-list dt {
+    color: #000;
+    font-weight: 400;
+}
+
+.dl-list dd {
+    padding-left: 2em;
+}
+
+/**
+ * TO COME LAST IN THIS STYLE SHEET
+ * this is because React plugs <span> all over the place and they get styled by rules using selectors like "> *"
+ */
+.atomic span {
+    display: inline;
+    float: none;
+}
