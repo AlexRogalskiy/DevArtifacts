@@ -1,0 +1,66 @@
+.o-c {
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  display: inline-block;
+  position: relative;
+  backface-visibility: hidden;
+  cursor: pointer;
+}
+.o-c, .o-c:before, .o-c:after {
+  background: #fff;
+  width: 60px;
+  height: 10px;
+  display: block;
+  transition: all 0.3s;
+}
+.o-c:before, .o-c:after {
+  content: '';
+  position: absolute;
+}
+.o-c:focus {
+  outline: none;
+}
+
+/**
+ * Nav Transform
+ */
+.o-c.nav, .o-c.nav:before, .o-c.nav:after {
+  transition-timing-function: cubic-bezier(0.71, 0.23, 0.62, 1.6);
+}
+.o-c.nav:before {
+  transform: translateY(-20px);
+}
+.o-c.nav:after {
+  transform: translateY(20px);
+}
+
+/**
+ * Cross Transform
+ */
+.o-c.cross {
+  background: transparent;
+  transform: rotate(360deg);
+  transition-timing-function: ease-out;
+}
+.o-c.cross:before {
+  transform: rotate(45deg);
+}
+.o-c.cross:after {
+  transform: rotate(-45deg);
+}
+
+/**
+ * Expand the clickable area
+ */
+label {
+  padding: 20px 0;
+  cursor: pointer;
+  display: block;
+}
+
+body {
+  width: 60px;
+  margin: 50px auto;
+  background: #ff8a6b;
+}

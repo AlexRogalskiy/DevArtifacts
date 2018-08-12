@@ -1,0 +1,134 @@
+body {
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  width: 100%;
+  background: #063d4c;
+  overflow: hidden;
+  -webkit-box-shadow: inset 0px 0px 150px 0px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: inset 0px 0px 150px 0px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0px 0px 150px 0px rgba(0, 0, 0, 0.7);
+}
+
+.container {
+  width: 350px;
+  height: 201px;
+  margin: 200px auto;
+}
+
+.container #tooltip {
+  position: relative;
+  width: 300px;
+  height: 100px;
+  background: #0d6f8a;
+  margin-bottom: 20px;
+  left: 10px;
+  top: -160px;
+  opacity: 0;
+  visibility: hidden;
+  background-image: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, transparent), color-stop(100%, rgba(0, 0, 0, 0.3)));
+  background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  background-image: -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  background-image: -ms-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  background-image: linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#4d000000',GradientType=0 );
+  -webkit-transition: all .3s 1s ease;
+  -moz-transition: all .3s 1s ease;
+  -ms-transition: all .3s 1s ease;
+  -o-transition: all .3s 1s ease;
+  transition: all .3s 1s ease;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4);
+  -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4);
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4);
+}
+
+.container #tooltip .avatar {
+  float: left;
+  margin: 5px 15px 5px 5px;
+  border: 5px solid rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  position: relative;
+}
+
+.container #tooltip .info h2 {
+  color: white;
+  font: bold 17px/34px Arial;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+  margin: 0;
+}
+
+.container #tooltip .info p {
+  font: 12px/14px Arial, sans-serif;
+  color: #aaa;
+  margin-top: 0;
+}
+
+.container #tooltip:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  width: 20px;
+  height: 20px;
+  background: #0d6f8a;
+  left: 40px;
+  background-image: -webkit-linear-gradient(-45deg, rgba(0, 0, 0, 0.27) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background-image: -moz-linear-gradient(-45deg, rgba(0, 0, 0, 0.27) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background-image: -o-linear-gradient(-45deg, rgba(0, 0, 0, 0.27) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background-image: -ms-linear-gradient(-45deg, rgba(0, 0, 0, 0.27) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.27) 0%, rgba(0, 0, 0, 0.3) 100%);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  box-shadow: 2px 2px 1px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 2px 2px 1px 0px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 2px 2px 1px 0px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  color: #aaa;
+  font: 13px/18px Arial, sans-serif;
+}
+
+.container a.trigger, .container a {
+  color: white;
+  text-decoration: none;
+}
+
+.container a.trigger:hover ~ #tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: -140px;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.container #tooltip .close {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 18px;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  text-decoration: none;
+}
+
+.container #tooltip .close:hover {
+  color: #000000;
+  text-decoration: none;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  cursor: pointer;
+}

@@ -1,0 +1,77 @@
+body {
+  background: #1BA39C;
+}
+
+.pagination {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 15px;
+  margin: auto;
+  text-align: center;
+  
+  
+  &__dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border: 2px solid lighten(#1BA39C, 25%);
+    border-radius: 100px;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 4px;
+    transition: .3s;
+    
+    &--active {
+      background: lighten(#1BA39C, 25%);
+    }
+    
+    &:hover {
+        transition: .3s;
+        border-color: lighten(#1BA39C, 70%);
+        background: lighten(#1BA39C, 70%);
+        
+        &:before {
+          top: -48px;
+          opacity: 1;
+        }
+      
+        &:after {
+          top: -18px; 
+          opacity: 1;
+        }
+    }
+    
+    &:before {
+      position: absolute;
+      top: -40px;
+      left: -36px;
+      background: lighten(#1BA39C, 80%);
+      width: 80px;
+      font-family: "Montserrat";
+      font-size: 14px;
+      padding: 8px 0;
+      border-radius: 3px;
+      content: attr(data-tooltip);
+      opacity: 0;
+      transition: .3s;
+    }
+    
+    &:after {
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: -10px;
+      left: -2px;
+      border-top: 6px solid lighten(#1BA39C, 80%);
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 6px solid transparent;      
+      content: "";
+      opacity: 0;
+      transition: .3s;
+    }
+  }
+}

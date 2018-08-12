@@ -1,0 +1,116 @@
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
+
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Futura;
+  outline: none;
+}
+
+body {
+  font-family: Futura;
+  background: #CDE8D5;
+}
+
+.main-form:after {
+  content: "";
+  display: table;
+  clear: both
+}
+
+.main-form {
+  max-width: 300px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background: lighten(#f4f4f4, 90%);
+  box-shadow: 10px 10px 0 rgba(0,0,0,.1);
+  &__title {
+    padding: 20px 0;
+    text-align: center;
+    
+    h1 {
+      position: relative;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+      
+      &:after {
+        position: absolute;
+        bottom: -13px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 40px;
+        height: 4px;
+        background: lighten(#000, 95%);
+        content: "";
+      }
+    }
+  }
+&__input {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: darken(#fff, 1%);
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 10px;
+  outline: 0;
+  font-size: .7rem;
+  color: lighten(#000, 40%);
+  @include transition(all, 0.2s, ease-in-out);
+
+  &:focus {
+    background: darken(#fff, 3%);
+  }
+}
+  &__body {
+    .btn {
+      display: block;
+      width: 48%;
+      margin-top: 10px;
+      float: left;
+      background: lighten(#000, 90%);
+      padding: 15px;
+      border: 0;
+      font-size: .6rem;
+      color: darken(#fff, 40%);
+      cursor: pointer;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      @include transition(all, 0.2s, ease-in-out);
+      
+      &:last-of-type {
+        float: right;
+        background: #FCA44B;
+        color: #fff;
+        
+        &:hover {
+          background: darken(#FCA44B, 10%);
+        }
+      }
+    }
+  }
+}
+
+@include placeholder {
+  color: lighten(#000, 80%);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+ }

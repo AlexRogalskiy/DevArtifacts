@@ -1,0 +1,71 @@
+$size: 60px;
+$color: #fff;
+
+// Duration needs to be set in JS as well
+// .3s (css) = 300 (js)
+$duration: .3s; 
+
+.o-c {
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  display: inline-block;
+  position: relative;
+  backface-visibility: hidden;
+  cursor: pointer;
+  &, &:before, &:after {
+    background: $color;
+    width: $size;
+    height: $size/6;
+    display: block;
+    transition: all $duration;
+  }
+  &:before, &:after {
+    content: '';
+    position: absolute;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+/**
+ * Nav Transform
+ */
+.o-c.nav {
+  &, &:before, &:after { transition-timing-function: cubic-bezier(.71,.23,.62,1.6); }
+  &:before { transform: translateY(-$size/3); }
+  &:after  { transform: translateY($size/3); }
+}
+
+/**
+ * Cross Transform
+ */
+.o-c.cross {
+  background: transparent;
+  transform: rotate(360deg);
+  transition-timing-function: ease-out;
+  &:before { transform: rotate(45deg); }
+  &:after  { transform: rotate(-45deg); }
+}
+
+/**
+ * Expand the clickable area
+ */
+label {
+  padding: $size/3 0;
+  cursor: pointer;
+  display: block;
+}
+
+
+
+
+
+
+
+body {
+  width: $size;
+  margin: 50px auto;
+  background: #ff8a6b;
+}

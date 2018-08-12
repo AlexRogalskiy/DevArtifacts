@@ -1,0 +1,162 @@
+@import "compass/css3";
+
+@mixin animation($value) {
+    
+}
+
+@mixin keyframes($name){
+    @-webkit-keyframes #{$name} { @content; }
+    @-moz-keyframes #{$name} { @content; }
+    @-o-keyframes #{$name} { @content; }
+    @keyframes #{$name} { @content; }
+}
+
+
+@include keyframes(ligtbox_fade_in) {
+    0% {
+        visibility: visible;
+        background: transparent;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+.lightbox {
+    visibility: hidden;
+    display: table;
+    position: fixed;
+    box-sizing: border-box;
+    z-index: 300;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    background: rgba(#000, 0.8);
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    @include animation(ligtbox_fade_in 300ms reverse);
+    input:checked + & {
+        visibility: visible;
+        @include animation(ligtbox_fade_in 300ms);
+    }
+  &:after {
+    font-weight: 700;
+    content: "×";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    font-size: 24px;
+    text-align: center;
+    color: #eee;
+    cursor: inherit;
+  }
+}
+.lightbox-container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+.lightbox-content {
+    @include box-sizing(border-box);
+    background-color: #fff;
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    cursor: auto;
+    padding: 0 16px;
+    overflow: scroll;
+}
+
+/* other css */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,400);
+
+body {
+  background: #eee;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Open Sans";
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+[role="main"] {
+  background: #fff;
+  width: 100%;
+  max-width: 360px;
+  margin: 16px auto;
+  padding: 0 24px;
+  overflow: hidden;
+  //text-align: right;
+}
+
+.btn {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  height: 32px;
+  line-height: 32px;
+  font-size: 16px;
+  padding: 0 16px;
+  color: #ccc;
+  background: #eee;
+  margin: 8px;
+  @include transform(translate3d(-16px, -16px, 0));
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 16px;
+    background: #ccc;
+    @include transform-origin(0%, 0%);
+    @include transform(skew(45deg, 0deg));
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 16px;
+    height: 100%;
+    background: #ddd;
+    @include transform-origin(0%, 0%);
+    @include transform(skew(0deg, 45deg));
+  }
+  &:hover {
+    @include transform(translate3d(-12px, -12px, 0));
+    &:after {
+      width: 12px;
+    }
+    &:before {
+      height: 12px;
+    }
+  }
+  &:active {
+    @include transform(translate3d(-8px, -8px, 0));
+    &:after {
+      width: 8px;
+    }
+    &:before {
+      height: 8px;
+    }
+  }
+}
