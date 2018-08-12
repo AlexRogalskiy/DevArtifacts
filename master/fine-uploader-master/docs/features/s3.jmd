@@ -1,0 +1,111 @@
+{% extends "_templates/base.html" %}
+{% set page_title = "Uploading Directly to Amazon S3" %}
+{% block sidebar %}
+{% endblock %}
+{% block content %}
+{% markdown %}
+# Uploading Directly to Amazon S3 {: .page-header }
+
+### General Uploads to S3
+Please see [the blog post on Fine Uploader S3][s3blog].
+
+
+### Uploading to S3 Through a CDN
+Support for uploads to an S3 bucket via a CDN was added in Fine Uploader 5.1.0. You can upload files to
+any S3 bucket through any CDN, provided the CDN forwards all headers and does not append any additional
+headers to the request that is sent on to S3. An example of a CDN that should work fine is [fastly][fastly].
+
+#### S3 Transfer Acceleration
+Amazon's [S3 Transfer Acceleration option][s3transferacceleration] is by far the easiest way to have your
+uploads to S3 go through a CDN (Amazon Cloudfront). To use this feature, simply enable it in your AWS console
+and specify `https://[bucket-name].s3-accelerate.amazonaws.com` instead of `https://[bucket-name].s3.amazonaws.com`
+for the [`request.endpoint` option][requestendpoint].
+
+#### Custom CDN
+When uploading to S3 via a CDN, you must specify the name of the bucket. This is not required when directly
+uploading to S3 or when using the Transfer Acceleration option, since Fine Uploader is able to determine the
+bucket name by examining the S3 endpoint URL. This is obviously not the case for a CDN endpoint. So, in
+addition to specifying the CDN endpoint via the [`request.endpoint` option][requestendpoint], you must also
+specify a bucket name via the [`objectProperties.bucket` option][objectpropertiesbucket].
+
+Furthermore, if you are using version 4 signatures, you _also_ must specify the hostname of the S3 bucket via the
+[`objectProperties.host` option][objectpropertieshost].
+
+Please see the documentation for these options for more details.
+
+The simplest set up consists of:
+
+```javascript
+var uploader = new qq.s3.FineUploader({
+    request: {
+        endpoint: '{ YOUR_CDN_ENDPOINT_URL }'
+        accessKey: '{ YOUR_ACCESS_KEY }'
+    },
+    objectProperties: {
+        bucket: '{ YOUR_S3_BUCKET_NAME }'
+        host: '{ YOUR_S3_BUCKET_HOST_NAME }' // only needed for version 4 signatures
+    },
+    signature: {
+        endpoint: '/s3/signature'
+    },
+    uploadSuccess: {
+        endpoint: '/s3/success'
+    },
+    iframeSupport: {
+        localBlankPagePath: '/success.html'
+    }
+});
+```
+
+### Accounting for browser/client clock drift
+If the clock on the machine running Fine Uploader is too far off of the current date, S3 may reject any requests
+sent from this machine. To overcome this situation, you can include a [clock drift value][drift-option], in milliseconds, when
+creating a new Fine Uploader instance. One way to set this value is to subtract the current time according to the
+browser from the current unix time according to your server. For example:
+
+```javascript
+var uploader = new s3.FineUploader({
+    request: {
+        clockDrift: SERVER_UNIX_TIME_IN_MS - Date.now()
+    }
+})
+```
+
+If this value is non-zero, Fine Uploader S3 will use it to pad the `x-amz-date` header and the policy expiration
+date sent to S3.
+
+
+### Headers
+
+If you would like to attach HTTP headers to objects uploaded to your S3 bucket via Fine Uploader S3,
+you must specify them as parameters, either via [the `setParams` API method][setparams], or [the `request.params` option][params].
+All parameter/header names will be prefixes with "x-amz-meta-", _and_ values will be URI encoded, _except_ for the
+following "special" headers:
+
+* Cache-Control
+* Content-Disposition
+* Content-Encoding
+* Content-MD5
+* x-amz-server-side-encryption-aws-kms-key-id
+* x-amz-server-side-encryption
+* x-amz-server-side-encryption-customer-algorithm
+* x-amz-server-side-encryption-customer-key
+* x-amz-server-side-encryption-customer-key-MD5
+
+The above header names and values will be untouched. If any of these values needs to be encoded in some way,
+you are responsible for doing so _before_ passing the header to Fine Uploader S3.
+
+
+[drift-option]: ../api/options-s3.html#request.clockDrift
+[fastly]: http://www.fastly.com/
+[issue1016]: https://github.com/FineUploader/fine-uploader/issues/1016
+[objectpropertiesbucket]: ../api/options-s3.html#objectProperties.bucket
+[objectpropertieshost]: ../api/options-s3.html#objectProperties.host
+[params]: ../api/options.html#request.params
+[requestendpoint]: ../api/options-s3.html#request.endpoint
+[s3blog]: http://blog.fineuploader.com/2013/08/16/fine-uploader-s3-upload-directly-to-amazon-s3-from-your-browser/
+[s3transferacceleration]: http://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html
+[setparams]: ../api/methods.html#setParams
+
+{% endmarkdown %}
+{% endblock %}

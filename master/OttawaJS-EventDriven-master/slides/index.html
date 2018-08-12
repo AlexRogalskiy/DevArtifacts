@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Event Driven Architecture</title>
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section>
+                    <h1>Event driven<br>architecture</h1>
+                    <p>
+                        <small><a href="http://fabien-d.github.io/">Fabien Doiron</a> / <a href="http://twitter.com/fabien_doiron">@fabien_doiron</a></small></p>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>What's Inside?</h2>
+                        <p class="fragment">DOM Events</p>
+                        <p class="fragment">Custom Events</p>
+                        <div class="fragment">
+                            <p>Pub/Sub Design Pattern</p>
+                            <p><small>(AKA Observer)</small></p>
+                        </div>
+                    </section>
+                </section>
+
+                <!-- Example of nested vertical slides -->
+                <section>
+                    <section>
+                        <img src="ow/img/rocky-small.png" style="border-radius: 500px;">
+                        <h2>Fabien Doiron</h2>
+                        <p>Software Developer - Front End</p>
+                        <p>&nbsp;</p>
+                        <div class="fragment">
+                            <p>
+                                <a href="http://www.canvaspop.com" style="margin: 0 15px;"><img src="ow/img/cp-logo.png"></a>
+                                <a href="http://www.dna11.com" style="margin: 0 15px;"><img src="ow/img/dna-logo.png"></a>
+                                <a href="http://www.crated.com" style="margin: 0 15px;"><img src="ow/img/crated-logo.png"></a>
+                            </p>
+                            <p>
+                            <a href="http://developers.canvaspop.com" style="margin: 0 15px;"><img src="ow/img/cpapi-logo.png"></a></p>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <h1>DOM Events</h1>
+                </section>
+
+                <section>
+                    <h2>Mouse Events</h2>
+                    <p>click, dblclick, mousedown, mouseup, mouseover&hellip;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <h2>Keyboard Events</h2>
+                    <p>keydown, keypress, keyup</p>
+                </section>
+
+                <section>
+                    <h2>Form Events</h2>
+                    <p>select, change, submit, reset, focus, blur&hellip;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <h2>Other Events</h2>
+                    <p>load, unload, error, resize, scroll&hellip;</p>
+                </section>
+
+                <section>
+                    <h2>Usage</h2>
+                    <pre class="fragment"><code class="js"> TARGET.addEventListener( 'click', fn, false );
+ TARGET.removeEventListener( 'click', fn, false ); </code></pre>
+                    <p>&nbsp;</p>
+                    <div class="fragment">
+                        <p>Third parameter <code>'useCapture'</code> is now optional</p>
+                        <p>including it is safer</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Capture, target &amp; Bubbling</h2>
+                    <p class="fragment">3 phases of event propagation</p>
+                </section>
+
+                <section>
+                    <div style="padding: 12px; background: #FFF">
+                        <img src="ow/img/eventflow.png">
+                    </div>
+                    <p><small><br>from W3C</small></p>
+                </section>
+
+                <section>
+                    <h2>Capture Phase</h2>
+                    <p>Starts at the outer most and ends at the inner most element</p>
+                    <p>Can generally be ignored</p>
+                    <p>&nbsp;</p>
+                    <div class="fragment">
+                        <h2>Target Phase</h2>
+                        <p>Event is dispatched to the target element</p>
+                    </div>
+                    <p>&nbsp;</p>
+
+                    <div class="fragment">
+                        <h2>Bubbling Phase</h2>
+                        <p>Starts at the inner most and ends at the outer most element</p>
+                        <p>Extremely useful</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Why is this event bubbling useful?</h2>
+                    <iframe src="ow/multiple-event.html" height="450"></iframe>
+                    <iframe src="ow/single-event.html" height="450"></iframe>
+                </section>
+
+                <section>
+                    <h2>How exactly does it work?</h2>
+                    <p class="fragment">Events are fired from the inner most element</p>
+                    <p class="fragment">E.g. Children of the element with the event listener</p>
+                </section>
+
+                <section>
+                    <pre><code class="js">DIV.addEventListener( 'click', function ( evt ) {
+    // log: evt.target.nodeName;
+}, false );</code></pre>
+                    <iframe class="fragment" src="ow/target-event.html" width="100%" height="450"></iframe>
+                </section>
+
+                <section>
+                    <h2>So&hellip;</h2>
+                    <div class="fragment">
+                        <pre><code class="js">$( PARENT ).on( 'click', CHILD, fn );</code></pre>
+                        <img src="ow/img/science.gif">
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Note: Not all events bubble</h2>
+                    <div class="fragment">
+                        <p>load, unload, focus, blur&hellip;</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h1>Custom Events</h1>
+                </section>
+
+                <section>
+                    <h2>What?</h2>
+                    <p class="fragment">Events initialized by the application</p>
+                    <p class="fragment">Can be anything you want</p>
+                </section>
+
+                <section>
+                    <h2>Why?</h2>
+                    <p class="fragment">Loosely coupled architecture</p>
+                    <p class="fragment">Smaller units of code</p>
+                    <p class="fragment">Easy to extend functionality</p>
+                </section>
+
+                <section>
+                    <h2>Set a listener</h2>
+                    <div class="fragment">
+                        <pre><code class="js">TARGET.addEventListener(
+    'heyOttawaJS',
+    function ( event ) {
+        console.log( event.detail.message );
+    }
+);</code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Create a custom event</h2>
+                    <div class="fragment">
+                        <pre><code class="js">var cEvt = new CustomEvent(
+    'heyOttawaJS',
+    {
+        detail: {
+            message: 'badass!'
+        },
+        bubbles: false,
+        cancelable: false
+    }
+);</code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Trigger a custom event</h2>
+                    <div class="fragment">
+                        <pre><code class="js">TARGET.dispatchEvent( cEvt );</code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>In action</h2>
+                    <iframe src="ow/custom-event.html" width="50%" height="300"></iframe>
+                </section>
+
+                <section>
+                    <h1>Pub/Sub pattern</h1>
+                    <p><small>AKA Observer</small></p>
+                </section>
+
+                <section>
+                    <h2>Intent</h2>
+                    <p class="fragment">Define one-to-many dependency between objects</p>
+                    <p class="fragment">One object changes, notify and update all dependencies</p>
+                </section>
+
+                <section>
+                    <h2>Adding a mediator to your app</h2>
+                    <p class="fragment">Central location to handle communication</p>
+                    <p class="fragment">Modules don't need to know anything about other modules</p>
+                    <p class="fragment">Modules can focus on the single responsibility principle</p>
+                </section>
+
+                <section>
+                    <h2>Air traffic control</h2>
+                    <p><img src="ow/img/atc.png" width="750">
+                    <small><small>Metaphor from Addy Osmani: <a href="http://addyosmani.com/scalablejs/">Scalable JS Design Patterns</a></small></small></p>
+                </section>
+
+                <section>
+                    <h2>Module notifies mediator</h2>
+                    <p><img src="ow/img/atc2.png" width="750"></p>
+                </section>
+
+                <section>
+                    <h2>Mediator notifies modules</h2>
+                    <p><img src="ow/img/atc3.png" width="750"></p>
+                </section>
+
+                <section>
+                    <h2>Taking it further</h2>
+                    <p class="fragment">Tons of pub/sub libraries</p>
+                    <div class="fragment">
+                        <p>Yes, jQuery has an implementation, sort of<br>
+                            <small>using 'on' and 'trigger'</small>
+                        </p>
+                    </div>
+                    <p class="fragment">Not too complex to write</p>
+                </section>
+
+                <section>
+                    <h2>Basic example</h2>
+                    <p><pre><code class="js"> mediator.subscribe(
+     'heyOttawaJS',
+     function ( data ) {
+         console.log( data ); 
+     }
+ ); </code></pre></p>
+                    <p><pre><code class="js"> mediator.publish( 'heyOttawaJS', { k: 'v' } ); </code></pre></p>
+                </section>
+
+                <section>
+                    <h2>Benefits</h2>
+                    <p class="fragment">Loosely coupled architecture</p>
+                    <p class="fragment">Smaller units of code</p>
+                    <p class="fragment">Easy to extend functionality</p>
+                    <p>&nbsp;</p>
+
+                    <h2 class="fragment">Cons</h2>
+                    <p class="fragment">assume that subscribers exist</p>
+                    <p class="fragment">not easy to resolve a failed publisher</p>
+                    <p class="fragment">increased number of messages can lead to instabilities</p>
+                </section>
+
+                <section>
+                    <p>The feeling you'll get using an<p>
+                    <h2>event driven architecture</h2>
+                    <p class="fragment"><img src="ow/img/freedom.gif"></p>
+                </section>
+
+                <section>
+                    <h2>Resources</h2>
+                    <p><a href="http://en.wikipedia.org/wiki/DOM_Events">DOM Events</a></p>
+                    <p><a href="https://developer.mozilla.org/en/docs/Web/API/CustomEvent">Custom Event MDN</a></p>
+                    <p><a href="http://addyosmani.com/scalablejs/">Scalable JS Design Patterns</a></p>
+                    <p><a href="http://coding.smashingmagazine.com/2013/11/12/an-introduction-to-dom-events/">Introduction to DOM Events</a></p>
+                </section>
+
+                <section>
+                    <img src="ow/img/rocky-small.png" style="border-radius: 500px;">
+                    <h1>Questions?</h1>
+                    <p>
+                        <small><a href="http://fabien-d.github.io/">Fabien Doiron</a> / <a href="http://twitter.com/fabien_doiron">@fabien_doiron</a></small></p>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>

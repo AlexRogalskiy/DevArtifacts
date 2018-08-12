@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Mediator Pattern</title>
+	<style>
+		html,
+		body { width: 100%; height: 100%; }
+	</style>
+</head>
+<body>
+	<script src="../mediator.js"></script>
+	<script>
+		mediator.subscribe("myEvent", function () { console.log("myEvent"); });
+		mediator.publish("myEvent"); // myEvent
+
+		mediator.subscribe("myUniqueEvent", function () { console.log("myUniqueEvent"); }, "unique");
+		mediator.subscribe("myUniqueEvent", function () { console.log("myUniqueEventOverwrite"); }, "unique");
+		mediator.publish("myUniqueEvent"); // myUniqueEventOverwrite
+
+		mediator.listen({
+			"mouseover body" : function () { console.log("mouseover"); },
+			"click     body" : function () { console.log("click"); }
+		});
+	</script>
+</body>
+</html>

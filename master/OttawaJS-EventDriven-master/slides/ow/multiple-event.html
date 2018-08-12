@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Single Event</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            body {
+                color: #FFF;
+                font: 24px/1.5 Helvetica, Arial, sans-serif;
+            }
+
+            #new,
+            .children {
+                cursor: pointer;
+            }
+            .children:hover {
+                color: #0D99A5;
+            }
+        </style>
+    </head>
+    <body>
+        <p>'click' event on children<br>
+        <button id="new">+ new</button></p>
+        <p id="result">Clicked: </p>
+        <div id="parent">
+            <div class="children">1</div>
+            <div class="children">2</div>
+            <div class="children">3</div>
+        </div>
+
+        <script>
+            var resultEl = document.getElementById( 'result' );
+            var parentEl = document.getElementById( 'parent' );
+            var newEl = document.getElementById( 'new' );
+            var childrenEls = document.getElementsByClassName( 'children' );
+            var count = 4;
+
+            newEl.addEventListener( 'click', function addNew ( event ) {
+                var child = document.createElement( 'div' );
+                var content = document.createTextNode( count );
+                child.setAttribute( 'class', 'children' );
+                child.appendChild( content );
+                parentEl.appendChild( child );
+
+                count += 1;
+            }, false );
+
+
+            [].slice.call( childrenEls ).forEach( function setListeners ( child ) {
+                child.addEventListener( 'click', function showContent ( event ) {
+                    resultEl.innerHTML = 'Clicked: ' + event.target.innerHTML;
+                }, false );
+            } );
+        </script>
+    </body>
+</html>

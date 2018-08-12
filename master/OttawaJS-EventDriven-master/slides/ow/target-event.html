@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Single Event</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            body {
+                color: #FFF;
+                font: 24px/1.5 Helvetica, Arial, sans-serif;
+                padding: 24px;
+            }
+
+            #parent,
+            p,
+            span,
+            em {
+                padding: 12px;
+                margin: 0;
+            }
+
+            .children:first-child {
+                padding: 24px;
+            }
+
+            span,
+            em {
+                display: inline-block;
+            }
+
+            #parent {
+                outline: thin dotted white;
+            }
+
+            #parent:hover {
+                outline: thin dotted yellow;
+            }
+            #parent :hover {
+                outline: thin dotted #0D99A5;
+            }
+            #parent span:hover,
+            #parent em:hover {
+                outline: thin dotted red;
+            }
+        </style>
+    </head>
+    <body>
+        <p id="result">Target: </p>
+        <div id="parent">
+            <p class="children">1</p>
+            <p class="children"><span>2</span></p>
+            <p class="children"><em>3</em></p>
+        </div>
+
+        <script>
+            var resultEl = document.getElementById( 'result' );
+            var parentEl = document.getElementById( 'parent' );
+
+            parentEl.addEventListener( 'click', function showContent ( event ) {
+                resultEl.innerHTML = 'Target: ' + event.target.nodeName;
+            }, false );
+        </script>
+    </body>
+</html>
