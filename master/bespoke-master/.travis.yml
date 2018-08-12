@@ -1,0 +1,23 @@
+sudo: false
+dist: trusty
+git:
+  depth: 2
+language: node_js
+node_js:
+- &release_node v0.10
+- v0.12
+- v4
+- v6
+- v8
+#before_install:
+#- npm -g install npm@latest
+after_script:
+- npm run coveralls
+deploy:
+  provider: npm
+  email: ${NPM_EMAIL}
+  api_key: ${NPM_AUTH_TOKEN}
+  on:
+    tags: true
+    repo: bespokejs/bespoke
+    node: *release_node

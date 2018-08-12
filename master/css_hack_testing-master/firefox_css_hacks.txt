@@ -1,0 +1,132 @@
+
+Here are some css media query @supports, and underscore hacks I have worked on to isolate various versions of Firefox. 
+I have submitted most of these to browserhacks.com for review or inclusion.
+
+-Jeff- -
+
+This one appears to work for any firefox version and no other browser, 
+so unlike most other underscore hacks does not also affect MSIE 7 so it is already very clean:
+
+_:-moz-tree-row(hover), .selector { }
+
+
+Here is the full set of underscore hacks I have found/created for Firefox.
+Others styles of Firefox hacks are here too after these.
+All of these have been modified to remove MSIE7 overlap.
+Some of these also affect Safari 5-6, and are noted. 
+If I find better ones, I will likely include them here as well.
+
+-
+
+Firefox 1+ (any version of Firefox)
+_:-moz-any-link, :root .selector { } 
+
+Firefox 1.5+ 
+_:-moz-read-write, :root .selector { } 
+
+Firefox 3+	 
+_:-moz-loading, :root .selector { } 
+
+Firefox 3.5+ 
+_:-moz-handler-blocked, :root .selector { } 
+
+Firefox 3.6+ 
+_:-moz-handler-crashed, :root .selector { } 
+
+Firefox 4+	 
+_:-moz-ui-valid, :root .selector { } 
+
+Firefox 6+, Safari 5.1-6	 
+_::-moz-progress-bar, :root .selector { } 
+
+Firefox 9+	 
+_:-moz-full-screen, :root .selector { } 
+
+Firefox 10+	 
+_:-moz-full-screen-ancestor, :root .selector { } 
+
+Firefox 19+, Safari 5.1-6
+_::-moz-placeholder, :root .selector { } 
+
+Firefox 21+, Safari 5.1-6	 
+_::-moz-range-track, :root .selector { } 
+
+-
+
+More detail below:
+
+Here is one I created to target Firefox 21+, Safari 5-6: 
+(3 methods that remove MSIE 7 results)
+
+
+_::-moz-range-track, :root .selector { } 
+
+_::-moz-range-track, body:last-child .selector { } 
+
+_::-moz-range-track, .selector:not([attr*='']) { } 
+
+
+for Firefox 19+, Safari 5.1-6: 
+
+_::-moz-placeholder, body:last-child .selector { }
+
+_::-moz-placeholder, .selector:not([attr*='']) { }
+
+
+and another one: (again 2 methods)
+
+
+for Firefox 6+, Safari 5.1-6: 
+
+_::-moz-progress-bar, body:last-child .selector { }
+
+_::-moz-progress-bar, .selector:not([attr*='']) { }
+
+
+
+both of these next ones I created work for firefox 22 and newer: 
+
+
+@supports (-moz-appearance:meterbar) and (display:flex) { .selector { } }
+
+@supports (-moz-appearance:meterchunk) and (display:flex) { .selector { } }
+
+
+
+I Submitted these to browserhacks (firefox 8+ hacks are now posted on browserhacks.com)
+
+
+
+Firefox 8+ (2 working media query hacks):
+
+
+@media all and (min--moz-device-pixel-ratio:0) and (min-resolution: .001dpcm) { .selector { } }
+
+@media all and (-moz-images-in-menus:0) and (min-resolution: .001dpcm) { .selector { } }
+
+
+Firefox 3-
+
+
+@media \0 all { body:last-child .selector { } }
+
+
+notes: 
+
+media \0 all { }
+
+-also works for MSIE 8 without the 'body:last-child' combination
+
+---
+
+guillaume-simons posted a few css hacks to the forum, I modified them to target just Firefox:
+
+@supports (-moz-appearance:meterbar) and (cursor:zoom-in) { .selector { } } - Firefox 24+
+@supports (-moz-appearance:meterbar) and (background-attachment:local) { .selector { color:red; } } - Firefox 25+
+@supports (-moz-appearance:meterbar) and (image-orientation:90deg) { .selector { } } - Firefox 26+
+@supports (-moz-appearance:meterbar) and (all:initial) { .selector { } } - Firefox 27+
+@supports (-moz-appearance:meterbar) and (list-style-type:japanese-formal) { .selector { } } - Firefox 28+
+@media all and (min--moz-device-pixel-ratio:0) and (min-resolution:3e1dpcm) { .selector { } } - Firefox 29+ [this one already is firefox alone and works well]
+@supports (-moz-appearance:meterbar) and (background-blend-mode:difference,normal) { .selector { } } - Firefox 30+
+
+

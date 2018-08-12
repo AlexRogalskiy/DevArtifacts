@@ -1,0 +1,54 @@
+
+
+Here is another one that I have been working on for some time.
+
+
+At this time 6.1 (and 7) of Safari are able to be separated by CSS from Chrome 22+ (tested up to version 28)
+
+
+I came up with this one that works for Chrome 22+:
+
+
+/* Safari 6.1-7, Chrome 22+ */
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm),
+   screen and(-webkit-min-device-pixel-ratio:0) { 
+      .selector { property:value; } 
+}
+
+
+
+The Safari 6.1-7 hack I worked out already is the key:
+
+
+/* Safari 6.1-7  */
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0) {
+   .selector {(; property:value; );} 
+}
+
+
+
+There are new ones that also assist in this:
+
+
+/* Safari 8 */
+
+_::-webkit-full-page-media, _:future, :root .selector { property:value; }
+
+
+
+/* Chrome 22-28 */
+
+@media screen and(-webkit-min-device-pixel-ratio:0) {
+    .selector {-chrome-:only(;
+        property:value;
+    );}
+}
+
+
+
+
+Jeff
