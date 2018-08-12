@@ -1,0 +1,61 @@
+/* Boxed (block) */
+
+.b-boxed {
+  max-width: rem(714);
+  padding: rem($unit * 4) rem($unit * 4);
+  margin: rem($unit * 5) rem(6) rem($unit * 5) rem(4);
+  background: $yellow;
+  border-radius: rem(5);
+  box-shadow: 0 0 0 rem(2) $beige,
+              0 0 0 rem(4) $yellow,
+              rem(2) rem(2) 0 rem(4) $pink;
+}
+
+.b-boxed--light {
+  background: $white;
+  box-shadow: 0 0 0 rem(2) $beige,
+              0 0 0 rem(4) $white,
+              rem(2) rem(2) 0 rem(4) $green;
+}
+
+.b-boxed--dark {
+  background: $pink;
+  box-shadow: 0 0 0 em(2) $yellow,
+              0 0 0 rem(4) $pink,
+              rem(2) rem(2) 0 rem(4) $yellow;
+}
+
+@include respond-max($bp--mini - 1) {
+
+  .b-boxed {
+    margin-left: rem(-$unit * 4);
+    margin-right: rem(-$unit * 4);
+    border-radius: 0;
+  }
+
+}
+
+.b-boxed--spec {
+  color: $pink;
+  padding: rem($unit * 3) rem($unit * 4) rem($unit * 2) rem($unit * 4);
+  list-style-type: circle;
+  list-style-position: inside;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  li {
+    flex: 0 1 50%;
+  }
+}
+
+@include respond-min($bp--mobile) {
+
+  .b-boxed--spec {
+    li {
+      flex-basis: 25%;
+    }
+  }
+
+}

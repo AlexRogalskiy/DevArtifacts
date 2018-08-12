@@ -1,0 +1,40 @@
+/* Main (container) */
+
+.c-main {
+  z-index: $z-index--main;
+  position: relative;
+  overflow: hidden;
+  padding: rem($unit * 14) 0 rem($unit * 10) 0;
+}
+
+.c-main--home {
+  padding: 0 !important;
+
+  .b-block {
+    max-width: rem($block--home);
+  }
+}
+
+@include respond-min($bp--mobile) {
+
+  .c-main {
+    padding-top: rem($unit * 16);
+  }
+
+}
+
+@include respond-min($bp--aside) {
+
+  .c-main {
+    margin-right: percentage($footer--width/100);
+  }
+
+}
+
+@include respond-min(($footer--max-width / ($footer--width/100))) {
+
+  .c-main {
+    margin-right: rem($footer--max-width);
+  }
+
+}

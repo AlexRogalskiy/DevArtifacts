@@ -1,0 +1,388 @@
+html {
+  text-size-adjust: 100%;
+  color: $black;
+  line-height: 1.5;
+  font-weight: $fw-normal;
+  font-family: $fonts--default;
+}
+
+hr, .hr {
+  display: block;
+  clear: both;
+  height: 0;
+  margin: rem($baseline - 2) 0 rem($baseline - 1) 0;
+  border: 0;
+  outline: none;
+  border-top: 2px solid $canvas;
+
+  .c-footer & {
+    border-color: $beige;
+  }
+}
+
+b, strong {
+  font-weight: $fw-medium;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+  cursor: pointer;
+  background-image: linear-gradient(to right, $yellow 50%, $green 50%);
+  background-repeat: no-repeat;
+  background-size: 200% 2px;
+  background-position: 100% calc(100% - 1px);
+  text-shadow: 2px 0 0 $beige, -2px 0 0 $beige;
+
+  &:not([class]):focus,
+  &:not([class]):hover {
+    color: $dark-blue;
+    text-shadow: none;
+    animation: animateGradient 300ms forwards;
+  }
+
+  .c-footer &,
+  .b-post__pattern & {
+    text-shadow: 2px 0 0 $white, -2px 0 0 $white;
+  }
+}
+
+@keyframes animateGradient {
+  0% {
+    background-position: 100% 100%;
+  }
+  99% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 100%;
+    background-size: 200% 7px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: $fw-medium;
+  color: $blue;
+  font-family: $fonts--display;
+  line-height: 1.3;
+  margin-top: 0;
+  margin-bottom: rem($unit * 2);
+
+  p + & {
+    margin-top: rem($unit * 5);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+h1, .h1 {
+  font-size: rem($h1);
+  line-height: 1.1;
+}
+
+h2, .h2 {
+  font-size: rem($h2);
+}
+
+h3, .h3 {
+  font-size: rem($h3);
+}
+
+h4, .h4 {
+  font-size: rem($h4);
+}
+
+p, .p {
+  font-size: rem($p);
+  margin-top: 0;
+  margin-bottom: rem($unit * 2);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  small {
+    display: inline-block;
+    font-size: rem($p--small);
+  }
+}
+
+.p--small {
+  font-size: rem($p--small);
+}
+
+small,
+.p--small {
+  a {
+    background-size: 200% 1px;
+  }
+}
+
+.p--small {
+  margin-bottom: rem($unit * 2);
+
+  small {
+    font-size: inherit;
+  }
+}
+
+.p--large {
+  font-size: rem($p--large);
+  line-height: 1.5;
+  margin-bottom: rem($unit * 4);
+}
+
+ul, ol {
+  padding: 0;
+  margin: 0 0 rem($baseline) rem($unit * 4);
+  list-style: disc outside;
+
+  p + & {
+    margin-top: rem($baseline);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+ul {
+  list-style-image: url("/assets/img/bullet.svg");
+}
+
+li {
+  font-size: rem($p);
+  margin-bottom: rem($unit);
+
+  li, &:not([class]) p {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+ol {
+  list-style: decimal outside;
+}
+
+time {
+  display: block;
+  text-transform: uppercase;
+  color: $grey;
+
+  abbr[title] {
+    border: none;
+    background-image: none;
+    text-decoration: none;
+  }
+
+  p &,
+  li & {
+    font-size: rem($p--small);
+  }
+}
+
+::selection {
+  color: $pink;
+  background: $yellow;
+  text-shadow: none;
+}
+
+cite {
+  a {
+    color: inherit;
+  }
+}
+
+.p--quote {
+
+  &:before {
+    display: inline-block;
+    line-height: 1;
+    content: "\201C";
+    width: 0.6em;
+    margin-left: -0.6em;
+    opacity: 0.7;
+  }
+
+  &:after {
+    content: "\201D";
+    opacity: 0.7;
+    margin-left: 0.3em;
+  }
+}
+
+cite {
+  border: none;
+  font-style: normal;
+
+  a {
+    color: inherit;
+  }
+}
+
+blockquote {
+  margin: rem($baseline) 0;
+  padding: 0 rem($unit * 4);
+  border-left: rem(2) solid $green;
+
+  p {
+    color: $grey;
+  }
+
+  .p--large {
+    & + .p--small:last-child {
+      margin-top: rem(-$unit * 2);
+    }
+  }
+
+  @include respond-max($bp--mini - 1)
+  {
+    padding: 0;
+    border-left: 0;
+
+    .p--large {
+      font-size: rem($p);
+
+      &:not(:last-child) {
+        margin-bottom: rem($unit * 2);
+      }
+
+      & + .p--small:last-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+mark {
+  color: inherit;
+  background: $yellow;
+  text-shadow: none;
+}
+
+del,
+strike {
+  color: $grey;
+  text-decoration: none;
+  background-image: linear-gradient(to left, rgba($red, 1) 0%, rgba($red, 1) 100%);
+  background-position: 0 60%;
+  background-repeat: repeat-x;
+  background-size: 100% 2px;
+}
+
+q {
+  font-style: italic;
+  &:before { content: "\201C"; }
+  &:after { content: "\201D"; }
+}
+
+abbr,
+acronym {
+  &[title] {
+    border: none;
+    background-image: linear-gradient(to left, rgba($black, 0) 50%, rgba($black, 0.5) 50%);
+    background-position: 0 bottom;
+    background-repeat: repeat-x;
+    background-size: 2px 1px;
+  }
+}
+
+pre,
+code {
+  font-size: rem(14);
+  line-height: rem($unit * 3);
+  font-family: $fonts--monospace;
+  background: $black;
+  color: $white;
+}
+
+pre {
+  clear: both;
+  overflow: auto;
+  margin: rem($unit * 6) 0;
+  padding: rem($baseline) em($unit * 4);
+  box-shadow: inset 0 1px 7px darken($black, 10);
+
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+  code {
+    display: block;
+    color: $white;
+    font-size: inherit;
+    line-height: inherit;
+    background: none;
+    padding: 0;
+  }
+
+  &::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $black;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $grey;
+    border: 4px solid $black;
+    border-radius: 10px;
+  }
+}
+
+code {
+  display: inline-block;
+  position: relative;
+  padding: 0 rem(4);
+  color: $grey;
+  background: $white;
+
+  p > &,
+  li > & {
+    font-size: rem(14);
+    margin-bottom: rem(-2);
+    border-bottom: rem(2) solid $green;
+  }
+}
+
+p iframe {
+  margin: rem($baseline) 0 rem($baseline / 2) 0;
+}
+
+sub,
+sup {
+  font-size: 60%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: rem(-$unit);
+}
+
+sup {
+  top: rem(-$unit);
+}

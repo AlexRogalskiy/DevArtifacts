@@ -1,0 +1,317 @@
+/*!
+// Typography
+*/
+
+body {
+  color: $text;
+  line-height: 1.4;
+  font-family: $fonts-sans;
+}
+
+::selection {
+  text-shadow: none;
+  background: $highlight;
+}
+
+hr {
+  display: block;
+  clear: both;
+  border: none;
+  outline: none;
+  height: 2px;
+  opacity: 0.2;
+  background: $black;
+  margin: em($baseline*1.5) 0;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+b, strong {
+  font-weight: 700;
+}
+
+i, em {
+  font-style: italic;
+}
+
+small {
+  font-size: inherit;
+}
+
+code {
+  font-size: inherit;
+  background: $highlight;
+
+  p &,
+  li & {
+    font-size: 90%;
+  }
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  display: block;
+  margin: 0;
+  line-height: 1;
+  font-weight: bold;
+  font-family: $fonts-serif;
+
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  a {
+    color: inherit !important;
+  }
+}
+
+h1, .h1 {
+  font-size: em($h1);
+  margin-bottom: em($baseline/1.5, $h1);
+
+  .small &,
+  .prose--small & {
+    font-size: em($h1, $small);
+  }
+
+  .large &,
+  .prose--large & {
+    font-size: em($h1, $large);
+  }
+}
+
+h2, .h2 {
+  font-size: em($h2);
+  margin-bottom: em($baseline/1.5, $h2);
+
+  .small &,
+  .prose--small & {
+    font-size: em($h2, $small);
+  }
+
+  .large &,
+  .prose--large & {
+    font-size: em($h2, $large);
+  }
+}
+
+h3, .h3 {
+  font-size: em($h3);
+  margin-bottom: em($baseline/1.5, $h3);
+
+  .small &,
+  .prose--small & {
+    font-size: em($h3, $small);
+  }
+
+  .large &,
+  .prose--large & {
+    font-size: em($h3, $large);
+  }
+}
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-size: em($h4);
+  margin-bottom: em($baseline/1.5, $h4);
+
+  .small & {
+    font-size: em($h4, $small);
+  }
+
+  .large & {
+    font-size: em($h4, $large);
+  }
+}
+
+p, .p {
+  font-size: em($p);
+  margin-top: 0;
+  margin-bottom: em($baseline, $p);
+
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .small &,
+  .large &,
+  .prose--small &,
+  .prose--large & {
+    font-size: inherit;
+  }
+
+  &.small {
+    margin-bottom: em($baseline, $small);
+  }
+
+  &.large {
+    margin-bottom: em($baseline, $large);
+  }
+}
+
+.prose {
+  margin-bottom: em($baseline);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    color: $brand;
+
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  img {
+    margin: 0 auto em($baseline) auto;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul, ol {
+    font-size: em($p);
+    margin: em($baseline, $p) em($gutter, $p);
+
+    &:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    p, li, ul, ol {
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    ul, ol {
+      margin-top: em($baseline/3);
+      margin-right: 0;
+    }
+  }
+
+  li {
+    margin-bottom: em($baseline/3);
+  }
+
+  ul {
+    list-style: disc outside;
+  }
+
+  ol {
+    list-style: decimal outside;
+
+    // CSS counter to style numbered list
+    list-style: none;
+    counter-reset: section;
+
+    li {
+      &:before {
+        display: block;
+        float: left;
+        margin-right: -100%;
+        padding-right: 0.25em;
+        transform: translateX(-100%);
+        counter-increment: section;
+        content: counter(section) ".";
+      }
+    }
+  }
+}
+
+.small,
+.prose--small {
+  font-size: em($small);
+
+  .small {
+    font-size: inherit;
+  }
+
+  p {
+    margin-bottom: em($baseline, $small);
+  }
+
+  ul, ol {
+    font-size: inherit;
+  }
+}
+
+.prose--small {
+  margin-bottom: em($baseline, $small);
+
+  p {
+    margin-bottom: em($baseline/2, $small);
+  }
+
+  ul, ol {
+    margin: em($baseline/2, $small) em($gutter, $small);
+
+    ul, ol {
+      margin-top: em($baseline/10, $small);
+      margin-right: 0;
+    }
+  }
+
+  li {
+    margin-bottom: em($baseline/10, $small);
+  }
+}
+
+.large,
+.prose--large {
+  font-size: em($large);
+
+  .large {
+    font-size: inherit;
+  }
+
+  p {
+    margin-bottom: em($baseline, $large);
+  }
+
+  ul, ol {
+    font-size: inherit;
+  }
+}
+
+.prose--large {
+  margin-bottom: em($baseline, $large);
+
+  ul, ol {
+    margin: em($baseline, $large) em($gutter, $large);
+
+    ul, ol {
+      margin-top: em($baseline/3, $large);
+      margin-right: 0;
+    }
+  }
+
+  li {
+    margin-bottom: em($baseline/3, $large);
+  }
+}
+
+
+// Utility classes
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-light {
+  opacity: 0.5;
+}

@@ -1,0 +1,313 @@
+//http://www.antimath.info/css/sass-sqrt-function/
+@function sqrt($r) {
+  $x0: 1;
+  $x1: $x0;
+  @for $i from 1 through 10 {
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+  @return $x1;
+}
+
+$stripe  : 20;
+$stripe2 : $stripe * $stripe;
+
+.b-nav {
+  z-index: $z-index--nav;
+  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  // width: 100%;
+  background: $pink;
+  transition: transform 200ms linear;
+  transform: translateZ(0);
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $dark-red;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-top: 3px solid $dark-red;
+    background: $pink;
+
+    &:hover {
+      background: $pink;
+    }
+  }
+
+  .js-app &:after {
+    z-index: $z-index--nav + 1;
+    position: absolute;
+    display: block;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    pointer-events: none;
+    background: transparent repeating-linear-gradient(-45deg, $white, $white $stripe*1px, $pink $stripe*1px, $pink ($stripe*2)*1px);
+    background-size: 150% 100%;
+    transition: opacity 300ms;
+  }
+
+  .js-loading & {
+    transition: transform 100ms linear;
+    transform: translateZ(0) translateY(0) !important;
+
+    &:after {
+      opacity: 0.8;
+      transition: opacity 100ms;
+      pointer-events: none;
+    }
+  }
+
+  .js-loading-anim &:after {
+    animation: progress 1s linear reverse infinite;
+  }
+}
+
+@keyframes progress {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: (sqrt($stripe2 + $stripe2)*2)*-1px 0;
+  }
+}
+
+.b-nav__link {
+  position: relative;
+  display: block;
+  color: $white;
+  text-shadow: none;
+  font-weight: $fw-bold;
+  font-size: rem(15);
+  line-height: rem(35 + ($unit * 2));
+  padding: 0 rem($unit);
+  text-transform: uppercase;
+  text-align: center;
+  background: none;
+  border: 0;
+
+  &:focus,
+  &:hover {
+    color: $yellow;
+  }
+
+  svg {
+    display: inline-block;
+    vertical-align: rem(-8);
+    width: rem(28);
+    height: rem(28);
+    fill: currentColor;
+    overflow: visible;
+  }
+
+  &[type="button"] {
+    padding: 0 rem($unit * 2);
+  }
+
+  &[href*="twitter.com"] {
+    svg {
+      width: rem(34);
+    }
+  }
+}
+
+.b-nav__list {
+  list-style: none;
+  width: auto;
+  margin: 0 auto;
+
+  .b-nav > & {
+    height: rem(49);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    .js & {
+      flex-wrap: wrap;
+      overflow: hidden;
+      padding-right: rem($unit * 8);
+    }
+
+    .js-nav & {
+      flex-wrap: nowrap;
+      overflow: visible;
+    }
+  }
+}
+
+.b-nav__item {
+  display: block;
+  margin: 0;
+  font-size: inherit;
+  line-height: 1;
+  white-space: nowrap;
+  flex: 1 1 auto;
+  border-right: 2px solid rgba($dark-red, 0.5);
+}
+
+.b-nav__item--icons {
+  padding: 0 rem($unit * 2);
+  text-align: right;
+  border-right: 0;
+  flex-grow: 4;
+
+  .b-nav__link {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 rem($unit) !important;
+  }
+
+  .js .b-nav__list > & {
+    margin-right: rem(-$unit * 8);
+  }
+}
+
+.b-nav__list > .b-nav__item--active {
+
+  .b-nav__link {
+    color: $yellow;
+  }
+}
+
+.b-nav__more {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: rem($unit * 8);
+
+  &:hover:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 150%;
+    height: 150%;
+  }
+}
+
+.b-nav__dropdown {
+  position: absolute;
+  display: block;
+  top: 100%;
+  right: 0;
+  width: auto;
+  list-style: none;
+  margin: rem($unit);
+  background: $white;
+  border-radius: 5px;
+  border: 2px solid $pink;
+  box-shadow: 0 0 0 3px rgba($black, 0.2);
+  opacity: 0;
+  transform: scale(0.6);
+  transform-origin: 100% 0;
+  transition: transform 300ms cubic-bezier(.65,.25,.35,1.6), opacity 300ms cubic-bezier(.65,.25,.35,1.6);
+  pointer-events: none;
+
+  &:after,
+  &:before {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    bottom: 100%;
+    right: 10px;
+    border: 10px solid transparent;
+    border-bottom-color: $pink;
+  }
+
+  &:after {
+    border-width: 7px;
+    border-bottom-color: $white;
+    margin-right: 3px;
+  }
+
+  .b-nav__item {
+    border-bottom: 2px solid $canvas;
+    border-right: 0;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  .b-nav__link {
+    text-align: left;
+    padding: 0 rem($unit * 2);
+    color: $pink;
+
+    &:focus,
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+
+.b-nav__dropdown--hover,
+.b-nav__dropdown--active {
+  opacity: 1;
+  display: block;
+  transform: none;
+  pointer-events: all;
+}
+
+.b-nav--min {
+
+  & > .b-nav__list {
+    justify-content: flex-start;
+  }
+
+  .b-nav__item {
+    flex-grow: 0;
+  }
+}
+
+.b-nav--pinned {
+    transform: translateZ(0) translateY(0);
+}
+
+.b-nav--unpinned {
+    transform: translateZ(0) translateY(-100%);
+}
+
+.no-js {
+
+  .b-nav {
+    overflow-x: auto;
+    overflow-y: hidden;
+    overflow-scrolling: auto;
+    -webkit-overflow-scrolling: touch;
+    min-height: min-content;
+  }
+
+  .b-nav__list {
+    min-width: min-content;
+  }
+}
+
+@include respond-min($bp--aside) {
+
+  .b-nav {
+    right: percentage($footer--width/100);
+  }
+
+}
+
+@include respond-min(($footer--max-width / ($footer--width/100))) {
+
+  .b-nav {
+    right: rem($footer--max-width);
+  }
+
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phonic</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico">
+  <meta name="apple-mobile-web-app-title" content="Phonic">
+  <meta name="application-name" content="Phonic">
+  <meta name="theme-color" content="#1d97bf">
+
+  <link rel="stylesheet" href="/assets/css/app.css">
+<script>
+(function(window, document) {
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+
+  var $head = document.querySelector('head');
+
+  window.__loadScript = function(src, callback) {
+    var script = document.createElement('script');
+    script.src = src;
+    script.type = 'text/javascript';
+    script.async = true;
+    if (callback) {
+      script.onload = script.onreadystatechange = function() {
+        if (/^($|loaded|complete)/.test(script.readyState || '')) {
+          script.onload = script.onreadystatechange = null;
+          callback();
+        }
+      };
+    }
+    $head.appendChild(script);
+  };
+
+  window.__WebFontsLoaded = [];
+  window.WebFontConfig = {
+    google: {
+      families: ['Roboto:300,400,500']
+    },
+    active: function() {
+      if (Array.isArray(window.__WebFontsLoaded)) {
+        window.__WebFontsLoaded.forEach(function(callback) {
+          if (typeof callback === 'function') {
+            callback();
+          }
+        });
+        window.__WebFontsLoaded = [];
+      }
+    }
+  };
+
+  window.__loadScript('/assets/js/webfont.js');
+
+  // window.__phonicMP3 = 'https://audio.simplecast.com/834c8c92.mp3';
+  window.__phonicMP3 = 'https://media.simplecast.com/episodes/audio/143742/shoptalkshow-310.mp3';
+
+})(window, document);
+</script>
+</head>
+<body>
+<div id="app"></div>
+<script crossorigin src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@latest/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-redux@latest/dist/react-redux.min.js"></script>
+<script crossorigin src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+<script crossorigin src="https://unpkg.com/redux-persist@latest/dist/redux-persist.min.js"></script>
+<!-- <script crossorigin src="https://unpkg.com/react-router-dom@latest/umd/react-router-dom.min.js"></script> -->
+<script crossorigin src="https://unpkg.com/history@latest/umd/history.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

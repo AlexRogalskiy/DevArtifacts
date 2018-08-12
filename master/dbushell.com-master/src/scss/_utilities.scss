@@ -1,0 +1,90 @@
+/* Utilities */
+
+.b-fitvid {
+  display: block;
+  position: relative;
+  width: 100%;
+
+  embed,
+  iframe,
+  object {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    margin:0;
+  }
+}
+
+.u-vh {
+  @include visually-hidden;
+}
+
+.u-dim {
+  color: $grey;
+}
+
+.u-bright {
+  color: $black;
+}
+
+.u-error {
+  color: $red;
+}
+
+.u-dark,
+.u-dark-alt {
+  color: $white;
+  background: $pink;
+
+  a:not([class]) {
+    color: inherit;
+    text-shadow: none;
+    background-image: linear-gradient(to right, rgba($yellow, 0.5) 0%, rgba($yellow, 0.5) 100%);
+
+    &:focus, &:hover {
+      background-image: linear-gradient(to right, rgba($dark-red, 0.5) 0%, rgba($dark-red, 0.5) 100%);
+    }
+  }
+
+  h1, h2, h3,
+  .h1, .h2, .h3 {
+    color: $yellow;
+    text-shadow: 3px 3px 0 rgba($dark-red, 0.5);
+  }
+
+  blockquote {
+    border-color: $yellow;
+
+    p {
+      color: inherit;
+    }
+  }
+
+  .u-dim {
+    color: $yellow;
+  }
+
+  .u-bright {
+    color: $white;
+  }
+}
+
+.u-dark-alt {
+  background: $blue;
+
+  .u-dim {
+    color: $green;
+  }
+
+  h1, h2, h3,
+  .h1, .h2, .h3 {
+    color: $green;
+    text-shadow: 3px 3px 0 rgba($dark-blue, 0.5);
+  }
+
+  blockquote {
+    border-color: $green;
+  }
+}

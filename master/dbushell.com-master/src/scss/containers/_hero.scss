@@ -1,0 +1,234 @@
+/* Hero (container) */
+
+@keyframes animateSpin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.c-hero {
+  z-index: $z-index--hero;
+  position: relative;
+  padding-top: rem($unit * 7);
+  padding-bottom: 0;
+  background: $green;
+  overflow: hidden;
+
+  .b-block {
+    position: relative;
+    margin-top: 5%;
+  }
+
+  .e-star {
+    z-index: $z-index--hero + 30;
+    position: absolute;
+    display: none;
+    opacity: 0.5;
+    transform: scale(0.5);
+  }
+
+  .e-star {
+    width: percentage(100/$block--home);
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+
+  }
+
+  .e-star:nth-of-type(1),
+  .e-star:nth-of-type(3) {
+    width: percentage(75/$block--home);
+    height: 110px;
+    margin-left: -37.5px;
+    margin-top: -55px;
+  }
+
+  .e-star:nth-of-type(1) {
+    left: 52%;
+    top: 118%;
+  }
+
+  .e-star:nth-of-type(2) {
+    top: 36%;
+    left: 78%;
+    animation-delay: 1s;
+  }
+
+  .e-star:nth-of-type(3) {
+    top: 160%;
+    left: 92%;
+    animation-delay: 2s;
+  }
+}
+
+.c-hero__logo {
+  position: relative;
+  z-index: $z-index--hero + 10;
+  display: block;
+  margin-bottom: -2%;
+  width: 55%;
+  left: -5%;
+
+  // .js & {
+  //   opacity: 0;
+  //   transform: translateY(20%) scale(0.1) rotateZ(-15deg);
+  //   transition: opacity 300ms ease-in,
+  //               transform 600ms cubic-bezier(.01,1.4,.6,1.2);
+  // }
+
+  // .js-anim & {
+  //   opacity: 1;
+  //   transform: translateZ(0);
+  // }
+
+  img {
+    width: 100%;
+  }
+}
+
+.c-hero__bg {
+  z-index: $z-index--hero + 2;
+  position: relative;
+
+  div {
+    width: 100%;
+    padding-top: rem(15);
+    padding-bottom: percentage(600/3000);
+  }
+
+  svg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+
+    path {
+      transform: scale(1);
+    }
+  }
+
+  .st0 { fill: #f2f0e6; }
+  .st1 { stroke: #fffbcc; }
+  .st2{ stroke: #abe9d5; }
+
+  .st1, .st2 {
+    fill: none;
+    stroke-width: 7;
+    stroke-miterlimit: 10;
+  }
+}
+
+.c-hero__crane {
+  position: absolute;
+  right: 3.5%;
+  top: 0;
+  width: 40%;
+  max-width: rem(500);
+
+  &:before,
+  &:after {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+    padding-bottom: percentage(520/500);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100% 100%;
+  }
+
+  &:before {
+    z-index: $z-index--hero + 1;
+    background-image: url("/assets/img/origami-crane-bg.svg");
+    margin-top: -3.2%;
+    margin-left: -0.8%;
+  }
+
+  &:after {
+      z-index: $z-index--hero + 20;
+      background-image: url("/assets/img/origami-crane--small.png");
+
+      @include respond-min($bp--mobile)
+      {
+          background-image: url("/assets/img/origami-crane.png");
+      }
+  }
+}
+
+.c-hero__burst {
+  z-index: $z-index--hero - 1;
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  height: 0;
+  width: 100%;
+
+  &:after {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 0%;
+    left: -25%;
+    height: 0;
+    width: 100%;
+    padding-bottom: 100%;
+    animation: animateSpin 50s linear infinite;
+    background: url("/assets/img/starburst.svg") center center no-repeat;
+    background-size: 100% auto;
+    opacity: 0.1;
+  }
+}
+
+@include respond-min($bp--home) {
+
+  .c-hero {
+
+    .e-star {
+      display: block;
+    }
+  }
+
+}
+
+@include respond-max($bp--home - 1) {
+
+  .c-hero {
+
+    .b-block {
+      margin-top: 5%;
+    }
+  }
+
+}
+
+@include respond-max($bp--mobile - 1) {
+
+  .c-hero {
+
+    .b-block {
+      margin-top: 6%;
+    }
+  }
+
+  .c-hero__logo {
+    width: 65%;
+  }
+
+  .c-hero__crane {
+    width: 40%;
+    right: 2%;
+    top: 14%;
+  }
+
+  .c-hero__bg {
+    svg path {
+      transform: scale(0.5);
+    }
+  }
+
+}

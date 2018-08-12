@@ -1,0 +1,50 @@
+/* Field (element) */
+
+.e-field {
+  display: block;
+  outline: none;
+  appearance: none;
+  font-size: rem(18);
+  line-height: rem($unit * 3);
+  height: rem($unit * 6);
+  padding: rem($unit) rem($unit * 2);
+  margin: rem($unit) 0;
+  max-width: rem(400);
+  width: 100%;
+
+  clear: both;
+  font-family: $fonts--default;
+  color: $grey;
+  background: $white;
+  border-radius: 5px;
+  border: rem(2) solid $blue;
+  box-shadow: 0 0 0 rem(2) $beige,
+              rem(2) rem(2) 0 rem(2) $green;
+  transition: border 100ms,
+              box-shadow 100ms,
+              background-color 100ms;
+
+  &:focus,
+  &:hover {
+    color: $black;
+    border-color: $green;
+    box-shadow: 0 0 0 rem(2) $beige,
+                0 0 0 rem(4) $blue;
+  }
+
+  &:focus {
+    background-color: $yellow;
+  }
+
+  &:disabled {
+    filter: saturate(0.3);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.e-field--area {
+  height: auto;
+  max-width: none;
+  min-height: rem(($baseline * 3) + $unit);
+}

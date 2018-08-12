@@ -1,0 +1,116 @@
+/* Footer (container) */
+
+.c-footer {
+  position: relative;
+  background: $white;
+  padding-top: rem($unit);
+  box-shadow: 0 0 rem($unit * 2) rgba(0,0,0, 0.1);
+
+  .b-block {
+    padding-top: rem($baseline * 1.5);
+    padding-bottom: rem($baseline);
+  }
+
+  .b-hire {
+    margin: rem($baseline) auto;
+  }
+
+  .iScrollVerticalScrollbar {
+    top: 2px !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 14px !important;
+    background: $white !important;
+
+    .iScrollIndicator {
+      background: rgba($colour__hairline, 0.7) !important;
+      border: 3px solid $white !important;
+      border-radius: 10px !important;
+
+      &:hover {
+        background: $colour__hairline !important;
+      }
+    }
+
+    &[style*="opacity: 0"] {
+      opacity: 1 !important;
+
+      .iScrollIndicator {
+        background: rgba($colour__hairline, 0.3) !important;
+
+        &:hover {
+          background: $colour__hairline !important;
+        }
+      }
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $white;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background: rgba($colour__hairline, 0.7);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($colour__hairline, 0.3);
+    border: 3px solid $white;
+    border-radius: 10px;
+
+    &:hover {
+      background: $colour__hairline;
+    }
+  }
+}
+
+@include respond-min($bp--mobile) {
+
+  .c-footer {
+
+    .b-hire {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+}
+
+@include respond-min($bp--aside) {
+
+  .c-footer {
+    z-index: $z-index--footer;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    width: percentage($footer--width / 100);
+    max-width: rem($footer--max-width);
+    transform: translateZ(0);
+    background: $white;
+
+    .b-block {
+      padding: rem($baseline) rem($unit * 4);
+    }
+  }
+
+}
+
+@media only print {
+
+  .c-footer {
+    @include hidden;
+  }
+
+}

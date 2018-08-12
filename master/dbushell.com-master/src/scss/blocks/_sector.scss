@@ -1,0 +1,52 @@
+/* Sector (block) */
+
+.b-sector {
+  position: relative;
+  overflow: hidden;
+  padding: rem($unit * 5);
+  background: $white;
+  width: 100%;
+  max-width: rem($bp--mobile);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 1 auto;
+
+  & > * {
+    flex: 0 1 auto;
+    max-width: 100%;
+  }
+
+  .e-star {
+    position: absolute;
+    right: rem($unit);
+    width: rem(100);
+    height: rem(100);
+    bottom: rem($unit * 2);
+  }
+}
+
+.b-sector__header {
+  margin-bottom: rem($baseline / 2);
+}
+
+.b-sector__main {
+  flex: 1 1 auto;
+  margin-bottom: rem($unit * 3);
+}
+
+@include respond-min($bp--mobile) {
+
+  .b-sector--rtl {
+    align-items: flex-end;
+    text-align: right;
+
+    .e-star {
+      left: rem($unit);
+      top: rem($unit * 3);
+      right: auto;
+      bottom: auto;
+    }
+  }
+
+}

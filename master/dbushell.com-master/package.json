@@ -1,0 +1,112 @@
+{
+  "name": "dbushell.com",
+  "private": true,
+  "version": "10.2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbushell/dbushell.com.git"
+  },
+  "author": "David Bushell <david@dbushell.com>",
+  "license": "UNLICENSED - Copyright © David Bushell",
+  "scripts": {
+    "start":
+      "npx http-server ./dbushell.github.io/ -s -g -S -C ~/src/cert/server.crt -K ~/src/cert/server.key",
+    "build": "npx babel-node ./index.js",
+    "test": "npx jest",
+    "test-update": "npx jest --updateSnapshot",
+    "webpack:dev": "npx webpack --mode development --debug",
+    "webpack:prod": "npx webpack --mode production",
+    "webpack": "npm run webpack:prod && npm run webpack:dev",
+    "uglify":
+      "cd ./dbushell.github.io/assets/js/ && npx uglifyjs -m --source-map \"url='/assets/js/inline.min.js.map'\" -o inline.min.js inline.js",
+    "css": "node ./src/build/css.js"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env", "@babel/preset-react"],
+    "plugins": ["@babel/plugin-proposal-object-rest-spread"]
+  },
+  "xo": {
+    "space": true,
+    "extends": ["xo-react"],
+    "envs": ["node", "browser", "jest"],
+    "ignores": ["src/data/**/*"],
+    "rules": {
+      "no-unused-vars": "warn",
+      "react/no-danger": "warn",
+      "react/prop-types": "off",
+      "react/no-unused-prop-types": "off",
+      "react/jsx-closing-bracket-location": {
+        "nonEmpty": "line-aligned"
+      },
+      "react/jsx-tag-spacing": {
+        "beforeSelfClosing": "allow"
+      }
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx", ".json"]
+        }
+      }
+    }
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/src/__tests__/shim.js",
+      "<rootDir>/src/__tests__/setup.js"
+    ],
+    "roots": ["<rootDir>/src/"],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dbushell.github.io/",
+      "<rootDir>/src/__tests__/.*\\.js$"
+    ],
+    "verbose": true
+  },
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/node": "^7.0.0-beta.46",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.46",
+    "@babel/polyfill": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "@babel/preset-react": "^7.0.0-beta.46",
+    "autoprefixer": "^8.4.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^22.4.3",
+    "babel-loader": "^8.0.0-beta.2",
+    "chalk": "^2.4.1",
+    "core-js": "^2.5.6",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint-config-xo-react": "^0.16.0",
+    "eslint-plugin-react": "^7.7.0",
+    "front-matter": "^2.3.0",
+    "fs-extra": "^6.0.0",
+    "glob": "^7.1.2",
+    "handlebars": "^4.0.11",
+    "http-server": "^0.11.1",
+    "jest": "^22.3.0",
+    "jest-cli": "^22.3.0",
+    "jest-enzyme": "^6.0.0",
+    "js-beautify": "^1.7.5",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.compact": "^3.0.1",
+    "lodash.merge": "^4.6.1",
+    "marked": "^0.3.15",
+    "moment": "^2.22.1",
+    "node-sass": "^4.9.0",
+    "postcss": "^6.0.22",
+    "prettier": "^1.12.1",
+    "prismjs": "^1.14.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-test-renderer": "^16.3.2",
+    "shortid": "^2.2.8",
+    "striptags": "^3.1.1",
+    "uglify-js": "^3.3.24",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3",
+    "xo": "^0.21.0",
+    "yargs": "^11.0.0"
+  }
+}

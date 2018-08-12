@@ -1,0 +1,208 @@
+/* Vars / Mixins */
+
+@function em($px, $base: 16) {
+    @return ($px / $base) + em;
+}
+
+@function rem($px, $base: 16) {
+  @return ($px / $base) + rem;
+}
+
+// Units for consistent spacing, vertical rhythm, and a typographic baseline
+
+$unit: 7;
+$baseline: $unit * 4;
+
+$p         : 18;
+$p--large  : 22;
+$p--small  : 16;
+
+$h1: 42;
+$h2: 30;
+$h3: 28;
+$h4: 22;
+$h5: 18;
+$h6: 18;
+
+$footer--width     : 27;
+$footer--max-width : 400;
+$block--max-width  : 1140;
+$block--home       : 1200;
+$scrollbar--width  : 14;
+
+// Breakpoints used throughout the website
+
+$bp--mini    : 420;
+$bp--mobile  : 580;
+$bp--home    : 768;
+$bp--desktop : 960;
+$bp--aside   : 1200;//1000;
+// $bp--pinned  : $nav--pinned + $block--max-width + $footer--width + $scrollbar--width;
+
+
+
+$bp--hero--1 : $bp--mini;
+$bp--hero--2 : $bp--mobile;
+$bp--hero--3 : 800;
+
+// zIndexes
+
+$z-index--main     : 1000;
+$z-index--hero     : 1500;
+$z-index--home     : 2000;
+$z-index--header   : 2000;
+$z-index--overlay  : 4000;
+$z-index--nav      : 5000;
+$z-index--footer   : 6000;
+
+// Colours
+
+$white  : #ffffff;
+$black  : #494b4d;
+$grey   : #919599;
+$beige  : #f2f0e6;
+$canvas : #d9d7ce;
+$pink   : #ff6680;
+$red    : #e55c5c;
+$green  : #a1e5cf;
+$blue   : #1d97bf;
+$yellow : #fffbcc;
+$dark-blue: #39809e;
+$dark-red : #bf5a56;
+
+
+$colour__hairline           : lighten(#b3b0aa, 15);
+$colour__hairline--light    : lighten($colour__hairline, 15);
+$colour__hairline--dark     : darken($colour__hairline, 15);
+
+
+// Font usage for normal, display, script, and monospace stacks
+
+$fonts--stack      : ".SFNSDisplay-Regular", Arial, sans-serif;
+$fonts--default    : "Noto Sans", $fonts--stack;
+$fonts--display    : "Raleway", $fonts--stack;
+$fonts--monospace  : Monaco, Consolas, monospace;
+
+$fw-normal : 400;
+$fw-medium : 700;
+$fw-bold   : 500;
+
+// now using universal IE stylesheet concept
+// https://github.com/jakearchibald/sass-ie/
+// $fix-media-queries: false !default;
+
+@mixin respond-min($width)
+{
+    @media screen and (min-width: rem($width)) {
+        @content;
+    }
+}
+
+@mixin respond-min-max($w1, $w2)
+{
+    @media screen and (min-width: rem($w1)) and (max-width: rem($w2)) {
+        @content;
+    }
+}
+
+@mixin respond-max($width)
+{
+    @media screen and (max-width: rem($width)) {
+        @content;
+    }
+}
+
+
+@function inner-percent($percent)
+{
+    @return percentage( ( (100 / (100 - ($percent * 2))) * $percent ) / 100);
+}
+
+// $ratio is required for nested grids
+// e.g. if parent container is 5 columns of 6 then ratio = 5/6
+
+// @function gc-gutter($gc_gutter_count: 1, $ratio: 1, $width: $bp--desktop)
+// {
+//     $gc_gutter: $gc_gutter * $gc_gutter_count;
+//     $width: $width * $ratio;
+//     @return percentage($gc_gutter / $width);
+// }
+
+// @function gc-offset($col_count: 1, $col_total: 6, $ratio: 1, $width: $bp--desktop, $inside: 0)
+// {
+//     $gc_gutter: $gc_gutter;
+//     $width: $width * $ratio;
+
+//     // calculate width of columns
+//     $offset: $col_count * (($width - (($col_total - 1) * $gc_gutter)) / $col_total);
+//     // add width of gutters
+//     $offset: $offset + (($col_count - $inside) * $gc_gutter);
+//     // return as a percentage
+//     @return percentage($offset / $width);
+// }
+
+// @function gc-spanning($col_count: 1, $col_total: 6, $ratio: 1, $width: $bp--desktop)
+// {
+//     @return gc-offset($col_count, $col_total, $ratio, $width, 1);
+// }
+
+// Hide from both screenreaders and browsers: h5bp.com/u
+@mixin hidden {
+    display: none;
+    visibility: hidden;
+}
+
+// Hide only visually, but have it available for screenreaders: h5bp.com/v
+@mixin visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/* Base */
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+    background: $beige;
+    min-width: rem(300);
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: $canvas;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $colour__hairline--dark;
+}

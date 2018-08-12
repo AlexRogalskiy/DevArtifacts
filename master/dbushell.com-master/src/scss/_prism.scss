@@ -1,0 +1,189 @@
+/**
+ * prism.js Monokai theme for CSS & Sass/Scss
+ *
+ * @todo test for JavaScript & HTML
+ *
+ * @author @MoOx
+ */
+
+$prism-color:           #76d9e6 !default;
+$prism-color-neutral:   #bebec5 !default;
+
+$prism-color-comment:       #8c8c85 !default;
+$prism-color-keyword:       #ff3377 !default;
+$prism-color-value:         #76d9e6 !default;
+$prism-color-string:        #e6d06c !default;
+$prism-color-name:          #e6d06c !default;
+$prism-color-number:        #a77afe !default;
+$prism-color-variable:      #fff;//$prism-color !default;
+$prism-color-selector:      #a6e22d !default;
+$prism-color-punctuation:   $prism-color-neutral !default;
+//$prism-color-funtion: #dc322f !default;
+
+.namespace {
+    opacity: .7;
+}
+
+.token {
+    &.comment,
+    &.prolog,
+    &.doctype,
+    &.cdata {
+        color: $prism-color-comment;
+    }
+
+    &.null,
+    &.operator,
+    &.boolean,
+    &.number {
+        color: $prism-color-number;
+    }
+
+    &.attr-name,
+    &.string {
+        color: $prism-color-string;
+    }
+
+    &.entity,
+    &.url,
+    .language-css &.string,
+    .style &.string {
+        color: $prism-color-string;
+    }
+
+    &.selector {
+        color: $prism-color-selector;
+    }
+
+    &.function {
+      color: $prism-color;
+    }
+
+    &.property,
+    &.tag,
+    &.constant,
+    &.symbol,
+    &.atrule,
+    &.attr-value,
+    &.keyword,
+    &.control,
+    &.directive,
+    &.important,
+    &.unit {
+        color: $prism-color-keyword;
+    }
+
+    &.regex,
+    &.statement {
+        color: $prism-color-value;
+    }
+
+    &.placeholder,
+    &.variable {
+        color: $prism-color-variable;
+    }
+
+    &.important,
+    &.statement {
+        font-weight: bold;
+    }
+
+    &.punctuation {
+        color: $prism-color-punctuation;
+    }
+
+    &.entity {
+        cursor: help;
+    }
+
+    &.debug { color: $red; }
+}
+
+.language-html,
+.language-markup {
+    // color: #f9f9f9;
+
+    .token {
+        &.tag { color: $prism-color-keyword; }
+        &.attr-name { color: $prism-color-selector; }
+        &.attr-value { color: $prism-color-string; }
+    }
+
+    .token.style, .token.script {
+        color: $prism-color;
+    }
+
+    .token.script {
+        .token {
+            &.keyword { color: $prism-color; }
+        }
+    }
+}
+
+// .token.comment,
+// .token.prolog,
+// .token.doctype,
+// .token.cdata {
+//     color: slategray;
+// }
+
+// .token.punctuation {
+//     color: #f8f8f2;
+// }
+
+// .namespace {
+//     opacity: .7;
+// }
+
+// .token.property,
+// .token.tag,
+// .token.constant,
+// .token.symbol {
+//     color: #f92672;
+// }
+
+// .token.boolean,
+// .token.number{
+//     color: #ae81ff;
+// }
+
+// .token.selector,
+// .token.attr-name,
+// .token.string,
+// .token.builtin {
+//     color: #a6e22e;
+// }
+
+
+// .token.operator,
+// .token.entity,
+// .token.url,
+// .language-css .token.string,
+// .style .token.string,
+// .token.variable {
+//     color: #f8f8f2;
+// }
+
+// .token.atrule,
+// .token.attr-value
+// {
+//     color: #e6db74;
+// }
+
+
+// .token.keyword{
+// color: #66d9ef;
+// }
+
+// .token.regex,
+// .token.important {
+//     color: #fd971f;
+// }
+
+// .token.important {
+//     font-weight: bold;
+// }
+
+// .token.entity {
+//     cursor: help;
+// }
