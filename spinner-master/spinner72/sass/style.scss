@@ -1,0 +1,77 @@
+html {
+  height: 100%; // for styling only
+}
+
+body {
+  background-color: #1790b5; // for styling only
+  height: 100%; // for styling only
+  font-family: 'Open Sans', sans-serif;
+}
+
+.exp {
+  width: 100%; // for example positioning purposes
+  height: 100%; // for example positioning purposes
+  position: relatve;
+  
+  .throbber-wrap {
+    width: 270px; // Container size,adjust to your needs
+    top: 50%;
+    margin: 0 auto;
+    position: relative;
+  }
+}
+
+.throbber {
+    width: 100%; // You may change that to whatever value you want, but remember to position it properly if it's not 100% width
+
+  &:before {
+    content: "";
+    width: 0; // Starting size
+    height: 3px; // Adjust to fit your needs
+    border-radius: 3px; // To nicely round off the edges
+    background: #fff;
+    position: absolute;
+    bottom: -3px;
+    left: 0; // Starting position
+    right: auto;
+    animation: loader 1.4s infinite ease-out;
+    animation-fill-mode: both; // Important for the animation to work as it does. Read more here https://www.w3schools.com/cssref/css3_pr_animation-fill-mode.asp
+  }
+}
+
+@keyframes loader {
+    0% {
+        width: 0;
+        left: 0;
+        right: auto;
+        opacity: 1;
+      }
+
+    30% {
+        width: 100%;
+        left: 0;
+        right: 0;
+        opacity: 1;
+      }
+
+    31% {
+        width: 100%;
+        left: 0;
+        right: 0;
+        opacity: 1;
+    }
+
+    60% {
+        width: 0;
+        left: 100%;
+        right: 0;
+        opacity: 1;
+    }
+
+    61% {
+        width: 0;
+        left: 0;
+        right: auto;
+        opacity: 0;
+    }
+}

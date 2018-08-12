@@ -1,0 +1,64 @@
+$thickness: 7%; // must be percent
+
+@keyframes spin {
+	0% { transform: rotate(45deg) }
+	100% { transform: rotate(405deg) }
+}
+
+.loader {
+	display: inline-block;
+	height: 10em;
+	width: 10em;
+	background: #fff;
+	position: relative;
+	border-radius: 500px;
+	transition: 0.5s;
+	
+	&:after {
+		content: '';
+		background: #069;
+		position: absolute;
+		width: 50.5%;
+		height: 50.5%;
+		top: 50%;
+		left: 50%;
+		transform-origin: 0 0;
+		border-radius: 0 0 500px;
+		animation: spin 3s linear infinite;
+	}
+	
+	&:before {
+		content: '';
+		position: absolute;
+		top: $thickness;
+		left: $thickness;
+		width: 100% - $thickness*2;
+		height: 100% - $thickness*2;
+		background: #333;
+		border-radius: 500px;
+		z-index: 1;
+		transition: 0.2s;
+	}
+
+	// to show what's happening
+	&:hover {
+		border-radius: 0;
+
+		&:before {
+			top: $thickness*2;
+			left: $thickness*2;
+			width: 100% - $thickness*4;
+			height: 100% - $thickness*4;
+			opacity: 0.9;
+		}
+	}
+}
+
+// pen stuff
+body {
+	background: #333;
+	padding: 5em;
+	color: #fff;
+	font-family: sans-serif;
+	text-align: center;
+}
