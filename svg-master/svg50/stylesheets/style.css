@@ -1,0 +1,109 @@
+body {
+  background: #454545;
+}
+
+.thermometer, .thermometer--very-low, .thermometer--low, .thermometer--moderate, .thermometer--high, .thermometer--very-high {
+  max-width: 80%;
+  margin: 2rem auto;
+}
+.thermometer span, .thermometer--very-low span, .thermometer--low span, .thermometer--moderate span, .thermometer--high span, .thermometer--very-high span {
+  font-family: Verdana;
+  font-size: 1rem;
+  color: #ccc;
+  min-width: 100%;
+  text-align: center;
+  display: block;
+  margin-bottom: 1.25rem;
+}
+.thermometer .liquid, .thermometer--very-low .liquid, .thermometer--low .liquid, .thermometer--moderate .liquid, .thermometer--high .liquid, .thermometer--very-high .liquid {
+  display: block;
+  width: 100%;
+  height: 1.275rem;
+  border: 1px solid #d2d2d2;
+  border-radius: 10px;
+  margin: .25rem auto 0;
+  position: relative;
+}
+.thermometer .liquid:before, .thermometer--very-low .liquid:before, .thermometer--low .liquid:before, .thermometer--moderate .liquid:before, .thermometer--high .liquid:before, .thermometer--very-high .liquid:before {
+  position: absolute;
+  content: "";
+  height: 70%;
+  left: 3px;
+  top: 14%;
+  border-radius: 10px;
+  transition: width .3s ease;
+}
+.thermometer .ruler, .thermometer--very-low .ruler, .thermometer--low .ruler, .thermometer--moderate .ruler, .thermometer--high .ruler, .thermometer--very-high .ruler {
+  height: .625rem;
+  width: 100%;
+  margin-left: 2px;
+}
+.thermometer .ruler .ticks--very-low line, .thermometer--very-low .ruler .ticks--very-low line, .thermometer--low .ruler .ticks--very-low line, .thermometer--moderate .ruler .ticks--very-low line, .thermometer--high .ruler .ticks--very-low line, .thermometer--very-high .ruler .ticks--very-low line, .thermometer .ruler .ticks--low line, .thermometer--very-low .ruler .ticks--low line, .thermometer--low .ruler .ticks--low line, .thermometer--moderate .ruler .ticks--low line, .thermometer--high .ruler .ticks--low line, .thermometer--very-high .ruler .ticks--low line, .thermometer .ruler .ticks--moderate line, .thermometer--very-low .ruler .ticks--moderate line, .thermometer--low .ruler .ticks--moderate line, .thermometer--moderate .ruler .ticks--moderate line, .thermometer--high .ruler .ticks--moderate line, .thermometer--very-high .ruler .ticks--moderate line, .thermometer .ruler .ticks--high line, .thermometer--very-low .ruler .ticks--high line, .thermometer--low .ruler .ticks--high line, .thermometer--moderate .ruler .ticks--high line, .thermometer--high .ruler .ticks--high line, .thermometer--very-high .ruler .ticks--high line, .thermometer .ruler .ticks--very-high line, .thermometer--very-low .ruler .ticks--very-high line, .thermometer--low .ruler .ticks--very-high line, .thermometer--moderate .ruler .ticks--very-high line, .thermometer--high .ruler .ticks--very-high line, .thermometer--very-high .ruler .ticks--very-high line {
+  stroke-width: 2px;
+  shape-rendering: crispEdges;
+}
+.thermometer .ruler .ticks--very-low, .thermometer--very-low .ruler .ticks--very-low, .thermometer--low .ruler .ticks--very-low, .thermometer--moderate .ruler .ticks--very-low, .thermometer--high .ruler .ticks--very-low, .thermometer--very-high .ruler .ticks--very-low {
+  stroke: #249AA7;
+}
+.thermometer .ruler .ticks--low, .thermometer--very-low .ruler .ticks--low, .thermometer--low .ruler .ticks--low, .thermometer--moderate .ruler .ticks--low, .thermometer--high .ruler .ticks--low, .thermometer--very-high .ruler .ticks--low {
+  stroke: #B8E1F2;
+}
+.thermometer .ruler .ticks--moderate, .thermometer--very-low .ruler .ticks--moderate, .thermometer--low .ruler .ticks--moderate, .thermometer--moderate .ruler .ticks--moderate, .thermometer--high .ruler .ticks--moderate, .thermometer--very-high .ruler .ticks--moderate {
+  stroke: #ABD25E;
+}
+.thermometer .ruler .ticks--high, .thermometer--very-low .ruler .ticks--high, .thermometer--low .ruler .ticks--high, .thermometer--moderate .ruler .ticks--high, .thermometer--high .ruler .ticks--high, .thermometer--very-high .ruler .ticks--high {
+  stroke: #F8C830;
+}
+.thermometer .ruler .ticks--very-high, .thermometer--very-low .ruler .ticks--very-high, .thermometer--low .ruler .ticks--very-high, .thermometer--moderate .ruler .ticks--very-high, .thermometer--high .ruler .ticks--very-high, .thermometer--very-high .ruler .ticks--very-high {
+  stroke: #F1594A;
+}
+.thermometer--very-low strong {
+  color: #249AA7;
+}
+.thermometer--very-low strong:before {
+  content: " freezing";
+}
+.thermometer--very-low .liquid:before {
+  background: #249AA7;
+  width: 10%;
+}
+.thermometer--low strong {
+  color: #B8E1F2;
+}
+.thermometer--low strong:before {
+  content: " cold";
+}
+.thermometer--low .liquid:before {
+  background: #B8E1F2;
+  width: 30%;
+}
+.thermometer--moderate strong {
+  color: #ABD25E;
+}
+.thermometer--moderate strong:before {
+  content: " ok";
+}
+.thermometer--moderate .liquid:before {
+  background: #ABD25E;
+  width: 50%;
+}
+.thermometer--high strong {
+  color: #F8C830;
+}
+.thermometer--high strong:before {
+  content: " hot";
+}
+.thermometer--high .liquid:before {
+  background: #F8C830;
+  width: 70%;
+}
+.thermometer--very-high strong {
+  color: #F1594A;
+}
+.thermometer--very-high strong:before {
+  content: " blazing";
+}
+.thermometer--very-high .liquid:before {
+  background: #F1594A;
+  width: 99%;
+}

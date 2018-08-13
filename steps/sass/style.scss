@@ -1,0 +1,35 @@
+$medium-bp: 500px;
+$width: 96vw;
+
+@mixin media-query($media-query) {
+  @if $media-query == medium {
+    @media only screen and (max-width: $medium-bp - 1) { @content; }
+  }
+}
+
+@mixin medium { @include media-query(medium) { @content; } }
+
+.drawing-steps {
+  width: $width;
+  margin: 2rem auto;
+  
+  &__svg {
+    transition: transform 0.3s ease;
+    transform-origin: center left;
+    will-change: transform;
+  }
+}
+
+@include medium {
+  .drawing-steps {
+    margin-bottom: $width;
+    &__svg {
+      transform: rotate(90deg);      
+      margin-left: 2rem;
+    }
+    
+    &__numbers {
+      glyph-orientation-horizontal: 270deg;      
+    }
+  }
+}

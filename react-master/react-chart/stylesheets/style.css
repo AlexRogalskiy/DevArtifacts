@@ -1,0 +1,535 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+html {
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
+  box-sizing: border-box;
+}
+html * {
+  box-sizing: inherit;
+}
+
+@font-face {
+  font-family: 'dincomp-bold';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bold.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bold.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bold.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bold.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bold.svg#dincomp-boldregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-bold-italic';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bolditalic.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bolditalic.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bolditalic.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bolditalic.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bolditalic.svg#dincomp-bolditaregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-italic';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-italic.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-italic.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-italic.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-italic.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-italic.svg#dincomp-itaregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-light';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-light.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-light.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-light.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-light.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-light.svg#dincomp-lightregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-light-italic';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-lightitalic.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-lightitalic.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-lightitalic.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-lightitalic.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-lightitalic.svg#dincomp-lightitaregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-medium';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-medium.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-medium.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-medium.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-medium.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-medium.svg#dincomp-mediumregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-medium-italic';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-mediumitalic.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-mediumitalic.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-mediumitalic.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-mediumitalic.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-mediumitalic.svg#dincomp-mediumitaregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp.svg#dincompregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+.din {
+  font-family: "dincomp";
+}
+.din--italic {
+  font-family: "dincomp-italic";
+}
+.din-light {
+  font-family: "dincomp-light";
+}
+.din-light--italic {
+  font-family: "dincomp-light-italic";
+}
+.din-medium {
+  font-family: "dincomp-medium";
+}
+.din-medium--italic {
+  font-family: "dincomp-medium-italic";
+}
+.din-bold {
+  font-family: "dincomp-bold";
+}
+.din-bold--italic {
+  font-family: "dincomp-bold-italic";
+}
+
+.roboto {
+  font-family: "Roboto";
+}
+
+/* Assets Layout */
+.codepen-h1,
+.codepen-h2 {
+  font-family: "dincomp";
+  text-align: center;
+}
+
+.codepen-assets-table {
+  margin: 0 auto;
+}
+.codepen-assets-table th, .codepen-assets-table td {
+  padding: 8px;
+  border: 1px solid #bdbdbd;
+}
+
+.codepen-assets-table--cores {
+  margin: 0 auto;
+}
+.codepen-assets-table--cores th, .codepen-assets-table--cores td {
+  padding: 5px;
+  line-height: 50px;
+  border: 2px solid #fff;
+  font-family: "dincomp";
+  text-align: center;
+}
+
+.blue-10 {
+  background: #eafbfb;
+}
+
+.blue-20 {
+  background: #b7f0f0;
+}
+
+.blue-30 {
+  background: #95e9e9;
+}
+
+.blue-40 {
+  background: #6be0e1;
+}
+
+.blue {
+  background: #27bdbe;
+}
+
+.blue-60 {
+  background: #1f9898;
+}
+
+.blue-70 {
+  background: #197a7b;
+}
+
+.blue-80 {
+  background: #135d5d;
+}
+
+.blue-90 {
+  background: #0c3b3b;
+}
+
+.green-10 {
+  background: #e6faf4;
+}
+
+.green-20 {
+  background: #ccf5e9;
+}
+
+.green-30 {
+  background: #a2ecd7;
+}
+
+.green-40 {
+  background: #6fe2c1;
+}
+
+.green {
+  background: #2bd2a3;
+}
+
+.green-60 {
+  background: #24ae87;
+}
+
+.green-70 {
+  background: #1d9070;
+}
+
+.green-80 {
+  background: #177259;
+}
+
+.green-90 {
+  background: #10503e;
+}
+
+.purple-10 {
+  background: #ddd2df;
+}
+
+.purple-20 {
+  background: #b9a3bd;
+}
+
+.purple-30 {
+  background: #9979a0;
+}
+
+.purple-40 {
+  background: #7c5d83;
+}
+
+.purple {
+  background: #5c4561;
+}
+
+.purple-60 {
+  background: #443348;
+}
+
+.purple-70 {
+  background: #302433;
+}
+
+.purple-80 {
+  background: #281e2a;
+}
+
+.purple-90 {
+  background: #1c151e;
+}
+
+.pink-10 {
+  background: #fcf2f7;
+}
+
+.pink-20 {
+  background: #f3c9d3;
+}
+
+.pink-30 {
+  background: #eca7ca;
+}
+
+.pink-40 {
+  background: #e071a9;
+}
+
+.pink {
+  background: #d5408b;
+}
+
+.pink-60 {
+  background: #c02a76;
+}
+
+.pink-70 {
+  background: #a32464;
+}
+
+.pink-80 {
+  background: #861d52;
+}
+
+.pink-90 {
+  background: #5c1438;
+}
+
+.red-10 {
+  background: #fdedec;
+}
+
+.red-20 {
+  background: #fbcccb;
+}
+
+.red-30 {
+  background: #f79e9c;
+}
+
+.red-40 {
+  background: #f37977;
+}
+
+.red {
+  background: #f05350;
+}
+
+.red-60 {
+  background: #ec2b27;
+}
+
+.red-70 {
+  background: #d31612;
+}
+
+.red-80 {
+  background: #a9110e;
+}
+
+.red-90 {
+  background: #840e0b;
+}
+
+.gray-10 {
+  background: #fafafa;
+}
+
+.gray-20 {
+  background: #ededed;
+}
+
+.gray-30 {
+  background: #e0e0e0;
+}
+
+.gray-40 {
+  background: #d1d1d1;
+}
+
+.gray-50 {
+  background: #bdbdbd;
+}
+
+.gray-60 {
+  background: #a1a1a1;
+}
+
+.gray-70 {
+  background: #949494;
+}
+
+.gray-80 {
+  background: #717171;
+}
+
+.gray-90 {
+  background: #595959;
+}
+
+#app {
+  display: flex;
+  flex-flow: row wrap;
+  min-height: 100vh;
+  min-width: 100vw;
+  background: #eee;
+}
+
+.rebalancing {
+  max-width: 50rem;
+  width: 100%;
+  min-width: 28rem;
+  min-height: 20rem;
+  transition: width 0.3s ease, height 0.3s ease;
+  will-change: width, height;
+  margin: auto;
+  background: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0.5rem;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+.rebalancing__player {
+  border: 1px solid #d1d1d1;
+  width: 100%;
+}
+.rebalancing__chart, .rebalancing__view, .rebalancing__timeline, .rebalancing__controls {
+  width: 100%;
+}
+.rebalancing__chart {
+  height: 18rem;
+}
+.rebalancing__timeline, .rebalancing__controls {
+  height: 3rem;
+}
+.rebalancing__view {
+  box-sizing: border-box;
+  height: 3rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #d1d1d1;
+  border-bottom: 1px solid #d1d1d1;
+  padding: 0 1rem;
+}
+.rebalancing__view span {
+  flex: 0 auto;
+  color: #595959;
+  font-family: "dincomp-medium";
+  font-size: 1.2rem;
+}
+.rebalancing__view input {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.rebalancing__view input, .rebalancing__view label {
+  margin: 0;
+}
+.rebalancing__view label {
+  height: 1.5rem;
+  margin-left: 0.5rem;
+}
+.rebalancing__view input, .rebalancing__view svg {
+  position: relative;
+}
+.rebalancing__view input {
+  top: 1px;
+}
+.rebalancing__view svg {
+  top: 2px;
+}
+
+.rebalancing-chart__guides {
+  shape-rendering: crispEdges;
+  stroke: #a1a1a1;
+  stroke-width: 1;
+  stroke-dasharray: 5 1;
+  stroke-opacity: 0.5;
+}
+.rebalancing-chart__guides[data-index="-0.3"], .rebalancing-chart__guides[data-index="0.3"] {
+  stroke: #a9110e;
+}
+.rebalancing-chart__guides[data-index="-0.2"], .rebalancing-chart__guides[data-index="0.2"] {
+  stroke: #7d6607;
+}
+.rebalancing-chart__past {
+  display: none;
+}
+.rebalancing-chart__past--visible {
+  display: initial;
+}
+
+.rebalancing-timeline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 0 1rem;
+  font-family: "dincomp-medium";
+  color: #bdbdbd;
+  box-sizing: border-box;
+}
+.rebalancing-timeline__input {
+  flex: 1;
+  height: 100%;
+  margin: 0 1rem;
+}
+.rebalancing-timeline span {
+  flex: 0 auto;
+  font-size: 1.2rem;
+}
+
+.rebalancing-controls {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+.rebalancing-controls button {
+  flex: 0 auto;
+  height: 100%;
+  border: none;
+  background: #fff;
+  color: #595959;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.55);
+  font-size: 1.5rem;
+  padding: 0 2rem;
+}
+.rebalancing-controls button i:before {
+  line-height: 3rem;
+}
+.rebalancing-controls button:active, .rebalancing-controls button:focus {
+  outline: none;
+}
+.rebalancing-controls button:hover {
+  color: #197a7b;
+}
+.rebalancing-controls button:active {
+  color: #135d5d;
+}
+
+.loader {
+  height: 100px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+}
+.loader svg {
+  animation: rotate 2s linear infinite;
+  height: 100px;
+  position: relative;
+  width: 100px;
+}
+.loader circle {
+  animation: color 6s ease-in-out infinite, dash 1.5s ease-in-out infinite;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes color {
+  100%, 0% {
+    stroke: #f05350;
+  }
+  40% {
+    stroke: #27bdbe;
+  }
+  66% {
+    stroke: #2bd2a3;
+  }
+  80%, 90% {
+    stroke: #5c4561;
+  }
+}

@@ -1,0 +1,478 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+html {
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
+  box-sizing: border-box;
+}
+html * {
+  box-sizing: inherit;
+}
+
+@font-face {
+  font-family: 'dincomp-bold';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bold.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bold.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bold.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bold.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bold.svg#dincomp-boldregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-bold-italic';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bolditalic.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bolditalic.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bolditalic.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bolditalic.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-bolditalic.svg#dincomp-bolditaregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-italic';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-italic.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-italic.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-italic.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-italic.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-italic.svg#dincomp-itaregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-light';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-light.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-light.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-light.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-light.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-light.svg#dincomp-lightregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-light-italic';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-lightitalic.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-lightitalic.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-lightitalic.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-lightitalic.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-lightitalic.svg#dincomp-lightitaregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-medium';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-medium.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-medium.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-medium.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-medium.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-medium.svg#dincomp-mediumregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp-medium-italic';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-mediumitalic.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-mediumitalic.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-mediumitalic.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-mediumitalic.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp-mediumitalic.svg#dincomp-mediumitaregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dincomp';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/223946/dincomp.svg#dincompregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+.din {
+  font-family: "dincomp";
+}
+.din--italic {
+  font-family: "dincomp-italic";
+}
+.din-light {
+  font-family: "dincomp-light";
+}
+.din-light--italic {
+  font-family: "dincomp-light-italic";
+}
+.din-medium {
+  font-family: "dincomp-medium";
+}
+.din-medium--italic {
+  font-family: "dincomp-medium-italic";
+}
+.din-bold {
+  font-family: "dincomp-bold";
+}
+.din-bold--italic {
+  font-family: "dincomp-bold-italic";
+}
+
+.roboto {
+  font-family: "Roboto";
+}
+
+/* Assets Layout */
+.codepen-h1,
+.codepen-h2 {
+  font-family: "dincomp";
+  text-align: center;
+}
+
+.codepen-assets-table {
+  margin: 0 auto;
+}
+.codepen-assets-table th, .codepen-assets-table td {
+  padding: 8px;
+  border: 1px solid #bdbdbd;
+}
+
+.codepen-assets-table--cores {
+  margin: 0 auto;
+}
+.codepen-assets-table--cores th, .codepen-assets-table--cores td {
+  padding: 5px;
+  line-height: 50px;
+  border: 2px solid #fff;
+  font-family: "dincomp";
+  text-align: center;
+}
+
+.blue-10 {
+  background: #eafbfb;
+}
+
+.blue-20 {
+  background: #b7f0f0;
+}
+
+.blue-30 {
+  background: #95e9e9;
+}
+
+.blue-40 {
+  background: #6be0e1;
+}
+
+.blue {
+  background: #27bdbe;
+}
+
+.blue-60 {
+  background: #1f9898;
+}
+
+.blue-70 {
+  background: #197a7b;
+}
+
+.blue-80 {
+  background: #135d5d;
+}
+
+.blue-90 {
+  background: #0c3b3b;
+}
+
+.green-10 {
+  background: #e6faf4;
+}
+
+.green-20 {
+  background: #ccf5e9;
+}
+
+.green-30 {
+  background: #a2ecd7;
+}
+
+.green-40 {
+  background: #6fe2c1;
+}
+
+.green {
+  background: #2bd2a3;
+}
+
+.green-60 {
+  background: #24ae87;
+}
+
+.green-70 {
+  background: #1d9070;
+}
+
+.green-80 {
+  background: #177259;
+}
+
+.green-90 {
+  background: #10503e;
+}
+
+.purple-10 {
+  background: #ddd2df;
+}
+
+.purple-20 {
+  background: #b9a3bd;
+}
+
+.purple-30 {
+  background: #9979a0;
+}
+
+.purple-40 {
+  background: #7c5d83;
+}
+
+.purple {
+  background: #5c4561;
+}
+
+.purple-60 {
+  background: #443348;
+}
+
+.purple-70 {
+  background: #302433;
+}
+
+.purple-80 {
+  background: #281e2a;
+}
+
+.purple-90 {
+  background: #1c151e;
+}
+
+.pink-10 {
+  background: #fcf2f7;
+}
+
+.pink-20 {
+  background: #f3c9d3;
+}
+
+.pink-30 {
+  background: #eca7ca;
+}
+
+.pink-40 {
+  background: #e071a9;
+}
+
+.pink {
+  background: #d5408b;
+}
+
+.pink-60 {
+  background: #c02a76;
+}
+
+.pink-70 {
+  background: #a32464;
+}
+
+.pink-80 {
+  background: #861d52;
+}
+
+.pink-90 {
+  background: #5c1438;
+}
+
+.red-10 {
+  background: #fdedec;
+}
+
+.red-20 {
+  background: #fbcccb;
+}
+
+.red-30 {
+  background: #f79e9c;
+}
+
+.red-40 {
+  background: #f37977;
+}
+
+.red {
+  background: #f05350;
+}
+
+.red-60 {
+  background: #ec2b27;
+}
+
+.red-70 {
+  background: #d31612;
+}
+
+.red-80 {
+  background: #a9110e;
+}
+
+.red-90 {
+  background: #840e0b;
+}
+
+.gray-10 {
+  background: #fafafa;
+}
+
+.gray-20 {
+  background: #ededed;
+}
+
+.gray-30 {
+  background: #e0e0e0;
+}
+
+.gray-40 {
+  background: #d1d1d1;
+}
+
+.gray-50 {
+  background: #bdbdbd;
+}
+
+.gray-60 {
+  background: #a1a1a1;
+}
+
+.gray-70 {
+  background: #949494;
+}
+
+.gray-80 {
+  background: #717171;
+}
+
+.gray-90 {
+  background: #595959;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.axis path, pre#data {
+  display: none;
+}
+
+.label, .axis {
+  font-family: "dincomp-light";
+  font-size: smaller;
+  fill: #717171;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.tick line {
+  stroke: #ededed;
+  stroke-width: 1;
+}
+
+.grid .tick {
+  stroke: #ededed;
+}
+
+.grid line {
+  stroke-width: .5;
+}
+
+.dot:hover {
+  cursor: pointer;
+}
+
+.flag {
+  position: absolute;
+  transform: scale(0.6);
+}
+
+.g-container {
+  position: relative;
+}
+
+.g-dados {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.g-dados .flag-name {
+  flex: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  text-align: center;
+  font-family: "dincomp-bold";
+}
+
+.g-dados .flag-name .flag {
+  position: relative;
+  display: block;
+  margin: 10px auto 0;
+  transform: scale(1.1);
+}
+
+.g-dados .flag-name span:not(.flag) {
+  font-family: "dincomp-bold";
+}
+
+.g-dados .all-data {
+  flex: 6;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.g-dados .all-data div {
+  flex: 0 50%;
+  padding: 2px 3px;
+}
+
+.g-dados .all-data div span:first-child {
+  font-size: .875rem;
+  font-family: "dincomp";
+  margin-right: 10px;
+  float: left;
+}
+
+.g-dados .all-data div span:last-child {
+  font-size: .9375rem;
+  font-family: "dincomp-medium";
+  float: right;
+}
+
+.inline-radio-group {
+  border-radius: 5px;
+  display: inline-block;
+  border: 1px solid #e0e0e0;
+  font-size: 0px;
+}
+.inline-radio-group label {
+  font-family: "dincomp";
+  color: #bdbdbd;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: .875rem;
+  line-height: .875rem;
+  padding-top: .4375rem;
+  padding-left: .8125rem;
+  padding-right: .8125rem;
+  padding-bottom: .4375rem;
+  transition: .3s background;
+}
+.inline-radio-group input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  appearance: none;
+}
+.inline-radio-group input:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+.inline-radio-group input:checked + label {
+  color: white;
+  font-family: "dincomp";
+  background: #27bdbe;
+  box-shadow: 0 0 0 1px #27bdbe;
+}
+
+.wrapper {
+  margin: 20px auto 0;
+  text-align: center;
+  max-width: 680px;
+}

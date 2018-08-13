@@ -1,0 +1,155 @@
+@import 'addons';
+
+$cubicbezier: cubic-bezier(0.96, 0.22, 0.22, 0.96) infinite alternate;
+$dur: 1.5s;
+$spincurve: spin $dur $cubicbezier;
+$spinycurve: spiny $dur $cubicbezier;
+$finishcurve: spin 0.3s linear infinite;
+$finishycurve: spiny 0.3s linear infinite;
+$class: 'plan-loader';
+
+%ps {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+  width: 10rem;
+  height: 10rem;
+}
+
+.#{$class} {
+  position: relative;
+  background-color: #fdfdfd;
+  height: 100vh;
+  opacity: 1;
+  animation: fadein 2s ease;
+
+  &__glass {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__under-content,
+  &__upper-content {
+    @extend %ps;
+  }
+
+  &__glass,
+  &__under-content {
+    filter: blur(1px) opacity(0.75);
+  }
+
+  &__upper-content {
+    border-radius: 100%;
+    box-shadow: inset 0 0 0.5rem 0.5rem rgba(0, 0, 0, 0.33);
+    background: #fff;
+    overflow: hidden;
+  }
+
+  &__upper-text {
+    text-align: center;
+    font-family: $font;
+    font-size: 1.8rem;
+    color: $gray-60;
+    background: transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 6rem);
+    border-radius: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  &__phrase {
+    text-align: center;
+    height: 4rem;
+    line-height: 4rem;
+    position: absolute;
+    width: 100%;
+    display: none;
+
+    > span {
+      opacity: 0;
+      transition: opacity 0.2s linear;
+
+
+      &.visible {
+        opacity: 1;
+      }
+    }
+
+    &--visible {
+      display: block;
+    }
+  }
+
+  &__inner {
+    box-shadow: inset 0 0 0.75rem 0.5rem rgba(0, 0, 0, 0.35), 0 0 1px 0 #fff;
+    background: #fff;
+    width: 10rem;
+    height: 10rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 auto;
+    z-index: 3;
+  }
+
+	&__big-gear,
+	&__small-gear,
+	&__micro-gear {
+	  animation-delay: 0.1s;
+    position: absolute;	
+	}
+	
+	&__big-gear,
+	&__small-gear {
+    animation: $spincurve;		
+	}
+	
+  &__big-gear {
+    right: -5rem;
+    top: -1.25rem;
+  }
+
+  &__small-gear {
+    top: 0.5rem;
+    left: -4.5rem;
+  }
+
+  &__micro-gear {
+    top: 6.25rem;
+    left: 2.125rem;
+    animation: $spinycurve;
+  }
+
+  &--finish {
+    animation: fadeout 2s ease;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+		
+		.#{$class}__big-gear,
+		.#{$class}__small-gear {
+      animation-delay: 0;
+		}
+		
+    .#{$class}__big-gear,
+    .#{$class}__small-gear {
+      animation: $finishcurve;
+    }
+
+    .#{$class}__micro-gear {
+      animation: $finishycurve;
+    }
+  }
+}
+
+@keyframes spin {  100% { transform: rotate(180deg); } }
+@keyframes spiny { 100% { transform: rotate(-180deg); } }
+@keyframes fadein { 0% { opacity: 0; } 100% { opacity: 1; }}
+@keyframes fadeout { 100% { opacity: 0; }}

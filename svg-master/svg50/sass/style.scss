@@ -1,0 +1,129 @@
+$low: #B8E1F2;
+$veryLow: #249AA7;
+$moderate: #ABD25E;
+$high: #F8C830;
+$veryHigh: #F1594A;
+
+body {
+  background: #454545;
+}
+
+.thermometer {
+  max-width: 80%;
+  margin: 2rem auto;
+
+  span {
+    font-family: Verdana;
+    font-size: 1rem;
+    color: #ccc;
+    min-width: 100%;
+    text-align: center;
+    display: block;    
+    margin-bottom: 1.25rem;
+  }
+  
+  .liquid {
+    display: block;
+    width: 100%;
+    height: 1.275rem;
+    border: 1px solid darken(#ebebeb, 10);
+    border-radius: 10px;
+    margin: .25rem auto 0;
+    position: relative;
+    &:before {
+      position: absolute;
+      content: "";
+      height: 70%;
+      left: 3px;
+      top: 14%;
+      border-radius: 10px;
+      transition: width .3s ease;
+    }
+  }
+  
+  .ruler {
+    height: .625rem;
+    width: 100%;
+    margin-left: 2px;
+    .ticks {
+      &--very-low,
+      &--low,
+      &--moderate,
+      &--high,
+      &--very-high {
+        line {
+          stroke-width: 2px; 
+          shape-rendering:crispEdges    
+        }
+      }
+      &--very-low { stroke: $veryLow; }
+      &--low { stroke: $low; }
+      &--moderate { stroke: $moderate; }
+      &--high { stroke: $high; }  
+      &--very-high { stroke: $veryHigh; }  
+    }
+  }
+  &--very-low,
+  &--low,
+  &--moderate,
+  &--high,
+  &--very-high {
+    @extend .thermometer; 
+  }      
+
+  &--very-low {
+    strong { 
+      color: $veryLow;
+      &:before { content: " freezing";}
+    }
+    .liquid:before {
+      background: $veryLow;
+      width: 10%;
+    }
+  }
+  
+  &--low {
+    strong { 
+      color: $low; 
+      &:before { content: " cold";}
+    }
+    .liquid:before {
+      background: $low;
+      width: 30%;
+    }
+  }
+  
+  &--moderate {
+    strong { 
+      color: $moderate; 
+      &:before { content: " ok";}
+    }
+    .liquid:before {
+      background: $moderate;
+      width: 50%;
+    }
+  }
+
+  &--high {
+    strong { 
+      color: $high; 
+      &:before { content: " hot";}
+    }
+    .liquid:before {
+      background: $high;
+      width: 70%;
+    }
+  }
+
+  &--very-high {
+    strong { 
+      color: $veryHigh;
+      &:before { content: " blazing";}
+    }
+    .liquid:before {
+      background: $veryHigh;
+      width: 99%;
+    }
+  }
+  
+}

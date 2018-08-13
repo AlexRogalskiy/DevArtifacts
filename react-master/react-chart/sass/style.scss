@@ -1,0 +1,222 @@
+@import 'addons';
+
+#app {
+  display: flex;
+  flex-flow: row wrap;
+  min-height: 100vh;
+  min-width: 100vw;  
+  background: #eee;
+}
+
+
+.rebalancing {
+  max-width: 50rem;
+  width: 100%;
+  min-width: 28rem;
+  min-height: 20rem;
+  transition: width 0.3s ease, height 0.3s ease;
+  will-change: width, height;
+  margin: auto;
+  background: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0.5rem;
+  position: relative;
+  @include material-box-shadow(3);
+
+  &__player {
+    border: 1px solid $gray-40;
+    width: 100%;
+  }
+
+  &__chart,
+  &__view,
+  &__timeline,
+  &__controls { width: 100%; }
+
+  &__chart { height: 18rem; }
+
+  &__timeline,
+  &__controls { height: 3rem; }
+
+  &__view {
+    box-sizing: border-box;
+    height: 3rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid $gray-40;
+    border-bottom: 1px solid $gray-40;
+    padding: 0 1rem;
+
+    span {
+      flex: 0 auto;
+      color: $gray-90;
+      font-family: $font-medium;
+      font-size: 1.2rem;
+    }
+
+    input {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+
+    input, label { margin: 0; }
+
+    label {
+      height: 1.5rem;
+      margin-left: 0.5rem;
+    }
+
+    input, svg { position: relative; }
+    input { top: 1px; }
+    svg { top: 2px; }
+  }
+
+}
+
+.rebalancing-chart {
+  &__guides {
+    shape-rendering: crispEdges;
+    stroke: $gray-60;
+    stroke-width: 1;
+    stroke-dasharray: 5 1;
+    stroke-opacity: 0.5;
+
+    &[data-index="-0.3"],
+    &[data-index="0.3"] {
+      stroke: $red-80;
+    }
+
+    &[data-index="-0.2"],
+    &[data-index="0.2"] {
+      stroke: $yellow-80;
+    }
+  }
+
+
+  &__past {
+    display: none;
+    &--visible { display: initial; }
+  }
+}
+
+.rebalancing-timeline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 0 1rem;
+  font-family: $font-medium;
+  color: $gray-50;
+  box-sizing: border-box;
+
+  &__input {
+    flex: 1;
+    height: 100%;
+    margin: 0 1rem;
+  }
+
+  span {
+    flex: 0 auto;
+    font-size: 1.2rem;
+  }
+}
+
+.rebalancing-controls {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    flex: 0 auto;
+    height: 100%;
+    border: none;
+    background: #fff;
+    color: $gray-90;
+    text-shadow: 0 1px 1px rgba(#000, 0.55);
+    font-size: 1.5rem;
+    padding: 0 2rem;
+
+    i:before { line-height: 3rem; }
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      color: $blue-70;
+    }
+
+    &:active {
+      color: $blue-80;
+    }
+  }
+}
+
+.loader {
+  height: 100px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+
+  svg {
+    animation: rotate 2s linear infinite;
+    height: 100px;
+    position: relative;
+    width: 100px;
+  }
+
+  circle {
+    animation: color 6s ease-in-out infinite, dash 1.5s ease-in-out infinite;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes color {
+  100%, 0% {
+    stroke: $red;
+  }
+
+  40% {
+    stroke: $blue;
+  }
+
+  66% {
+    stroke: $green;
+  }
+
+  80%, 90% {
+    stroke: $purple;
+  }
+}

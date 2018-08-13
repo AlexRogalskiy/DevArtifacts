@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang='en' class='seq-ui'>
+<head>
+
+    <title>Effect Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="UTF-8" />
+    <meta name="description" content="TEST API" />
+    <meta name="keywords" content="TEST,API" />
+    <meta name="author" content="Alexander R." />
+    <meta name="theme-color" content="#000000" />
+    <meta name="copyright" content="Alexander R." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+    <meta name="apple-mobile-web-app-title" content="TEST API" />
+    <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+	<link href="https://fontastic.s3.amazonaws.com/AhJq6Jgu6pGwBYB2GrtsQH/icons.css" rel="stylesheet" />
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css' />
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900|Material+Icons' />
+	<link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+
+</head>
+
+<!--  header -->
+<body>
+
+<div class="tax-burden">
+  <h2 class="tax-burden__title">Gr&aacute;fico interativo: carga tribut&aacute;ria entre 1947 e 2014</h2>
+  <div class="tax-burden__info">
+    <div class="tax-burden__thumbnail jd" id="thumbnail">
+      <span class="tax-burden__year" id="year">2014</span>
+    </div>
+    <div class="tax-burden__info-aside">
+      <div class="tax-burden__name"><span id="name">Em&iacute;lio Garrastazu M&eacute;dici</span></div>
+      <div class="tax-burden__percentage">
+        <span class="tax-burden__percentage-number" id="percentage">0%</span>
+        do PIB
+      </div>
+    </div>
+  </div>
+  <div class="tax-burden__svg-wrapper" id="taxBurden"></div>
+  <span class="tax-burden__caption">Deslize o cursor pela linha do gr&aacute;fico para navegar pelos dados.</span>
+</div>
+
+<pre class="tax-burden__data" id="data">
+Ano,Carga,Presidente,Classe
+1947,13.8,&quot;Eurico Gaspar Dutra&quot;,ed
+1948,14,&quot;Eurico Gaspar Dutra&quot;,ed
+1949,14.4,&quot;Eurico Gaspar Dutra&quot;,ed
+1950,14.4,&quot;Eurico Gaspar Dutra&quot;,ed
+1951,15.7,&quot;Get&uacute;lio Vargas&quot;,gv
+1952,15.4,&quot;Get&uacute;lio Vargas&quot;,gv
+1953,15.2,&quot;Get&uacute;lio Vargas&quot;,gv
+1954,15.8,&quot;Get&uacute;lio Vargas&quot;,gv
+1955,15.1,&quot;Nereu Ramos&quot;,nr
+1956,16.4,&quot;Juscelino Kubitschek&quot;,jk
+1957,16.7,&quot;Juscelino Kubitschek&quot;,jk
+1958,18.7,&quot;Juscelino Kubitschek&quot;,jk
+1959,17.9,&quot;Juscelino Kubitschek&quot;,jk
+1960,17.4,&quot;Juscelino Kubitschek&quot;,jk
+1961,16.4,&quot;J&acirc;nio Quadros&quot;,jq
+1962,15.8,&quot;Jo&atilde;o Goulart&quot;,jg
+1963,16.1,&quot;Jo&atilde;o Goulart&quot;,jg
+1964,17,&quot;Humberto Castelo Branco&quot;,hcb
+1965,18.8,&quot;Humberto Castelo Branco&quot;,hcb
+1966,20.6,&quot;Humberto Castelo Branco&quot;,hcb
+1967,20.2,&quot;Artur da Costa e Silva&quot;,acs
+1968,23,&quot;Artur da Costa e Silva&quot;,acs
+1969,24.6,&quot;Artur da Costa e Silva&quot;,acs
+1970,26,&quot;Em&iacute;lio Garrastazu M&eacute;dici&quot;,egm
+1971,25.3,&quot;Em&iacute;lio Garrastazu M&eacute;dici&quot;,egm
+1972,26,&quot;Em&iacute;lio Garrastazu M&eacute;dici&quot;,egm
+1973,25.1,&quot;Em&iacute;lio Garrastazu M&eacute;dici&quot;,egm
+1974,25.1,&quot;Em&iacute;lio Garrastazu M&eacute;dici&quot;,egm
+1975,25.2,&quot;Ernesto Geisel&quot;,eg
+1976,25.1,&quot;Ernesto Geisel&quot;,eg
+1977,25.6,&quot;Ernesto Geisel&quot;,eg
+1978,25.7,&quot;Ernesto Geisel&quot;,eg
+1979,24.7,&quot;Jo&atilde;o Figueiredo&quot;,jf
+1980,24.4,&quot;Jo&atilde;o Figueiredo&quot;,jf
+1981,25.1,&quot;Jo&atilde;o Figueiredo&quot;,jf
+1982,26.2,&quot;Jo&atilde;o Figueiredo&quot;,jf
+1983,26.8,&quot;Jo&atilde;o Figueiredo&quot;,jf
+1984,24.2,&quot;Jo&atilde;o Figueiredo&quot;,jf
+1985,23.8,&quot;Jos&eacute; Sarney&quot;,js
+1986,26.5,&quot;Jos&eacute; Sarney&quot;,js
+1987,24.2,&quot;Jos&eacute; Sarney&quot;,js
+1988,23.3,&quot;Jos&eacute; Sarney&quot;,js
+1989,23.7,&quot;Fernando Collor&quot;,fc
+1990,29.6,&quot;Fernando Collor&quot;,fc
+1991,24.4,&quot;Fernando Collor&quot;,fc
+1992,25,&quot;Fernando Collor&quot;,fc
+1993,25.3,&quot;Itamar Franco&quot;,if
+1994,27.9,&quot;Itamar Franco&quot;,if
+1995,28.4,&quot;Fernando Henrique Cardoso&quot;,fhc
+1996,28.6,&quot;Fernando Henrique Cardoso&quot;,fhc
+1997,28.6,&quot;Fernando Henrique Cardoso&quot;,fhc
+1998,29.3,&quot;Fernando Henrique Cardoso&quot;,fhc
+1999,31.1,&quot;Fernando Henrique Cardoso&quot;,fhc
+2000,30.4,&quot;Fernando Henrique Cardoso&quot;,fhc
+2001,31.9,&quot;Fernando Henrique Cardoso&quot;,fhc
+2002,32.4,&quot;Fernando Henrique Cardoso&quot;,fhc
+2003,31.9,&quot;Luiz In&aacute;cio Lula da Silva&quot;,lils
+2004,32.8,&quot;Luiz In&aacute;cio Lula da Silva&quot;,lils
+2005,33.8,&quot;Luiz In&aacute;cio Lula da Silva&quot;,lils
+2006,34.1,&quot;Luiz In&aacute;cio Lula da Silva&quot;,lils
+2007,34.7,&quot;Luiz In&aacute;cio Lula da Silva&quot;,lils
+2008,34.9,&quot;Luiz In&aacute;cio Lula da Silva&quot;,lils
+2009,33.7,&quot;Luiz In&aacute;cio Lula da Silva&quot;,lils
+2010,33.76,&quot;Luiz In&aacute;cio Lula da Silva&quot;,lils
+2011,34.91,&quot;Dilma Rousseff&quot;,dr
+2012,34.61,&quot;Dilma Rousseff&quot;,dr
+2013,35.04,&quot;Dilma Rousseff&quot;,dr
+2014,35.42,&quot;Dilma Rousseff&quot;,dr
+</pre>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+<!--  footer -->
+</html>

@@ -1,0 +1,893 @@
+body {
+  margin-top: 44px;
+}
+
+h6 {
+  color: rgba(128, 128, 128, 0.75);
+  font-weight: 300;
+}
+
+label {
+  color: #666;
+}
+
+.radar {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  transform: translate(60px, 30px);
+}
+
+.chart {
+  width: 100%;
+  height: 350px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  position: relative;
+}
+.chart__voronoi {
+  fill: none;
+  stroke-width: 0.5;
+  stroke: #ccc;
+  pointer-events: all;
+}
+.chart__voronoi:hover + circle {
+  fill: red;
+}
+.chart__dot {
+  pointer-events: none;
+  stroke: #000;
+  stroke-opacity: .7;
+  fill-opacity: .7;
+}
+.chart__label {
+  fill: #222;
+  font-size: 15px;
+  font-family: Roboto;
+}
+.chart__axis path,
+.chart__axis line {
+  fill: none;
+  stroke: #ccc;
+  shape-rendering: crispEdges;
+  pointer-events: none;
+}
+.chart__axis text {
+  fill: #666;
+  font-weight: 300;
+  font-size: 0.75rem;
+}
+
+.chart__mortys {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+}
+.chart__mortys img {
+  max-width: 13px;
+  position: absolute;
+}
+@media only screen and (min-width: 601px) {
+  .chart__mortys img {
+    max-width: 18px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .controls {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    position: absolute;
+    left: 0 !important;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    padding: 1.5rem 0.75rem !important;
+    z-index: 1;
+    opacity: 1;
+    transform: translate(0, -115%);
+    transition: transform 0.4s;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .controls__type p {
+    display: inline-block;
+    margin: 0 1rem 0 0;
+  }
+  .controls__badges {
+    flex: 1;
+    padding-right: 0.75rem;
+  }
+  .controls__badges h6 {
+    margin-bottom: 0.75rem;
+  }
+  .controls__toggle {
+    position: absolute;
+    right: calc(5% - 0.75rem);
+    bottom: calc(-15% + -0.75rem);
+    transform: translate(0, 100%) rotate(-90deg);
+    transition: transform 1s ease;
+    cursor: pointer;
+    z-index: 2;
+    pointer-events: all;
+  }
+  .controls__toggle .material-icons {
+    position: relative;
+    transition: color 1s ease;
+    top: 1px;
+    left: 0.5px;
+  }
+  .controls--active {
+    transform: translate(0, 0);
+  }
+  .controls--active .controls__toggle {
+    transform: translate(0, 100%) rotate(180deg);
+  }
+  .controls--active .material-icons {
+    color: #13534d;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .controls {
+    transform: translate(0, 0) !important;
+  }
+  .controls__toggle {
+    display: none;
+  }
+  .controls__type p {
+    margin-left: 0.75rem;
+  }
+  .controls__badges h6 {
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .controls__badges > div {
+    margin-left: 1rem;
+    margin-right: 0.75rem;
+  }
+}
+.mortyicon-002, .mortyicon-031, .mortyicon-038, .mortyicon-044, .mortyicon-051,
+.mortyicon-001, .mortyicon-003, .mortyicon-005, .mortyicon-006, .mortyicon-009,
+.mortyicon-010, .mortyicon-011, .mortyicon-012, .mortyicon-013, .mortyicon-014,
+.mortyicon-015, .mortyicon-016, .mortyicon-017, .mortyicon-018, .mortyicon-019,
+.mortyicon-020, .mortyicon-021, .mortyicon-022, .mortyicon-023, .mortyicon-024,
+.mortyicon-025, .mortyicon-026, .mortyicon-027, .mortyicon-028, .mortyicon-029,
+.mortyicon-030, .mortyicon-032, .mortyicon-033, .mortyicon-034, .mortyicon-035,
+.mortyicon-036, .mortyicon-037, .mortyicon-039, .mortyicon-040, .mortyicon-041,
+.mortyicon-042, .mortyicon-043, .mortyicon-045, .mortyicon-046, .mortyicon-047,
+.mortyicon-048, .mortyicon-049, .mortyicon-050, .mortyicon-052, .mortyicon-053,
+.mortyicon-054, .mortyicon-055, .mortyicon-056, .mortyicon-057, .mortyicon-058,
+.mortyicon-059, .mortyicon-060, .mortyicon-061, .mortyicon-062, .mortyicon-063,
+.mortyicon-064, .mortyicon-065, .mortyicon-066, .mortyicon-067, .mortyicon-068,
+.mortyicon-069, .mortyicon-070, .mortyicon-071, .mortyicon-072, .mortyicon-073,
+.mortyicon-074, .mortyicon-075, .mortyicon-076, .mortyicon-077, .mortyicon-078,
+.mortyicon-079, .mortyicon-080, .mortyicon-081, .mortyicon-082, .mortyicon-083,
+.mortyicon-084, .mortyicon-085, .mortyicon-086, .mortyicon-087, .mortyicon-088,
+.mortyicon-089, .mortyicon-090, .mortyicon-091, .mortyicon-092, .mortyicon-093,
+.mortyicon-094, .mortyicon-095, .mortyicon-096, .mortyicon-097, .mortyicon-098,
+.mortyicon-099, .mortyicon-100, .mortyicon-101, .mortyicon-102, .mortyicon-103,
+.mortyicon-104, .mortyicon-105, .mortyicon-106, .mortyicon-107, .mortyicon-108,
+.mortyicon-109, .mortyicon-110, .mortyicon-111, .mortyicon-112, .mortyicon-113,
+.mortyicon-114, .mortyicon-115, .mortyicon-116, .mortyicon-117, .mortyicon-118,
+.mortyicon-119, .mortyicon-120, .mortyicon-121, .mortyicon-122, .mortyicon-123,
+.mortyicon-124, .mortyicon-125, .mortyicon-126, .mortyicon-127, .mortyicon-128,
+.mortyicon-129, .mortyicon-130, .mortyicon-131, .mortyicon-132, .mortyicon-133,
+.mortyicon-134, .mortyicon-135, .mortyicon-136, .mortyicon-137, .mortyicon-138,
+.mortyicon-139, .mortyicon-140, .mortyicon-141, .mortyicon-142, .mortyicon-008,
+.mortyicon-004, .mortyicon-007 {
+  max-width: 24px;
+  background-size: 100% 100%;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/20221/morty-spritesheet.png");
+  transition: transform 0.2s;
+}
+
+.mortyicon-002 {
+  background-position: 0 0%;
+  background-size: 100%;
+}
+
+.mortyicon-031 {
+  background-position: 0 0.7633%;
+  background-size: 100%;
+}
+
+.mortyicon-038 {
+  background-position: 0 1.5266%;
+  background-size: 100%;
+}
+
+.mortyicon-044 {
+  background-position: 0 2.2899%;
+  background-size: 100%;
+}
+
+.mortyicon-051 {
+  background-position: 0 3.0532%;
+  background-size: 100%;
+}
+
+.mortyicon-001 {
+  background-position: 0 3.814441%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-003 {
+  background-position: 0 4.523388%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-005 {
+  background-position: 0 5.232334%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-006 {
+  background-position: 0 5.941281%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-009 {
+  background-position: 0 6.650227%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-010 {
+  background-position: 0 7.359174%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-011 {
+  background-position: 0 8.068121%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-012 {
+  background-position: 0 8.777067%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-013 {
+  background-position: 0 9.486014%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-014 {
+  background-position: 0 10.19496%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-015 {
+  background-position: 0 10.903907%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-016 {
+  background-position: 0 11.612854%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-017 {
+  background-position: 0 12.3218%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-018 {
+  background-position: 0 13.030747%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-019 {
+  background-position: 0 13.739693%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-020 {
+  background-position: 0 14.44864%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-021 {
+  background-position: 0 15.157586%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-022 {
+  background-position: 0 15.866533%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-023 {
+  background-position: 0 16.57548%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-024 {
+  background-position: 0 17.284426%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-025 {
+  background-position: 0 17.993373%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-026 {
+  background-position: 0 18.702319%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-027 {
+  background-position: 0 19.411266%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-028 {
+  background-position: 0 20.120213%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-029 {
+  background-position: 0 20.829159%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-030 {
+  background-position: 0 21.538106%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-032 {
+  background-position: 0 22.247052%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-033 {
+  background-position: 0 22.955999%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-034 {
+  background-position: 0 23.664946%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-035 {
+  background-position: 0 24.373892%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-036 {
+  background-position: 0 25.082839%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-037 {
+  background-position: 0 25.791785%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-039 {
+  background-position: 0 26.500732%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-040 {
+  background-position: 0 27.209679%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-041 {
+  background-position: 0 27.918625%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-042 {
+  background-position: 0 28.627572%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-043 {
+  background-position: 0 29.336518%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-045 {
+  background-position: 0 30.045465%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-046 {
+  background-position: 0 30.754412%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-047 {
+  background-position: 0 31.463358%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-048 {
+  background-position: 0 32.172305%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-049 {
+  background-position: 0 32.881251%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-050 {
+  background-position: 0 33.590198%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-052 {
+  background-position: 0 34.299145%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-053 {
+  background-position: 0 35.008091%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-054 {
+  background-position: 0 35.717038%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-055 {
+  background-position: 0 36.425984%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-056 {
+  background-position: 0 37.134931%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-057 {
+  background-position: 0 37.843878%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-058 {
+  background-position: 0 38.552824%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-059 {
+  background-position: 0 39.261771%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-060 {
+  background-position: 0 39.970717%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-061 {
+  background-position: 0 40.679664%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-062 {
+  background-position: 0 41.388611%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-063 {
+  background-position: 0 42.097557%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-064 {
+  background-position: 0 42.806504%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-065 {
+  background-position: 0 43.51545%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-066 {
+  background-position: 0 44.224397%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-067 {
+  background-position: 0 44.933344%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-068 {
+  background-position: 0 45.64229%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-069 {
+  background-position: 0 46.351237%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-070 {
+  background-position: 0 47.060183%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-071 {
+  background-position: 0 47.76913%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-072 {
+  background-position: 0 48.478077%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-073 {
+  background-position: 0 49.187023%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-074 {
+  background-position: 0 49.89597%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-075 {
+  background-position: 0 50.604916%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-076 {
+  background-position: 0 51.313863%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-077 {
+  background-position: 0 52.02281%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-078 {
+  background-position: 0 52.731756%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-079 {
+  background-position: 0 53.440703%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-080 {
+  background-position: 0 54.149649%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-081 {
+  background-position: 0 54.858596%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-082 {
+  background-position: 0 55.567543%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-083 {
+  background-position: 0 56.276489%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-084 {
+  background-position: 0 56.985436%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-085 {
+  background-position: 0 57.694382%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-086 {
+  background-position: 0 58.403329%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-087 {
+  background-position: 0 59.112276%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-088 {
+  background-position: 0 59.821222%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-089 {
+  background-position: 0 60.530169%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-090 {
+  background-position: 0 61.239115%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-091 {
+  background-position: 0 61.948062%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-092 {
+  background-position: 0 62.657009%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-093 {
+  background-position: 0 63.365955%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-094 {
+  background-position: 0 64.074902%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-095 {
+  background-position: 0 64.783848%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-096 {
+  background-position: 0 65.492795%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-097 {
+  background-position: 0 66.201742%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-098 {
+  background-position: 0 66.910688%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-099 {
+  background-position: 0 67.619635%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-100 {
+  background-position: 0 68.328581%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-101 {
+  background-position: 0 69.037528%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-102 {
+  background-position: 0 69.746475%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-103 {
+  background-position: 0 70.455421%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-104 {
+  background-position: 0 71.164368%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-105 {
+  background-position: 0 71.873314%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-106 {
+  background-position: 0 72.582261%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-107 {
+  background-position: 0 73.291208%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-108 {
+  background-position: 0 74.000154%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-109 {
+  background-position: 0 74.709101%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-110 {
+  background-position: 0 75.418047%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-111 {
+  background-position: 0 76.126994%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-112 {
+  background-position: 0 76.835941%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-113 {
+  background-position: 0 77.544887%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-114 {
+  background-position: 0 78.253834%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-115 {
+  background-position: 0 78.96278%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-116 {
+  background-position: 0 79.671727%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-117 {
+  background-position: 0 80.380673%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-118 {
+  background-position: 0 81.08962%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-119 {
+  background-position: 0 81.798567%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-120 {
+  background-position: 0 82.507513%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-121 {
+  background-position: 0 83.21646%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-122 {
+  background-position: 0 83.925406%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-123 {
+  background-position: 0 84.634353%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-124 {
+  background-position: 0 85.3433%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-125 {
+  background-position: 0 86.052246%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-126 {
+  background-position: 0 86.761193%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-127 {
+  background-position: 0 87.470139%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-128 {
+  background-position: 0 88.179086%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-129 {
+  background-position: 0 88.888033%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-130 {
+  background-position: 0 89.596979%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-131 {
+  background-position: 0 90.305926%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-132 {
+  background-position: 0 91.014872%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-133 {
+  background-position: 0 91.723819%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-134 {
+  background-position: 0 92.432766%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-135 {
+  background-position: 0 93.141712%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-136 {
+  background-position: 0 93.850659%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-137 {
+  background-position: 0 94.559605%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-138 {
+  background-position: 0 95.268552%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-139 {
+  background-position: 0 95.977499%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-140 {
+  background-position: 0 96.686445%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-141 {
+  background-position: 0 97.395392%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-142 {
+  background-position: 0 98.104338%;
+  background-size: 107.777778%;
+}
+
+.mortyicon-008 {
+  background-position: 0 98.676414%;
+  background-size: 110.227273%;
+}
+
+.mortyicon-004 {
+  background-position: 0 99.3529%;
+  background-size: 112.790698%;
+}
+
+.mortyicon-007 {
+  background-position: 0 100%;
+  background-size: 112.790698%;
+}

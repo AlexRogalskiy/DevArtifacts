@@ -1,0 +1,107 @@
+body, html {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont,  "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",  "Fira Sans", "Droid Sans", "Helvetica Neue",  sans-serif;
+  font-size: 12px;
+  line-height: 1.44;
+  text-rendering: optimizeLegibility;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+body *, body *::before, body *::after, html *, html *::before, html *::after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 300;
+  flex: 0 100%;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.container {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.checkbox {
+  margin: auto;
+  height: 49px;
+  width: 49px;
+  border-radius: 100%;
+  border: 1px solid #FF9100;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background: #FF9100;
+  transition: background 0.25s ease;
+}
+.checkbox--checked {
+  background: #fff;
+  border: 1px solid #E5E5E5;
+}
+.checkbox--checked .checkbox__inner::before,
+.checkbox--checked .checkbox__inner::after {
+  background: #99BF4C;
+  transition: all 0.2s ease;
+}
+.checkbox--checked .checkbox__inner::before {
+  transform: rotate(47deg);
+  width: 10px;
+  top: 26px;
+  left: 13px;
+}
+.checkbox--checked .checkbox__inner::after {
+  transform: rotate(45deg);
+  left: 27px;
+}
+.checkbox--checked:hover .checkbox__inner::before,
+.checkbox--checked:hover .checkbox__inner::after {
+  background: #FF0000;
+}
+.checkbox--checked:hover .checkbox__inner::before {
+  transform: rotate(45deg);
+  width: 19px;
+  top: 23px;
+  left: 14px;
+}
+.checkbox--checked:hover .checkbox__inner::after {
+  height: 19px;
+  top: 14px;
+  left: 23px;
+}
+.checkbox--unchecked:hover {
+  background: #FF9E2C;
+}
+.checkbox__inner {
+  position: relative;
+}
+.checkbox__inner::before, .checkbox__inner::after {
+  position: absolute;
+  content: '';
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.checkbox__inner::before {
+  height: 1px;
+  width: 19px;
+  top: 23px;
+  left: 14px;
+}
+.checkbox__inner::after {
+  width: 1px;
+  height: 19px;
+  top: 14px;
+  left: 23px;
+}
+.checkbox__input {
+  appearance: none;
+}
