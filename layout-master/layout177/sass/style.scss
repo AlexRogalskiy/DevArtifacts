@@ -1,0 +1,92 @@
+$easeOutCirc : cubic-bezier(0.075, 0.82, 0.165, 1);
+
+.lbwojs { // LightBox WithOut JS
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 1337;
+	background: rgba(#000, .75);
+	opacity: 0;
+	visibility: hidden;
+	transition: .25s $easeOutCirc;
+	&::before {
+		position: absolute;
+		top: 50%; left: 50%;
+		z-index: 0;
+		padding: .5em 1em;
+		background: black;
+		opacity: 0;
+		transform: translate(-50%,-50%);
+		color: white;
+		text-transform: uppercase;
+		content: "loading…";
+	}
+	.lbwojs-effect {
+		position: absolute;
+		top: 5%; left: 5%; right: 5%; bottom: 5%;
+		z-index: 1;
+		opacity: 0;
+		transform: scale(.8);
+	}
+	.lbwojs-img-container {
+		display: none; // for lazy loading
+	}
+	.lbwojs-img {
+		position: absolute;
+		top: 0; left: 0; right: 0; bottom: 0;
+		background: center / contain no-repeat;
+	}
+}
+
+[data-action="lbwojs"]:focus ~ .lbwojs {
+	opacity: 1;
+	visibility: visible;
+	&::before {
+		opacity: 1;
+		transition: opacity .75s $easeOutCirc .25s;
+	}
+	.lbwojs-effect {
+		opacity: 1;
+		transform: scale(1);
+		transition: .75s $easeOutCirc;
+	}
+	.lbwojs-img-container {
+		display: block;
+	}
+}
+
+// 3D smooth effect
+
+.lbwojs {
+	perspective: 2000px;
+	.lbwojs-effect {
+		transform: translateY(-10%) scale(.8) rotateX(15deg);
+	}
+}
+[data-action="lbwojs"]:focus ~ .lbwojs {
+	.lbwojs-effect {
+		transform: translateY(0) scale(1) rotateX(0);
+	}
+}
+
+
+/* FOR DEMO ----------------------------- */
+a {
+	display: block;
+	width: 400px;
+	margin: auto;
+	border: 1em solid rgba(#fff, .25);
+	transition: border-color .5s $easeOutCirc;
+	&:hover, &:focus {
+		border-color: white;
+	}
+	img {
+		display: block;
+		width: auto;
+		max-width: 100%;
+	}
+}
+
+/* MISC --------------------------------- */
+html, body { height: 100%; }
+body { display: flex; background: #3498db; color: white; font: 1em/1.4 "lato"; font-weight: 300; }
+a { color: inherit; }

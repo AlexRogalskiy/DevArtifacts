@@ -1,0 +1,153 @@
+/* -------------------------------------------------------------------
+   MAGNIFICENT PURE CSS SLIDER
+
+   Be advised:
+   This slider must only be used for decoration purpose, not for readable contents.
+   It lacks of accessible functionalities and interactives meta datas.
+   So yes, this demo is not a good use case.
+   ------------------------------------------------------------------- */
+/* easeInOutQuint */
+.slidercss {
+  overflow: hidden;
+}
+.slidercss-inner {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  list-style: none;
+  animation: pure-css-slider 41.25s cubic-bezier(0.86, 0, 0.07, 1) infinite;
+  counter-reset: i;
+}
+.slidercss-inner > * {
+  box-sizing: border-box;
+  margin: 0 !important;
+  flex: 0 0 100%;
+  word-break: break-word;
+}
+.slidercss-inner > *::before {
+  counter-increment: i;
+  content: counter(i) "/11";
+}
+.slidercss:hover .slidercss-inner {
+  animation-play-state: paused;
+}
+
+@keyframes pure-css-slider {
+  from, to {
+    transform: translateX(0);
+  }
+  7.27273% {
+    transform: translateX(0%);
+  }
+  9.09091% {
+    transform: translateX(-100%);
+  }
+  16.36364% {
+    transform: translateX(-100%);
+  }
+  18.18182% {
+    transform: translateX(-200%);
+  }
+  25.45455% {
+    transform: translateX(-200%);
+  }
+  27.27273% {
+    transform: translateX(-300%);
+  }
+  34.54545% {
+    transform: translateX(-300%);
+  }
+  36.36364% {
+    transform: translateX(-400%);
+  }
+  43.63636% {
+    transform: translateX(-400%);
+  }
+  45.45455% {
+    transform: translateX(-500%);
+  }
+  52.72727% {
+    transform: translateX(-500%);
+  }
+  54.54545% {
+    transform: translateX(-600%);
+  }
+  61.81818% {
+    transform: translateX(-600%);
+  }
+  63.63636% {
+    transform: translateX(-700%);
+  }
+  70.90909% {
+    transform: translateX(-700%);
+  }
+  72.72727% {
+    transform: translateX(-800%);
+  }
+  80% {
+    transform: translateX(-800%);
+  }
+  81.81818% {
+    transform: translateX(-900%);
+  }
+  89.09091% {
+    transform: translateX(-900%);
+  }
+  90.90909% {
+    transform: translateX(-1000%);
+  }
+  98.18182% {
+    transform: translateX(-1000%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.slidercss {
+  max-width: 40em;
+  margin: auto;
+}
+.slidercss span {
+  display: block;
+  margin: 0 .25em;
+  padding: 1em;
+  background: white;
+  font-size: 2em;
+  color: #3498db;
+  text-align: center;
+}
+.slidercss li {
+  position: relative;
+}
+.slidercss li::before {
+  position: absolute;
+  top: 0;
+  right: .875em;
+  font-size: .875em;
+  color: #3498db;
+}
+
+html, body, main {
+  height: 100%;
+}
+
+body {
+  background: #3498db;
+  color: white;
+  font: 1em/1.5 "lato";
+}
+
+main {
+  display: flex;
+}
+
+a {
+  color: inherit;
+}
+
+code {
+  color: slateGrey;
+}

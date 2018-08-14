@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Google material style checkbox (css only)</title>
+  <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css'>
+
+      <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      body {
+  font-size: 16px;
+}
+
+.header {
+  height: 8rem;
+  background: #009688;
+}
+
+.content {
+  width: 20rem;
+  margin: -4rem auto 0 auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 0.125rem;
+  box-shadow: 0 0.125rem 0.3125rem 0 rgba(0, 0, 0, 0.25);
+}
+
+.list {
+  margin: .5rem;
+}
+
+.list__item {
+  margin: 0 0 .5rem 0;
+  padding: 0;
+}
+
+.label--checkbox {
+  position: relative;
+  margin: .5rem;
+  font-family: Arial, sans-serif;
+  line-height: 135%;
+  cursor: pointer;
+}
+
+.checkbox {
+  position: relative;
+  top: -0.375rem;
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+}
+.checkbox:before {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #f2f2f2;
+}
+.checkbox:checked:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  height: .5rem;
+  border-color: #009688;
+  border-top-style: none;
+  border-right-style: none;
+}
+.checkbox:after {
+  content: "";
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  background: #fff;
+  cursor: pointer;
+}
+
+.button--round {
+  -webkit-transition: 0.3s background ease-in-out;
+  -moz-transition: 0.3s background ease-in-out;
+  transition: 0.3s background ease-in-out;
+  width: 2rem;
+  height: 2rem;
+  background: #5677fc;
+  border-radius: 50%;
+  box-shadow: 0 0.125rem 0.3125rem 0 rgba(0, 0, 0, 0.25);
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+}
+.button--round i {
+  font-size: 1rem;
+  line-height: 220%;
+  vertical-align: middle;
+}
+.button--round:hover {
+  background: #3b50ce;
+}
+
+.button--sticky {
+  position: fixed;
+  right: 2rem;
+  top: 16rem;
+}
+
+.content {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: slideUp;
+  animation-name: slideUp;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@-webkit-keyframes slideUp {
+  0% {
+    -webkit-transform: translateY(6.25rem);
+    transform: translateY(6.25rem);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+@keyframes slideUp {
+  0% {
+    -webkit-transform: translateY(6.25rem);
+    transform: translateY(6.25rem);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+    </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+  <header class="header">
+  	
+</header>
+
+<section class="content">
+	<ul class="list">
+    <li class="list__item">
+      <label class="label--checkbox">
+          <input type="checkbox" class="checkbox" checked>
+            Item 1
+      </label>
+    </li>
+    <li class="list__item">
+      <label class="label--checkbox">
+          <input type="checkbox" class="checkbox">
+            Item 2
+      </label>
+    </li>
+    <li class="list__item">
+      <label class="label--checkbox">
+          <input type="checkbox" class="checkbox">
+            Item 3
+      </label>
+    </li>
+    <li class="list__item">
+      <label class="label--checkbox">
+          <input type="checkbox" class="checkbox">
+            Item 4
+      </label>
+    </li>
+  </ul>
+</section>
+      
+<a href="http://www.twitter.com/sambego" target="_blank" class="button--round button--sticky">
+  <i class="fa fa-twitter"></i> 
+</a>
+  
+    <script src="js/index.js"></script>
+
+</body>
+</html>

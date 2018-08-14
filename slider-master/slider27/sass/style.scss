@@ -1,0 +1,132 @@
+/* -------------------------------------------------------------------
+   MAGNIFICENT PURE CSS SLIDER
+
+   Be advised:
+   This slider must only be used for decoration purpose, not for readable contents.
+   It lacks of accessible functionalities and interactives meta datas.
+   So yes, this demo is not a good use case.
+   ------------------------------------------------------------------- */
+
+// Config
+$pcs-class-name        : "slidercss" !default; 
+$pcs-effect            : "translate" !default; // "translate"|"fade"
+$pcs-slides-count      : 11 !default;
+$pcs-timing-pause      : 3 !default; // in seconds
+$pcs-timing-transition : .75 !default; // in seconds
+$pcs-timing-function   : cubic-bezier(.86, 0, .07, 1) !default; /* easeInOutQuint */
+$pcs-index-display     : true !default; // true|false
+$pcs-hover-pause       : true !default; // true|false
+
+$pcs-timing-total: ($pcs-timing-pause + $pcs-timing-transition) * $pcs-slides-count;
+
+// Core
+.#{$pcs-class-name} {
+	overflow: hidden;
+	&-inner {
+		display: flex; margin: 0; padding: 0;
+		flex-flow: row nowrap; justify-content: flex-start; align-items: stretch;
+		list-style: none;
+		animation: pure-css-slider #{$pcs-timing-total}s $pcs-timing-function infinite;
+		& > * {
+			box-sizing: border-box; margin: 0 !important;
+			flex: 0 0 100%;
+			word-break: break-word;
+		}
+		@if $pcs-index-display {
+			counter-reset: i;
+			& > *::before {
+				counter-increment: i;
+				content: counter(i) "/#{$pcs-slides-count}";
+			}
+		}
+	}
+	@if $pcs-hover-pause {
+		&:hover &-inner {
+			animation-play-state: paused;
+		}
+	}
+}
+
+// Animation
+@keyframes pure-css-slider {
+	@if $pcs-effect == "fade" {
+		from, to {
+			transform: translateX(0); opacity: 1;
+		}
+		@for $i from 1 through $pcs-slides-count {
+			$pcs-current-timing: ($pcs-timing-pause * $i) + ($pcs-timing-transition * ($i - 1));
+			#{($pcs-current-timing * 100) / $pcs-timing-total}% {
+				opacity: 1;
+			}
+			#{(($pcs-current-timing + ($pcs-timing-transition * .499)) * 100) / $pcs-timing-total}% {
+				transform: translateX(#{100% * ($i - 1) * -1});
+				opacity: 0;
+			}
+			@if $i < $pcs-slides-count {
+				#{(($pcs-current-timing + ($pcs-timing-transition * .501)) * 100) / $pcs-timing-total}% {
+					transform: translateX(#{100% * $i * -1});
+					opacity: 0;
+				}
+				#{(($pcs-current-timing + $pcs-timing-transition) * 100) / $pcs-timing-total}% {
+					opacity: 1;
+				}
+			}
+			@else {
+				#{(($pcs-current-timing + ($pcs-timing-transition * .501)) * 100) / $pcs-timing-total}% {
+					transform: translateX(0);
+					opacity: 0;
+				}
+			}
+		}
+	}
+	@else if $pcs-effect == "translate" {
+		from, to {
+			transform: translateX(0);
+		}
+		@for $i from 1 through $pcs-slides-count {
+			$pcs-current-timing: ($pcs-timing-pause * $i) + ($pcs-timing-transition * ($i - 1));
+			#{($pcs-current-timing * 100) / $pcs-timing-total}% {
+				transform: translateX(#{100% * ($i - 1) * -1});
+			}
+			@if $i < $pcs-slides-count {
+				#{(($pcs-current-timing + $pcs-timing-transition) * 100) / $pcs-timing-total}% {
+					transform: translateX(#{100% * $i * -1});
+				}
+			}
+			@else {
+				#{(($pcs-current-timing + $pcs-timing-transition) * 100) / $pcs-timing-total}% {
+					transform: translateX(0);
+				}
+			}
+		}
+	}
+	@else {
+		@error "'#{$pcs-effect}' is not a valid value for $pcs-effect: 'fade' or 'translate'."
+	}
+}
+
+// Slider skin, only for demo
+.slidercss {
+	max-width: 40em; margin: auto;
+	span {
+		display: block; margin: 0 .25em; padding: 1em;
+		background: white;
+		font-size: 2em; color: #3498db; text-align: center;
+	}
+	@if $pcs-index-display {
+		li {
+			position: relative;
+			&::before {
+				position: absolute; top: 0; right: .875em;
+				font-size: .875em; color: #3498db;
+			}
+		}
+	}
+}
+
+// Misc
+html, body, main { height: 100%; }
+body { background: #3498db; color: white; font: 1em/1.5 "lato"; }
+main { display: flex; }
+a { color: inherit; }
+code { color: slateGrey; }

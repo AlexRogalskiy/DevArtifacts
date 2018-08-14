@@ -1,0 +1,60 @@
+$blue: #3498db;
+
+table {
+	overflow: hidden;
+}
+th, td {
+	position: relative;
+	&::before,
+	&::after {
+		position: absolute; z-index: -1;
+		background: transparent;
+		content: ''; pointer-events: none;
+		transition: background .05s ease-in-out;
+	}
+	&::before {
+		top: 0; bottom: 0; left: -100vw; right: -100vw;
+	}
+	&::after {
+		top: -100vh; bottom: -100vh; left: 0; right: 0;
+	}
+	&:hover {
+		&::before,
+		&::after {
+			background: rgba(black, .25);
+		}
+	}
+	&:focus {
+		&::before,
+		&::after {
+			z-index: -2;
+			background: rgba(black, .5);
+		}
+	}
+}
+
+
+/* for demo */
+table {
+	display: block; margin: auto;
+	border-collapse: collapse;
+	text-align: center;
+}
+thead {
+	font-size: 1.5em;
+}
+th, td {
+	width: 100% / 6; padding: .5em 1em;
+	border: 1px solid darken($blue, 20%);
+}
+th {
+	text-transform: uppercase;
+}
+tbody th:first-child {
+	text-align: left;
+}
+
+/* misc */
+html, body { height: 100%; }
+body { display: flex; background: $blue; color: white; font: 1em/1.4 "lato"; font-weight: 300; }
+a { color: inherit; }

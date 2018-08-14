@@ -1,0 +1,40 @@
+// Config -------------------------------------------------
+
+$stroke-width: 13;
+$stroke-linecap: round; // butt|round
+$looping-color: #13a7c7;
+$looping-bg: rgba(#13a7c7, .25);
+
+$total-duration: 1.5s;
+$total-length: 371.68328857421875; // From JS
+$looping-percent: 40;
+
+// --------------------------------------------------------
+
+$looping-length: ($looping-percent * $total-length) / 100;
+
+.loading-spinner {
+	[id="master"], [id="background"] {
+		stroke-width: $stroke-width;
+		stroke-linecap: $stroke-linecap;
+	}
+	[id="background"] {
+		stroke: $looping-bg;
+	}
+	[id="master"] {
+		stroke: $looping-color;
+		stroke-dasharray: $looping-length, ($total-length - $looping-length);
+		animation: loading-loop $total-duration linear infinite;
+	}
+}
+
+@keyframes loading-loop {
+	from { stroke-dashoffset: 0px; }
+	to   { stroke-dashoffset: #{- $total-length}px; } // Needs unit to work in Edge
+}
+
+
+/* misc */
+html, body { height: 100%; }
+body { display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; }
+.loading-loop { max-width: 20em; margin: 2em auto; }
