@@ -1,0 +1,486 @@
+// Controls
+.controls {
+  display: flex;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 10;
+
+  
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: .5rem;
+    padding: 1.4rem;
+    
+    border: none;
+    border-radius: 4rem;
+    background: lighten(rgb(32, 37, 39), 20);
+    transition: all .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+    color: white;
+    overflow: hidden;
+    
+    cursor: pointer;
+    outline: none;
+    
+    $travel: 2rem;
+    svg {
+      transition: all .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      height: 1rem;
+      width: 1rem;
+      position: absolute;
+      &:nth-child(2) {
+        transform: translateY($travel);
+      }
+      path {
+        fill: white;
+      }
+    }
+    
+    &--toggled {
+      svg:nth-child(1) {
+        transform: translateY(-$travel);
+      }
+      svg:nth-child(2) {
+        transform: translateY(0rem);
+      }
+    }
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+// MKBHD logo outro
+@keyframes scaleIn { to { transform: scale(1) } }
+@keyframes slideUpText { to { transform: translateY(0); opacity: 1; } }
+.card {
+  $delay: 3.7s;
+  
+  $easeInOutExpo: cubic-bezier(1, 0, 0, 1);
+  
+  width: 9rem;
+  height: 9rem;
+  background: #fff;
+  border-radius: 3px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 9;
+  display: flex;
+  h1 {
+    font-family: 'Helvetica Neue', 'Calibri Light', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.02em;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: #fff;
+    font-weight: 200;
+    text-align: center;
+    margin: .4rem 0;
+    width: 100%;
+    overflow: hidden;
+    span {
+      $textDelay: $delay + .5s;
+      $factor: 4;
+      opacity: 0;
+      transform: translateY(100%);
+      animation: slideUpText 1s $textDelay forwards $easeInOutExpo;
+      display: inline-block;
+      &:nth-of-type(2) {
+        animation-delay: $textDelay + .1s / $factor;
+      }
+      &:nth-of-type(3) {
+        animation-delay: $textDelay + .2s / $factor;
+      }
+      &:nth-of-type(4) {
+        animation-delay: $textDelay + .3s / $factor;
+      }
+      &:nth-of-type(5) {
+        animation-delay: $textDelay + .4s / $factor;
+      }
+    }
+  }
+  
+  &, & img {
+    transform: scale(0);
+    animation: scaleIn .8s forwards $easeInOutExpo;
+    animation-delay: $delay;
+  }
+  img {
+    animation-delay: .1s + $delay;
+    margin: auto;
+    border-radius: 50%;
+  }
+}
+
+%topLeft {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.stripe {
+  width: 1px;
+  background: #fff;
+  opacity: .55;
+  position: absolute;
+}
+
+.skewed-box {
+  .stripe {
+    height: 170%;
+    bottom: -40%;
+    animation: scaleTop .6s both linear;
+    &.top { transform-origin: 50% 100%; }
+    &.bottom { transform-origin: 50% 0; }
+  }
+
+  &.white {
+    .stripe {
+      &.top {
+        right: 0;
+        animation-delay: .2s;
+      }
+      &.topBottom {
+        animation-name: scaleBottom;
+        transform-origin: 50% 0;
+        right: 6px;
+        animation-delay: .3s;
+      }
+      &.bottomTop {
+        transform-origin: 50% 100%;
+        left: 6px;
+        animation-delay: .4s;
+      }
+      &.bottom {
+        animation-name: scaleBottom;
+        animation-delay: 0;
+      }
+    }
+  }
+
+  &.pink {
+    .stripe {
+      &.top { animation-delay: .5s; }
+      &.bottom {
+        animation-name: scaleBottom;
+        animation-delay: .4s;
+        left: 100%;
+      } 
+    }
+  }
+}
+
+.final-stripe {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 30%;
+  width: 1px;
+  &.right {
+    transform: rotateZ(60deg) translateY(-7rem);
+    animation: finalStripeScaleRight .4s 3s both ease;
+  }
+
+  &.left { animation: finalStripeScaleLeft .4s 3s both ease; }
+}
+
+//---------------------
+// Animations
+//---------------------
+
+@keyframes finalStripeScaleLeft {
+  0% { transform: rotateZ(60deg) scaleY(0) translateY(7rem); }
+  50% { transform: rotateZ(60deg) scaleY(1) translateY(7rem); }
+  100% { transform: rotateZ(60deg) scaleY(1) translateY(14rem); opacity: 0; }
+}
+
+@keyframes finalStripeScaleRight {
+  0% { transform: rotateZ(60deg) scaleY(0) translateY(-7rem); }
+  50% { transform: rotateZ(60deg) scaleY(1) translateY(-7rem); }
+  100% { transform: rotateZ(60deg) scaleY(1) translateY(-14rem); opacity: 0; }
+}
+
+@keyframes scaleBottom {
+  0% { transform: translateY(0) scaleY(0); }
+  50% { transform: translateY(0) scaleY(1); }
+  100% { transform: translateY(100%) scaleY(0); }
+}
+
+@keyframes scaleTop {
+  0% { transform: translateY(0) scaleY(0); }
+  50% { transform: translateY(0) scaleY(1); }
+  100% { transform: translateY(-100%) scaleY(0); }
+}
+
+.bg-line,
+.dot {
+  @extend %topLeft;
+  height: 1px;
+  will-change: transform;
+}
+
+.bg-line {
+  width: 30px;
+  background: rgb(122, 126, 127);
+  animation: bgLine 2.8s infinite ease-in-out;
+}
+
+.dot {
+  width: 1px;
+  background: lighten(rgb(130, 134, 136), 20%);
+  border-radius: 50%;
+  animation: dot 2.8s infinite ease-in-out;
+}
+
+$qx: 12;
+$qy: 9;
+$current: 0;
+
+// rows
+@for $r from 0 through $qy {
+  // columns
+  @for $c from 0 through $qx {
+    $rnd: random(100) / 100;
+    $current: $current + 1;
+    $top: calc((#{$r} * 100%) / #{$qy} + 50% / #{$qy});
+    $left: (#{$c} * 100%) / #{$qx} ;
+
+    $delay: $rnd * -3s;
+    
+    .bg-line:nth-child(#{$current}),
+    .dot:nth-child(#{$current}) {
+      top: $top;
+      left: calc(#{$left});
+      animation-delay: $delay;
+    }
+    .dot:nth-child(#{$current}) {
+      left: calc(#{$left} + #{$rnd * -40px + 41px});
+    }
+  }
+}
+
+@keyframes bgLine {
+  0%, 100% { opacity: 1; transform: translateX(.5rem) scaleX(.1); }
+  20% { opacity: .5; transform: translateX(.1rem) scaleX(.4); }
+  40% { opacity: 0; transform: translateX(1rem) scaleX(1.2); }
+  60% { opacity: .4; transform: translateX(-.5rem) scaleX(.5); }
+  80% { opacity: .1; transform: translateX(0) scaleX(.8); }
+}
+
+@keyframes dot {
+  0%, 100% { transform: translateX(.5rem); }
+  20% { transform: translateX(.1rem); }
+  40% { transform: translateX(1rem); }
+  60% { transform: translateX(-.5rem); }
+  80% { transform: translateX(0); }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(32, 37, 39);
+  overflow: hidden;
+}
+
+// This looks way cooler, but it will eat your cpu
+// @keyframes bgOpacity { to { filter: blur(8px) } }
+
+@keyframes bgOpacity { to { opacity: .4 } }
+#root {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0px);
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  @extend %topLeft;
+  transform-origin: 50% 50%;
+  will-change: opacity;
+  animation:
+    rotate 3.16s forwards linear,
+    bgOpacity 1s 3.4s forwards ease;
+}
+
+.logo-mkbhd {
+  @extend %topLeft;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 100px;
+  width: 100px;
+  transform: translateZ(0) scale(.85);
+  z-index: 9;
+}
+
+.skewed-box {
+  width: 57px;
+  height: 100%;
+  position: absolute;
+  left: 21px;
+
+  &.over { z-index: 4; }
+
+  .bg {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    @extend %topLeft;
+  }
+
+  &.white {
+    transform: rotateZ(-90deg) skewX(-30deg);
+    
+    .mask {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      overflow: hidden;
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 50%,
+        0 50%
+      );
+    }
+
+    &.bottom .mask {
+      clip-path: polygon(
+        0 50%,
+        100% 50%,
+        100% 100%,
+        0 100%
+      );
+    }
+  } // end .skewed-box.white
+
+
+  &.pink {
+    transform: rotateZ(90deg) skewX(30deg);
+    z-index: 3;
+
+    .bg {
+      animation:
+        slideUp 1s .6s both cubic-bezier(0.165, 0.84, 0.44, 1),
+        blink .2s 2.9s forwards steps(1, end);
+      transform-origin: 50% 130%;
+      background: linear-gradient(
+        to left, 
+        rgb(244, 79, 144), 
+        rgb(246, 69, 95)
+      );
+    }
+  } // end .skewed-box.pink
+
+  $lineWidth: 6px;
+  $animDuration: .07s;
+  $animStart: 2.9s;
+
+  &.bottom .line {
+    &.top { animation-name: slideLinesLeft, shrinkLineX; }
+    &.right { animation-name: slideLinesLeft, shrinkLineY; }
+    &.bottom { animation-name: slideLinesLeft, shrinkLineX; }
+    &.left { animation-name: slideLinesLeft, shrinkLineY; }
+  }
+  &.top .line {
+    &.top { animation-name: slideLinesRight, shrinkLineX; }
+    &.right { animation-name: slideLinesRight, shrinkLineY; }
+    &.bottom { animation-name: slideLinesRight, shrinkLineX; }
+    &.left { animation-name: slideLinesRight, shrinkLineY; }
+  }
+  .line {
+    animation-duration: .7s, $animDuration;
+    animation-delay: .3s, $animStart;
+    animation-fill-mode: both, forwards;
+    animation-timing-function: ease, linear;
+    background: #fff;
+    position: absolute;
+    will-change: transform;
+    &.top, &.bottom {
+      width: 100%;
+      height: $lineWidth;
+      top: 0;
+    }
+    &.right, &.left {
+      width: $lineWidth;
+      height: 100%;
+      right: 0;
+    }
+    &.top {
+      animation-delay: .3s, $animStart + $animDuration * 3;
+      transform-origin: 100% 0;
+    }
+    &.right {
+      animation-delay: .3s, $animStart + $animDuration * 4;
+      transform-origin: 0 100%;
+    }
+    &.bottom {
+      top: auto;
+      bottom: 0;
+      animation-delay: .3s, $animStart;
+      transform-origin: 0 100%;
+    }
+    &.left {
+      right: auto;
+      transform-origin: 0 0;
+      animation-delay: .3s, $animStart + $animDuration * 2;
+    }
+  } // end .line
+} // end .skewed-box
+
+//---------------------
+// Animations
+//---------------------
+
+@keyframes shrinkLineY { to { transform: scaleY(0); } }
+@keyframes shrinkLineX { to { transform: scaleX(0); } }
+
+@keyframes slideLinesLeft {
+  from { transform: translateY(-3.2rem); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slideLinesRight {
+  from { transform: translateY(3.2rem); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  0% { transform: scaleY(0) translateY(2rem); }
+  100% { transform: scaleY(1) translateY(0); }
+}
+
+@keyframes rotate {
+  0% { transform: rotateZ(-3deg) scale(1); }
+  100% { transform: rotateZ(0) scale(1.2); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  25% { opacity: 1; }
+  50% { opacity: 0; }
+  75% { opacity: 1; }
+}
+
+audio {
+  display: none;
+}

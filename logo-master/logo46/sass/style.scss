@@ -1,0 +1,717 @@
+//---------------------------
+//        Variables
+//---------------------------
+
+$color-screen: #414141;
+$color-square: #BD3C03;
+
+$color-mobile: #E3A400;
+$color-laptop: #9A246C;
+$color-aio: #505CF4;
+$color-desktop: #75EC6C;
+
+$tl-duration: .1s;
+$tl-timing-fn: ease;
+$tl-diff: .45s;
+
+$tl-start-mobile: 2.15s;
+$tl-start-laptop: $tl-start-mobile + $tl-diff - .1s;
+$tl-start-aio: $tl-start-laptop + $tl-diff + .1s;
+$tl-start-desktop: $tl-start-aio + $tl-diff;
+
+$anim-start: 1s;
+$shake-n: 14;
+
+// headphone
+$color-hp: #760F16;
+$color-hp-light: #BC2F04;
+$color-hp-dark: #414141;
+$color-hp-face: #EFCC32;
+
+$ease-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+$ease-out-quad: cubic-bezier(0.77, 0, 0.175, 1);
+
+$hp-anim-start: 4.3s;
+
+// 16:9
+$vp-w: 32em;
+$vp-h: 18em;
+$vp-s: 4vh; // viewport size
+
+
+//-------------------------
+//         Scene
+//-------------------------
+
+body {
+  height: 100vh;
+  display: flex;
+  background: #F6F6F6;
+}
+
+* { box-sizing: border-box; }
+
+.scene {
+  width: $vp-w; height: $vp-h;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  background: #F6F6F6;
+  font-size: $vp-s;
+  border: 1px solid transparent;
+  transition: border-color .3s ease;
+  
+  &:hover {
+    border-color: #ccc;
+  }
+  
+  > * {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    margin: auto;
+  }
+}
+
+//---------------------------
+//        Animations
+//---------------------------
+@keyframes scale-in {
+  from {
+    transform: scale(.1);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-out {
+  0%, 100% { opacity: 0; }
+  10%, 90% { opacity: 1; }
+}
+
+@keyframes shrink-mpb-width {
+  from { width: 13.5em; }
+  to { width: 0em; }
+}
+
+@keyframes shrink-y {
+  to { transform: scaleY(0); }
+}
+
+@keyframes clip-up {
+  from { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  to { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+}
+
+@keyframes vanish {
+  0% { transform: translateY(-.8em) scaleY(1) scaleX(1); }
+  50% { transform: translateY(-3em) scaleY(1.8) scaleX(1); }
+  100% { transform: translateY(-3em) scaleY(1.8) scaleX(0); }
+}
+
+$amount: 4;
+@keyframes shake {
+  from, to {
+    transform-origin: 50% 100%;
+    transform: rotateZ(#{$amount}deg);
+  }
+  50% { transform: rotateZ(#{-$amount}deg) }
+}
+
+$tx: 1em;
+$tx2: .2em;
+$ty: .25em;
+$r: 25deg;
+@keyframes kick {
+  0%, 32% { transform-origin: 0 100%; }
+  10% { transform: translateX(#{-$tx / 2}) translateY(#{-$ty}) rotateZ(#{-$r}) }
+  24%, 30% { transform: translateX(#{-$tx}) rotateZ(0deg) }
+  
+  34% { transform-origin: 100% 100%; }
+  40% { transform: translateX(#{-$tx}) rotateZ(0deg) }
+  54% { transform: translateX(#{$tx2}) rotateZ(#{$r}) }
+  74%, 100% { transform: rotateZ(0deg) }
+}
+
+// Mobile
+//-------------------------
+@mixin to-mobile {
+  width: 3.3em; height: 6em;
+  padding: .3em .08em;
+  transform: translateY(-5em);
+  color: $color-mobile;
+  border-radius: .1em;
+}
+
+@keyframes to-mobile {
+  to { @include to-mobile; }
+}
+
+// Laptop
+//-------------------------
+
+// screen
+@mixin to-laptop {
+  width: 10em; height: 6em;
+  padding: .25em;
+  transform: translateY(-5em);
+  color: $color-laptop;
+  border-radius: .1em;
+}
+
+@keyframes to-laptop {
+  from { @include to-mobile; }
+  to { @include to-laptop; }
+}
+
+// body
+@mixin mpb-to-laptop {
+  width: 13.5em; height: 2em;
+  color: $color-laptop;
+}
+
+@keyframes mpb-to-laptop {
+  to { @include mpb-to-laptop; }
+}
+
+// touchpad
+@mixin mpc-to-laptop {
+  color: $color-screen;
+  width: 2.7em; height: .8em;
+  $p: 14%;
+  clip-path: polygon($p 0, (100% - $p) 0, 100% 100%, 0 100%);
+  transform: translateY(-.7em);
+}
+
+@keyframes mpc-to-laptop {
+  to { @include mpc-to-laptop; }
+}
+
+// AIO
+//-------------------------
+
+// screen
+@mixin to-aio {
+  width: 11.2em; height: 8em;
+  padding: .3em .2em 1.3em .2em;
+  transform: translateY(-6.1em);
+  color: $color-aio;
+  border-radius: .1em;
+}
+
+@keyframes to-aio {
+  from { @include to-laptop; }
+  to { @include to-aio; }
+}
+
+// stand
+@mixin mpb-to-aio {
+  color: $color-aio;
+  width: 5em; height: .7em;
+  transform: translateY(1.15em);
+}
+
+@keyframes mpb-to-aio {
+  from { @include mpb-to-laptop; }
+  to { @include mpb-to-aio; }
+}
+
+// neck
+@mixin mpc-to-aio {
+  color: $color-aio;
+  transform: translateY(0em);
+  width: 2.2em; height: 2em;
+  clip-path: initial;
+}
+
+@keyframes mpc-to-aio {
+  to { @include mpc-to-aio; }
+}
+
+.cat {
+  width: .58em;
+  position: absolute;
+  left: 0; right: 0;
+  bottom: .5em;
+  margin: auto;
+  animation: fade-in-out $tl-diff $tl-start-aio ease both;
+}
+
+// Desktop
+//-------------------------
+
+// screen
+@mixin to-desktop {
+  width: 11.8em; height: 7em;
+  padding: .1em .15em;
+  transform: translateY(-5.9em);
+  color: $color-desktop;
+  border-radius: .1em;
+}
+
+@keyframes to-desktop {
+  from { @include to-aio; }
+  to { @include to-desktop; }
+}
+
+// keyboard
+@mixin mpb-to-desktop {
+  color: $color-desktop;
+  transform: translateY(1em);
+  width: 13em; height: .7em;
+}
+
+@keyframes mpb-to-desktop {
+  from { @include mpb-to-aio; }
+  to { @include mpb-to-desktop; }
+}
+
+// screen
+@mixin mpc-to-desktop {
+  color: $color-desktop;
+  transform: translateY(-.9em);
+  width: 2em; height: 1.5em;
+}
+
+@keyframes mpc-to-desktop {
+  from { @include mpc-to-aio; }
+  to { @include mpc-to-desktop; }
+}
+
+// screen attachment
+@keyframes mpa-to-desktop {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+// Face & Headphones
+//-------------------------
+
+.headphones {
+  width: 100%;
+  height: 100%;
+  will-change: width;
+  border-radius: 20em;
+  border: .4em solid currentColor;
+  border-bottom: none;
+  box-shadow: inset 0 .4em 0 $color-hp-dark;
+  position: relative;
+  
+  clip-path: inset(0 0 100% 0);
+  animation:
+    hp-clip .2s $ease-out-quint $hp-anim-start forwards,
+    hp-color 1.8s $ease-out-quint ($hp-anim-start + .2s) both
+  ;
+  
+  &__wrapper {
+    width: 8.5em;
+    height: 10em;
+    z-index: 10;
+    transform: translateY(-.5em);
+  
+    animation:
+      hp-expand .5s $ease-out-quint ($hp-anim-start + .35s) forwards,
+      slide-out-bottom .4s cubic-bezier(0.77, 0, 0.175, 1) ($hp-anim-start + 1.2s) forwards
+    ;
+  }
+
+  &__hp {
+    position: absolute;
+    width: 2.5em;
+    height: 4.5em;
+    top: 4.5em;
+    border-radius: 7px;
+    background: currentColor;
+    animation:
+      hp .3s $ease-out-quint $hp-anim-start both,
+      hp-color 1.8s $ease-out-quint ($hp-anim-start + .2s) both
+    ;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      height: 100%; width: .7em;
+      background: $color-hp-dark;
+      animation: hp-pads .3s $ease-out-quint $hp-anim-start both;
+    }
+
+    $d: 3em;
+    &--left {
+      left: -1em;
+      &:after {
+        right: 0;
+        border-radius: 0 4px 4px 0;
+        transform: translateX($d) scaleX(.05) scaleY(2);
+      }
+    }
+
+    &--right {
+      right: -1em;
+      &:after {
+        left: 0;
+        border-radius: 4px 0 0 4px;
+        transform: translateX(-$d) scaleX(.05) scaleY(2);
+      }
+    }
+  }
+}
+
+.face {
+  display: flex;
+  width: 8.3em; height: 8.3em;
+  top: 1.8em;
+  background: $color-hp-face;
+  border-radius: 50%;
+  animation:
+    scale .3s $ease-out-quint ($hp-anim-start + .4s) both,
+    slide-out-bottom .4s $ease-out-quad ($hp-anim-start + 1.2s) forwards
+  ;
+  
+  .face__mouth {
+    width: 70%; height: 70%;
+    margin: auto;
+    margin-bottom: .8em;
+    border-radius: 50%;
+    background: white;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    transform-origin: 50% 75%;
+    will-change: transform;
+    animation: scale .5s $ease-out-quint ($hp-anim-start + .8s) both;
+  }
+}
+
+@keyframes hp-color {
+  from { color: $color-hp; }
+  to { color: $color-hp-light; }
+}
+
+@keyframes hp {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes hp-pads {
+  to { transform: scaleX(1); }
+}
+
+
+@keyframes hp-clip {
+  to { clip-path: inset(0 0 45% 0); }
+}
+
+@keyframes hp-expand {
+  to { width: 10.5em; }
+}
+
+@keyframes scale {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes slide-in-side {
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out-bottom {
+  to { transform: translateY(14em); }
+}
+
+// Text
+//-------------------------
+
+.text {
+  display: flex;
+  position: relative;
+
+  font-size: 4em;
+  letter-spacing: -.05em;
+
+  transform-origin: 0 0;
+  transform: scaleX(1.23) scaleY(1.12);
+
+  outline: none;
+
+  &__wrapper {
+    font-family: 'Arimo', sans-serif;
+    color: #393A32;
+    
+    width: 15.4em; height: 4em;
+    margin: auto;
+    animation: text-slide-down .4s 5.6s cubic-bezier(0.77, 0, 0.175, 1) both;
+  }
+  
+  &--expand {
+    transform: scaleX(1.23) scaleY(1.12);
+  }
+  
+  &__quote {
+    animation: fade-in 1.2s 6s ease both;
+    margin-top: 1em;
+    display: block;
+    text-align: center;
+    font-size: 1em;
+  }
+  
+  &__link {
+    animation: fade-in 1.2s 7.5s ease both;
+    margin-top: 1em;
+    font-size: .8em;
+    display: block;
+    text-align: center;
+    letter-spacing: .02em;
+  }
+
+  &--color {
+    color: #BD3C03;
+  }
+
+  &--upper {
+    position: absolute;
+    bottom: 60%;
+    left: 6.4%;
+    font-size: .558em;
+  }
+}
+
+@keyframes text-slide-down {
+  from { transform: translateY(-12.2em); }
+  to { transform: translateY(0%); }
+}
+
+//---------------------------------------
+// Device (screen and morphable divs)
+//---------------------------------------
+
+.device {
+  display: flex;
+  width: 1.5em; height: 1.5em;
+  position: relative;
+  
+  top: calc(50% + 1.5em); bottom: auto;
+  margin: auto;
+  color: $color-square;
+  background: currentColor;
+  animation:
+    fade-in .5s 0s ease both,
+    kick .5s linear $anim-start,
+    shake (1s / $shake-n) linear ($anim-start + .6s) $shake-n,
+    to-mobile ($tl-duration / 2) $tl-timing-fn $tl-start-mobile,
+    to-laptop $tl-duration $tl-timing-fn $tl-start-laptop,
+    to-aio $tl-duration $tl-timing-fn $tl-start-aio,
+    to-desktop $tl-duration $tl-timing-fn $tl-start-desktop
+  ;
+
+  animation-fill-mode: forwards;
+  
+  &__wrapper {
+    z-index: 10;
+    animation: shrink-y $tl-duration ease ($tl-start-desktop + $tl-diff) forwards;
+  }
+
+  &__webcam {
+    // FIX ME
+    width: .15em; height: .15em;
+    position: absolute;
+    top: .1em;
+    left: 0; right: 0;
+    margin: auto;
+    border-radius: 50%;
+    background: $color-screen;
+    opacity: 0;
+    animation: fade-in-out 1.5s linear ($anim-start + 1.1s) forwards;
+  }
+
+  &__screen {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    background: $color-screen;
+    transform-origin: 50% 50%;
+    will-change: transform;
+    border-radius: .05em;
+    animation: scale-in .05s linear ($anim-start + 1.05s) both;
+  }
+}
+
+.morphable {
+  $mpb-shrink-delay: $tl-start-desktop + $tl-duration + $tl-diff;
+  color: $color-screen;
+  
+  &--center {
+    width: 0; height: 0;
+    background: currentColor;
+    top: auto; bottom: 4em;
+    position: absolute;
+    z-index: 1;
+
+    animation:
+      mpc-to-laptop $tl-duration $tl-timing-fn $tl-start-laptop forwards,
+      mpc-to-aio $tl-duration $tl-timing-fn $tl-start-aio forwards,
+      mpc-to-desktop $tl-duration $tl-timing-fn $tl-start-desktop forwards,
+      vanish $tl-duration linear $mpb-shrink-delay forwards
+    ;
+  }
+
+  &__attachment {
+    width: 4.5em; height: 1.2em;
+    background: lighten($color-desktop, 8);
+    border-radius: 50%;
+    top: auto; bottom: 4.5em;
+    box-shadow: 0 .2em 0 0 darken($color-desktop, 5);
+    position: absolute;
+
+    animation:
+      mpa-to-desktop $tl-duration $tl-timing-fn $tl-start-desktop both,
+      shrink-y $tl-duration $tl-timing-fn $mpb-shrink-delay forwards
+    ;
+  }
+
+  &--bottom {
+    width: 0; height: 0;
+    top: auto; bottom: 4.5em;
+    animation:
+      mpb-to-laptop $tl-duration $tl-timing-fn $tl-start-laptop forwards,
+      mpb-to-aio $tl-duration $tl-timing-fn $tl-start-aio forwards,
+      mpb-to-desktop $tl-duration $tl-timing-fn $tl-start-desktop forwards,
+      shrink-mpb-width $tl-duration $tl-timing-fn $mpb-shrink-delay forwards
+    ;
+  }
+
+  &__face {
+    top: 100%; left: 0;
+    width: 100%; height: .5em;
+    background-color: currentColor;
+    $p: 1.5%;
+    clip-path: polygon(0 0, 100% 0, (100% - $p) 100%, $p 100%);
+    transition: background-color $tl-duration ease;
+
+    &--front {
+      &:after {
+        content: '';
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.15);
+      }
+    }
+  
+    &--top {
+      height: 100%;
+      $p: 13%;
+      clip-path: polygon($p 0, (100% - $p) 0, 100% 100%, 0 100%);
+    }
+  }
+}
+
+.mouse {
+  width: 2.5em;
+  bottom: 2.8em; top: auto;
+  right: 5.8em; left: auto;
+  animation:
+    scale-in $tl-duration ease $tl-start-aio both,
+    clip-up $tl-duration ease ($tl-start-desktop + $tl-duration + $tl-diff) both
+  ;
+
+  &__body {
+    animation: to-green $tl-duration ease ($tl-start-desktop + $tl-duration) forwards;
+  }
+}
+
+@keyframes to-green {
+  to { fill: $color-desktop; }
+}
+
+.cat {
+  width: .58em;
+  position: absolute;
+  left: 0; right: 0;
+  bottom: .5em;
+  margin: auto;
+  animation: fade-in-out $tl-diff $tl-start-aio ease both;
+}
+
+//-------------------------
+//       Controls
+//-------------------------
+
+// These is not part of the animation
+// they're used to style the replay and mute buttons
+
+.controls {
+  display: flex;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 10;
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: .5rem;
+    margin-right: 0;
+    padding: 1.4rem;
+    
+    border: none;
+    border-radius: 4rem;
+    background: lighten(rgb(32, 37, 39), 20);
+    transition: all .2s ease;
+    will-change: transform;
+    color: white;
+    overflow: hidden;
+    
+    cursor: pointer;
+    outline: none;
+    
+    $travel: 2rem;
+
+    svg {
+      transition: all .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      height: 1rem;
+      width: 1rem;
+      position: absolute;
+
+      &:nth-child(2) {
+        transform: translateY($travel);
+      }
+
+      path {
+        fill: white;
+      }
+    }
+    
+    &--toggled {
+      svg:nth-child(1) {
+        transform: translateY(-$travel);
+      }
+
+      svg:nth-child(2) {
+        transform: translateY(0rem);
+      }
+    }
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.recommended {
+  position: fixed;
+  bottom: 0; left: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+  animation: fade-in .4s ease 9s both;
+  font-family: 'Arimo', sans-serif;
+  font-weight: 300;
+}

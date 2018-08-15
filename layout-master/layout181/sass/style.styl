@@ -1,0 +1,484 @@
+// _helpers.styl
+//------------------------
+
+//------------------------
+// Helpers
+//------------------------
+
+$abs-center
+  position absolute
+  top 0
+  right 0
+  bottom 0
+  left 0
+  margin auto
+
+size(w, h = w)
+  width w
+  height h
+
+figureAnim(name, fromX, fromY, toX, toY)
+  @keyframes {name}
+    0%
+      opacity 1
+      transform translateX(fromX) translateY(fromY) scale(2) rotateZ(45deg)
+    99%
+      transform translateX(toX) translateY(toY) scale(.8)
+      opacity 1
+    100%
+      opacity 0
+
+//@import '_helpers'
+
+// Reset
+*, *:after, *:before
+  box-sizing border-box
+
+html, body
+  size(100%)
+  overflow hidden
+  margin 0
+  padding 0
+  font-family 'Helvetica Neue', 'Calibri Light', Roboto, sans-serif
+  -webkit-font-smoothing antialiased
+
+// Animations
+// @import '_intro-circles'
+// @import '_logo'
+// @import '_wave'
+// @import '_scoreboard'
+// @import '_fireworks'
+// @import '_close'
+
+// _intro-circles.styl
+//----------------------
+
+//------------------------
+// Intro scale-in circles
+//------------------------
+
+animStart = .2s
+
+.intro-circle
+  size(100%)
+  position absolute
+  left 0
+  top 0
+  animation clipReveal 3s (animStart) forwards cubic-bezier(0.19, 1, 0.22, 1)
+  background rgb(85, 204, 245)
+  z-index 0
+  will-change clip-path
+  clip-path circle(0 at 50% 50%)
+  
+  &.second
+    background rgb(65, 171, 247)
+    animation-delay (animStart + .04s)
+    z-index 1
+
+  &.third
+    background linear-gradient(
+      to bottom,
+      rgb(47, 119, 242),
+      rgb(85, 161, 251)
+    )
+    animation-delay (animStart + 1.7s)
+    z-index 2
+
+//------------------------
+// Animations
+//------------------------
+
+@keyframes clipReveal
+  from
+    clip-path circle(4vh at 50% 50%)
+  to
+    clip-path circle(100% at 50% 50%)
+
+  
+// _logo.styl
+//----------------------
+
+animStart = .5s
+
+.logo
+  @extend $abs-center
+  fill #333
+  z-index 4
+  width 10rem
+  animation fadeIn 1s (animStart) both ease,
+            slideUpLogo 1s (animStart + 1s) forwards cubic-bezier(0.77, 0, 0.175, 1)
+
+//------------------------
+// Animations
+//------------------------
+
+@keyframes fadeIn
+  from
+    opacity 0
+  to
+    opacity 1
+
+@keyframes slideUpLogo
+  from
+    transform translateY(0)
+  to
+    transform translateY(-13.5rem)
+
+// _wave.styl
+//----------------------
+
+animDelay = .7s
+
+.wave-long-wrapper
+  z-index 9
+  width 30rem
+  height 0
+  transform translateY(12rem)
+  @extend $abs-center
+      
+.wave-long-line
+  width 100%
+  position absolute
+  left 0
+  top 0
+  &.left
+    clip-path polygon(0 0, 50% 0, 50% 100%, 0 100%)
+    svg
+      stroke-dashoffset (-885 / 2)
+  &.right
+    clip-path polygon(50% 0, 100% 0, 100% 100%, 50% 100%)
+    svg
+      stroke-dashoffset (885 / 2)
+      
+  svg
+    animation waveReveal 1s (animDelay) forwards ease
+    width 100%
+    stroke-dasharray 885
+
+@keyframes waveReveal
+  to
+    stroke-dashoffset 0
+    
+
+// _scoreboard.styl
+//----------------------
+    
+animStart = 2s
+animStartLetters = 2.3s
+
+.scoreboard-wrapper
+  size(32.5rem, 15.5rem)
+  transform translateY(1.6rem)
+  @extend $abs-center
+  z-index 5
+
+.scoreboard-bg
+  @extend $abs-center
+  size(2rem)
+  opacity 0
+  background rgb(250, 250, 250)
+  border .4rem solid rgb(97, 204, 255)
+  box-shadow 0 0 1.4rem rgba(0,0,0, .2)
+  border-radius 1.2rem
+  will-change width, height
+  animation sbExpandY .45s (animStart) forwards ease,
+            sbExpandX .4s (animStart + .3s) forwards ease,
+            sbOpacity .1s (animStart) forwards ease
+
+.scoreboard-content
+  position relative
+  display flex
+  flex-direction column
+  z-index 6
+  size(100%)
+
+.scoreboard-title
+  font-family 'Rubik'
+  font-weight 400
+  display block
+  font-size 2.5rem
+  color #ffc125
+  margin auto
+  margin-top 2.4rem
+  animation slideInText .8s (animStartLetters) both ease
+
+.scoreboard-score
+  font-family 'Rubik'
+  color #476ff6
+  font-weight 400
+  font-size 3rem
+  margin auto
+  
+  span
+    display inline-block
+    width .8ch
+
+  > *:not(.space)
+    width 1ch
+    animation slideInText .5s both ease
+  
+  .points
+    font-size 1.4rem
+    display inline-block
+    animation-delay (animStartLetters + .4s)
+
+  // Text animation
+  for num in (1..6)
+    span:not(.space):nth-child({num})
+      animation-delay (animStartLetters + num / 20s)
+
+.share-buttons
+  display flex
+  width 80%
+  margin 0 auto 1.8rem auto
+  .button
+    font-family 'Roboto Slab'
+    font-weight 500
+    font-size .7rem
+    background #fff
+    margin 0 1rem
+    height 2.4rem
+    flex 1
+    display flex
+    align-items center
+    justify-content space-around
+    box-shadow .2rem .2rem .4rem rgba(0, 0, 0, .05)
+    border-radius 3px
+    border none
+    color #cacaca
+    animation slideInText .5s both ease
+    
+    img, svg
+      size(1.4rem)
+  .facebook-btn
+    animation-delay (animStartLetters + .55s)
+  .twitter-btn
+    animation-delay (animStartLetters + .6s)
+
+@keyframes sbExpandY
+  to
+    height 100%
+
+@keyframes sbExpandX
+  to
+    width 100%
+
+@keyframes sbOpacity
+  to
+    opacity 1
+
+@keyframes slideInText
+  from
+    transform translateY(50%)
+    opacity 0
+  to
+    transform translateY(0)
+    opacity 1
+    
+// _fireworks.styl
+//----------------------
+
+animStart = 1.5s
+animDuration = 1.7s
+
+.fireworks-wrapper
+  size(32.5rem, 15.5rem)
+  @extend $abs-center
+  z-index 5
+
+.paused svg path
+  animation none!important
+  stroke-dashoffset 0!important
+
+.firework
+  width 1rem
+  position absolute
+
+  &.yellow
+    svg path
+      stroke #ffc125
+    &:nth-child(1)
+      transform rotate(-45deg) translateY(-4rem)
+    &:nth-child(2)
+      svg path
+        animation-delay (animStart + .1s)
+      transform rotate(-95deg) translateX(-4rem) translateY(-4rem)
+  
+  &.cyan
+    svg path
+      stroke #6cf0f2
+      animation-delay (animStart + .2s)
+    transform rotate(-100deg) translateX(-8rem) translateY(-5rem)
+  
+  &.left
+    left 0
+
+  &.right
+    right 0
+    &.white
+      transform rotate(45deg) translateY(-2rem) translateX(-5.5rem)
+      svg path
+        stroke #fff
+    &.cyan
+      transform rotate(45deg) translateY(-4rem)
+    &.yellow
+      transform rotate(115deg) translateY(-5rem) translateX(7rem)
+
+  &.figure
+    opacity 0
+    animation hex .5s (animStart + 1s) forwards cubic-bezier(0.165, 0.84, 0.44, 1)
+
+    // Remove SVG translate animation
+    svg
+      animation none
+    
+    // Left
+    &.hex
+      animation-name hex
+    &.square
+      animation-name square
+      bottom 0
+    
+    // Right
+    &.triangle
+      animation-delay (animStart + 1.1s)
+      animation-name triangle
+    &.plus
+      animation-delay (animStart + 1.1s)
+      animation-name plus
+
+  &.wave
+    svg
+      animation translateWaveWrapper (animDuration) (animStart + .4s) forwards ease  
+      path
+        stroke-dasharray 170
+        stroke-dashoffset 170
+        animation dashOffset (animDuration) (animStart) forwards ease
+    &.large svg path
+      animation dashOffsetLarge (animDuration) (animStart) forwards ease
+      stroke-dasharray 335
+      stroke-dashoffset 335
+  
+  // Dotted lines
+  &.line
+    width 9rem
+    overflow hidden
+    opacity 0
+    clip-path polygon(0 0, 0 0, 0 100%, 0 100%)
+    animation dottedLineClip 1s (animStart + .8s) forwards ease
+    
+    svg
+      transform-origin 400% 400%
+      animation dottedLineOutro 2s (animStart + 1.1s) forwards ease
+    
+    &.top
+      top -8rem
+      right -5rem
+
+    &.left
+      top 0
+      bottom 0
+      left -10rem
+      transform rotateY(180deg) rotateZ(35deg)
+    
+    &.bottom
+      top 130%
+      left 0
+      right 0
+      margin auto
+      transform rotateY(180deg) rotateX(180deg) rotateZ(-35deg)
+
+//------------------
+// Animations
+//------------------
+
+figureAnim(hex, 8rem, 0, 0, -10rem)
+figureAnim(square, -1rem, 1rem, -5rem, 4rem)
+figureAnim(triangle, 2rem, 0, 8rem, -4rem)
+figureAnim(plus, 2rem, 8rem, 8rem, 4rem)
+
+@keyframes dottedLineOutro
+  to
+    transform rotateZ(45deg)
+
+@keyframes dottedLineClip
+  // prevents initial flicker
+  1%
+    opacity 1
+  100%
+    opacity 1
+    clip-path polygon(0 0, 100% 0, 100% 100%, 0 100%)
+
+@keyframes translateWaveWrapper
+  from
+    transform translateY(0)
+  to
+    //transform translateY(-50%)
+    transform translateY(-4rem)
+
+@keyframes dashOffset
+  50%
+    stroke-dashoffset 170
+  100%
+    stroke-dashoffset -170
+
+@keyframes dashOffsetLarge
+  50%
+    stroke-dashoffset 335
+  100%
+    stroke-dashoffset -335
+
+    
+// _close.styl
+//----------------------
+    
+animStart = 4s
+
+.close-btn-wrapper
+  @extend $abs-center
+  top auto
+  bottom 1rem
+  z-index 9
+  size(2rem)
+  animation closeTranslate .5s (animStart) forwards linear
+
+.close-btn
+  position relative
+  background #fff
+  box-shadow 0 .2rem 1rem rgba(0, 0, 0, .2)
+  size(100%)
+  border-radius 50%
+  display flex
+  animation closeJump .4s (animStart) both ease,
+            closeBounce .4s (animStart + .4s) forwards cubic-bezier(0.175, 0.885, 0.32, 1.275)
+  span
+    animation closeRotateScaleIn .4s (animStart) both ease
+    color #537DF3
+    font-size 2rem
+    cursor pointer
+    margin-top -.25rem
+    margin-left .58rem
+
+@keyframes closeTranslate
+  from
+    transform translateX(-4rem)
+  to
+    transform translateX(0)
+
+@keyframes closeBounce
+  from
+    transform translateY(-4rem)
+  to
+    transform translateY(-2rem)
+
+@keyframes closeJump
+  from
+    transform translateY(4rem) scale(.8)
+  to
+    transform translateY(-4rem) scale(1)
+
+@keyframes closeRotateScaleIn
+  from
+    transform scale(0) rotateZ(0)
+  to
+    transform scale(1) rotateZ(45deg)

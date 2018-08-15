@@ -1,0 +1,119 @@
+mixin wave()
+  svg(viewBox='0 0 751.5 25')
+    defs
+      style
+        | .wave-bottom{fill:none;stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:9px;}
+    path(class='wave-bottom' d='M344.1,803c14.3,0,14.3,16,28.6,16s14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16,14.3,16,28.6,16,14.3-16,28.6-16' transform='translate(-339.6 -798.5)')
+
+mixin waveFirework()
+  svg(viewBox='0 0 27 128')
+    path(fill='none' stroke='#FFF' stroke-linecap='round' stroke-width='8' d='M2.27373675e-13,119.1 C2.27373675e-13,109.3 18,109.4 18.1,99.5 C18.2,89.6 0.1,89.6 0.2,79.7 C0.3,69.8 18.2,70 18.3,60.1 C18.4,50.2 0.3,50.2 0.4,40.3 C0.5,30.4 18.4,30.5 18.5,20.7 C18.6,10.9 0.5,10.8 0.6,0.9' transform='translate(4 4)')
+
+mixin waveFireworkLarge()
+  svg(viewBox='56 94 26 264')
+    path(d='M61.2 353.9c-.1-10.6 15.9-10.7 15.9-21.3 0-10.6-16.1-10.5-16.1-21.2s15.9-10.7 15.9-21.3c0-10.6-16.1-10.5-16.1-21.2s15.9-10.7 15.9-21.3c0-10.6-16.1-10.5-16.1-21.2s15.9-10.7 15.9-21.3c0-10.6-16.1-10.5-16.1-21.2s15.9-10.7 15.9-21.3c0-10.6-16.1-10.5-16.1-21.2s15.9-10.7 15.9-21.3c0-10.6-16.1-10.5-16.1-21.2' stroke='#FFF' stroke-width='8' fill='none' stroke-linecap='round')
+
+mixin triangle()
+  svg(viewBox='443 -9 26 24')
+    path(d='M452.3-7c.74-1.22 2.07-1.96 3.5-1.96 1.43 0 2.76.74 3.5 1.96l4.4 7.5 4.4 7.5c.7 1.26.7 2.8-.02 4.04-.72 1.25-2.04 2.03-3.48 2.06h-17.5c-1.44-.03-2.76-.8-3.48-2.06-.7-1.25-.72-2.78-.02-4.04L448 .5l4.3-7.5z' fill='#6cf0f2')
+
+mixin hex()
+  svg(viewBox='285 -12 30 27')
+    path(d='M291.5 11.8l-4.9-8.4c-.82-1.42-.82-3.18 0-4.6l4.9-8.4c.82-1.43 2.35-2.3 4-2.3h9.8c1.65 0 3.18.87 4 2.3l4.9 8.4c.82 1.42.82 3.18 0 4.6l-4.9 8.4c-.82 1.43-2.35 2.3-4 2.3h-9.8c-1.65 0-3.18-.87-4-2.3z' fill='#FFF')
+
+mixin square()
+  svg(viewBox='366 -10 25 25')
+    rect(width='25' height='24.98' rx='5.4' fill='#FFF' transform='translate(366 -10)')
+
+mixin plus()
+  svg(viewBox='212 -16 34 34')
+    path(d='M228.9-12v25.9M216 .9h25.9' stroke='#FFF' stroke-width='8' fill='none' stroke-linecap='round')
+
+mixin dottedLine()
+  svg(viewBox='289 515 290 298')
+    path(d='M291.1 810s27.7-55.57 142.94-170.9C549.3 523.77 577 517 577 517' stroke='#FFF' stroke-width='5' stroke-dasharray='5 31' fill='none')
+
+<!-- /mixins -->
+
+.intro-circle
+.intro-circle.second
+.intro-circle.third
+
+// img(src='/assets/svg/Logo.svg', alt='Logo').logo
+
+.wave-long-wrapper
+  .wave-long-line.left
+    +wave()
+  .wave-long-line.right
+    +wave()
+    
+<!-- scoreboard -->
+.scoreboard-wrapper
+  .scoreboard-content
+    h1.scoreboard-title This is amazing !
+    h2.scoreboard-score
+      span 1
+      span 2
+      span.space
+      span 3
+      span 0
+      span 0
+      span.space
+      small.points points
+    .share-buttons
+      button.button.facebook-btn
+        // img(src='/assets/svg/facebook-square.svg', alt='Facebook')
+        svg(viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg")
+          path(d="M1376 128q119 0 203.5 84.5t84.5 203.5v960q0 119-84.5 203.5t-203.5 84.5h-188v-595h199l30-232h-229v-148q0-56 23.5-84t91.5-28l122-1v-207q-63-9-178-9-136 0-217.5 80t-81.5 226v171h-200v232h200v595h-532q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960z" fill="#4563A4")
+        | Share on Facebook
+      button.button.twitter-btn
+        // img(src='/assets/svg/twitter-square.svg', alt='Twitter')
+        svg(viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg")
+          path(d="M1408 610q-56 25-121 34 68-40 93-117-65 38-134 51-61-66-153-66-87 0-148.5 61.5t-61.5 148.5q0 29 5 48-129-7-242-65t-192-155q-29 50-29 106 0 114 91 175-47-1-100-26v2q0 75 50 133.5t123 72.5q-29 8-51 8-13 0-39-4 21 63 74.5 104t121.5 42q-116 90-261 90-26 0-50-3 148 94 322 94 112 0 210-35.5t168-95 120.5-137 75-162 24.5-168.5q0-18-1-27 63-45 105-109zm256-194v960q0 119-84.5 203.5t-203.5 84.5h-960q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960q119 0 203.5 84.5t84.5 203.5z" fill="#3FC5FB")
+        | Share on Twitter
+
+  .scoreboard-bg
+<!-- /scoreboard -->
+
+<!-- fireworks -->
+.fireworks-wrapper
+  
+  // Left
+  .firework.left.wave.yellow
+    +waveFirework()
+  .firework.left.wave.yellow.large
+    +waveFireworkLarge()
+  .firework.left.wave.cyan
+    +waveFirework()
+
+  .firework.left.figure.hex
+    +hex()
+  .firework.left.figure.square
+    +square()
+  
+  // Right
+  .firework.right.wave.white
+    +waveFirework()
+  .firework.right.wave.cyan
+    +waveFirework()
+  .firework.right.wave.yellow.large
+    +waveFireworkLarge()
+  
+  .firework.right.figure.triangle
+    +triangle()
+  .firework.right.figure.plus
+    +plus()
+  
+  // Dotted lines
+  .firework.line.top
+    +dottedLine()
+  .firework.line.left
+    +dottedLine()
+  .firework.line.bottom
+    +dottedLine()
+
+<!-- /fireworks -->
+
+.close-btn-wrapper
+  .close-btn
+    span +
