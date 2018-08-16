@@ -1,0 +1,49 @@
+// Demo SHITE
+// ====================================
+html,body {height: 100%;}body{display: flex;flex-direction:column;align-items: center;justify-content:center;width:100%;background:#F6F5DE;}svg{max-width:100%;}
+
+
+// Required SHITE
+// ====================================
+
+$electrons: 3;
+$atom-size: 100px;
+$atomic_config: (
+  name: atomic_kinetics,
+  duration: 2.5s,
+  timing: linear,
+  iteration: infinite,
+  direction: normal,
+  fill-mode: forwards
+);
+
+@function sh-setup($config) {
+  @return zip(map-values($config)...);
+}
+
+@keyframes atomic_kinetics {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.atom {
+  height: $atom-size;
+  position: relative;
+  width: $atom-size;
+
+  svg:not(#orbit) {
+    animation: sh-setup($atomic_config);
+    position: absolute;
+    top: -50%;
+    left: 0;
+    transform-origin: bottom center;
+  }
+}
+
+.atomic-title {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 40px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}

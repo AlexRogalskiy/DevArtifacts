@@ -1,0 +1,41 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: #F6F5DE;
+}
+
+svg {
+  max-width: 100%;
+}
+
+@keyframes atomic_kinetics {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.atom {
+  height: 100px;
+  position: relative;
+  width: 100px;
+}
+.atom svg:not(#orbit) {
+  animation: atomic_kinetics 2.5s linear infinite normal forwards;
+  position: absolute;
+  top: -50%;
+  left: 0;
+  transform-origin: bottom center;
+}
+
+.atomic-title {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 40px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}

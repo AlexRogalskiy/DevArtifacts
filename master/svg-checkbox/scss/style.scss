@@ -1,0 +1,81 @@
+// Demo used for SitePoint article Theming Forms w/Sass
+// http://www.sitepoint.com/theming-form-elements-sass
+
+
+// Demo
+// ====================================
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+html,body{height:100%;}body{font-family: 'Open Sans'; display:flex;flex-direction:row;align-items:center; justify-content:center;width:100%;}html{background:#1C7EA4;}div{padding:0 10px}
+
+
+// Required Styles
+// ====================================
+$font-size: 2em; // adjust accordingly
+$ratio: 1; // adjust accordingly
+$size: $ratio + em;
+$ratio: $ratio;
+$gutter: 5px; // adjust accordingly
+$stroke-dash: 270;
+$stroke: (
+  thickness: $gutter/2,
+  style: solid,
+  color: lighten(#1C7EA4, 25%)
+); // define css properties
+$mark-ischecked: (
+  stroke-dashoffset: 0
+); // define css properties
+$label-ischecked: (); // define css properties
+$svg-ischecked: (background: #5CA9D6); // define css properties
+
+input[type="checkbox"] {
+  height: 0;
+  width: 0;
+  position: absolute;
+  opacity: 0;
+
+  &:checked ~ label {
+    @each $key, $value in $label-ischecked {
+      #{$key}: #{$value};
+    }
+  }
+  
+  &:focus ~ label svg,
+  &:checked ~ label svg {
+    @each $key, $value in $svg-ischecked {
+      #{$key}: #{$value};
+    }
+  }
+
+  &:checked ~ label svg path {
+    @each $key, $value in $mark-ischecked {
+      #{$key}: #{$value};
+    }
+  }
+}
+
+input[type="checkbox"] ~ label {
+  font-size: $font-size;
+  line-height: $ratio;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  position: relative;
+  cursor: pointer;
+  color: white;
+}
+
+input[type="checkbox"] ~ label svg {
+  width: $size;
+  height: $size;
+  border: zip(map-values($stroke)...);
+  margin-right: $gutter;
+
+  path {
+    transition: stroke-dashoffset 440ms cubic-bezier(.69,.35,.63,.84);
+    fill: none;
+    stroke: #1C7EA4;
+    stroke-dasharray: $stroke-dash;
+    stroke-dashoffset: $stroke-dash;
+    stroke-width: $gutter;
+  }
+}

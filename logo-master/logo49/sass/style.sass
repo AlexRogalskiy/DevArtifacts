@@ -1,0 +1,73 @@
+@import bourbon/bourbon
+@import mixins
+
+$polyonlion-factor: 1.125
+$polyonlion-count-mane: 27
+$polyonlion-count-face: 57
+$polyonlion-count: $polyonlion-count-mane + $polyonlion-count-face
+$polyonlion-height: 115px * $polyonlion-factor
+$polyonlion-width: 98px * $polyonlion-factor
+$polyonlion-stagger: 0.025s
+$polyonlion-config: (name: polyonlion, duration: 100ms, timing: linear, iteration: 1, fill-mode: forwards)
+
+@function sh-setup($config)
+  @return zip(map-values($config)...)
+
++keyframes(polyonlion)
+  to
+    +transform(scale(1))
+    opacity: 1
+
+html, body
+  height: 100%
+body
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  width: 100%
+  background: #151C2A
+svg
+  max-width: 100%
+      
+.polyonlion
+
+  > g polygon
+    opacity: 0
+    +transform-origin(center center)
+    transition: 0.25s fill linear, 0.25s stroke linear
+
+    .no-cssanimations &
+      +transform(scale(1))
+      opacity: 1
+
+    .no-js &
+      +transform(scale(0))
+
+@for $i from 1 through $polyonlion-count
+  .no-js .polyonlion > g polygon:nth-of-type(#{$i})
+    +animation(sh-setup($polyonlion-config))
+    +animation-delay($polyonlion-stagger * $i)
+
+@for $i from 1 through $polyonlion-count-mane
+  .polyonlion > g polygon:nth-of-type(#{$i})
+    transition-delay: 0.02s * $i
+
+@for $i from 1 through $polyonlion-count-mane
+  .polyonlion:hover g#polyonlion-mane polygon:nth-of-type(#{$i})
+    fill: hsl(10 * $i, 100%, 60%)
+
+.logo
+  display: block
+  height: $polyonlion-height
+  width: $polyonlion-width
+
+  span
+    display: inline-block
+    width: 0
+    height: 0
+  
+  .polyonlion
+    height: $polyonlion-height
+    max-width: 100%
+    width: $polyonlion-width
