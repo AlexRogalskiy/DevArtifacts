@@ -4,7 +4,7 @@ var granimInstance = new Granim({
     opacity: [1, 1],
     isPausedWhenNotInView: true,
     image : {
-        source: '../images/bg-forest.jpg',
+        source: 'file:///D:/Downloads/wbdev2-code/code/granim-js/case02/images/bg-forest.jpg',
         blendingMode: 'multiply'
     },
     states : {
