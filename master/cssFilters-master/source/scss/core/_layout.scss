@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @include coverer();
+  background-color: c('base', 'main-bg');
+}
+
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.wrap {
+  display: flex;
+  height: calc(100% - 70px);
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+
+.wrap-minor {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.main {
+  background: c('base', 'main-bg');
+  flex-grow: 1;
+  overflow: hidden;
+  padding: 20px;
+  position: relative;
+}
+
+.photo {
+  @include centerer();
+}
+
+.sidebar {
+  background: linear-gradient(90deg, c('base', 'sidebar-bg-start'), c('base', 'sidebar-bg-end'));
+  border-left: solid 1px c('base', 'sidebar-border-color');
+  flex-basis: 30%;
+  overflow-y: scroll;
+}

@@ -1,0 +1,80 @@
+// scss-lint:disable SelectorFormat ImportantRule
+
+.gallery {
+  background-color: c('base', 'tab-bg-color');
+  flex-basis: 0;
+  overflow: scroll;
+  transition: all .35s cubic-bezier(.42, 0, .42, .86) 0s;
+
+  &.is-active {
+    flex-basis: 148px;
+  }
+
+  &__scroll-cont {
+    overflow: hidden !important;
+    overflow-x: scroll !important;
+  }
+
+  &__trigger {
+
+    color: c('base', 'link-color');
+    cursor: pointer;
+    float: right;
+    font-size: 13px;
+
+    i {
+      font-size: 120%;
+      margin-top: -4px;
+      position: absolute;
+      transform: rotate(90deg);
+    }
+
+    span {
+      padding-left: 27px;
+    }
+  }
+
+  &__items {
+    @include clearfix();
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 20px;
+    width: 100%;
+  }
+
+  &__item {
+    display: inline-block;
+    margin: 0 5px;
+  }
+}
+
+.thumb {
+  border: solid 1px c('base', 'border-color');
+  border-radius: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  padding-bottom: 0;
+
+  &.is-active {
+    border: solid 1px c('base', 'link-color');
+    .thumb__label { color: c('base', 'tab-label-color-active'); }
+  }
+
+  &__figure {
+    height: 75px;
+    position: relative;
+    width: 100px;
+  }
+
+  &__label {
+    color: c('base', 'slider-label-color');
+    font-size: 13px;
+    line-height: 2;
+    text-align: center;
+  }
+
+  &__img {
+    width: 100%;
+  }
+}

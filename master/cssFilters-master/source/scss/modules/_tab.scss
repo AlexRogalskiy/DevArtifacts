@@ -1,0 +1,89 @@
+// scss-lint:disable ImportantRule SelectorFormat
+.tabs {
+  &__headers {
+    display: flex;
+  }
+
+  &__item {
+    align-items: center;
+    background-color: c('base', 'tab-bg-color') !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    cursor: pointer;
+    display: flex;
+    flex-grow: 1;
+    height: 60px;
+    justify-content: center;
+    text-align: center;
+
+    &.is-active {
+      background-color: c('base', 'tab-bg-color-active');
+      cursor: default;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 20px;
+    margin-top: 50px;
+    position: relative;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__clear {
+    color: c('base', 'link-color');
+    cursor: pointer;
+    font-size: 13px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__label,
+  &__subheader {
+    color: c('base', 'tab-label-color');
+    font-size: 12px;
+    font-weight: 600 !important;
+    letter-spacing: 1px;
+    margin-top: 15px;
+    text-transform: uppercase;
+  }
+
+  &__subheader {
+    color: c('base', 'header-text-color');
+  }
+
+  &__content {
+    padding: 20px 40px;
+  }
+}
+
+.ReactTabs__Tab--selected {
+  background-color: c('base', 'tab-bg-color-active') !important;
+  border: none !important;
+  cursor: default !important;
+
+  .tabs__label {
+    color: c('base', 'header-text-color');
+  }
+
+}
+
+
+.react-tabs [role=tablist] {
+  border: none !important;
+  border-bottom: solid 1px transparent !important;
+  display: flex !important;
+  user-select: none !important;
+}
+
+.react-tabs [role=tab]:focus {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.react-tabs [role=tab]:focus::after {
+  background: transparent !important;
+}
