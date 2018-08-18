@@ -1,0 +1,59 @@
+@import "compass/css3";
+
+.button {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  border: 2px solid #fff;
+  height: 3em;
+  line-height: 3em;
+  vertical-align: middle;
+  padding: 0 2em;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  @include transition(color 250ms ease);
+
+  &:after {
+    z-index: -1;
+    content: '';
+    position:absolute;
+    width: 0;
+    height: 0;
+    top: -999px;
+    left: -999px;
+    right: -999px;
+    bottom: -999px;
+    margin: auto;
+    border: 0 solid #fff;
+    @include border-radius(50%);
+    @include transition(border 250ms ease);
+  }
+
+  &:hover {
+    color: #333;
+
+    &:after {
+      border-width: 200px;
+      @include transition(border 500ms ease);
+    }
+  }
+}
+
+
+
+
+
+
+
+body {
+  background: #333;
+  text-align: center;
+  padding: 2em;
+  font-size: 24px;
+}

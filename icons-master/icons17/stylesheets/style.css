@@ -1,0 +1,39 @@
+.menu-icon {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  height: 4em;
+  width: 4em;
+}
+.menu-icon:before, .menu-icon:after {
+  content: "";
+  position: absolute;
+  width: 4em;
+  height: 1.33333em;
+  left: 0;
+  background-color: #333;
+  transition-duration: 0.5s;
+}
+.menu-icon:after {
+  bottom: 0;
+}
+.menu-icon.is-active:before, .menu-icon.is-active:after {
+  background-color: #900;
+}
+.menu-icon.is-active:before {
+  transform: rotateZ(-135deg) scaleX(1.66667) translate(-0.88em, -0.948em);
+}
+.menu-icon.is-active:after {
+  transform: rotateZ(135deg) scaleX(1.66667) translate(-0.88em, 0.948em);
+}
+
+body {
+  text-align: center;
+  padding: 2em;
+  color: #333;
+  background: #EEE;
+}
+
+h2 {
+  margin-bottom: 2em;
+}
