@@ -1,0 +1,42 @@
+{
+  "name": "react-tiny-calendar",
+  "version": "0.1.1",
+  "description": "",
+  "main": "dist/index.js",
+  "es6": "src/index.js",
+  "scripts": {
+    "build": "npm run build-js && npm run build-styles && npm run copy-styles",
+    "build-js": "babel src -d dist --ignore **/__tests__",
+    "build-styles": "lessc ./src/Calendar.less ./src/Calendar.css",
+    "copy-styles": "node ./copy-styles.js"
+  },
+  "author": {
+    "name": "Sidhartha Chatterjee",
+    "email": "me@sidharthachatterjee.com"
+  },
+  "dependencies": {
+    "lodash.once": "^4.1.1",
+    "merge-class-names": "^1.1.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-tiny-virtual-list": "^2.1.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-class-property": "^1.0.6",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "less": "^2.7.3"
+  }
+}

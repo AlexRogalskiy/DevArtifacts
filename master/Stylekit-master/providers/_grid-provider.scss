@@ -1,0 +1,318 @@
+/* -------------------------------------------------------------------
+
+  Stylekit Grid
+
+  A lightweight, mobile-first, responsive Sass based
+  grid micro framework. Can be used by using @extends
+  or by using utility css classes
+
+  @author Indrashish Ghosh <mail@indrashishghosh.com>
+  @package Stylekit
+  @version 0.1.0
+
+----------------------------------------------------------------------
+
+  1. Grid Configuration
+  2. Internal Grid Functions
+  3. Internal Grid Mixins
+  4. Setting classtype
+  5. Basic Stup
+  6. Generating grid classes
+
+--------------------------------------------------------------------*/
+
+$grid: (
+
+  grid: (
+    columns: 12,
+    gutter: 20px,
+    margin: 10px,
+    max-width: 960px
+  ),
+
+  breakpoints: (
+    small: 0px,
+    medium: 640px,
+    large: 960px
+  ),
+
+  settings: (
+    reset-body: true,
+    silent-classes: true
+  )
+
+)!default;
+
+
+/* ---------------------------------------------------------------------
+
+  [2] Internal Grid Funtions
+
+----------------------------------------------------------------------*/
+
+/**
+ * Alias to get config data from
+ * the grid config map
+ *
+ * @param $key Name of the config whose value to fetch
+ */
+@function sk-grid-get($key, $map:$grid) {
+  @if type-of($map) != map {
+    @error "The passed param #{$map} is not a map";
+  }
+  @each $settings, $setting in $map {
+    @if ( map-has-key($setting, $key) ) {
+      @return map-get($setting, $key);
+    }
+  }
+  @return false;
+}
+
+
+/**
+ * Calculate the width of a specific grid column
+ * depending upon the total number of
+ * columns
+ *
+ * @param $column-number The column whose width is to be calculated
+ */
+@function sk-grid-calc($column-number) {
+  @return percentage( $column-number / sk-grid-get(columns) );
+}
+
+
+
+
+/* ---------------------------------------------------------------------
+
+  [3] Internal grid mixins
+
+----------------------------------------------------------------------*/
+
+/**
+ * Mixin to allow writing styles for
+ * specific viewport sizes
+ *
+ * @param $breakpoint The name of the breakpoint. This should be included in the $breakpoints map
+ */
+@mixin sk-grid-breakpoint($breakpoint){
+
+  $size: sk-grid-get($breakpoint);
+
+  @if ( $size == false ) {
+    @error "There is no value `#{$breakpoint}` in the list of breakpoints";
+  }
+
+  @media all and (min-width: #{$size}) {
+    @content;
+  }
+
+}
+
+/**
+ * Creates classes for grid widths at different sizes
+ *
+ * @param $size The breakpoint class for grid
+ * @param $i The grid iteration
+ */
+@mixin make-grid-classes($size, $i) {
+  #{$class-type}col-#{$size}-#{$i} { width: sk-grid-calc($i); }
+}
+
+/**
+ * Creates classes for 1/3 width columns at different sizes
+ *
+ * @param $size The breakpoint class for grid
+ * @param $i The grid iteration
+ */
+@mixin make-third-classes($size, $i) {
+  #{$class-type}col-#{$size}-1by3 { width: percentage(1/3); }
+  #{$class-type}col-#{$size}-2by3 { width: percentage(2/3); }
+}
+
+/**
+ * Creates classes for offsets at different sizes
+ *
+ * @param $size The breakpoint class for grid
+ * @param $i The grid iteration
+ */
+@mixin make-offset-classes($size, $i) {
+  #{$class-type}col-#{$size}-offset-#{$i} { margin-left: sk-grid-calc($i); }
+}
+
+
+/**
+ * Creates classes for push columns at different sizes
+ *
+ * @param $size The breakpoint class for grid
+ * @param $i The grid iteration
+ */
+@mixin make-push-classes($size, $i) {
+  #{$class-type}col-#{$size}-push-#{$i} { left: sk-grid-calc($i); }
+}
+
+
+/**
+ * Creates classes for pull classes at different sizes
+ *
+ * @param $size The breakpoint class for grid
+ * @param $i The grid iteration
+ */
+@mixin make-pull-classes($size, $i) {
+  #{$class-type}col-#{$size}-pull-#{$i} { right: sk-grid-calc($i); }
+}
+
+/**
+ * Creates centered grid classes at different sizes
+ *
+ * @param $size The breakpoint class for grid
+ */
+@mixin make-centered-classes($size) {
+  #{$class-type}col-#{$size}-centered { margin-left: auto; margin-right: auto; float: none; }
+}
+
+/**
+ * Loops through total number of classes
+ * and calculates the width of every grid
+ * column
+ *
+ * @param $size The value to be added to the class name
+ */
+@mixin make-grid($size) {
+  @for $i from 1 through sk-grid-get(columns) {
+    @include make-grid-classes($size, $i);
+    @include make-offset-classes($size, $i);
+    @include make-push-classes($size, $i);
+    @include make-pull-classes($size, $i);
+  }
+  @include make-third-classes($size, 1);
+  @include make-centered-classes($size);
+}
+
+
+
+/* ---------------------------------------------------------------------
+
+  [4] Sets class type depending upon configuration
+
+----------------------------------------------------------------------*/
+$class-type: unquote(".");
+
+@if ( sk-grid-get(silent-classes) ) {
+  $class-type: unquote("%");
+}
+
+
+
+/* ---------------------------------------------------------------------
+
+  [5] Some basic setup required for the grid system to work.
+
+----------------------------------------------------------------------*/
+
+@if ( sk-grid-get(reset-body) ) {
+
+  *,
+  *:after,
+  *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+}
+
+
+
+/* ---------------------------------------------------------------------
+
+  [4] The container is the top most element of the grid. All columns
+  classes must be included within this. This class has three major
+  roles:-
+
+----------------------------------------------------------------------*/
+#{$class-type}container {
+  margin: 0 auto;
+  max-width: ( sk-grid-get(max-width) + sk-grid-get(margin) );
+  padding-left: sk-grid-get(margin);
+  padding-right: sk-grid-get(margin);
+}
+
+
+
+/* ---------------------------------------------------------------------
+
+  Use row only when nesting columns. The negative left and right
+  margin automatically remove the padding left and padding right
+  of the first and last nested children respectively.
+
+----------------------------------------------------------------------*/
+#{$class-type}row {
+  margin-left: - sk-grid-get(gutter)/2;
+  margin-right: - sk-grid-get(gutter)/2;
+
+  &:before,
+  &:after {
+    content:"";
+    display:table;
+    clear:both;
+  }
+}
+
+
+
+/* ---------------------------------------------------------------------
+
+  Styles common to all grid columns. This style is extended by each
+  and every grid column.
+
+----------------------------------------------------------------------*/
+%col {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  width: 100%;
+  padding: 0 sk-grid-get(gutter)/2;
+}
+
+@for $i from 1 through sk-grid-get(columns) {
+  #{$class-type}col-s-#{$i},
+  #{$class-type}col-m-#{$i},
+  #{$class-type}col-l-#{$i},
+
+  #{$class-type}col-s-1by3,
+  #{$class-type}col-s-2by3,
+  #{$class-type}col-m-1by3,
+  #{$class-type}col-m-2by3,
+  #{$class-type}col-l-1by3,
+  #{$class-type}col-l-2by3, {
+    @extend %col;
+  }
+}
+
+
+
+
+/* ---------------------------------------------------------------------
+
+  Generating all (silent) classes for the grid according to
+  the various breakpoint sizes
+
+----------------------------------------------------------------------*/
+
+@include sk-grid-breakpoint(small) {
+  @include make-grid(s);
+}
+
+@include sk-grid-breakpoint(medium) {
+  @include make-grid(m);
+}
+
+@include sk-grid-breakpoint(large) {
+  @include make-grid(l);
+}

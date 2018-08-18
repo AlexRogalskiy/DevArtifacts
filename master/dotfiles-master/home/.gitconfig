@@ -1,0 +1,55 @@
+[user]
+	name = Indrashish Ghosh
+	email = mail@indrashishghosh.com
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset | %Cgreen(%cd)%Creset %C(blue)%an%Creset | %s %C(yellow)%d%Creset' --abbrev-commit --date=short
+    lga = log --graph --pretty=format:'%Cred%h%Creset | %Cgreen(%cd)%Creset %C(blue)%an%Creset | %s %C(yellow)%d%Creset' --all --abbrev-commit --date=short
+    g = grep --break --heading --line-number
+    co = checkout
+    s = status
+    ss = status --short --branch
+    b = branch
+    stats = shortlog -sn
+    cnf = !git ls-files -u | cut -f 2 | sort -u
+[color]
+    ui = true
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+[color "diff"]
+    commit = green
+    meta = yellow
+    frag = cyan
+    old = red
+    new = green
+    whitespace = red reverse
+[mergetool]
+    keepBackup = true
+[credential]
+    helper = osxkeychain
+[push]
+    default = simple
+[grep]
+    lineNumber = true
+[filter "media"]
+    clean = git-media-clean %f
+    smudge = git-media-smudge %f
+[core]
+    autocrlf = false
+    safecrlf = false
+    excludesfile = /Users/ghosh/.gitignore_global
+    pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+[filter "lfs"]
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+[url "https://"]
+    insteadOf = git://

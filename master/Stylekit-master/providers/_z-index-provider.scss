@@ -1,0 +1,51 @@
+/* -------------------------------------------------------------------
+
+  Stylekit z-index Provider
+
+  Define all the z-index values used by your project in
+	a single map and accessthem by using the helper
+	functions
+
+  @author Indrashish Ghosh <mail@indrashishghosh.com>
+  @package Stylekit
+  @version 0.1.0
+
+----------------------------------------------------------------------
+
+  1. z-index Configuration
+  2. z-index Function
+  3. z-index Function Alias
+
+--------------------------------------------------------------------*/
+
+$z-layers: (
+  "overlay-text": 2,
+  "overlay": 1,
+  "below": -1,
+  "bottomless-pit": -9000
+) !default;
+
+
+/* -------------------------------------------------------------------
+
+  [2] z-index Funtion
+
+--------------------------------------------------------------------*/
+@function sk-z-index($layer) {
+  @if not map-has-key($z-layers, $layer) {
+    @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+  }
+
+  @return map-get($z-layers, $layer);
+}
+
+
+
+/* -------------------------------------------------------------------
+
+  [3] z-index Funtion Alias
+
+--------------------------------------------------------------------*/
+@function z($layer) {
+  @return sk-z-index($layer);
+}

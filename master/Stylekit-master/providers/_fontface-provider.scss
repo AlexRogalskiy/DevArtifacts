@@ -1,0 +1,76 @@
+/* -------------------------------------------------------------------
+
+  Stylekit Fontface Provider
+
+  Automatically generates the code required for loading fonts
+  in the website. All font styles and weights are defined
+  in the $font-face config
+
+  @author Indrashish Ghosh <mail@indrashishghosh.com>
+  @package Stylekit
+  @version 0.1.0
+
+----------------------------------------------------------------------
+
+  1. Font face Configuration
+  2. Internal Font face mixin
+  3. Code Generation
+
+--------------------------------------------------------------------*/
+
+$font-path: "../fonts/" !default;
+
+$font-faces: false !default;
+// $font-faces: (
+//  'Merriweather': (
+//     "merriweather-light-webfont" normal normal,
+//     "merriweather-lightitalic-webfont" nomral italic
+//   ),
+//  'Rajdhani': (
+//     "rajdhani-regular-webfont" normal normal,
+//     "rajdhani-medium-webfont" bold normal
+//   ),
+// ) !default;
+
+
+
+/* -------------------------------------------------------------------
+
+  [2] Internal Font Face mixin
+
+--------------------------------------------------------------------*/
+@mixin font-face($font-family, $font-path, $font-file, $font-weight: normal, $font-style: normal ) {
+  @font-face {
+    font-family: $font-family;
+    src: url(  $font-path + $font-file + '.eot' );
+    src: url( $font-path + $font-file + '.eot?#iefix') format('embedded-opentype'),
+    url( $font-path + $font-file + '.woff') format('woff'),
+    url( $font-path + $font-file + '.woff2') format('woff2'),
+    url( $font-path + $font-file + '.ttf') format('truetype'),
+    url( $font-path + $font-file + '.svg#{$font-family}') format('svg');
+    font-weight: $font-weight;
+    font-style: $font-style;
+  }
+}
+
+
+/* -------------------------------------------------------------------
+
+  [3] @font-face code generation
+
+--------------------------------------------------------------------*/
+@if $font-faces {
+  @each $font in $font-faces {
+    $font-family: quote( #{nth($font, 1)} );
+    $font-variants: nth($font, 2);
+
+    @each $variant in $font-variants {
+      $font-path: $font-path !global;
+      $font-file: nth($variant, 1);
+      $font-weight: nth($variant, 2);
+      $font-style: nth($variant, 3);
+      @include font-face($font-family, $font-path, $font-file, $font-weight, $font-style );
+    }
+  }
+}
+

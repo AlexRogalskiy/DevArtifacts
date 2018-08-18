@@ -1,0 +1,31 @@
+// Example - @include triangle(5px, 7px, #3399cc, down);
+
+@mixin triangle ($width:10px, $height:10px, $color:#000000, $direction: down) {
+  content: "";
+  display: inline-block;
+    width: 0px;
+    height: 0px;
+
+  @if $direction == up {
+    border-top: 0;
+    border-left: $width solid transparent;
+    border-right: $width solid transparent;
+    border-bottom: $height solid $color;
+  } @else if $direction == right {
+    border-right: 0;
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-left: $height solid $color;
+  } @else if $direction == down {
+    border-bottom: 0;
+    border-left: $width solid transparent;
+    border-right: $width solid transparent;
+    border-top: $height solid $color;
+  } @else {
+    border-left: 0;
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-right: $height solid $color;
+  }
+  
+}

@@ -1,0 +1,229 @@
+/* -----------------------------------------------------------------------------
+
+  Stylekit Typography
+
+  Simple, responsive typography with fine grained control over
+  different sizes and breakpoints. Define font scales and
+  font stacks used in your project
+
+  @author Indrashish Ghosh <mail@indrashishghosh.com>
+  @package Stylekit
+  @version 0.1.0
+
+	@todo Namespace all public maps with sk-
+	@todo Namespace all public functions and mixins with sk-
+	@todo Make fs and lh function aliases of namespaced functions
+
+--------------------------------------------------------------------------------
+
+  1. Typography Configuration
+  2. Internal Typgraphy Functions
+  3. Internal Typgraphy Mixins
+  4. Public Typgraphy Mixins
+
+------------------------------------------------------------------------------*/
+
+
+$typography: ( // <-- config
+
+  body: ( // <-- category
+    'micro': ( // <-- size
+      null  : (18px, 1.5),  // <-- breakpoint: (group)
+      small : 19px,
+      medium : 20px,
+      large : 21px,
+    ),
+    'mini': (
+      null  : (15px, 1.5),
+      small : 16px,
+      medium: 17px,
+      large : 19px,
+    )
+  ),
+
+  display: (
+    'mega': (
+      null  : 18px,
+      small : 19px,
+      medium : 20px,
+      large : 21px,
+      1140px: 36px,
+      1280px: 38px
+    ),
+    'giga': (
+      null  : (15px, 1.5),
+      small : 16px,
+      medium: 17px,
+      large : 19px,
+    )
+  )
+
+) !default;
+
+
+/* -----------------------------------------------------------------------------
+
+  [2] Internal Typography Funtions
+
+------------------------------------------------------------------------------*/
+
+@function fetch-category-from-config($config, $category) {
+  @if ( map-has-key($config, $category) ) {
+    @return map-get($config, $category);
+  } @else {
+    @error "No category by the value of '#{$category}' exists in the typography config";
+  }
+}
+
+@function fetch-group-from-category($category, $group) {
+  @if ( map-has-key($category, $group) ) {
+    @return map-get($category, $group);
+  } @else {
+    @error "No size by the name of '#{$group}' exists in the typography config";
+  }
+}
+
+@function fetch-group-from-breakpoint($breakpoint, $group) {
+  @if ( map-has-key($group, $breakpoint) ) {
+    @return map-get($group, $breakpoint);
+  } @else {
+    @error "No breakpoint by the name of '#{$breakpoint}' exists in the typography config";
+  }
+};
+
+@function fetch-font-size-from-group($group, $breakpoint) {
+  $group: fetch-group-from-breakpoint($breakpoint, $group);
+  @if type-of($group) == "list" {
+    @return nth($group, 1);
+  }
+  @if type-of($group) == "number" {
+    @return $group;
+  }
+  @else {
+    @error "No breakpoint by the name of '#{$breakpoint}' exists in the typography config";
+  }
+}
+
+@function fetch-line-height-from-group($group, $breakpoint) {
+  $group: fetch-group-from-breakpoint($breakpoint, $group);
+  @if type-of($group) == "list" {
+    @return nth($group, 2);
+  }
+  @else {
+    @error "Line height for the desired property does not exist at the '#{$breakpoint}' breakpoint";
+  }
+}
+
+
+/* -----------------------------------------------------------------------------
+
+  [4] Public Typography Functions
+
+------------------------------------------------------------------------------*/
+
+
+
+@function fs($size, $category, $breakpoint:null, $map:$typography) {
+  @if type-of($map) != map {
+    @error "The passed param #{$map} is not a map.";
+  }
+
+  $category: fetch-category-from-config($map, $category);
+  $group: fetch-group-from-category($category, $size);
+  $font-size: fetch-font-size-from-group($group, $breakpoint);
+
+  @return $font-size;
+
+}
+
+
+@function lh($size, $category, $breakpoint:null, $map:$typography) {
+  @if type-of($map) != map {
+    @error "The passed param #{$map} is not a map.";
+  }
+
+  $category: fetch-category-from-config($map, $category);
+  $group: fetch-group-from-category($category, $size);
+  $line-height: fetch-line-height-from-group($group, $breakpoint);
+
+  @return $line-height;
+
+}
+
+
+
+/* -----------------------------------------------------------------------------
+
+  [3] Internal Typography Mixins
+
+------------------------------------------------------------------------------*/
+
+
+@mixin make-font-styles($font-styles) {
+  @if type-of($font-styles) == "list" {
+    font-size: nth($font-styles, 1);
+    @if (length($font-styles) > 1) { // Check against single value lists
+      line-height: nth($font-styles, 2);
+    }
+  }
+  @else {
+    font-size: $font-styles;
+  }
+}
+
+
+
+/**
+ * Prints media queries rules using a min-width stratergy for mobile first
+ * development at the given breakpoint. For the rules within the media query
+ * it calls the `make-font-styles` mixin
+ *
+ * @param  {string|number} $breakpoint  The breakpoint value for min-width query
+ * @param  {map|number} $values         The font-size or map of font-size and line-height
+ * @return {css}                        The font-size and line-height declaration
+ */
+@mixin make-responsive-markup($breakpoint, $values) {
+  @media screen and (min-width: $breakpoint) {
+    @include make-font-styles($values);
+  }
+}
+
+
+/* -----------------------------------------------------------------------------
+
+  [4] Public Typography Mixins
+
+------------------------------------------------------------------------------*/
+
+/**
+ * Prints out the font size and line height of an element at each breakpoint
+ * specified in the typograpghy config
+ *
+ * @param  {string} $size            The size name - micro, mega, nano, base etc
+ * @param  {string} $category        The broad ategory it falls under - body, display
+ * @param  {map} $map                The typography config
+ * @return {css}                     The font-size and line-height declaration
+ */
+@mixin set-font-scale($size, $category, $map:$typography) {
+  $category: fetch-category-from-config($map, $category);
+  $group: fetch-group-from-category($category, $size);
+
+  @each $breakpoint, $values in $group {
+
+    @if $breakpoint == null { // If no breakpoint use default value
+      @include make-font-styles($values);
+    }
+
+    @if type-of($breakpoint) == "number" { // If breakpoint manually specified use that
+      @include make-responsive-markup($breakpoint, $values)
+    }
+
+    @if global-variable-exists(breakpoints) {
+      @if map-has-key($breakpoints, $breakpoint) { // If size exists in breakpoint map use that
+        $breakpoint: map-get($breakpoints, $breakpoint);
+        @include make-responsive-markup($breakpoint, $values);
+      }
+    }
+
+  }
+}

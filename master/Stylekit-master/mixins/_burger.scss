@@ -1,0 +1,138 @@
+/* ---------------------------------------------------------------------
+
+	Simple Burger Menu
+
+	HTML
+	---------------------
+
+	<a href="#" class="header__menu-icon menu" id="js-burger-menu">
+			<span class="menu__icon"></span>
+	</a>
+
+
+	Sass
+	---------------------
+
+	.menu {
+		padding: 20px;
+		padding-right: 0; // No negate margin on mobile
+
+		&__icon {
+			@include burger(25px, 2px, 3px, color(neutral, darker), 3px);
+		}
+
+		&.is-active {
+			.menu__icon {
+				@include burger-to-cross();
+			}
+		}
+	}
+
+	Javascript
+	----------------------------------
+	<script>
+			var menuButton = document.getElementById('js-burger-menu');
+			menuButton.addEventListener('click', function (e) {
+						menuButton.classList.toggle('is-active');
+						e.preventDefault();
+			});
+	</script>
+
+----------------------------------------------------------------------*/
+
+
+@mixin burger($width: 30px, $height: 5px, $gutter: 3px, $color: #000, $border-radius: 0, $transition-duration: .3s) {
+	$burger-height: $height !global;
+	$burger-gutter: $gutter !global;
+
+	position: relative;
+	margin-top: $height + $gutter;
+	margin-bottom: $height + $gutter;
+
+	&, &:before, &:after {
+		display: block;
+		width: $width;
+		height: $height;
+		background-color: $color;
+		@if $border-radius != 0 {
+			border-radius: $border-radius;
+		}
+
+		-webkit-transition-property: background-color, -webkit-transform;
+		-moz-transition-property: background-color, -moz-transform;
+		-o-transition-property: background-color, -o-transform;
+		transition-property: background-color, transform;
+
+		-webkit-transition-duration: $transition-duration;
+		-moz-transition-duration: $transition-duration;
+		-o-transition-duration: $transition-duration;
+		transition-duration: $transition-duration;
+	}
+
+	&:before, &:after {
+		position: absolute;
+		content: "";
+	}
+
+	&:before {
+		top: -($height + $gutter);
+	}
+
+	&:after {
+		top: $height + $gutter;
+	}
+}
+
+
+/**
+ * Select parts of the burger
+ */
+
+@mixin burger-parts {
+	&, &:before, &:after {
+		@content;
+	}
+}
+
+@mixin burger-top {
+	&:before {
+		@content;
+	}
+}
+
+@mixin burger-middle {
+	& {
+		@content;
+	}
+}
+
+@mixin burger-bottom {
+	&:after {
+		@content;
+	}
+}
+
+
+/**
+ * Burger animations
+ */
+
+ @mixin burger-to-cross {
+	& {
+		background-color: transparent;
+	}
+	&:before {
+		-webkit-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+		-moz-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+		-ms-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+		-o-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+		transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+	}
+	&:after {
+		-webkit-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+		-moz-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+		-ms-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+		-o-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+		transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+	}
+}

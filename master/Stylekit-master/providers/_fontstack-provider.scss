@@ -1,0 +1,39 @@
+	// Usage
+	// font-family: ff(body);
+	// font-family: get-font-stack(body);
+	// @include set-font-stack(display);
+
+$font-stack: (
+	primary: ( "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Helvetica", "Arial", sans-serif ),
+	secondary: ( "Georgia", "Times New Roman", "Times", serif ),
+	code: ( "Source Code Pro", "Consolas", "Courier", monospace )
+) !default;
+
+
+/**
+ * Checks if the specified font stack exists in the
+ * typograpghy config and returns it if present
+ */
+@function get-font-stack($key, $map:$font-stack) {
+	@if type-of($map) != map {
+		@error "The passed param #{$map} is not a map.";
+	}
+	@if ( map-has-key($map, $key) ) {
+		@return map-get($map, $key);
+	} @else {
+		@error "There is no value `#{$key}` in the $font-stack map";
+	}
+}
+
+@function ff($key) {
+	@return get-font-stack($key);
+}
+
+
+/**
+ * Sets the font stack
+ */
+@mixin set-font-stack($stack) {
+	$fonts: get-font-stack($stack);
+	font-stack: $fonts;
+}

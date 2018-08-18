@@ -1,0 +1,80 @@
+/* -------------------------------------------------------------------
+
+  Stylekit Color Provider
+
+  Categorize and define all colors used in your project into
+  different palletes and access them by using the helper
+  functions
+
+  @author Indrashish Ghosh <mail@indrashishghosh.com>
+  @package Stylekit
+  @version 0.1.0
+
+----------------------------------------------------------------------
+
+  1. Color Configuration
+  2. Color Funtion
+  3. Color Funtion Alias
+
+--------------------------------------------------------------------*/
+
+
+$colors: (
+  neutral: (
+    default: #616567,
+    darker: #394042
+  ),
+  accent: (
+    default: #93D4BC,
+    secondary: #cb202d
+  ),
+  social: (
+    twitter: #55acee,
+    dribbble: #ea4c89,
+    github: #2d2d2a,
+    zomato: #cb202d
+  )
+) !default;
+
+
+/* -------------------------------------------------------------------
+
+  [2] Color Funtion
+
+--------------------------------------------------------------------*/
+
+/**
+ * Returns a colour in HEX format depending upon the palette
+ * and tone specified.
+ */
+@function sk-color($palette, $tone: "default", $colors:$colors) {
+
+    $group: null;
+
+    @if type-of($colors) != map { // Check if colors map exists and is valid
+      @error "The passed param $colors is not a map.";
+    }
+
+    @if ( map-has-key($colors, $palette) ) { // Check if the specified pallete exists
+      $group: map-get($colors, $palette);
+    } @else {
+      @error "No pallete by the name of '#{$palette}' in $colors map"
+    }
+
+    @if ( map-has-key($group, $tone) ) { // Check id the specified tone exists
+      @return map-get($group, $tone);
+    } @else {
+      @error "No color by the name of '#{$tone}' in the '#{$palette}' palette"
+    }
+
+}
+
+
+/* -------------------------------------------------------------------
+
+  [3] Color Funtion Alias
+
+--------------------------------------------------------------------*/
+@function c($palette, $tone: 'default') {
+  @return sk-color($palette, $tone)
+}

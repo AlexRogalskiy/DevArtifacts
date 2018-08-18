@@ -1,0 +1,76 @@
+{
+  "name": "crimp",
+  "productName": "Crimp",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Mac app for image, gif and document compression and minification",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [
+    "compression",
+    "mac",
+    "electron",
+    "jpg",
+    "electron",
+    "minification",
+    "mac app"
+  ],
+  "author": "ghosh",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "darwin": [
+          "zip"
+        ]
+      },
+      "publish_targets": {
+        "darwin": [
+          "github"
+        ]
+      },
+      "electronPackagerConfig": {
+        "appCopyright": "Created by Indrashish Ghosh\nCopyright © 2017 www.ghosh.io",
+        "appBundleId": "io.ghosh.crimp",
+        "appCategoryType": "public.app-category.productivity",
+        "packageManager": "yarn",
+        "icon": "assets/crimp.icns"
+      },
+      "electronInstallerDMG": {
+        "name": "Crimp"
+      },
+      "github_repository": {
+        "owner": "Ghosh",
+        "name": "Crimp",
+        "draft": true
+      }
+    }
+  },
+  "dependencies": {
+    "datauri": "^1.1.0",
+    "electron-compile": "^6.4.2",
+    "fs-extra": "^5.0.0",
+    "imagemin": "^5.3.1",
+    "imagemin-gifsicle": "^5.2.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-pngquant": "^5.0.1",
+    "imagemin-svgo": "^6.0.0",
+    "plur": "^2.1.2",
+    "pretty-bytes": "^4.0.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-dropzone": "^4.2.9",
+    "react-hot-loader": "^4.0.0",
+    "styled-components": "^3.2.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "electron-prebuilt-compile": "1.8.2"
+  }
+}
