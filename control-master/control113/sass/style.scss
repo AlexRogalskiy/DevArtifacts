@@ -1,0 +1,37 @@
+@import "compass/css3";
+
+$brand-color: red;
+// must be added to a wrapper element of an image
+//(<img> elements don't accept psuedo elements)
+@mixin play-button ($fontsize, $circlesize) {
+	position: relative;
+  
+	&:after {
+		content: '▶';
+		display: block;
+		width: $circlesize;
+		height: $circlesize;
+		border-radius: 100%;
+		position: absolute;
+		left: calc(50% - #{$circlesize / 2});
+		top: calc(50% - #{$circlesize / 2});
+		background-color: $brand-color;
+		background-color: transparentize($brand-color, .4);
+		color: white !important; //override more 
+		font-size: $fontsize;
+		line-height: $circlesize * 1.1;
+		text-align: center;
+    vertical-align: bottom;
+	}
+}
+//unrelated css
+div {
+  margin: 0 auto;
+  max-width: 500px;
+}
+.video-overlay-play {
+  height: 100%;
+  positon: absolute;
+  width: 100%;
+  @include play-button (2em, 2em);
+}

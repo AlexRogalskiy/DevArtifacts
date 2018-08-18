@@ -1,0 +1,51 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 5000px;
+}
+blockquote {
+  background-color: #f5f5f5;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin: 2rem 0;
+  padding: 1.5rem;
+}
+.wrapper {
+  margin: 0 auto;
+  max-width: calc(100% - 2rem);
+  padding: 112px 0;
+  @media (min-width: 620px) {
+     max-width: 600px; 
+  }
+}
+.special {
+  font-size: 1.25rem;
+}
+.scrolling {
+  color: white;
+  left: 0;
+  margin: 0;
+  padding: 2rem 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  &--down {
+   background-color: green;
+    transition: top .5s ease;
+    top: -91px;
+    [data-scrolldir=down] & {
+      top: 0;
+    }
+  }
+  &--up {
+    background-color: red;
+    bottom: -91px;
+    transition: bottom .5s ease;
+    [data-scrolldir=up] & {
+      bottom: 0;
+    }
+  }
+}
