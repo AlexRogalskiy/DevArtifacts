@@ -1,0 +1,183 @@
+$sunLoaderColor: white;
+$strokeWidth: 8;
+
+body {
+ margin: 0;
+  background-color: #444;
+}
+
+.container {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  margin-top: calc(50vh - 100px);
+}
+
+.sunbeam {
+  stroke: $sunLoaderColor;
+  stroke-width: $strokeWidth;
+  stroke-linecap: round;
+  fill-rule: evenodd;
+  fill: white;
+  
+  animation-name: loaderAnimBeams;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  
+  &.first {
+    animation-name: loaderAnimBeamFirst;
+    transform-origin: bottom;
+    -moz-transform-origin: 50% 38%;
+    transform: rotate(45deg);
+  }
+}
+
+.sunbody {
+  @extend .sunbeam;
+  fill: transparent;
+  stroke-width: 2 * $strokeWidth;
+  animation-name: none;
+}
+
+.cloud {
+  @extend .sunbeam;
+  
+  &.cloud-right {
+    fill: #eee;
+    animation-name: loaderAnimSmallCloud;
+  }
+  
+  &.cloud-left {
+    animation-name: loaderAnimBigCloud;
+  }
+}
+
+
+@-webkit-keyframes loaderAnimBeams {
+  3%, 50% {
+    filter: alpha(opacity=0);
+  }
+  0%, 80%, 100% {
+    filter: alpha(opacity=100);
+  }
+}
+
+@keyframes loaderAnimBeams {
+  3%, 50% {
+    opacity: 0;
+  }
+  0%, 80%, 100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes loaderAnimBeamFirst {
+  3%, 50% {
+    transform: rotate(45deg);
+  }
+  0%, 60%, 100% {
+    transform: rotate(0);
+  }
+}
+
+@keyframes loaderAnimBeamFirst {
+  3%, 50% {
+    transform: rotate(45deg);
+  }
+  0%, 60%, 100% {
+    transform: rotate(0);
+  }
+}
+
+@-webkit-keyframes loaderAnimSmallCloud {
+  0% {
+    -webkit-transform: translate(0,0);
+    filter: alpha(opacity=0);
+  }
+  5% {
+    -webkit-transform: translate(0,0);
+    filter: alpha(opacity=100);
+  }
+  50% {
+    -webkit-transform: translate(-150px);
+    filter: alpha(opacity=100);
+  }
+  75% {
+    filter: alpha(opacity=0);
+  }
+  100% {
+    -webkit-transform: translate(-240px);
+    filter: alpha(opacity=0);
+  }
+}
+
+@keyframes loaderAnimSmallCloud {
+  0% {
+    transform: translate(0,0);
+    opacity: 0;
+  }
+  5% {
+    transform: translate(0,0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-150px);
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-240px);
+    opacity: 0;
+  }
+}
+
+
+@-webkit-keyframes loaderAnimBigCloud {
+  0% {
+    -webkit-transform: translate(0);
+    opacity: 0;
+  }
+  5% {
+    -webkit-transform: translate(0);
+    filter: alpha(opacity=100);
+  }
+  60% {
+    -webkit-transform: translate(-80px);
+    filter: alpha(opacity=100);
+  }
+  85% {
+    filter: alpha(opacity=0);
+  }
+  100% {
+    -webkit-transform: translate(-110px);
+    filter: alpha(opacity=0);
+  }
+}
+
+@keyframes loaderAnimBigCloud {
+  0% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  5% {
+    transform: translate(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(-80px);
+    opacity: 1;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-110px);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,151 @@
+body {
+	background: #0b263c;
+	position: relative;
+	height: 90vh;
+}
+
+.centerize {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+}
+*:before,
+*:after {
+	content: "";
+	position: absolute;
+}
+
+.planet {
+	height: 200px;
+	width: 200px;
+	background: #3f8cb5;
+	border-radius: 100%;
+	box-shadow: inset -20px -20px 0px 0px #92375673;
+	position: relative;
+	overflow: hidden;
+	z-index:4;
+}
+.planet *{
+	opacity: 0.6;
+}
+.planet,.land,.clouds,.moon{
+	transform:scale(0.5,0.5);
+}
+.land{
+	position:absolute;
+	background: #45f335;
+	border-radius:100px;
+	height:30px;
+	width:70px;
+	transform:scale(1,1);
+	top:25px;
+	left: -100px;
+	box-shadow: 
+					110px 110px 0 7px #45f335, 
+					80px 60px 0 1px #45f335, 
+					-140px 105px 0px 0px #45f335,
+					-120px 60px 0px 9px #45f335,
+					-220px 0px 0 7px #45f335,
+					-220px 0px 0 1px #45f335
+		;
+	animation: panning 8s linear infinite;
+}
+.clouds{
+	z-index: 5;
+	opacity:1 ;
+	position:absolute;
+	background: #fff;
+	border-radius:100px;
+	height:20px;
+	width:50px;
+	transform:scale(1,1);
+	top:25px;
+	left: -100px;
+	box-shadow: 
+					60px 110px 0 7px #fff, 
+					30px -10px 0 2px #fff, 
+					150px 10px 0 2px #fff, 
+					130px 40px 0 2px #fff, 
+					-140px 105px 0px 3px #fff,
+					-120px 60px 0px 9px #fff,
+					-220px 0px 0 7px #fff,
+					-220px 60px 0 1px #fff,
+					-220px 0px 0 1px #fff
+		;
+	animation: panning 6s linear infinite;
+}
+
+.moon{
+	position: absolute;
+	width:50px;
+	height:50px;
+	border-radius: 50px;
+	background: #e2e2e2;
+	top: 45%;
+	left: -150px;
+	transform: scale(0.5,0.5);
+	box-shadow: inset -6px -6px 0 0px #a7a7a7;
+	animation: circulate 6s ease-in-out infinite;
+}
+
+.galaxy{
+	background: salmon;
+	z-index:1;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    box-shadow: 
+		 	200px 100px 0 0px violet,
+		 	-40px 200px 0 0px #3f51b5,
+		 	-50px 0px 0 -8px white,
+		 	-30px 250px 0 -8px white,
+		 	-10px 180px 0 -8px white,
+		 	230px 100px 0 -8px white,
+		 	230px 160px 0 -8px white,
+		 	130px 160px 0 -8px white,
+		 	10px 200px 0 -8px white,
+		 	100px 200px 0 -8px white,
+		 	120px 20px 0 -8px white,
+		 	180px 0px 0 -8px white,
+		 	50px 50px 0 -8px white,
+		 	90px 100px 6em 200px #053358;
+}
+
+@keyframes circulate{
+	0%,100%{
+		left: -50px;
+		transform: scale(0.5,0.5);
+		box-shadow: inset -3px -7px 0 0px #a7a7a7;
+		z-index:7;
+	}
+	25%{
+		transform:scale(1,1);
+	}
+	40%{
+		left: 180px;
+		box-shadow: inset -5px -7px 0 0px #a7a7a7;
+	}
+	55%{
+		z-index:3;
+		transform: scale(0.3,0.3);
+		box-shadow: inset -3px -7px 0 6px #a7a7a7;
+
+		
+	}85%{
+		box-shadow: inset -1px -7px 0 0px #a7a7a7;
+	}
+	100%{
+		z-index:3;
+	}
+}
+
+@keyframes panning{
+	0%{
+		left:-180px;
+	}
+	100%{
+		left: 400px;
+	}
+}

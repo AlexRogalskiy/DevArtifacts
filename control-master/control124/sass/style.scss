@@ -1,0 +1,70 @@
+$duration: 0.2s;
+$easing: ease-in-out;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(45deg, rgb(220,220,200), rgb(220,160,120));
+  padding: 0;
+  margin: 0;
+  padding-top: 50px;
+  text-align: center;
+  height: 100vh;
+}
+
+[data-wipe] {
+  display: inline-block;
+  position: relative;
+  border: solid 2px rgb(90,80,80);
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  color: rgb(90,80,80);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  overflow: hidden;
+  text-align: left;
+  
+  &:before, &:after {
+    content: attr(data-wipe);
+    padding-top: inherit;
+    padding-bottom: inherit;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    color: white;
+    background: rgb(90,80,80);
+  }
+  
+  &:before {
+    left: 0;
+    text-indent: 18px;
+    width: 0;
+  }
+  
+  &:after {
+    padding-left: inherit;
+    padding-top: inherit;
+    left: 100%;
+    width: 100%;
+    text-indent: calc(-100% - 36px);
+    transition: $duration $easing;
+  }
+  
+  
+  &:hover {
+    &:before {
+      width: 100%;
+      transition: width $duration $easing;
+    }
+    
+    &:after {
+      left: 0;
+      text-indent: 0;
+      transition: 0s $duration $easing;
+    }
+  }
+}

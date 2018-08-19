@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+}
+
+nav {
+  background: #141414;
+  width: 100vw;
+  height: 100vh;
+  transition: background 500ms ease;
+  -webkit-transition: background 500ms ease;
+  -moz-transition: background 00ms ease;
+  -o-transition: background 500ms ease;
+}
+
+#hamburger {
+  position: absolute;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+#hamburger img {
+  -webkit-filter: invert(1);
+  -ms-filter: invert(1);
+  filter: invert(1);
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+#hamburger span, #hamburger span::before, #hamburger span::after {
+  position: absolute;
+  top: 28px;
+  left: 10px;
+  height: 4px;
+  width: 40px;
+  background: white;
+  transition: all 300ms ease;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+}
+#hamburger span::before, #hamburger span::after {
+  content: '';
+  transition: all 300ms ease;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+}
+#hamburger span::before {
+  top: -12px;
+  left: 0;
+}
+#hamburger span::after {
+  top: 12px;
+  left: 0;
+}
+
+nav.open {
+  width: 100vw;
+  background: rgba(20, 20, 20, 0.95);
+  transition: all 300ms ease;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+}
+nav.open #hamburger {
+  background: transparent;
+}
+nav.open #hamburger img {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  transition: opacity 300ms ease 300ms;
+  -webkit-transition: opacity 300ms ease 300ms;
+  -moz-transition: opacity 300ms ease 300ms;
+  -o-transition: opacity 300ms ease 300ms;
+}
+nav.open #hamburger span, nav.open #hamburger span::before, nav.open #hamburger span::after {
+  background: transparent;
+}
+nav.open #hamburger span::before {
+  border-top: solid 2px white;
+  height: 40px;
+  border-radius: 50%;
+  top: -18px;
+  left: 0;
+  transition: all 300ms ease;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+}
+nav.open #hamburger span::after {
+  border-bottom: solid 2px white;
+  height: 40px;
+  border-radius: 50%;
+  top: -18px;
+  left: 0;
+  transition: all 300ms ease;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+}
+nav.open #hamburger:hover img {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transition: opacity 100ms ease;
+  -webkit-transition: opacity 100ms ease;
+  -moz-transition: opacity 100ms ease;
+  -o-transition: opacity 100ms ease;
+}
+nav.open #hamburger:hover span, nav.open #hamburger:hover span::before, nav.open #hamburger:hover span::after {
+  background: transparent;
+  -webkit-transform: rotate(0);
+  transform: rotate(0);
+  border-color: transparent;
+}
+nav.open #hamburger:hover span::before {
+  background: white;
+  height: 4px;
+  border-width: 0;
+  top: 0;
+  border-radius: 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+nav.open #hamburger:hover span::after {
+  background: white;
+  height: 4px;
+  border-width: 0;
+  top: 0;
+  border-radius: 0;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}

@@ -1,0 +1,107 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, Helvetica, sans-serif;
+  font-weight: 300;
+  color: white;
+  -webkit-appearance: none;
+}
+
+#wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgb(90,100,110);
+}
+
+label {
+  vertical-align: middle;
+}
+
+#angle {
+  position: fixed;
+  left: -10%;
+  top: 40%;
+  width: 200%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  z-index: 1;
+  
+  transform: rotate(-5deg);
+  -webkit-transform: rotate(-5deg);
+}
+
+center {
+  position: relative;
+  margin-top: 100px;
+}
+
+input[name="save"] {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: solid 1px white;
+  background: rgba(0,0,0,0.3);
+  box-shadow: inset 0 1px 1px black,
+              inset 0 -1px 1px rgba(255,255,255,0.4);
+}
+
+input[name="save"]::before {
+  content: '';
+  background: transparent;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+}
+
+input[name="save"]:checked::before {
+  background: white;
+}
+
+
+input[name="save"] {
+  position:relative;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  border:solid white;
+  border-width: 1px;
+  margin-right:10px;
+  vertical-align:-3px;
+  cursor:pointer;
+  vertical-align: middle;
+  transition:all 300ms ease;
+  -webkit-transition:all 300ms ease;
+  -moz-transition:all 300ms ease;
+  -o-transition:all 300ms ease;
+}
+
+input[name="save"]:focus {
+  outline: none;
+}
+
+input[name="save"]:checked {
+  transform:rotate(40deg);
+  -webkit-transform:rotate(40deg);
+  border-radius:0;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  background:transparent;
+  width:10px;
+  height:16px;
+  vertical-align:0;
+  box-shadow: none;
+  transition:all 300ms ease;
+  -webkit-transition:all 300ms ease;
+  -moz-transition:all 300ms ease;
+  -o-transition:all 300ms ease
+}

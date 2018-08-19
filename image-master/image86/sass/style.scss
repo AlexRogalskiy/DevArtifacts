@@ -1,0 +1,123 @@
+*:before, *:after{
+	content:"";
+	position:absolute;
+}
+body{
+	font-family: sans-serif;
+	background: #fcd000;
+	margin: 0;
+}
+body:after{
+	width: 100%;
+	height: 450px;
+	bottom:0;
+	z-index:-1;
+}
+.wrap {
+    position: absolute;
+	 border-radius: 300px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 6em 100px #ffe154;
+}
+
+.cake:before{
+	height: 0; width: 0;
+	border-bottom: 100px solid #65433F;
+	border-right: 250px solid transparent;
+	border-left: 100px solid transparent;
+	top: -100px;
+}
+.cake{
+	position: relative;
+	width: 350px;
+	height:150px;
+	background: #ffe8dd;
+	z-index: 3;
+	border-bottom-left-radius:10px;
+	box-shadow: 50px 40px 0px -40px rgba(128, 128, 128, 0.56), 
+					inset 0px 15px #966762;
+}
+
+.cake:after{
+	width: 320px;
+	height:40px;
+	background: #f1b7b0;
+	top:40px;
+	right: 0;
+	box-shadow: 0 40px #d08e86;
+}
+
+.choices input[type="checkbox"]{
+	display:inline-block;
+}
+.cherri{
+	width: 60px; height: 60px; 
+	background: white;
+	border-radius: 100px;
+	position:absolute;
+	top:-100px; left: 110px;
+	box-shadow:inset -5px -10px 5px 11px rgb(204, 58, 58),
+					inset -5px -12px 0px 25px rgb(234, 73, 72);
+	z-index:5;
+}
+.cherri:before{
+	height:30px; width: 20px;
+	border-left: 7px solid #2eb359;
+	border-top: 10px solid #06772b;
+	border-top-left-radius:100px;
+	top:-20px; left: 50px;
+	transform:rotate(25deg);
+	z-index:4;
+}
+.sprinkle:after, 
+.sprinkle:before, 
+.sprinkle{
+	width: 30px; height: 10px;
+	position:absolute;
+}
+.sprinkle{
+	top:-90px; left: 70px;
+	transform:rotate(127deg);
+	background: cyan;
+	box-shadow: -20px -120px yellow;
+}
+.sprinkle:before{
+	transform:rotate(7deg);
+	top:-20px; left: 90px;
+	background: yellow;
+	box-shadow: -50px -20px cyan;
+}
+.sprinkle:after{
+	background: pink;
+	transform:rotate(90deg);
+	top:0px; left: 50px;
+	box-shadow: -200px 100px cyan;
+
+}
+.plate{
+	position:absolute;
+	width: 500px;
+   height: 160px;
+   top: 53px;
+   left: -75px;
+   background: #fff;
+   transform: skew(-15deg);
+	border-radius:100%;
+   border-bottom: 5px solid #ccc;
+	box-shadow: 24px 7px 0px -7px rgba(128, 128, 128, 0.56)
+}
+.plate:before{
+	position:absolute;
+	width: 500px;
+   height: 150px;
+	top: 7px;
+	left: -30px;
+	background: #fff;
+	transform: skew(-15deg);
+	transform: scale(0.7);
+	border-radius: 100%;
+	border-left: 10px solid #eee;
+}
