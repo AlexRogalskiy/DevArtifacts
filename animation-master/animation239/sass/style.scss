@@ -1,0 +1,947 @@
+@import "compass";
+//colors
+$body-primary: #FA7775;
+$body-secondary: #C6EDFF;
+$base: #4B1A61;
+$love: #fe1239;
+$bg: #f5f4f1; 
+//Let's start
+* { 
+  margin: 0;
+  padding: 0;
+  @include box-sizing(border-box);
+}
+
+body {
+  background-color: $bg;
+  text-align: center;
+  overflow: hidden;
+}
+
+.stage {
+  $container-width: 800px;
+  position: relative;
+  min-height: 80vh;
+  width: $container-width;
+  margin: auto;
+}
+
+//ground base
+.ground-line {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0; 
+  overflow: hidden; 
+  height: 6px;
+  div{
+    width: 1600px; 
+    font-size: 0;
+    @include animation(roadLine 3s infinite linear);
+  } 
+  span{
+    height: 6px;  
+    display: inline-block;
+    background-color: $base;
+    @include border-radius(6px);
+    vertical-align: bottom;
+    margin-right: 20px;
+  }
+  .line1{ 
+    width: 80px;
+  }
+  .line2{
+    width: 580px; 
+  }
+  .line3{
+    width: 80px; 
+  }
+}
+
+//tree
+.tree-wrap{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden; 
+}
+.tree {
+  position: absolute;
+  right: 0;
+  margin-left: -30px;
+  bottom: 6px;
+  z-index: 8;
+  @include animation(tree 6.2s infinite linear);
+  .stem {
+    width: 6px;
+    @include border-radius(6px 6px 0 0);
+    height: 100px;
+    background-color: lighten($base, 5%);
+    .branch {
+      width: 4px;
+      @include border-radius(4px);
+      background-color: lighten($base, 5%);
+      position: absolute;
+      z-index: 10;
+    }
+    .branch1 {
+      bottom: 25px;
+      height: 30px;
+      left: 10px;
+      @include transform(rotate(45deg));
+    }
+    .branch2 {
+      bottom: 40px;
+      height: 20px;
+      right: 8px;
+      @include transform(rotate(-45deg));
+    }
+    .branch3 {
+      bottom: 60px;
+      height: 15px;
+      left: 5px;
+      @include transform(rotate(45deg));
+    }
+  }
+  .leef {
+    z-index: -1;
+    @include border-radius(50%);
+    position: absolute;
+    background-color: #abec39;
+    border: solid 4px lighten($base, 5%);
+  }
+  .leef1 {
+    width: 48px;
+    height: 48px;
+    top: -15px;
+    left: -22px
+  }
+  .leef2 {
+    width: 68px;
+    height: 68px;
+    top: 18px;
+    left: -32px;
+    &::after {
+      content: '';
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      background-color: #abec39;
+      z-index: 9;
+      left: 25%;
+      @include border-radius(50%);
+      top: -18px;
+    }
+  }
+}
+
+.vehicle-body {
+  width: 500px;
+  height: 220px;
+  position: absolute;
+  right: 20%;
+  bottom: 33px;
+  z-index: 9;
+  //opacity: 0.8; 
+  @include border-radius(15px 60px 0 15px);
+  .wrap-body{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    @include animation(body 3s infinite ease);
+  }
+  .body-cover {
+    position: absolute;
+    border: solid 5px $base;
+    width: 100%;
+    background-color: $body-secondary;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    @include border-radius(15px 60px 0 15px);
+  }
+}
+
+.top-roof {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #ffe400;
+  border-bottom: solid 4px $base;
+  width: 100%;
+  height: 14px;
+}
+.rooftop {
+  background-color: $body-primary;
+  border: solid 4px $base;
+  border-bottom: none;
+  bottom: 100%;
+  overflow: hidden;
+  position: absolute;
+  &::after {
+    content:'';
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    background-color: darken($body-primary, 4%);
+    height: 50%;
+  }
+  &.back{
+    width: 60px;
+    left: 20%;
+    height: 15px;
+    @include border-radius(4px 4px 0 0);
+  }
+  &.front{
+    width: 80px;
+    left: 40%;
+    height: 25px;
+    @include border-radius(4px 20px 0 0);
+  }
+}
+
+.side-guard {
+  background-color: $body-primary;
+  border-top: solid 4px $base;
+  bottom: 4px;
+  position: absolute;
+  left: 4px;
+  width: calc(100% - 8px);
+  height: 50px;
+  @include border-radius(0 0 0 10px);
+  .shade {
+    position: absolute;
+    left: 0px;
+    @include border-radius(0 0 0 15px);
+    bottom: 0px;
+    width: 100%;
+    background-color: darken($body-primary, 4%);
+    height: 40%;
+  }
+  .bumper {
+    position: absolute;
+    border: solid 4px $base;
+    height: 18px;
+    position: absolute;
+    background-color: #a6a6a6;
+    @include border-radius(4px);
+    &.front {
+      right: -12px;
+      width: 22px;
+      height: 22px;
+      bottom: -10px;
+    }
+    &.back {
+      width: 29px;
+      top: 11px;
+      @include box-shadow(0 3px 0 rgba(black, .15));
+      left: -15px;
+    }
+  }
+  .front-indicator {
+    width: 26px;
+    height: 11px;
+    @include box-shadow(0 3px 0 darken($body-primary, 4%));
+    position: absolute;
+    border: solid 3px $base;
+    right: 10px;
+    background-color: #ffe400;
+    top: 5px;
+  }
+}
+
+.indi {
+  width: 24px;
+  height: 10px;
+  @include box-shadow(0 3px 0 darken($body-secondary, 6%));
+  position: absolute;
+  border: solid 3px $base;
+  left: 10px;
+  background-color: #ffa700;
+  &.back-top-indicator {
+    top: 24px;
+  }
+  &.back-bottom-indicator {
+    bottom: 60px;
+  }
+}
+
+.back-window {
+  height: 53%;
+  top: 14%;
+  left: 50px;
+  width: 190px;
+  position: absolute;
+  .window-base {
+    width: 100%;
+    height: 12px;
+    background-color: #abec39;
+    @include border-radius(10px);
+    border: solid 3px $base;
+    @include box-shadow(0 3px 0 rgba(black, .15));
+    position: relative;
+    z-index: 1;
+    &.top {
+      top: 0;
+    }
+    &.bottom {
+      bottom: 0;
+      position: absolute;
+      left: 0;
+    }
+  }
+  .sun-shade {
+    background-color: $body-primary;
+    border: solid 4px $base;
+    border-top: none;
+    width: 90%;
+    margin-left: 4.5%;
+    height: 23px;
+    position: relative;
+    z-index: 0;
+  }
+  .curtain {
+    position: relative;
+    width: 90%;
+    margin-left: 5%;
+    font-size: 0;
+    z-index: 2;
+    span {
+      width: calc(100%/8);
+      height: 15px;
+      @include border-radius(0 0 15px 15px);
+      display: inline-block;
+      background-color: $body-primary;
+      border: solid 4px $base;
+      border-top: none;
+      @include box-shadow(0 3px 0 rgba(black, .15));
+      margin-left: -4px;
+      @include animation(curtain 0.5s infinite linear);
+      &:nth-child(even) {
+        background-color: #fff;
+      }
+      + span {
+        width: calc( (100% / 8) + 2px);
+      }
+    }
+  }
+  .windows-glass-wrap {
+    background-color: #f5f4f1;
+    border-left: solid 4px $base;
+    height: 60px;
+    width: 80%;
+    margin-left: 9%;
+    margin-top: -10px;
+    border-right: solid 4px $base;
+    padding: 2px 5px;
+    font-size: 0;
+    .glass {
+      background-color: darken($body-secondary, 15%);
+      overflow: hidden;
+      border: solid 3px $base;
+      @include border-radius(6px);
+      width: 46%;
+      height: 100%;
+      margin-top: -3px;
+      display: inline-block;
+      position: relative;
+      z-index: 0;
+      &::after {
+        $dark-s-body: darken($body-secondary, 25%);
+        content: "";
+        position: absolute;
+        background-color: rgba($dark-s-body, .5);
+        width: 100%;
+        @include border-radius(0 0 10px 10px);
+        height: 60%;
+        top: 0;
+        left: 0;
+      }
+      + .glass {
+        margin-left: 4%;
+      }
+    }
+    .light {
+      width: 130%;
+      height: 100%;
+      position: absolute;
+      top: -7px;
+      left: -45%;
+      @include opacity(.5);
+      z-index: 0;
+      @include transform(rotate(115deg));      
+      @include animation(glare 2s infinite linear);
+      span {
+        width: 100%;
+        display: block;
+        margin-bottom: 2px;
+        background-color: #fff;
+      }
+      .light1 {
+        height: 10px;
+      }
+      .light2 {
+        height: 3px;
+      }
+      .light3 {
+        height: 6px;
+      }
+    }
+  }
+}
+
+.main-door {
+  position: absolute;
+  right: 120px;
+  bottom: 0;
+  border: solid 4px $base;
+  @include border-radius(10px 10px 0 0);
+  width: 80px;
+  height: 80%;
+  z-index: 9;
+  background-color: #f5f4f1;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 11%;
+    background-color: darken(#f5f4f1, 5%);
+  }
+  .glass {
+    background-color: darken($body-secondary, 20%);
+    border: solid 3px $base;
+    @include border-radius(10px);
+    width: 85%;
+    height: 60px;
+    margin-top: 5px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: rgba(white, .3);
+      width: 100%;
+      @include border-radius(12px 12px 10px 10px);
+      height: 60%;
+      bottom: 0;
+      left: 0;
+    }
+    .light {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include opacity(.5);
+      z-index: 0;
+      span {
+        height: 70%;
+        margin-top: 15%;
+        display: inline-block;
+        background-color: darken($body-secondary, 35%);
+      }
+      .light1 {
+        width: 15px;
+        @include border-radius(10px 0 0 10px);
+      }
+      .light2 {
+        width: 10px;
+        @include border-radius(0 10px 10px 0);
+      }
+    }
+  }
+  .door-handle {
+    background-color: $body-primary;
+    border: solid 0.2em $base;
+    width: 10px;
+    margin-left: 4.5%;
+    height: 22px;
+    position: absolute;
+    z-index: 0;
+    right: 5px;
+    bottom: 40%;
+    @include border-radius(20px);
+    &::before {
+      content: '';
+      position: absolute;
+      width: 50%;
+      @include border-radius(20px);
+      background-color: rgba(#fff, .3);
+      height: 100%;
+      display: block;
+    }
+  }
+}
+
+.front-window {
+  top: 14%;
+  right: 20px;
+  width: 70px;
+  height: 60%;
+  position: absolute;
+  .window-base {
+    width: 100%;
+    height: 10px;
+    background-color: #abec39;
+    @include border-radius(10px);
+    border: solid 3px $base;
+    @include box-shadow(0 3px 0 rgba(black, .15));
+    position: relative;
+    z-index: 1;
+    top: 0;
+  }
+  .sun-shade {
+    background-color: $body-primary;
+    border: solid 4px $base;
+    border-top: none;
+    width: 90%;
+    margin-left: 4.5%;
+    height: 23px;
+    position: relative;
+    z-index: 0;
+  }
+  .curtain {
+    position: relative;
+    width: 90%;
+    margin-left: 6%;
+    font-size: 0;
+    z-index: 2;
+    span {
+      width: calc(100%/3);
+      height: 15px;
+      @include border-radius(0 0 15px 15px);
+      display: inline-block;
+      background-color: $body-primary;
+      border: solid 4px $base;
+      border-top: none;
+      @include box-shadow(0 3px 0 rgba(black, .15));
+      margin-left: -4px;
+      &:nth-child(even) {
+        background-color: #fff;
+      }
+      + span {
+        width: calc( (100% / 3) + 2px);
+      }
+    }
+  }
+  .windows-glass-wrap {
+    height: 40px;
+    width: 80%;
+    margin-left: 9%;
+    margin-top: -10px;
+    border: solid 4px $base;
+    border-top: none;
+    background-color: darken($body-secondary, 15%);
+    @include border-radius(0 0 10px 10px);
+    padding: 2px 5px;
+    font-size: 0;
+    overflow: hidden;
+    position: relative;
+    .light {
+      width: 120%;
+      height: 100%;
+      position: absolute;
+      top: -7px;
+      left: -15%;
+      @include opacity(.4);
+      z-index: 0;
+      @include transform(rotate(115deg));
+      @include animation(glare 1.5s infinite linear);
+      span {
+        width: 100%;
+        display: block;
+        margin-bottom: 2px;
+        background-color: #fff;
+      }
+      .light1 {
+        height: 10px;
+      }
+      .light2 {
+        height: 3px;
+      }
+      .light3 {
+        height: 6px;
+      }
+    }
+  }
+  .air-hole {
+    position: absolute;
+    width: 100%;
+    bottom: 5px; 
+    padding-top: 5px;
+    span {
+      width: 30px;
+      height: 5px;
+      background-color: #f5f4f1;
+      display: block;
+      margin: auto;
+      @include border-radius(20px);
+      border: solid 0.15em $base;
+      + span {
+        margin-top: 1px;
+      }
+    }
+  }
+}
+.wheel-wrap{
+  $wheel-size: 80px;
+  width: $wheel-size;
+  height: $wheel-size;
+  position: absolute;
+  z-index: 9;
+  bottom: -($wheel-size/2);
+  .wheel-shadow{
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-top: solid ($wheel-size/2) $base;
+    @include border-radius(50%);
+    position: relative;
+    @include animation(wheelShadow 3s infinite ease);
+  }
+  &.back{
+    left: 80px;
+  }
+  &.front{
+    right: 70px;
+  }
+  .wheel{
+    width: 76%;
+    height: 76%;
+    left: 12%;
+    top: 12%; 
+    position: absolute;
+    text-align: center;
+    font-size: 0;
+    @include border-radius(50%);
+    &::after{
+      content: '';
+      top: 1px;
+      left: 2px;
+      height: 100%;
+      position: absolute;
+      width: calc(100% - 4px); 
+      @include box-shadow(inset 0 7px 0 #747474);
+      @include border-radius(50%);
+      z-index: 9;
+    }
+    .wheel-outer{
+      position: absolute;
+      width: 100%;
+      background-color: #a6a6a6;
+      border: solid 3px $base;
+      @include border-radius(50%);
+      top: 0;
+      left: 0;
+      height: 100%;
+      @include animation(wheel 0.4s infinite linear);
+    }
+    .wheel-outer::after{
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 5px;
+      background-color: #b8b8b8;
+      top: 5px;
+      left: 16px;
+      z-index: 8;
+      @include border-radius(50%);
+    }
+    .wheel-cup{
+      width: 60%;
+      height: 60%;
+      margin-top: 20%;
+      display: inline-block;
+      position: relative;
+      background-color: darken($body-secondary, 20%);
+      border: solid 3px darken($base, 5%);
+      @include border-radius(50%);
+      @include transform(rotate(45deg));
+      padding: 5px 4px;
+      &::after{
+        content: '';
+        width: 8px;
+        position: absolute;
+        left: 41%;
+        top: 40%;
+        height: 3px;
+        background-color: darken($body-secondary, 40%);
+        display: inline-block;
+      }
+      span{
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin: 1px;
+        background-color: #a6a6a6;
+        @include border-radius(50%);
+        border: solid 1px darken($base, 5%);
+      }
+    }
+  }
+}
+.love-wrap{
+  position: absolute;
+  left: 0;
+  margin-top: 0;
+  top: 0;
+  .love{
+    width: 34px;
+    height: 34px;
+    position: relative;
+    display: inline-block;
+    font-size: 0;
+    @include transform(rotate(30deg)); 
+    .circle{
+      background-color: #fe1239;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      @include border-radius(50%);
+      display: inline-block;
+    }
+    .circle1{
+      left: 0;
+      bottom: 0;
+    }
+    .circle2{
+      right: 0;
+      top: 0;
+    }
+    .square{
+      background-color: #fe1239;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      display: inline-block;    
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
+
+.love-front{
+  position: absolute; 
+  right: 24%;
+  bottom: 30%;
+  z-index: 8;
+  @include transform(rotate(50deg)); 
+  .love-wrap{
+    @include opacity(0);
+    @for $i from 1 through 4{
+      &:nth-child(#{$i}){
+         @include animation(love1 5s infinite ease-in #{$i*0.5}s ); 
+      }
+    }
+    @for $i from 5 through 8{
+      &:nth-child(#{$i}){
+         @include animation(love2 6s infinite ease-in #{$i*0.5}s );
+      }
+    }
+    @for $i from 9 through 12{
+      &:nth-child(#{$i}){
+         @include animation(love3 4s infinite ease-in #{$i*0.5}s );
+      }
+    }
+  }
+}
+
+.love-back{
+  position: absolute;
+  left: 18%;
+  bottom: 20%;
+  z-index: 5;
+  @include transform(rotate(-90deg));
+  .love{
+    @include transform(rotate(100deg));
+  }
+  .love-wrap{
+    right: 0;
+    @for $i from 1 through 4{
+      &:nth-child(#{$i}){
+         @include animation(love4 4s infinite ease-in #{$i*0.5}s );
+      } 
+    }
+    &:nth-child(1){ 
+      @include animation(love4 4s infinite ease-in 0s );
+    }
+    @for $i from 5 through 8{
+      &:nth-child(#{$i}){
+         @include animation(love5 3s infinite ease-in #{$i*0.5}s );
+      }
+    }
+  }
+}
+
+
+//animation keyframes
+@include keyframes(love1, love1 animation) {
+  0%{
+    @include opacity(0);
+    @include transform(scale(0.2) rotate(0deg) translate3d(100px, 0, 0)); 
+  } 
+  50%{
+    @include opacity(1);
+  } 
+  100%{
+    @include opacity(0);
+    @include transform(scale(0.8) rotate(-40deg) translate3d(-50px, -400px, 0)); 
+  }
+}
+@include keyframes(love2, love2 animation) {
+  0%{
+    @include opacity(0);
+    @include transform(scale(0.3) rotate(0deg) translate3d(100px, 0, 0)); 
+  } 
+  50%{
+    @include opacity(1);
+  } 
+  100%{
+    @include opacity(0);
+    @include transform(scale(0.7) rotate(-50deg) translate3d(-80px, -450px, 0)); 
+  }
+}
+@include keyframes(love3, love3 animation) {
+  0%{
+    @include opacity(0);
+    @include transform(scale(0.3) rotate(0deg) translate3d(100px, 0, 0)); 
+  } 
+  50%{
+    @include opacity(1);
+  } 
+  100%{
+    @include opacity(0);
+    @include transform(scale(0.65) rotate(-60deg) translate3d(-40px, -400px, 0)); 
+  }
+}
+@include keyframes(love4, love4 animation) {
+  0%{ 
+    @include opacity(0);
+    @include transform(scale(0.2) rotate(0) translate3d(0, 0, 0));
+  }
+  50%{
+    @include opacity(1);
+  }
+  100%{
+    @include opacity(0);
+    @include transform(scale(0.6) rotate(-25deg) translate3d(100px, -200px, 0)); 
+  }
+} 
+@include keyframes(love5, love5 animation) {
+  0%{ 
+    @include opacity(0);
+    @include transform(scale(0.2) rotate(0) translate3d(0, 0, 0));
+  }
+  50%{
+    @include opacity(1);
+  }
+  100%{
+    @include opacity(0);
+    @include transform(scale(0.5) rotate(-20deg) translate3d(200px, -250px, 0)); 
+  }
+}
+
+@include keyframes(wheel, wheel animation) {
+  0%{
+    @include transform(rotate(0deg));
+  }
+  100%{
+    @include transform(rotate(360deg));
+  }
+}
+@include keyframes(wheelShadow, wheelShadow animation) {
+  0%, 20%, 40%, 45%, 60%, 80%, 100%{
+    top: 0;
+  }
+  70%{
+    top: 3px;
+  }
+  30%, 90%{
+    top: 6px;
+  }
+}
+@include keyframes(body, body animation) {
+  0%, 20%, 40%, 45%, 60%, 80%, 100%{
+    top: 0;
+  }
+  70%{
+    top: 3px;
+  }
+  30%, 90%{
+    top: 6px;
+  }
+}
+@include keyframes(glare, glare animation) {
+  from{
+    left: 100%;
+  }
+  to{
+    left: -100%;
+  }
+}
+@include keyframes(roadLine, roadLine animation) {
+  from { 
+    @include transform(translate(0, 0));
+  }
+  to {
+    @include transform(translate(-800px, 0));  
+  } 
+}
+@include keyframes(tree, tree animation) {
+  from {  
+    @include transform(translate(50px, 0));
+  }
+  to {
+    @include transform(translate(-1600px, 0));   
+  } 
+}
+ 
+
+
+
+//demo purpose
+@import url('https://fonts.googleapis.com/css?family=Muli');
+body{
+  font-family: 'Muli', sans-serif;
+}
+.footer{
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  color: #ea4c89;
+  text-decoration: none;
+  text-align: left;
+  font-weight: bold;
+  font-size: 10px;
+  span{
+    font-size: 12px;
+  }
+  a{
+    font-weight: bold;
+    font-size: 10px;
+    color: #ea4c89;
+    text-decoration: underline;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  .dribble{
+    img{
+      max-width: 100%;
+      width: 26px;
+      position: relative;
+      top: -2px;
+      vertical-align: middle;
+    }
+  }
+}

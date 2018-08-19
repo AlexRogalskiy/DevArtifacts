@@ -1,0 +1,129 @@
+$body: #EF494D;
+$main: #fff;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $body;
+}
+
+.loader {
+  height: 100px;
+  margin: 50px;
+  position: relative;
+  
+  .loader__arm {
+    animation: height .5s infinite alternate linear;
+    background: $main;
+    width: 4px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  &::before {
+    animation: pulse-in 2s infinite linear;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: $main;
+    content: '';
+    transform: translate(-50%, -50%);
+    transform-origin: center top;
+    border-radius: 50%;
+  }
+  
+  &::after {
+    animation: pulse-out 2s infinite linear;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: $main;
+    content: '';
+    transform: translate(-50%, 50%);
+    border-radius: 50%;
+  }
+  
+  &:nth-child(2n) {
+    .loader__arm, 
+    &::before,
+    &::after {
+      animation-delay: 250ms;
+    }
+  }
+  
+  &:nth-child(3n) {
+    .loader__arm, 
+    &::before,
+    &::after {
+      animation-delay: 500ms;
+    }
+  }
+  
+  &:nth-child(4n) {
+    .loader__arm, 
+    &::before,
+    &::after {
+      animation-delay: 750ms;
+    }
+  }
+}
+
+@keyframes height {
+  0% {
+    transform: translateX(-50%) scaleY(1);
+  }
+  
+  100% {    
+    transform: translateX(-50%) scaleY(0);
+  }
+}
+
+@keyframes pulse-in {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    top: 0;
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(.5);
+    top: 50%;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1);
+    top: 100%;
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(2);
+    top: 50%;
+  }
+}
+
+@keyframes pulse-out {
+  0%, 100% {
+    transform: translate(-50%, 50%) scale(1);
+    bottom: 0;
+  }
+  25% {
+    transform: translate(-50%, 50%) scale(2);
+    bottom: 50%;
+  }
+  50% {
+    transform: translate(-50%, 50%) scale(1);
+    bottom: 100%;
+  }
+  75% {
+    transform: translate(-50%, 50%) scale(.5);
+    bottom: 50%;
+  }
+}

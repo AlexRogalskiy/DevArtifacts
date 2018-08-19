@@ -1,0 +1,173 @@
+@import "compass";
+
+//loader options
+$theme: #ff0083;
+$loader-size: 150px;
+$speed: 1.5s; 
+
+.hero-btn {
+  position: relative;
+  width: 200px;
+  margin: auto;
+  height: 66px;
+  .btn {
+    background-color: $theme;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    display: inline-block;
+    width: 200px;
+    height: 66px;
+    text-align: center;
+    line-height: 66px;
+    font-size: 22px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    @include border-radius(6px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    @include box-shadow(0 15px 40px rgba($theme,0.5));
+    @include transform(perspective(600px) rotateX(0deg) scale(1));
+    @include transition(all 0.2s linear);
+    &:hover {
+      background-color: darken($theme, 5%);
+      @include box-shadow(0 20px 40px rgba($theme,0.5));
+    }
+    &:active{
+      @include transform(perspective(600px) rotateX(15deg)  scale(0.9));
+      font-size: 21px;
+      @include box-shadow(0 20px 40px rgba($theme,0.5));
+    }
+    .active &:active{
+      @include transform(perspective(600px) rotateX(0deg) scale(1));
+      font-size: 22px;
+      @include box-shadow(0 15px 40px rgba($theme,0.5));
+    }
+  } 
+  .particles-circle{
+    position: absolute;
+    background-color: $theme; 
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    left: 50%;
+    margin-left: -15px;
+    z-index: -1;
+    @include border-radius(50%);  
+    @include transform(scale(0));
+    visibility: hidden; 
+    
+    &:nth-of-type(odd) {
+      border: solid 2px $theme;
+      background-color: transparent;
+    }  
+
+    @for $i from 1 through 35 {
+      @keyframes particles-#{$i} {
+        from {
+          transform: scale(1); 
+          visibility: visible;
+        }
+        to {
+          left: random(500) - 250 + 0px; 
+          top: random(500) - 250 + 0px;
+          transform: scale(0); 
+          visibility: hidden;
+        }
+      }
+
+      .active &:nth-of-type(#{$i}) { 
+        animation: particles-#{$i} $speed ($i / 40) + 0s;
+      } 
+    }
+  }
+}
+.v-align {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  width: 100%;
+  max-height: 90vh;
+  top: 50%;
+  @include transform(translateY(-50%));
+}
+
+
+
+
+.wrap__sparks { 
+  transform: translateZ(-100px);
+
+  & .spark {
+    
+  }
+}
+
+////page styles
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400, 600");
+* {
+  @include box-sizing(border-box);
+}
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: #f8faff;
+  height: 100vh;
+  position: relative; 
+}
+h1 {
+  font-size: 24px;
+  display: block;
+  text-align: center;
+  color: #6a11cb;
+  font-weight: 500;
+}
+//follow me template
+.made-with-love {
+  position: fixed;
+  //background-color: #131418;
+  left: 0;
+  width: 100%;
+  bottom: 10px;
+  text-align: center;
+  font-size: 10px;
+  z-index: 9999;
+  font-family: arial;
+  color: $theme;
+  font-weight: 600;
+  i {
+    font-style: normal; 
+    font-size: 14px;
+    position: relative;
+    top: 2px;
+  }
+  a {
+    color: $theme;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .dribble{
+    img{
+      max-width: 100%;
+      width: 26px;
+      position: relative;
+      top: -2px;
+      vertical-align: middle;
+    }
+  }
+}

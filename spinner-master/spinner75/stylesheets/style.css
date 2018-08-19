@@ -1,0 +1,203 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:500);
+@-moz-keyframes leftAnim {
+  0% {
+    -moz-transform: translateX(97px);
+    transform: translateX(97px);
+  }
+  100% {
+    -moz-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes leftAnim {
+  0% {
+    -webkit-transform: translateX(97px);
+    transform: translateX(97px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes leftAnim {
+  0% {
+    -moz-transform: translateX(97px);
+    -ms-transform: translateX(97px);
+    -webkit-transform: translateX(97px);
+    transform: translateX(97px);
+  }
+  100% {
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@-moz-keyframes rightAnim {
+  0% {
+    -moz-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -moz-transform: translateX(-93px);
+    transform: translateX(-93px);
+  }
+}
+@-webkit-keyframes rightAnim {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-93px);
+    transform: translateX(-93px);
+  }
+}
+@keyframes rightAnim {
+  0% {
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -moz-transform: translateX(-93px);
+    -ms-transform: translateX(-93px);
+    -webkit-transform: translateX(-93px);
+    transform: translateX(-93px);
+  }
+}
+.loader {
+  width: 300px;
+  height: 150px;
+  margin: 0 auto;
+  position: relative;
+}
+.loader::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  margin-left: -1px;
+  width: 2px;
+  z-index: 1;
+  height: 150px;
+  border-left: 2px dotted #000;
+}
+.loader__box {
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  z-index: 2;
+}
+.loader--left {
+  left: 0;
+}
+.loader--left .loader__circle {
+  background-color: #fff;
+  right: 10px;
+  -moz-animation: leftAnim 1.3s ease-in-out alternate infinite;
+  -webkit-animation: leftAnim 1.3s ease-in-out alternate infinite;
+  animation: leftAnim 1.3s ease-in-out alternate infinite;
+}
+.loader--right {
+  right: 0;
+}
+.loader--right .loader__circle {
+  left: 10px;
+  -moz-animation: rightAnim 1.3s ease-in-out alternate infinite;
+  -webkit-animation: rightAnim 1.3s ease-in-out alternate infinite;
+  animation: rightAnim 1.3s ease-in-out alternate infinite;
+}
+.loader__circle {
+  width: 75px;
+  height: 75px;
+  border: solid 2px black;
+  display: block;
+  background-color: #000;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  margin-top: -37.5px;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+  height: 100vh;
+  position: relative;
+}
+
+.v-align {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  width: 100%;
+  max-height: 90vh;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+h1 {
+  font-size: 24px;
+  display: block;
+  text-align: center;
+  -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: #6a11cb;
+  padding: 15px 20px;
+  text-shadow: #e1e1e1 0.67062px 0.67062px 0px, #e1e1e1 1.67062px 1.67062px 0px, #e5e5e5 2.67062px 2.67062px 0px, #e9e9e9 3.67062px 3.67062px 0px, #ededed 4.67062px 4.67062px 0px, #f2f2f2 5.67062px 5.67062px 0px, #f6f6f6 6.67062px 6.67062px 0px, #fafafa 7.67062px 7.67062px 0px, white 8.67062px 8.67062px 0px;
+  background-color: #fff;
+  display: inline-block;
+  font-weight: 500;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 15vh;
+  margin-top: -5vh;
+}
+
+.made-with-love {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  bottom: 10px;
+  text-align: center;
+  font-size: 10px;
+  z-index: 9999;
+  font-family: arial;
+  color: #fff;
+}
+.made-with-love i {
+  font-style: normal;
+  color: #f50057;
+  font-size: 14px;
+  position: relative;
+  top: 2px;
+}
+.made-with-love a {
+  color: #fff;
+  text-decoration: none;
+}
+.made-with-love a:hover {
+  text-decoration: underline;
+}
