@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:700');
+
+// menu
+$menu-ani-name: slideDown;
+// hero
+$hero-height: 50vh;
+$hero-width: 100vw;
+$hero-background: transparent;
+$hero-font-color: rgba(32,32,32,1);
+$hero-ani-name: slideUp;
+$hero-ani-time: 500ms;
+
+$font-ubuntu: 'Ubuntu', sans-serif;
+
+@mixin ani($name, $timing, $direction, $duration, $fill){
+  animation-name: $name;
+  animation-timing-function: $timing;
+  animation-direction: $direction;
+  animation-duration: $duration;
+  animation-fill-mode: $fill;
+}
+
+body { font-family: $font-ubuntu; text-align: center; }
+
+#menu {
+  /* hard values*/
+  width: 100vw;
+	height: 75px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  
+  a {
+    animation-name: $menu-ani-name;
+    margin: 0 5px 0 5px;
+  }
+
+}
+
+#hero {
+  height: $hero-height;
+  width: $hero-width;
+  background-color: $hero-background;
+  color: $hero-font-color;
+  position: relative;
+  
+  h1 { animation-delay: $hero-ani-time/4; }
+  h2 { animation-delay: $hero-ani-time/2; }
+  
+  .listing {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    a { margin: 10px 2.5px 0 2.5px; }
+    
+    @for $i from 1 through 4 {
+      a:nth-child(#{$i}) {
+        animation-delay: ($hero-ani-time/2)*$i;
+      }
+    }
+  }
+}
+
+.ae { /* "animation-element" : children of ".hero" */
+    @include ani($hero-ani-name, ease-in-out, normal, $hero-ani-time, forwards);
+    animation-iteration-count: 1;
+    opacity: 0;
+}
+
+/*
+
+@keyframes slideUp {
+  from { transform: translateY(50px); }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown{
+  from { transform: translateY(-25px); }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+*/
