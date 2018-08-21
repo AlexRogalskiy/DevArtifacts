@@ -1,0 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.ocpsoft</groupId>
+		<artifactId>ocpsoft-parent</artifactId>
+		<version>9</version>
+	</parent>
+
+	<groupId>org.ocpsoft.prettytime</groupId>
+	<artifactId>prettytime-parent</artifactId>
+
+	<packaging>pom</packaging>
+	<version>2.1.4.Final-SNAPSHOT</version>
+
+	<name>PrettyTime - Parent</name>
+	<description>Social style time-formatting utilities and web-framework integrations.</description>
+	<url>http://ocpsoft.org/prettytime/</url>
+
+	<modules>
+		<module>core</module>
+		<module>jsf</module>
+        <module>jstl</module>
+    </modules>
+
+	<properties>
+		<project.build.sourceEncoding>
+			UTF-8
+		</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>
+			UTF-8
+		</project.reporting.outputEncoding>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>Apache License</name>
+			<url>http://www.apache.org/licenses/</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/ocpsoft/prettytime.git</connection>
+		<developerConnection>scm:git:git@github.com:ocpsoft/prettytime.git</developerConnection>
+		<url>http://github.com/ocpsoft/prettytime</url>
+	  <tag>HEAD</tag>
+  </scm>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/ocpsoft/prettytime/issues</url>
+	</issueManagement>
+
+	<developers>
+		<developer>
+			<id>lincolnbaxter</id>
+			<name>Lincoln Baxter, III</name>
+			<email>lincoln@ocpsoft.org</email>
+			<timezone>-5</timezone>
+		</developer>
+		<developer>
+			<id>tweitzel</id>
+			<name>Thomas Weitzel</name>
+			<email>tweitzel@synformation.com</email>
+		</developer>
+	</developers>
+
+   <dependencyManagement>
+	   <dependencies>
+		   <dependency>
+			   <groupId>org.ocpsoft.prettytime</groupId>
+			   <artifactId>prettytime</artifactId>
+			   <version>${project.version}</version>
+		   </dependency>
+		   <dependency>
+			   <groupId>org.ocpsoft.prettytime</groupId>
+			   <artifactId>prettytime-integration-jsf</artifactId>
+			   <version>${project.version}</version>
+		   </dependency>
+
+		   <dependency>
+			   <groupId>javax.faces</groupId>
+			   <artifactId>jsf-api</artifactId>
+			   <version>1.2_02</version>
+			   <scope>provided</scope>
+		   </dependency>
+		   <dependency>
+			   <groupId>junit</groupId>
+			   <artifactId>junit</artifactId>
+			   <version>4.5</version>
+			   <scope>test</scope>
+		   </dependency>
+	   </dependencies>
+   </dependencyManagement>
+</project>
