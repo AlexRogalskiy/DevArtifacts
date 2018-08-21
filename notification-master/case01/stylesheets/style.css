@@ -1,0 +1,358 @@
+body, html {
+  position: relative;
+  background: black;
+  font-family: Raleway,sans serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  margin: 25px;
+  font-size: 2rem;
+}
+
+.col-xs-12.col-md-4 {
+  text-align: center;
+}
+
+.mynotification {
+  -moz-perspective: 1000;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  position: relative;
+  margin: 40px;
+}
+
+.text-notification {
+  display: inline-block;
+  padding: 20px;
+  border: 1px solid white;
+  color: white;
+  width: 200px;
+}
+
+.close-me {
+  -moz-transition: box-shadow 400ms ease-in, color 100ms linear 200ms, opacity 200ms linear 200ms, -moz-transform 200ms linear 200ms;
+  -o-transition: box-shadow 400ms ease-in, color 100ms linear 200ms, opacity 200ms linear 200ms, -o-transform 200ms linear 200ms;
+  -webkit-transition: box-shadow 400ms ease-in, color 100ms linear, opacity 200ms linear, -webkit-transform 200ms linear;
+  -webkit-transition-delay: 0s, 200ms, 200ms, 200ms;
+  transition: box-shadow 400ms ease-in, color 100ms linear 200ms, opacity 200ms linear 200ms, transform 200ms linear 200ms;
+  cursor: pointer;
+}
+
+.close-me.right, .bottom, .left {
+  width: 60px;
+  height: 100%;
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  position: absolute;
+}
+.close-me.right:after, .right.close-me:before, .bottom:before, .left:before, .bottom:after, .left:after {
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  content: "";
+  background: white;
+  top: 50%;
+  left: 50%;
+  margin-left: -7.5px;
+  margin-top: -1px;
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -moz-transition: background-color 100ms linear 200ms, -moz-transform 200ms ease-in-out;
+  -o-transition: background-color 100ms linear 200ms, -o-transform 200ms ease-in-out;
+  -webkit-transition: background-color 100ms linear, -webkit-transform 200ms ease-in-out;
+  -webkit-transition-delay: 200ms, 0s;
+  transition: background-color 100ms linear 200ms, transform 200ms ease-in-out;
+}
+.close-me.right:before, .bottom:before, .left:before {
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -moz-transition: background-color 100ms linear 200ms, -moz-transform 200ms ease-in-out;
+  -o-transition: background-color 100ms linear 200ms, -o-transform 200ms ease-in-out;
+  -webkit-transition: background-color 100ms linear, -webkit-transform 200ms ease-in-out;
+  -webkit-transition-delay: 200ms, 0s;
+  transition: background-color 100ms linear 200ms, transform 200ms ease-in-out;
+}
+
+.close-me.right, .bottom, .left {
+  display: inline-block;
+}
+
+.mynotification.close-right {
+  -moz-animation: close-right 0.4s ease-in-out forwards;
+  -webkit-animation: close-right 0.4s ease-in-out forwards;
+  animation: close-right 0.4s ease-in-out forwards;
+  opacity: 0;
+  -moz-transition: opacity 150ms linear 300ms;
+  -o-transition: opacity 150ms linear 300ms;
+  -webkit-transition: opacity 150ms linear;
+  -webkit-transition-delay: 300ms;
+  transition: opacity 150ms linear 300ms;
+}
+.mynotification.close-right .close-me.right, .mynotification.close-right .bottom, .mynotification.close-right .left {
+  -moz-transform-origin: left center;
+  -ms-transform-origin: left center;
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+  -moz-transform: rotateY(90deg);
+  -ms-transform: rotateY(90deg);
+  -webkit-transform: rotateY(90deg);
+  transform: rotateY(90deg);
+  opacity: 0;
+  -moz-transition: opacity 200ms linear 200ms, -moz-transform 200ms linear 200ms;
+  -o-transition: opacity 200ms linear 200ms, -o-transform 200ms linear 200ms;
+  -webkit-transition: opacity 200ms linear, -webkit-transform 200ms linear;
+  -webkit-transition-delay: 200ms, 200ms;
+  transition: opacity 200ms linear 200ms, transform 200ms linear 200ms;
+}
+
+@-moz-keyframes close-right {
+  0% {
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -moz-transform: translate3d(-20px, 0, 0);
+    transform: translate3d(-20px, 0, 0);
+  }
+  100% {
+    -moz-transform: translate3d(20px, 0, 0);
+    transform: translate3d(20px, 0, 0);
+  }
+}
+@-webkit-keyframes close-right {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(-20px, 0, 0);
+    transform: translate3d(-20px, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(20px, 0, 0);
+    transform: translate3d(20px, 0, 0);
+  }
+}
+@keyframes close-right {
+  0% {
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -moz-transform: translate3d(-20px, 0, 0);
+    -ms-transform: translate3d(-20px, 0, 0);
+    -webkit-transform: translate3d(-20px, 0, 0);
+    transform: translate3d(-20px, 0, 0);
+  }
+  100% {
+    -moz-transform: translate3d(20px, 0, 0);
+    -ms-transform: translate3d(20px, 0, 0);
+    -webkit-transform: translate3d(20px, 0, 0);
+    transform: translate3d(20px, 0, 0);
+  }
+}
+.bottom {
+  display: block;
+  width: 200px;
+  height: 60%;
+  border-top: none;
+  border-left: 1px solid white;
+  left: 50%;
+  margin-left: -100px;
+  -moz-transform-origin: top center;
+  -ms-transform-origin: top center;
+  -webkit-transform-origin: top center;
+  transform-origin: top center;
+}
+
+.mynotification.close-bottom {
+  -moz-animation: close-bottom 0.4s ease-in-out forwards;
+  -webkit-animation: close-bottom 0.4s ease-in-out forwards;
+  animation: close-bottom 0.4s ease-in-out forwards;
+  opacity: 0;
+  -moz-transition: opacity 150ms linear 300ms;
+  -o-transition: opacity 150ms linear 300ms;
+  -webkit-transition: opacity 150ms linear;
+  -webkit-transition-delay: 300ms;
+  transition: opacity 150ms linear 300ms;
+}
+.mynotification.close-bottom .close-me.bottom {
+  -moz-transform: rotateX(-90deg);
+  -ms-transform: rotateX(-90deg);
+  -webkit-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+  opacity: 0;
+  -moz-transition: opacity 200ms linear 200ms, -moz-transform 100ms linear 200ms;
+  -o-transition: opacity 200ms linear 200ms, -o-transform 100ms linear 200ms;
+  -webkit-transition: opacity 200ms linear, -webkit-transform 100ms linear;
+  -webkit-transition-delay: 200ms, 200ms;
+  transition: opacity 200ms linear 200ms, transform 100ms linear 200ms;
+}
+
+@-moz-keyframes close-bottom {
+  0% {
+    -moz-transform: translate3d(0, 0px, 0);
+    transform: translate3d(0, 0px, 0);
+  }
+  50% {
+    -moz-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+  100% {
+    -moz-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 20px, 0);
+  }
+}
+@-webkit-keyframes close-bottom {
+  0% {
+    -webkit-transform: translate3d(0, 0px, 0);
+    transform: translate3d(0, 0px, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 20px, 0);
+  }
+}
+@keyframes close-bottom {
+  0% {
+    -moz-transform: translate3d(0, 0px, 0);
+    -ms-transform: translate3d(0, 0px, 0);
+    -webkit-transform: translate3d(0, 0px, 0);
+    transform: translate3d(0, 0px, 0);
+  }
+  50% {
+    -moz-transform: translate3d(0, -20px, 0);
+    -ms-transform: translate3d(0, -20px, 0);
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+  100% {
+    -moz-transform: translate3d(0, 20px, 0);
+    -ms-transform: translate3d(0, 20px, 0);
+    -webkit-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 20px, 0);
+  }
+}
+.text-notification.left-text {
+  margin-left: 60px;
+}
+
+.left {
+  border-left: 1px solid white;
+  border-right: none;
+}
+
+.close-left {
+  -moz-animation: close-left 0.4s ease-in-out forwards;
+  -webkit-animation: close-left 0.4s ease-in-out forwards;
+  animation: close-left 0.4s ease-in-out forwards;
+  opacity: 0;
+  -moz-transition: opacity 150ms linear 300ms;
+  -o-transition: opacity 150ms linear 300ms;
+  -webkit-transition: opacity 150ms linear;
+  -webkit-transition-delay: 300ms;
+  transition: opacity 150ms linear 300ms;
+}
+.close-left .close-me {
+  -moz-transform: rotateY(-90deg);
+  -ms-transform: rotateY(-90deg);
+  -webkit-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
+  opacity: 0;
+  -moz-transition: opacity 200ms linear 200ms, -moz-transform 200ms linear 200ms;
+  -o-transition: opacity 200ms linear 200ms, -o-transform 200ms linear 200ms;
+  -webkit-transition: opacity 200ms linear, -webkit-transform 200ms linear;
+  -webkit-transition-delay: 200ms, 200ms;
+  transition: opacity 200ms linear 200ms, transform 200ms linear 200ms;
+  -moz-transform-origin: right center;
+  -ms-transform-origin: right center;
+  -webkit-transform-origin: right center;
+  transform-origin: right center;
+}
+
+@-moz-keyframes close-left {
+  0% {
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -moz-transform: translate3d(20px, 0, 0);
+    transform: translate3d(20px, 0, 0);
+  }
+  100% {
+    -moz-transform: translate3d(-20px, 0, 0);
+    transform: translate3d(-20px, 0, 0);
+  }
+}
+@-webkit-keyframes close-left {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(20px, 0, 0);
+    transform: translate3d(20px, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(-20px, 0, 0);
+    transform: translate3d(-20px, 0, 0);
+  }
+}
+@keyframes close-left {
+  0% {
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -moz-transform: translate3d(20px, 0, 0);
+    -ms-transform: translate3d(20px, 0, 0);
+    -webkit-transform: translate3d(20px, 0, 0);
+    transform: translate3d(20px, 0, 0);
+  }
+  100% {
+    -moz-transform: translate3d(-20px, 0, 0);
+    -ms-transform: translate3d(-20px, 0, 0);
+    -webkit-transform: translate3d(-20px, 0, 0);
+    transform: translate3d(-20px, 0, 0);
+  }
+}
+.close-me:hover {
+  -moz-box-shadow: inset 0px 0px 100px 150px white;
+  -webkit-box-shadow: inset 0px 0px 100px 150px white;
+  box-shadow: inset 0px 0px 100px 150px white;
+  -moz-transition: box-shadow 400ms ease-in, color 100ms linear 200ms, opacity 200ms linear 200ms, -moz-transform 200ms linear 200ms;
+  -o-transition: box-shadow 400ms ease-in, color 100ms linear 200ms, opacity 200ms linear 200ms, -o-transform 200ms linear 200ms;
+  -webkit-transition: box-shadow 400ms ease-in, color 100ms linear, opacity 200ms linear, -webkit-transform 200ms linear;
+  -webkit-transition-delay: 0s, 200ms, 200ms, 200ms;
+  transition: box-shadow 400ms ease-in, color 100ms linear 200ms, opacity 200ms linear 200ms, transform 200ms linear 200ms;
+}
+.close-me:hover:before, .close-me:hover:after, .close-me.right:hover:before, .bottom:hover:before, .left:hover:before {
+  background-color: black;
+  -moz-transition: background-color 100ms linear 200ms, -moz-transform 200ms ease-in-out;
+  -o-transition: background-color 100ms linear 200ms, -o-transform 200ms ease-in-out;
+  -webkit-transition: background-color 100ms linear, -webkit-transform 200ms ease-in-out;
+  -webkit-transition-delay: 200ms, 0s;
+  transition: background-color 100ms linear 200ms, transform 200ms ease-in-out;
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}

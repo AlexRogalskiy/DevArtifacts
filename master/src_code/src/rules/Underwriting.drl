@@ -1,0 +1,76 @@
+#created on: Jun 22, 2006
+package com.birali.underwriting
+
+import com.birali.domain.*;
+
+rule "Age verification"	
+	when
+		Borrower(age < 18)
+		$loanApp : LoanApplication()		
+	then 
+		$loanApp.addFeedbackMessage(FeedbackMessages.MIN_AGE);	
+end
+
+rule "Credit score"
+	
+	when
+		Borrower(creditScore <= 600)
+		$loanApp : LoanApplication()		
+	then 
+		$loanApp.addFeedbackMessage(FeedbackMessages.MIN_CREDIT_SCORE);		
+end
+
+rule "Loan Amount limits"
+	when
+	   	$loanApp : (LoanApplication(loanAmount <= 100000.0) 
+	   	  or LoanApplication(loanAmount >= 400000.0))
+	then 
+		$loanApp.addFeedbackMessage(FeedbackMessages.LOAN_AMOUNT_LIMITS);		
+end
+
+rule "Maximum Loan-to-value ratio"
+	when
+	   	$loanApp : LoanApplication(loanToValueRatio > 80.0)
+	then 
+		$loanApp.addFeedbackMessage(FeedbackMessages.LTV);
+end
+
+rule "Income multiples"
+	salience -3
+	when
+		Borrower( $grossIncome : grossIncome )
+	   	Property( value > (new Double($grossIncome.doubleValue()*3)))
+	   	$loanApp : LoanApplication()		   
+	then 
+		$loanApp.setAffordabilityFlag(Flag.NOT_AFFORDABLE);
+	 	System.out.println("==>Income multiples fired. Flag=" + $loanApp.getAffordabilityFlag());
+end
+
+rule "Affordability Model"
+	salience -4
+	when
+	   	Borrower( $affordableLoanAmount : affordableLoanAmount )
+	   	Property( value > (new Double($affordableLoanAmount.doubleValue())))		
+		$loanApp : LoanApplication()		
+	then
+		$loanApp.setAffordabilityFlag(Flag.NOT_AFFORDABLE);	 	
+		System.out.println("==>Affordability Model fired. Flag=" + $loanApp.getAffordabilityFlag());		
+end
+
+rule "Property type"
+	when
+	   	Property(purpose != Flag.OWNER_OCCUPIED)
+	   	$loanApp : LoanApplication()	
+	then 
+		$loanApp.addFeedbackMessage(FeedbackMessages.PROP_TYPE);	
+end
+
+rule "Property age"
+	when
+	   	Property(yearBuilt < 1965)
+	   	$loanApp : LoanApplication()
+	then 
+		$loanApp.addFeedbackMessage(FeedbackMessages.PROP_YEAR_BUILT);	
+end
+
+

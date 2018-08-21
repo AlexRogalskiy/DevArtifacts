@@ -1,0 +1,15 @@
+- var text = '<%= name %>'
+- var rectStyle   = ''
+- var arrowClass  = '<%= (isClosed) ? "is-reverse" : "" %>'
+- var author      = 'by <%= author %>'
+- var authorLink  = '<%= (website.length > 0) ? "http://" + website.replace(/http:\\/\\//g, "") : "mailto:" + email %>'
+- var linkTarget  = '<%= (website.length > 0) ? "_blank" : undefined %>'
+
+include ../css/partials/section-header
+
+.content-bl.cf#js-icons-place
+
+
+.show-more-bl
+	- var viewBox = '', filter= ''
+	.btn-b.is-block.is-expand#js-show-more <%= (isExpanded) ? 'show less' : 'show more' %>

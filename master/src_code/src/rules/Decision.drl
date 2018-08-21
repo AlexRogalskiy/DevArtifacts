@@ -1,0 +1,11 @@
+package com.birali.underwriting
+
+import com.birali.domain.*;
+
+rule "Underwriting decision"
+	
+	when 
+		$loanApp : (LoanApplication(affordabilityFlag == Flag.NOT_AFFORDABLE) or LoanApplication( feedbackMsgSize > 0))		
+	then
+		$loanApp.setStatus(Flag.FAILED);				
+end

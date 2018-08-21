@@ -1,0 +1,181 @@
+@import "compass/css3";
+
+body,html{
+  position:relative;
+  background:black;
+  font-family:Raleway,sans serif;
+  font-weight:500;
+  -webkit-font-smoothing:antialiased;
+  font-smoothing:antialiased;
+}
+h1{
+  color:white;
+  text-align:center;
+  margin:25px;
+  font-size:2rem;
+}
+$white:white;
+.col-xs-12.col-md-4{
+  text-align:center;
+}
+//Main container
+.mynotification{
+  @include perspective(1000);
+  position:relative;
+  margin:40px;
+}
+.text-notification{
+  display:inline-block;
+  padding: 20px;
+  border:1px solid $white;
+  color:$white;
+  width:200px;
+}
+.close-me{
+  @include transition(
+    box-shadow 400ms ease-in,
+    color 100ms 200ms linear,
+    opacity 200ms linear 200ms,
+    transform 200ms linear 200ms
+  );
+  cursor:pointer;
+}
+.close-me.right{
+  width:60px;
+  height:100%;
+  border-top:1px solid $white;
+  border-right:1px solid $white;
+  border-bottom:1px solid $white;
+  position:absolute;
+  &:after{
+    position:absolute;
+    width:15px;
+    height:2px;
+    content:"";
+    background:$white;
+    top:50%;
+    left:50%;
+    margin-left:-7.5px;
+    margin-top:-1px;
+    @include transform(rotate(45deg));
+    @include transition(background-color 100ms 200ms linear,transform 200ms ease-in-out);
+  }
+  &:before{
+    @extend .close-me:after;
+    @include transform(rotate(-45deg));
+    @include transition(background-color 100ms 200ms linear,transform 200ms ease-in-out);
+  }
+}
+.close-me.right{
+  display:inline-block;
+}
+.mynotification.close-right{
+  @include animation(close-right 0.4s ease-in-out forwards);
+  opacity:0;
+  @include transition(opacity 150ms 300ms linear);
+  .close-me.right{
+    @include transform-origin(left, center);
+    @include transform(rotateY(90deg));
+    opacity:0;
+    @include transition(
+      opacity 200ms linear 200ms,
+      transform 200ms linear 200ms
+      )
+  }
+}
+@include keyframes(close-right){
+  0%{
+    @include transform(translate3d(0,0,0));
+  }
+  50%{
+    @include transform(translate3d(-20px,0,0));
+  }
+  100%{
+    @include transform(translate3d(20px,0,0));
+  }
+}
+
+.bottom{
+  @extend .close-me.right;
+  display:block;
+  width:200px;
+  height:60%;
+  border-top:none;
+  border-left:1px solid $white;
+  left:50%;
+  margin-left:-100px;
+  @include transform-origin(top, center);
+}
+.mynotification.close-bottom{
+  @include animation(close-bottom 0.4s ease-in-out forwards);
+  opacity:0;
+  @include transition(opacity 150ms 300ms linear);
+  .close-me.bottom{
+    @include transform(rotateX(-90deg));
+    opacity:0;
+    @include transition(
+      opacity 200ms linear 200ms,
+      transform 100ms linear 200ms
+      )
+  }
+}
+@include keyframes(close-bottom){
+  0%{
+    @include transform(translate3d(0,0px,0));
+  }
+  50%{
+    @include transform(translate3d(0,-20px,0));
+  }
+  100%{
+    @include transform(translate3d(0,20px,0));
+  }
+}
+.text-notification.left-text{
+  margin-left:60px;
+}
+.left{
+  @extend .close-me.right;
+  border-left:1px solid $white;
+  border-right:none;
+}
+.close-left{
+  @include animation(close-left 0.4s ease-in-out forwards);
+  opacity:0;
+  @include transition(opacity 150ms 300ms linear);
+  .close-me{
+    @include transform(rotateY(-90deg));
+    opacity:0;
+    @include transition(
+      opacity 200ms linear 200ms,
+      transform 200ms linear 200ms
+      );
+    @include transform-origin(right, center);
+  }
+}
+
+@include keyframes(close-left){
+  0%{
+    @include transform(translate3d(0,0,0));
+  }
+  50%{
+    @include transform(translate3d(20px,0,0));
+  }
+  100%{
+    @include transform(translate3d(-20px,0,0));
+  }
+}
+.close-me:hover{
+  @include box-shadow(inset 0px 0px 100px 150px white);
+  @include transition(
+    box-shadow 400ms ease-in,
+    color 100ms 200ms linear,
+    opacity 200ms linear 200ms,
+    transform 200ms linear 200ms
+  );
+  &:before,
+  &:after{
+    background-color:black;
+    @include transition(background-color 100ms 200ms linear,transform 200ms ease-in-out);
+    @include transform(scale(1.2));
+  }
+}

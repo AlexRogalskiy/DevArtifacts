@@ -1,0 +1,209 @@
+$blue: #2B2F3F
+$pinkish: #C68587
+$reddish: #BA4773
+
+html 
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/176026/noise.png)
+  background-color: #fff
+  
+.avatar
+  float: left
+  display: inline-block
+  overflow: hidden
+  width: 10vw
+  height: 10vw
+  border-radius: 100%
+  background: $pinkish
+  border: 6px solid #B3C9CB
+  background-image: url(https://scontent-vie1-1.cdninstagram.com/hphotos-ash/t51.2885-19/10932224_821299211264682_1488190390_a.jpg)
+  background-size: cover
+  background-position: 50% 25%
+  -webkit-transition: border 0.5s linear
+  -moz-transition: border 0.5s linear
+  -o-transition: border 0.5s linear
+  transition: border 0.5s linear
+    
+  &:after
+    content: ""
+    position: absolute
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(240,227,199,1)), color-stop(100%,rgba(107,202,180,1)))
+    width: 10vw
+    height: 10vw
+    border-radius: 100%
+    border: 1px solid white
+    left: 4px
+    top: 4px
+    opacity: 0
+    -webkit-transition: opacity 0.3s linear
+    -moz-transition: opacity 0.3s linear
+    -o-transition: opacity 0.3s linear
+    transition: opacity 0.3s linear
+    cursor: pointer
+    -webkit-transform-style: preserve-3d
+      
+.avatar:hover:after
+  opacity: 0.7
+.avatar.open:hover:after
+  opacity: 0
+.container
+  text-align: center
+  left: 50%
+  -webkit-transform: translate3d(-50%,-50%,0)
+  -moz-transition: translate3d(-50%,-50%,0)
+  -o-transition: translate3d(-50%,-50%,0)
+  transition: translate3d(-50%,-50%,0)
+  position: absolute
+  top: 50%
+#camera
+  -webkit-transform: scale(0.4)
+  position: relative
+  z-index: 9999
+  cursor: pointer
+  top: 18%
+  overflow: hidden
+
+#circle
+  -webkit-transform: scale(0.75)
+  -webkit-transform-origin: 50% 50%
+  -webkit-transition: all 0.3s linear
+  stroke-dashoffset: 33px
+  stroke-dasharray: 33px
+#cameraFrame
+  -webkit-transition: all 0.5s linear
+  stroke-dashoffset: 72px
+  stroke-dasharray: 72px
+#plus
+  -webkit-transition: all 0.3s linear
+  stroke-dashoffset: 5px
+  stroke-dasharray: 5px
+  
+#fileUpload
+  overflow: hidden
+  position: absolute
+  width: 70px
+  padding: 10px
+  opacity: 0
+  left: 50%
+  top: 70%
+  -webkit-transform: translate3d(-50%,-50%,0)
+  z-index: 9999
+  -webkit-transition: 250ms cubic-bezier(.7,0,.36,1)
+  transition: 250ms cubic-bezier(.7,0,.36,1)
+  &:focus
+    outline: none
+    background: transparent
+#openModal   
+  width: 100%
+  height: 100%
+  position: absolute
+  left: 0
+  top: 0
+  border-radius: 100%
+  -webkit-transform: scale(0)
+  z-index: 8888
+  -webkit-transition: 250ms cubic-bezier(.7,0,.36,1)
+  transition: 250ms cubic-bezier(.7,0,.36,1)
+  -webkit-transition-delay: 250ms
+  transition-delay: 250ms
+  background-color: rgba(255,255,255,0.9)
+  
+#openModal
+  > span
+    font-family: raleway
+    font-size: 1.2vw
+    top: 40%
+    position: absolute
+    left: 50%
+    white-space: nowrap
+    -webkit-transform: translate3d(-50%,0,0)
+    color: rgba(0,0,0,0.7)
+.separatorLine
+  margin-top: 15px
+  width: 300%
+  position: absolute
+  height: 1px
+  background: rgba(0,0,0,0.6)
+.clearfix:after 
+  clear: both
+  content: "."
+  display: block
+  height: 0
+  visibility: hidden
+
+.clearfix 
+  display: inline-block
+
+.clearfix 
+  display: block
+.right
+  margin-left: 12.5vw
+  bottom: 0
+  position: absolute
+  float: right
+.right > p
+  font-size: 2vw
+  text-align: left
+  text-transform: none
+  font-family: Raleway
+  margin-top: 0.5vw
+  color: rgba(0,0,0,0.7)
+  &:last-child
+    margin-top: 0.2vw
+    font-size: 0.9vw
+    text-align: right
+    color: rgba(0,0,0,0.5)
+       
+.avatar:hover
+  > #camera 
+    > #cameraFrame
+      stroke-dashoffset: 0
+.avatar:hover
+  > #camera 
+    > #circle
+      stroke-dashoffset: 0px
+.avatar:hover
+  > #camera 
+    > #plus
+      stroke-dashoffset: 0px
+      
+.avatar:active
+  > #camera
+    > #cameraFrame
+      -webkit-transition: none
+      stroke: rgba(255,255,255,0.7)
+
+.avatar:active
+  > #camera
+    > #circle
+      -webkit-transition: none
+      stroke: rgba(255,255,255,0.7)
+
+.avatar:active
+  > #camera
+    > #plus
+      -webkit-transition: none
+      stroke: rgba(255,255,255,0)
+.src
+  font-family: raleway
+  position: absolute
+  display: inline-block
+  right: 0
+  bottom: 0
+  padding: 10px
+#camera
+  -webkit-transition: 250ms cubic-bezier(.7,0,.36,1)
+  transition: 250ms cubic-bezier(.7,0,.36,1)
+.avatar.open
+  > #camera
+    -webkit-transform: scale(0)
+    fill: white
+.avatar.open
+  > #openModal
+    -webkit-transform: scale(0.95)
+.avatar.open
+  > #fileUpload
+    opacity: 1
+    -webkit-transition-delay: 250ms
+.avatar.open
+  > #camera
+    visibility: hidden

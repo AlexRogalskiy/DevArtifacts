@@ -1,0 +1,379 @@
+@import "compass/css3";
+
+$blue: #03a9f4;
+$red:#E91E63;
+$transp:rgba(0,0,0,0.03);
+html{
+  background:$transp;
+}
+button:focus{
+  outline:none;}
+body{
+  text-align:center;
+  font-family:Open Sans;
+}
+h1{
+  display:block;
+  font-size:42px;
+  text-align:center;
+  font-weight:300;
+  margin:40px 0px 20px 0px;
+}
+.heartIt{
+  margin-top:50px;
+  margin-bottom:80px;
+  p{
+    font-size:24px;
+    line-height:40px;
+  }
+  img{
+    width:64px;
+    height:auto;
+  }
+}
+.sepLine{
+  width:70px;
+  height:1px;
+  background-color: rgba(0,0,0,0.4);
+  margin-top:20px;
+  margin-bottom:10px;
+  display:inline-block;
+  left:50%;
+}
+.auth{
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  position: relative;display:block;
+  a{
+    color:rgba(0,0,0,1);
+    font-weight: 400;
+  }
+}
+a{
+  
+  text-decoration:none;
+}
+.container{
+  @include perspective(1000);
+  max-width:560px;
+  display:inline-block;
+  /*
+  position:absolute;
+  left:50%;
+  @include transform(translate3d(-50%,0,0));*/
+}
+.circCont{
+  display:inline-block;
+}
+.circle{
+  width:40px;
+  height:40px;
+  background:transparent;
+  border: 4px solid $red;
+  @include border-radius(50%);
+  position:relative;
+  cursor:pointer;
+  display:inline-block;
+  margin:10px 20px;
+  &:after{
+    width:24px;
+    height:4px;
+    background-color:$red;
+    content:"";
+    left:50%;
+    top:50%;
+    margin-left:-12px;
+    margin-top:-2px;
+    position:absolute;
+    @include transform(rotate(-45deg));
+    /*@include transform-origin(100%,100%);*/
+  }
+  &:before{
+    left:50%;
+    top:50%;
+    margin-left:-12px;
+    margin-top:-2px;
+    width:24px;
+    height:4px;
+    background-color:$red;
+    content:"";
+    position:absolute;
+    @include transform(rotate(45deg));
+    /*@include transform-origin(0%,0%);*/
+  }
+  & + p{
+    text-transform:lowercase;
+    font-size:14px;
+    margin-bottom:10px;
+  }
+}
+.simpleRotate{
+  @include animation(rotate 0.1s 2 ease-in-out alternate);
+}
+@include keyframes(rotate){
+  0%{
+    @include transform(scale(1));
+  }
+  100%{
+    @include transform(scale(0.8));
+  }
+}
+.circle[data-animation="simpleRotate"]:not(.simpleRotate){
+  @include transition(200ms cubic-bezier(0.175, 0.885, 0.52, 1.775));
+  &:hover{
+    @include transform(scale(1.1));
+  }
+}
+.circle[data-animation="rotateY"]{
+  @include transition(300ms ease-in-out);
+  &:after{
+    @include transition-delay(150ms);
+  }
+  &:before{
+    @include transition-delay(150ms);
+  }
+}
+.circle[data-animation="rotateX"]{
+  @include transition(300ms ease-in-out);
+  &:after{
+    @include transition-delay(150ms);
+  }
+  &:before{
+    @include transition-delay(150ms);
+  }
+}
+.rotateY{
+  @include transform(rotateY(180deg) scale(0.5));
+  &:after{
+    @include transform(rotate(0deg));
+  }
+  &:before{
+    @include transform(rotate(90deg));
+  }
+}
+.rotateX{
+  @include transform(rotateX(180deg) scale(0.5));
+  &:after{
+    @include transform(rotate(0deg));
+  }
+  &:before{
+    @include transform(rotate(90deg));
+  }
+}
+.scaleUp:not(.scaleDown):not(.minimize){
+  @include transition(200ms cubic-bezier(0.175, 0.885, 0.52, 1.575));
+  &:hover{
+    @include transform(scale(1.2));
+    &:after{
+      @include transform(scale(1.1) rotate(45deg));
+    }
+    &:before{
+      @include transform(scale(1.1) rotate(-45deg));
+    }
+  }
+}
+
+.scaleDown{
+  @include transition(300ms ease-in-out);
+  @include transform(scale(0));
+}
+.minimize{
+  @include transition(300ms ease-in-out);
+  @include transform(scale(0.3));
+}
+.boxShadow{
+  @include transition(
+    box-shadow 200ms ease-out,
+    transform 200ms ease-out,
+    opacity 200ms ease-in-out
+  );
+  &:after,
+  &:before{
+    @include transition(400ms linear);
+  }
+}
+.boxShadow:hover:not(.fadeOut){
+  @include box-shadow(0px 0px 0px 20px $red inset);
+  @include transform(scale(0.8));
+  &:after{
+    background-color: #fff;
+    @include transform(rotate(-45deg) scale(0.6));
+  }
+  &:before{
+    background-color: #fff;
+    @include transform(rotate(45deg) scale(0.6));
+  }
+}
+.fadeOut{
+  opacity:0;
+}
+.circle[data-animation="magnify"]:not(.magnify){
+  @include transition(100ms ease-in-out);
+  &:hover{
+    @include transform(scale(0.9));
+  }
+}
+.circle.magnify{
+  @include transition(200ms ease-in-out);
+  @include transform(scale(1.6));
+  opacity:0;
+}
+.fromMiddle{&:before,
+  &:after{
+    z-index:9999;
+    @include transition-delay(150ms);
+    @include transition(400ms ease-in-out);
+  }
+  span{
+    width:38px;
+    height:38px;
+    background-color: $red;
+    display:inline-block;
+    position: absolute;
+    @include border-radius(100%);
+    left:-2px;
+    top:-2px;
+    z-index:-9999;
+    @include transform(scale(0.3));
+    opacity:0;
+    @include transition(300ms ease-in-out);
+  }
+}
+.fromMiddle:hover{
+  &:before,
+  &:after{
+    position:absolute;
+    background-color: #fff;
+  }
+  span{
+    @include transform(scale(1));
+    opacity:1;
+  }
+}
+
+.circle[data-animation="downBorder"]{
+  @include transition(200ms ease-out);
+  &:hover:not(.downBorder){
+    @include transform(rotate(10deg));
+  }
+}
+.downBorder{
+  border:4px solid transparent;
+  @include transform(scale(0.3) rotate(45deg));
+}
+.circle[data-animation="radiusPlus"]{
+  @include transition(300ms ease-out);
+  &:before,
+  &:after{
+    @include transition(300ms ease-out);
+  }
+}
+.radiusPlus{
+  @include border-radius(10px);
+  @include transform(scale(0.7));
+  &:before{
+    @include transform(rotate(0deg));
+  }
+  &:after{
+    @include transform(rotate(-90deg));
+  }
+}
+.circle[data-animation="shrinkRadius"]{
+  @include transition(400ms ease-in-out);
+  &:after,
+  &:before{
+    @include transition(400ms ease-in-out);
+  }
+}
+.circle.shrinkRadius{
+  @include border-radius(10px);
+  @include transform(scale(0.3));
+  &:before{
+    @include transform(rotate(0deg));
+  }
+  &:after{
+    @include transform(rotate(-90deg));
+  }
+}
+
+.circle[data-animation="xMarks"]{
+  border:0px solid white;
+  overflow:hidden;
+  @include box-shadow(0px 0px 0px 0px $red inset);
+  @include transition(200ms cubic-bezier(0.175, 0.885, 0.52, 1.775));
+  &:before,
+  &:after{
+    @include transition(200ms cubic-bezier(0.175, 0.885, 0.52, 1.775));
+  }
+  &:not(.xMarks):hover{
+    @include box-shadow(0px 0px 0px 6px $red inset);
+    &:before{
+      @include transform(scale(0.7) rotate(45deg));
+      @include transition-delay(100ms);
+    }
+    &:after{
+      @include transform(scale(0.7) rotate(-45deg));
+      @include transition-delay(100ms);
+    }
+  }
+}
+.circle.xMarks{
+  @include transition(transform 400ms ease-out,opacity 200ms ease-in);
+  @include transition-delay(opacity 100ms);
+  @include transform(scale(2));
+  opacity:0;
+  @include box-shadow(0px 0px 0px 20px $red inset);
+  &:before{
+    background-color: white;
+    @include transform(scale(2) rotate(45deg));
+  }
+  &:after{
+    background-color: white;
+    @include transform(scale(2) rotate(-45deg));
+  }
+}
+
+
+.circle[data-animation="showShadow"]{
+  @include box-shadow(0px 0px 0px 0px $red inset);
+  @include transition(200ms cubic-bezier(0.175, 0.885, 0.52, 1.775));
+  &:before,
+  &:after{
+    @include transition(200ms cubic-bezier(0.175, 0.885, 0.52, 1.775));
+  }
+  border:0px solid white;
+  &:not(.showShadow):hover{
+    @include box-shadow(0px 0px 0px 6px $red inset);
+    &:before{
+      @include transform(scale(0.7) rotate(45deg));
+      @include transition-delay(100ms);
+    }
+    &:after{
+      @include transform(scale(0.7) rotate(-45deg));
+      @include transition-delay(100ms);
+    }
+  }
+}
+.circle.showShadow{
+  @include transition(300ms ease-out);
+  @include transform(scale(0));
+  opacity:0;
+}
+
+
+
+
+
+
+.followlinks{
+  position:fixed;
+  right:35px;
+  bottom:15px;
+  display:table;
+  a {
+    display:table-cell;
+    vertical-align:middle;
+    padding-left:10px;
+    color:black;
+  }
+}
