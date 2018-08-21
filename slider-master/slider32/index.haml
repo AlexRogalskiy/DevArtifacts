@@ -1,0 +1,23 @@
+- slides = 10
+.slider-wrapper
+
+  - (1..slides).each do |i|
+    %input{:type=>"radio", :id=>"slide#{i}", :name=>"slides", :checked => i==1 || nil}
+    
+  .slider-arrow-nav
+    - (1..slides).each do |i|
+      %label{:for=>"slide#{i}", :class=>"nav-arrow prev"}
+  
+  .slider-arrow-nav
+    - (1..slides).each do |i|
+      %label{:for=>"slide#{i}", :class=>"nav-arrow next"}
+    
+  .slider-nav
+    - (1..slides).each do |i|
+      %label{:for=>"slide#{i}", :class=>"nav-button"}
+  
+  .slider-content
+    - (1..slides).each do |i|
+      %div{:class=>"slide slide#{i}"}
+        %img(src="https://unsplash.it/1920/1080/?random=#{i}")
+    

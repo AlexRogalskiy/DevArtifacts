@@ -1,0 +1,224 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+html {
+  height: 100%;
+}
+
+body {
+  text-align: center;
+  background: url("http://one-div.com/codepen/menu/bg.jpg") no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 100%;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+body:before {
+  content: "";
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#menu {
+  display: inline-block;
+  height: 135px;
+  width: 80%;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+#menu li {
+  position: relative;
+  z-index: 2;
+  display: block;
+  float: left;
+  width: 15%;
+  height: 135px;
+  line-height: 220px;
+  margin-right: 1.42857%;
+  white-space: nowrap;
+  background-position: 50%;
+}
+
+.rocket {
+  background: url("http://one-div.com/codepen/menu/rocket-large.png") no-repeat;
+  margin-left: 1.42857%;
+}
+
+.wine {
+  background: url("http://one-div.com/codepen/menu/wine-large.png") no-repeat;
+}
+
+.burger {
+  background: url("http://one-div.com/codepen/menu/burger-large.png") no-repeat;
+}
+
+.comment {
+  background: url("http://one-div.com/codepen/menu/comment-large.png") no-repeat;
+}
+
+.sport {
+  background: url("http://one-div.com/codepen/menu/sport-large.png") no-repeat;
+}
+
+.earth {
+  background: url("http://one-div.com/codepen/menu/earth-large.png") no-repeat;
+}
+
+#menu ul {
+  position: relative;
+}
+
+#menu ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#menu a {
+  color: #D8D8D8;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-shadow: 0 -1px 0 #000;
+}
+
+#menu li:after {
+  content: "";
+  width: 9.5238%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: -9.5238%;
+  background: url("http://one-div.com/codepen/menu/menu-bg.png");
+}
+
+.rocket:before {
+  content: "";
+  width: 9.5238%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -9.5238%;
+  background: url("http://one-div.com/codepen/menu/menu-bg.png");
+  border-radius: 5px 0px 0px 5px;
+}
+
+.earth:after {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.current {
+  position: absolute;
+  top: -13px;
+  left: 8.92857%;
+  margin-left: -49px;
+  width: 95px;
+  height: 165px;
+  -webkit-transition: all 400ms cubic-bezier(0.45, 1.92, 0.9, 1.54);
+  -moz-transition: all 400ms cubic-bezier(0.45, 1.92, 0.9, 1.54);
+  -o-transition: all 400ms cubic-bezier(0.45, 1.92, 0.9, 1.54);
+  -ms-transition: all 400ms cubic-bezier(0.45, 1.92, 0.9, 1.54);
+  transition: all 400ms cubic-bezier(0.16, 1.23, 0.87, 1.18);
+}
+
+.current-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #c39449;
+  border-radius: 5px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.09);
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-arrow {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 12px;
+  top: 13px;
+  left: 0;
+  z-index: 2;
+}
+
+.top-arrow:before {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 10px;
+  top: -10px;
+  left: 10%;
+  border-radius: 20%;
+  box-shadow: 0 0 10px black;
+}
+
+.top-arrow:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 0px;
+  border-top: 8px solid #c39449;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  margin-left: -6px;
+  left: 50%;
+}
+
+.bottom-arrow {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 12px;
+  bottom: 17px;
+  left: 0;
+  z-index: 2;
+}
+
+.bottom-arrow:before {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 10px;
+  bottom: -10px;
+  left: 10%;
+  border-radius: 20%;
+  box-shadow: 0 0 10px black;
+}
+
+.bottom-arrow:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  border-bottom: 12px solid #c39449;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  margin-left: -8px;
+  left: 50%;
+}
+
+.wine:hover ~ .current {
+  left: 25.5%;
+}
+
+.burger:hover ~ .current {
+  left: 42%;
+}
+
+.comment:hover ~ .current {
+  left: 58.5%;
+}
+
+.sport:hover ~ .current {
+  left: 75%;
+}
+
+.earth:hover ~ .current {
+  left: 91.1%;
+}
