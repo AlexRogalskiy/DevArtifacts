@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '1.5.2.RELEASE'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile (
+            'org.springframework.boot:spring-boot-starter-web',
+            'com.offbytwo.jenkins:jenkins-client:0.3.7'
+    )
+    testCompile (
+            'org.springframework.boot:spring-boot-starter-test',
+            'junit:junit:4.12',
+            'com.jayway.restassured:rest-assured:2.9.0'
+    )
+}

@@ -1,0 +1,21 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form" xmlns:c="/lib/credentials" xmlns:st="jelly:stapler">
+    <f:entry title="Name" field="name">
+        <f:textbox/>
+    </f:entry>
+    <f:entry title="Provisioner URL" field="provisionerUrl">
+        <f:textbox/>
+    </f:entry>
+    <f:entry title="Auth Token" field="authToken">
+        <f:textbox/>
+    </f:entry>
+    <f:entry title="Max Concurrent Slaves" field="maxSlaves">
+        <f:textbox/>
+    </f:entry>
+    <f:validateButton title="${%Test Connection}" progress="${%Testing...}" method="testConnection" with="provisionerUrl,authToken" />
+    <f:entry title="Cloud Instance Templates" description="${%List of Cloud Instances to be launched as slaves}">
+        <f:repeatable field="templates">
+            <st:include page="config.jelly" class="${descriptor.clazz}"/>
+        </f:repeatable>
+    </f:entry>
+</j:jelly>

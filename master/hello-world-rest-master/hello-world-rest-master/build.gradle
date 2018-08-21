@@ -1,0 +1,40 @@
+group 'org.jkosha'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jar {
+    baseName = 'jkosha-helloworld-service'
+    version = '0.1.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.2.1'
+}

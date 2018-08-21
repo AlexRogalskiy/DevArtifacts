@@ -1,0 +1,25 @@
+<!-- Job Details -->
+<div class="col-md-9">
+    <div class="thumbnail">
+        <div class="caption-full">
+            <h4 class="pull-right">{{job.color}}</h4>
+            <h4><a href="{{job.url}}">{{job.displayName}}</a>
+            </h4>
+            <label>Description</label>
+            <span>{{job.description}}</span>
+        </div>
+        <div ng-repeat="build in builds">
+          <a href="#/jobs/{{job.name}}/{{build.number}}" class="list-group-item">
+              <i class="fa fa-thumbs-up fa-fw"></i> {{build.url}}
+              <span class="pull-right text-muted small"><em>{{build.number}}</em>
+              </span>
+          </a>
+        </div>
+    </div>
+    <div class="ratings">
+        <p class="pull-right">
+          <a class="btn btn-default" href="#/jobs">
+            <i class="fa fa-backward fa-lg"></i> Back</a>
+        </p>
+    </div>
+</div>

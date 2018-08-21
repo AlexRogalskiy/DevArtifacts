@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:b="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/security 
+                        http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<http use-expressions="true">
+		<!-- Para essas paginas soh permitido o acesso quando o usuario nao estiver 
+			autenticado -->
+		<intercept-url pattern="/login.jsf" access="!isAuthenticated()" />
+		<intercept-url pattern="/primeiroAcesso.jsf" access="!isAuthenticated()" />
+		<intercept-url pattern="/reenviarSenha.jsf" access="!isAuthenticated()" />
+
+		<intercept-url pattern="/index.jsf" access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/paginas/*" access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')" />
+		
+		<!-- Adciona um filtro de autenticao -->
+		<form-login login-page="/login.jsf"
+			always-use-default-target="true" default-target-url="/paginas/index.jsf"
+			authentication-failure-url="/login.jsf?erro=4" />
+
+		<!-- realiza o logout do sistema -->
+		<logout logout-success-url="/login.jsf" />
+
+		<session-management invalid-session-url="/login.jsf"
+			session-authentication-error-url="/login.jsf?codMsgWarn=MS008"
+			session-fixation-protection="migrateSession">
+			<concurrency-control expired-url="/login.jsf?codMsgWarn=MS008"
+				max-sessions="1" error-if-maximum-exceeded="false" />
+		</session-management>
+
+		<access-denied-handler error-page="/acessoNegado.jsf" />
+		<!-- <remember-me /> -->
+	</http>
+
+    <authentication-manager>
+        <authentication-provider>
+        <password-encoder hash="md5" />
+            <jdbc-user-service data-source-ref="minhaescolaDataSource"
+                users-by-username-query="SELECT username, password, 'true' as enable FROM users WHERE username=?"
+                authorities-by-username-query="SELECT username, authority FROM users WHERE username=?"
+            />
+        </authentication-provider>
+    </authentication-manager>                    
+</b:beans>                        

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+						http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="siseducaJPAUnitTest" transaction-type="RESOURCE_LOCAL">
+	<!-- <jta-data-source>java:jboss/datasources/siseducads</jta-data-source> -->
+<!-- 	<exclude-unlisted-classes>false</exclude-unlisted-classes>  -->
+	
+	<class>com.pauloneto.minhaescola.comuns.modelo.Aluno</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.AnoLetivo</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Bimestre</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Cidade</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Contato</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Disciplina</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Documento</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Endereco</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Escola</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Estado</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.JustificativaAlteracao</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Nota</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.PlanoCurso</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Professor</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.ProfessorDisciplina</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.RegistroAula</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.ResponsavelAluno</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Serie</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Usuario</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.Menu</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.SubMenu</class>
+	<class>com.pauloneto.minhaescola.comuns.modelo.ItemMenu</class>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+			<!-- validate | update | create | create-drop -->
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.connection.show_sql" value="true" /> 
+			<!-- inicio das configuracoes de processamento em lote -->
+			<property name="hibernate.default_batch_fetch_size" value="8" />
+			<property name="hibernate.jdbc.batch_size" value="30" />
+			<!-- fim das configuracoes de processamento em lote -->   
+        	</properties>    
+	</persistence-unit>
+</persistence>

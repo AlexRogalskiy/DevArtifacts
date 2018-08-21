@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="testeImagemBd" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="ARQUIVO_BINARIO" class="java.io.InputStream"/>
+	<parameter name="NOME_ARQUIVO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="24" width="397" height="55"/>
+				<textElement textAlignment="Center">
+					<font size="30"/>
+				</textElement>
+				<text><![CDATA[TESTE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="394" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="34" y="16" width="734" height="327"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{ARQUIVO_BINARIO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="34" y="355" width="734" height="37"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NOME_ARQUIVO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

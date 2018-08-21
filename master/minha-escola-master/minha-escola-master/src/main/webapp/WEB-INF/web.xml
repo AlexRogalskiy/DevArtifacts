@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+  
+  	<javaee:display-name>PrimeFaces Web Application</javaee:display-name>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<context-param>
+		<javaee:param-name>primefaces.THEME</javaee:param-name>
+		<javaee:param-value>temaInterfaceSISEDUCA</javaee:param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<!-- <param-value>Production</param-value> -->
+		<param-value>Development</param-value>
+	</context-param>
+  	<context-param>
+		<javaee:param-name>contextConfigLocation</javaee:param-name>
+		<javaee:param-value>
+			classpath:applicationContext.xml
+			classpath:applicationContext-security.xml
+		</javaee:param-value>
+	</context-param>
+	
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<listener>
+		<javaee:listener-class>org.springframework.web.context.ContextLoaderListener</javaee:listener-class>
+	</listener>
+	<listener>
+	  <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	
+	<security-constraint>
+		<display-name>Bloqueia o navegador de acessar arquivos xhtml</display-name>
+		<web-resource-collection>
+			<web-resource-name>xhtml files</web-resource-name>
+			<url-pattern>*.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint />
+	</security-constraint>
+	
+	<!-- Tempo de inatividade no sistema, em minutos -->
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
+	
+	<error-page>
+		<error-code>403</error-code>
+		<location>/login.jsf?codMsgWarn=MS010</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/paginas/index.jsf?codMsgErro=MN0004</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/login.jsf?codMsgWarn=MS010</location>
+	</error-page>
+	
+	<!-- Excessões nao tratadas pelo manager bean -->
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/login.jsf?codMsgWarn=MS010</location>
+	</error-page>
+	<error-page>
+		<exception-type>javax.servlet.ServletException</exception-type>
+		<location>/paginas/index.jsf?codMsgErro=MN0004</location>
+	</error-page>
+	
+	<!-- Filtro upload primefaces -->
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>
+			org.primefaces.webapp.filter.FileUploadFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	
+	<persistence-context-ref>
+		<persistence-context-ref-name>persistence/em</persistence-context-ref-name>
+		<persistence-unit-name>siseducaJPAUnit</persistence-unit-name>
+	</persistence-context-ref>
+</web-app>

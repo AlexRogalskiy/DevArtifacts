@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jar {
+    baseName = 'hello'
+    version = '1.0.0'
+    manifest {
+        attributes(
+                'Implementation-Title': 'Hello',
+                'Implementation-Version': 1.0,
+                'Main-Class': 'org.fkunnen.hello.Hello'
+        )
+    }
+}

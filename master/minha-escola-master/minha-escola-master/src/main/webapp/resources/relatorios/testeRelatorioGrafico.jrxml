@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="testeRelatorioGrafico" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="IMAGEM_GRAFICO" class="java.lang.Object"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="arquivoBinario" class="java.lang.Object">
+		<fieldDescription><![CDATA[arquivoBinario]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="nomeArquivo" class="java.lang.String">
+		<fieldDescription><![CDATA[nomeArquivo]]></fieldDescription>
+	</field>
+	<field name="idArquivo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[idArquivo]]></fieldDescription>
+	</field>
+	<field name="tipoArquivo" class="com.pauloneto.minhaescola.comuns.modelo.TipoArquivo">
+		<fieldDescription><![CDATA[tipoArquivo]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="40" y="5" width="471" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[TESTE RELATORIO COM GRAFICO ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="2" width="555" height="35"/>
+			</rectangle>
+			<line direction="BottomUp">
+				<reportElement x="272" y="2" width="1" height="34"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="2" width="272" height="34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[NOME DO ARQUIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="2" width="282" height="34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[TIPO DO ARQUIVO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="41"/>
+			</rectangle>
+			<line>
+				<reportElement x="272" y="0" width="1" height="41"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="0" width="272" height="41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nomeArquivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="273" y="0" width="282" height="41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoArquivo} == null ? "SEM TIPO"
+    : $F{tipoArquivo}.getDescricao()
+        ]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="444" y="0" width="111" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="226" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="354">
+			<image scaleImage="Clip" hAlign="Center" vAlign="Bottom">
+				<reportElement x="0" y="18" width="555" height="336"/>
+				<imageExpression class="java.awt.Image"><![CDATA[$P{IMAGEM_GRAFICO}]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

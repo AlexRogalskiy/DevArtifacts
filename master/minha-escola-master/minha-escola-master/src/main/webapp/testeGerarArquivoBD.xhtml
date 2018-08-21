@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/interface.xhtml"
+	xmlns:security="http://www.springframework.org/security/tags">
+
+	<ui:define name="menuTopo"></ui:define>
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<p:fileUpload fileUploadListener="#{testeBean.handleFileUpload}"
+				mode="advanced" dragDropSupport="false" update="messages"
+				sizeLimit="10000000" fileLimit="1"
+				allowTypes="/(\.|\/)(jpe?g|png)$/" />
+			<p:growl id="messages" showDetail="true" />
+			<br/>
+<!-- 			<p:commandButton value="Salvar"  -->
+<!-- 							 action="#{testeBean.salvarArquivo()}" ajax="false"/> -->
+<!-- 			<p:commandButton value="Salvar" action="#{testeBean.salvarArquivo()}" update="form" ajax="false"/>	 -->
+			
+			<p:commandButton value="Gerar grafico" action="#{testeBean.gerarGrafico()}" ajax="false"/>		
+		</h:form>
+	</ui:define>
+</ui:composition>

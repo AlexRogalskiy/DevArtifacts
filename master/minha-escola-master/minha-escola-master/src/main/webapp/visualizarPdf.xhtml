@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/interface.xhtml"
+	xmlns:security="http://www.springframework.org/security/tags">
+
+	<ui:define name="menuTopo"></ui:define>
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<h:panelGroup id="pgPdfDialogId">
+				<object type="application/pdf"  
+						data="#{facesContext.externalContext.requestContextPath}/resources/relatorios/#{testeBean.nomePdf}?pfdrid_c=true"
+						height="300px" width="100%"/>
+			</h:panelGroup>
+			<br/>
+			<p:commandButton value="Voltar" 
+							 action="#{testeBean.voltar()}" ajax="false"/>
+		</h:form>
+	</ui:define>
+</ui:composition>

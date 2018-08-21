@@ -1,0 +1,43 @@
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form" xmlns:c="/lib/credentials">
+    <f:entry title="${%Name}" field="name">
+        <f:textbox name="parameter.name" value="${instance.name}" />
+    </f:entry>
+
+    <f:entry title="${%Description}" field="description">
+        <f:textarea name="parameter.description" value="${instance.description}" />
+    </f:entry>
+
+    <f:entry title="${%Registry Base URL}" field="registryBaseUrl">
+        <f:textbox name="parameter.registryBaseUrl" value="${instance.registryBaseUrl}" />
+    </f:entry>
+
+    <f:entry title="${%Repository}" field="repository">
+        <f:textbox name="parameter.repository" value="${instance.repository}" />
+    </f:entry>
+
+    <f:advanced align="left">
+        <f:entry title="${%Registry Credentials}" field="credentialsId">
+            <c:select />
+        </f:entry>
+
+        <f:entry title="${%Items filter}" field="itemFilter">
+            <f:textbox field="parameter.itemFilter" value="${instance.itemFilter}" />
+        </f:entry>
+
+        <f:entry title="${%Default value}" field="defaultValue">
+            <f:textbox field="parameter.defaultValue" value="${instance.defaultValue}" />
+        </f:entry>
+
+        <f:entry title="${%Maximum items to display}" field="maxItems">
+            <f:textbox field="parameter.maxItems" value="${instance.maxItems}" />
+        </f:entry>
+
+        <f:entry title="${%Sorting order}" field="sortOrder" name="sortOrder" >
+            <select name="sortOrder">
+                <j:forEach var="sortOrderOption" items="${descriptor.sortOrders}">
+                    <f:option selected="${instance.sortOrder==sortOrderOption}" value="${sortOrderOption.name()}">${sortOrderOption.displayName}</f:option>
+                </j:forEach>
+            </select>
+        </f:entry>
+    </f:advanced>
+</j:jelly>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/interface.xhtml"
+	xmlns:security="http://www.springframework.org/security/tags">
+
+	<ui:define name="menuTopo"></ui:define>
+	<ui:define name="conteudo">
+		<form id="login" action="j_spring_security_check" method="post" class="forms">
+		<fieldset>
+				<legend>#{msg['label.autenticacao']}</legend>
+				<table class="tabelaFormulario">
+					<tfoot class="rodape">
+						<tr class="linha">
+							<td colspan="4">
+								<input type="submit" value="Login" class="btn btn-primary"/>   
+							</td>
+						</tr>
+					</tfoot>
+					<tbody class="corpo">
+						
+						<tr class="linha">
+							<td class="padraoColunaLogin"><p:outputLabel value="#{msg['label.login']}" for="j_username" /></td>
+							<td class="padraoColunaLogin"><p:inputText maxlength="15" autofocus=""
+															id="j_username" required="true" requiredMessage="#{msg['MS012']}"/></td>
+							<td><h:message for="j_username" errorStyle="color: red"></h:message></td>
+						</tr>
+						<tr class="linha">
+							<td><p:outputLabel value="#{msg['label.senha']}" for="j_password" /></td>
+							<td><p:password id="j_password" required="true" requiredMessage="#{msg['MS011']}" /></td>
+							<td><h:message for="j_password" errorStyle="color: red"></h:message></td>
+						</tr>
+					</tbody>
+				</table>
+		</fieldset>
+		</form>
+		<h:form>
+		<table class="tabelaFormulario">
+			<tbody class="corpo">
+				<tr class="linha">
+							<td  colspan="2">
+								<ul class="menuLogin">
+								    <li>
+										<p:commandLink id="commandlink_primeiro_acesso" 
+													   ajax="false" immediate="true"
+													   value="#{msg['label.cadastrarme']}"/>
+								    </li>
+								</ul>
+							</td>
+						</tr>
+			</tbody>
+		</table>
+		</h:form>
+	</ui:define>
+</ui:composition>

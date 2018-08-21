@@ -1,0 +1,60 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core"
+         xmlns:f="/lib/form" xmlns:c="/lib/credentials">
+  <table width="100%" class="pane">
+    <f:section title="${%General Configuration}">
+      <f:entry title="${%Name}" field="name">
+        <f:textbox/>
+      </f:entry>
+      <f:entry title="${%Description}" field="description">
+        <f:textarea/>
+      </f:entry>
+      <f:entry title="${%Labels}" field="labelString">
+        <f:textbox/>
+      </f:entry>
+      <f:slave-mode name="mode" node="${instance}"/>
+    </f:section>
+
+    <f:section title="${%Image Options}">
+      <f:entry title="${%Image ID}" field="imageId">
+        <f:textbox/>
+      </f:entry>
+    </f:section>
+
+    <f:advanced>
+      <f:section title="${%General Options}">
+        <f:entry title="${%Custom JSON}" field="customJsonOpts">
+          <f:textarea />
+        </f:entry>
+
+        <f:entry title="${%Jenkins Credentials}" field="credentialsId">
+            <c:select/>
+        </f:entry>
+
+        <f:entry title="Remote FS Root" field="fsRoot">
+          <f:textbox default="/tmp" />
+        </f:entry>
+
+        <f:entry title="${%Custom JVM Options}" field="jvmOptions">
+          <f:textbox />
+        </f:entry>
+
+        <f:entry title="${%Retention Strategy}" field="retentionStrategyName">
+          <f:select />
+        </f:entry>
+
+        <f:entry title="${%Idle Retention Minutes}" field="idleTerminationMinutes">
+          <f:textbox />
+        </f:entry>
+
+      </f:section>
+
+    </f:advanced>
+    <f:entry title="">
+      <div align="right">
+        <f:repeatableDeleteButton/>
+      </div>
+    </f:entry>
+
+  </table>
+</j:jelly>

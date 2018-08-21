@@ -1,0 +1,15 @@
+<div class="col-md-9">
+    <p class="lead">Job Status</p>
+    <div class="input-group margin-bottom-sm">
+      <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+      <input class="form-control" ng-model="jobFilter" type="text" placeholder="Search ...">
+    </div>
+    <div ng-repeat="job in jobsList | filter: jobSearchFilter">
+      <a href="#/jobs/{{job.name}}" class="list-group-item">
+          <i>{{$index + 1}}</i>
+          <i class="fa fa-spinner fa-pulse"></i> {{job.name}}
+          <span class="pull-right text-muted small"><i class="fa fa-thumbs-o-up fa-fw"></i><em>{{job.color}}</em>
+          </span>
+      </a>
+    </div>
+</div>

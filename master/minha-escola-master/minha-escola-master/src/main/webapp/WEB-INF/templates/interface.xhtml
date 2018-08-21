@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" lang="pt-br">
+	
+<h:head>
+	<title>#{msg['titulo.sistema']}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-br" />
+	<link type="text/css" rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/resources/css/interface.css" />
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/js/util.js"></script>
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/js/jquery.maskMoney.js"></script>
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/js/locale.js"></script>
+</h:head>
+<h:body styleClass="corpo">
+ <f:view contentType="text/html">
+<ui:debug hotkey="q" />
+	<div id="container">
+		<div id="head">
+		
+		</div>
+		<div id="menu">
+			<ui:insert name="menuTopo">
+					<h:form>
+					 <p:menubar model="#{sessaoControlador.menuModel}">  
+				        <f:facet name="options">            							  
+				        	<p:commandButton type="button" value="#{sessaoControlador.usuarioLogado.login}" /> |
+				        	<h:outputLink value="#{request.contextPath}/j_spring_security_logout" styleClass="strong">#{msg['link.sair']}</h:outputLink>    
+				        </f:facet>  
+				         
+    				</p:menubar>
+    				</h:form>
+				</ui:insert>
+		</div>
+		<div id="center">
+			<ul id="camposObrigatorios">
+				<ui:insert name="retiraAvisoCampoObrigatorio">
+					<li >* campos obrigatórios</li>
+				</ui:insert>
+			</ul>
+			<div id="content">
+				<h:form id="formMsg">
+					<p:messages id="msgPrincipal" styleClass="formMensagensGeral" showSummary="false" 
+								showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+				<ui:insert name="conteudo">
+				</ui:insert>
+			</div>
+		</div>
+	</div>
+	</f:view>
+</h:body>
+
+</html>
