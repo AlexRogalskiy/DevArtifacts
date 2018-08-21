@@ -1,0 +1,59 @@
+GetTop5GlobalUserScores code
+
+run.csx
+Note that I've added the userscore class to demonstrate having an explicit class rather than using dynamic as I did in the article. 
+
+================================
+using System.Net;
+
+//call with:
+//https://cookiebinge.azurewebsites.net/api/GetTop5GlobalUserScores
+public static HttpResponseMessage Run(
+               HttpRequestMessage req, IEnumerable<userScore> documents, TraceWriter log)
+{
+    if (documents != null)
+    {
+        log.Info($"Document Count: {documents.Count()}");
+        return req.CreateResponse(HttpStatusCode.OK,documents);
+    }
+    else
+    {
+        return req.CreateResponse(HttpStatusCode.NotFound);
+    }
+}
+    public class userScore{
+    public string userName{get;set;}
+    public string score{get;set;}
+    public string worthit {get;set;}
+    public string deviceName {get;set;}
+    public string dateTime{get;set;}
+
+}
+===================================
+function.json file
+
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "$return",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "type": "documentDB",
+      "name": "documents",
+      "databaseName": "CookieBinge",
+      "collectionName": "Binges",
+      "connection": "datapointscosmosdb_DOCUMENTDB",
+      "direction": "in",
+      "sqlQuery": "SELECT  TOP 5 c.userName, c.score,c.worthit,c.deviceName FROM c ORDER by c.score DESC"
+    }
+  ],
+  "disabled": false
+}

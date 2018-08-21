@@ -1,0 +1,25 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "$return",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "type": "documentDB",
+      "name": "outputDocument",
+      "databaseName": "CookieBinge",
+      "collectionName": "Users",
+      "createIfNotExists": true,
+      "connection": "datapointscosmosdb_DOCUMENTDB",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}

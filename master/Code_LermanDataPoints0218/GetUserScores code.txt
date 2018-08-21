@@ -1,0 +1,50 @@
+GetUserScores function
+
+Run.csx file
+=============================
+using System.Net;
+//call with:
+//https://cookiebinge.azurewebsites.net/api/GetUserScores/{userId}
+//example: https://cookiebinge.azurewebsites.net/api/GetUserScores/54321
+public static HttpResponseMessage Run(string userId,int top,
+               HttpRequestMessage req, IEnumerable<dynamic> documents, TraceWriter log)
+{
+     if (documents != null)
+    {
+        log.Info($"Document Count: {documents.Count()}");
+        return req.CreateResponse(HttpStatusCode.OK,documents);
+    }
+    else
+    {
+        return req.CreateResponse(HttpStatusCode.NotFound);
+    }
+}
+
+function.json file
+=====================================
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in",
+      "route": "GetUserScores/{userId}/{top}"
+    },
+    {
+      "name": "$return",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "type": "documentDB",
+      "name": "documents",
+      "databaseName": "CookieBinge",
+      "collectionName": "Binges",
+      "sqlQuery": "SELECT  TOP {top} c.score,c.worthit,c.deviceName,c.dateTime FROM c WHERE c.userId={userId} ORDER by c.score DESC",
+      "connection": "datapointscosmosdb_DOCUMENTDB",
+      "direction": "in"
+    }
+  ],
+  "disabled": false
+}

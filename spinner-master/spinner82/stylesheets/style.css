@@ -1,0 +1,59 @@
+.propaganda[data-id="17"] {
+  transform: none;
+  margin: 0;
+}
+
+.adfoxStratum {
+  width: 200px;
+  height: 120px;
+  background-image: url("https://leonardo.osnova.io/d801c95a-f57e-87cb-f6e8-b2153797fd03/");
+  background-size: auto 100%;
+  background-position: 0 0;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 100;
+  transform: translate3d(0, 0, 0);
+}
+
+.adfoxStratum.hidden {
+  animation-name: stratumBounceInUp;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.adfoxStratum.animated {
+  animation: stratumFrames 2.5s steps(100, end) infinite;
+}
+
+@keyframes stratumFrames {
+  to {
+    background-position: -20000px 0;
+  }
+}
+@keyframes stratumBounceInUp {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+  75% {
+    transform: translate3d(0, 10px, 0);
+  }
+  90% {
+    transform: translate3d(0, -5px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}

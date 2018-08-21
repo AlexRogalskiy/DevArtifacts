@@ -1,0 +1,26 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in",
+      "route": "GetAccountId/{name}/{shortid}"
+    },
+    {
+      "name": "$return",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "type": "documentDB",
+      "name": "documents",
+      "databaseName": "CookieBinge",
+      "collectionName": "Users",
+      "connection": "datapointscosmosdb_DOCUMENTDB",
+      "direction": "in",
+      "sqlQuery": "SELECT c.id FROM c where (c.name={name} and StartsWith(c.id,{shortid}))"
+    }
+  ],
+  "disabled": false
+}

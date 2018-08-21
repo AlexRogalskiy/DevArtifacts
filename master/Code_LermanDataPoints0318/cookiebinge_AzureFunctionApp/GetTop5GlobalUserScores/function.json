@@ -1,0 +1,25 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "$return",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "type": "documentDB",
+      "name": "documents",
+      "databaseName": "CookieBinge",
+      "collectionName": "Binges",
+      "connection": "datapointscosmosdb_DOCUMENTDB",
+      "direction": "in",
+      "sqlQuery": "SELECT  TOP 5 c.userName, c.score,c.worthit,c.deviceName FROM c ORDER by c.score DESC"
+    }
+  ],
+  "disabled": false
+}

@@ -1,0 +1,111 @@
+/*Page styles*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+html { height: 100%; }
+
+body {
+  height: 100%;
+  margin: 0;
+  background: #363636;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  color: #ddd;
+  font: 14px/15px 'Open Sans', Arial, sans-serif;
+}
+
+.box {
+  margin: auto;
+  padding: 50px 100px;
+  background: #484848;
+}
+
+/*Input styles*/
+input[type="checkbox"] { display: none; }
+
+input[type="checkbox"] + label {
+  display: block;
+  margin-top: 9px;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 5px;
+  border-radius: 15px 15px 0 0;
+  border: solid #2ecc71;
+  border-width: 3px 3px 0 3px;
+  position: absolute;
+  left: 3px;
+  top: -9px;
+  -webkit-transform-origin: 1px 100%;
+  -ms-transform-origin: 1px 100%;
+  transform-origin: 1px 100%;
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  -webkit-transition: all .12s;
+  transition: all .12s;
+}
+
+input[type="checkbox"] + label:after {
+  content: 'Now lock it';
+  display: inline-block;
+  width: 90px;
+  margin-left: 10px;
+}
+
+input[type="checkbox"] + label i {
+  display: inline-block;
+  vertical-align: top;
+  width: 20px;
+  height: 15px;
+  background: #2ecc71;
+  position: relative;
+  -webkit-transition: all .12s;
+  transition: all .12s;
+}
+
+input[type="checkbox"] + label i:before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: #484848;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  margin-left: -2px;
+}
+input[type="checkbox"] + label i:after {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 4px;
+  background: #484848;
+  border-radius: 0 0 50% 50%;
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  margin-left: -1px;
+}
+
+input[type="checkbox"]:checked + label i {
+  background: #fb4f4f;
+}
+
+input[type="checkbox"]:checked + label:before {
+  border-color: #fb4f4f;
+  -webkit-transform: rotateY(0);
+  transform: rotateY(0);
+}
+
+input[type="checkbox"]:checked + label:after {
+  content: 'Ok, unlock it';
+}

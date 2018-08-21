@@ -1,0 +1,105 @@
+.TochkaStratum {
+    position: fixed;
+    bottom: 0;
+    right: 290px;
+}
+.TochkaStratum__girl {
+    width: 118px;
+    height: 164px;
+    background-image: url('https://leonardo.osnova.io/f620368c-3b87-3830-8940-8045f80caa65/');
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: auto 100%;
+    position: relative;
+    bottom: -4px;
+}
+.TochkaStratum__saw {
+    width: 139px;
+    height: 161px;
+    background-image: url('https://leonardo.osnova.io/66e26e1c-cbb1-bb13-9bad-6ad35b090f16/');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    position: absolute;
+    bottom: 2px;
+    right: -7px;
+    transform-origin: 100% 80%;
+    animation: tochkaSaw 0.6s infinite ease-in-out;
+}
+.TochkaStratum__zombieLeft {
+    width: 72px;
+    height: 145px;
+    background-image: url('https://leonardo.osnova.io/f8856504-57dd-41e1-77c7-3070e18656ed/');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -133px;
+    transform: translateX(90px);
+}
+.TochkaStratum__zombieRight {
+    width: 96px;
+    height: 144px;
+    background-image: url('https://leonardo.osnova.io/3fb3ad6f-4a99-f329-b10b-6c9bb90a536f/');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: 18px;
+    transform: translateX(-75px);
+}
+.TochkaStratum__paint {
+    width: 355px;
+    height: 176px;
+    background-image: url('https://leonardo.osnova.io/55b587d4-cca9-7432-2571-891bcd669ed0/');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    position: absolute;
+    bottom: 90px;
+    transform: translateY(10px);
+    left: -128px;
+}
+.TochkaStratum__text {
+    width: 153px;
+    height: 20px;
+    background-image: url('https://leonardo.osnova.io/0840b6a1-f6b2-5633-bc59-2eb539b545be/');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    position: absolute;
+    bottom: 172px;
+    left: -31px;
+}
+
+.TochkaStratum .TochkaStratum__paint,
+.TochkaStratum .TochkaStratum__text,
+.TochkaStratum .TochkaStratum__zombieLeft,
+.TochkaStratum .TochkaStratum__zombieRight {
+    opacity: 0;
+    transition: all 0.4s;
+    pointer-events: none;
+}
+
+.TochkaStratum:hover .TochkaStratum__paint,
+.TochkaStratum:hover .TochkaStratum__text,
+.TochkaStratum:hover .TochkaStratum__zombieLeft,
+.TochkaStratum:hover .TochkaStratum__zombieRight {
+    opacity: 1;
+    pointer-events: auto;
+}
+.TochkaStratum:hover .TochkaStratum__zombieLeft,
+.TochkaStratum:hover .TochkaStratum__zombieRight {
+    transform: translateX(0);
+}
+.TochkaStratum:hover .TochkaStratum__paint {
+    transform: translateY(0);
+}
+
+@keyframes tochkaSaw {
+    0%, 100% {
+        transform: rotate(0deg) translateY(0);
+    }
+    50% {
+        transform: rotate(-1deg) translateY(0);
+    }
+}
