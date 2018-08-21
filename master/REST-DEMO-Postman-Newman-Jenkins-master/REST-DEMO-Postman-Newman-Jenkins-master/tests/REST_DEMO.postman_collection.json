@@ -1,0 +1,452 @@
+{
+	"info": {
+		"name": "REST_DEMO",
+		"_postman_id": "ba9513a0-eb28-ba8d-ba6d-999457b12168",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Salesforce",
+			"description": null,
+			"item": [
+				{
+					"name": "GET Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearEnvironmentVariable(\"accessToken\");",
+									"postman.clearEnvironmentVariable(\"sessionId\");",
+									"postman.clearEnvironmentVariable(\"url\");",
+									"var jsonObject = xml2Json(responseBody);",
+									"console.log(jsonObject['soapenv:Envelope']['soapenv:Body'].loginResponse.result.sessionId);",
+									"postman.setEnvironmentVariable(\"accessToken\", \"Bearer \"+jsonObject['soapenv:Envelope']['soapenv:Body'].loginResponse.result.sessionId);",
+									"postman.setEnvironmentVariable(\"sessionId\", \"\"+jsonObject['soapenv:Envelope']['soapenv:Body'].loginResponse.result.sessionId);",
+									"postman.setEnvironmentVariable(\"url\", \"\"+jsonObject['soapenv:Envelope']['soapenv:Body'].loginResponse.result.serverUrl.match(/^(.*?)\\.com/)[0]);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml;charset=UTF-8"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<Envelope xmlns=\"http://schemas.xmlsoap.org/soap/envelope/\"><Header/><Body><login xmlns=\"urn:partner.soap.sforce.com\"><username>ryanchargis@yahoo.com</username><password>Qazwsx123!</password></login></Body></Envelope>"
+						},
+						"url": {
+							"raw": "https://login.salesforce.com/services/Soap/u/41.0",
+							"protocol": "https",
+							"host": [
+								"login",
+								"salesforce",
+								"com"
+							],
+							"path": [
+								"services",
+								"Soap",
+								"u",
+								"41.0"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var header = postman.getResponseHeader(\"Content-Type\");",
+									"",
+									"tests[\"Account should be successfully created \"] = jsonData.success === true;",
+									"",
+									"tests[\"Status code should be 201\"] = responseCode.code === 201;",
+									"",
+									"tests[\"Status code name should be 'Created'\"] = responseCode.name.has(\"Created\");",
+									"",
+									"tests[\"Header should contain 'application/json' value\"] = header === \"application/json;charset=UTF-8\";",
+									"",
+									"pm.test(\"Body should have 'id','success','errors' string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"success\");",
+									"    pm.expect(pm.response.text()).to.include(\"errors\");",
+									"    ",
+									"});",
+									"",
+									"pm.test(\"Response time should be less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"accountId\", \"\"+jsonData.id);"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"function makeName()",
+									"{",
+									"    var text = \"Account-\";",
+									"    var possible = \"0123456789\";",
+									" ",
+									"    for( var i=0; i < 5; i++ )",
+									"        text += possible.charAt(Math.floor(Math.random() * possible.length));",
+									" ",
+									"    return text;",
+									"}",
+									" ",
+									"postman.setEnvironmentVariable('isoTime',(new Date()).toISOString());",
+									"postman.setEnvironmentVariable('randomName',makeName());"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{sessionId}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Name\" : \"{{randomName}}\"\n  \n}"
+						},
+						"url": {
+							"raw": "{{url}}/services/data/v41.0/sobjects/Account/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v41.0",
+								"sobjects",
+								"Account",
+								""
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var header = postman.getResponseHeader(\"Cache-Control\");",
+									"",
+									"tests[\"Status code should be 204\"] = responseCode.code === 204;",
+									"",
+									"tests[\"Status code name should be 'No Content'\"] = responseCode.name.has(\"No Content\");",
+									"",
+									"tests[\"Header should contain 'Cache-Control' value\"] = header === \"no-cache,must-revalidate,max-age=0,no-store,private\";",
+									"console.log(header)",
+									"",
+									"pm.test(\"Response time should be less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									" "
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{sessionId}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Type\": \"Customer - Channel\",\r\n    \"BillingStreet\": \"1301 Hoch Drive\",\r\n    \"BillingCity\": \"Lawrence\",\r\n    \"BillingState\": \"KS\",\r\n    \"BillingPostalCode\": \"66045\",\r\n    \"BillingCountry\": \"USA\",\r\n    \"ShippingStreet\": \"1301 Hoch Drive\",\r\n    \"ShippingCity\": \"Lawrence\",\r\n    \"ShippingState\": \"KS\",\r\n    \"ShippingPostalCode\": \"66045\",\r\n    \"ShippingCountry\": \"USA\",\r\n    \"Phone\": \"(785) 241-6200\",\r\n    \"Fax\": \"(785) 241-6201\",\r\n    \"AccountNumber\": \"CC634267\",\r\n    \"Website\": \"dickenson-consulting.com\",\r\n    \"Sic\": \"6752\",\r\n    \"Industry\": \"Consulting\",\r\n    \"AnnualRevenue\": 50000000,\r\n    \"NumberOfEmployees\": 120,\r\n    \"Ownership\": \"Private\",\r\n    \"CleanStatus\": \"Pending\",\r\n    \"CustomerPriority__c\": \"Low\",\r\n    \"SLA__c\": \"Bronze\",\r\n    \"Active__c\": \"Yes\",\r\n    \"NumberofLocations__c\": 2,\r\n    \"UpsellOpportunity__c\": \"No\",\r\n    \"SLASerialNumber__c\": \"7425\",\r\n    \"SLAExpirationDate__c\": \"2018-10-17\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/services/data/v41.0/sobjects/Account/{{accountId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v41.0",
+								"sobjects",
+								"Account",
+								"{{accountId}}"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "Negative Cases Edit Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var header = postman.getResponseHeader(\"Cache-Control\");",
+									"",
+									"tests[\"Status code should be 400\"] = responseCode.code === 400;",
+									"",
+									"tests[\"Status code name should be 'No Content'\"] = responseCode.name.has(\"Bad Request\");",
+									"",
+									"tests[\"Header should contain 'Cache-Control' value\"] = header === \"no-cache,must-revalidate,max-age=0,no-store,private\";",
+									"console.log(header)",
+									"",
+									"pm.test(\"Response time should be less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"pm.test(\"Body should have fields: 'message','errorCode','fields', string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"message\");",
+									"    pm.expect(pm.response.text()).to.include(\"errorCode\");",
+									"    pm.expect(pm.response.text()).to.include(\"fields\");",
+									"    ",
+									"});",
+									"console.log(jsonData[0].errorCode)",
+									" tests[\"Error message should contain 'Unable to create/update fields:'\"] = jsonData[0].message === \"Unable to create/update fields: BillingAddress, PhotoUrl, ShippingAddress. Please check the security settings of this field and verify that it is read/write for your profile or permission set.\";",
+									" ",
+									" tests[\"Error code should be equal : 'INVALID_FIELD_FOR_INSERT_UPDATE' \"] =jsonData[0].errorCode === \"INVALID_FIELD_FOR_INSERT_UPDATE\";",
+									" ",
+									" ",
+									" "
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{sessionId}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Type\": \"Customer - Channel\",\r\n    \"BillingStreet\": \"1301 Hoch Drive\",\r\n    \"BillingCity\": \"Lawrence\",\r\n    \"BillingState\": \"KS\",\r\n    \"BillingPostalCode\": \"66045\",\r\n    \"BillingCountry\": \"USA\",\r\n    \"BillingAddress\": {\r\n        \"city\": \"Lawrence\",\r\n        \"country\": \"USA\",\r\n        \"postalCode\": \"66045\",\r\n        \"state\": \"KS\",\r\n        \"street\": \"1301 Hoch Drive\"\r\n    },\r\n    \"ShippingStreet\": \"1301 Hoch Drive\",\r\n    \"ShippingCity\": \"Lawrence\",\r\n    \"ShippingState\": \"KS\",\r\n    \"ShippingPostalCode\": \"66045\",\r\n    \"ShippingCountry\": \"USA\",\r\n    \"ShippingAddress\": {\r\n        \"city\": \"Lawrence\",\r\n        \"country\": \"USA\",\r\n        \"postalCode\": \"66045\",\r\n        \"state\": \"KS\",\r\n        \"street\": \"1301 Hoch Drive\"\r\n    },\r\n    \"Phone\": \"(785) 241-6200\",\r\n    \"Fax\": \"(785) 241-6201\",\r\n    \"AccountNumber\": \"CC634267\",\r\n    \"Website\": \"dickenson-consulting.com\",\r\n    \"PhotoUrl\": \"/services/images/photo/0011r00001kkHgyAAE\",\r\n    \"Sic\": \"6752\",\r\n    \"Industry\": \"Consulting\",\r\n    \"AnnualRevenue\": 50000000,\r\n    \"NumberOfEmployees\": 120,\r\n    \"Ownership\": \"Private\",\r\n    \"CleanStatus\": \"Pending\",\r\n    \"CustomerPriority__c\": \"Low\",\r\n    \"SLA__c\": \"Bronze\",\r\n    \"Active__c\": \"Yes\",\r\n    \"NumberofLocations__c\": 2,\r\n    \"UpsellOpportunity__c\": \"No\",\r\n    \"SLASerialNumber__c\": \"7425\",\r\n    \"SLAExpirationDate__c\": \"2018-10-17\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/services/data/v41.0/sobjects/Account/{{accountId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v41.0",
+								"sobjects",
+								"Account",
+								"{{accountId}}"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var header = postman.getResponseHeader(\"Content-Type\");",
+									"var getAccountId = postman.getEnvironmentVariable(\"accountId\");",
+									"",
+									"tests[\"Account should have expected id \"] = jsonData.Id === getAccountId;",
+									"console.log(getAccountId);",
+									"",
+									"tests[\"Status code should be 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Status code name should be 'Created'\"] = responseCode.name.has(\"OK\");",
+									"",
+									"tests[\"Header should contain 'application/json' value\"] = header === \"application/json;charset=UTF-8\";",
+									"",
+									"pm.test(\"Body should have 'id' field\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Id\");",
+									"",
+									"});",
+									"",
+									"pm.test(\"Response time should be less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{sessionId}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Name\" : \"{{randomName}}\"\n  \n}"
+						},
+						"url": {
+							"raw": "{{url}}/services/data/{{apiVersion}}/sobjects/Account/{{accountId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"{{apiVersion}}",
+								"sobjects",
+								"Account",
+								"{{accountId}}"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var header = postman.getResponseHeader(\"Cache-Control\");",
+									"",
+									"tests[\"Status code should be 204\"] = responseCode.code === 204;",
+									"",
+									"tests[\"Status code name should be 'No Content'\"] = responseCode.name.has(\"No Content\");",
+									"",
+									"tests[\"Header should contain 'Cache-Control' value\"] = header === \"no-cache,must-revalidate,max-age=0,no-store,private\";",
+									"console.log(header)",
+									"",
+									"pm.test(\"Response time should be less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{sessionId}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/services/data/v41.0/sobjects/Account/{{accountId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v41.0",
+								"sobjects",
+								"Account",
+								"{{accountId}}"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

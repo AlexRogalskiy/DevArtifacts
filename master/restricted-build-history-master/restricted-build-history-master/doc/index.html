@@ -1,0 +1,34 @@
+<html>
+<body>
+
+<h1>Overview</h1>
+
+<p>This plugin provides an authorization strategy that will restrict access to the details about a build based upon the following rules:</p>
+
+<ul>
+  <li>Users with the Administer permission can see all builds</li>
+  <li>Users can see the details of a build if they started the build</li>
+  <li>Users can see the details of a build if they started an upstream build that triggered the build</li>
+  <li>Users can see the details of a build if it was started by the anonymous user and they would otherwise have access to see the details of the build.</li>
+</ul>
+
+<p>This plugin also contains a build visibility post build action which can be used to provide indicators in the build history widget indicating which builds a user has access to. Note that these indicators are not retroactive, they will only appear if the build visibility action was enabled in the configuration for a job at the time of the build.</p>
+
+<h1>Configuration</h1>
+
+<p>The only required configuration is to select the Restricted Build Visibility Matrix Authorization Strategy for your Jenkins instance. It is recommended, however, that the Build Visibility post build action also be used in order to provide visual indicators to users about which build details they can see.</p>
+
+<p>To use the restricted build history plugin after installation set the authorization strategy for you Jenkins server to Restricted Build Visibility Matrix Authorization Strategy. There are no explicit permissions to grant for controlling build visibility.</p>
+
+<img src="images/config-one.png" alt="Restricted Build Visibility Matrix Authorization Strategy configuration screenshot" /><br />
+
+<p>In order to see the visual indicators shown in the build history screenshot below, the build visibility post build action needs to be enabled for each job.Note that indicators are not retroactive.</p>
+<img src="images/config-two.png" alt="Build Visibility post build action configuration screenshot" />
+
+<h1>Build</h1>
+
+<p>In the screenshot below, the logged in user has access to the first two builds and the last build but does not have access to the third and fourth build.</p>
+<img src="images/build-one.png" alt="Build widget screenshot" />
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  labels:
+    name: pipeline-java
+  name: pipeline-java
+spec:
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfile: |-
+        def TEMPLATEPATH = 'https://raw.githubusercontent.com/mechevarria/jws-app/master/jws31-tomcat8-basic-s2i.json'
+        def TEMPLATENAME = 'jws31-tomcat8-basic-s2i'
+        def APPNAME = 'jws-app'
+        pipeline {
+            agent {
+              node {
+                label 'maven'
+              }
+            }
+            options {
+                // set a timeout of 20 minutes for this pipeline
+                timeout(time: 20, unit: 'MINUTES')
+            }
+            stages {
+                stage('enter project') {
+                    steps {
+                        script {
+                            openshift.withCluster() {
+                                openshift.withProject("pipeline-app") {
+                                    echo "Using project: ${openshift.project()}"
+                                }
+                            }
+                        }
+                    }
+                }
+                stage('cleanup previous') {
+                    steps {
+                        script {
+                            openshift.withCluster() {
+                                openshift.withProject("pipeline-app") {
+                                    // delete everything with this template label
+                                    openshift.selector("all", [ template : TEMPLATENAME ]).delete()
+                                    // delete any secrets with this template label
+                                    if (openshift.selector("secrets", TEMPLATENAME).exists()) {
+                                        openshift.selector("secrets", TEMPLATENAME).delete()
+                                    }
+                                }
+                            }
+                        } // script
+                    } // steps
+                } // stage
+                stage('pull source') {
+                    steps {
+                        script {
+                            openshift.withCluster() {
+                                openshift.withProject("pipeline-app") {
+                                    // create a new application from the TEMPLATEPATH
+                                    openshift.newApp(TEMPLATEPATH)
+                                }
+                            }
+                        } // script
+                    } // steps
+                } // stage
+                stage('build and test') {
+                    steps {
+                        script {
+                            openshift.withCluster() {
+                                openshift.withProject("pipeline-app") {
+                                    def builds = openshift.selector("bc", APPNAME).related('builds')
+                                    builds.untilEach(1) {
+                                        def status = it.object().status.phase
+                                        echo "Build is ${status}"
+                                        if (status == "Failed") {
+                                            echo "Build failed due to assembly or test error"
+                                            currentBuild.result = 'ABORTED'
+                                            return true
+                                        } else {
+                                            return (status == "Complete")
+                                        }
+                                    }
+                                }
+                            }
+                        } // script
+                    } // steps
+                } // stage
+                stage('verify results') {
+                    steps {
+                        script {
+                            openshift.withCluster() {
+                                openshift.withProject("pipeline-app") {
+                                    if ( currentBuild.result == "ABORTED" ) {
+                                        currentBuild.result = 'ABORTED'
+                                        error('Stopping due to build and test error')
+                                    } else {
+                                        echo "All tests passed, verification complete"
+                                    }
+                                }
+                            }
+                        } // script
+                    } // steps
+                } // stage
+                stage('deploy to build') {
+                    steps {
+                        script {
+                            openshift.withCluster() {
+                                openshift.withProject("pipeline-app") {
+                                    def rm = openshift.selector("dc", APPNAME).rollout()
+                                    openshift.selector("dc", APPNAME).related('pods').untilEach(1) {
+                                        return (it.object().status.phase == "Running")
+                                    }
+                                }
+                            }
+                        } // script
+                    } // steps
+                } // stage
+                stage('promote to staging?') {
+                    steps {
+                        script {
+                            openshift.withCluster() {
+                                openshift.withProject("pipeline-app") {                            
+                                    userInput = input(
+                                        id: 'Proceed1', message: 'Is this ready to send to QA?', parameters: [
+                                        [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you want to send to staging']
+                                    ])
+                                    echo "Autotagging this new image for a staging rollout: ${APPNAME}-staging:latest"
+                                    // if everything else succeeded, tag the ${APPNAME}:latest image as ${APPNAME}-staging:latest
+                                    // a pipeline build config for the staging environment can watch for the ${APPNAME}-staging:latest
+                                    // image to change and then deploy it to the staging environment
+                                    openshift.tag("${APPNAME}:latest", "${APPNAME}-staging:latest")
+                                }
+                                openshift.withProject("pipeline-app-staging") {
+                                    echo "deploying new-app to staging from -latest tag"
+                                    // the image change tag should take care of rolling out updates
+                                    // creating stage project happens in the next
+                                }
+                            }
+                        } // script
+                    } // steps
+                } // stage
+                stage('create staging') {
+                    when {
+                        expression {
+                            openshift.withCluster() {
+                                openshift.withProject("pipeline-app-staging") {
+                                    return !openshift.selector('dc', "jws-app-staging").exists()
+                                }
+                            }
+                        }
+                    } // when
+                    steps {
+                        script {
+                            openshift.withCluster() {
+                                openshift.withProject("pipeline-app-staging") {
+                                    echo "Staging doesn't exist - creating..."
+                                    // create the app only when dc doesn't already exist
+                                    // otherwise the image change tag will take care of rolling out updates
+                                    // openshift.newApp("openshift/jws31-tomcat8-basic-s2i")
+                                    openshift.newApp("pipeline-app/${APPNAME}-staging:latest").narrow('svc').expose()
+                                    // TODO hook up secrets
+                                }
+                            }
+                        } // script
+                    } // steps
+                } // stage
+            } // stages
+        } // pipeline
+      type: JenkinsPipeline
