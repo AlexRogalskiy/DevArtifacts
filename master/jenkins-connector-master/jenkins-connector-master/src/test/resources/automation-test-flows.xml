@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:jenkins="http://www.mulesoft.org/schema/mule/jenkins" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/jenkins http://www.mulesoft.org/schema/mule/jenkins/1.0/mule-jenkins.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd 
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd ">
+    
+    <jenkins:config name="Jenkins" jenkinsURL="http://localhost:8080/"   doc:name="Jenkins" connectionName="main">
+        <jenkins:connection-pooling-profile initialisationPolicy="INITIALISE_ONE" exhaustedAction="WHEN_EXHAUSTED_GROW"/>
+    </jenkins:config>
+    
+    <flow name="build" doc:name="build">
+        <jenkins:build config-ref="Jenkins" doc:name="Build" jobName="#[payload.jobName]"/>
+        <logger message="### build #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="copy-job" doc:name="copy-job">
+        <jenkins:copy-job config-ref="Jenkins" doc:name="Copy job" fromJobName="#[payload.fromJobName]" newJobName="#[payload.newJobName]"/>
+        <logger message="### copy-job #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="create-job" doc:name="create-job">
+        <jenkins:create-job config-ref="Jenkins" doc:name="Create job" jobName="#[payload.jobName]"/>
+        <logger message="### create-job #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="delete-job" doc:name="delete-job">
+        <jenkins:delete-job config-ref="Jenkins" doc:name="Delete job" jobName="#[payload.jobName]"/>
+        <logger message="### delete-job #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="disable-job" doc:name="disable-job">
+        <jenkins:disable-job config-ref="Jenkins" doc:name="Disable job" jobName="#[payload.jobName]"/>
+        <logger message="### disable-job #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="enable-job" doc:name="enable-job">
+        <jenkins:enable-job config-ref="Jenkins" doc:name="Enable job" jobName="#[payload.jobName]"/>
+        <logger message="### enable-job #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="get-jenkins-node-info" doc:name="get-jenkins-node-info">
+        <jenkins:get-jenkins-node-info config-ref="Jenkins" doc:name="Get jenkins node info"/>
+        <logger message="### get-jenkins-node-info #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="get-job-build-info" doc:name="get-job-build-info">
+        <jenkins:get-job-build-info config-ref="Jenkins" doc:name="Get job build info" jobName="#[payload.jobName]" buildNumber="#[payload.buildNumber]"/>
+        <logger message="### get-job-build-info #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="get-job-build-log" doc:name="get-job-build-log">
+        <jenkins:get-job-build-log config-ref="Jenkins" doc:name="Get job build log" jobName="#[payload.jobName]" buildNumber="#[payload.buildNumber]"/>
+        <logger message="### get-job-build-log #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="get-job-info" doc:name="get-job-info">
+        <jenkins:get-job-info config-ref="Jenkins" doc:name="Get job info" jobName="#[payload.jobName]"/>
+        <logger message="### #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="get-queue-info" doc:name="get-queue-info">
+        <jenkins:get-queue-info config-ref="Jenkins" doc:name="Get queue info"/>
+        <logger message="### get-queue-info #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+
+</mule>

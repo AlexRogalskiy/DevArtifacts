@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:spring="http://www.springframework.org/schema/beans"
+      xmlns:jenkins="http://www.mulesoft.org/schema/mule/jenkins"
+      xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.mulesoft.org/schema/mule/jenkins http://www.mulesoft.org/schema/mule/jenkins/current/mule-jenkins.xsd">
+
+    <jenkins:config jenkinsURL="http://localhost:8080" username="" password="" connectionName="bla"/>
+
+    <flow name="testFlow">
+        <jenkins:get-jenkins-node-info />
+    </flow>
+
+    <flow name="testFlowJob">
+        <jenkins:get-job-info jobName="Test-Job" />
+    </flow>
+
+    <flow name="testFlowQueue">
+        <jenkins:get-queue-info />
+    </flow>
+
+    <flow name="testFlowBuildWitParams">
+        <jenkins:build-with-parameters jobName="Test-Job" >
+            <jenkins:params>
+                <jenkins:param key="version">18</jenkins:param>
+                <jenkins:param key="build">233</jenkins:param>
+            </jenkins:params>
+        </jenkins:build-with-parameters >
+    </flow>
+
+    <flow name="testCreateNewJob">
+        <jenkins:create-job jobName="Test-Job" />
+    </flow>
+
+    <flow name="testDeleteJob">
+        <jenkins:delete-job jobName="Test-Job" />
+    </flow>
+
+    <flow name="testEnableDisableJob">
+        <jenkins:disable-job jobName="Test-Job" />
+        <jenkins:enable-job jobName="Test-Job" />
+    </flow>
+
+    <flow name="testGetBuildInfo">
+        <jenkins:get-job-build-info jobName="Test-Job" buildNumber="3" />
+    </flow>
+
+    <flow name="testCopy">
+        <jenkins:copy-job newJobName="CopiedJob" fromJobName="Test-Job"/>
+    </flow>
+
+    <flow name="testGetLog">
+        <jenkins:get-job-build-log jobName="Test-Job" buildNumber="3" />
+    </flow>
+
+</mule>

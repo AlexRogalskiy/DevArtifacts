@@ -1,0 +1,161 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'http://repo.jenkins-ci.org/releases/'
+        }
+    }
+}
+
+plugins {
+    id "org.jenkins-ci.jpi" version "0.16.0" // https://github.com/jenkinsci/gradle-jpi-plugin
+    id "net.saliman.cobertura" version "2.3.1"
+}
+
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://repo.jenkins-ci.org/public/"
+    }
+}
+
+ext {
+    resultsDir = 'result'
+
+    checkstyleConfigPath = "${project.rootDir}/qa/checkstyle.xml"
+    checkstyleReportDir = "${resultsDir}/checkstyle"
+    coberturaReportDir = "${resultsDir}/cobertura"
+
+    findbugsReportDir = "${resultsDir}/findbugs"
+}
+
+group = "com.infullmobile.jenkins.plugin"
+version = loadVersionFromProperties()
+description = "Adds registration form with configurable restrictions."
+
+jenkinsPlugin {
+    // 1.610 is the first version with java7 requirement
+    // https://jenkins.io/blog/2015/04/06/good-bye-java6/
+    coreVersion = "1.610"
+    displayName = "Restricted Registration Plugin"
+    url = "https://wiki.jenkins-ci.org/display/JENKINS/Restricted+Registration+Plugin"
+    gitHubUrl = "https://github.com/inFullMobile/restricted-register-plugin"
+    shortName = rootProject.name
+    disabledTestInjection = true
+    fileExtension = 'jpi'
+    repoUrl = 'https://repo.jenkins-ci.org/releases'
+    snapshotRepoUrl = 'https://repo.jenkins-ci.org/snapshots'
+
+    developers {
+        developer {
+            id "AdamKobus"
+            name "Adam Kobus"
+            email "adam.kobus@infullmobile.com"
+        }
+    }
+
+    dependencies {
+        jenkinsPlugins 'org.jenkins-ci.plugins:jquery:1.0.2@jar'
+        jenkinsPlugins 'org.jenkins-ci.plugins:mailer:1.17@jar'
+    }
+}
+
+dependencies {
+    compile 'commons-validator:commons-validator:1.4.0'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'org.apache.httpcomponents:httpclient:4.5.2'
+}
+
+task copyResults(type: Copy, dependsOn: 'jpi') {
+    from 'build/libs/'
+    into "${resultsDir}/bin"
+}
+
+jpi.finalizedBy copyResults
+
+task cleanResults(type: Delete, dependsOn: 'clean') {
+    delete "${resultsDir}"
+}
+clean.finalizedBy cleanResults
+
+def loadVersionFromProperties() {
+    def Properties properties = new Properties();
+    def propFile = new File("version.properties");
+    properties.load(new FileInputStream(propFile));
+    def commitIndex = getCommitIndex();
+
+    version = sprintf('%1$s.%2$s.%3$s%4$s', [
+            properties['versionMajor'],
+            properties['versionIteration'],
+            commitIndex,
+            getVersionSuffixIfExists()])
+}
+
+def getCommitIndex() {
+    try {
+        return "git rev-list HEAD --count".execute().text.trim();
+    } catch (Exception ignored) {
+        return "0";
+    }
+}
+
+def getVersionSuffixIfExists() {
+    return project.hasProperty("versionSuffix") ? versionSuffix : "";
+}
+
+// QA
+
+test {
+    reports.junitXml.destination = file("${resultsDir}/junit")
+}
+
+cobertura {
+    def reportDir = file(rootProject.ext.coberturaReportDir)
+    coverageReportDir = reportDir
+    coverageFormats = [ 'xml' ]
+    coverageExcludes = [
+            '.*\\.Messages', // generated helper classes, used for localization
+    ]
+}
+
+test.finalizedBy coberturaReport
+
+checkstyle {
+    checkstyleMain {
+        reports.xml.destination "${rootProject.ext.checkstyleReportDir}/checkstyleMain.xml"
+        reports.html.destination "${rootProject.ext.checkstyleReportDir}/htmlMain/report.html"
+    }
+
+    checkstyleTest {
+        reports.xml.destination "${rootProject.ext.checkstyleReportDir}/checkstyleTest.xml"
+        reports.html.destination "${rootProject.ext.checkstyleReportDir}/htmlTest/report.html"
+    }
+}
+
+tasks.withType(Checkstyle) {
+    ignoreFailures = false
+    configFile "${rootProject.ext.checkstyleConfigPath}" as File
+    include '**/*.java'
+    exclude '**/gen/**'
+    classpath = files()
+    reports.xml.enabled true
+    reports.html.enabled true
+}
+
+findbugs {
+    reportsDir = file("${rootProject.ext.findbugsReportDir}")
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled true
+        html.enabled !xml.enabled
+    }
+}

@@ -1,0 +1,150 @@
+<!--
+Copyright (c) 2016 inFullMobile
+License: MIT, file: /LICENSE
+-->
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout">
+
+    <div id="rr_register" class="rr_root_container">
+
+        <form id="rr_register_form" action="javascript:sendRegisterFormData();" class='rr_form'>
+            <h1>Create new account</h1>
+            <div class='section'>
+                <span>username</span>
+                <input type="text" id="rr_username" name="rr_username" autocorrect="off" autocapitalize="off"
+                       class="rr_required"/>
+            </div>
+            <div class='section'>
+                <span>e-mail address</span>
+                <input type="email" id="rr_email" name="rr_email" autocapitalize="off"
+                       class="rr_required"/>
+            </div>
+            <div class='section'>
+                <span>display name</span>
+                <input type="text" id="rr_display_name" name="rr_display_name" class="rr_required"
+                       autocapitalize="on"/>
+            </div>
+            <div class='section'>
+                <span/>
+                <button id="rr_submitBt" class='rr_button'>Submit</button>
+            </div>
+            <div>
+                <input type="hidden" id="rr_secret" name="rr_secret"/>
+            </div>
+            <div id="rr_msg"/>
+        </form>
+    </div>
+
+    <script>
+        var serviceInstance =<st:bind value="${it}"/>;
+        //<![CDATA[
+
+        enableSignUpIfAvailable();
+
+        function sendRegisterFormData() {
+            if (!rrIsButtonEnabled('#rr_submitBt')) {
+                return;
+            }
+            var values = rrSerializeForm('#rr_register_form');
+            clearMessagesAndErrors();
+            if (isFormValid(values)) {
+                sendFormData(values);
+            }
+        };
+
+        function getSecret() {
+            var secret = rrUrlParam('rr_secret');
+            if (secret) {
+                return secret;
+            }
+            return "";
+        };
+
+        function enableSignUpIfAvailable() {
+            serviceInstance.checkSecret(getSecret(), function(response) {
+                var data = response.responseObject();
+                if (data['status'] == 'success') {
+                    beginSignUp();
+                } else {
+                    alert("Failed to verify 'secret', please reload page and try again.");
+                }
+            });
+        };
+
+        function beginSignUp() {
+            jQuery('#rr_secret').val(getSecret());
+            clearMessagesAndErrors();
+            jQuery('#rr_register').fadeIn(400, function() {
+                jQuery('#rr_username').focus();
+            });
+        };
+
+        function clearMessagesAndErrors() {
+            showMessage("&nbsp;");
+            rrClearFormErrors();
+        };
+
+        function isFormValid(values) {
+            var anyValueEmpty = rrIsAnyRequiredFormFieldEmpty();
+            if (anyValueEmpty) {
+                showError('One or more field is empty.');
+                return false;
+            }
+            return true;
+        };
+
+        function sendFormData(values) {
+            rrDisableButton('#rr_submitBt');
+            showMessage('Sending...');
+            serviceInstance.register(values, function(response) {
+                handleSignUpResponse(response);
+            });
+        };
+
+        function handleSignUpResponse(response) {
+            data = response.responseObject();
+            status = data['status'];
+            if (status == 'success') {
+                onSuccess(data);
+            } else if (status == 'error') {
+                rrEnableButton('#rr_submitBt');
+                onFailure(data['data']);
+            } else {
+                rrEnableButton('#rr_submitBt');
+                onUndefinedError();
+            }
+        };
+
+        function onSuccess(data) {
+            clearMessagesAndErrors();
+            showMessage("Account added, please check inbox for e-mail with account activation link.");
+        };
+
+        function onFailure(data) {
+            showError(data['message']);
+            var affectedFields = data['fields'];
+            jQuery('.rr_register_form').find('input').each(function(index, value) {
+                var thisObj = jQuery(this);
+                var thisID = thisObj.attr('id');
+                if (jQuery.inArray(thisID, affectedFields) >= 0) {
+                    thisObj.addClass('rr_input_error');
+                }
+            });
+        };
+
+        function onUndefinedError() {
+            showError("Unknown error occurred.");
+        };
+
+        function showError(message) {
+            document.getElementById('rr_msg').innerHTML = message;
+            jQuery('#rr_msg').addClass('rr_error');
+        };
+
+        function showMessage(message) {
+            document.getElementById('rr_msg').innerHTML = message;
+            jQuery('#rr_msg').removeClass('rr_error');
+        };
+        //]]>
+    </script>
+</j:jelly>

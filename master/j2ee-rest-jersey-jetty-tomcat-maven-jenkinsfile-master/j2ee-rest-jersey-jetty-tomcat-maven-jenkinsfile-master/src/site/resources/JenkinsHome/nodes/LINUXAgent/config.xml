@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<slave>
+  <name>LINUXAgent</name>
+  <description>Centos LINUX</description>
+  <remoteFS>/opt/app/jenkins</remoteFS>
+  <numExecutors>2</numExecutors>
+  <mode>NORMAL</mode>
+  <retentionStrategy class="hudson.slaves.RetentionStrategy$Demand">
+    <inDemandDelay>1</inDemandDelay>
+    <idleDelay>1</idleDelay>
+  </retentionStrategy>
+  <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.11">
+    <host>192.168.100.10</host>
+    <port>22</port>
+    <credentialsId>vagrant</credentialsId>
+    <javaPath>/usr/java/jdk1.8.0_91/bin/java</javaPath>
+    <maxNumRetries>0</maxNumRetries>
+    <retryWaitTime>0</retryWaitTime>
+  </launcher>
+  <label>rpm rhel</label>
+  <nodeProperties>
+    <hudson.tools.ToolLocationNodeProperty>
+      <locations>
+        <hudson.tools.ToolLocationNodeProperty_-ToolLocation>
+          <type>hudson.plugins.git.GitTool$DescriptorImpl</type>
+          <name>Default</name>
+          <home>/usr/bin/git</home>
+        </hudson.tools.ToolLocationNodeProperty_-ToolLocation>
+        <hudson.tools.ToolLocationNodeProperty_-ToolLocation>
+          <type>hudson.model.JDK$DescriptorImpl</type>
+          <name>jdk1.8.0_91</name>
+          <home>/usr/java/jdk1.8.0_91</home>
+        </hudson.tools.ToolLocationNodeProperty_-ToolLocation>
+        <hudson.tools.ToolLocationNodeProperty_-ToolLocation>
+          <type>hudson.tasks.Maven$MavenInstallation$DescriptorImpl</type>
+          <name>M3</name>
+          <home>/opt/app/maven/apache-maven-3.3.9</home>
+        </hudson.tools.ToolLocationNodeProperty_-ToolLocation>
+      </locations>
+    </hudson.tools.ToolLocationNodeProperty>
+  </nodeProperties>
+</slave>

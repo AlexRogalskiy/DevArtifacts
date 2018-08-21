@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:jenkins="http://www.mulesoft.org/schema/mule/jenkins" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="CE-3.3.0" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/jenkins http://www.mulesoft.org/schema/mule/jenkins/1.0/mule-jenkins.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+    <jenkins:config name="Jenkins" connectionName="main" jenkinsURL="http://localhost:8080" doc:name="Jenkins"/>
+    <flow name="jenkins-connector-exampleFlow1" doc:name="jenkins-connector-exampleFlow1">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="createJob" doc:name="HTTP"/>
+        <jenkins:create-job config-ref="Jenkins" jobName="Job-x" doc:name="Jenkins"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+    </flow>
+    <flow name="jenkins-connector-exampleFlow2" doc:name="jenkins-connector-exampleFlow2">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="getJobInfo" doc:name="HTTP"/>
+        <jenkins:get-job-info config-ref="Jenkins" jobName="Job-x" doc:name="Jenkins"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+    </flow>
+</mule>

@@ -1,0 +1,23 @@
+<!--
+Copyright (c) 2016 inFullMobile
+License: MIT, file: /LICENSE
+-->
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+    <f:section title="Rule definition">
+        <f:entry title="Name" field="ruleName">
+            <f:textbox/>
+        </f:entry>
+
+        <f:entry>
+            <f:hetero-list items="${instance.configs}" descriptors="${descriptor.getConfigDescriptors()}" name="configs"
+                           oneEach="true" hasHeader="true"
+                           targetType="com.infullmobile.jenkins.plugin.restrictedregister.settings.RegistrationRuleConfig"/>
+        </f:entry>
+        <f:entry>
+            <div align="right">
+                <f:repeatableDeleteButton/>
+            </div>
+        </f:entry>
+    </f:section>
+</j:jelly>

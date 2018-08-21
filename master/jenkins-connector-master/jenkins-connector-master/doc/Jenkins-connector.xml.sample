@@ -1,0 +1,41 @@
+<!-- BEGIN_INCLUDE(jenkins:get-jenkins-node-info) -->
+    <jenkins:get-jenkins-node-info />
+<!-- END_INCLUDE(jenkins:get-jenkins-node-info) -->
+<!-- BEGIN_INCLUDE(jenkins:get-job-info) -->
+    <jenkins:get-job-info jobName="jobname" />
+<!-- END_INCLUDE(jenkins:get-job-info) -->
+<!-- BEGIN_INCLUDE(jenkins:build) -->
+    <jenkins:build jobName="ion-console" />
+<!-- END_INCLUDE(jenkins:build) -->
+<!-- BEGIN_INCLUDE(jenkins:build-with-parameters) -->
+    <jenkins:build-with-parameters jobName="company-deploy" >
+                <jenkins:params>
+                    <jenkins:param key="version">18</jenkins:param>
+                    <jenkins:param key="build">233</jenkins:param>
+                </jenkins:params>
+            </jenkins:build-with-parameters >
+<!-- END_INCLUDE(jenkins:build-with-parameters) -->
+<!-- BEGIN_INCLUDE(jenkins:get-queue-info) -->
+    <jenkins:get-queue-info />
+<!-- END_INCLUDE(jenkins:get-queue-info) -->
+<!-- BEGIN_INCLUDE(jenkins:create-job) -->
+    <jenkins:create-job jobName="newJobName"/>
+<!-- END_INCLUDE(jenkins:create-job) -->
+<!-- BEGIN_INCLUDE(jenkins:delete-job) -->
+    <jenkins:delete-job jobName="nJobName"/>
+<!-- END_INCLUDE(jenkins:delete-job) -->
+<!-- BEGIN_INCLUDE(jenkins:enable-job) -->
+    <jenkins:enable-job jobName="JobName"/>
+<!-- END_INCLUDE(jenkins:enable-job) -->
+<!-- BEGIN_INCLUDE(jenkins:disable-job) -->
+    <jenkins:disable-job jobName="JobName"/>
+<!-- END_INCLUDE(jenkins:disable-job) -->
+<!-- BEGIN_INCLUDE(jenkins:get-job-build-info) -->
+    <jenkins:get-job-build-info jobName="JobName" buildNumber="1"/>
+<!-- END_INCLUDE(jenkins:get-job-build-info) -->
+<!-- BEGIN_INCLUDE(jenkins:copy-job) -->
+    <jenkins:copy-job newJobName="JobName" fromJobName="OtherJobName"/>
+<!-- END_INCLUDE(jenkins:copy-job) -->
+<!-- BEGIN_INCLUDE(jenkins:get-job-build-log) -->
+    <jenkins:get-job-build-log jobName="JobName" buildNumber="1"/>
+<!-- END_INCLUDE(jenkins:get-job-build-log) -->

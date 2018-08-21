@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="jenkins-connector-example">
+    <global-element type="http://www.mulesoft.org/schema/mule/jenkins/config" name="Jenkins" entity-id="628c2167-ae20-4d9a-8a44-50a82b790b57">
+        <properties>
+            <property value="Jenkins" name="name"/>
+            <property value="main" name="connectionName"/>
+            <property value="http://localhost:8080" name="jenkinsURL"/>
+            <property name="password"/>
+            <property name="username"/>
+        </properties>
+    </global-element>
+    <flow SubFlow="false" name="jenkins-connector-exampleFlow1">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+        </properties>
+        <lane hadOnlyOneElement="false" entity-id="63e390de-375e-45ee-abbd-4fc22267491f">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="da1e58b7-dc65-461b-b2f7-95810c81eece">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property name="httpLabel"/>
+                    <property value="localhost" name="host"/>
+                    <property value="8081" name="port"/>
+                    <property value="createJob" name="path"/>
+                    <property name="method"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="address"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property name="responseTimeout"/>
+                    <property name="followRedirects"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="user"/>
+                    <property name="password"/>
+                    <property name="contentType"/>
+                    <property name="keep-alive"/>
+                </properties>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/jenkins/jenkins-connector" name="Jenkins" entity-id="abdc6964-5313-4854-be01-98d08c756711">
+                <properties>
+                    <property value="Jenkins" name="config-ref"/>
+                    <property value="http://www.mulesoft.org/schema/mule/jenkins/create-job" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="Jenkins" name="config-ref"/>
+                    <property value="Job-x" name="jobName"/>
+                    <property name=""/>
+                    <property name="connectionName"/>
+                </properties>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/json/object-to-json-transformer" name="Object to JSON" entity-id="0e5f9e7f-970e-4757-b95f-ca70601e3454"/>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="jenkins-connector-exampleFlow2">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+        </properties>
+        <lane hadOnlyOneElement="false" entity-id="12cc4cbb-86a2-4e28-a7c3-ac9a88991643">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="b4c1fa7f-1f4d-4924-9b3e-7ff14e56b72f">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property name="httpLabel"/>
+                    <property value="localhost" name="host"/>
+                    <property value="8081" name="port"/>
+                    <property value="getJobInfo" name="path"/>
+                    <property name="method"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="address"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property name="responseTimeout"/>
+                    <property name="followRedirects"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="user"/>
+                    <property name="password"/>
+                    <property name="contentType"/>
+                    <property name="keep-alive"/>
+                </properties>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/jenkins/jenkins-connector" name="Jenkins" entity-id="e4ab25d9-9f79-4c7a-872b-2cc1b94b03fd">
+                <properties>
+                    <property value="Jenkins" name="config-ref"/>
+                    <property value="http://www.mulesoft.org/schema/mule/jenkins/get-job-info" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="Jenkins" name="config-ref"/>
+                    <property value="Job-x" name="jobName"/>
+                    <property name=""/>
+                    <property name="connectionName"/>
+                </properties>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/json/object-to-json-transformer" name="Object to JSON" entity-id="0efd4dc5-3709-4fe4-acb3-4ed0084b2163"/>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>

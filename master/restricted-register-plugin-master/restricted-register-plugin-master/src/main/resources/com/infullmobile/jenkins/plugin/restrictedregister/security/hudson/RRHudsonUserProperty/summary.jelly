@@ -1,0 +1,44 @@
+<!--
+Copyright (c) 2016 inFullMobile
+License: MIT, file: /LICENSE
+-->
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+    <f:entry>
+        <f:section title="Restricted registration">
+            <style>
+                .rr_entry {
+                    margin: 1em;
+                }
+                .rr_value {
+                    margin-left: 3em;
+                    display: inline;
+                }
+            </style>
+            <div class="rr_entry">
+                <div class="rr_entry">
+                    <f:entry title="Rule name">
+                        <p class="rr_value">${it.getRuleName()}</p>
+                    </f:entry>
+                </div>
+                <div class="rr_entry">
+                    <f:entry title="Activation code">
+                        <p class="rr_value">${it.getActivationCode()}</p>
+                    </f:entry>
+                </div>
+
+                <div class="rr_entry">
+                <j:choose>
+                    <j:when test="${it.getActivated()}">
+                            <f:entry title="Activated">
+                                <p class="rr_value">${it.getActivatedAt()}</p>
+                            </f:entry>
+                    </j:when>
+                   <j:otherwise>
+                       <f:entry title="Not activated"/>
+                   </j:otherwise>
+                </j:choose>
+                </div>
+            </div>
+        </f:section>
+    </f:entry>
+</j:jelly>

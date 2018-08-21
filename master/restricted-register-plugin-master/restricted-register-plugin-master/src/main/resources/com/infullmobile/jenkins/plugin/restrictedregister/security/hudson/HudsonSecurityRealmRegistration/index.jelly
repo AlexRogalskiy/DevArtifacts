@@ -1,0 +1,15 @@
+<!--
+Copyright (c) 2016 inFullMobile
+License: MIT, file: /LICENSE
+-->
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler">
+    <j:choose>
+        <j:when test="${request.hasParameter(it.getCodeParamKey())}">
+            <st:include page="activateFragment.jelly" it="${it}"/>
+        </j:when>
+        <j:otherwise>
+            <st:include page="registerFragment.jelly" it="${it}"/>
+        </j:otherwise>
+    </j:choose>
+</j:jelly>

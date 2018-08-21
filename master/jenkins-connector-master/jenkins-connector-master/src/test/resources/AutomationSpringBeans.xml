@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<!-- create-job -->
+    
+    <util:map id="createJobTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="createJobJobNameValue"/>
+    </util:map>
+    
+    <!-- delete-job -->
+    
+    <util:map id="deleteJobTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="delteJobJobNameValue"/>
+    </util:map>
+    
+    <!-- copy-job -->
+    
+    <util:map id="copyJobTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="copyJobFromJobNameValue"/>
+        <entry key="fromJobName" value="copyJobFromJobNameValue"/>
+        <entry key="newJobName" value="copyJobNewJobNameValue"/>
+    </util:map>
+    
+    <!-- enable-job -->
+    
+    <util:map id="enableJobTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="enableJobJobNameValue"/>
+    </util:map>
+    
+    <!-- disable-job -->
+    
+    <util:map id="disableJobTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="disableJobJobNameValue"/>
+    </util:map>
+    
+    <!-- build -->
+    
+    <util:map id="buildTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="buildJobNameValue"/>
+    </util:map>
+   
+    <!-- get-jenkins-node-info -->
+    
+    <util:map id="getJenkinsNodeInfoTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="getJenkinsNodeInfoJobNameValue"/>
+    </util:map>
+    
+    <!-- get-job-build-info -->
+    
+    <util:map id="getJobBuildInfoTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="getJobBuildInfoJobNameValue"/>
+        <entry key="buildNumber" value="1"/>
+    </util:map>
+    
+    <!-- get-job-build-log -->
+    
+    <util:map id="getJobBuildLogTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="getJobBuildLogJobNameValue"/>
+        <entry key="buildNumber" value="1"/>
+    </util:map>
+    
+    <!-- get-job-info -->
+    
+    <util:map id="getJobInfoTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="getJobBuildLogJobNameValue"/>
+    </util:map>   
+    
+    <!-- get-queue-info -->
+    
+    <util:map id="getQueueInfoTestData" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Object">
+        <entry key="jobName" value="getJobBuildLogJobNameValue"/>
+        <entry key="buildNumber" value="1"/>
+    </util:map>
+    
+	<!--   	Message source -->
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+				<value>automation-error-messages</value>
+		</property>
+	</bean>
+
+</beans>

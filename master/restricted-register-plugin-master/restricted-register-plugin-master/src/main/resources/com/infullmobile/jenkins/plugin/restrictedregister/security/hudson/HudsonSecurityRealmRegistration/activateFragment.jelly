@@ -1,0 +1,174 @@
+<!--
+Copyright (c) 2016 inFullMobile
+License: MIT, file: /LICENSE
+-->
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout">
+
+    <div id="rr_activate" class="rr_root_container">
+
+        <form id="rr_activate_form" action="javascript:sendActivationFormData();" class='rr_form'>
+            <h1>New account activation
+            <span>Please set password for your account (<i>${it.getUsernameFromAuthCode()}</i>)</span></h1>
+            <div class='section'>
+                <span>password</span>
+                <input type="password" id="rr_password" name="rr_password" class="rr_required"/>
+            </div>
+            <div class='section'>
+                <span>repeat password</span>
+                <input type="password" id="rr_password_repeat" name="rr_password_repeat" class="rr_required"/>
+            </div>
+            <div class='section'>
+                <span/>
+                <button id="rr_submitBt" class='rr_button'>Submit</button>
+            </div>
+            <div>
+                <input type="hidden" id="rr_secret" name="rr_secret"/>
+            </div>
+            <div>
+                <input type="hidden" id="rr_code" name="rr_code"/>
+            </div>
+            <div id="rr_msg"/>
+        </form>
+    </div>
+
+    <h4 class="rr_error" id="rr_general_error">
+
+    </h4>
+
+    <script>
+        var serviceInstance =<st:bind value="${it}"/>;
+        //<![CDATA[
+
+        function enableActivationIfAvailable() {
+            serviceInstance.checkActivationCode(getSecret(), getActivationCode(), function(response) {
+                var data = response.responseObject();
+                if (data['status'] == 'success') {
+                    beginActivation();
+                } else if(data['status'] == 'error') {
+                    showGeneralError(data['data']['message']);
+                } else {
+                    showGeneralError("Failed to verify authentication code, please reload page and try again.");
+                }
+            });
+        };
+
+        function getSecret() {
+            var secret = rrUrlParam('rr_secret');
+            if (secret) {
+                return secret;
+            }
+            return "";
+        };
+
+        function getActivationCode() {
+            var activationCode = rrUrlParam('rr_code');
+            if (activationCode) {
+                return activationCode;
+            }
+            return "";
+        };
+
+        enableActivationIfAvailable();
+
+        function beginActivation() {
+            jQuery('#rr_secret').val(getSecret());
+            jQuery('#rr_code').val(getActivationCode());
+            clearMessagesAndErrors();
+            jQuery('#rr_activate').fadeIn(400, function() {
+                jQuery('#rr_username').focus();
+            });
+        };
+
+        function sendActivationFormData() {
+            if (!rrIsButtonEnabled('#rr_submitBt')) {
+                return;
+            }
+            var values = rrSerializeForm('#rr_activate_form');
+            clearMessagesAndErrors();
+            if (isFormValid(values)) {
+                sendFormData(values);
+            }
+        };
+
+        function isFormValid(values) {
+            var anyValueEmpty = rrIsAnyRequiredFormFieldEmpty();
+            if (anyValueEmpty) {
+                showError('One or more field is empty.');
+                return false;
+            }
+            if (values['rr_password'] !== values['rr_password_repeat']) {
+                jQuery('#rr_password').addClass('rr_input_error');
+                jQuery('#rr_password_repeat').addClass('rr_input_error');
+                showError("Passwords don't match.");
+                return false;
+            }
+            return true;
+        };
+
+        function clearMessagesAndErrors() {
+            showMessage("&nbsp;");
+            rrClearFormErrors();
+        };
+
+        function sendFormData(values) {
+            rrDisableButton('#rr_submitBt');
+            showMessage('Sending...');
+            serviceInstance.activate(values, function(response) {
+                handleActivateResponse(response);
+            });
+        };
+
+        function handleActivateResponse(response) {
+            data = response.responseObject();
+            status = data['status'];
+            if (status == 'success') {
+                onSuccess(data);
+            } else if (status == 'error') {
+                rrEnableButton('#rr_submitBt');
+                onFailure(data['data']);
+            } else {
+                rrEnableButton('#rr_submitBt');
+                onUndefinedError();
+            }
+        };
+
+        function onSuccess(data) {
+            clearMessagesAndErrors();
+            showMessage("Account activated, you can now log in with your user id and password.");
+        };
+
+        function onFailure(data) {
+            showError(data['message']);
+            var affectedFields = data['fields'];
+            jQuery('.rr_form').find('input').each(function(index, value) {
+                var thisObj = jQuery(this);
+                var thisID = thisObj.attr('id');
+                if (jQuery.inArray(thisID, affectedFields) >= 0) {
+                    thisObj.addClass('rr_input_error');
+                }
+            });
+        };
+
+        function onUndefinedError() {
+            showError("Unknown error occurred.");
+        };
+        function showError(message) {
+            document.getElementById('rr_msg').innerHTML = message;
+            jQuery('#rr_msg').addClass('rr_error');
+        };
+
+        function showMessage(message) {
+            document.getElementById('rr_msg').innerHTML = message;
+            jQuery('#rr_msg').removeClass('rr_error');
+        };
+
+        function showGeneralError(message) {
+            jQuery('#rr_activate').hide();
+            jQuery('#rr_general_error').show();
+            jQuery('#rr_general_error').html("error: " + message);
+        };
+        //]]>
+    </script>
+
+</j:jelly>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.3">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.20.0">
+      <projectUrl>https://github.com/lastnitescurry/j2ee-rest-jersey-jetty-tomcat-maven-jenkinsfile/</projectUrl>
+      <displayName></displayName>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.9">
+    <script>node {
+   // Mark the code checkout &apos;stage&apos;....
+   stage &apos;Checkout&apos;
+
+   // Get some code from a GitHub repository
+   git &apos;https://github.com/lastnitescurry/j2ee-rest-jersey-jetty-tomcat-maven-jenkinsfile.git&apos;
+
+   // Get the maven tool.
+   // ** NOTE: This &apos;M3&apos; maven tool must be configured
+   // **       in the global configuration.           
+   def mvnHome = tool &apos;M3&apos;
+
+   // Mark the code build &apos;stage&apos;....
+   stage &apos;Build&apos;
+   // Run the maven build
+   bat &quot;${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package&quot;
+   //step([$class: &apos;JUnitResultArchiver&apos;, testResults: &apos;**/target/surefire-reports/TEST-*.xml&apos;])
+   
+      // Mark the code build &apos;stage&apos;....
+   stage &apos;Archive&apos;
+   stash includes: &apos;target/*.war&apos;, name: &apos;RESTful.war&apos;
+ 
+   stage &apos;Release To Manual Test&apos;
+   input &apos;Deploy to local Tomcat?&apos;
+
+   stage &apos;Deploy To Manual Test&apos;
+   unstash &apos;RESTful.war&apos;
+   bat &apos;copy target\\*.war F:\\Apps\\Tomcat\\apache-tomcat-8.5.4\\webapps&apos;
+   
+    stage &apos;SonarQube Analysis&apos;
+    bat &quot;${mvnHome}/bin/mvn -Dmaven.test.failure.ignore sonar:sonar&quot;
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+</flow-definition>

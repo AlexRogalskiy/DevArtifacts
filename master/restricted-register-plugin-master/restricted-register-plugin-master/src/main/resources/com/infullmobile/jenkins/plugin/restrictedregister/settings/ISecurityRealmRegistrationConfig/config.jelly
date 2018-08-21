@@ -1,0 +1,18 @@
+<!--
+Copyright (c) 2016 inFullMobile
+License: MIT, file: /LICENSE
+-->
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:f="/lib/form">
+    <f:entry>
+        <table width="100%">
+            <f:section title="${descriptor.getDisplayName()}">
+                <f:advanced title="Show configuration details">
+                    <f:entry>
+                        <st:include page="config-detail.jelly" optional="false" class="${descriptor.clazz}"/>
+                    </f:entry>
+                </f:advanced>
+            </f:section>
+        </table>
+    </f:entry>
+</j:jelly>

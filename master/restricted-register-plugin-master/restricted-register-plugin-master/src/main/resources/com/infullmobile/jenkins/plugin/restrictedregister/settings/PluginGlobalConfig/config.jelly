@@ -1,0 +1,32 @@
+<!--
+Copyright (c) 2016 inFullMobile
+License: MIT, file: /LICENSE
+-->
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+    <f:section title="Restricted registration" name="restricted-register">
+        <f:optionalBlock name="enabled" title="Enabled" inline="true" field="enabled" checked="${it.enabled}">
+            <f:entry title="Admin e-mail(s)" field="adminEmail">
+                <f:textbox/>
+            </f:entry>
+            <f:entry title="Reply-to e-mail" field="replyToEmail">
+                <f:textbox/>
+            </f:entry>
+            <f:entry title="E-mail footer" field="emailFooter">
+                <f:textarea/>
+            </f:entry>
+            <j:if test="${descriptor.getRegistrationConfigDescriptors().size() > 0}">
+                <f:entry title="Security realms">
+                    <f:descriptorList descriptors="${descriptor.getRegistrationConfigDescriptors()}"
+                                      field="registrationConfigurations"
+                                      targetType="com.infullmobile.jenkins.plugin.restrictedregister.settings.ISecurityRealmRegistrationConfig"
+                                      forceRowSet="true"/>
+
+                </f:entry>
+            </j:if>
+            <f:entry title="Rules" field="rulesList">
+                <f:repeatableProperty field="rulesList" minimum="0" default="${it.getDefaultRulesList()}"/>
+            </f:entry>
+        </f:optionalBlock>
+    </f:section>
+</j:jelly>

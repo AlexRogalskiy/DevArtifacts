@@ -1,0 +1,55 @@
+# Language setting
+language: java
+
+# Version number
+jdk:
+  - oraclejdk8
+
+build:
+  pre_ci_boot:
+    image_name: myvinod/shipbuild
+    image_tag: base
+    pull: true
+    options: "-e HOME=/root"
+
+  ci:
+    - java -version
+    - ls -l
+    - ls -l src
+    - curl --version
+   # - curl www.google.com  - this didnt work, the build hung, so had to cancel 
+  post_ci:
+    #Commit the container only if you want all the artifacts from the CI step
+    - docker commit $SHIPPABLE_CONTAINER_NAME myvinod/shipbuild:$BUILD_NUMBER
+    - docker push myvinod/shipbuild:$BUILD_NUMBER
+    
+before_script: 
+  - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
+
+script:
+  - mvn test install cobertura:cobertura 
+
+after_script:
+  - ls -la
+  - ls -l target
+  
+integrations:
+  hub:
+    - integrationName: mydockerhub
+      type: docker
+      branches:
+        only:
+          - master
+  notifications:
+    - integrationName: myslack
+      type: slack
+      recipients:
+        - "@vinodm"
+      branches:
+        only:
+          - master
+      on_start: always
+      on_success: always
+      on_failure: always
+      on_change: always 

@@ -1,0 +1,59 @@
+<html>
+<body>
+<h1>Overview</h1>
+
+<p>A set of two Jenkins parameter plugins which have their value restricted to a set of allowed values to be picked from a list provided by an external program. The restricted string parameter allows for setting a single parameter value. The restricted string dynamic parameter allows for setting two build parameters. For both, the external program will have access to information about the current logged in user. For the dynamic parameter, the command will also have access to the current value selected for the first parameter.</p>
+
+<h2>Configuration</h2>
+
+<p>After installation two new parameter options will be available when configuring a job in Jenkins.</p>
+
+<img src="images/config-one.png" alt="Restricted string parameter selection available in Jenkins job config under Add Parameter" /><br />
+
+<p>Configure the restricted string parameter specifying the name of the environmental variable to set with the value of each selected item, the command to execute to get the list of allowed values and a description of how the parameters relate to the build.</p>
+
+<p>The environmental variable JENKINS_RSP_USER will be set to the username of the user currently logged into Jenkins.</p>
+
+<img src="images/dynamic-config-one.png" alt="Restricted string dynamic parameter selection available in Jenkins job config under Add Parameter" /><br />
+
+<p>Configure the restricted string dynamic parameter specifying the name of the environmental variables to set for each selected item, the commands to execute to get the list of allowed values and a description of how the parameters relate to the build.</p>
+
+<p>The environmental variable JENKINS_RSP_USER will be set to the username of the user currently logged into Jenkins. The environmental variable JENKINS_RSP_VALUE will be set to the value selected for the first parameter.</p>
+
+
+<img src="images/config-two.png" alt="Restricted string parameter configuration screen shot." /><br />
+
+<img src="images/dynamic-config-two.png" alt="Restricted string dynamic parameter configuration screen shot." />
+
+<p>The values selected during a build will be available in the parameter names specified in the configuration.</p>
+
+<img src="images/config-three.png" alt="Job configuration showing how parameter values are available in build steps." />
+
+<h2>Build</h2>
+
+<p>The following screenshots show the parameter plugin in action using the configuration from the screen shots in the configuration section.</p>
+
+<h3>Restricted String Parameter</h3>
+
+<p>Initial parameter state.</p>
+<img src="images/build-one.png" alt="Restricted string parameter in build step." /><br />
+
+<p>Showing options provided by command.</p>
+<img src="images/build-two.png" alt="Restricted string parameter in build step showing all options." />
+
+<h3>Restricted String Dynamic Parameter</h3>
+
+<p>Initial parameter state.</p>
+<img src="images/dynamic-build-one.png" alt="Restricted string dynamic parameter in build step." /><br />
+
+<p>Showing options for second paramater provided by command.</p>
+<img src="images/dynamic-build-two.png" alt="Restricted string dynamic parameter in build step showing options for initial value of first parameter." /><br />
+
+<p>Showing options for first paramater provided by command.</p>
+<img src="images/dynamic-build-three.png" alt="Restricted string dynamic parameter in build step showing options for first parameter." /><br />
+
+<p>Showing options for second paramater changing based on selection of first parameter.</p>
+<img src="images/dynamic-build-four.png" alt="Restricted string dynamic parameter in build step showing options for second parameter change based on selected value of first parameter." /><br />
+
+</body>
+</html>
