@@ -1,0 +1,54 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+         xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <f:entry title="Rest URL" field="restURLs">
+        <f:textbox field="restURLs"/>
+    </f:entry>
+    <f:optionalBlock name="globalRestIsPost" checked="${it.requestIsPost}"
+        title="Send request as POST">
+        <f:entry title="REST ContentType" field="globalRestContentType">
+            <select name="globalRestContentType">
+              <j:choose>
+                <j:when test="${it.requestContentType == 'application/javascript'}">
+                    <option value="application/javascript" selected="selected">Javascript</option>
+                </j:when>
+                <j:otherwise>
+                    <option value="application/javascript">Javascript</option>
+                </j:otherwise>
+              </j:choose>
+              <j:choose>
+                <j:when test="${it.requestContentType == 'application/json'}">
+                    <option value="application/json" selected="selected">Json</option>
+                </j:when>
+                <j:otherwise>
+                    <option value="application/json">Json</option>
+                </j:otherwise>
+              </j:choose>
+              <j:choose>
+                <j:when test="${it.requestContentType == 'text/plain'}">
+                    <option value="text/plain" selected="selected">text</option>
+                </j:when>
+                <j:otherwise>
+                    <option value="text/plain">text</option>
+                </j:otherwise>
+              </j:choose>
+              <j:choose>
+                <j:when test="${it.requestContentType == 'application/xml'}">
+                    <option value="application/xml" selected="selected">XML</option>
+                </j:when>
+                <j:otherwise>
+                    <option value="application/xml">XML</option>
+                </j:otherwise>
+              </j:choose>
+            </select>
+        </f:entry>
+        <f:entry title="Rest String"
+                 field="postString"
+                 help="/plugin/jenkinsrest/help-restString.html">
+          <f:expandableTextbox />
+        </f:entry>
+    </f:optionalBlock>
+    <f:entry title="Send request only on build success"
+             field="onSuccessOnly">
+        <f:checkbox field="onlySuccessOnly"/>
+    </f:entry>
+</j:jelly>

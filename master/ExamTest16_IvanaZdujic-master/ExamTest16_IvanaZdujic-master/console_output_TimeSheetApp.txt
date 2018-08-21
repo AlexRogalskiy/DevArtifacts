@@ -1,0 +1,199 @@
+Skip to content
+titletitle
+ Ivana Zdujic | log out
+ 
+
+    Jenkins
+    TimeSheetAppProject
+    #4
+
+ Back to Project
+ Status
+ Changes
+ Console Output
+ View as plain text
+ Edit Build Information
+ Delete Build
+ Git Build Data
+ No Tags
+ Redeploy Artifacts
+ See Fingerprints
+ Retry
+ Previous Build
+FailedConsole Output
+
+Started by user Ivana Zdujic
+Building remotely on slave_jenkins in workspace /home/ivana/SoapUI_projects/jenkins_slave_workspace/workspace/TimeSheetAppProject
+ > /usr/bin/git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > /usr/bin/git config remote.origin.url https://github.com/IvanaSE/ExamTest16_IvanaZdujic # timeout=10
+Fetching upstream changes from https://github.com/IvanaSE/ExamTest16_IvanaZdujic
+ > /usr/bin/git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > /usr/bin/git fetch --tags --progress https://github.com/IvanaSE/ExamTest16_IvanaZdujic +refs/heads/*:refs/remotes/origin/*
+ > /usr/bin/git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > /usr/bin/git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 53baa0fd6ebeea41361e7abefe27ddf9baa97bdf (refs/remotes/origin/master)
+ > /usr/bin/git config core.sparsecheckout # timeout=10
+ > /usr/bin/git checkout -f 53baa0fd6ebeea41361e7abefe27ddf9baa97bdf
+ > /usr/bin/git rev-list 55d03129772d029902f539dfe0b85b0a6e86c4a9 # timeout=10
+Parsing POMs
+Established TCP socket on 32899
+maven3-agent.jar already up to date
+maven3-interceptor.jar already up to date
+maven3-interceptor-commons.jar already up to date
+[TimeSheetAppProject] $ /home/ivana/jdk1.8.0_111/bin/java -cp /home/ivana/SoapUI_projects/jenkins_slave_workspace/maven3-agent.jar:/usr/share/maven/boot/plexus-classworlds-2.x.jar org.jvnet.hudson.maven3.agent.Maven3Main /usr/share/maven/ /home/ivana/.java/deployment/cache/6.0/41/a33cae9-232a2027 /home/ivana/SoapUI_projects/jenkins_slave_workspace/maven3-interceptor.jar /home/ivana/SoapUI_projects/jenkins_slave_workspace/maven3-interceptor-commons.jar 32899
+<===[JENKINS REMOTING CAPACITY]===>channel started
+Executing Maven:  -B -f /home/ivana/SoapUI_projects/jenkins_slave_workspace/workspace/TimeSheetAppProject/pom.xml com.smartbear.soapui:soapui-maven-plugin:test -DprojectFile=TimeSheetApp-soapui-project.xml
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building soapUI project 0.0.1
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- soapui-maven-plugin:5.0.0:test (default-cli) @ soapui-project ---
+SoapUI 5.0.0 Maven2 TestCase Runner
+18:58:17,143 WARN  [SoapUI] Missing folder [/home/ivana/SoapUI_projects/jenkins_slave_workspace/workspace/TimeSheetAppProject/ext] for external libraries
+18:58:17,319 INFO  [DefaultSoapUICore] initialized soapui-settings from [/home/ivana/soapui-settings.xml]
+18:58:17,934 INFO  [WsdlProject] Loaded project from [file:/home/ivana/SoapUI_projects/jenkins_slave_workspace/workspace/TimeSheetAppProject/TimeSheetApp-soapui-project.xml]
+18:58:18,677 INFO  [SoapUITestCaseRunner] Running SoapUI tests in project [TimeSheetApp]
+18:58:18,680 INFO  [SoapUITestCaseRunner] Running Project [TimeSheetApp], runType = SEQUENTIAL
+18:58:18,700 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [TimeSheetApp-TestCase]
+18:58:18,712 INFO  [SoapUITestCaseRunner] running step [Static-EmpData-POST-TestStep]
+18:58:19,130 INFO  [log] Employee firstName:  SrbijaDoTokija
+18:58:19,131 INFO  [log] Employee lastName:  SrbijaPrezime
+18:58:19,131 INFO  [log] Employee gender:  female
+18:58:19,131 INFO  [log] Employee role:  Tester
+18:58:19,131 INFO  [log] Employee email:  srbijadotokija@gmail.com
+18:58:19,151 INFO  [SoapUITestCaseRunner] running step [Post-NewEmployee]
+18:58:19,540 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+18:58:19,541 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /employees/create HTTP/1.1
+18:58:19,747 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 204 
+18:58:19,752 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+18:58:19,770 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+18:58:19,770 INFO  [SoapUITestCaseRunner] running step [Get-AllEmployee]
+18:58:19,773 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+18:58:19,775 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+18:58:19,775 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: GET /employees/all HTTP/1.1
+18:58:19,839 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 200 
+18:58:19,843 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+18:58:19,954 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+18:58:19,954 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+18:58:19,954 INFO  [SoapUITestCaseRunner] running step [Delete-NewEmployee]
+18:58:19,959 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+18:58:19,962 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+18:58:19,962 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: DELETE /employees/delete HTTP/1.1
+18:58:20,029 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 400 
+18:58:20,030 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+18:58:20,040 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status FAILED
+18:58:20,041 ERROR [SoapUITestCaseRunner] ASSERTION FAILED -> Response status code:400 is not in acceptable list of status codes
+18:58:20,042 ERROR [SoapUITestCaseRunner] Delete-NewEmployee failed, exporting to [/home/ivana/SoapUI_projects/jenkins_slave_workspace/workspace/TimeSheetAppProject/TimeSheetAppTestSuite-TimeSheetAppTestCase-DeleteNewEmployee-0-FAILED.txt]
+18:58:20,049 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [TimeSheetApp-TestCase], time taken: 1110ms, status: FAILED
+18:58:20,049 INFO  [SoapUITestCaseRunner] Project [TimeSheetApp] finished with status [FAILED] in 1362ms
+[ERROR] java.lang.Exception: Valid HTTP Status Codes in [Delete-NewEmployee] failed;
+[Response status code:400 is not in acceptable list of status codes]
+Status: FAILED
+Time Taken: 71
+Size: 342
+Timestamp: Fri May 12 18:58:19 CEST 2017
+TestStep: Delete-NewEmployee
+
+----------------- Messages ------------------------------
+[Valid HTTP Status Codes] Response status code:400 is not in acceptable list of status codes
+
+----------------- Properties ------------------------------
+HTTP Version: HTTP/1.1
+Endpoint: https://shielded-harbor-21142.herokuapp.com
+Method: DELETE
+StatusCode: 400
+URL: https://shielded-harbor-21142.herokuapp.com/employees/delete
+
+---------------- Request ---------------------------
+Connection: [Keep-Alive]
+User-Agent: [Apache-HttpClient/4.1.1 (java 1.5)]
+Host: [shielded-harbor-21142.herokuapp.com]
+Accept-Encoding: [gzip,deflate]
+
+DELETE https://shielded-harbor-21142.herokuapp.com/employees/delete HTTP/1.1
+Accept-Encoding: gzip,deflate
+Host: shielded-harbor-21142.herokuapp.com
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+
+
+---------------- Response --------------------------
+Transfer-Encoding: [chunked]
+Server: [Cowboy]
+Connection: [keep-alive]
+#status#: [HTTP/1.1 400 ]
+X-Application-Context: [application:26452]
+Date: [Fri, 12 May 2017 16:58:19 GMT]
+Content-Type: [application/json;charset=UTF-8]
+Via: [1.1 vegur]
+
+{"timestamp":1494608299935,"status":400,"error":"Bad Request","exception":"org.springframework.http.converter.HttpMessageNotReadableException","message":"Required request body is missing: public void com.ms2003.timesheet.web.service.EmployeeController.deleteEmployee(com.ms2003.timesheet.business.dto.EmployeeDTO)","path":"/employees/delete"}
+
+[JENKINS] Recording test results
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 4.962s
+[INFO] Finished at: Fri May 12 18:58:20 CEST 2017
+[INFO] Final Memory: 25M/273M
+[INFO] ------------------------------------------------------------------------
+Waiting for Jenkins to finish collecting data
+[ERROR] Failed to execute goal com.smartbear.soapui:soapui-maven-plugin:5.0.0:test (default-cli) on project soapui-project: SoapUI Test(s) failed: SoapUI Test(s) failed:
+[ERROR] Valid HTTP Status Codes in [Delete-NewEmployee] failed;
+[ERROR] [Response status code:400 is not in acceptable list of status codes]
+[ERROR] Status: FAILED
+[ERROR] Time Taken: 71
+[ERROR] Size: 342
+[ERROR] Timestamp: Fri May 12 18:58:19 CEST 2017
+[ERROR] TestStep: Delete-NewEmployee
+[ERROR] 
+[ERROR] ----------------- Messages ------------------------------
+[ERROR] [Valid HTTP Status Codes] Response status code:400 is not in acceptable list of status codes
+[ERROR] 
+[ERROR] ----------------- Properties ------------------------------
+[ERROR] HTTP Version: HTTP/1.1
+[ERROR] Endpoint: https://shielded-harbor-21142.herokuapp.com
+[ERROR] Method: DELETE
+[ERROR] StatusCode: 400
+[ERROR] URL: https://shielded-harbor-21142.herokuapp.com/employees/delete
+[ERROR] 
+[ERROR] ---------------- Request ---------------------------
+[ERROR] Connection: [Keep-Alive]
+[ERROR] User-Agent: [Apache-HttpClient/4.1.1 (java 1.5)]
+[ERROR] Host: [shielded-harbor-21142.herokuapp.com]
+[ERROR] Accept-Encoding: [gzip,deflate]
+[ERROR] 
+[ERROR] DELETE https://shielded-harbor-21142.herokuapp.com/employees/delete HTTP/1.1
+[ERROR] Accept-Encoding: gzip,deflate
+[ERROR] Host: shielded-harbor-21142.herokuapp.com
+[ERROR] Connection: Keep-Alive
+[ERROR] User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+[ERROR] 
+[ERROR] 
+[ERROR] ---------------- Response --------------------------
+[ERROR] Transfer-Encoding: [chunked]
+[ERROR] Server: [Cowboy]
+[ERROR] Connection: [keep-alive]
+[ERROR] #status#: [HTTP/1.1 400 ]
+[ERROR] X-Application-Context: [application:26452]
+[ERROR] Date: [Fri, 12 May 2017 16:58:19 GMT]
+[ERROR] Content-Type: [application/json;charset=UTF-8]
+[ERROR] Via: [1.1 vegur]
+[ERROR] 
+[ERROR] {"timestamp":1494608299935,"status":400,"error":"Bad Request","exception":"org.springframework.http.converter.HttpMessageNotReadableException","message":"Required request body is missing: public void com.ms2003.timesheet.web.service.EmployeeController.deleteEmployee(com.ms2003.timesheet.business.dto.EmployeeDTO)","path":"/employees/delete"}
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[JENKINS] Archiving /home/ivana/SoapUI_projects/jenkins_slave_workspace/workspace/TimeSheetAppProject/pom.xml to com.scania.cbm.test/soapui-project/0.0.1/soapui-project-0.0.1.pom
+channel stopped
+Finished: FAILURE
+
+Page generated: May 19, 2017 11:07:42 AM CESTREST APIJenkins ver. 2.61
