@@ -1,0 +1,115 @@
+// ---- VARIABLES
+
+$inputWidth: 450px
+$searchBtnSize: 70px
+$borderWeight: 4px
+$searchColor: #2196F3
+$transitionDuration: .25s
+$transitionTiming: ease
+
+// ---- MIXINS
+
+=hidden
+  visibility: hidden
+  opacity: 0
+  
+=visible
+  visibility: visible
+  opacity: 1
+
+// ---- DOCUMENT
+
+html, body
+  height: 100%
+  
+body
+  display: flex
+  align-items: center
+  justify-content: center
+  
+*
+  box-sizing: border-box !important
+  
+// ---- SEARCH FORM : NORMAL STATE
+
+.search
+  position: relative
+  width: $inputWidth
+  height: $searchBtnSize
+
+  span
+    display: block
+    position: absolute
+    left: 50%
+    top: 50%
+    height: $searchBtnSize
+    width: $searchBtnSize
+    border: $borderWeight solid $searchColor
+    border-radius: 100%
+    cursor: pointer
+    transform: translate(-50%, -50%) rotate(-30deg)
+    transition: transform $transitionDuration ($transitionDuration * 3) $transitionTiming, height $transitionDuration $transitionDuration $transitionTiming, border-radius $transitionDuration $transitionDuration $transitionTiming
+
+    &:after
+      content: ''
+      position: inherit
+      top: ($searchBtnSize - $borderWeight - 1)
+      left:  ($searchBtnSize / 2) - ($borderWeight * 2)
+      height: ($searchBtnSize / 2)
+      width: ($borderWeight * 2)
+      background: $searchColor
+      transition: all $transitionDuration ($transitionDuration * 2) $transitionTiming
+  
+  button
+    position: absolute
+    left: calc(100% - #{$searchBtnSize} - (#{$borderWeight} * 2))
+    top: ($borderWeight * 2)
+    height: calc(100% - (#{$borderWeight} * 4))
+    width: $searchBtnSize
+    background: none
+    border: 0
+    border-radius: $searchBtnSize
+    font-size: 22px
+    color: $searchColor
+    outline: none
+    transition: all $transitionDuration $transitionTiming
+    +hidden
+  
+  input
+    width: 100%
+    height: 100%
+    padding: 15px ($searchBtnSize + ($borderWeight * 2)) 15px 15px
+    background: none
+    border: 0
+    font-size: 22px
+    font-family: 'Open Sans', sans-serif
+    color: $searchColor
+    outline: none
+    transition: all $transitionDuration $transitionTiming
+    +hidden
+  
+
+      
+// ---- SEARCH FORM : ACTIVE STATE
+
+.search.active
+  
+  span
+    height: $inputWidth
+    border-radius: $searchBtnSize
+    cursor: initial
+    transform: translate(-50%, -50%) rotate(-90deg)
+    transition: transform $transitionDuration $transitionTiming, height $transitionDuration ($transitionDuration * 2) $transitionTiming, border-radius $transitionDuration ($transitionDuration * 2) $transitionTiming
+    
+    &:after
+      height: 0
+      transition-delay: $transitionDuration
+  
+  button
+    +visible
+    transition-delay: ($transitionDuration * 3)
+      
+  input
+    position: relative
+    +visible
+    transition-delay: ($transitionDuration * 3)

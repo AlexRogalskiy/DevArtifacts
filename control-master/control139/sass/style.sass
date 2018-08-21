@@ -1,0 +1,116 @@
+// ---- CONSTS
+
+$primaryColor: #57bafc
+$animationDuration: 1s
+$inputWidth: 500px
+$inputHeight: $inputWidth / 3
+$buttonWidth: $inputWidth / 1.5
+$buttonHeight: $inputWidth / 3.5
+
+// ---- GLOBAL
+
+html, body, main
+  height: 100%
+  background: $primaryColor
+
+*
+  box-sizing: border-box
+
+// ---- FORM
+
+input, button 
+  font-family: 'Nunito', sans-serif
+
+main, form
+  display: flex
+  align-items: center
+  justify-content: center
+
+  input
+    width: $inputWidth
+    height: $inputWidth / 3
+    background: #fff
+    border: none
+    border-radius: $inputWidth / 3.75
+    color: $primaryColor
+    font-size: $inputWidth / 12
+    text-transform: uppercase
+    font-weight: 600
+    padding: 10px ($inputWidth / 5)
+    outline: none
+    cursor: pointer
+    transition: all 250ms
+    position: relative
+    
+    &[readonly] 
+      cursor: not-allowed
+      
+    &:invalid
+      box-shadow: none
+
+    &::placeholder
+      color: $primaryColor
+      text-align: center
+      opacity: 1
+
+    &:not(.active):not(:read-only):hover
+      opacity: 0.9
+
+    &.active
+      cursor: initial
+      width: $inputWidth * 2.23
+      left: $buttonWidth / 2
+      padding: 10px ($buttonWidth + ($inputHeight - $buttonHeight)) 10px ($inputWidth / 5)
+
+      &::placeholder
+        text-align: left
+
+      + button
+        display: block
+        font-weight: 100
+
+    &.expand
+      animation: expand $animationDuration forwards ease-out
+      @keyframes expand
+        0%
+          width: $inputWidth
+        10%
+          width: $inputWidth * 2.4
+        35%
+          width: $inputWidth * 2.2
+        50%
+          width: $inputWidth * 2.24
+        100%
+          width: $inputWidth * 2.23
+
+    &.collapse
+      animation: collapse $animationDuration forwards ease-out
+      @keyframes collapse
+        0%
+          width: $inputWidth * 2.23
+        10%
+          width: $inputWidth / 1.3
+        35%
+          width: $inputWidth * 1.03
+        50%
+          width: $inputWidth / 1.02
+        100%
+          width: $inputWidth
+
+    + button
+      display: none
+
+  button
+    width: $buttonWidth
+    height: $buttonHeight
+    background: $primaryColor
+    border: 0
+    border-radius: $inputWidth / 3.75
+    position: relative
+    left: -#{($buttonWidth / 2) + (($inputHeight - $buttonHeight) / 2)}
+    color: #fff
+    font-size: $inputWidth / 12
+    text-transform: uppercase
+    cursor: pointer
+    outline: none
+    z-index: 2

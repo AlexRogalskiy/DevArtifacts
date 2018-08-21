@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkbox + label {
+  display: inline-block;
+  position: relative;
+  width: 300px;
+  height: 130px;
+  background: -webkit-linear-gradient(left, #fd1a15 0, #fc8b34 45%, #7fd03e 55%, #007177 100%) 0 0;
+  background: linear-gradient(to right, #fd1a15 0, #fc8b34 45%, #7fd03e 55%, #007177 100%) 0 0;
+  background-size: 650px 100%;
+  border-radius: 70px;
+  padding: 7px;
+  cursor: pointer;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2) inset;
+}
+.checkbox + label:before {
+  content: "Off";
+  width: 116px;
+  height: 116px;
+  position: absolute;
+  left: 7px;
+  top: 7px;
+  border-radius: 100%;
+  background: #fff;
+  text-align: center;
+  line-height: 116px;
+  font-family: "Cabin", sans-serif;
+  font-size: 35px;
+  font-weight: bold;
+  color: #fd1a15;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  -webkit-transition: left 500ms ease, color 500ms ease, -webkit-transform 150ms ease;
+  transition: left 500ms ease, color 500ms ease, -webkit-transform 150ms ease;
+  transition: left 500ms ease, color 500ms ease, transform 150ms ease;
+  transition: left 500ms ease, color 500ms ease, transform 150ms ease, -webkit-transform 150ms ease;
+}
+.checkbox + label:active:before {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
+.checkbox:checked + label {
+  background-position-x: -350px;
+}
+.checkbox:checked + label:before {
+  content: "On";
+  color: #007177;
+  left: 177px;
+}

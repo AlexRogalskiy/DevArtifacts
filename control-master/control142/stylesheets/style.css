@@ -1,0 +1,521 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit {
+  width: 380px;
+  height: 120px;
+  background: #fff;
+  padding: 10px 45px;
+  border: 4px solid #19CC95;
+  border-radius: 60px;
+  cursor: pointer;
+  outline: none;
+  transition: all 250ms;
+}
+.submit > span {
+  color: #19CC95;
+  letter-spacing: 2px;
+  font-size: 31px;
+  font-weight: bold;
+  font-family: "Noto Sans", sans-serif;
+  transition: all 250ms;
+}
+.submit:disabled {
+  cursor: not-allowed;
+}
+.submit:hover {
+  background: #19CC95;
+}
+.submit:hover > span {
+  color: #fff;
+  font-size: 33px;
+}
+.submit:active > span {
+  font-size: 31px;
+  transition: none;
+}
+
+.submit.loader {
+  background: #fff;
+  border: 7px solid #BBBBBB;
+  width: 125px;
+  padding: 0;
+  color: #fff;
+  font-size: 0;
+}
+.submit.loader > span {
+  opacity: 0;
+  font-size: 0;
+}
+
+.submit.loading {
+  cursor: wait;
+  position: relative;
+}
+.submit.loading:before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  height: 100%;
+  width: 100%;
+  border: 7px solid #19CC95;
+  border-radius: 60px;
+}
+
+.submit.success {
+  background: #19CC95;
+}
+.submit.success > span {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  font-size: 0;
+  overflow: hidden;
+  line-height: 150px;
+  animation: showSuccess 400ms 100ms forwards ease-in;
+}
+@keyframes showSuccess {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.submit.success > span:before, .submit.success > span:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #fff;
+}
+.submit.success > span:before {
+  width: 25px;
+  height: 8px;
+  bottom: 9px;
+  left: 0;
+  transform: rotate(38deg);
+  border-radius: 10px 0 15px 10px;
+}
+.submit.success > span:after {
+  width: 45px;
+  height: 8px;
+  top: 19px;
+  right: -7px;
+  transform: rotate(129deg);
+  border-radius: 10px 0 0 10px;
+}
+
+.submit.loading[data-percent="0"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 50% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="1"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 54.16667% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="2"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 58.33333% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="3"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 62.5% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="4"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 66.66667% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="5"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 70.83333% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="6"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 75% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="7"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 79.16667% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="8"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 83.33333% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="9"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 87.5% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="10"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 91.66667% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="11"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 95.83333% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="12"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="13"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="14"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 4.16667%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="15"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 8.33333%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="16"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 12.5%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="17"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 16.66667%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="18"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 20.83333%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="19"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 25%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="20"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 29.16667%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="21"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 33.33333%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="22"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 37.5%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="23"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 41.66667%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="24"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 45.83333%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="25"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="26"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="27"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 54.16667%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="28"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 58.33333%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="29"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 62.5%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="30"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 66.66667%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="31"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 70.83333%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="32"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 75%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="33"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 79.16667%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="34"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 83.33333%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="35"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 87.5%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="36"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 91.66667%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="37"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 95.83333%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="38"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="39"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 100% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="40"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 95.83333% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="41"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 91.66667% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="42"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 87.5% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="43"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 83.33333% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="44"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 79.16667% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="45"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 75% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="46"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 70.83333% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="47"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 66.66667% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="48"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 62.5% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="49"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 58.33333% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="50"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 54.16667% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="51"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 50% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="52"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 50% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="53"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 45.83333% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="54"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 41.66667% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="55"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 37.5% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="56"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 33.33333% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="57"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 29.16667% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="58"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 25% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="59"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 20.83333% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="60"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 16.66667% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="61"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 12.5% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="62"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 8.33333% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="63"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 4.16667% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="64"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="65"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 100%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="66"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 95.83333%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="67"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 91.66667%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="68"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 87.5%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="69"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 83.33333%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="70"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 79.16667%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="71"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 75%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="72"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 70.83333%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="73"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 66.66667%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="74"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 62.5%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="75"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 58.33333%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="76"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 54.16667%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="77"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 50% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="78"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 50%, 50% 50%);
+}
+
+.submit.loading[data-percent="79"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 45.83333%, 50% 50%);
+}
+
+.submit.loading[data-percent="80"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 41.66667%, 50% 50%);
+}
+
+.submit.loading[data-percent="81"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 37.5%, 50% 50%);
+}
+
+.submit.loading[data-percent="82"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 33.33333%, 50% 50%);
+}
+
+.submit.loading[data-percent="83"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 29.16667%, 50% 50%);
+}
+
+.submit.loading[data-percent="84"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 25%, 50% 50%);
+}
+
+.submit.loading[data-percent="85"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 20.83333%, 50% 50%);
+}
+
+.submit.loading[data-percent="86"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 16.66667%, 50% 50%);
+}
+
+.submit.loading[data-percent="87"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 12.5%, 50% 50%);
+}
+
+.submit.loading[data-percent="88"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 8.33333%, 50% 50%);
+}
+
+.submit.loading[data-percent="89"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 4.16667%, 50% 50%);
+}
+
+.submit.loading[data-percent="90"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 50% 50%);
+}
+
+.submit.loading[data-percent="91"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 0% 0%);
+}
+
+.submit.loading[data-percent="92"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 5.55556% 0%);
+}
+
+.submit.loading[data-percent="93"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 11.11111% 0%);
+}
+
+.submit.loading[data-percent="94"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 16.66667% 0%);
+}
+
+.submit.loading[data-percent="95"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 22.22222% 0%);
+}
+
+.submit.loading[data-percent="96"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 27.77778% 0%);
+}
+
+.submit.loading[data-percent="97"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 33.33333% 0%);
+}
+
+.submit.loading[data-percent="98"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 38.88889% 0%);
+}
+
+.submit.loading[data-percent="99"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 44.44444% 0%);
+}
+
+.submit.loading[data-percent="100"]:before {
+  clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, 50% 0%);
+}

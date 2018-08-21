@@ -1,0 +1,119 @@
+html, body, main {
+  height: 100%;
+  background: #57bafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input, button {
+  font-family: "Nunito", sans-serif;
+}
+
+main, form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main input, form input {
+  width: 500px;
+  height: 166.66667px;
+  background: #fff;
+  border: none;
+  border-radius: 133.33333px;
+  color: #57bafc;
+  font-size: 41.66667px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 10px 100px;
+  outline: none;
+  cursor: pointer;
+  transition: all 250ms;
+  position: relative;
+}
+main input[readonly], form input[readonly] {
+  cursor: not-allowed;
+}
+main input:invalid, form input:invalid {
+  box-shadow: none;
+}
+main input::placeholder, form input::placeholder {
+  color: #57bafc;
+  text-align: center;
+  opacity: 1;
+}
+main input:not(.active):not(:read-only):hover, form input:not(.active):not(:read-only):hover {
+  opacity: 0.9;
+}
+main input.active, form input.active {
+  cursor: initial;
+  width: 1115px;
+  left: 166.66667px;
+  padding: 10px 357.14286px 10px 100px;
+}
+main input.active::placeholder, form input.active::placeholder {
+  text-align: left;
+}
+main input.active + button, form input.active + button {
+  display: block;
+  font-weight: 100;
+}
+main input.expand, form input.expand {
+  animation: expand 1s forwards ease-out;
+}
+@keyframes expand {
+  0% {
+    width: 500px;
+  }
+  10% {
+    width: 1200px;
+  }
+  35% {
+    width: 1100px;
+  }
+  50% {
+    width: 1120px;
+  }
+  100% {
+    width: 1115px;
+  }
+}
+main input.collapse, form input.collapse {
+  animation: collapse 1s forwards ease-out;
+}
+@keyframes collapse {
+  0% {
+    width: 1115px;
+  }
+  10% {
+    width: 384.61538px;
+  }
+  35% {
+    width: 515px;
+  }
+  50% {
+    width: 490.19608px;
+  }
+  100% {
+    width: 500px;
+  }
+}
+main input + button, form input + button {
+  display: none;
+}
+main button, form button {
+  width: 333.33333px;
+  height: 142.85714px;
+  background: #57bafc;
+  border: 0;
+  border-radius: 133.33333px;
+  position: relative;
+  left: -178.57143px;
+  color: #fff;
+  font-size: 41.66667px;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  z-index: 2;
+}

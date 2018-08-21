@@ -12,4 +12,4 @@ $(window).resize(function() {
      $('.container').addClass('mobile');
     }
     else {$('.container').removeClass('mobile');}
- });
+});

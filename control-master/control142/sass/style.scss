@@ -1,0 +1,221 @@
+// DOCUMENT  -----------
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// SUBMIT  -----------
+
+.submit {
+  width: 380px;
+  height: 120px;
+  background: #fff;
+  padding: 10px 45px;
+  border: 4px solid #19CC95;
+  border-radius: 60px;
+  cursor: pointer;
+  outline: none;
+  transition: all 250ms;
+
+  > span {
+    color: #19CC95;
+    letter-spacing: 2px;
+    font-size: 31px;
+    font-weight: bold;
+    font-family: "Noto Sans", sans-serif;
+    transition: all 250ms;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background: #19CC95;
+
+    > span {
+      color: #fff;
+      font-size: 33px;
+    }
+  }
+
+  &:active {
+    > span {
+      font-size: 31px;
+      transition: none;
+    }
+  }
+}
+
+// SUBMIT.LOADER -----------
+
+.submit.loader {
+  background: #fff;
+  border: 7px solid #BBBBBB;
+  width: 125px;
+  padding: 0;
+  color: #fff;
+  font-size: 0;
+
+  > span {
+    opacity: 0;
+    font-size: 0;
+  }
+}
+
+// SUBMIT.LOADING  -----------
+
+.submit.loading {
+  cursor: wait;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: -7px;
+    height: 100%;
+    width: 100%;
+    border: 7px solid #19CC95;
+    border-radius: 60px;
+  }
+}
+
+// SUBMIT.SUCCESS  -----------
+
+.submit.success {
+  background: #19CC95;
+
+  > span {
+    display: inline-block;
+
+    position:relative {}
+
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    font-size: 0;
+    overflow: hidden;
+    line-height: 150px;
+    animation: showSuccess 400ms 100ms forwards ease-in;
+
+    @keyframes showSuccess {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    &:before, &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      background: #fff;
+    }
+
+    &:before {
+      width: 25px;
+      height: 8px;
+      bottom: 9px;
+      left: 0;
+      transform: rotate(38deg);
+      border-radius: 10px 0 15px 10px;
+    }
+
+    &:after {
+      width: 45px;
+      height: 8px;
+      top: 19px;
+      right: -7px;
+      transform: rotate(129deg);
+      border-radius: 10px 0 0 10px;
+    }
+  }
+}
+
+// ANIMATION LOOP ----
+
+$counter: 0;
+
+@for $i from 0 through 100 {
+  @if $counter % 13 == 0 {
+    $counter: 0;
+  }
+
+  @if $i >= 0 and $i <= 12 {
+    $nbr: (50 + 4.16666666 * $counter) * 1%;
+
+    .submit.loading[data-percent="#{$i}"]:before {
+      clip-path: polygon(50% 50%, 50% 0, $nbr 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    }
+  }
+
+  @if $i >= 13 and $i <= 25 {
+    $nbr: (0 + 4.16666666 * $counter) * 1%;
+
+    .submit.loading[data-percent="#{$i}"]:before {
+      clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% $nbr, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    }
+  }
+
+  @if $i >= 26 and $i <= 38 {
+    $nbr: (50 + 4.16666666 * $counter) * 1%;
+
+    .submit.loading[data-percent="#{$i}"]:before {
+      clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% $nbr, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    }
+  }
+
+  @if $i >= 39 and $i <= 51 {
+    $nbr: (100 - 4.16666666 * $counter) * 1%;
+
+    .submit.loading[data-percent="#{$i}"]:before {
+      clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, $nbr 100%, 50% 50%, 50% 50%, 50% 50%);
+    }
+  }
+
+  @if $i >= 52 and $i <= 64 {
+    $nbr: (50 - 4.16666666 * $counter) * 1%;
+
+    .submit.loading[data-percent="#{$i}"]:before {
+      clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, $nbr 100%, 50% 50%, 50% 50%, 50% 50%);
+    }
+  }
+
+  @if $i >= 65 and $i <= 77 {
+    $nbr: (100 - 4.16666666 * $counter) * 1%;
+
+    .submit.loading[data-percent="#{$i}"]:before {
+      clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% $nbr, 50% 50%, 50% 50%);
+    }
+  }
+
+  @if $i >= 78 and $i <= 90 {
+    $nbr: (50 - 4.16666666 * $counter) * 1%;
+
+    .submit.loading[data-percent="#{$i}"]:before {
+      clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% $nbr, 50% 50%);
+    }
+  }
+
+  @if $i >= 91 and $i <= 100 {
+    $nbr: (0 + 5.55555555 * $counter) * 1%;
+
+    .submit.loading[data-percent="#{$i}"]:before {
+      clip-path: polygon(50% 50%, 50% 0, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%, 0% 0%, $nbr 0%);
+    }
+  }
+
+  $counter: $counter + 1;
+}

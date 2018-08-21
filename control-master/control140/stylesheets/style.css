@@ -1,0 +1,3747 @@
+html, body {
+  height: 100%;
+  background: linear-gradient(155deg, #0a2234 0%, #0a2234 33%, #0c5f86 48%, #0c5f86 65%, #70becb 100%);
+  background-size: 100% 250%;
+  overflow: hidden;
+  transition: all 1s ease;
+}
+
+body.day {
+  background-position-y: 100%;
+  background-size: 100% 400%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.checkbox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.checkbox input {
+  display: none;
+}
+.checkbox input + label {
+  display: block;
+  position: relative;
+  width: 195px;
+  height: 100px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 60px;
+  cursor: pointer;
+  transition: all 1s ease;
+}
+.checkbox input + label:before {
+  content: "";
+  display: inherit;
+  position: absolute;
+  left: 10px;
+  width: 77.5px;
+  height: 80px;
+  background: #fff;
+  border-radius: inherit;
+  box-shadow: 0 0 65px rgba(255, 255, 255, 0.5);
+  transition: all 1s ease;
+}
+.checkbox input:checked + label {
+  background: rgba(0, 0, 0, 0.15);
+}
+.checkbox input:checked + label:before {
+  left: 107.5px;
+  background: #fdc472;
+  box-shadow: 0 0 65px rgba(253, 196, 114, 0.5);
+}
+
+body.night .night, body.day .day {
+  visibility: visible;
+  opacity: 1;
+}
+
+div.day {
+  transition: all 1s ease;
+  visibility: hidden;
+  opacity: 0;
+}
+div.day .cloud {
+  width: 180px;
+  height: 100px;
+  position: absolute;
+  background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257 140"><path fill="#FFFFFF" d="M11.7,128.6h240.3c0.1-1.4,0.1-2.8-0.1-4.2c-0.7-7.6-4.5-14.8-10.3-19.7 c-6.5-5.5-13.7-6.9-21.9-6.9c-1.4,0-2.8,0.1-4.2,0.4c1.7-4.7,2.3-9.7,1.9-14.7c-0.8-8.8-5.2-17.1-11.9-22.8 c-2.5-1.6-5-3.2-7.4-4.8c-1.3-0.6-2.6-1.1-4-1.6c0.5-3.5,0.6-7.1,0.3-10.7c-1.1-11.8-6.9-23-16-30.7c-3.3-2.2-6.7-4.3-10-6.5 c-7.6-3.6-15.6-5-24-4.2c-3.9,0.9-7.7,1.8-11.6,2.7c-7.5,2.8-13.9,7.3-19.1,13.4c-4.4,5.1-7.5,11.2-9.2,17.6 c-0.1-0.1-0.3-0.2-0.4-0.4c-2.5-1.6-5-3.2-7.5-4.8c-5.7-2.7-11.7-3.7-18-3.2c-2.9,0.7-5.8,1.3-8.7,2c-5.6,2.1-10.4,5.4-14.3,10 c-5.9,7-8.9,16.3-8,25.4c0.2,2.3,0.7,4.5,1.3,6.7c-2-0.7-4-1.3-6.1-1.7c-3-0.1-6-0.3-9.1-0.4C28,70,22.6,72,17.7,75.4 c-0.1,0.1-0.2,0.1-0.3,0.2c-2.1,2-4.3,3.9-6.4,5.8c-2.3,2.7-4.1,5.7-5.4,8.8c-0.1,0.2-0.2,0.4-0.4,0.6c-0.9,2.8-1.8,5.7-2.7,8.5 c-1,5.9-0.5,11.7,1.6,17.3C5.7,121.1,8.4,125.2,11.7,128.6z"/></svg>');
+  background-size: 100% 100%;
+}
+div.day .cloud[data-cloud='1'] {
+  top: 17%;
+  width: 97px;
+  height: 71px;
+  opacity: 0;
+  animation: cloud-1 133s linear 5.4s infinite;
+}
+@keyframes cloud-1 {
+  0% {
+    opacity: 0;
+    left: 1%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='2'] {
+  top: 22%;
+  width: 113px;
+  height: 96px;
+  opacity: 0;
+  animation: cloud-2 14s linear 6s infinite;
+}
+@keyframes cloud-2 {
+  0% {
+    opacity: 0;
+    left: 13%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='3'] {
+  top: 74%;
+  width: 169px;
+  height: 66px;
+  opacity: 0;
+  animation: cloud-3 58s linear 2.7s infinite;
+}
+@keyframes cloud-3 {
+  0% {
+    opacity: 0;
+    left: 83%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='4'] {
+  top: 14%;
+  width: 122px;
+  height: 69px;
+  opacity: 0;
+  animation: cloud-4 132s linear 4.6s infinite;
+}
+@keyframes cloud-4 {
+  0% {
+    opacity: 0;
+    left: 8%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='5'] {
+  top: 40%;
+  width: 101px;
+  height: 70px;
+  opacity: 0;
+  animation: cloud-5 123s linear 4.5s infinite;
+}
+@keyframes cloud-5 {
+  0% {
+    opacity: 0;
+    left: 82%;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='6'] {
+  top: 29%;
+  width: 158px;
+  height: 67px;
+  opacity: 0;
+  animation: cloud-6 156s linear 5.9s infinite;
+}
+@keyframes cloud-6 {
+  0% {
+    opacity: 0;
+    left: 50%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='7'] {
+  top: 20%;
+  width: 170px;
+  height: 72px;
+  opacity: 0;
+  animation: cloud-7 27s linear 3s infinite;
+}
+@keyframes cloud-7 {
+  0% {
+    opacity: 0;
+    left: 83%;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='8'] {
+  top: 9%;
+  width: 126px;
+  height: 82px;
+  opacity: 0;
+  animation: cloud-8 122s linear 3.4s infinite;
+}
+@keyframes cloud-8 {
+  0% {
+    opacity: 0;
+    left: 86%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='9'] {
+  top: 88%;
+  width: 171px;
+  height: 92px;
+  opacity: 0;
+  animation: cloud-9 119s linear 10s infinite;
+}
+@keyframes cloud-9 {
+  0% {
+    opacity: 0;
+    left: 2%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='10'] {
+  top: 82%;
+  width: 107px;
+  height: 80px;
+  opacity: 0;
+  animation: cloud-10 55s linear 1.7s infinite;
+}
+@keyframes cloud-10 {
+  0% {
+    opacity: 0;
+    left: 26%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='11'] {
+  top: 43%;
+  width: 119px;
+  height: 58px;
+  opacity: 0;
+  animation: cloud-11 112s linear 5.3s infinite;
+}
+@keyframes cloud-11 {
+  0% {
+    opacity: 0;
+    left: 28%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='12'] {
+  top: 78%;
+  width: 146px;
+  height: 90px;
+  opacity: 0;
+  animation: cloud-12 70s linear 6.8s infinite;
+}
+@keyframes cloud-12 {
+  0% {
+    opacity: 0;
+    left: 53%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='13'] {
+  top: 5%;
+  width: 87px;
+  height: 55px;
+  opacity: 0;
+  animation: cloud-13 131s linear 9.7s infinite;
+}
+@keyframes cloud-13 {
+  0% {
+    opacity: 0;
+    left: 86%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='14'] {
+  top: 98%;
+  width: 135px;
+  height: 81px;
+  opacity: 0;
+  animation: cloud-14 91s linear 0.3s infinite;
+}
+@keyframes cloud-14 {
+  0% {
+    opacity: 0;
+    left: 49%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='15'] {
+  top: 84%;
+  width: 164px;
+  height: 71px;
+  opacity: 0;
+  animation: cloud-15 61s linear 8.2s infinite;
+}
+@keyframes cloud-15 {
+  0% {
+    opacity: 0;
+    left: 47%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='16'] {
+  top: 84%;
+  width: 103px;
+  height: 94px;
+  opacity: 0;
+  animation: cloud-16 66s linear 3.7s infinite;
+}
+@keyframes cloud-16 {
+  0% {
+    opacity: 0;
+    left: 11%;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='17'] {
+  top: 73%;
+  width: 75px;
+  height: 93px;
+  opacity: 0;
+  animation: cloud-17 64s linear 0.1s infinite;
+}
+@keyframes cloud-17 {
+  0% {
+    opacity: 0;
+    left: 34%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='18'] {
+  top: 35%;
+  width: 152px;
+  height: 73px;
+  opacity: 0;
+  animation: cloud-18 138s linear 6.6s infinite;
+}
+@keyframes cloud-18 {
+  0% {
+    opacity: 0;
+    left: 38%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='19'] {
+  top: 3%;
+  width: 90px;
+  height: 69px;
+  opacity: 0;
+  animation: cloud-19 61s linear 2.6s infinite;
+}
+@keyframes cloud-19 {
+  0% {
+    opacity: 0;
+    left: 54%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='20'] {
+  top: 35%;
+  width: 163px;
+  height: 90px;
+  opacity: 0;
+  animation: cloud-20 14s linear 6.8s infinite;
+}
+@keyframes cloud-20 {
+  0% {
+    opacity: 0;
+    left: 79%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='21'] {
+  top: 22%;
+  width: 125px;
+  height: 67px;
+  opacity: 0;
+  animation: cloud-21 28s linear 9.8s infinite;
+}
+@keyframes cloud-21 {
+  0% {
+    opacity: 0;
+    left: 43%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='22'] {
+  top: 15%;
+  width: 158px;
+  height: 94px;
+  opacity: 0;
+  animation: cloud-22 102s linear 2.7s infinite;
+}
+@keyframes cloud-22 {
+  0% {
+    opacity: 0;
+    left: 46%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='23'] {
+  top: 58%;
+  width: 106px;
+  height: 60px;
+  opacity: 0;
+  animation: cloud-23 121s linear 8.7s infinite;
+}
+@keyframes cloud-23 {
+  0% {
+    opacity: 0;
+    left: 20%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='24'] {
+  top: 91%;
+  width: 167px;
+  height: 62px;
+  opacity: 0;
+  animation: cloud-24 64s linear 3.7s infinite;
+}
+@keyframes cloud-24 {
+  0% {
+    opacity: 0;
+    left: 16%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='25'] {
+  top: 8%;
+  width: 76px;
+  height: 74px;
+  opacity: 0;
+  animation: cloud-25 12s linear 4.9s infinite;
+}
+@keyframes cloud-25 {
+  0% {
+    opacity: 0;
+    left: 11%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='26'] {
+  top: 6%;
+  width: 121px;
+  height: 85px;
+  opacity: 0;
+  animation: cloud-26 120s linear 3.6s infinite;
+}
+@keyframes cloud-26 {
+  0% {
+    opacity: 0;
+    left: 90%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='27'] {
+  top: 54%;
+  width: 123px;
+  height: 82px;
+  opacity: 0;
+  animation: cloud-27 68s linear 7.7s infinite;
+}
+@keyframes cloud-27 {
+  0% {
+    opacity: 0;
+    left: 82%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='28'] {
+  top: 89%;
+  width: 178px;
+  height: 52px;
+  opacity: 0;
+  animation: cloud-28 26s linear 9s infinite;
+}
+@keyframes cloud-28 {
+  0% {
+    opacity: 0;
+    left: 43%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='29'] {
+  top: 92%;
+  width: 73px;
+  height: 89px;
+  opacity: 0;
+  animation: cloud-29 135s linear 1.6s infinite;
+}
+@keyframes cloud-29 {
+  0% {
+    opacity: 0;
+    left: 86%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='30'] {
+  top: 39%;
+  width: 176px;
+  height: 59px;
+  opacity: 0;
+  animation: cloud-30 89s linear 9s infinite;
+}
+@keyframes cloud-30 {
+  0% {
+    opacity: 0;
+    left: 17%;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='31'] {
+  top: 84%;
+  width: 152px;
+  height: 69px;
+  opacity: 0;
+  animation: cloud-31 43s linear 0.3s infinite;
+}
+@keyframes cloud-31 {
+  0% {
+    opacity: 0;
+    left: 19%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='32'] {
+  top: 74%;
+  width: 174px;
+  height: 97px;
+  opacity: 0;
+  animation: cloud-32 146s linear 3.3s infinite;
+}
+@keyframes cloud-32 {
+  0% {
+    opacity: 0;
+    left: 29%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='33'] {
+  top: 9%;
+  width: 135px;
+  height: 76px;
+  opacity: 0;
+  animation: cloud-33 87s linear 3s infinite;
+}
+@keyframes cloud-33 {
+  0% {
+    opacity: 0;
+    left: 79%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='34'] {
+  top: 79%;
+  width: 73px;
+  height: 100px;
+  opacity: 0;
+  animation: cloud-34 137s linear 6.7s infinite;
+}
+@keyframes cloud-34 {
+  0% {
+    opacity: 0;
+    left: 83%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='35'] {
+  top: 77%;
+  width: 173px;
+  height: 59px;
+  opacity: 0;
+  animation: cloud-35 100s linear 2.6s infinite;
+}
+@keyframes cloud-35 {
+  0% {
+    opacity: 0;
+    left: 76%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='36'] {
+  top: 34%;
+  width: 117px;
+  height: 68px;
+  opacity: 0;
+  animation: cloud-36 53s linear 9.3s infinite;
+}
+@keyframes cloud-36 {
+  0% {
+    opacity: 0;
+    left: 77%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='37'] {
+  top: 21%;
+  width: 98px;
+  height: 60px;
+  opacity: 0;
+  animation: cloud-37 92s linear 2.2s infinite;
+}
+@keyframes cloud-37 {
+  0% {
+    opacity: 0;
+    left: 67%;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='38'] {
+  top: 1%;
+  width: 75px;
+  height: 60px;
+  opacity: 0;
+  animation: cloud-38 157s linear 4.1s infinite;
+}
+@keyframes cloud-38 {
+  0% {
+    opacity: 0;
+    left: 97%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='39'] {
+  top: 45%;
+  width: 147px;
+  height: 56px;
+  opacity: 0;
+  animation: cloud-39 152s linear 1.8s infinite;
+}
+@keyframes cloud-39 {
+  0% {
+    opacity: 0;
+    left: 91%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='40'] {
+  top: 59%;
+  width: 108px;
+  height: 55px;
+  opacity: 0;
+  animation: cloud-40 47s linear 1.4s infinite;
+}
+@keyframes cloud-40 {
+  0% {
+    opacity: 0;
+    left: 86%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='41'] {
+  top: 73%;
+  width: 103px;
+  height: 55px;
+  opacity: 0;
+  animation: cloud-41 28s linear 9.3s infinite;
+}
+@keyframes cloud-41 {
+  0% {
+    opacity: 0;
+    left: 63%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='42'] {
+  top: 26%;
+  width: 98px;
+  height: 75px;
+  opacity: 0;
+  animation: cloud-42 152s linear 9.2s infinite;
+}
+@keyframes cloud-42 {
+  0% {
+    opacity: 0;
+    left: 76%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='43'] {
+  top: 40%;
+  width: 177px;
+  height: 51px;
+  opacity: 0;
+  animation: cloud-43 22s linear 7.2s infinite;
+}
+@keyframes cloud-43 {
+  0% {
+    opacity: 0;
+    left: 68%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='44'] {
+  top: 31%;
+  width: 117px;
+  height: 87px;
+  opacity: 0;
+  animation: cloud-44 52s linear 9.6s infinite;
+}
+@keyframes cloud-44 {
+  0% {
+    opacity: 0;
+    left: 83%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='45'] {
+  top: 91%;
+  width: 119px;
+  height: 51px;
+  opacity: 0;
+  animation: cloud-45 21s linear 4.5s infinite;
+}
+@keyframes cloud-45 {
+  0% {
+    opacity: 0;
+    left: 61%;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='46'] {
+  top: 41%;
+  width: 156px;
+  height: 58px;
+  opacity: 0;
+  animation: cloud-46 158s linear 3.9s infinite;
+}
+@keyframes cloud-46 {
+  0% {
+    opacity: 0;
+    left: 41%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='47'] {
+  top: 81%;
+  width: 137px;
+  height: 72px;
+  opacity: 0;
+  animation: cloud-47 58s linear 2.8s infinite;
+}
+@keyframes cloud-47 {
+  0% {
+    opacity: 0;
+    left: 49%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='48'] {
+  top: 65%;
+  width: 172px;
+  height: 66px;
+  opacity: 0;
+  animation: cloud-48 113s linear 7.6s infinite;
+}
+@keyframes cloud-48 {
+  0% {
+    opacity: 0;
+    left: 10%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='49'] {
+  top: 68%;
+  width: 92px;
+  height: 54px;
+  opacity: 0;
+  animation: cloud-49 105s linear 6.9s infinite;
+}
+@keyframes cloud-49 {
+  0% {
+    opacity: 0;
+    left: 98%;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.day .cloud[data-cloud='50'] {
+  top: 60%;
+  width: 162px;
+  height: 80px;
+  opacity: 0;
+  animation: cloud-50 111s linear 0.4s infinite;
+}
+@keyframes cloud-50 {
+  0% {
+    opacity: 0;
+    left: 10%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+div.night {
+  transition: all 1s ease;
+  visibility: hidden;
+  opacity: 0;
+}
+div.night .star {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: #fff;
+  border-radius: 100%;
+  animation: glow infinite linear alternate 2s;
+}
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.45);
+  }
+  to {
+    box-shadow: 0 0 10px 1px transparent;
+  }
+}
+div.night .star[data-star='1'] {
+  top: 52%;
+  left: 3%;
+  opacity: 0.6;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='2'] {
+  top: 60%;
+  left: 39%;
+  opacity: 0.3;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='3'] {
+  top: 41%;
+  left: 83%;
+  opacity: 0.3;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='4'] {
+  top: 30%;
+  left: 44%;
+  opacity: 1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='5'] {
+  top: 89%;
+  left: 29%;
+  opacity: 0.3;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='6'] {
+  top: 46%;
+  left: 32%;
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='7'] {
+  top: 40%;
+  left: 67%;
+  opacity: 0.7;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='8'] {
+  top: 2%;
+  left: 14%;
+  opacity: 0.6;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='9'] {
+  top: 29%;
+  left: 40%;
+  opacity: 0.1;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='10'] {
+  top: 89%;
+  left: 61%;
+  opacity: 0.4;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='11'] {
+  top: 90%;
+  left: 77%;
+  opacity: 1;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='12'] {
+  top: 53%;
+  left: 9%;
+  opacity: 0.7;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='13'] {
+  top: 49%;
+  left: 82%;
+  opacity: 0.2;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='14'] {
+  top: 56%;
+  left: 42%;
+  opacity: 0.3;
+  animation-delay: 1s;
+}
+div.night .star[data-star='15'] {
+  top: 11%;
+  left: 25%;
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='16'] {
+  top: 99%;
+  left: 90%;
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='17'] {
+  top: 50%;
+  left: 48%;
+  opacity: 0.3;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='18'] {
+  top: 27%;
+  left: 74%;
+  opacity: 0.4;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='19'] {
+  top: 50%;
+  left: 30%;
+  opacity: 0.2;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='20'] {
+  top: 33%;
+  left: 59%;
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='21'] {
+  top: 66%;
+  left: 4%;
+  opacity: 0.7;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='22'] {
+  top: 30%;
+  left: 46%;
+  opacity: 1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='23'] {
+  top: 33%;
+  left: 14%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='24'] {
+  top: 30%;
+  left: 29%;
+  opacity: 0.6;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='25'] {
+  top: 48%;
+  left: 9%;
+  opacity: 0.3;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='26'] {
+  top: 7%;
+  left: 83%;
+  opacity: 0.9;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='27'] {
+  top: 42%;
+  left: 48%;
+  opacity: 0.1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='28'] {
+  top: 93%;
+  left: 51%;
+  opacity: 0.9;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='29'] {
+  top: 65%;
+  left: 15%;
+  opacity: 0.7;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='30'] {
+  top: 65%;
+  left: 7%;
+  opacity: 0.8;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='31'] {
+  top: 16%;
+  left: 81%;
+  opacity: 0.7;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='32'] {
+  top: 33%;
+  left: 30%;
+  opacity: 0.7;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='33'] {
+  top: 85%;
+  left: 29%;
+  opacity: 0.3;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='34'] {
+  top: 70%;
+  left: 27%;
+  opacity: 1;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='35'] {
+  top: 4%;
+  left: 71%;
+  opacity: 0.3;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='36'] {
+  top: 96%;
+  left: 76%;
+  opacity: 0.4;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='37'] {
+  top: 19%;
+  left: 48%;
+  opacity: 0.2;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='38'] {
+  top: 49%;
+  left: 36%;
+  opacity: 0.7;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='39'] {
+  top: 87%;
+  left: 49%;
+  opacity: 0.1;
+  animation-delay: 1s;
+}
+div.night .star[data-star='40'] {
+  top: 83%;
+  left: 66%;
+  opacity: 0.3;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='41'] {
+  top: 67%;
+  left: 13%;
+  opacity: 0.4;
+  animation-delay: 1s;
+}
+div.night .star[data-star='42'] {
+  top: 37%;
+  left: 36%;
+  opacity: 0.4;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='43'] {
+  top: 10%;
+  left: 9%;
+  opacity: 0.2;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='44'] {
+  top: 66%;
+  left: 30%;
+  opacity: 0.4;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='45'] {
+  top: 75%;
+  left: 20%;
+  opacity: 0.5;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='46'] {
+  top: 60%;
+  left: 11%;
+  opacity: 0.9;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='47'] {
+  top: 15%;
+  left: 6%;
+  opacity: 0.3;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='48'] {
+  top: 7%;
+  left: 59%;
+  opacity: 0.1;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='49'] {
+  top: 19%;
+  left: 88%;
+  opacity: 0.6;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='50'] {
+  top: 41%;
+  left: 93%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='51'] {
+  top: 14%;
+  left: 9%;
+  opacity: 0.3;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='52'] {
+  top: 46%;
+  left: 71%;
+  opacity: 0.4;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='53'] {
+  top: 66%;
+  left: 61%;
+  opacity: 0.4;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='54'] {
+  top: 65%;
+  left: 45%;
+  opacity: 0.6;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='55'] {
+  top: 19%;
+  left: 20%;
+  opacity: 0.2;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='56'] {
+  top: 9%;
+  left: 94%;
+  opacity: 0.2;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='57'] {
+  top: 44%;
+  left: 100%;
+  opacity: 0.5;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='58'] {
+  top: 64%;
+  left: 7%;
+  opacity: 0.9;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='59'] {
+  top: 58%;
+  left: 30%;
+  opacity: 0.5;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='60'] {
+  top: 37%;
+  left: 63%;
+  opacity: 0.3;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='61'] {
+  top: 18%;
+  left: 52%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='62'] {
+  top: 81%;
+  left: 8%;
+  opacity: 0.4;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='63'] {
+  top: 89%;
+  left: 86%;
+  opacity: 0.2;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='64'] {
+  top: 33%;
+  left: 85%;
+  opacity: 0.5;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='65'] {
+  top: 24%;
+  left: 82%;
+  opacity: 0.2;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='66'] {
+  top: 76%;
+  left: 97%;
+  opacity: 0.2;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='67'] {
+  top: 74%;
+  left: 44%;
+  opacity: 0.8;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='68'] {
+  top: 60%;
+  left: 60%;
+  opacity: 0.6;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='69'] {
+  top: 59%;
+  left: 13%;
+  opacity: 0.4;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='70'] {
+  top: 50%;
+  left: 54%;
+  opacity: 0.7;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='71'] {
+  top: 6%;
+  left: 25%;
+  opacity: 0.7;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='72'] {
+  top: 37%;
+  left: 69%;
+  opacity: 0.6;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='73'] {
+  top: 56%;
+  left: 97%;
+  opacity: 0.6;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='74'] {
+  top: 32%;
+  left: 94%;
+  opacity: 0.9;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='75'] {
+  top: 54%;
+  left: 28%;
+  opacity: 0.9;
+  animation-delay: 1s;
+}
+div.night .star[data-star='76'] {
+  top: 14%;
+  left: 56%;
+  opacity: 0.3;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='77'] {
+  top: 80%;
+  left: 70%;
+  opacity: 0.3;
+  animation-delay: 1s;
+}
+div.night .star[data-star='78'] {
+  top: 3%;
+  left: 79%;
+  opacity: 0.8;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='79'] {
+  top: 42%;
+  left: 62%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='80'] {
+  top: 1%;
+  left: 65%;
+  opacity: 0.5;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='81'] {
+  top: 38%;
+  left: 29%;
+  opacity: 0.6;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='82'] {
+  top: 61%;
+  left: 89%;
+  opacity: 0.1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='83'] {
+  top: 10%;
+  left: 85%;
+  opacity: 0.3;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='84'] {
+  top: 46%;
+  left: 62%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='85'] {
+  top: 55%;
+  left: 98%;
+  opacity: 0.2;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='86'] {
+  top: 21%;
+  left: 20%;
+  opacity: 0.9;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='87'] {
+  top: 57%;
+  left: 72%;
+  opacity: 1;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='88'] {
+  top: 50%;
+  left: 30%;
+  opacity: 0.3;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='89'] {
+  top: 45%;
+  left: 57%;
+  opacity: 0.3;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='90'] {
+  top: 66%;
+  left: 77%;
+  opacity: 0.3;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='91'] {
+  top: 15%;
+  left: 59%;
+  opacity: 0.4;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='92'] {
+  top: 26%;
+  left: 24%;
+  opacity: 0.9;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='93'] {
+  top: 10%;
+  left: 17%;
+  opacity: 0.3;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='94'] {
+  top: 74%;
+  left: 75%;
+  opacity: 0.3;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='95'] {
+  top: 17%;
+  left: 26%;
+  opacity: 1;
+  animation-delay: 1s;
+}
+div.night .star[data-star='96'] {
+  top: 4%;
+  left: 78%;
+  opacity: 0.4;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='97'] {
+  top: 67%;
+  left: 73%;
+  opacity: 0.4;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='98'] {
+  top: 26%;
+  left: 76%;
+  opacity: 0.6;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='99'] {
+  top: 62%;
+  left: 60%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='100'] {
+  top: 21%;
+  left: 16%;
+  opacity: 0.4;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='101'] {
+  top: 81%;
+  left: 67%;
+  opacity: 0.1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='102'] {
+  top: 93%;
+  left: 86%;
+  opacity: 0.1;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='103'] {
+  top: 21%;
+  left: 27%;
+  opacity: 0.6;
+  animation-delay: 1s;
+}
+div.night .star[data-star='104'] {
+  top: 53%;
+  left: 93%;
+  opacity: 0.9;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='105'] {
+  top: 26%;
+  left: 81%;
+  opacity: 0.8;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='106'] {
+  top: 70%;
+  left: 30%;
+  opacity: 0.3;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='107'] {
+  top: 83%;
+  left: 31%;
+  opacity: 0.1;
+  animation-delay: 1s;
+}
+div.night .star[data-star='108'] {
+  top: 39%;
+  left: 46%;
+  opacity: 0.6;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='109'] {
+  top: 37%;
+  left: 47%;
+  opacity: 0.1;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='110'] {
+  top: 71%;
+  left: 81%;
+  opacity: 0.6;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='111'] {
+  top: 8%;
+  left: 85%;
+  opacity: 0.6;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='112'] {
+  top: 90%;
+  left: 23%;
+  opacity: 0.4;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='113'] {
+  top: 77%;
+  left: 58%;
+  opacity: 0.7;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='114'] {
+  top: 37%;
+  left: 65%;
+  opacity: 0.2;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='115'] {
+  top: 60%;
+  left: 47%;
+  opacity: 0.7;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='116'] {
+  top: 20%;
+  left: 37%;
+  opacity: 0.4;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='117'] {
+  top: 66%;
+  left: 10%;
+  opacity: 0.6;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='118'] {
+  top: 91%;
+  left: 49%;
+  opacity: 1;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='119'] {
+  top: 46%;
+  left: 80%;
+  opacity: 0.8;
+  animation-delay: 1s;
+}
+div.night .star[data-star='120'] {
+  top: 100%;
+  left: 59%;
+  opacity: 0.7;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='121'] {
+  top: 23%;
+  left: 71%;
+  opacity: 0.9;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='122'] {
+  top: 9%;
+  left: 5%;
+  opacity: 1;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='123'] {
+  top: 60%;
+  left: 72%;
+  opacity: 0.4;
+  animation-delay: 1s;
+}
+div.night .star[data-star='124'] {
+  top: 49%;
+  left: 43%;
+  opacity: 0.8;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='125'] {
+  top: 84%;
+  left: 33%;
+  opacity: 0.7;
+  animation-delay: 1s;
+}
+div.night .star[data-star='126'] {
+  top: 48%;
+  left: 59%;
+  opacity: 0.6;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='127'] {
+  top: 19%;
+  left: 97%;
+  opacity: 0.7;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='128'] {
+  top: 11%;
+  left: 17%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='129'] {
+  top: 13%;
+  left: 59%;
+  opacity: 0.2;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='130'] {
+  top: 80%;
+  left: 72%;
+  opacity: 0.3;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='131'] {
+  top: 35%;
+  left: 70%;
+  opacity: 0.7;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='132'] {
+  top: 4%;
+  left: 29%;
+  opacity: 0.6;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='133'] {
+  top: 94%;
+  left: 35%;
+  opacity: 0.6;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='134'] {
+  top: 68%;
+  left: 73%;
+  opacity: 0.1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='135'] {
+  top: 63%;
+  left: 7%;
+  opacity: 0.4;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='136'] {
+  top: 72%;
+  left: 91%;
+  opacity: 0.5;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='137'] {
+  top: 37%;
+  left: 68%;
+  opacity: 0.1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='138'] {
+  top: 98%;
+  left: 24%;
+  opacity: 1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='139'] {
+  top: 17%;
+  left: 86%;
+  opacity: 0.4;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='140'] {
+  top: 18%;
+  left: 14%;
+  opacity: 1;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='141'] {
+  top: 94%;
+  left: 26%;
+  opacity: 0.9;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='142'] {
+  top: 100%;
+  left: 1%;
+  opacity: 0.3;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='143'] {
+  top: 84%;
+  left: 96%;
+  opacity: 0.8;
+  animation-delay: 1s;
+}
+div.night .star[data-star='144'] {
+  top: 86%;
+  left: 6%;
+  opacity: 1;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='145'] {
+  top: 81%;
+  left: 19%;
+  opacity: 0.2;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='146'] {
+  top: 73%;
+  left: 73%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='147'] {
+  top: 72%;
+  left: 84%;
+  opacity: 0.2;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='148'] {
+  top: 25%;
+  left: 25%;
+  opacity: 0.9;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='149'] {
+  top: 37%;
+  left: 89%;
+  opacity: 0.2;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='150'] {
+  top: 67%;
+  left: 87%;
+  opacity: 0.9;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='151'] {
+  top: 92%;
+  left: 38%;
+  opacity: 0.1;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='152'] {
+  top: 3%;
+  left: 88%;
+  opacity: 0.1;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='153'] {
+  top: 95%;
+  left: 86%;
+  opacity: 0.1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='154'] {
+  top: 36%;
+  left: 75%;
+  opacity: 0.1;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='155'] {
+  top: 24%;
+  left: 63%;
+  opacity: 0.9;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='156'] {
+  top: 70%;
+  left: 17%;
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='157'] {
+  top: 12%;
+  left: 38%;
+  opacity: 0.6;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='158'] {
+  top: 32%;
+  left: 73%;
+  opacity: 0.5;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='159'] {
+  top: 96%;
+  left: 52%;
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='160'] {
+  top: 37%;
+  left: 69%;
+  opacity: 0.3;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='161'] {
+  top: 60%;
+  left: 43%;
+  opacity: 0.3;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='162'] {
+  top: 83%;
+  left: 35%;
+  opacity: 0.1;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='163'] {
+  top: 6%;
+  left: 19%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='164'] {
+  top: 7%;
+  left: 67%;
+  opacity: 0.5;
+  animation-delay: 1s;
+}
+div.night .star[data-star='165'] {
+  top: 26%;
+  left: 83%;
+  opacity: 1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='166'] {
+  top: 35%;
+  left: 92%;
+  opacity: 0.1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='167'] {
+  top: 38%;
+  left: 81%;
+  opacity: 0.6;
+  animation-delay: 1s;
+}
+div.night .star[data-star='168'] {
+  top: 93%;
+  left: 17%;
+  opacity: 0.8;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='169'] {
+  top: 75%;
+  left: 75%;
+  opacity: 0.5;
+  animation-delay: 1s;
+}
+div.night .star[data-star='170'] {
+  top: 20%;
+  left: 19%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='171'] {
+  top: 100%;
+  left: 87%;
+  opacity: 0.1;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='172'] {
+  top: 1%;
+  left: 12%;
+  opacity: 0.8;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='173'] {
+  top: 93%;
+  left: 71%;
+  opacity: 0.9;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='174'] {
+  top: 79%;
+  left: 28%;
+  opacity: 0.9;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='175'] {
+  top: 34%;
+  left: 89%;
+  opacity: 1;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='176'] {
+  top: 55%;
+  left: 31%;
+  opacity: 0.7;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='177'] {
+  top: 77%;
+  left: 30%;
+  opacity: 0.8;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='178'] {
+  top: 6%;
+  left: 39%;
+  opacity: 0.8;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='179'] {
+  top: 64%;
+  left: 100%;
+  opacity: 0.9;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='180'] {
+  top: 42%;
+  left: 80%;
+  opacity: 0.3;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='181'] {
+  top: 1%;
+  left: 6%;
+  opacity: 0.3;
+  animation-delay: 1s;
+}
+div.night .star[data-star='182'] {
+  top: 64%;
+  left: 51%;
+  opacity: 0.1;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='183'] {
+  top: 55%;
+  left: 4%;
+  opacity: 0.3;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='184'] {
+  top: 11%;
+  left: 93%;
+  opacity: 0.7;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='185'] {
+  top: 63%;
+  left: 68%;
+  opacity: 0.1;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='186'] {
+  top: 77%;
+  left: 49%;
+  opacity: 0.2;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='187'] {
+  top: 32%;
+  left: 67%;
+  opacity: 0.7;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='188'] {
+  top: 63%;
+  left: 16%;
+  opacity: 0.9;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='189'] {
+  top: 55%;
+  left: 73%;
+  opacity: 0.4;
+  animation-delay: 1s;
+}
+div.night .star[data-star='190'] {
+  top: 35%;
+  left: 43%;
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='191'] {
+  top: 33%;
+  left: 63%;
+  opacity: 0.7;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='192'] {
+  top: 9%;
+  left: 62%;
+  opacity: 0.9;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='193'] {
+  top: 92%;
+  left: 1%;
+  opacity: 0.8;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='194'] {
+  top: 73%;
+  left: 67%;
+  opacity: 0.4;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='195'] {
+  top: 38%;
+  left: 94%;
+  opacity: 0.4;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='196'] {
+  top: 51%;
+  left: 4%;
+  opacity: 0.7;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='197'] {
+  top: 69%;
+  left: 54%;
+  opacity: 0.6;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='198'] {
+  top: 39%;
+  left: 41%;
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='199'] {
+  top: 28%;
+  left: 81%;
+  opacity: 0.4;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='200'] {
+  top: 12%;
+  left: 69%;
+  opacity: 0.3;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='201'] {
+  top: 32%;
+  left: 57%;
+  opacity: 0.4;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='202'] {
+  top: 16%;
+  left: 32%;
+  opacity: 0.6;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='203'] {
+  top: 11%;
+  left: 2%;
+  opacity: 0.7;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='204'] {
+  top: 89%;
+  left: 35%;
+  opacity: 0.9;
+  animation-delay: 1s;
+}
+div.night .star[data-star='205'] {
+  top: 38%;
+  left: 73%;
+  opacity: 0.3;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='206'] {
+  top: 69%;
+  left: 53%;
+  opacity: 0.6;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='207'] {
+  top: 73%;
+  left: 42%;
+  opacity: 0.9;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='208'] {
+  top: 1%;
+  left: 42%;
+  opacity: 0.5;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='209'] {
+  top: 26%;
+  left: 5%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='210'] {
+  top: 58%;
+  left: 2%;
+  opacity: 0.2;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='211'] {
+  top: 68%;
+  left: 99%;
+  opacity: 0.7;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='212'] {
+  top: 49%;
+  left: 28%;
+  opacity: 0.1;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='213'] {
+  top: 11%;
+  left: 2%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='214'] {
+  top: 53%;
+  left: 62%;
+  opacity: 1;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='215'] {
+  top: 54%;
+  left: 7%;
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='216'] {
+  top: 24%;
+  left: 88%;
+  opacity: 1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='217'] {
+  top: 15%;
+  left: 46%;
+  opacity: 0.9;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='218'] {
+  top: 86%;
+  left: 14%;
+  opacity: 0.1;
+  animation-delay: 1s;
+}
+div.night .star[data-star='219'] {
+  top: 30%;
+  left: 25%;
+  opacity: 1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='220'] {
+  top: 90%;
+  left: 9%;
+  opacity: 1;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='221'] {
+  top: 90%;
+  left: 94%;
+  opacity: 0.3;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='222'] {
+  top: 82%;
+  left: 49%;
+  opacity: 0.7;
+  animation-delay: 1s;
+}
+div.night .star[data-star='223'] {
+  top: 54%;
+  left: 29%;
+  opacity: 1;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='224'] {
+  top: 67%;
+  left: 27%;
+  opacity: 0.8;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='225'] {
+  top: 85%;
+  left: 97%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='226'] {
+  top: 7%;
+  left: 87%;
+  opacity: 0.5;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='227'] {
+  top: 98%;
+  left: 77%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='228'] {
+  top: 7%;
+  left: 95%;
+  opacity: 0.6;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='229'] {
+  top: 24%;
+  left: 13%;
+  opacity: 1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='230'] {
+  top: 72%;
+  left: 50%;
+  opacity: 1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='231'] {
+  top: 79%;
+  left: 34%;
+  opacity: 0.5;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='232'] {
+  top: 28%;
+  left: 90%;
+  opacity: 0.8;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='233'] {
+  top: 52%;
+  left: 7%;
+  opacity: 0.7;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='234'] {
+  top: 52%;
+  left: 92%;
+  opacity: 0.6;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='235'] {
+  top: 52%;
+  left: 47%;
+  opacity: 0.8;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='236'] {
+  top: 19%;
+  left: 58%;
+  opacity: 0.5;
+  animation-delay: 1s;
+}
+div.night .star[data-star='237'] {
+  top: 92%;
+  left: 53%;
+  opacity: 0.7;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='238'] {
+  top: 61%;
+  left: 74%;
+  opacity: 0.2;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='239'] {
+  top: 11%;
+  left: 38%;
+  opacity: 0.5;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='240'] {
+  top: 99%;
+  left: 71%;
+  opacity: 1;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='241'] {
+  top: 49%;
+  left: 29%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='242'] {
+  top: 4%;
+  left: 94%;
+  opacity: 1;
+  animation-delay: 1s;
+}
+div.night .star[data-star='243'] {
+  top: 2%;
+  left: 49%;
+  opacity: 0.7;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='244'] {
+  top: 43%;
+  left: 21%;
+  opacity: 0.1;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='245'] {
+  top: 73%;
+  left: 98%;
+  opacity: 0.1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='246'] {
+  top: 33%;
+  left: 87%;
+  opacity: 0.2;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='247'] {
+  top: 74%;
+  left: 21%;
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='248'] {
+  top: 6%;
+  left: 5%;
+  opacity: 0.3;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='249'] {
+  top: 81%;
+  left: 63%;
+  opacity: 1;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='250'] {
+  top: 65%;
+  left: 19%;
+  opacity: 0.8;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='251'] {
+  top: 53%;
+  left: 23%;
+  opacity: 0.7;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='252'] {
+  top: 88%;
+  left: 1%;
+  opacity: 1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='253'] {
+  top: 93%;
+  left: 24%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='254'] {
+  top: 63%;
+  left: 8%;
+  opacity: 0.8;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='255'] {
+  top: 43%;
+  left: 22%;
+  opacity: 0.1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='256'] {
+  top: 22%;
+  left: 97%;
+  opacity: 0.8;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='257'] {
+  top: 69%;
+  left: 90%;
+  opacity: 0.7;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='258'] {
+  top: 33%;
+  left: 50%;
+  opacity: 0.2;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='259'] {
+  top: 93%;
+  left: 56%;
+  opacity: 0.6;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='260'] {
+  top: 76%;
+  left: 10%;
+  opacity: 0.1;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='261'] {
+  top: 84%;
+  left: 31%;
+  opacity: 0.5;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='262'] {
+  top: 20%;
+  left: 57%;
+  opacity: 0.6;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='263'] {
+  top: 49%;
+  left: 96%;
+  opacity: 0.3;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='264'] {
+  top: 77%;
+  left: 97%;
+  opacity: 0.5;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='265'] {
+  top: 37%;
+  left: 9%;
+  opacity: 0.3;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='266'] {
+  top: 61%;
+  left: 98%;
+  opacity: 0.1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='267'] {
+  top: 100%;
+  left: 80%;
+  opacity: 1;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='268'] {
+  top: 90%;
+  left: 14%;
+  opacity: 0.9;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='269'] {
+  top: 44%;
+  left: 94%;
+  opacity: 0.2;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='270'] {
+  top: 79%;
+  left: 16%;
+  opacity: 0.9;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='271'] {
+  top: 3%;
+  left: 16%;
+  opacity: 0.8;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='272'] {
+  top: 6%;
+  left: 18%;
+  opacity: 0.7;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='273'] {
+  top: 58%;
+  left: 73%;
+  opacity: 0.7;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='274'] {
+  top: 75%;
+  left: 92%;
+  opacity: 0.9;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='275'] {
+  top: 88%;
+  left: 22%;
+  opacity: 0.2;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='276'] {
+  top: 74%;
+  left: 92%;
+  opacity: 0.8;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='277'] {
+  top: 26%;
+  left: 11%;
+  opacity: 0.2;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='278'] {
+  top: 68%;
+  left: 70%;
+  opacity: 0.3;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='279'] {
+  top: 82%;
+  left: 81%;
+  opacity: 0.8;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='280'] {
+  top: 34%;
+  left: 62%;
+  opacity: 0.8;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='281'] {
+  top: 49%;
+  left: 58%;
+  opacity: 0.5;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='282'] {
+  top: 50%;
+  left: 35%;
+  opacity: 0.9;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='283'] {
+  top: 59%;
+  left: 68%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='284'] {
+  top: 40%;
+  left: 35%;
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='285'] {
+  top: 66%;
+  left: 95%;
+  opacity: 0.5;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='286'] {
+  top: 19%;
+  left: 43%;
+  opacity: 0.9;
+  animation-delay: 1s;
+}
+div.night .star[data-star='287'] {
+  top: 38%;
+  left: 8%;
+  opacity: 0.6;
+  animation-delay: 1s;
+}
+div.night .star[data-star='288'] {
+  top: 98%;
+  left: 98%;
+  opacity: 0.7;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='289'] {
+  top: 61%;
+  left: 63%;
+  opacity: 0.9;
+  animation-delay: 1s;
+}
+div.night .star[data-star='290'] {
+  top: 54%;
+  left: 53%;
+  opacity: 0.4;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='291'] {
+  top: 43%;
+  left: 37%;
+  opacity: 0.3;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='292'] {
+  top: 27%;
+  left: 5%;
+  opacity: 0.9;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='293'] {
+  top: 95%;
+  left: 71%;
+  opacity: 0.6;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='294'] {
+  top: 28%;
+  left: 20%;
+  opacity: 0.9;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='295'] {
+  top: 27%;
+  left: 60%;
+  opacity: 0.6;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='296'] {
+  top: 47%;
+  left: 50%;
+  opacity: 0.9;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='297'] {
+  top: 21%;
+  left: 20%;
+  opacity: 0.9;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='298'] {
+  top: 63%;
+  left: 35%;
+  opacity: 0.1;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='299'] {
+  top: 73%;
+  left: 53%;
+  opacity: 0.9;
+  animation-delay: 1s;
+}
+div.night .star[data-star='300'] {
+  top: 76%;
+  left: 83%;
+  opacity: 0.1;
+  animation-delay: 1s;
+}
+div.night .star[data-star='301'] {
+  top: 83%;
+  left: 6%;
+  opacity: 0.1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='302'] {
+  top: 56%;
+  left: 98%;
+  opacity: 0.8;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='303'] {
+  top: 60%;
+  left: 12%;
+  opacity: 0.2;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='304'] {
+  top: 57%;
+  left: 76%;
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='305'] {
+  top: 71%;
+  left: 87%;
+  opacity: 0.3;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='306'] {
+  top: 37%;
+  left: 16%;
+  opacity: 0.9;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='307'] {
+  top: 77%;
+  left: 86%;
+  opacity: 0.2;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='308'] {
+  top: 72%;
+  left: 28%;
+  opacity: 0.8;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='309'] {
+  top: 15%;
+  left: 27%;
+  opacity: 0.1;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='310'] {
+  top: 40%;
+  left: 34%;
+  opacity: 0.9;
+  animation-delay: 1s;
+}
+div.night .star[data-star='311'] {
+  top: 4%;
+  left: 48%;
+  opacity: 0.5;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='312'] {
+  top: 75%;
+  left: 34%;
+  opacity: 0.8;
+  animation-delay: 1s;
+}
+div.night .star[data-star='313'] {
+  top: 3%;
+  left: 99%;
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='314'] {
+  top: 58%;
+  left: 21%;
+  opacity: 0.5;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='315'] {
+  top: 67%;
+  left: 36%;
+  opacity: 0.2;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='316'] {
+  top: 17%;
+  left: 94%;
+  opacity: 0.7;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='317'] {
+  top: 16%;
+  left: 35%;
+  opacity: 0.4;
+  animation-delay: 1s;
+}
+div.night .star[data-star='318'] {
+  top: 66%;
+  left: 68%;
+  opacity: 0.9;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='319'] {
+  top: 28%;
+  left: 2%;
+  opacity: 0.1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='320'] {
+  top: 13%;
+  left: 40%;
+  opacity: 0.2;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='321'] {
+  top: 79%;
+  left: 72%;
+  opacity: 0.2;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='322'] {
+  top: 96%;
+  left: 18%;
+  opacity: 0.6;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='323'] {
+  top: 64%;
+  left: 6%;
+  opacity: 0.6;
+  animation-delay: 1s;
+}
+div.night .star[data-star='324'] {
+  top: 100%;
+  left: 31%;
+  opacity: 0.9;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='325'] {
+  top: 51%;
+  left: 62%;
+  opacity: 0.8;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='326'] {
+  top: 96%;
+  left: 20%;
+  opacity: 0.9;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='327'] {
+  top: 63%;
+  left: 43%;
+  opacity: 0.7;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='328'] {
+  top: 13%;
+  left: 5%;
+  opacity: 0.4;
+  animation-delay: 1s;
+}
+div.night .star[data-star='329'] {
+  top: 68%;
+  left: 70%;
+  opacity: 0.3;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='330'] {
+  top: 18%;
+  left: 89%;
+  opacity: 0.4;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='331'] {
+  top: 49%;
+  left: 64%;
+  opacity: 1;
+  animation-delay: 1s;
+}
+div.night .star[data-star='332'] {
+  top: 12%;
+  left: 88%;
+  opacity: 0.2;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='333'] {
+  top: 80%;
+  left: 60%;
+  opacity: 0.3;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='334'] {
+  top: 15%;
+  left: 28%;
+  opacity: 0.6;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='335'] {
+  top: 69%;
+  left: 27%;
+  opacity: 0.3;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='336'] {
+  top: 29%;
+  left: 67%;
+  opacity: 0.8;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='337'] {
+  top: 95%;
+  left: 3%;
+  opacity: 1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='338'] {
+  top: 25%;
+  left: 72%;
+  opacity: 0.1;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='339'] {
+  top: 72%;
+  left: 3%;
+  opacity: 0.8;
+  animation-delay: 1s;
+}
+div.night .star[data-star='340'] {
+  top: 5%;
+  left: 34%;
+  opacity: 0.8;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='341'] {
+  top: 58%;
+  left: 60%;
+  opacity: 0.1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='342'] {
+  top: 73%;
+  left: 4%;
+  opacity: 0.5;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='343'] {
+  top: 20%;
+  left: 76%;
+  opacity: 1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='344'] {
+  top: 44%;
+  left: 58%;
+  opacity: 0.1;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='345'] {
+  top: 33%;
+  left: 75%;
+  opacity: 0.2;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='346'] {
+  top: 89%;
+  left: 80%;
+  opacity: 1;
+  animation-delay: 1s;
+}
+div.night .star[data-star='347'] {
+  top: 96%;
+  left: 49%;
+  opacity: 0.1;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='348'] {
+  top: 97%;
+  left: 46%;
+  opacity: 0.2;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='349'] {
+  top: 5%;
+  left: 49%;
+  opacity: 0.8;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='350'] {
+  top: 88%;
+  left: 80%;
+  opacity: 0.6;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='351'] {
+  top: 54%;
+  left: 41%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='352'] {
+  top: 76%;
+  left: 60%;
+  opacity: 0.2;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='353'] {
+  top: 90%;
+  left: 47%;
+  opacity: 1;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='354'] {
+  top: 23%;
+  left: 15%;
+  opacity: 0.9;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='355'] {
+  top: 49%;
+  left: 92%;
+  opacity: 0.7;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='356'] {
+  top: 25%;
+  left: 59%;
+  opacity: 0.6;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='357'] {
+  top: 100%;
+  left: 57%;
+  opacity: 0.8;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='358'] {
+  top: 61%;
+  left: 92%;
+  opacity: 0.1;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='359'] {
+  top: 36%;
+  left: 52%;
+  opacity: 0.7;
+  animation-delay: 1s;
+}
+div.night .star[data-star='360'] {
+  top: 6%;
+  left: 11%;
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='361'] {
+  top: 50%;
+  left: 53%;
+  opacity: 0.2;
+  animation-delay: 1s;
+}
+div.night .star[data-star='362'] {
+  top: 67%;
+  left: 19%;
+  opacity: 1;
+  animation-delay: 1s;
+}
+div.night .star[data-star='363'] {
+  top: 99%;
+  left: 39%;
+  opacity: 0.2;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='364'] {
+  top: 64%;
+  left: 97%;
+  opacity: 0.7;
+  animation-delay: 1s;
+}
+div.night .star[data-star='365'] {
+  top: 31%;
+  left: 85%;
+  opacity: 0.5;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='366'] {
+  top: 44%;
+  left: 25%;
+  opacity: 0.7;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='367'] {
+  top: 60%;
+  left: 68%;
+  opacity: 0.5;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='368'] {
+  top: 63%;
+  left: 70%;
+  opacity: 0.7;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='369'] {
+  top: 82%;
+  left: 39%;
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='370'] {
+  top: 16%;
+  left: 58%;
+  opacity: 0.6;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='371'] {
+  top: 79%;
+  left: 57%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='372'] {
+  top: 76%;
+  left: 91%;
+  opacity: 0.6;
+  animation-delay: 1s;
+}
+div.night .star[data-star='373'] {
+  top: 50%;
+  left: 93%;
+  opacity: 0.2;
+  animation-delay: 1s;
+}
+div.night .star[data-star='374'] {
+  top: 49%;
+  left: 98%;
+  opacity: 0.1;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='375'] {
+  top: 36%;
+  left: 47%;
+  opacity: 0.5;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='376'] {
+  top: 13%;
+  left: 46%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='377'] {
+  top: 16%;
+  left: 95%;
+  opacity: 0.9;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='378'] {
+  top: 9%;
+  left: 22%;
+  opacity: 0.6;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='379'] {
+  top: 18%;
+  left: 18%;
+  opacity: 0.8;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='380'] {
+  top: 44%;
+  left: 90%;
+  opacity: 0.9;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='381'] {
+  top: 99%;
+  left: 8%;
+  opacity: 0.4;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='382'] {
+  top: 60%;
+  left: 63%;
+  opacity: 0.4;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='383'] {
+  top: 8%;
+  left: 14%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='384'] {
+  top: 1%;
+  left: 70%;
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='385'] {
+  top: 56%;
+  left: 5%;
+  opacity: 0.2;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='386'] {
+  top: 72%;
+  left: 1%;
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='387'] {
+  top: 55%;
+  left: 96%;
+  opacity: 0.6;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='388'] {
+  top: 76%;
+  left: 70%;
+  opacity: 0.3;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='389'] {
+  top: 30%;
+  left: 82%;
+  opacity: 0.3;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='390'] {
+  top: 48%;
+  left: 38%;
+  opacity: 1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='391'] {
+  top: 28%;
+  left: 29%;
+  opacity: 1;
+  animation-delay: 1s;
+}
+div.night .star[data-star='392'] {
+  top: 74%;
+  left: 83%;
+  opacity: 0.8;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='393'] {
+  top: 30%;
+  left: 34%;
+  opacity: 0.1;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='394'] {
+  top: 26%;
+  left: 92%;
+  opacity: 0.7;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='395'] {
+  top: 95%;
+  left: 81%;
+  opacity: 0.1;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='396'] {
+  top: 69%;
+  left: 10%;
+  opacity: 0.2;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='397'] {
+  top: 75%;
+  left: 46%;
+  opacity: 0.2;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='398'] {
+  top: 77%;
+  left: 38%;
+  opacity: 0.9;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='399'] {
+  top: 84%;
+  left: 26%;
+  opacity: 0.1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='400'] {
+  top: 53%;
+  left: 63%;
+  opacity: 0.2;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='401'] {
+  top: 60%;
+  left: 50%;
+  opacity: 0.3;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='402'] {
+  top: 66%;
+  left: 61%;
+  opacity: 0.9;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='403'] {
+  top: 91%;
+  left: 10%;
+  opacity: 0.4;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='404'] {
+  top: 16%;
+  left: 82%;
+  opacity: 0.9;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='405'] {
+  top: 43%;
+  left: 88%;
+  opacity: 0.7;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='406'] {
+  top: 5%;
+  left: 9%;
+  opacity: 0.6;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='407'] {
+  top: 62%;
+  left: 10%;
+  opacity: 0.9;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='408'] {
+  top: 92%;
+  left: 14%;
+  opacity: 0.6;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='409'] {
+  top: 29%;
+  left: 93%;
+  opacity: 0.7;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='410'] {
+  top: 79%;
+  left: 2%;
+  opacity: 0.9;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='411'] {
+  top: 83%;
+  left: 24%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='412'] {
+  top: 23%;
+  left: 55%;
+  opacity: 0.5;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='413'] {
+  top: 61%;
+  left: 73%;
+  opacity: 0.1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='414'] {
+  top: 50%;
+  left: 68%;
+  opacity: 0.6;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='415'] {
+  top: 69%;
+  left: 15%;
+  opacity: 0.7;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='416'] {
+  top: 93%;
+  left: 87%;
+  opacity: 0.6;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='417'] {
+  top: 45%;
+  left: 92%;
+  opacity: 0.9;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='418'] {
+  top: 51%;
+  left: 92%;
+  opacity: 0.8;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='419'] {
+  top: 59%;
+  left: 29%;
+  opacity: 0.6;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='420'] {
+  top: 10%;
+  left: 99%;
+  opacity: 0.1;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='421'] {
+  top: 63%;
+  left: 93%;
+  opacity: 0.1;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='422'] {
+  top: 52%;
+  left: 86%;
+  opacity: 0.1;
+  animation-delay: 0.4s;
+}
+div.night .star[data-star='423'] {
+  top: 23%;
+  left: 29%;
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='424'] {
+  top: 62%;
+  left: 91%;
+  opacity: 0.8;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='425'] {
+  top: 57%;
+  left: 34%;
+  opacity: 0.3;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='426'] {
+  top: 47%;
+  left: 73%;
+  opacity: 0.5;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='427'] {
+  top: 34%;
+  left: 33%;
+  opacity: 0.3;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='428'] {
+  top: 1%;
+  left: 24%;
+  opacity: 0.1;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='429'] {
+  top: 88%;
+  left: 27%;
+  opacity: 0.5;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='430'] {
+  top: 40%;
+  left: 45%;
+  opacity: 0.5;
+  animation-delay: 0.5s;
+}
+div.night .star[data-star='431'] {
+  top: 54%;
+  left: 34%;
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='432'] {
+  top: 13%;
+  left: 92%;
+  opacity: 0.6;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='433'] {
+  top: 89%;
+  left: 23%;
+  opacity: 1;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='434'] {
+  top: 12%;
+  left: 8%;
+  opacity: 0.8;
+  animation-delay: 0.6s;
+}
+div.night .star[data-star='435'] {
+  top: 61%;
+  left: 87%;
+  opacity: 0.1;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='436'] {
+  top: 32%;
+  left: 78%;
+  opacity: 0.1;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='437'] {
+  top: 8%;
+  left: 99%;
+  opacity: 0.9;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='438'] {
+  top: 44%;
+  left: 45%;
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='439'] {
+  top: 83%;
+  left: 80%;
+  opacity: 0.4;
+  animation-delay: 0.8s;
+}
+div.night .star[data-star='440'] {
+  top: 61%;
+  left: 60%;
+  opacity: 0.4;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='441'] {
+  top: 22%;
+  left: 86%;
+  opacity: 0.5;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='442'] {
+  top: 16%;
+  left: 40%;
+  opacity: 0.6;
+  animation-delay: 0.3s;
+}
+div.night .star[data-star='443'] {
+  top: 34%;
+  left: 94%;
+  opacity: 0.2;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='444'] {
+  top: 25%;
+  left: 89%;
+  opacity: 0.8;
+  animation-delay: 0.7s;
+}
+div.night .star[data-star='445'] {
+  top: 83%;
+  left: 66%;
+  opacity: 1;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='446'] {
+  top: 95%;
+  left: 1%;
+  opacity: 0.7;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='447'] {
+  top: 35%;
+  left: 24%;
+  opacity: 0.1;
+  animation-delay: 0.9s;
+}
+div.night .star[data-star='448'] {
+  top: 50%;
+  left: 88%;
+  opacity: 0.4;
+  animation-delay: 0.1s;
+}
+div.night .star[data-star='449'] {
+  top: 61%;
+  left: 23%;
+  opacity: 0.1;
+  animation-delay: 0.2s;
+}
+div.night .star[data-star='450'] {
+  top: 25%;
+  left: 79%;
+  opacity: 0.9;
+  animation-delay: 0.9s;
+}
