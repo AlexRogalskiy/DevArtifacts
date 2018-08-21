@@ -1,0 +1,331 @@
+html { font-size: 62.5%; font-family: helvetica, arial, sans-serif; font-weight: 300;}
+
+////////////////////////////////////////////////////////
+// KEYBOARD
+
+// COLORS
+$keyboard--housingColor: #454545;
+$key--textColor: rgba(255,255,255,.4);
+$key--bgColor: rgba(0,0,0,.38);
+$touchpad--housingColor: #383838;
+// SIZE
+$height: 46rem;
+$height: 22vw;
+$keygap: $height * .025;
+$key--width: $height * .145;
+$key-fontSize: $height * .04;
+
+.keyboard {
+  height: $height;
+  max-height: $height;
+  min-width: $height * 2.45;
+  transform: rotate(-5deg);
+  background-color: $keyboard--housingColor;
+  background: $keyboard--housingColor;
+  background: -moz-linear-gradient(115deg, darken($keyboard--housingColor, 10) 0%, $keyboard--housingColor 100%);
+  background: -webkit-linear-gradient(115deg, darken($keyboard--housingColor, 10) 0%, $keyboard--housingColor 100%);
+  background: linear-gradient(45deg, darken($keyboard--housingColor, 10) 0%, $keyboard--housingColor 100%);
+  border-radius: $height * .035;
+  $scaledUnit: $height * .03;
+  box-shadow: 
+    $scaledUnit * .1 $scaledUnit * .7 $scaledUnit 0 rgba(0,0,0,.4),
+    0 .2rem .4rem 0 rgba(0,0,0,.4);
+  display: flex;
+  flex-flow: column;
+  padding: $keygap * 1;
+  position: relative;
+  .row {
+    flex-grow: 1;
+    display: flex;
+    height: $height / 7;
+    font-size: $height * .028;
+    font-size: $key-fontSize;
+    &:not(:first-of-type) { padding: $keygap 0 0 0; }
+    .key {
+      background-color: $key--bgColor;
+      color: $key--textColor;
+      border-radius: $height * .01;
+      min-width: $key--width;
+      margin: 0 $keygap 0 0;
+      box-shadow: 
+        .2rem .1rem .5rem 0 rgba(0,0,0,.5),
+        0 0 .1rem .1rem rgba(0,0,0,.5);
+      position: relative;
+      &:last-of-type { margin-right: 0; }
+      &:hover { // Give key press impression on hover of key
+        box-shadow: 
+        0 0 .3rem 0 rgba(0,0,0,.7),
+        0 0 .2rem 0rem rgba(0,0,0,1);
+        transform: scale(.99); }
+      
+      span {
+        opacity: .8;
+        transform: scale(.8);
+        margin-bottom: $key-fontSize * .5; }
+    }
+  }
+} // keyboard
+
+////////////////////////////////////////////////////////
+// INDIVIDUAL KEYS
+
+%key--bottom {
+  justify-content: flex-end;
+  font-size: $key-fontSize * .7 }
+
+%key--sm {
+  min-width: $key--width * 1.3;
+  width: $key--width * 1.3 }
+
+%key--md {
+  min-width: $key--width * 1.6;
+  width: $key--width * 1.6 }
+
+%key--lg {
+  min-width: $key--width * 1.9;
+  width: $key--width * 1.9 }
+
+%key--xl {
+  min-width: $key--width * 2.5;
+  width: $key--width * 2.5 }
+
+.key--md {
+  @extend %key--md;
+}
+
+.key--text {
+  @extend %key--bottom
+}
+
+.row .key.left {
+  align-items: flex-start;
+}
+.row .key.right {
+  align-items: flex-end; 
+}
+
+.row .key {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: $keygap * .8;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; 
+  &.f,
+  &.esc,
+  &.delete,
+  &.tab,
+  &.fn,
+  &.control {
+    @extend %key--bottom
+  }
+  &.command {
+    @extend %key--bottom;
+    @extend %key--sm;
+  }
+  &.caps {
+    @extend %key--bottom;
+    @extend %key--lg;
+  }
+  &.shift {
+    @extend %key--bottom;
+    @extend %key--xl;
+  }
+  &.option {
+    @extend %key--bottom;
+    &:before {
+      content: "alt";
+      position: absolute;
+      top: $key--width * .1;
+      font-size: 80%;
+    }
+  }
+  &.space {
+    flex-grow: 1;
+  }
+}
+
+.key.caps input {
+  // set up a hidden checkbox that turns the caps lock light on/off when you click the caps button
+  display: none;
+  & + label {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    &:before {
+      content: "";
+      position: absolute;
+      top: $key--width * .2;
+      left: $key--width * .15;
+      background-color: rgba(0, 0, 0, .5);
+      width: $key--width * .08;
+      height: $key--width * .08;
+      border-radius: $key--width;
+    }
+  }
+  &:checked + label:before {
+    background-color: rgba(limegreen, .7);
+  }
+}
+
+.key.arrow {
+  &:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border: solid $height * .01;
+    border-right-width: $height * .02;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent; }
+  &.arrow--up:before  { transform: rotate(90deg) }
+  &.arrow--right:before  { transform: rotate(180deg) }
+  &.arrow--down:before  { transform: rotate(-90deg) }
+}
+
+.row .arrows {
+  display: flex; 
+  flex-flow: column;
+  margin-right: $keygap;
+  & > .key {
+    margin: 0;
+    flex-grow: 1;
+    &.arrow--up {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: solid .2rem rgba(0,0,0,.2);
+    }
+    &.arrow--down {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0
+    }
+  }
+}
+
+////////////////////////////////////////////////////////
+// TOUCHPAD
+
+.touchpad {
+  height: $height;
+  min-width: $height * 1.3;
+  width: $height * 1.39;
+  background-color: $touchpad--housingColor;
+  margin-left: $keygap * 8;
+  border-radius: $height * .035;
+  $scaledUnit: $height * .04;
+  box-shadow: 
+    $scaledUnit * .1 $scaledUnit * .5 $scaledUnit 0 rgba(0,0,0,.3),
+    $scaledUnit * .3 $scaledUnit * .3 $scaledUnit * .2 0 rgba(0,0,0,.2),
+    inset 0 -.1rem 1.5rem .2rem lighten($touchpad--housingColor,5);
+  padding: $keygap * .9;
+  transform: rotate(3deg)
+}
+
+////////////////////////////////////////////////////////
+// TABLE
+
+$table--color: #232323; // color of the background
+
+.table {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0; 
+  background-color: $table--color;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  height: 100vh;
+  width: 100vw;
+  &:before {
+    content: "Available with the new iMac Pro";
+    position: fixed;
+    bottom: 1vh;
+    left: 1vh;
+    font-size: 2rem;
+    color: rgba(0,0,0,.15);
+    text-shadow: .1rem .1rem 0 rgba(255,255,255,.4);
+  }
+}
+
+////////////////////////////////////////////////////////
+// CORD
+
+.charger {
+  $cordUnit: $height * .018;
+  display: flex;
+  flex-flow: column;
+  position: fixed;
+  top: -$cordUnit * 3;
+  right: 25vw;
+  align-items: center;
+  transform: rotate(25deg);
+  .cord {
+    background-color: #EEE;
+    width: $cordUnit;
+    height: $cordUnit * 10;
+    box-shadow: inset 0 0 3rem rgba(0,0,0,.15);
+    background: rgb(247,247,247);
+    background: -moz-linear-gradient(left,  rgba(247,247,247,1) 0%, rgba(237,237,237,1) 21%, rgba(193,193,193,1) 100%);
+    background: -webkit-linear-gradient(left,  rgba(247,247,247,1) 0%,rgba(237,237,237,1) 21%,rgba(193,193,193,1) 100%);
+    background: linear-gradient(to right, rgba(247,247,247,1) 0%,rgba(237,237,237,1) 21%,rgba(193,193,193,1) 100%);
+  }
+  .housing {
+    width: $cordUnit * 4;
+    height: $cordUnit * 6;
+    background-color: #FFF;
+    box-shadow: $cordUnit $cordUnit * 1.2 $cordUnit * 2 0 rgba(0,0,0,.05);
+    background: rgb(245,245,245);
+    background: -moz-linear-gradient(left,  rgba(245,245,245,1) 5%, rgba(255,255,255,1) 14%, rgba(245,245,245,1) 26%, rgba(245,245,245,1) 99%);
+    background: -webkit-linear-gradient(left,  rgba(245,245,245,1) 5%,rgba(255,255,255,1) 14%,rgba(245,245,245,1) 26%,rgba(245,245,245,1) 99%);
+    background: linear-gradient(to right,  rgba(245,245,245,1) 5%,rgba(255,255,255,1) 14%,rgba(245,245,245,1) 26%,rgba(245,245,245,1) 99%);
+  }
+  .tip {
+    width: $cordUnit * 3.1;
+    height: $cordUnit * 3;
+    background-color: #AAA;
+    border-bottom-left-radius: $cordUnit * .5;
+    border-bottom-right-radius: $cordUnit * .5;
+    box-shadow: $cordUnit $cordUnit * 1.2 $cordUnit * 2 0 rgba(0,0,0,.025), 
+      $cordUnit * .1 $cordUnit * .1 $cordUnit * .05 0 rgba(0,0,0,.6);
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    padding: $cordUnit * .3;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+  }
+  .connections {
+    background-color: #FFF;
+    height: $cordUnit;
+    display: flex;
+    border-radius: $cordUnit * .2;
+    padding: $cordUnit * .25;
+    .connection {
+      flex-grow: 1;
+      margin-right: .1rem;
+      background: rgb(241,231,103);
+      background: -moz-linear-gradient(-45deg, rgba(254,182,69,1) 0%, rgba(241,231,103,1) 100%);
+      background: -webkit-linear-gradient(-45deg, rgba(254,182,69,1) 0%, rgba(241,231,103,1) 100%);
+      background: linear-gradient(135deg, rgba(254,182,69,1) 0%, rgba(241,231,103,1) 100%);
+    }
+  }
+}
+
+
+/*
+.table {
+  perspective: 1200px;
+  & > div {
+    transform: rotateX(30deg)
+  }
+}
+
+*/

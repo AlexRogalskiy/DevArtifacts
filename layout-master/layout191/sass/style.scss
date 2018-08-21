@@ -1,0 +1,238 @@
+/*********
+ Colors 
+*/
+$body-bg: #6D6A67;
+$color-border: #B4BABF;
+$card-bg: #3E6069;
+$img-border: #4F98AD;
+
+
+/*********
+ Sizes
+*/
+
+$card-min-width:   15.625rem;
+$card-max-width:   20.000rem;
+$card-height:      25.000rem;
+$bp-min: 750px;
+
+
+.cards {
+  height: calc(100% - 200px);
+  width: 90%;
+  max-width: 1024px;
+  margin: 50px auto;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  perspective: 1000px;
+  @media screen and (max-width: $bp-min) {
+    flex-wrap: wrap;
+  }
+}
+
+.card {
+  flex: 1 0 $card-min-width;
+  text-align: center;
+  max-width: $card-max-width;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 0;
+  margin-top: 1.25rem;
+  border-radius: 5px;
+  box-shadow: 0 5px 30px rgba(black, 0.5);
+  position: relative;
+  z-index: 1; 
+  color: #fff;
+  background-color: $card-bg;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: 0.25s transform cubic-bezier(0,0,0.31,1);
+  
+  &.is-open {
+    z-index: 300;
+  }
+  @media screen and (min-width: 750px) {
+    &--enlarged {
+      padding: 2.5rem 0;
+      margin-top: 0;
+      flex: 1 0 $card-min-width * 1.05;
+      order: 2;
+      z-index: 10;
+      color: white;
+      background-color: #456F7A;
+
+      .card__img-holder {
+        margin-top: -2rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: $bp-min) {
+    &:nth-child(2) {
+      order: 1;
+      margin-right: -20px;
+    }
+
+    &:nth-child(3) {
+      order: 3;
+      margin-left: -20px;
+    }
+  }
+  
+  &__img-holder {
+    display: block;
+    position: relative;
+    margin-top: -1.250rem;
+    width: 120%;
+  }
+  
+  &__img-holder:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    box-shadow: inset 0 -5px 0 0 $img-border;
+    border-radius: 100% 100%/ 0 0 10rem 10rem;
+  }
+  
+  &__img {
+    width: auto;
+    height: auto;
+    border-radius: 100% 100%/ 0 0 10rem 10rem;
+    max-width: 100%;
+    margin-top: -1.25rem;
+    position: relative;
+  }
+  
+  &__title {
+    margin: 30px 0;
+  }
+  
+  &__desc {
+    flex: 1 0 auto;
+    margin: 0 0 2.5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  
+  &__link {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: currentColor;
+  }
+}
+
+.full-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-height: 500px;
+  background-color: white;
+  flex: none;
+  z-index: 400;
+  box-shadow: 0 5px 30px rgba(black, 0.5);
+  transition: 0.45s transform cubic-bezier(0,0,0.31,1);
+  transition-delay: 250ms;
+  transform: scale3d(0.5,0.5,1) rotateY(91deg);
+  transform-origin: 50% 0;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  border-radius: 7px;
+  pointer-events: none;
+  opacity: 0;
+
+  &--end {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  
+  &__title-bar {
+    background-color: $card-bg;
+    display: flex;
+    align-items: center;
+    height: 3.5rem;
+    padding-left: 1.250rem;
+    padding-right: 0.250rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  &__title {
+    color: white;
+    margin: 0;
+  }
+  
+  &__content {
+    padding: 1.250rem;
+    &:after {
+      content: "";
+      width: 30px;
+      height: 30px;
+      border: 4px solid #E2E2E2;
+      border-bottom: 4px solid #3E6069;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -15px;
+      border-radius: 50%;
+      animation-name: rotate;
+      animation-iteration-count: infinite; 
+      animation-duration: 0.7s;
+      animation-timing-function: linear;
+    }
+  }
+  
+  &__close-link {
+    height: 100%;
+    margin-left: auto;
+    width: 3.5rem;
+    color: white;
+    position: relative;
+    
+    svg {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 30px;
+      margin: auto;
+    }
+  }
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: $body-bg;
+  height: 100%;
+  font-family: Arial;
+  -webkit-font-smoothing: antialiased;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.clickme {
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+}

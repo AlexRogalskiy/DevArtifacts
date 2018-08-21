@@ -1,0 +1,28 @@
+- var box = 250;
+- var circles = [{ width: 8, color: '#3498DB', offset: 0.3 }, { width: 12, color: '#EC6D76', offset: 0.15 }, { width: 18, color: '#FFF', offset: 0 }];
+
+mixin circle()
+  each circle in circles
+    circle(
+      cx="#{box/2}"
+      cy="#{box/2}"
+      r="#{box/2}"
+      stroke="#{circle.color}"
+      stroke-width="#{circle.width}"
+      data-offset="#{circle.offset}"
+    )
+
+figure
+  p Loading
+  svg(
+    x="0"
+    y="0"
+    width="#{box}"
+    height="#{box}"
+    viewBox="0 0 #{box} #{box}"
+    overflow="visible"
+  )
+    g
+      +circle
+    g(transform="rotate(180 #{box/2} #{box/2})")
+      +circle

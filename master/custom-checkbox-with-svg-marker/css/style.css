@@ -1,0 +1,77 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.form-container {
+  padding: 1rem;
+  margin: 2rem auto;
+  background-color: #fcfcfc;
+  border: 1px solid #e6e6e6;
+  width: 50%;
+}
+
+/* HTML5 Boilerplate accessible hidden styles */
+.promoted-input-checkbox {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.promoted-checkbox input:checked + label > svg {
+  height: 24px;
+  -webkit-animation: draw-checkbox ease-in-out 0.2s forwards;
+          animation: draw-checkbox ease-in-out 0.2s forwards;
+}
+.promoted-checkbox label:active::after {
+  background-color: #e6e6e6;
+}
+.promoted-checkbox label {
+  color: #0080d3;
+  line-height: 40px;
+  cursor: pointer;
+  position: relative;
+}
+.promoted-checkbox label:after {
+  content: "";
+  height: 40px;
+  width: 40px;
+  margin-right: 1rem;
+  float: left;
+  border: 2px solid #0080d3;
+  border-radius: 3px;
+  -webkit-transition: 0.15s all ease-out;
+  transition: 0.15s all ease-out;
+}
+.promoted-checkbox svg {
+  stroke: #0080d3;
+  stroke-width: 2px;
+  height: 0;
+  width: 24px;
+  position: absolute;
+  left: -48px;
+  top: -4px;
+  stroke-dasharray: 33;
+}
+
+@-webkit-keyframes draw-checkbox {
+  0% {
+    stroke-dashoffset: 33;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes draw-checkbox {
+  0% {
+    stroke-dashoffset: 33;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

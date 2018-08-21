@@ -1,0 +1,233 @@
+html {
+  font-size: 62.5%;
+}
+
+.room {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: .2s all ease;
+}
+.room.light--off {
+  background-color: #0e0e0e;
+}
+
+.aquarium {
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  perspective: 100px;
+}
+.aquarium:after {
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 5rem 0 rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 12rem;
+  transform: rotateX(120deg);
+  transform-origin: top;
+}
+.aquarium:before {
+  background-color: #777;
+  content: '';
+  position: absolute;
+  top: 100%;
+  height: 100vh;
+  left: -50vw;
+  width: 150vw;
+  transition: .2s all ease;
+}
+.room.light--off .aquarium:before {
+  background-color: #111111;
+}
+
+.tank {
+  height: 12rem;
+  width: 36rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+  justify-content: flex-end;
+}
+.tank .water {
+  width: 36rem;
+  height: calc(90% + 5rem);
+  background-color: rgba(10, 120, 250, 0.5);
+  animation: waves 1s ease-in-out infinite;
+  margin-bottom: -5rem;
+}
+.tank .sand {
+  height: 0.4rem;
+  background-color: tan;
+}
+
+.stand {
+  position: relative;
+  height: 28rem;
+  width: 36rem;
+  background-color: #252525;
+  display: flex;
+  border-top: solid 0rem #000;
+}
+.stand .door {
+  flex-grow: 1;
+}
+.stand .door.left {
+  border-right: solid 0.1rem black;
+}
+.stand .door.right {
+  border-left: solid 0.1rem black;
+}
+.light--off .stand {
+  background-color: #0c0c0c;
+}
+
+.lights {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 4rem;
+}
+
+.light.kessil150 {
+  position: relative;
+  height: 4rem;
+  width: 2.4rem;
+  background-color: #222;
+  border-radius: .3rem;
+  border-bottom: solid blue .4rem;
+}
+.light.kessil150:after {
+  content: '';
+  position: absolute;
+  left: -6rem;
+  top: calc(100% + .4rem);
+  width: 2.4rem;
+  height: .1rem;
+  border-right: 6rem solid transparent;
+  border-left: 6rem solid transparent;
+  border-bottom: 16rem solid rgba(255, 255, 255, 0.03);
+}
+
+.fish {
+  animation: swimRoute 10s ease-in-out infinite;
+  background-color: orange;
+  margin: 1rem;
+  height: 0.99rem;
+  width: 1.5rem;
+  border-radius: 60%;
+  position: relative;
+}
+.fish:after {
+  content: '';
+  position: absolute;
+  right: 1.1rem;
+  top: -.1rem;
+  width: .4rem;
+  height: .4rem;
+  border-left: solid .4rem orange;
+  border-top: solid .4rem transparent;
+  border-bottom: solid .4rem transparent;
+}
+.fish:nth-of-type(2) {
+  animation: swimRoute 10.2s ease-in-out infinite;
+  animation-delay: .1s;
+  margin-top: calc(0.99rem * -.8);
+}
+.fish:nth-of-type(3) {
+  animation: swimRoute 10.1s ease-in-out infinite;
+  animation-delay: .4s;
+  margin-top: calc(0.99rem * -2.5);
+}
+.fish:nth-of-type(4) {
+  animation: swimRoute 10.2s ease-in-out infinite;
+  animation-delay: .5s;
+  margin-top: calc(0.99rem * -3.3);
+}
+
+input.lightSwitch--toggle {
+  display: none;
+}
+input.lightSwitch--toggle + label {
+  cursor: pointer;
+  position: absolute;
+  right: 10vw;
+  top: 45vh;
+  border-radius: .2rem;
+  background-color: #b3b3b3;
+  width: 2.5rem;
+  height: 4rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.2);
+  transition: .2s all ease;
+}
+input.lightSwitch--toggle + label:after {
+  content: '';
+  height: 1rem;
+  width: .5rem;
+  background-color: #858585;
+}
+.light--off input.lightSwitch--toggle + label:after {
+  order: -1;
+}
+input.lightSwitch--toggle + label:before {
+  content: '';
+  height: .4rem;
+  width: .5rem;
+  border-radius: .1rem;
+  background-color: #FFF;
+}
+.light--off input.lightSwitch--toggle + label {
+  opacity: 0.1;
+}
+
+@keyframes waves {
+  0% {
+    transform: skewY(-2deg);
+  }
+  50% {
+    transform: skewY(2deg);
+  }
+  100% {
+    transform: skewY(-2deg);
+  }
+}
+@keyframes swimRoute {
+  0% {
+    transform: translate(0) scale(1.1);
+  }
+  20% {
+    transform: translate(14.4rem, 4.8rem);
+  }
+  35% {
+    transform: translate(32.4rem, 1.2rem) rotateY(0deg) scale(0.9);
+  }
+  38% {
+    transform: translate(31.32rem, 1.2rem) rotateY(180deg);
+  }
+  55% {
+    transform: translate(25.2rem, 3.6rem) rotateY(180deg);
+  }
+  62% {
+    transform: translate(18rem, 0.12rem) rotateY(180deg);
+  }
+  90% {
+    transform: translate(0) scale(1.1) rotateY(180deg);
+  }
+  100% {
+    transform: translate(0) scale(1.1);
+  }
+}

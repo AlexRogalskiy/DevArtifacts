@@ -1,0 +1,76 @@
+
+$distanceFromCube: 900px; // lower this number, the more exaggerated the angles are.
+
+$block--size: 6rem;
+$cube--space: .5rem;
+$cube--size: $block--size * 3 + calc(#{$cube--space} * 6);
+
+// Cube Colors
+$cube--plasticColor: #000;
+$cube--top: #FFF;
+$cube--right: OrangeRed;
+$cube--front: MediumBlue;
+$cube--bottom: yellow;
+
+// Misc
+$cube--stickerCornerRadius: .5rem;
+
+html { font-size: 62.5%; }
+
+.row {
+  display: flex;
+  flex-flow: row;
+}
+
+.cube {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: #DDD;
+  perspective: $distanceFromCube;
+  
+  .block {
+    width: $block--size;
+    height: $block--size;
+    margin: $cube--space / 2;
+    padding: $cube--space;
+    border-radius: $cube--stickerCornerRadius;
+    box-shadow: inset 0 0 calc(#{$block--size} / 25) 0 $cube--plasticColor;
+  }
+  
+  .side {
+    width: $cube--size;
+    height: $cube--size;
+    position: absolute;
+    bottom: 4vw; 
+    left: 10vh;
+    border-radius: .2rem;
+    background-color: $cube--plasticColor;
+    overflow: hidden;
+    
+    &.top {
+      transform: rotateX(-90deg);
+      transform-origin: top;
+      z-index: 1;
+      .block { background-color: $cube--top; }
+    }
+    &.bottom {
+      transform: rotateX(90deg);
+      transform-origin: bottom;
+      z-index: 0;
+      // Shadow on the ground
+      box-shadow: .1rem .2rem 5rem 0 rgba(0,0,0,.8);
+      .block { background-color: $cube--bottom; }
+    }
+    &.right {
+      transform: rotateY(-90deg);
+      transform-origin: right;
+      z-index: 2;
+      .block { background-color: $cube--right; }
+    }
+    &.front {
+      transform: rotateY(0deg);
+      z-index: 2;
+      .block { background-color: $cube--front; }
+    }
+  }
+}

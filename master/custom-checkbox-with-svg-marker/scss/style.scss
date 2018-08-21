@@ -1,0 +1,74 @@
+$brand: #0080d3;
+$grey-25: #e6e6e6;
+$grey-5: #fcfcfc;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.form-container {
+  padding: 1rem;
+  margin: 2rem auto;
+  background-color: $grey-5;
+  border: 1px solid $grey-25;
+  width: 50%;
+}
+
+/* HTML5 Boilerplate accessible hidden styles */
+.promoted-input-checkbox {
+  border: 0; 
+  clip: rect(0 0 0 0); 
+  height: 1px; margin: -1px; 
+  overflow: hidden; 
+  padding: 0; 
+  position: absolute; 
+  width: 1px;
+}
+
+.promoted-checkbox {
+  input:checked + label > svg {
+    // Firefox doesn't render svg's that is loading with the use tag if its been set to display: none and then toggled to display: block, so you have to use tricks like this to get it to render again:
+    height: 24px;
+    animation: draw-checkbox ease-in-out 0.2s forwards;
+  }
+  
+  label:active::after {
+    background-color: $grey-25;
+  }
+  
+  label {
+    color: $brand;
+    line-height: 40px;
+    cursor: pointer;
+    position: relative;
+    &:after {
+      content: "";
+      height: 40px;
+      width: 40px;
+      margin-right: 1rem;
+      float: left;
+      border: 2px solid $brand;
+      border-radius: 3px;
+      transition: 0.15s all ease-out;      
+    }
+  }
+  svg {
+    stroke: $brand;
+    stroke-width: 2px;
+    height: 0; //Firefox fix
+    width: 24px;
+    position: absolute;
+    left: -48px;
+    top: -4px;
+    stroke-dasharray: 33; //Firefox fix
+  }
+}
+
+@keyframes draw-checkbox {
+  0% {
+    stroke-dashoffset: 33;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

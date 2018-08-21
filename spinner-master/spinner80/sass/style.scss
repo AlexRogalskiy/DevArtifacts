@@ -1,0 +1,318 @@
+@import "compass/css3";
+
+/* -------------------
+    # LOADER
+   ------------------- */
+
+$major: #EF836E;
+$minor: #eaeaea;
+$dur: 1.25s;
+$pi2: 3.14*2;
+
+$layerlist: (
+  // (radius, circumference, angle, width, color) //
+  1: (70,  $pi2*240, -30, 15, rgba($minor, .5)),
+  2: (120, $pi2*240, -60, 20, rgba($minor, .3)),
+  3: (180, $pi2*180, -70, 40, rgba($minor, .8)),
+  4: (240, $pi2*240, -90, 20, rgba($minor, .6)),
+  5: (300, $pi2*300, -20, 30, rgba($minor, .5)),
+  6: (380, $pi2*380, -80, 45, rgba($minor, .2)),
+  7: (450, $pi2*450, -10, 75, rgba($minor,  1)),
+  8: (540, $pi2*540, -70, 250, rgba($minor, .5))
+);
+
+@each $layer, $key in $layerlist {
+  $r: nth($key, 1);
+  $c: nth($key, 2);
+  $angle: nth($key, 3);
+  $width: nth($key, 4);
+  $color: nth($key, 5);
+  .layer-#{$layer} > .path {
+    stroke: $color;
+    stroke-width: $width;
+    stroke-dasharray: $c;
+    stroke-dashoffset: $c;
+    visibility: hidden;
+    @include transform(rotate(#{$angle}deg));
+    .loaded & {
+      visibility: visible;
+      @include animation(layer-#{$layer} $dur ease-in);
+    }
+  }
+  @include keyframes(layer-#{$layer}) {
+    0% {
+      stroke-dasharray: $c;
+      stroke-dashoffset: $c;
+    }
+    75% {
+      stroke-width: $width;
+      stroke-dashoffset: $c/2;
+    }
+    100% {
+      stroke: $minor;
+      stroke-width: $width*3;
+      @if ($layer == 1) { stroke-width: $width*15; }
+      stroke-dasharray: $c+$pi2;
+      stroke-dashoffset: 0;
+      @include transform(rotate(#{$angle+480}deg));
+    }
+  }
+}
+
+.loader {
+  position: absolute;
+  @extend .center;
+  width: 120px;
+  height: 120px;
+  @include transform(scale(1));
+  z-index: 9999;
+  .loaded & {
+    @include transform(scale(0));
+    @include transition(all $dur+1 forwards $dur ease-in-out);
+  }
+  g, circle {
+    transform-origin: 50% 50%;
+  }
+}
+
+.core {
+  > .path {
+    fill: $major;
+    visibility: hidden;
+    @include scale(1);
+    @include transition(all $dur/2 $dur/8 ease-in-out);
+    .loaded & {
+      @include animation(core-loaded $dur*2 ease-in-out);
+    }
+  }
+}
+
+@include keyframes(core-loaded) {
+  0% {
+    visibility: hidden;
+    @include scale(1);
+  }
+  25%, 85% {
+    opacity: 1;
+    visibility: visible;
+    @include scale(1000);
+  }
+  100% {
+    opacity: 0;
+    @include scale(1);
+  }
+}
+
+$R: 25;
+$c: 2 * 3.14 * $R;
+
+.spinner {
+  opacity: 1;
+  @include transition(opacity .1s .1s);
+  @include animation(rotate $dur linear infinite);
+  .loaded & {
+    opacity: 0;
+  }
+  > .path {
+    stroke: $major;
+    stroke-width: 6;
+    stroke-dasharray: $c;
+    stroke-dashoffset: $c;
+    @include animation(spinner $dur both infinite ease-in-out);
+  }
+}
+
+@include keyframes(rotate) {
+  0%   { @include transform(rotate(0deg)); }
+  100% { @include transform(rotate(270deg)); }
+}
+
+@include keyframes(spinner) {
+  0% {
+    stroke-dasharray: $c;
+    stroke-dashoffset: $c;
+  }
+  65%  {
+    stroke-dasharray: $c;
+    stroke-dashoffset: $c / 4;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dasharray: $c;
+    stroke-dashoffset: $c;
+    transform: rotate(450deg);
+  }
+}
+
+.container {
+  position: fixed;
+  @extend .center;
+  overflow: hidden;
+}
+
+.center {
+  top: 0; left: 0; right: 0; bottom: 0;
+  margin: auto;
+}
+
+.loader, .core, .spinner, .path {
+  @include transform(translate3d(0, 0, 0));
+}
+
+
+/* -------------------
+    # PAGE
+   ------------------- */
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  @extend .center;
+  width: 80vh;
+}
+
+.wrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.img,
+.txt,
+.btn {
+  display: block;
+  position: relative;
+  margin: 0.75vh;
+  background: #ccc;
+}
+
+.img {
+  width: 100%;
+  height: 15.5vh;
+  transform-origin: 50% 50%;
+}
+
+.txt {
+  display: block;
+  margin: 0.75vh;
+  height: 0.75vh;
+  background: #ccc;
+  transform-origin: 0 50%;
+}
+
+.btn {
+  height: 4vh;
+  color: #ccc;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  z-index: 1;
+  &:after {
+    content: "RELOAD";
+    position: absolute;
+    @extend .center;
+    text-align: center;
+    font: 700 1.5vh/4vh Verdana, sans-serif;
+    @include user-select(none);
+  }
+  .loaded & {
+    color: #fff;
+    background: $major;
+    @include animation(btn-loaded .1s both .5s);
+  }
+  .restart & {
+    color: $major;
+    background: $major;
+    @include animation(btn-restart .1s both);
+  }
+}
+
+@for $i from 1 to 21 {
+  $w: $i*5;
+  .w#{$w} {
+    width: #{$w+'%'};
+  }
+}
+
+.ib  { display: inline-block; }
+.fw  { flex: 0 0 97%; }
+.hw  { flex: 0 0 30%; }
+.mt0 { margin-top: 0; }
+.mb2 { margin-bottom: 2vh; }
+.h10 { height: 10vh; }
+.f0  { font-size: 0; }
+
+.new-page {
+  .img {
+    @include animation(scale-in .3s both cubic-bezier(0.87, -0.41, 0.19, 1.44));
+  }
+  
+  .txt {
+    @include animation(scaleX-in .1s both ease-out);
+  }
+  
+  .btn {
+    @include animation(scale-in .3s both cubic-bezier(0.87, -0.41, 0.19, 1.44));
+  }
+  
+  @for $i from 1 to 31 {
+    $d: $i/10;
+    .dl#{$i} {
+      @include animation-delay(#{-0.5+$dur+$d});
+    }
+  }
+}
+
+@include keyframes(scaleX-in) {
+  from { @include transform(scaleX(0)); }
+  to { @include transform(scaleX(1)); }
+}
+
+@include keyframes(scale-in) {
+  from { @include transform(scale(0)); }
+  to   { @include transform(scale(1)); }
+}
+
+@include keyframes(btn-loaded) {
+  from { color: #ccc; background: #ccc; }
+  to   { color: #fff; background: $major; }
+}
+
+@include keyframes(btn-restart) {
+  from { color: $major; background: $major; }
+  to   { color: #ccc; background: #ccc; }
+}
+
+body { background: #eaeaea; }
+
+body:not(.loaded) *:not(.spinner,.spinner > .path) {
+  @include animation(none !important);
+}
+
+.ARS {
+  display: inline-block;
+  position: fixed;
+  @extend .center;
+  top: auto;
+  bottom: 1vh;
+  color: #ccc;
+  text-align: center;
+  text-decoration: none;
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  @include transform(translateY(10vh));
+  @include transition(all .5s cubic-bezier(0.87, -0.41, 0.19, 1.44));
+  &:hover { color: $major; @include transition(color .5s !important); }
+  .loaded.new-page & {
+    @include transform(translateY(0));
+    @include transition-delay(2.15s);
+  }
+}
+
+@include keyframes(ARS) {
+  from { @include transform(translateY(0)); }
+  to   { @include transform(translateY(10vh)); }
+}

@@ -1,0 +1,267 @@
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Tank
+  $tank--width: 36rem;
+  $tank--height: 12rem;
+  $tank--waterHeight: 90%;
+
+  $sand--color: tan;
+  $sand--depth: .4rem;
+
+/////////////////////////////////////////////////
+// Stand
+  $stand--height: 28rem;
+
+/////////////////////////////////////////////////
+// Lights
+  $lights--distanceFromTank: 4rem;
+  $lights--lightSpread: 6rem;
+
+/////////////////////////////////////////////////
+// Water Movement
+  $waveMaker--power: 2; // 0 - 5
+
+/////////////////////////////////////////////////
+  // colors
+  $color--wall: #888;
+  $color--floor: #777;
+  $color--tankShadow: rgba(0,0,0,.2);
+  $color--stand: #252525;
+  $color--water: rgba(10,120,250,.5);
+  $color--lightSwitch: #FFF;
+
+/////////////////////////////////////////////////
+// fish
+  $fish--length: 1.5rem;
+  $fish--height: $fish--length * .66; 
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+html { font-size: 62.5% }
+
+.room {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: $color--wall;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: .2s all ease;
+  &.light--off {
+    background-color: darken($color--wall, 48);
+  }
+}
+
+.aquarium {
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  perspective: 100px;
+  &:after {
+    // Shadow in front of tank;
+    //content: '';
+    background-color: $color--tankShadow;
+    box-shadow: 0 0 5rem 0 darken($color--tankShadow,20);
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    bottom: 0;
+    height: $tank--height;
+    transform: rotateX(120deg);
+    transform-origin: top;
+  }
+  &:before {
+    // Floor
+    background-color: $color--floor;
+    content: '';
+    position: absolute;
+    top: 100%; height: 100vh;
+    left: -50vw;
+    width: 150vw;
+    transition: .2s all ease;
+    .room.light--off & {
+      background-color: darken($color--floor, 40);
+    }
+  }
+}
+
+.tank {
+  height: $tank--height;
+  width: $tank--width;
+  background-color: rgba(255,255,255,.04);
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+  justify-content: flex-end;
+  .water {
+    width: $tank--width;
+    height: calc(#{$tank--waterHeight} + 5rem); // add neg margin back
+    background-color: $color--water;
+    animation: waves 1s ease-in-out infinite;
+    margin-bottom: -5rem; // offset the skew for waves
+  }
+  .sand {
+    height: $sand--depth;
+    background-color: $sand--color;
+  }
+}
+
+.stand {
+  position: relative;
+  height: $stand--height;
+  width: $tank--width;
+  background-color: $color--stand;
+  display: flex;
+  border-top: solid 0rem #000;
+  .door {
+    flex-grow: 1;
+    &.left {
+      border-right: solid .1rem darken($color--stand,20);
+    }
+    &.right {
+      border-left: solid .1rem darken($color--stand,20);
+    }
+  }
+  
+  .light--off & {
+    
+    background-color: darken($color--stand, 10);
+  }
+}
+
+
+// Lights
+.lights {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: $lights--distanceFromTank;
+}
+
+.light {
+  $lightToSubtrateHeight: $lights--distanceFromTank + $tank--height;
+  
+  &.kessil150 {
+    position: relative;
+    height: 4rem;
+    width: 2.4rem;
+    background-color: #222;
+    border-radius: .3rem;
+    border-bottom: solid blue .4rem;
+    &:after {
+      content: '';
+      position: absolute;
+      left: -$lights--lightSpread;
+      top: calc(100% + .4rem);
+      width: 2.4rem;
+      height: .1rem;
+      border-right: $lights--lightSpread solid transparent;
+      border-left: $lights--lightSpread solid transparent;
+      border-bottom: $lightToSubtrateHeight solid rgba(255,255,255,.03);
+    }
+  }
+}
+
+
+.fish {
+    animation: swimRoute 10s ease-in-out infinite;
+    background-color: orange;
+    margin: 1rem;
+    height: $fish--height;
+    width: $fish--length;
+    border-radius: 60%;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      right: 1.1rem;
+      top: -.1rem;
+      width: .4rem;
+      height: .4rem;
+      border-left: solid .4rem orange;
+      border-top: solid .4rem transparent;
+      border-bottom: solid .4rem transparent;
+    }
+    
+    &:nth-of-type(2) {
+      animation: swimRoute 10.2s ease-in-out infinite;
+      animation-delay: .1s;
+      margin-top: calc(#{$fish--height} * -.8);
+    }
+    &:nth-of-type(3) {
+      animation: swimRoute 10.1s ease-in-out infinite;
+      animation-delay: .4s;
+      margin-top: calc(#{$fish--height} * -2.5)
+    }
+    &:nth-of-type(4) {
+      animation: swimRoute 10.2s ease-in-out infinite;
+      animation-delay: .5s;
+      margin-top: calc(#{$fish--height} * -3.3)
+    }
+}
+
+
+// Wall light switch;
+
+input.lightSwitch--toggle {
+  display: none;
+  & + label { 
+    cursor: pointer;
+    position: absolute;
+    right: 10vw;
+    top: 45vh;
+    border-radius: .2rem;
+    background-color: darken($color--lightSwitch,30);
+    width: 2.5rem;
+    height: 4rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: .1rem .1rem .1rem 0 rgba(0,0,0,.2);
+    transition: .2s all ease;
+    &:after {
+      content: '';
+      height: 1rem;
+      width: .5rem;
+      background-color: darken($color--lightSwitch,48);
+      .light--off & {
+        order: -1
+      }
+    }
+    &:before {
+      content: '';
+      height: .4rem;
+      width: .5rem;
+      border-radius: .1rem;
+      background-color: $color--lightSwitch;
+    }
+    
+    .light--off & { opacity: .1 }
+  }
+}
+
+
+// Animations
+
+@keyframes waves {
+  0% { transform: skewY(-#{$waveMaker--power}deg) };
+  50% { transform: skewY(#{$waveMaker--power}deg) }
+  100% { transform: skewY(-#{$waveMaker--power}deg); }
+}
+
+@keyframes swimRoute {
+  0% { transform: translate(0) scale(1.1) }
+  20% { transform: translate($tank--width * .4, $tank--height * .4) }
+  35% { transform: translate($tank--width * .9, $tank--height * .1) rotateY(0deg) scale(.9) }
+  38% { transform: translate($tank--width * .87, $tank--height * .1) rotateY(180deg) }
+  55% { transform: translate($tank--width * .7, $tank--height * .3) rotateY(180deg) }
+  62% { transform: translate($tank--width * .5, $tank--height * .01) rotateY(180deg) }
+  90% { transform: translate(0) scale(1.1) rotateY(180deg)}
+  100% { transform: translate(0) scale(1.1) }
+}

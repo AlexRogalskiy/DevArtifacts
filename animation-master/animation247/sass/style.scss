@@ -1,0 +1,615 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+
+$solarSystemSpeedThroughUniverse: 600s;
+$deathStar-spinSpeed: 0s;
+
+$numberOfStars: 1000; // How many stars you want
+$axisLength--X: 100; // How many rems the star grid goes on the X Axis
+$axisLength--Y: 100; // How many rems the star grid goes on the Y Axis
+$starColor: #FFFFFF; // color of the stars
+$base--size: .5rem;
+
+html {
+  background-color: #000;
+  font-size: 50%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.universe {
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  &:after {
+    content: '';
+    width: $base--size;
+    height: $base--size;
+    border-radius: $base--size / 2;
+    position: absolute;
+    top: calc(50% - #{$base--size});
+    left: calc(50% - #{$base--size});
+    $boxShadow: 70rem 40rem .08rem -0.02rem $starColor; // I just set up one initial star, then concatinate to it on the loop
+    // Loop through and create stars, we devide by two because we create two per loop. One on the -x axis, on on +x;
+    @for $n from 1 through $numberOfStars / 2 {
+      // Set variables for the star when we hit each loop
+      $scale: random(3) * -.08; // Randomize the scale .01 large, .09 smaller
+      $blur: random(10) / 50; // 100 = almost no blur , 1 all very blurry
+      $opacity: random(8) * .1; // Randomize the opacity
+      $adjustedStarColor: rgba($starColor, $opacity);
+      // Here, we define two stars in each loop.. one for the -x margin (left of sun) and one for the right side (positive x)
+      // box-shadow: X-axis Y-axis Blur size (-0.01 -- -0.09) , 
+      $boxShadow: #{$boxShadow} #{","} -#{random($axisLength--X)}rem #{random($axisLength--Y)}rem #{$blur}rem #{$scale}rem $adjustedStarColor,
+      #{random($axisLength--X)}rem #{random($axisLength--Y)}rem #{$blur}rem #{$scale}rem $adjustedStarColor;
+      $boxShadow: #{$boxShadow} #{","} -#{random($axisLength--X)}rem -#{random($axisLength--Y)}rem #{$blur}rem #{$scale}rem $adjustedStarColor,
+      #{random($axisLength--X)}rem -#{random($axisLength--Y)}rem #{$blur}rem #{$scale}rem $adjustedStarColor;
+    }
+    box-shadow: #{$boxShadow};
+
+    // spin stars
+    -webkit-animation: spin $solarSystemSpeedThroughUniverse linear infinite;
+    -moz-animation: spin $solarSystemSpeedThroughUniverse linear infinite;
+    -ms-animation: spin $solarSystemSpeedThroughUniverse linear infinite;
+    animation: spin $solarSystemSpeedThroughUniverse linear infinite;
+  }
+
+  &:before {
+    content: "That's no moon.";
+    color: #FFF;
+    font-size: 4vw;
+    position: absolute;
+    top: 10vh;
+    left: 22vw;
+    font-family: 'Bungee', arial, sans-serif;
+    -webkit-animation: blownUp 6s normal forwards;
+    -moz-animation: blownUp 6s normal forwards;
+    -ms-animation: blownUp 6s normal forwards;
+    animation: blownUp 6s normal forwards;
+    animation-delay: 15s;
+  }
+}
+
+$size: 50rem;
+$color: #BBB;
+$laser: #8BFF8A;
+
+.death-star {
+  z-index: 100;
+  width: $size;
+  height: $size;
+  background-color: $color;
+  border-radius: $size / 2;
+  position: absolute;
+  bottom: 10rem;
+  right: 10rem;
+  background: radial-gradient(circle at 9rem 12rem, $color, rgba(darken($color, 50), .8));
+  -webkit-animation: spin--deathStar $deathStar-spinSpeed linear infinite;
+  -moz-animation: spin--deathStar $deathStar-spinSpeed linear infinite;
+  -ms-animation: spin--deathStar $deathStar-spinSpeed linear infinite;
+  animation: spin--deathStar $deathStar-spinSpeed linear infinite;
+  &:before {
+    // vertical lines on the main body
+    content: '';
+    opacity: .1;
+    width: $size;
+    height: $size;
+    border-radius: $size / 2;
+    position: absolute;
+    background: repeating-linear-gradient( -82deg, $color, darken($color, 10) .7rem, $color .7rem, darken($color, 10) .7rem),
+  }
+  
+  // Equatorial Trench
+  &--center { //.death-star--center
+    // Center black line around the death star
+    $center--size: $size;
+    width: $center--size;
+    height: $center--size;
+    border-radius: $center--size / 2;
+    position: absolute;
+    left: 0;
+    top: 2rem;
+    transform: rotateX(105deg) rotateY(10deg);
+    box-shadow: 
+      /* White above center */
+      0 8rem .2rem .75rem rgba(255, 255, 255, .2), 
+      /* White below center */
+      0 4rem 0rem 0rem rgba(255, 255, 255, .5),  
+      /*Center line*/
+      0 5rem 0rem 0rem rgba(0, 0, 0, .8),
+      /* additional dark 3d shadow on top half */
+      40rem 40rem 15rem 15rem rgba(0, 0, 0, .1), 
+      /* Highlight on front of sphere */
+      -40rem 40rem 15rem 0rem rgba(255, 255, 255, .4);
+    &:before,
+    &:after {
+      position: absolute;
+      left: 0;
+      content: '';
+      width: $center--size;
+      height: $center--size;
+      border-radius: $center--size / 2;
+    }
+    &:before {
+      // Polar Trench
+      top: 74rem;
+      left: 0;
+      transform: rotateX(10deg) rotateY(190deg) rotateZ(198deg);
+      border-top: solid 4rem rgba($color, .4);
+    }
+    &:after {
+      // circular horizontal lines on the bottom
+      top: 0;
+      opacity: .2;
+      transform: rotateX(10deg) rotateY(0deg) translateY(50rem);
+      box-shadow: /*Command Sector South*/ 
+      0 -147rem 0 1rem rgba($color, .8),
+      0 -127rem 0 5rem darken($color, 20),
+      0 -125rem 0 5rem rgba($color, .8),
+    }
+  }
+  &--laser {
+    // the center circle lazer gun
+    z-index: 0;
+    position: absolute;
+    width: $size / 4;
+    height: $size / 4;
+    border-radius: $size / 2;
+    border: solid .1rem rgba(0, 0, 0, .1);
+    top: 3.5rem;
+    left: 8rem;
+    background-color: darken($color, 10);
+    transform: rotateX(35deg) rotateY(-25deg);
+    box-shadow: 0 0 10rem 0 rgba(255,255,255, .3);
+    &:before {
+      // center circle of laser
+      position: absolute;
+      content: '';
+      top: $size / 10;
+      left: $size / 10;
+      width: $size / 20;
+      height: $size / 20;
+      border-radius: $size / 20;
+      border: solid .1rem rgba(0, 0, 0, .1);
+      background-color: darken($color, 20);
+      box-shadow: 0 0 6rem .6rem rgba(0, 0, 0, .7);
+    }
+    &:after {
+      // outside circle of laser
+      position: absolute;
+      content: '';
+      top: 1rem;
+      left: 1rem;
+      width: $size / 5;
+      height: $size / 5;
+      border-radius: $size / 5;
+      border: solid .1rem rgba(0, 0, 0, .15);
+      background-color: rgba($color, .2);
+      box-shadow: 0 0 .4rem 0 rgba(0, 0, 0, .3)
+    }
+  }
+  .major-lasers {
+    z-index: 10000;
+    position: relative;
+    -webkit-animation: laserPulse 1s ease infinite;
+    -moz-animation: laserPulse 1s ease infinite;
+    -ms-animation: laserPulse 1s ease infinite;
+    animation: laserPulse 1s ease infinite;
+  }
+  .freakin-laser-beam {
+    opacity: 0;
+    z-index: 1000;
+    position: absolute;
+    left: $size / 8;
+    top: $size / 16;
+    background-color: lighten($laser,10);
+    transform: rotate(-49deg);
+    -webkit-animation: fadeIn 0s normal forwards;
+    -moz-animation: fadeIn 0s normal forwards;
+    -ms-animation: fadeIn 0s normal forwards;
+    animation: fadeIn 0s normal forwards;
+    animation-delay: 15s;
+    &:after {
+      // laser beam
+      content: '';
+      position: absolute;
+      bottom: -10.5rem;
+      right: -.2rem;
+      width: .2rem;
+      height: 200vw;
+      background-color: lighten($laser,10);
+      box-shadow: 0 0 1rem 0 $laser, 0 0 5rem 1rem $laser, 0 0 10rem 1rem $laser,
+    }
+    &:before {
+      // laser sphere at the base of the laser beam
+      content: '';
+      position: absolute;
+      bottom: -11rem;
+      right: -.8rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: .75rem;
+      background-color: $laser;
+      box-shadow: 0 0 1rem 0 $laser,
+    }
+  }
+  .laser-loaders {
+    opacity: 0;
+    position: absolute;
+    width: .4rem;
+    height: .4rem;
+    border-radius: $size / 20;
+    background-color: $laser;
+    left: $size / 8;
+    top: $size / 16;
+    -webkit-animation: laserPulse 1s ease infinite;
+    -moz-animation: laserPulse 1s ease infinite;
+    -ms-animation: laserPulse 1s ease infinite;
+    animation: laserPulse 1s ease infinite, fadeIn 10s normal forwards;
+    animation-delay: 5s;
+    
+    z-index: 1000;
+    & > div {
+      // All laser loaders
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: .3rem;
+      background-color: $laser;
+      transform-origin: 0 0;
+    }
+    .laser-loader {
+      position: absolute;
+      z-index: 10000;
+      box-shadow: 0 0 2rem .5rem $laser;
+      &.loader--1 {
+        transform: rotate(-14deg);
+        height: 10rem;
+      }
+      &.loader--2 {
+        transform: rotate(-35deg);
+        height: 14.5rem;
+      }
+      &.loader--3 {
+        transform: rotate(-65deg);
+        height: 15.1rem;
+      }
+      &.loader--4 {
+        transform: rotate(-82deg);
+        height: 10rem;
+      }
+      &.loader--5 {
+        transform: rotate(-47deg);
+        height: 5.6rem;
+      }
+    } // laser loader
+  }
+} // death-star
+
+.death-star--interior {
+  overflow: hidden;
+  z-index: 100;
+  width: $size - .1rem;
+  height: $size - .1rem;
+  border-radius: $size / 2;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  -moz-box-shadow:    inset 0 0 5rem #000000;
+   -webkit-box-shadow: inset 0 0 5rem #000000;
+   box-shadow:         inset 0 0 5rem rgba(0,0,0,.4);
+  
+  .shadow {
+      &:after {
+      // Full star right dark shadow
+      z-index: 100;
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: $size * 2;
+      height: $size * 2;
+      border-radius: $size / 2;
+      //box-shadow: 0 0 calc(#{$size} * 1.9) calc(#{$size} / 1.2) rgba(0, 0, 0, .85);
+      background: radial-gradient(circle, rgba(0,0,0,.7) 35%, rgba(0,0,0,0) 80%); 
+        
+    }
+  }
+}
+
+
+
+/*
+.framework {
+    $size: $size * 2;
+    width: $size;
+    height: $size;
+    border-radius: $size;
+    position: absolute;
+    border: solid 1rem darken($color, 13);
+  &:before,
+  &:after {
+    content: '';
+    width: $size;
+    height: $size;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: $size;
+  }
+  
+  &.vertical {
+    left: -65rem;
+    top: -35rem;
+    &:before {
+      border: solid 1rem darken($color, 13);
+      left: 26rem;
+      top: 71rem;
+    }
+    &:after {
+      border: solid 1rem darken($color, 13);
+      left: 79rem;
+      top: 15rem;
+    }
+  }
+  
+  &.horizontal {
+    left: $size / -3 ;
+    top: 2rem;
+  }
+}
+
+
+
+
+
+// TIE FIGHTER
+
+// COMING SOON
+.tie-fighters {
+  perspective: 1000px;
+}
+
+$tf-size: 8rem;
+
+.tie-fighter {
+  width: $tf-size;
+  height: $tf-size;
+  position: absolute;
+  right: 4vw;
+  bottom: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .center {
+*/
+    //$size: calc(#{$tf-size} * .4);
+/*    background-color: #FFF;
+    width: $size;
+    height: $size;
+    border-radius: $size;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:after {
+      content: '';
+      */
+        //$size: calc(#{$tf-size} * .3);
+      /* 
+      background-color: rgba(0,0,0,.8);
+      width: $size;
+      height: $size;
+      border-radius: $size;
+    }
+   }
+  .center--left, 
+  .center--right {
+    width: 0; 
+    height: 0;
+    margin: 0 -.5rem 0 -.3rem;
+  }
+  .center--left {
+    border-top: 1rem solid transparent;
+    border-bottom: 1rem solid transparent;
+    border-right: 3rem solid #FFF; 
+  }
+  .center--right {
+    border-top: 1rem solid transparent;
+    border-bottom: 1rem solid transparent;
+    border-left: 3rem solid #FFF;
+  }
+  .left,
+  .right {
+    height: $tf-size;
+    width: 1rem;
+    background-color: #FFF;
+  }
+}
+
+
+*/
+
+
+
+
+
+
+
+
+// Define Animation
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@-webkit-keyframes spin--deathStar {
+  0% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(15deg);
+  }
+}
+@keyframes spin--deathStar {
+  0% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(15deg);
+  }
+}
+
+@-webkit-keyframes laserPulse {
+  0% {
+    opacity: 1
+  }
+  ;
+  10% {
+    opacity: 1
+  }
+  ;
+  30% {
+    opacity: .8
+  }
+  ;
+  35% {
+    opacity: 1
+  }
+  ;
+  40% {
+    opacity: .7
+  }
+  ;
+  50% {
+    opacity: 1
+  }
+  ;
+  60% {
+    opacity: .9
+  }
+  ;
+  70% {
+    opacity: 1
+  }
+  ;
+  80% {
+    opacity: .9
+  }
+  ;
+  90% {
+    opacity: 1
+  }
+  ;
+  100% {
+    opacity: inherit
+  }
+  ;
+}
+
+@keyframes laserPulse {
+  0% {
+    opacity: 1
+  }
+  ;
+  10% {
+    opacity: 1
+  }
+  ;
+  30% {
+    opacity: .8
+  }
+  ;
+  35% {
+    opacity: 1
+  }
+  ;
+  40% {
+    opacity: .7
+  }
+  ;
+  50% {
+    opacity: 1
+  }
+  ;
+  60% {
+    opacity: .9
+  }
+  ;
+  70% {
+    opacity: 1
+  }
+  ;
+  80% {
+    opacity: .9
+  }
+  ;
+  90% {
+    opacity: 1
+  }
+  ;
+  100% {
+    opacity: inherit
+  }
+  ;
+}
+
+
+
+// fade in
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0 };
+  100% { opacity: 1 };
+}
+@keyframes fadeIn {
+  0% { opacity: 0 };
+  100% { opacity: 1 };
+}
+
+@-webkit-keyframes blownUp {
+  0% { opacity: 0 };
+  2% { opacity: .3 };
+  4% { opacity: 1 };
+  8% { opacity: 0 }
+  100% { opacity: 0 }
+}
+@keyframes blownUp {
+  0% { opacity: 0 };
+  2% { opacity: .3 };
+  4% { opacity: 1 };
+  8% { opacity: 0 };
+  100% { opacity: 0 }
+}

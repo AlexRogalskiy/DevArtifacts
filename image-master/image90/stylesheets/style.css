@@ -1,0 +1,68 @@
+html {
+  font-size: 62.5%;
+}
+
+.row {
+  display: flex;
+  flex-flow: row;
+}
+
+.cube {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #DDD;
+  perspective: 900px;
+}
+.cube .block {
+  width: 6rem;
+  height: 6rem;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 calc(6rem / 25) 0 #000;
+}
+.cube .side {
+  width: 18remcalc(0.5rem * 6);
+  height: 18remcalc(0.5rem * 6);
+  position: absolute;
+  bottom: 4vw;
+  left: 10vh;
+  border-radius: .2rem;
+  background-color: #000;
+  overflow: hidden;
+}
+.cube .side.top {
+  transform: rotateX(-90deg);
+  transform-origin: top;
+  z-index: 1;
+}
+.cube .side.top .block {
+  background-color: #FFF;
+}
+.cube .side.bottom {
+  transform: rotateX(90deg);
+  transform-origin: bottom;
+  z-index: 0;
+  box-shadow: 0.1rem 0.2rem 5rem 0 rgba(0, 0, 0, 0.8);
+}
+.cube .side.bottom .block {
+  background-color: yellow;
+}
+.cube .side.right {
+  transform: rotateY(-90deg);
+  transform-origin: right;
+  z-index: 2;
+}
+.cube .side.right .block {
+  background-color: OrangeRed;
+}
+.cube .side.front {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+.cube .side.front .block {
+  background-color: MediumBlue;
+}

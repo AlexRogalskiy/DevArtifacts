@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600,700,800,900');
+
+$fieldNotes--size: 37rem; // Set the size. For me, 37rem gets it about life size
+  $fieldNotes--height: $fieldNotes--size * 1.58;
+$table--color: #eee; // color of the background
+
+// Can add a color combo for a memo book
+// ( Background Color, Text Color )
+$fieldNoteCombos: (
+  
+  (#dcb17b, #4b2711), // original tan
+  (#f02059, #f8dc00), // pink, yellow
+  (#f8dc00, #3e257c), // yellow, purple
+  (#00c091, #fff400), // turq , yellow
+  (#ff5516, #f7f6f2), // bright orange, pale white
+  (#788440, #ecf0f3), // forest green, light gray
+  (#278bba, #fa2160), // sky blue, orange
+  (#bbdce3, #353333), // light sky blue, very dark blue
+  (#ff4743, #2477b0), // neon orange, light blue
+  (#441f87, #3dd900), // purple green
+  (#67d400, #f86900), // lime green, orange
+  (#ef9c31, #eaf3f5), // pale orange, gray
+  (#f3cb2d, #eaf3f5), // earthly yellow, gray
+  (#d75d4b, #eaf3f5), // earthly dark salmon, gray
+  (#245ea7,#c39d4d), // dark blue, goldish --countyfair
+  (#f6cb00,#b0a04c), // yellow, goldish --countyfair
+  (#cd3c2b,#c39d4d), // dark red, goldish --countyfair
+  (#a4714c, #eaf3f5), // pale brown, gray
+  (#474648, #eaf3f5), // dark gray, gray
+  (#edeeb3, #a97954),// tan, earthy brown
+  (#151515, #666), // black
+  (#f5f5f0, #cdcec9), // ivory , gray
+);
+
+// Loop through each combo in the combos object and grab that nth of type to apply changes.
+$n: 1;
+@each $background, $text in $fieldNoteCombos {
+  .fieldNotes:nth-of-type(#{$n}) {
+    $OCD: random(3); // Angle the book can be tilted;
+    $coinFlip: random(2); // decide if it wil be tilted left/right
+    @if $coinFlip == 2 { // if its 2, make the degree negative;
+      $OCD: $OCD * -1;
+    };
+    color: $text;
+    transform: rotate($OCD#{deg}); // apply the angle of rotation, to either direction as decided by chance.
+    z-index: $n * -1;
+    background-color: $background;
+    background: $background;
+    background: -webkit-linear-gradient(to right, rgba(darken($background,40), .25), $background 7%);
+    background: -o-linear-gradient(to right, rgba(darken($background,40), .25), $background 7%);
+    background: -moz-linear-gradient(to right, rgba(darken($background,40), .25), $background 7%);
+    background: linear-gradient(to right, darken($background, 15) 0%, darken($background, 10) 0%, darken($background, 10) 1%, darken($background, 5) 4%, $background 99%);
+  }
+  $n: $n + 1;
+} // each in fieldNotes
+
+html {
+  font-size: 62.5%;
+  font-family: 'Montserrat', sans-serif; }
+
+.table {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0; 
+  background-color: $table--color;
+  overflow-x: scroll;
+  padding-left: calc(50vw - #{$fieldNotes--size} / 2);
+  z-index: -100000;
+  &:before {
+    position: fixed;
+    bottom: 3vh;
+    right: 3vw;
+    color: darken($table--color, 7);
+    text-shadow: .1rem .1rem lighten($table--color, 20);
+    content: 'Thick Lines. Tiny Ideas.' ;
+    font-size: 2.5rem;
+  }
+}
+
+.wrapper {
+  display: flex;
+  //flex-flow: row wrap; // uncomment to make vertical stack
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  &:before {
+    position: fixed;
+    top: 3vh;
+    right: 3vw;
+    color: darken($table--color, 20);
+    text-shadow: .1rem .1rem lighten($table--color, 40);
+    content: 'A Tribute to Field Notes. Scroll Sideways.' ;
+    font-size: 2.5rem;
+  }
+}
+
+.fieldNotes {
+  min-width: $fieldNotes--size;
+  width: $fieldNotes--size;
+  height: $fieldNotes--height;
+  margin: 0 10rem 0 0;
+  border-radius: $fieldNotes--size * .018;
+  border-top-right-radius: $fieldNotes--size * .11;
+  border-bottom-right-radius: $fieldNotes--size * .11;
+  box-shadow: 
+    .5rem .5rem 1.5rem 0 rgba(0,0,0,.3),
+    inset -.1rem -.1rem 15rem rgba(255,255,255,.05);
+   }
+
+.title {
+  padding: $fieldNotes--size * .2 0 0 0;
+  font-size: $fieldNotes--size * .15;
+  letter-spacing: $fieldNotes--size * .015;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700; }
+
+.description {
+  padding: $fieldNotes--size * .15 0 0 0;
+  font-size: $fieldNotes--size * .035;
+  letter-spacing: $fieldNotes--size * .003;
+  text-align: center; }
+
+.binding { // staples
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -$fieldNotes--size * .005;
+  
+  .staple {
+    // define scoped staple width and height
+    $height: $fieldNotes--size * .13;
+    $width: $fieldNotes--size * .01;
+    
+    position: absolute;
+    height: $height;
+    width: $width;
+    background: #1e5799; // give metallic looking gray background
+    background: -moz-linear-gradient(left, #1e5799 0%, #207cca 0%, #207cca 0%, #999999 0%, #bbbbbb 19%, #aaaaaa 28%, #dddddd 48%, #999999 84%, #777777 92%);
+    background: -webkit-linear-gradient(left, #1e5799 0%,#207cca 0%,#207cca 0%,#999999 0%,#bbbbbb 19%,#aaaaaa 28%,#dddddd 48%,#999999 84%,#777777 92%);
+    background: linear-gradient(to right, #1e5799 0%,#207cca 0%,#207cca 0%,#999999 0%,#bbbbbb 19%,#aaaaaa 28%,#dddddd 48%,#999999 84%,#777777 92%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#777777',GradientType=1 );
+    box-shadow: .05rem 0rem .1rem 0rem rgba(0,0,0,.3);
+    
+    // Position each staple
+    &:nth-of-type(1) { top: $fieldNotes--height * .08; }
+    &:nth-of-type(2) { top: $fieldNotes--height / 2 - $height / 2; }
+    &:nth-of-type(3) { bottom: $fieldNotes--height * .08; }
+  }
+  
+}
+
+
+
+.pencil {
+  min-width: 40rem;
+  display: flex;
+  height: 3rem;
+  margin-right: 10rem;
+  .tip {
+    flex-grow: 1;
+    border-top: solid 1.5rem transparent;
+    border-bottom: solid 1.5rem transparent;
+    border-right: solid 5rem #f5f5f5;
+  }
+  .body {
+    background-color: #222;
+    flex-grow: 5;
+  }
+  .eraser {
+    background-color: blue;
+    flex-grow: .5;
+  }
+}

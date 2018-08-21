@@ -1,0 +1,358 @@
+# ./a.py < named_ent.txt | sed 's/<\([0-9. ,]*\)>/\1/g' | grep '<' | grep '<.*<' | grep '> <' | sed 's/.*\(<[^>]*> <[^>]*>\).*/\1/g' | grep ' .* .*' | sort
+## ručne filtrované, odstraňujeme číselné veci a nejednoznačné veci
+
+<Abbey Road> <Kenem Towsendem>
+<Admiry> <Josef Jarolím>
+<Aera> <Adam Straňák>
+<Aero Holding> <Tomáš Polák>
+<Agrární komory v Příbrami> <Josef Melichar>
+<Agrobanky> <Vlastimil Nesrsta>
+<A. Katmeridu> <Hlasy minulosti>
+<Američan> <H. P. Lovecraft>
+<Američan> <Riddick Bowe>
+<Američan> <Robert Morrow>
+<Americe> <BMW Z3>
+<Americké společnosti stavebních inženýrů> <ASCE>
+<Andreas E.> <Tajného>
+<Angličan> <Charles Babbage>
+<Anny Sílové> <Škola žen>
+<Antikultovní organizace> <Robert Ross>
+<Architekt> <Bořek Šípek>
+<Arta Spiegelmana> <Maus>
+<Arturu Schopenhauerovi> <Klíma>
+<Atlet> <Dukly Praha>
+<Australan> <Paul Old>
+<Austrálii> <Jaroslav Suchánek>
+<Banky Haná> <Jany Šafránkové>
+<Banské Bystrici> <Rudolf Hromada>
+<Barceloně> <Pavla Soukupa>
+<BBC> <Breakfast News>
+<Beatles> <Lucy in the Sky with Diamonds>
+<Běchovic> <Luboš Šubrt>
+<Belgie> <První liga>
+<BERD> <Jacques Attali>
+<Bílém domě> <Monica Lewinská>
+<Bledá Tvář> <Irokéze>
+<Blízkém východě> <Usáma bin Ládin>
+<Bloomberg> <Takeši Imamichi>
+<Bořek Otava> <Ve>
+<Bormiu> <Olga CharvátováKřížová>
+<Brně> <Cenu Karla Engliše>
+<Burgtheateru> <Claus Peymann>
+<CDU> <Helmuta Kohla>
+<Čech> <Radek Hanykovič>
+<Čech> <Vladimír Dlouhý>
+<Centrální etické komise> <Jan Payne>
+<Česká lékařská společnost> <J. E. Purkyně>
+<Česká republika> <Irsko>
+<České biatlonové unie> <Václav Fiřtík>
+<České filharmonie> <Milan Lášek>
+<Českomoravského fotbalového svazu> <Janu Obstovi>
+<Církve československé husitské> <Ervín Kukuczka>
+<Civilní ochrany> <Jiří Šlapal>
+<CME> <Michal Donath>
+<cm> <Flak 38>
+<Corriere Della Sera> <Nixon píše>
+<Co týden dal> <J. Bobovnický>
+<ČR> <V. Klause>
+<ČR> <Vladimír Dlouhý>
+<C. S. fond> <Luboš Smrčka>
+<ČSFR> <Jiřím Dienstbierem>
+<ČSSD> <Miloš Zeman>
+<ČTK> <18. července>
+<Cukrovar Hodonín> <Cukrovar Němčice>
+<Cukrovar Hodonín> <Cukrovar Němčice n.>
+<CYFRA> <21 - 1>
+<Dasného> <Vojtěch Radouch>
+<Děčín> <GALERIE HEFAISTOS>
+<dell ' arte> <Carla Goldoniho>
+<Depilátor> <Silk - épil EE 10 >
+<Desty> <Miroslav Grégr>
+<Dino Mustafice> <Král umírá>
+<Disco Latine 32> <Nova tv>
+<Divadla za branou II> <Vít Vencl>
+<Divokého západu> <O Henryho>
+<Dolní Kounice> <SK Hranice>
+<Domě kultury> <Vítkovice>
+<Dornier Do 17Z - 2> <Dvoumotorový>
+<Do> <Spojených států amerických>
+<dr.> <Maxe Schaffnera>
+<Dvojčata> <Ray a Jay Nugentovi>
+<Dvořákově síni> <Rudolfina>
+<Dvořákův> <Klavírní kvartet Es dur>
+<EDISON> <Druhá míza>
+<Elle PcPhersonová> <Joaquina>
+<Ellingtonovka> <In The Mellow Tone>
+<Emira Kusturici> <Underground>
+<Ernesta Sábata> <Kniha o hrdinech a hrobech>
+<EU> <Franze Fischlera>
+<Evropského parla mentu> <Hänsch>
+<Evropské komise> <Jacquesem Santerem>
+<Evropské komise> <Jacques Santer>
+<Evropské komisi> <Sipke Browerem>
+<Federálního úřadu pro vyšetřování> <Louis Freeh>
+<Flexaret IIa> <Meoptou>
+<Flip pro akusticko - vizuální představení> <Petra Nikla>
+<FMZV> <Zdenko Pírek>
+<FNM> <Roman Češka>
+<Fond slepých> <Paragrafy>
+<Fondu národního majetku> <Roman Češka>
+<Fotbalista> <Roman Sedláček>
+<Foto> <Gilles Abegg>
+<Foto> <Karel Cudlín>
+<Foto> <Ondřej Němec>
+<Foto> <Pavel Hula>
+<Foto> <Vilém Kratochvíl>
+<Fragmenty a performance> <Johanny Stadler - Starlingové>
+<Francie> <Didier Deschamps>
+<Francouz> <Louis Braille>
+<Francouz> <Pierre Lartigue>
+<Frankfurter Allgemeine Zeitung> <S. Schatten>
+<Františka Halase> <Naše paní Božena Němcová>
+<Franze Junga> <Die Eroberung der Maschinen>
+<Franz Kafka> <Po>
+<Gainsboroughovou> <Slečnou Haverfieldovou>
+<Georga Fridricha Händla> <Lucio Cornelio Filla>
+<Godardova> <BLÁZNIVÉHO PETŘÍČKA>
+<Gralomu> <Luděk Jánský>
+<Greenpeace> <Łubici Trubíniové>
+<Gruzie> <Zviadu Gamsachurdiovi>
+<Hanáckého divadla> <Hvězdy na vrbě>
+<Hilary a Jackie> <Britský>
+<Historie školství na Těšínsku> <Výstava>
+<Hloučelou> <II.>
+<Hnutí pro republiku> <Romualda Szeremetiewa>
+<Hokejista> <Vladimír Růžička>
+<Hornické polikliniky> <Petr Albín>
+<Hradčanech> <U hrušky>
+<HRADEC KRÁLOVÉ> <Martin Dvořák>
+<Hygienické stanice> <Vladimír Polanecký>
+<HZDS> <Milana Čiče>
+<I0 , 05> <mm>
+<IAAF> <Istvána Gyulaie>
+<IAM> <Pavla Matochy>
+<IHS> <Bernhard Böhm>
+<IMV ČSSR> <mjr. JUDr. Mirek STRÁNSKÝ>
+<Indie> <Amrtya Sen>
+<ing.> <Alojz LORENC>
+<ing.> <Jan Sikora>
+<Ing.> <Josef Blábolil>
+<Ing.> <Karel Hennhofer>
+<Ing.> <Miloslavem Studenkou>
+<in memoriam> <Ladislavu Vidmanovi>
+<Iráku> <Rádio Svobodná Evropa>
+<ISPA> <20,4 mil.>
+<Ital> <Nicola Minali>
+<Izraelská> <Všeobecná bezpečnostní služba Šin Bet>
+<JADERNÝ PROGRAM BAGDÁDU NEJASNÝ> <J>
+<Janáčkově nám.> <2a>
+<Jan Hálek> <Občanská>
+<Jeseník> <Milena Novotná>
+<Jihlavě> <Arif Salichov>
+<Jihomoravské energetiky> <Ladislav Ryšavý>
+<Jiří Černický> <Výstava>
+<Jiří Donát> <Mirka Chochola>
+<Jiřího Hudlera> <Vsetín>
+<Jméno> <Davida Franty>
+<Josefa Koudelky> <Periplanissis>
+<Josefa Šusty> <Dürrenmatt>
+<Josefa Tošovského> <V>
+<Josef Moucha> <Recenze>
+<Jugoslávcem> <Miroslavem Radomanem>
+<J. Ursínyho> <J. Lettrich>
+<K88> <Escherichia coli>
+<Kabardinsko - balkarské autonomní republiky> <Nalčiku>
+<Káhiře> <Vratislav Janda>
+<Kanaďan> <Benoit Doucet>
+<Kanceláře sněmovny> <Petr Kynštetr>
+<Kanceláře sněmovny> <Petr Kynštetr>
+<Kapitalismus a občanské ctnosti> <Bělohradského>
+<Karel Kachyňa> <Franco Zeffirelli>
+<Karla Jaromíra Erbena> <Svatební košile>
+<Katedra počítačové grafiky a designu> <doc. RNDr. Petr Matula, Ph.D.>
+<Katona> <József Színház>
+<Kavčích horách> <Petra Buzková>
+<KB cup> <O štít města Chebu>
+<KDU - ČSL> <Josefu Luxovi>
+<Keltskými pohádkami> <Jana Vladislava>
+<Keramiky> <Dušan Salfický>
+<K+K Capital Group> <Karla Komárka>
+<Komedie> <Mauruse Lindemayra>
+<Komerční banky> <JUDr. R. Salzmann>
+<Komety> <David Kostelecký>
+<Komni> <Karel Navrátil>
+<Koncertem> <Slavíkova komorního orchestru>
+<Konfederaci nezávislého Polska - Vlast> <Tomasze Karwowského>
+<Kongresu> <Bob Livingston>
+<Kontraband> <Milana Svobody>
+<Krajina a její lidé - fotografie I. Ibrahimoviče , Z. Thomy a L. Mimry> <BUCHLOVICE>
+<Krajského úřadu Pardubického kraje> <Odbor školství a kultury>
+<Kráska a zvíře> <Laura>
+<Kreslený humor Vladimíra Renčína> <JIHOČESKÁ UNIVERZITA>
+<Křesťanskodemo - kratické strany> <Václav Benda>
+<Krone> <Milan Franěk>
+<Kruh u Jilemnice> <DOP0811Z>
+<KVĚTEN> <Polární expres>
+<Kwa Zulu - Natal> <S ' bu Ndebela>
+<Ladislava Peška> <Rudolf Závodný>
+<Lázních Toušeni> <18. října 1994>
+<Lecianovi> <Eva Glancová>
+<Lens> <Slavo Muslin>
+<Letňan> <Josef Dobrý>
+<Levallois S. C.> <Úspěch>
+<Levého bloku> <Jaroslav Ortman>
+<Lidský faktor> <Grahama Greena>
+<Liebieghaus - Museum alter Plastik> <Frankfurt am Main>
+<Ligové komise> <Oldřich Novák>
+<LN> <Jefima Fištejna>
+<LN> <Petra Procházková>
+<LN> <Tomáše Pudila>
+<LOK> <David Rath>
+<LSU> <Františkem Trnkou>
+<Lysé nad Labem> <Václav Houštěcký>
+<Maďarem> <Kovacem Karolyim>
+<Magyar Hírlap> <Katalina Töröková>
+<Majli - Saj> <Londýn>
+<Malorolnickou stranu> <Jószefa Torgyána>
+<Mao Ce - tungova> <Dlouhého pochodu>
+<Mariánské Lázně> <Třebízského>
+<MARTIN IDES> <Davidson College>
+<MARTIN MAREK> <Colgate University>
+<Martin Siebert> <Budeme>
+<Matoušovy Pašije> <Johanna Sebastiana Bacha>
+<MCH Band> <Mikoláše Chadimy>
+<Meierové> <Jaroslava Meiera>
+<m> <E. Lemming>
+<Melrose Place> <IV>
+<Melrose Place> <IV>
+<Městská knihovna> <Sokolovská>
+<Městského muzea v Chebu> <Karel Brož>
+<MFF> <Karlovy Vary>
+<MHS> <dr. Jaroslav Horký>
+<Míček> <Výstava kreseb a dřevěných plastik>
+<Michaely Pavlátové> <Repete>
+<Michaila Ptačuka> <Spolek Politbyro>
+<Michal Hladík> <Dokument>
+<Microsoft> <Bill Gates>
+<Milan Š.> <V>
+<Milenkách> <Pavel Eisner>
+<Milošem Horanským> <Albeeho George>
+<Miloslava Prokůpková> <Výstava kreseb a litografií>
+<Miloslava Výborného> <Milan Řepka>
+<Ministerstva dopravy a spojů> <Otakar Veverka>
+<Ministerstva průmyslu a obchodu> <Petr Pomezný>
+<Ministr> <Vladimír Dlouhý>
+<mld.> <Kč>
+<Mnichova> <Rolf Barthels>
+<Mníšku> <Serváce Engela z Engelsflusu>
+<Most přes řeku Kwai> <Michael Wilson>
+<MP> <Radim Chyba>
+<Muzica Bohemica> <Boris Hybner>
+<Muzikál> <Daniela Landy>
+<Naganu> <Jiří Pekárek>
+<Náplava> <Na posledním vandru 1>
+<NASA> <Ed Weiler>
+<NDR> <Günther Krause>
+<NEI> <Richard Knot>
+<Německa> <Alimův obchod>
+<New Yorku> <Nezávislé československé kulturní středisko>
+<Nizozemec> <De Kock>
+<Novákovy> <Svatební košile>
+<Nové Město> <Návštěvníci>
+<Nové síně> <Karel Babíček>
+<Novozélanďan> <Bruce McLaren>
+<Nultá hodina> <Karel Plíhal>
+<Občanské demokratické aliance> <Jan Kalvoda>
+<Obchodních sladoven> <Roman Pummer>
+<Oblastní celní správy v Ostravě> <Karel Moškoř>
+<OBLASTNÍ MUZEUM> <Václav Jíra>
+<ODA> <Janem Kalvodou>
+<Odborové rady Poldi> <Stanislav Tomášek>
+<ODS> <Pavel Pešek>
+<ODS> <Václav Klaus>
+<off - roady> <V>
+<Okresního policejního ředitelství v Příbrami> <Václava Moravce>
+<Okresního státního zastupitelství pro Prahu západ> <JUDr. Ondřej Šmelhaus>
+<Okresního úřadu ( OÚ ) v Břeclavi> <Karel Sauer>
+<Okresního úřadu v Českých Budějovicích> <Miroslav Procházka>
+<Okresní hygienické stanice v Pardubicích> <Otakar Štěpánek>
+<Olbrachtův> <Golet v údolí>
+<Olympie> <SOHO Interierové centrum, Svratecká 989 664 42 Brno Modřice>
+<Oslavy> <Nového roku>
+<OSN> <B. Ghali>
+<Ostrava> <124 tisíc>
+<Otevřený kruh> <Jeana - Guyho Lecata>
+<Oxford> <OX1 2PJ>
+<PARDUBICE> <Fitness Body Club>
+<Parlamentu> <Petr Čermák>
+<Párty> <KABEL PLUS>
+<Pavla Landovského> <Objížďka>
+<Pavla Peppersteina> <Prohlídka některých nových pamětihodností českého uměleckého života očima cizince>
+<Pavla Zedníčka> <Havel>
+<Pedagogické fakulty Masarykovy univerzity> <Josefa Budiše>
+<Pětatřicet skvělých průvanů> <Miroslav Horníček>
+<Petr Kubín> <Hovory z Lán>
+<Petr Nedvěd> <Pittsburgh>
+<Pevnost Vyšehrad v dějinách pražského opevnění> <Stálá>
+<Piščika> <Dušana Tarageľa>
+<Píseň o zemi> <Gustava Mahlera>
+<Písně lásky> <J. Alfreda Prufrocka>
+<Plečnika> <Drahý mistře !>
+<Plzni> <Jaroslav Trojan>
+<Pobřežní hlídka> <III>
+<Portugalec> <Rui Costa>
+<Porty> <Miloslava Langra>
+<Poslanecké sněmovny> <Giovannim Spadolinim>
+<Poslanecké sněmovny> <Karel Kühnl>
+<Postel> <Oskara Reifa>
+<PP> <Jaroslav Pomp>
+<ppm> <NO x>
+<Práce> <J. Hanáka>
+<Prag> <sen. >
+<PRAHA 13> <V>
+<Prahy 1> <Jan Bürgermeister>
+<Prahy 8> <Josef Nosek>
+<Prahy> <Boeing 737 - 300>
+<Pravého bloku> <Zuzana Bönischová>
+<Právu> <Šárka Matusková>
+<Právu> <Vlaďka Zborníková>
+<Praze> <25. června 1952>
+<Praze 2> <Diakonie Českobratrské církve evangelické - Středisko křesťanské pomoci v Praze>
+<Praze> <Rudolf Jedlička>
+<Pražských vodáren> <PRAHA>
+<Prezident> <Václav Havel>
+<Prodejní výstava lidových řemesel> <GALERIE NA PŮDÍ>
+<PROKURÁTOR DAL PODNĚT KE ZRUŠENÍ VÝJIMKY> <V>
+<Prostějov> <21 - 11>
+<Prostějováci> <Jan Šverdík>
+<Prostějova> <Jan Šverdík>
+<Prostějov> <MUDr. Pavel Holík>
+<PR> <Radotínské údolí>
+<Průmyslových staveb> <Lubora Mikše>
+<PS PČR> <Michal Kraus>
+<Radničního sklípku> <Martin Šrámek>
+<Radničního sklípku> <Martin Šrámek>
+<Radošinskému naivnému divadlu> <Stanislava Štepky>
+<Rakušana> <Hannese Trinkla>
+<Rakušan> <Niki Lauda>
+<Raymond Chandler> <Lou Reed>
+<Realita> <František Havíř>
+<Rentiérský IF> <1. IN>
+<Richarda Bacha> <Jediný>
+<ŘĺJNA 1980> <DO>
+<Robert> <26. října>
+<Roman Krasnický> <Nikdo>
+<Rudých Khmerů> <Ieng Sary>
+<Rus> <Sergej Berezin>
+<Rusům> <Pierluigia Casiraghiho>
+<Šachy> <Mezinárodní turnaj>
+<Sám doma> <USA>
+<Samuel Taylor Coleridge> <PÍSEŇ O STARÉM NÁMOŘNÍKU>
+<Sapporo> <Květa Jeriová>
+<Sarajevu> <Bill Aikman>
+<Schůzka> <Severoatlantické organizace pro rybolov>
+<SDC> <Hradec Králové>
+<SDL> <Robert Fico>
+<SD - LSNS> <Hanky Holcnerové>
+<Sdružení podnikatelů> <Rudolfem Baránkem>
+<Senátu> <Petr Pithart>

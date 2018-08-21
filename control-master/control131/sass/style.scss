@@ -1,0 +1,56 @@
+@import "compass/css3";
+
+$button-bg: #5691FC;
+
+.vertical-menu {
+  list-style: none;
+  line-height: 48px;
+  padding: 0;
+}
+.vertical-menu-item {
+  display: inline-block;
+  position: relative;
+
+}
+.vertical-menu-btn {
+  display: block;
+  padding: 0 1rem;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: $button-bg;
+  &:active {
+    background-color: darken($button-bg, 10);
+  }
+   &:hover {
+     box-shadow: 0 1px 3px rgba(0, 0, 0, .50);
+   }
+  color: white;
+  transition: background 0.6s cubic-bezier(0,.68,.5,.92);
+}
+
+.ripple {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%) scale(0, 0);
+  border-radius: 50%;
+  background-color: darken($button-bg, 20);
+  opacity: 1;
+}
+.ripple-animate {
+  transition: 0.6s transform ease-in-out, opacity 0.6s ease-in-out;
+}
+
+html, body {
+  font-family: 'Myriad Pro',Helvetica,Arial,sans-serif;
+  background: #FFFFFF;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}

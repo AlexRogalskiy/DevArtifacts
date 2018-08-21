@@ -1,0 +1,168 @@
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background-color: #2F3044;
+}
+
+.owl {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 300px;
+  height: 225px;
+  background-color: #3992C5;
+  margin: auto;
+  border-radius: 50% 50% / 50% 50%;
+}
+.owl__head {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 300px;
+  height: 225px;
+  animation-name: move-head;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+}
+.owl__ears {
+  border: 0px solid transparent;
+  border-bottom: 60px solid #3992C5;
+  width: 300px;
+  height: 150px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: -30%;
+}
+.owl__left-eye, .owl__right-eye {
+  border-radius: 50%;
+  background-color: #fff;
+  width: 140px;
+  height: 140px;
+  position: absolute;
+  top: 20%;
+  right: 10%;
+}
+.owl__left-eye:after, .owl__left-eye:before, .owl__right-eye:after, .owl__right-eye:before {
+  content: "";
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-image: radial-gradient(64px at 40px 30px, #ffffff 20%, #000000 24%);
+}
+.owl__left-eye:after, .owl__right-eye:after {
+  background-color: black;
+  width: 30px;
+  height: 45px;
+  background-image: none;
+}
+.owl__left-eye {
+  left: 10%;
+}
+.owl__eye-brows {
+  background-color: #3992C5;
+  z-index: 10;
+  width: 250px;
+  height: 53px;
+  position: absolute;
+  top: 20%;
+  left: 8%;
+  background-image: none;
+  border-radius: 50% 50% 50% 50% / 6em 6rem 4rem 4rem;
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+  animation-name: close-eyes;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+}
+.owl__beak {
+  background-color: #FF9900;
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 30px;
+  height: 30px;
+  border-radius: 0rem 2rem / 0rem 1rem;
+}
+.owl__left-foot, .owl__right-foot {
+  background-color: orange;
+  width: 30px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  top: 90%;
+  transform: rotate(10deg);
+  box-shadow: inset 0 8px 0px 7px rgba(0, 0, 0, 0.1);
+}
+.owl__left-foot:after, .owl__left-foot:before, .owl__right-foot:after, .owl__right-foot:before {
+  content: "";
+  background-color: orange;
+  width: 30px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  box-shadow: inset 0 8px 0px 7px rgba(0, 0, 0, 0.1);
+}
+.owl__left-foot:after, .owl__right-foot:after {
+  left: 100%;
+}
+.owl__right-foot {
+  right: 0;
+  transform: rotate(-10deg);
+}
+
+.branch {
+  width: 100%;
+  height: 45px;
+  background-image: linear-gradient(to bottom, #BB915D, #956926 20%, #976926 20%, #403616);
+  position: absolute;
+  top: calc(50% + 120px);
+  transform: rotate(2deg);
+}
+
+@keyframes close-eyes {
+  30% {
+    transform: scaleY(0);
+  }
+  32% {
+    transform: scaleY(2.7);
+  }
+  34% {
+    transform: scaleY(0);
+  }
+}
+@keyframes move-head {
+  18% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(5deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  66% {
+    transform: rotate(-5deg);
+  }
+  76% {
+    transform: rotate(-5deg);
+  }
+}

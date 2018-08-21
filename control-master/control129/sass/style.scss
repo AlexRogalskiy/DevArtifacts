@@ -1,0 +1,308 @@
+$pixel-color: #2C3438;
+
+.pixel {
+  height: 100px;
+  width: 100px;
+  background-color: $pixel-color;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  margin-left: -50px;
+}
+
+.pixel-bouncing {
+  animation-name: bounce;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite; 
+  animation-timing-function: cubic-bezier(0.8, 0.41, 0.28, 0.52);
+  transform-origin: 50% 100%
+}
+
+.pixel--eyes,
+.pixel--eyes:after {
+  background-color: #D8D8D8;
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  width: 20px;
+  height: 30px;
+  border-radius: 50% / 50%;
+}
+
+.pixel--eyes:after {
+  content: "";
+  left: 36px;
+  top: 0;
+}
+
+
+/* The different moods our pixel can have */
+.pixel--mood {
+  height: 10px;
+  width: 20px;
+  background-color: $pixel-color;
+  position: absolute;
+  top: 12px;
+  left: 22px;  
+  z-index: 2;
+  transform-origin: 0 0;
+  transition: all 150ms ease-in-out;  
+}
+
+.pixel--right-brow {
+    left: 58px;
+}
+
+.pixel-angry .pixel--left-brow {
+    transform: scale3d(1.3, 2, 1) rotate(24deg) translate3d(3px, -2px, 0);
+    border-radius: 0;
+}
+
+.pixel-angry .pixel--right-brow {
+    transform: scale3d(1.3, 2, 1) rotate(-24deg) translate3d(-7px, 5px, 0);
+    border-radius: 0;
+}
+
+.pixel-sleepy .pixel--left-brow,
+.pixel-sleepy .pixel--right-brow {
+    border-radius: 50%;
+    transform: scale3d(1, 3.4, 1);
+}
+
+.pixel-in-love .pixel--right-brow,
+.pixel-in-love .pixel--left-brow{
+    border-radius: 50% 0% 0 50%;
+    transform:translate3d(6px, 17px, 0) scale(0.6) rotate(45deg);
+    background-color: red;  
+}
+
+.pixel-in-love .pixel--right-brow:after,
+.pixel-in-love .pixel--left-brow:after{
+    content:  "";
+    position: absolute;
+    background-color: red;
+    height: 10px;
+    width: 20px;
+    transform: rotate(90deg) translate3d(-5px, -5px, 0);
+    border-radius: 50% 0 0 50%;
+}
+
+@keyframes bounce {
+  10% {
+    transform: scale3d(1, 0.9, 1);
+  }
+  
+  40% {
+    transform: scale3d(0.9, 1, 1) translateY(-80px);
+  }  
+  
+  50% {
+    transform: scale3d(0.95, 1, 1) translateY(-100px);
+  }
+
+  56% {
+    transform: scale3d(1, 1, 1) translateY(-100px);
+  }
+
+  85% {
+    transform: scale3d(1, 1, 1) translateY(0);
+  }
+  
+  90% {
+    transform: scale3d(1.1, 0.9, 1) translateY(0);
+  }
+  
+  100% {
+    transform: scale3d(1, 1, 1) translateY(0);
+  }
+}
+
+
+
+/* The "sounds" it makes, zZ, !!! or ??? */
+.pixel--sound {
+  position: absolute;
+  right: 10px;
+  top: -20px;
+}
+
+.pixel-angry:not(.pixel-in-love):not(.pixel-sleepy) {
+  .pixel--sound {
+    animation-name: angry;
+    animation-duration: 1s;
+    animation-iteration-count: infinite; 
+    animation-timing-function: ease-in-out;
+    transform: translate3d(0,0,0);
+  }
+  .pixel--sound:after {
+    content: "!";
+    margin-left: 10px;
+    position: absolute;
+    transform: rotate(10deg);
+  }
+  .pixel--sound:before {
+    content: "!";
+    margin-left: -15px;
+    position: absolute;
+    transform: rotate(-10deg);
+  }
+}
+
+.pixel-sleepy,
+.pixel-in-love {
+ .pixel--sound {
+    animation-name: sleepy;
+    animation-duration: 3.5s;
+    animation-iteration-count: infinite; 
+    animation-timing-function: cubic-bezier(0.13, 0.21, 0.74, 0.88);
+  } 
+  .pixel--sound:after {
+    content: "Z";
+  }
+}
+
+.pixel-in-love .pixel--sound:after {
+  content: "♥";
+}
+
+@keyframes sleepy {
+  10% {
+    transform: translate3d(25px, -25px, 0) 
+               scale(1.2);
+  }
+  30% {
+    transform: translate3d(10px, -40px, 0) 
+               scale(1.6);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate3d(25px, -50px, 0) 
+               scale(2);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes angry {
+  0% {
+    transform: translate3d(-34px, 0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translate3d(-34px, -10px, 0) scale(1.4);   
+  }
+  100% {
+    transform: translate3d(-34px, -10px, 0) scale(1.4);
+  }  
+}
+
+
+/* None pixel related stuff from here */
+body {
+  background-color: #f5f8fc;
+  margin: 30px;
+}
+
+p {
+  color: #808080;
+}
+
+.l-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.l-half {
+  padding: 2rem;
+  box-sizing: border-box;
+  min-height: 200px;
+  position: relative;
+  flex: 1 0 250px;
+  @media screen and (min-width: 600px) {
+    width: 50%;
+    float: left;
+    flex: 1;
+  }
+}
+
+
+/* Custom checkbox - https://codepen.io/rolchau/pen/rlAtq
+*/
+$brand: #295568;
+$grey-25: #e6e6e6;
+$grey-5: #fcfcfc;
+
+.form-container {
+  padding: 1rem;
+  background-color: $grey-5;
+  border: 1px solid $grey-25;
+  margin: 0 auto;
+  max-width: 250px;
+  @media screen and (min-width: 600px) {
+    margin: 0;
+  }
+}
+
+.promoted-input-checkbox {
+  border: 0; 
+  clip: rect(0 0 0 0); 
+  height: 1px; margin: -1px; 
+  overflow: hidden; 
+  padding: 0; 
+  position: absolute; 
+  width: 1px;
+}
+
+.promoted-checkbox {
+  input:checked + label > svg {
+    height: 24px;
+    animation: draw-checkbox ease-in-out 0.2s forwards;
+  }
+  
+  label:active::after {
+    background-color: $grey-25;
+  }
+  
+  label {
+    color: $brand;
+    line-height: 40px;
+    cursor: pointer;
+    position: relative;
+    margin-left: 48px;
+    &:after {
+      content: "";
+      height: 40px;
+      width: 40px;
+      margin-right: 1rem;
+      border: 2px solid $brand;
+      border-radius: 3px;
+      transition: 0.15s all ease-out;      
+      position: absolute;
+      left: -48px;
+      box-sizing: border-box;
+    }
+  }
+  svg {
+    stroke: $brand;
+    height: 0; //Firefox fix
+    width: 24px;
+    position: absolute;
+    left: -38px;
+    top: -4px;
+    stroke-dasharray: 33; //Firefox fix
+    stroke-width: 2px;
+  }
+}
+
+@keyframes draw-checkbox {
+  0% {
+    stroke-dashoffset: 33;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

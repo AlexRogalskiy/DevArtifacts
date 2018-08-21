@@ -1,0 +1,177 @@
+.scene-wrapper {
+  width: 90%;
+  max-width: 1024px;
+  height: 90%;
+  max-height: 768px;
+  margin: 1rem auto;
+  overflow: hidden;
+  position: relative;
+  border: 10px solid #39475D;
+  background-color: #8ACBF9;
+  background-image: linear-gradient(to top, #92D3FF 50%, white);
+}
+
+.water__wave-front, .water__wave-back {
+  width: 200%;
+  background-size: 100% 100%;
+  animation: move-water;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  position: absolute;
+  left: 0;
+  top: 49%;
+  fill: #5682A0;
+  opacity: 0.9;
+  height: 489px;
+}
+.water__wave-back {
+  animation-delay: 200ms;
+  animation-direction: reverse;
+  animation-duration: 10s;
+  fill: #354B6D;
+  top: 48%;
+  opacity: 1;
+}
+.water__wave-front--fill {
+  background-image: linear-gradient(to top, #365165, #537C9B);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 32%;
+}
+
+.seagull {
+  width: 30%;
+  height: 250px;
+  position: absolute;
+  top: 50%;
+  margin-top: -170px;
+  animation-name: move-seagull;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+#mouth {
+  animation-name: talk;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+#left-iris {
+  animation-name: eye-roll--left;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0, 0, 0.31, 1);
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+#right-iris {
+  animation-name: eye-roll--right;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0, 0, 0.31, 1);
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+@keyframes move-water {
+  50% {
+    transform: translateX(-25%) translateY(1%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes move-seagull {
+  0% {
+    transform: translateX(-100%);
+  }
+  33% {
+    transform: translateX(35%) rotateZ(10deg);
+  }
+  66% {
+    transform: translateX(200%) rotateZ(-10deg);
+  }
+  100% {
+    transform: translateX(400%) rotateZ(0);
+  }
+}
+@keyframes eye-roll--left {
+  50% {
+    transform: rotate(90deg) translateY(-3px) rotate(-90deg);
+  }
+}
+@keyframes eye-roll--right {
+  50% {
+    transform: rotate(-180deg) translateY(-2px) rotate(180deg);
+  }
+}
+@keyframes talk {
+  5% {
+    transform: translateY(5px);
+  }
+  25% {
+    transform: translateY(0px);
+  }
+  40% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  70% {
+    transform: translateY(6px);
+  }
+  80% {
+    transform: translateY(4px);
+  }
+  90% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+/* Misc from here on out - not important to example */
+*, *:before *:after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #597179;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: Arial;
+  overflow: hidden;
+}
+
+h1,
+h2 {
+  font-size: 28px;
+  text-align: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+}
+
+h2 {
+  font-size: 20px;
+  top: 6rem;
+}
+
+.hidden {
+  display: none;
+}
