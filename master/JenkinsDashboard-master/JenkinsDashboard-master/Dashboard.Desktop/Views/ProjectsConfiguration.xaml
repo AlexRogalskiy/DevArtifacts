@@ -1,0 +1,46 @@
+﻿<UserControl x:Name="windowProjectConfiguration" x:Class="Dashboard.Desktop.Views.ProjectsConfiguration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:Dashboard.Desktop.Views"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        xmlns:prism="http://prismlibrary.com/" 
+        mc:Ignorable="d" MinHeight="500" MinWidth="600">
+    <!--Title="Configure Projects" ResizeMode="CanResizeWithGrip"  ShowInTaskbar="False"   prism:ViewModelLocator.AutoWireViewModel="True"-->
+    <Grid>
+        <GroupBox x:Name="groupBoxServers" Header="Servers" HorizontalAlignment="Left" Margin="10,10,0,45"  VerticalAlignment="Stretch" Width="221" >
+            <Grid>
+                <ListBox x:Name="listView" Margin="10,10,10,45" VerticalAlignment="Stretch" ItemsSource="{Binding MainWindowModel.Servers, diag:PresentationTraceSources.TraceLevel=High}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding FriendlyName}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding ServerInfo.JenkinsServer}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <DockPanel  HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                    <Button x:Name="btnRemove" DockPanel.Dock="Right" Content="-" HorizontalAlignment="Right" Margin="10,10,10,10" VerticalAlignment="Top" Width="20"/>
+                    <Button x:Name="btnAdd" DockPanel.Dock="Right" Content="+" HorizontalAlignment="Right" Margin="10,10,10,10" VerticalAlignment="Top" Width="20" Click="btnAdd_Click" />
+                </DockPanel>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="groupBoxJobs" Header="Jobs" Margin="236,10,10,45"  VerticalAlignment="Stretch">
+            <Grid>
+                <xctk:CheckListBox x:Name="listViewJobs" 
+                                   Margin="10,10,10,10" 
+                                   ItemsSource="{Binding}" 
+                                   VerticalAlignment="Stretch"
+                                   DisplayMemberPath="name"/>
+            </Grid>
+        </GroupBox>
+        <DockPanel  HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+            <Button x:Name="btnCancel" DockPanel.Dock="Right" IsCancel="True" Width ="75" Content="Cancel" Margin="10,10,10,10" HorizontalAlignment="Right"/>
+            <Button x:Name="btnSave" DockPanel.Dock="Right" IsDefault="True" Width="75" Content="Save" Margin="10,10,10,10" HorizontalAlignment="Right"/>
+        </DockPanel>
+    </Grid>
+</UserControl>

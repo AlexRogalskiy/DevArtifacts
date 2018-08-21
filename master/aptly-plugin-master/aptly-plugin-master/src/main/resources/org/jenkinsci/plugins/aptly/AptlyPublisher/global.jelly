@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <!-- nothing to configure -->
+  <script type="text/javascript">
+    function onGpGPassphraseTypeChange (name)
+        {
+            console.log(">>>>>>>>>>>. called");
+            document.getElementById('gpgpassphrase').disabled = (name != "passphrase");
+            document.getElementById('gpgpassphrasefile').disabled = (name != "passphrasefile"); 
+        }
+  </script>
+  
+  <f:section title="Aptly repository hosts">
+    <f:entry title="Aptly sites" description="Aptly sites that projects will want to connect">
+      <f:repeatable var="site" items="${descriptor.sites}">
+        <table width="100%">
+          <f:entry title="Aptly Site Name" field="sitename">
+            <f:textbox name="aptly.profileName" value="${site.profileName}"/>
+          </f:entry>
+          <f:entry title="URL" field="url">
+            <f:textbox name="aptly.url" value="${site.url}"/>
+          </f:entry>
+          <f:entry title="Enable self signed SSL cert" field="enableselfsigned">
+              <f:checkbox name="aptly.enableSelfSigned" checked="${site.enableSelfSigned}"/>
+          </f:entry>
+          <f:entry title="TimeOut" field="timeout">
+            <f:textbox name="aptly.timeOut" value="${site.timeOut}" default="1"/>
+          </f:entry>
+          <f:entry title="User Name" field="username">
+            <f:textbox name="aptly.username" value="${site.username}"/>
+          </f:entry>
+          <f:entry title="Password">
+            <input class="setting-input" name="aptly.password" type="password" value="${site.password}"/>
+          </f:entry>
+          <f:validateButton
+           title="${%Test Connection}" progress="${%Testing...}"
+            method="loginCheck" with="aptly.profileName,aptly.url,aptly.enableSelfSigned,aptly.timeOut,aptly.username,aptly.password" />
+          
+            <f:block>
+                <table>
+                    <f:optionalBlock name="gpgenabled" title="Enable GPG repository signing"  
+                                     checked="${site.gpgEnabled}" field="gpgenabled" inline="true">
+                        <f:entry title="Key name" field="gpgkeyname">
+                            <f:textbox name="aptly.gpgKeyname" value="${site.gpgKeyname}"/>
+                        </f:entry>            
+                        <f:entry title="Keyring" field="gpgkeyring">
+                            <f:textbox name="aptly.gpgKeyring" value="${site.gpgKeyring}"/>
+                        </f:entry>
+                        <f:entry title="Secret keyring" field="gpgsecretkeyring">
+                            <f:textbox name="aptly.gpgSecretKeyring" value="${site.gpgSecretKeyring}"/>
+                        </f:entry>
+                        <f:entry  title="Key passphrase source" field="gpgPassphraseType">
+                            <select name="aptly.gpgPassphraseType" field="keypwtype" 
+                                    onChange="onGpGPassphraseTypeChange(this.value);" 
+                                    onComplete="onGpGPassphraseTypeChange(this.value);">
+                                <option value="passphrase" 
+                                        selected="${site.gpgPassphraseType.equals('passphrase')? 'true':null}">
+                                    Passphrase
+                                </option>
+                                <option value="passphrasefile"
+                                        selected="${site.gpgPassphraseType.equals('passphrasefile')? 'true':null}">
+                                    Passphrase file
+                                </option>
+                            </select>
+                        </f:entry>
+                        <f:entry title="PGP Passphrase" field="gpgpassphrase">
+                              <input class="setting-input" name="aptly.gpgPassphrase" id="gpgpassphrase"
+                                     type="password" value="${site.gpgPassphrase}"
+                                     disabled="${site.gpgPassphraseType.equals('passphrasefile')? 'true':null}"/>
+                        </f:entry>
+                        <f:entry title="Passphrase file" field="gpgpassphrasefile">
+                            <f:textbox name="gpgpassphrasefile" id="gpgpassphrasefile"
+                                       value="${site.gpgPassphraseFile}"
+                                       disabled="${site.gpgPassphraseType.equals('passphrase')? 'true':null}"/>
+                        </f:entry>
+                    </f:optionalBlock>
+                </table>
+            </f:block>
+          
+          <f:entry title="">
+            <div align="right">
+              <f:repeatableDeleteButton/>
+            </div>
+          </f:entry>
+        </table>
+      </f:repeatable>
+    </f:entry>
+  </f:section>
+</j:jelly>

@@ -1,0 +1,28 @@
+﻿<Window x:Name="windowServerConfig" x:Class="Dashboard.Desktop.Views.ServerConfiguration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dashboard.Desktop.Views"
+        mc:Ignorable="d"
+        Title="Server Configuration" ResizeMode="NoResize" ShowInTaskbar="False" Icon="/Jenkins.Dashboard.Desktop;component/Assets/Server.png" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" Loaded="windowServerConfig_Loaded" Height="248.274" Width="391.667">
+    <Grid >
+        <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Friendly Name:" VerticalAlignment="Top" Width="100" Margin="9,9,0,0"/>
+        <TextBox x:Name="txtFriendlyName" Text="{Binding FriendlyName}" HorizontalAlignment="Left" Margin="114,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="261"/>
+        <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Server Address:" VerticalAlignment="Top" Width="100" Margin="9,37,0,0"/>
+        <TextBox x:Name="txtServerAddress" Text="{Binding ServerInfo.JenkinsServer}" HorizontalAlignment="Left" Margin="114,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="261"/>
+        <CheckBox x:Name="chkRequiresAuth" IsChecked="{Binding ServerInfo.RequiresAuthentication}" Content="Requires Authentication" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+        <GroupBox x:Name="groupBox" Header="User Credentials" IsEnabled="{Binding ElementName=chkRequiresAuth, Path=IsChecked}" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Height="99" Width="366">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="User Name" VerticalAlignment="Top" Width="86" Margin="10,10,0,0" />
+                <TextBox x:Name="txtUserName" Text="{Binding ServerInfo.UserName}" HorizontalAlignment="Left" Margin="101,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="246"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="API Token" VerticalAlignment="Top" Width="86" Margin="10,37,0,0"/>
+                <TextBox x:Name="txtApiToken" Text="{Binding ServerInfo.ApiToken}" HorizontalAlignment="Left" Margin="101,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="246"/>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="301,189,0,0" VerticalAlignment="Top" Width="75" IsCancel="True"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="221,189,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="btnSave_Click"/>
+   
+
+    </Grid>
+</Window>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <f:entry title="Skip publishing (e.g. temporarily)" field="skipPublish">
+    <f:checkbox name="publisher.skip" checked="${instance.skip}"/>
+  </f:entry>
+  <f:entry title="Aptly site" field="repoSiteName">
+    <select class="setting-input" name="aptly.repoSiteName" description="Select configured Aptly host.Check global hudson config for defining connection properties for this hosts">
+      <j:forEach var="s" items="${descriptor.sites}">
+        <f:option selected="${s.displayName==instance.repoSiteName}">${s.displayName}</f:option>
+      </j:forEach>
+    </select>
+  </f:entry>
+  <f:entry title="Files to publish">
+    <f:repeatable name="publisher.packageItems" minimum="1" var="e" items="${instance.packageItems}">
+      <table width="100%">
+        <f:entry title="Repository" field="repositoryName">
+          <input class="setting-input" name="aptly.entry.repositoryName" type="text" value="${e.repositoryName}"/>
+        </f:entry>
+        <f:entry title="Distribution" field="distributionName">
+          <input class="setting-input" name="aptly.entry.distributionName" type="text" value="${e.distributionName}"/>
+        </f:entry>
+        <f:entry title="Prefix" field="prefixName">
+          <input class="setting-input" name="aptly.entry.prefixName" type="text" value="${e.prefixName}"/>
+        </f:entry>
+        <f:entry title="Sources" field="sourceFiles">
+          <input class="setting-input" name="aptly.entry.sourceFiles" type="text" value="${e.sourceFiles}"/>
+        </f:entry>
+        <f:entry title="">
+          <div align="right">
+            <f:repeatableDeleteButton/>
+          </div>
+        </f:entry>
+      </table>
+    </f:repeatable>
+  </f:entry>
+</j:jelly>
