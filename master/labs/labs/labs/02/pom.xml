@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.luxoft.training</groupId>
+    <artifactId>maven</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Maven course</name>
+
+    <dependencies>
+        <!--TODO 01: Add JUnit dependency (latest 3 version)-->
+        <!--TODO 02: Run tests-->
+        <!--TODO 03: Add commons-cli 1.0-->
+        <!--TODO 04: Upgrade commons-lang version to 2.5 by explicit declaration to pass the build-->
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.0-beta-1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-banned-dependencies</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <exclude>commons-lang:commons-lang</exclude>
+                                    </excludes>
+                                    <includes>
+                                        <include>commons-lang:commons-lang:2.5</include>
+                                    </includes>
+                                </bannedDependencies>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
