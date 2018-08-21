@@ -1,0 +1,156 @@
+:spring_boot_version: 2.0.1.RELEASE
+:RestTemplate: http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html
+:HttpMessageConverter: http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/http/converter/HttpMessageConverter.html
+:toc:
+:icons: font
+:source-highlighter: prettify
+:project_id: gs-consuming-rest
+
+This guide walks you through the process of creating an application that consumes a RESTful web service.
+
+== What you'll build
+
+You'll build an application that uses Spring's `RestTemplate` to retrieve a random Spring Boot quotation at http://gturnquist-quoters.cfapps.io/api/random.
+
+== What you'll need
+
+:java_version: 1.8
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-gradle.adoc[]
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-maven.adoc[]
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-sts.adoc[]
+
+
+[[initial]]
+== Fetch a REST resource
+
+With project setup complete, you can create a simple application that consumes a RESTful service.
+
+A RESTful service has been stood up at http://gturnquist-quoters.cfapps.io/api/random. It randomly fetches quotes about Spring Boot and returns them as a JSON document.
+
+If you request that URL through your web browser or curl, you'll receive a JSON document that looks something like this:
+
+[source,javascript]
+----
+{
+   type: "success",
+   value: {
+      id: 10,
+      quote: "Really loving Spring Boot, makes stand alone Spring apps easy."
+   }
+}
+----
+
+Easy enough, but not terribly useful when fetched through a browser or through curl.
+
+A more useful way to consume a REST web service is programmatically. To help you with that task, Spring provides a convenient template class called {RestTemplate}[`RestTemplate`]. `RestTemplate` makes interacting with most RESTful services a one-line incantation. And it can even bind that data to custom domain types.
+
+First, create a domain class to contain the data that you need.
+
+`src/main/java/hello/Quote.java`
+[source,java]
+----
+include::complete/src/main/java/hello/Quote.java[]
+----
+
+As you can see, this is a simple Java class with a handful of properties and matching getter methods. It's annotated with `@JsonIgnoreProperties` from the Jackson JSON processing library to indicate that any properties not bound in this type should be ignored.
+
+In order for you to directly bind your data to your custom types, you need to specify the variable name exact same as the key in the JSON Document returned from the API. In case your variable name and key in JSON doc are not matching, you need to use `@JsonProperty` annotation to specify the exact key of JSON document.
+
+An additional class is needed to embed the inner quotation itself.
+
+`src/main/java/hello/Value.java`
+[source,java]
+----
+include::complete/src/main/java/hello/Value.java[]
+----
+
+This uses the same annotations but simply maps onto other data fields.
+
+== Make the application executable
+
+Although it is possible to package this service as a traditional link:/understanding/WAR[WAR] file for deployment to an external application server, the simpler approach demonstrated below creates a standalone application. You package everything in a single, executable JAR file, driven by a good old Java `main()` method. Along the way, you use Spring's support for embedding the link:/understanding/Tomcat[Tomcat] servlet container as the HTTP runtime, instead of deploying to an external instance.
+
+Now you can write the `Application` class that uses `RestTemplate` to fetch the data from our Spring Boot quotation service.
+
+`src/main/java/hello/Application.java`
+[source,java,indent=0]
+----
+package hello;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.client.RestTemplate;
+
+public class Application {
+
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
+
+    public static void main(String args[]) {
+        RestTemplate restTemplate = new RestTemplate();
+        Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
+        log.info(quote.toString());
+    }
+
+}
+----
+
+Because the Jackson JSON processing library is in the classpath, `RestTemplate` will use it (via a {HttpMessageConverter}[message converter]) to convert the incoming JSON data into a `Quote` object. From there, the contents of the `Quote` object will be logged to the console.
+
+Here you've only used `RestTemplate` to make an HTTP `GET` request. But `RestTemplate` also supports other HTTP verbs such as `POST`, `PUT`, and `DELETE`.
+
+== Managing the Application Lifecycle with Spring Boot
+
+So far we haven't used Spring Boot in our application, but there are some advantages in doing so, and it isn't hard to do. One of the advantages is that we might want to let Spring Boot manage the message converters in the `RestTemplate`, so that customizations are easy to add declaratively. To do that we use `@SpringBootApplication` on the main class and convert the main method to start it up, like in any Spring Boot application. Finally we move the `RestTemplate` to a `CommandLineRunner` callback so it is executed by Spring Boot on startup:
+
+`src/main/java/hello/Application.java`
+[source,java]
+----
+include::complete/src/main/java/hello/Application.java[]
+----
+
+The `RestTemplateBuilder` is injected by Spring, and if you use it to create a `RestTemplate` then you will benefit from all the autoconfiguration that happens in Spring Boot with message converters and request factories. We also extract the `RestTemplate` into a `@Bean` to make it easier to test (it can be mocked more easily that way).
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_an_executable_jar_subhead.adoc[]
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_an_executable_jar_with_both.adoc[]
+
+
+You should see output like the following, with a random quote:
+
+....
+2015-09-23 14:22:26.415  INFO 23613 --- [main] hello.Application  : Quote{type='success', value=Value{id=12, quote='@springboot with @springframework is pure productivity! Who said in #java one has to write double the code than in other langs? #newFavLib'}}
+....
+
+NOTE: If you see the error `Could not extract response: no suitable HttpMessageConverter found for response type [class hello.Quote]` it's possible you are in an environment that cannot connect to the backend service (which sends JSON if you can reach it). Maybe you are behind a corporate proxy? Try setting the standard system properties `http.proxyHost` and `http.proxyPort` to values appropriate for your environment.
+
+== Summary
+Congratulations! You have just developed a simple REST client using Spring.
+
+== See Also
+
+The following guides may also be helpful:
+
+* https://spring.io/guides/gs/rest-service/[Building a RESTful Web Service]
+* https://spring.io/guides/gs/consuming-rest-angularjs/[Consuming a RESTful Web Service with AngularJS]
+* https://spring.io/guides/gs/consuming-rest-jquery/[Consuming a RESTful Web Service with jQuery]
+* https://spring.io/guides/gs/consuming-rest-restjs/[Consuming a RESTful Web Service with rest.js]
+* https://spring.io/guides/gs/accessing-gemfire-data-rest/[Accessing GemFire Data with REST]
+* https://spring.io/guides/gs/accessing-mongodb-data-rest/[Accessing MongoDB Data with REST]
+* https://spring.io/guides/gs/accessing-data-mysql/[Accessing data with MySQL]
+* https://spring.io/guides/gs/accessing-data-rest/[Accessing JPA Data with REST]
+* https://spring.io/guides/gs/accessing-neo4j-data-rest/[Accessing Neo4j Data with REST]
+* https://spring.io/guides/gs/securing-web/[Securing a Web Application]
+* https://spring.io/guides/gs/spring-boot/[Building an Application with Spring Boot]
+* https://spring.io/guides/gs/testing-restdocs/[Creating API Documentation with Restdocs]
+* https://spring.io/guides/gs/rest-service-cors/[Enabling Cross Origin Requests for a RESTful Web Service]
+* https://spring.io/guides/gs/rest-hateoas/[Building a Hypermedia-Driven RESTful Web Service]
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
