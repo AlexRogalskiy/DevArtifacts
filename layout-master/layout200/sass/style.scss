@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -moz-tap-highlight-color: rgba(0,0,0,0);
+  tap-highlight-color: rgba(0,0,0,0);
+}
+
+@for $i from 1 through 20 {
+  ul li:nth-child(#{$i}) {
+    color: rgba($i*60, $i*60, $i*80, .8);
+    background: rgba(blue, $i/30);
+  } 
+}
+
+ul {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; 
+  width: 90%;
+  max-width: 300px;
+  height: 90%;
+  overflow: auto;
+  margin: auto;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(black, .16), 0 3px 6px rgba(black, .23);
+  
+  li {
+    width: 100%;
+    height: 80px;
+    font: 300 12px/80px Arial, sans-serif;
+    color: rgba(white, .5);
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    &.is-selected {
+      background: #fbfbfb;
+      color: rgba(blue, .5);
+    }
+  }
+}

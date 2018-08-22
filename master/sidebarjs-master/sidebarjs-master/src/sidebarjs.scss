@@ -1,0 +1,143 @@
+$timing: ease;
+$duration: .3s;
+$width: 300px;
+
+@mixin shadow($position) {
+  $x: 0;
+  @if ($position == 'left') {
+    $x: 2px;
+  } @else if ($position == 'right') {
+    $x: -2px;
+  }
+  box-shadow: $x 0 4px rgba(0, 0, 0, 0.2);
+}
+
+%component--full-screen {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin component--is-visible($important: null) {
+  transform: translate(0, 0) $important;
+  transition: transform 0s $timing 0s;
+  [sidebarjs-container] {
+    transform: translate(0, 0) $important;
+  }
+}
+
+%component--left {
+  transform: translate(-100%, 0);
+}
+
+%component--right {
+  transform: translate(100%, 0);
+}
+
+[sidebarjs].sidebarjs--left {
+  @extend %component--left;
+  [sidebarjs-container] {
+    @extend %component--left;
+    @include shadow('left');
+  }
+}
+
+[sidebarjs].sidebarjs--right {
+  @extend %component--right;
+  [sidebarjs-container] {
+    @extend %component--right;
+    @include shadow('right');
+    margin-left: auto;
+  }
+}
+
+[sidebarjs-backdrop] {
+  @extend %component--full-screen;
+  position: absolute;
+  background: #000;
+  opacity: 0;
+  transition: opacity $duration $timing;
+  will-change: opacity;
+}
+
+[sidebarjs-container] {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: $width;
+  height: 100%;
+  background: #fff;
+  transition: transform $timing $duration;
+  will-change: transform;
+}
+
+[sidebarjs] {
+  @extend %component--full-screen;
+  position: fixed;
+  z-index: 9999;
+  transition: transform 0s $timing $duration;
+
+  &.sidebarjs--is-visible {
+    @include component--is-visible;
+  }
+
+  &.sidebarjs--is-moving {
+    transition: none;
+    transform: translate(0, 0);
+    [sidebarjs-container], [sidebarjs-backdrop] {
+      transition: none;
+    }
+  }
+}
+
+[sidebarjs-content] {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  transition: width $duration $timing;
+  &.sidebarjs-content--left {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  &.sidebarjs-content--right {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1025px) {
+  [sidebarjs].sidebarjs--responsive {
+    @include component--is-visible(!important);
+    width: $width;
+    &.sidebarjs--left {
+      left: 0;
+      right: auto;
+      [sidebarjs-container] {
+        box-shadow: 1px 0 0 rgba(black, .1);
+      }
+    }
+    &.sidebarjs--right {
+      right: 0;
+      left: auto;
+      [sidebarjs-container] {
+        box-shadow: -1px 0 0 rgba(black, .1);
+      }
+    }
+    [sidebarjs-container] {
+      max-width: none;
+      width: 100%;
+      box-shadow: none;
+    }
+  }
+
+  [sidebarjs-content] {
+    width: calc(100% - #{$width});
+    &.sidebarjs-content--left.sidebarjs-content--right {
+      width: calc(100% - #{$width*2});
+      margin: 0 auto;
+    }
+  }
+}

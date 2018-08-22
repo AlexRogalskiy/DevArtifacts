@@ -1,0 +1,92 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import "compass/reset";
+@import "compass/css3";
+
+@function get($map, $keys...) {
+  @each $key in $keys {
+		$map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+$input: (
+  'size': 18px,
+  'margin-right': 10px,
+  'color': (
+    'checked': #1565C0,
+    'unchecked': #E0E0E0
+  )
+);
+
+$ripple: (
+  'position': 10px,
+  'size': get($input, 'size') * 3,
+  'color': rgba(white, .3)
+);
+
+@include keyframes(ripple) {
+  5%, 100% { opacity: 0; }
+  5% { opacity: 1; }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  color: #FFF;
+  background: get($input, 'color', checked);
+}
+
+body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: "Roboto", sans-serif;
+  @include transform(translate(-50%, -50%)); 
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  position: relative;
+  cursor: pointer;
+  margin: 30px;
+  padding-left: (get($input, 'size') + get($input, 'margin-right'));
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    @include transition(all .3s ease);
+  }
+  &:before {
+    top: 0;
+    left: 0;
+    width: get($input, 'size');
+    height: get($input, 'size');
+    background: get($input, 'color', 'checked');
+    @include box-shadow(inset 0 0 0 get($input, 'size') get($input, 'color', 'unchecked')); 
+  }
+  &:after {
+    top: 49%;
+    left: get($ripple, 'position') - 1px;
+    width: get($ripple, 'size');
+    height: get($ripple, 'size');
+    opacity: 0;
+    background: get($ripple, 'color');
+    @include transform(translate(-50%, -50%) scale(0));
+  }
+}
+
+input[type="radio"]:checked + label {
+  &:before {
+    @include box-shadow(inset 0 0 0 4px get($input, 'color', 'unchecked')); 
+  }
+  &:after {
+    @include transform(translate(-50%, -50%) scale(1));
+    @include animation(ripple 1s none);
+  }
+}

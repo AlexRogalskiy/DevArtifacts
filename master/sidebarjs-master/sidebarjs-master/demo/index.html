@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Lorenzo D'Ianni">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>SidebarJS - Demo</title>
+    <link rel="stylesheet" href="./demo.css">
+
+    <!-- SidebarJS Styles -->
+    <link rel="stylesheet" href="../dist/sidebarjs.css">
+  </head>
+  <body>
+    <div sidebarjs>
+      <h3>SidebarJS</h3>
+      <nav>
+        <div>
+          <a href="https://github.com/SidebarJS/sidebarjs"><div class="img github"></div>Github</a>
+          <a href="https://www.npmjs.com/package/sidebarjs"><div class="img npm"></div>npm</a>
+          <a href="https://github.com/lorenzodianni"><div class="img author"></div>Author</a>
+        </div>
+        <div>
+          <a href="https://github.com/SidebarJS/sidebarjs/wiki/Setup"><div class="img wiki"></div>Wiki</a>
+          <a href="https://github.com/SidebarJS/sidebarjs/issues"><div class="img bugs"></div>Bugs</a>
+        </div>
+      </nav>
+    </div>
+
+    <main>
+      <header>
+        <div class="icon hamburger-icon" sidebarjs-toggle></div>
+        <h1>SidebarJS</h1>
+      </header>
+
+      <a target="_blank" id="selected">
+        <div class="img"></div>
+        <div class="label"></div>
+      </a>
+
+      <section>
+        <h2>Position</h2>
+        <input type="radio" id="position-left" name="position" value="left" checked>
+        <label for="position-left">Left</label>
+        <input type="radio" id="position-right" name="position" value="right">
+        <label for="position-right">Right</label>
+      </section>
+    </main>
+
+    <!-- SidebarJS Scripts -->
+    <script src="../dist/sidebarjs.js"></script>
+
+    <script type="text/javascript">
+      // SidebarJS Init
+      var sidebarjs = new SidebarJS.SidebarElement({responsive: true, mainContent: document.querySelector('main')});
+    </script>
+
+    <!-- –––––––––––––––––
+     ONLY FOR THIS DEMO
+    –––––––––––––––––– -->
+    <script type="text/javascript">
+    var selectedLink = document.querySelector('#selected');
+    var selectedImg = document.querySelector('#selected .img');
+    var selectedLabel = document.querySelector('#selected .label');
+    var links = document.querySelectorAll('nav a');
+    var options = document.querySelectorAll('input[name="position"]');
+
+    for(var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', elementSelected)
+    }
+
+    for (var i = 0; i < options.length; i++) {
+      options[i].addEventListener('change', changeSidebarPosition);
+    }
+
+    function elementSelected(e) {
+      e.preventDefault();
+      selectedLink.setAttribute('href', this.href);
+      selectedImg.className = 'img ' + this.text.toLowerCase();
+      selectedLabel.innerText = this.text;
+      sidebarjs.close();
+    }
+
+    function getSelectedPosition() {
+      var options = document.querySelectorAll('input[name="position"]');
+      var selectedPosition;
+      for (var i = 0; i < options.length; i++) {
+        if (options[i].checked) {
+          selectedPosition = options[i].value;
+          break;
+        }
+      }
+      return selectedPosition;
+    }
+
+    function changeSidebarPosition() {
+      sidebarjs.setPosition(getSelectedPosition());
+    }
+    </script>
+
+  </body>
+</html>

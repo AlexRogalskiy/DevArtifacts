@@ -1,0 +1,249 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+
+@import 'compass/reset';
+@import 'compass/css3';
+
+%display-flex {
+  @include flexbox((
+    display: flex
+  ), 1 2 3);
+
+  @include flexbox((
+    display: flex
+  ), 3);
+};
+
+%flex-direction {
+  &--column {
+    @include flexbox((
+      flex-direction: column
+    ), 1 2 3);
+
+    @include flexbox((
+      flex-direction: column
+    ), 3);
+  }
+};
+
+%justify-content {
+  &--center {
+    @include flexbox((
+      justify-content: center
+    ), 1 2 3);
+
+    @include flexbox((
+      justify-content: center
+    ), 3);
+  }
+
+  &--space-between {
+    @include flexbox((
+      justify-content: space-between
+    ), 1 2 3);
+
+    @include flexbox((
+      justify-content: space-between
+    ), 3);
+  }
+};
+
+%align-items {
+  &--center {
+    @include flexbox((
+      align-items: center
+    ), 1 2 3);
+
+    @include flexbox((
+      align-items: center
+    ), 3);
+  }
+};
+
+@mixin clip-path($clip) {
+  -webkit-clip-path: $clip;
+  -moz-clip-path: $clip;
+  -ms-clip-path: $clip;
+  clip-path: $clip;
+}
+
+@include keyframes(show-page) {
+  0% { opacity: 0; @include clip-path(circle(0px at 50% 100%)); }
+  30% { opacity: 1; }
+  100% { @include clip-path(circle(100% at 50% 50%)); }
+}
+
+$primary-color-dark:   #1976D2;
+$primary-color:        #2196F3;
+$primary-color-text:   #FFFFFF;
+$accent-color-one:     #7C4DFF;
+$accent-color-two:     #F44336;
+$accent-color-three:   #E040FB;
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -moz-tap-highlight-color: rgba(0,0,0,0);
+  tap-highlight-color: rgba(0,0,0,0);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  @extend %display-flex;
+  @extend %justify-content--center;
+  @extend %align-items--center;
+  width: 100%;
+  height: 100%;
+  background-color: #F5F5F5;
+}
+
+.simulate-mobile {
+  app {
+    width: 320px;
+    height: 90%;
+    max-height: 568px;
+  }
+}
+
+app {
+  @extend %display-flex;
+  @extend %flex-direction--column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font: 400 16px/100% 'Roboto', sans-serif;
+  color: $primary-color-text;
+  line-height: 140%;
+  box-shadow: 0 1px 3px rgba(black, .12), 0 1px 2px rgba(black, .24);
+}
+
+svg {
+  width: 24px;
+  height: 24px;
+  fill: $primary-color-text;
+}
+
+a, ul, li {
+  list-style: none;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 20px;
+  color: $primary-color-text;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+h2:only-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 32px;
+  font-weight: 500;
+  @include transform(translate(-50%, -50%));
+}
+
+header, footer {
+  height: 43px;
+  min-height: 43px;
+}
+
+header {
+  @extend %display-flex;
+  @extend %justify-content--center;
+  @extend %align-items--center;
+  position: relative;
+  z-index: 5;
+  background-color: $primary-color;
+  border-top: 4px solid $primary_color_dark;
+  box-shadow: 0 1px 3px rgba(black, .12), 0 1px 2px rgba(black, .24);
+}
+
+main {
+  @extend %display-flex;
+  @extend %flex-direction--column;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background-color: darken($primary-color-dark, 20%);
+}
+
+p {
+  margin-bottom: 12px;
+}
+
+.menu {
+  @extend %display-flex;
+  height: 100%;
+
+  &-link {
+    @extend %display-flex;
+    @extend %justify-content--center;
+    @extend %align-items--center;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    color: $primary-color-text;
+    background-color: $primary-color;
+    cursor: pointer;
+    &:hover {
+      background-color: $primary-color-dark;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+[page] {
+  @extend %display-flex;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  &.active {
+    z-index: 2;
+    @include animation(show-page .8s cubic-bezier(.4,0,.2,1));
+  }
+
+  &.previus {
+    z-index: 1;
+  }
+
+  &:nth-child(1) {
+    background-color: darken($primary-color-dark, 20%);
+  }
+  &:nth-child(2) {
+    background-color: $accent-color-one;
+  }
+  &:nth-child(3) {
+    background-color: $accent-color-two;
+  }
+  &:nth-child(4) {
+    background-color: $accent-color-three;
+  }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  padding: 12px;
+  overflow-y: auto;
+}
