@@ -1,0 +1,85 @@
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  color: #435757;
+  background: -webkit-radial-gradient(#fff, #dac4cd);
+  background: radial-gradient(#fff, #dac4cd);
+  font: 1.4em/1 'Noto Sans', sans-serif;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);  
+}
+
+input {
+  position: absolute;
+  left: -9999px;
+}
+
+label {
+  display: block;
+  position: relative;
+  margin: 20px;
+  padding: 15px 30px 15px 62px;
+  border: 3px solid #fff;
+  border-radius: 100px;
+  color: #fff;
+  background-color: #6a8494;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: background-color .2s, box-shadow .2s;
+  transition: background-color .2s, box-shadow .2s;
+}
+
+label::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  width: 32px;
+  border: 3px solid #fff;
+  border-radius: 100px;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+label:first-of-type {
+  -webkit-transform: translateX(-40px);
+          transform: translateX(-40px);
+}
+
+label:last-of-type {
+  -webkit-transform: translateX(40px);
+          transform: translateX(40px);
+}
+
+label:hover, input:focus + label {
+  box-shadow: 0 0 20px rgba(0, 0, 0, .6);
+}
+
+input:checked + label {
+  background-color: #ab576c;
+}
+
+input:checked + label::before {
+  background-color: #fff;
+}
