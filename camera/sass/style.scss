@@ -1,0 +1,37 @@
+.camera-container{
+  display: inline-flex;
+  flex-direction: column;
+  padding: 1em;
+  background: #212121;
+}
+.camera-buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-container{
+  position: relative;
+  text-align: center;
+}
+
+#capturedImage{
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: shutter 160ms linear
+}
+.hide{
+  display: none;
+}
+
+@keyframes shutter{
+  0%{
+    filter: brightness(100%);
+  }
+  50%{
+    filter: brightness(40%);
+  }
+  100%{
+    filter: brightness(100%);
+  }
+}
