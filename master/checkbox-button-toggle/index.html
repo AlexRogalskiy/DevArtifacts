@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Checkbox Button Toggle</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  
+      <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      /** EXAMPLE
+  <label class="tgl">
+    <input type="checkbox" />
+    <span data-on="1" data-off="0"></span>
+  </label>
+**/
+.tgl {
+  position: relative;
+  outline: 0;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  margin: 0 0 5px 0;
+}
+.tgl,
+.tgl:after,
+.tgl:before,
+.tgl *,
+.tgl *:after,
+.tgl *:before,
+.tgl + .tgl-btn {
+  box-sizing: border-box;
+}
+.tgl::selection,
+.tgl:after::selection,
+.tgl:before::selection,
+.tgl *::selection,
+.tgl *:after::selection,
+.tgl *:before::selection,
+.tgl + .tgl-btn::selection {
+  background: none;
+}
+.tgl span {
+  position: relative;
+  display: block;
+  height: 1.8em;
+  line-height: 1.2em;
+  overflow: hidden;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 2em;
+  padding: 0.2em 1em;
+  border: 1px solid #fafafa;
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 2px 0 rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease, padding 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+.tgl span:before {
+  position: relative;
+  display: block;
+  line-height: 1.3em;
+  padding: 0 0.2em;
+  font-size: 1em;
+}
+.tgl span:after {
+  position: absolute;
+  display: block;
+  content: '';
+  border-radius: 2em;
+  width: 1.3em;
+  height: 1.3em;
+  margin-left: -1.45em;
+  top: 0.2em;
+  background: #FFFFFF;
+  transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 0.97), background 0.3s ease-in-out;
+}
+.tgl input[type="checkbox"] {
+  display: none !important;
+}
+.tgl input[type="checkbox"]:not(:checked) + span {
+  background: #de474e;
+  color: #FFFFFF;
+  padding-left: 1.6em;
+  padding-right: 0.4em;
+}
+.tgl input[type="checkbox"]:not(:checked) + span:before {
+  content: attr(data-off);
+  color: #FFFFFF;
+}
+.tgl input[type="checkbox"]:not(:checked) + span:after {
+  background: #FFFFFF;
+  left: 1.6em;
+}
+.tgl input[type="checkbox"]:checked + span {
+  background: #86d993;
+  color: #FFFFFF;
+  padding-left: 0.4em;
+  padding-right: 1.6em;
+}
+.tgl input[type="checkbox"]:checked + span:before {
+  content: attr(data-on);
+}
+.tgl input[type="checkbox"]:checked + span:after {
+  background: #FFFFFF;
+  left: 100%;
+}
+.tgl input[type="checkbox"]:disabled,
+.tgl input[type="checkbox"]:disabled + span,
+.tgl input[type="checkbox"]:read-only,
+.tgl input[type="checkbox"]:read-only + span {
+  cursor: not-allowed;
+}
+.tgl-gray input[type="checkbox"]:not(:checked) + span {
+  background: #e3e3e3;
+  color: #999999;
+}
+.tgl-gray input[type="checkbox"]:not(:checked) + span:before {
+  color: #999999;
+}
+.tgl-gray input[type="checkbox"]:not(:checked) + span:after {
+  background: #ffffff;
+}
+.tgl-inline {
+  display: inline-block !important;
+  vertical-align: top;
+}
+.tgl-inline.tgl {
+  font-size: 16px;
+}
+.tgl-inline.tgl span {
+  min-width: 50px;
+}
+.tgl-inline.tgl span:before {
+  line-height: 1.4em;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+}
+.tgl-inline-label {
+  display: inline-block !important;
+  vertical-align: top;
+  line-height: 26px;
+}
+body {
+  background: url(http://subtlepatterns.com/patterns/billie_holiday.png);
+  font-family: 'Source Sans Pro', Helvetica Neue, Helvetica, Arial, sans-serifsans !important;
+}
+.simple-toggle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30px;
+  text-align: center;
+  margin: auto;
+}
+.title,
+.subtitle {
+  display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+.title {
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #262626;
+}
+.subtitle {
+  margin-bottom: 20px;
+  opacity: 0.4;
+}
+.code {
+  display: inline-block;
+  color: grey;
+  border-radius: 5px;
+  border: 1px solid #c9c9c9;
+  background-color: #d6d6d6 ;
+  margin: 10px;
+  text-align: left;
+  padding: 10px 10px 0 0;
+  line-height: 0.6em;
+  max-width: 300px;
+}
+.footer {
+  margin-top: 30px;
+  font-size: 14px;
+  opacity: 0.4;
+}
+
+    </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+  <div class="simple-toggle">
+  
+  <h1 class="title" style="color: #696969"> 
+    Responisve Checkbox Toggle
+  </h1>
+  
+  <p style="color: #a2a2a2"><small>Quick and simple checkbox, that's easily customisable - by Darren <a target="_blank" href="https://twitter.com/labithiotis" style="color: #a2a2a2">@Labithiotis</a></small></p>
+  
+  <pre class="code">
+    &lt;label class="tgl"><br/>  
+      &lt;input type="checkbox" checked /><br/>
+      &lt;span>&lt;/span><br/>
+    &lt;/label>
+  </pre>
+  
+  <br/><br/>
+  
+  <label class="tgl tgl-gray" style="font-size:30px">  
+    <input type="checkbox" />
+    <span>&nbsp;&nbsp;</span>
+  </label>
+  &nbsp;
+  <label class="tgl tgl-gray" style="font-size:30px">  
+    <input type="checkbox" checked />
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  </label>
+      
+  <br/><br/>
+  
+  <label class="tgl" style="font-size:30px">  
+    <input type="checkbox" checked />
+    <span data-on="Enabled" data-off="Disabled"></span>
+  </label>
+  
+  <br/><br/>
+  
+  <label class="tgl tgl-gray" style="font-size:40px;">  
+    <input type="checkbox" />
+    <span data-on="1" data-off="0"></span>
+  </label>
+    
+  <br/><br/>  
+    
+  <label class="tgl tgl-gray" style="font-size:60px">  
+    <input type="checkbox" checked/>
+    <span>&nbsp;&nbsp;</span>
+  </label>
+      
+  <br/><br/>
+  
+  <label class="tgl" style="font-size:30px">  
+    <input type="checkbox" />
+    <span>Any Text Here</span>
+  </label>
+        
+  <br/><br/>  
+  
+  <label class="tgl" style="font-size:30px">  
+    <input type="checkbox" disabled/>
+    <span data-on="Enabled" data-off="Disabled"></span>
+  </label>
+  
+  <br/><br/>
+  
+</div>
+  
+  
+</body>
+</html>
