@@ -1,0 +1,163 @@
+@import url(https://fonts.googleapis.com/css?family=Anton);
+
+body {
+  margin: 0;
+  background: #fdbe3d linear-gradient(transparent, rgba(255, 255, 255, .4));
+}
+
+.headline {
+  position: absolute;
+  bottom: 270px;
+  left: calc(50% - 510px);
+  width: 1020px;
+  text-align: center;
+  font: 134px/1 'Anton', sans-serif;
+  color: #75325d;
+  text-shadow: 0 4px 0 #000, 0 0 100px #fff;
+  animation: headline .5s infinite;
+}
+
+.stage {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 510px);
+  width: 1020px;
+}
+
+.space {
+  position: relative;
+  float: left;
+  width: 200px;
+  height: 200px;
+}
+
+.shadow {
+  margin: 0 auto;
+  width: 180px;
+  height: 10px;
+  box-shadow: 0 160px 40px #000;
+  animation: shadow .5s infinite;
+}
+
+.domo {
+  position: absolute;
+  top: 0;
+  width: 160px;
+  height: 160px;
+  margin: 0 20px;
+  background: #754d32 linear-gradient(transparent, rgba(0, 0, 0, .2));
+  border-radius: 20px;
+  border-right: solid 4px #9a6542;
+  border-bottom: solid 4px #9a6542;
+  backface-visibility: hidden;
+  transform: rotate(-10deg);
+  animation: domo 2s infinite;
+}
+
+.left-eye, .right-eye {
+  position: absolute;
+  top: 20px;
+  width: 22px;
+  height: 22px;
+  background-color: #000;
+  border-radius: 50%;  
+}
+
+.left-eye {
+  left: 20px;
+}
+
+.right-eye {
+  right: 20px;
+}
+
+.mouth {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  height: 60px;
+  background: #c83a2e linear-gradient(rgba(0, 0, 0, .2), transparent);
+  border: solid 6px #000;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.top-teeth {
+  position: absolute;
+  top: -15px;
+}
+
+.bottom-teeth {
+  position: absolute;
+  bottom: -15px;
+}
+
+.tooth {
+  float: left;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  border: solid 6px #000;
+  border-radius: 8px;
+  transform: rotate(45deg);
+}
+
+@keyframes headline {
+  0% {
+    animation-timing-function: ease-out;
+    color: #75325d;
+    transform: translateY(0px);
+  }
+  50% {
+    animation-timing-function: ease-in;
+    color: #823868;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shadow {
+  0% {
+    animation-timing-function: ease-out;
+    width: 160px;
+  }
+  50% {
+    animation-timing-function: ease-in;
+    width: 140px;
+  }
+}
+
+@keyframes domo {
+  0% {
+    animation-timing-function: ease-out;
+    transform: rotate(-10deg) translateY(0px);
+  }
+  12.5% {
+    animation-timing-function: ease-in;
+    transform: rotate(-10deg) translateY(-40px);
+  }
+  25% {
+    animation-timing-function: ease-out;
+    transform: rotate(-10deg) translateY(0px);
+  }
+  37.5% {
+    animation-timing-function: ease-in;
+    transform: rotate(0deg) translateY(-40px);
+  }
+  50% {
+    animation-timing-function: ease-out;
+    transform: rotate(10deg) translateY(0px);
+  }
+  62.5% {
+    animation-timing-function: ease-in;
+    transform: rotate(10deg) translateY(-40px);
+  }
+  75% {
+    animation-timing-function: ease-out;
+    transform: rotate(10deg) translateY(0px);
+  }
+  87.5% {
+    animation-timing-function: ease-in;
+    transform: rotate(0deg) translateY(-40px);
+  }
+}

@@ -1,0 +1,107 @@
+$thumb-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/77020/slider.png);
+$thumb-width: 80px;
+$thumb-height: 60px;
+$track-width: 600px;
+$track-height: 4px;
+$notch-width: 20px;
+$notch-height: 20px;
+$notch-count: 5; // matches input max value
+$notch-spacing: ($track-width - $thumb-width) / ($notch-count - 1);
+
+// to reuse in vendor prefixed selectors
+@mixin thumb() {
+  appearance: none;
+  width: $thumb-width;
+  height: $thumb-height;
+  border: none;
+  background: transparent $thumb-image;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:900');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font: 900 16px/1 'Raleway', sans-serif;
+}
+
+body {
+  margin: 0;
+  color: #222;
+  background: #fff linear-gradient(to bottom, #ccc, #fff 200px);
+}
+
+label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  
+  // track
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    height: $track-height;
+    width: $track-width - $thumb-width;
+    bottom: ($thumb-height - $track-height) / 2;
+    left: $thumb-width / 2;
+    background-color: #ccc;
+  }
+  
+  // notches
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    bottom: ($thumb-height - $notch-height) / 2;
+    left: ($thumb-width - $notch-width) / 2;
+    width: $notch-width;
+    height: $notch-height;
+    border-radius: 50%;
+    background-color: #ccc;
+    box-shadow:
+      ($notch-spacing) 0 #ccc,
+      ($notch-spacing * 2) 0 #ccc,
+      ($notch-spacing * 3) 0 #ccc,
+      ($notch-spacing * 4) 0 #ccc;
+  }
+}
+
+h1 {
+  margin: 0 0 30px;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  text-shadow: 1px 1px #fff, 3px 3px #ccc;
+  letter-spacing: 3px;
+}
+
+input {
+  appearance: none;
+  display: block;
+  width: $track-width;
+  height: $thumb-height;
+  margin: 0;
+  background-color: transparent;
+
+  &:focus {
+    outline: 1px dashed #ccc;
+    outline-offset: 5px;
+  }
+  
+  &::-moz-range-thumb {
+    @include thumb();
+  }
+  
+  &::-webkit-slider-thumb {
+    @include thumb();
+  }
+  
+  &::-moz-range-track {
+    background: transparent;
+  }
+}

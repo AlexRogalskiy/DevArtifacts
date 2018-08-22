@@ -1,0 +1,146 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 6px;
+}
+
+@media screen and (min-width: 640px) and (min-height: 400px) {
+	html { font-size: 10px; }
+}
+@media screen and (min-width: 768px) and (min-height: 540px) {
+	html { font-size: 14px; }
+}
+@media screen and (min-width: 832px) and (min-height: 620px) {
+	html { font-size: 16px; }
+}
+
+body {
+	margin: 0;
+	color: #fff;
+	background-color: #4b6473;
+	background-image: url(http://lonekorean.com/images/stars1.png), url(http://lonekorean.com/images/stars2.png), url(http://lonekorean.com/images/stars3.png);
+	background-position: 0 0, 0 0, 0 0; /* firefox needs this */
+	font: 2rem 'Press Start 2P', monospace;
+	text-transform: uppercase;
+	overflow: hidden;
+}
+
+.fly-up {
+	background-position: 0 4096px, 0 8192px, 0 16384px;
+	transition: background-position 11.8s ease;
+	animation: space-darken 11.8s steps(8) forwards;
+}
+
+.fly-across {
+	background-color: #1d272d;
+	animation: stars-fly-across 8s linear infinite;
+}
+
+.get-ready {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.splash {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: calc(100% - 6rem);
+	text-align: center;
+}
+
+.title {
+	margin: 0 0 2rem;
+	font-size: 6rem;
+	line-height: 1.5;
+}
+
+.start {
+	margin: 0;
+	padding: 1rem 2rem;
+	border: 0.5rem solid #fff;
+	border-radius: 0;
+	color: #fff;
+	background-color: #f89f1b;
+	font: inherit;
+	text-transform: inherit;
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.start:disabled {
+	visibility: hidden;
+}
+
+.toast {
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	margin: -64px 0 0 -64px;
+	animation: fade-in 4s steps(4), toast-bob 6s ease infinite;
+}
+
+.dialog {
+	display: none;
+	position: absolute;
+	top: calc(75% - 8.5rem);
+	left: calc(50% - 24rem);
+	width: 48rem;
+	height: 17rem;
+	padding: 2rem;
+	border: solid 0.5rem #000;
+	color: #000;
+	background-color: #fff;
+	line-height: 2;
+	white-space: pre;
+	overflow: hidden;
+	animation: dialog-grow-in 1s linear;
+}
+
+.the-end {
+	display: none;
+	position: absolute;
+	top: calc(75%);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: calc(100% - 6rem);
+	margin: 0 0 2rem;
+	text-align: center;
+	font-size: 6rem;
+	line-height: 1.5;
+	animation: fade-in 4s steps(4);
+}
+
+@keyframes fade-in {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes dialog-grow-in {
+	0% { transform: scaleY(0); }
+	100% { transform: scaleY(1); }
+}
+
+@keyframes toast-bob {
+	50% { transform: translateY(4rem); }
+	100% { transform: translateY(0); }
+}
+
+@keyframes space-darken {
+	100% { background-color: #1d272d; }
+}
+
+@keyframes stars-fly-across {
+	100% { background-position: -2048px 512px, -4096px 512px, -8192px 512px; }
+}
