@@ -1,0 +1,203 @@
+body{
+  margin:0;
+  padding:0;
+  color:#444444;
+  font-family: 'News Cycle', sans-serif;
+}
+
+.translate_wrapper{
+  position:fixed;
+  z-index:1;
+  top:20px;
+  left:20px;
+  font-size:16px;
+  background:#fff;  
+  border-radius:4px;
+}
+
+.current_lang{
+  cursor:pointer;
+  text-transform:uppercase;
+  overflow:hidden;
+}
+
+.lang{
+    padding:10px 15px;
+}
+
+.lang.selected{
+  display:none;
+}
+
+.lang img, 
+.lang span.lang-txt{
+  display:inline-block;
+  margin-left:5px;
+  vertical-align:middle;
+}
+
+.lang span.lang-txt{
+   position:relative;
+  top:-1px;
+  font-weight:700;
+}
+
+.lang img{
+  width:20px;
+  margin-left:0;
+}
+
+.lang span span{
+  color:#999;
+  font-weight:400;
+}
+
+.lang span.fa{
+  font-size:12px;
+  position:relative;
+  top:-1px;
+  margin-left:3px;
+}
+
+
+/*more lang*/
+.more_lang{
+  transform:translateY(-20px);
+  opacity:0;
+  cursor:pointer;
+  display:none;
+   -webkit-transition: all .3s cubic-bezier(.25, 1.15, .35, 1.15);
+	-moz-transition:    all .3s cubic-bezier(.25, 1.15, .35, 1.15);
+	-o-transition:      all .3s cubic-bezier(.25, 1.15, .35, 1.15);
+	-ms-transition:     all .3s cubic-bezier(.25, 1.15, .35, 1.15);
+	transition:         all .3s cubic-bezier(.25, 1.15, .35, 1.15);
+}
+
+.translate_wrapper.active .more_lang{
+  display:block; 
+}
+
+.more_lang.active{
+  opacity:1;
+   transform:translateY(-0px);
+}
+
+.more_lang .lang:hover{
+  background:#5766b2;
+  color:#fff;
+}
+
+.more_lang .lang:hover span{
+  color:#fff;
+}
+
+.translate_wrapper:hover,
+.translate_wrapper.active,
+.content a:hover{
+  box-shadow:rgba(0,0,0,0.2) 0 5px 15px;  
+  -webkit-transition: all 0.3s cubic-bezier(0,.99,.44,.99);
+	-moz-transition:    all 0.3s cubic-bezier(0,.99,.44,.99);
+	-o-transition:      all 0.3s cubic-bezier(0,.99,.44,.99);
+	-ms-transition:     all 0.3s cubic-bezier(0,.99,.44,.99);
+	transition:         all 0.3s cubic-bezier(0,.99,.44,.99);
+  
+}
+
+.translate_wrapper.active .lang{
+  border-bottom:1px solid #eaeaea;
+}
+
+/*CONTENT*/
+.content{
+  width:100%;
+  max-width:400px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  border-radius:2px;
+  padding:20px;
+  -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+  
+  text-align:center;
+}
+
+.content h1, 
+.content h2, 
+.content p{
+  margin:0;
+}
+
+.content p{
+   line-height:22px;
+  text-align:left;
+  margin-top:15px;
+}
+
+
+.content div.ct-img{
+  width:150px;
+  height:150px;
+  overflow:hidden;
+  border-radius:50%;
+  margin:0 auto 10px;
+}
+
+.content div img{
+  height:100%;
+  position:relative;
+  left:-30px;
+}
+
+.content a{
+  padding: 8px 15px 10px;
+   border-radius:4px;
+  background:#5766b2;
+  color:#fff;
+  text-decoration:none;
+  display:inline-block;
+  margin-top:25px;
+  position:relative;
+  overflow:hidden;
+}
+
+.content a:active{
+  transform: scale(0.9);
+   -webkit-transform: scale(0.9);
+  -moz-transform: scale(0.9);
+}
+
+/*RTL*/
+body[dir="rtl"] .translate_wrapper{
+  right:20px;
+  left:auto;
+}
+
+body[dir="rtl"] .lang span.fa{
+  margin-right:3px;
+  margin-left:0;
+}
+
+body[dir="rtl"] .lang .lang-txt{
+  margin-right:5px;
+  margin-left:0;
+}
+
+body[dir="rtl"] .content div img{
+  left:auto;
+  right:-30px;
+}
+
+
+body[dir="rtl"] .content p{
+  text-align:right;
+}
+
+body[dir="rtl"] .lang span span{
+  float:left;
+  margin-right:5px;
+}
