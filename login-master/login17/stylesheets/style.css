@@ -1,0 +1,228 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+* {
+  font-family: 'Noto Sans', Arial;
+}
+
+form {
+  padding: 20px;
+  box-shadow: 3px 3px 5px #ccc;
+  width: 300px;
+  text-align: center;
+  margin: 40px auto 0;
+  border: 1px solid #eee;
+}
+form > div:not(:last-child) {
+  margin-bottom: 20px;
+}
+form input[type=text] {
+  border: none;
+  padding: 10px 0;
+  border-bottom: 1px solid #cecece;
+  width: 100%;
+}
+form input[type=text]:focus, form input[type=text]:active {
+  outline: 0;
+}
+
+.form-group {
+  position: relative;
+  padding-top: 13px;
+}
+.form-group input[type="checkbox"] {
+  margin-top: 10px;
+}
+.form-group input.form-control ~ label,
+.form-group input[type="checkbox"] ~ label,
+.form-group input[type="checkbox"] + input[type="hidden"] ~ label {
+  color: grey;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 12px;
+  -webkit-transition: color 0.15s ease;
+  -moz-transition: color 0.15s ease;
+  -o-transition: color 0.15s ease;
+  -ms-transition: color 0.15s ease;
+  transition: color 0.15s ease;
+}
+.form-group input.form-control:focus ~ label,
+.form-group input[type="checkbox"]:focus ~ label,
+.form-group input[type="checkbox"] + input[type="hidden"]:focus ~ label {
+  color: blue;
+}
+.form-group input.form-control.input-validation-error,
+.form-group input[type="checkbox"].input-validation-error,
+.form-group input[type="checkbox"] + input[type="hidden"].input-validation-error {
+  -webkit-box-shadow: inset 0 -2px 0 red;
+  box-shadow: inset 0 -2px 0 red;
+}
+.form-group input.form-control.input-validation-error ~ label,
+.form-group input[type="checkbox"].input-validation-error ~ label,
+.form-group input[type="checkbox"] + input[type="hidden"].input-validation-error ~ label {
+  color: red;
+}
+.form-group input.form-control.input-validation-error ~ label ~ .field-validation-error,
+.form-group input[type="checkbox"].input-validation-error ~ label ~ .field-validation-error,
+.form-group input[type="checkbox"] + input[type="hidden"].input-validation-error ~ label ~ .field-validation-error {
+  display: block;
+}
+.form-group input.books-datepicker + .bootstrap-datetimepicker-widget ~ label,
+.form-group input.books-kodatepicker + .bootstrap-datetimepicker-widget ~ label {
+  color: grey;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 12px;
+  -webkit-transition: color 0.15s ease;
+  -moz-transition: color 0.15s ease;
+  -o-transition: color 0.15s ease;
+  -ms-transition: color 0.15s ease;
+  transition: color 0.15s ease;
+}
+.form-group input.books-datepicker:focus + .bootstrap-datetimepicker-widget ~ label,
+.form-group input.books-kodatepicker:focus + .bootstrap-datetimepicker-widget ~ label {
+  color: blue;
+}
+.form-group input.books-datepicker.input-validation-error,
+.form-group input.books-kodatepicker.input-validation-error {
+  -webkit-box-shadow: inset 0 -2px 0 red;
+  box-shadow: inset 0 -2px 0 red;
+}
+.form-group input.books-datepicker.input-validation-error + .bootstrap-datetimepicker-widget ~ label,
+.form-group input.books-kodatepicker.input-validation-error + .bootstrap-datetimepicker-widget ~ label {
+  color: red;
+}
+.form-group input.books-datepicker.input-validation-error + .bootstrap-datetimepicker-widget ~ label + .field-validation-error,
+.form-group input.books-kodatepicker.input-validation-error + .bootstrap-datetimepicker-widget ~ label + .field-validation-error {
+  display: block;
+}
+.form-group select.chosen-default + .chosen-container {
+  display: block;
+}
+.form-group select.chosen-default + .chosen-container ~ label {
+  color: grey;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 12px;
+  -webkit-transition: color 0.15s ease;
+  -moz-transition: color 0.15s ease;
+  -o-transition: color 0.15s ease;
+  -ms-transition: color 0.15s ease;
+  transition: color 0.15s ease;
+}
+.form-group select.chosen-default + .chosen-container.chosen-container-active .chosen-single {
+  border-bottom: 2px solid blue;
+}
+.form-group select.chosen-default + .chosen-container.chosen-container-active ~ label {
+  color: blue;
+}
+.form-group select.chosen-default.input-validation-error + .chosen-container .chosen-single,
+.form-group select.chosen-default.input-validation-error + .chosen-container-active .chosen-single {
+  border-bottom: 2px solid red;
+}
+.form-group select.chosen-default.input-validation-error + .chosen-container ~ label,
+.form-group select.chosen-default.input-validation-error + .chosen-container-active ~ label {
+  color: red;
+}
+.form-group select.chosen-default.input-validation-error + .chosen-container ~ label + .field-validation-error,
+.form-group select.chosen-default.input-validation-error + .chosen-container-active ~ label + .field-validation-error {
+  display: block;
+}
+.form-group select {
+  padding-top: 2px;
+  -webkit-transition: border 0.15s ease;
+  -moz-transition: border 0.15s ease;
+  -o-transition: border 0.15s ease;
+  -ms-transition: border 0.15s ease;
+  transition: border 0.15s ease;
+}
+.form-group select ~ label {
+  color: grey;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 12px;
+  -webkit-transition: color 0.15s ease;
+  -moz-transition: color 0.15s ease;
+  -o-transition: color 0.15s ease;
+  -ms-transition: color 0.15s ease;
+  transition: color 0.15s ease;
+}
+.form-group select:focus {
+  border-bottom: none;
+  outline: none;
+}
+.form-group select:focus + label {
+  color: blue;
+}
+.form-group select.input-validation-error, .form-group select.input-validation-error:focus {
+  border-bottom: none;
+  -webkit-box-shadow: inset 0 -2px 0 red;
+  box-shadow: inset 0 -2px 0 red;
+}
+.form-group select.input-validation-error ~ label, .form-group select.input-validation-error:focus ~ label {
+  color: red;
+}
+.form-group span[class*='field-validation'] {
+  display: none;
+  font-size: 12px;
+  padding: 2px 0;
+  color: grey;
+  -webkit-transition: all 0.15 ease;
+  -moz-transition: all 0.15 ease;
+  -o-transition: all 0.15 ease;
+  -ms-transition: all 0.15 ease;
+  transition: all 0.15 ease;
+}
+.form-group span[class*='field-validation'].field-validation-error {
+  color: red;
+}
+.form-group + p {
+  margin-top: 30px;
+}
+
+.input-group:not(.default) {
+  display: block;
+  padding-top: 13px;
+  margin-top: -13px;
+  max-width: 250px;
+}
+.input-group:not(.default) .form-control {
+  padding-left: 30px;
+  display: block;
+  float: none;
+  text-align: right;
+  padding-right: 8px;
+}
+.input-group:not(.default) .form-control:after {
+  content: ' ';
+  display: table;
+  clear: both;
+}
+.input-group:not(.default) .input-group-addon {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  left: 0;
+  top: 16px;
+  z-index: 3;
+  padding-left: 0;
+  width: 30px;
+  text-align: left;
+}
+.input-group:not(.default) .input-group-addon.clickable {
+  cursor: pointer;
+}
+.input-group:not(.default) .input-group-addon.right {
+  padding-left: 12px;
+  padding-right: 0;
+  left: auto;
+  right: 8px;
+  text-align: right;
+}
+.input-group:not(.default) .input-group-addon.right + .form-control {
+  padding-left: 0;
+  padding-right: 30px;
+  text-align: left;
+}

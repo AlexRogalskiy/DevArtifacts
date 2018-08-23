@@ -1,0 +1,194 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+@height: 60px;
+@width: 200px;
+@color_unchecked: transparent;
+@color_checked: #86CEAB;
+@color_slider_unchecked: #BCBBBB;
+@color_slider_checked:#0E9D57;
+@font-size: 20px;
+@border-width:4px;
+@font_color_unchecked: #F1F1F1;
+@font_color_checked: #F1F1F1;
+@animation_duration: .3s;
+@border-radius-percentage:50;
+//android switch specific variables
+@android-width:150px;
+@color_android_unchecked:#BCBBBB;
+@color_android_checked:#86CEAB;
+@color_android_slider_unchecked:#F1F1F1;
+@color_android_slider_checked:#0E9D57;
+
+body{
+  background-color:#113b63;
+  font-family:'Noto Sans', Arial;
+  text-shadow: 2px 2px 6px #333;
+}
+
+h1, p, h2{
+  font-family:'Noto Sans', Arial;
+}
+
+.container{
+  margin:0 auto;
+  text-align:center;
+  padding-top:20px;
+  color:#fff;
+}
+
+.transition (@arguments)
+{
+    -webkit-transition: @arguments;
+    -moz-transition: @arguments;
+    -o-transition: @arguments; 
+    transition: @arguments;
+}
+
+.box-sizing(@arguments)
+{  
+    -moz-box-sizing: @arguments;
+    -webkit-box-sizing: @arguments; 
+    box-sizing: @arguments;
+}
+
+.text-overflow-ellipsis{
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.vertical-align {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+input[type=checkbox].toggle {
+    display: none;
+
+    + label {
+        display: inline-block;
+        height: @height;
+        width: @width;
+        position: relative;
+        font-size: @font-size;
+        border: @border-width solid @color_slider_unchecked;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        .box-sizing(border-box);
+        .transition(all @animation_duration ease);
+      
+        &:before {
+            position: absolute;
+            top: @border-width;
+            height: @height - 4*@border-width;
+            width: @height - 4*@border-width;
+            content: ' ';
+            .transition(all @animation_duration ease);
+            z-index: 3;
+        }
+
+        &:after {
+            width: @width - @height;
+            text-align: center;
+            z-index: 2;
+            text-transform: uppercase;
+            .vertical-align;
+            .text-overflow-ellipsis;
+        }
+
+        &.rounded {
+            border-radius: @height * (@border-radius-percentage/100);
+
+            &:before {
+                border-radius: percentage(@border-radius-percentage/100);
+            }
+        }
+      
+        &.android {
+            height:@height/3;
+            border-radius: @height * (@border-radius-percentage/100);
+            width: @android-width;
+            border-width:0;
+            margin-top:@height/3;
+            margin-bottom:@height/3;
+            &:before {
+                border-radius: percentage(@border-radius-percentage/100);
+                top:-@height/3;
+                height:@height;
+                width:@height;
+                background-color:@color_android_slider_unchecked;
+                box-shadow:0 0 15px #333;
+            }
+          
+            &:after {
+                display:none;
+            }
+          
+            &:active:before{
+              box-shadow:0 0 2px 15px rgba(48, 48, 48, .7);
+              .transition(all .1s ease);
+            }
+        }
+		}
+
+    &:not(:checked) + label {
+        background-color: @color_unchecked;
+        text-align: right;
+
+        &:after {
+            content: attr(data-unchecked);
+            right: 0;
+            left: auto;
+            opacity: 1;
+            color: @font_color_unchecked;
+        }
+
+        &:before {
+            left:@border-width;
+            background-color:@color_slider_unchecked;
+        }
+      
+        &.android {
+            background-color:@color_android_unchecked;
+            border-color:@color_android_unchecked;
+            &:before {
+                left:0;
+                background-color:@color_android_slider_unchecked;
+            }
+        }
+    }
+
+    &:checked + label {
+        background-color: @color_checked;
+        text-align: left;
+        border-color:@color_slider_checked;
+        &:after {
+            content: attr(data-checked);
+            left: @border-width;
+            right: auto;
+            opacity: 1;
+            color: @font_color_checked;
+        }
+
+        &:before {
+            left: @width - @height + @border-width;
+            background-color:@color_slider_checked;
+        }
+      
+        &.android {   
+            background-color:@color_android_checked;
+            border-color:@color_android_checked;
+            &:before {
+                right:auto;
+                left: @android-width - @height;
+                background-color:@color_android_slider_checked;
+            }
+        }
+    }
+}

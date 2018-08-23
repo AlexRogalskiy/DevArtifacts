@@ -1,0 +1,255 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+
+$input-focus-color: blue;
+$input-group-icon-width: 30px;
+$default-label-color: grey;
+$validation-error-color: red;
+
+@mixin transition($args:200ms) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -o-transition: $args;
+    -ms-transition: $args;
+    transition: $args;
+}
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+          box-shadow: $shadow;
+}
+
+*{
+	font-family:'Noto Sans', Arial;
+}
+form{
+	padding:20px;
+	box-shadow:3px 3px 5px #ccc;
+	width:300px;
+	text-align:center;
+	margin:40px auto 0;
+	border:1px solid #eee;
+	& > div:not(:last-child){
+		margin-bottom:20px;
+	}
+	
+	& input[type=text]{
+		border:none;
+		padding:10px 0;
+		border-bottom:1px solid #cecece;
+		width:100%;
+		
+		&:focus, &:active{
+			outline:0;
+		}
+	}
+} 
+
+.form-group{
+    position:relative;
+    padding-top:13px;
+
+    input[type="checkbox"]{
+        margin-top:10px;
+    }
+
+    input.form-control,
+    input[type="checkbox"],
+    input[type="checkbox"] + input[type="hidden"]{
+
+        ~ label{
+            color:$default-label-color;
+            position:absolute;
+            left:0;
+            top:0;
+            font-size:12px;
+            @include transition(color .15s ease);
+        }
+
+        &:focus ~ label{
+            color: $input-focus-color;
+        }
+
+        &.input-validation-error{
+            @include box-shadow(inset 0 -2px 0 $validation-error-color);
+
+            ~ label{
+                color: $validation-error-color;
+
+                ~ .field-validation-error{
+                    display:block;
+                }
+            }
+        }
+    }
+
+    input.books-datepicker,
+    input.books-kodatepicker{
+        + .bootstrap-datetimepicker-widget ~ label{
+            color:$default-label-color;
+            position:absolute;
+            left:0;
+            top:0;
+            font-size:12px;
+            @include transition(color .15s ease);
+        }
+
+        &:focus + .bootstrap-datetimepicker-widget ~ label{
+            color: $input-focus-color;
+        }
+
+        &.input-validation-error{
+            @include box-shadow(inset 0 -2px 0 $validation-error-color);
+
+            + .bootstrap-datetimepicker-widget ~ label{
+                color: $validation-error-color;
+
+                + .field-validation-error{
+                    display:block;
+                }
+            }
+        }
+    }
+
+    select.chosen-default{
+        + .chosen-container{
+            display:block;
+            ~ label{
+                color:$default-label-color;
+                position:absolute; 
+                left:0;
+                top:0;
+                font-size:12px;
+                @include transition(color .15s ease);
+            }
+
+            &.chosen-container-active{
+                 
+                .chosen-single{
+                    border-bottom:2px solid $input-focus-color;
+                }
+
+                ~ label{
+                    color: $input-focus-color;
+                }
+            }
+        }
+
+        &.input-validation-error{
+            + .chosen-container, 
+            + .chosen-container-active{
+
+                .chosen-single{
+                    border-bottom:2px solid $validation-error-color;
+                }
+
+                ~ label{
+                    color:$validation-error-color;
+
+                    + .field-validation-error{
+                        display:block;
+                    }
+                }
+            }
+        }
+    }
+
+    select{
+        padding-top:2px;
+        @include transition(border .15s ease);
+
+        ~ label{
+            color:$default-label-color;
+            position:absolute;
+            left:0;
+            top:0;
+            font-size:12px;
+            @include transition(color .15s ease);
+        }
+
+        &:focus{
+            border-bottom:none;
+            outline:none;
+            + label{
+                color: $input-focus-color;
+            }
+        }
+
+        &.input-validation-error,
+        &.input-validation-error:focus{
+
+            border-bottom:none;
+            @include box-shadow(inset 0 -2px 0 $validation-error-color);
+
+            ~ label{
+                color:$validation-error-color;
+            }
+        }
+    }
+
+    span[class*='field-validation']{
+        display:none;
+        font-size:12px;
+        padding:2px 0;
+        color:$default-label-color;
+        @include transition(all .15 ease);
+
+        &.field-validation-error{
+            color:$validation-error-color;
+        }
+    }
+
+    & + p{
+        margin-top:30px;
+    }
+}
+
+.input-group:not(.default) {
+    display: block;
+    padding-top: 13px;
+    margin-top: -13px;
+    max-width: 250px;
+
+    .form-control {
+        padding-left: $input-group-icon-width;
+        display: block;
+        float: none;
+        text-align: right;
+        padding-right:8px;
+
+        &:after {
+            content: ' ';
+            display:table;
+            clear:both;
+        }
+    }
+
+    .input-group-addon {
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        left: 0;
+        top: 16px;
+        z-index: 3;
+        padding-left: 0;
+        width:$input-group-icon-width;
+        text-align:left;
+
+        &.clickable{
+            cursor:pointer;
+        }
+
+        &.right {
+            padding-left: 12px;
+            padding-right: 0;
+            left: auto;
+            right: 8px;
+            text-align:right;
+
+            & + .form-control {
+                padding-left: 0;
+                padding-right: $input-group-icon-width;
+                text-align: left;
+            }
+        }
+    }
+}
