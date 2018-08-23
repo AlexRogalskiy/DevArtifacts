@@ -1,0 +1,86 @@
+@import "compass/css3";
+
+$bounce: cubic-bezier(.5, 0, 0, 1.5);
+$bounce-lg: cubic-bezier(.5, 0, 0, 3);
+$duration: 0.15s;
+
+body {
+  background-color: #333;
+}
+
+.choice-list {
+  margin: 50px auto;
+  width: 640px;
+  display: block;
+  padding: 0;
+}
+
+.checkbox {
+  $size: 100px;  
+  float: left;
+  width: $size;
+  height: $size;
+  cursor: pointer;
+  @include border-radius($size);
+  display: block;
+  background-color: rgba(0,0,0,0.25);
+  margin: 20px;
+  @include transition(all $duration $bounce);
+  
+  &:hover {
+    background-color: rgba(0,0,0,0.5);
+    &:after {
+      color: white;
+    }
+  }
+  
+  &:after {
+    line-height: $size;
+    font-family: "FontAwesome";
+    display: block;
+    content: "";
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    @include transform(scale(0.5));
+    @include border-radius(100%);
+    font-size: $size * 0.3;
+    
+    @include transition(all $duration $bounce, font-size 0.35s $bounce-lg);
+  }
+  
+  &.is-checked:after {
+    @include transform(scale(1));
+    font-size: $size * .5;
+    color: rgba(255,255,255,1);
+  }
+  
+  &.is-checked:hover:after { @include transform(scale(1.1)); }
+}
+
+.check {
+  &:after {
+    content: "\f00c";
+    background-color: rgba(165,194,92,0);
+  }
+  &.is-checked:after { background-color: rgba(165,194,92,1); }
+}
+
+.heart {
+  &:after {
+    content: "\f004";
+    background-color: rgba(241,76,56,0);
+  }
+   
+  &.is-checked:after { background-color: rgba(241,76,56,1); }
+}
+
+.star {
+  &:after {
+    content: "\f005";
+    background-color: rgba(255,202,37,0);
+  }
+  
+  &.is-checked:after { background-color: rgba(255,202,37,1); }
+}

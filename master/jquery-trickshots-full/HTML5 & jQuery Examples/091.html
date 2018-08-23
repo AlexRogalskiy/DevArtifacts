@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #91 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">91</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./090.html">&lt;</a>
+	            <a class="next" href="./092.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Lightweight form validation</h1>
+			<p class="descr">There are many form validation plugins and libraries, but most of them are cumbersome and difficult to use. This is not the case with validate.js:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// Declare how the fields should be validated
+
+var validator = new FormValidator('clientInfo', [{
+    name: 'fullname',
+    display: 'name',
+    rules: 'required'
+}, {
+    name: 'email',
+    rules: 'valid_email|required'
+}, {
+    name: 'message',
+    rules: 'min_length[20]|max_length[200]'
+}], function(errors) {
+	
+    if (errors.length > 0) {
+    	
+    	var messages = '';
+    	
+    	$.each(errors,function(){
+    		
+    		messages += this.message + '\n';
+    		
+    		// You also get the id and name attributes
+    		// of the offending field, which you can use to
+    		// display an inline error message. Try it:
+    		// log(this);
+    		
+    	});
+    	
+        // Normally, you would print these errors next to the
+        // form inputs, but we are simply alerting them here:
+        
+        alert(messages);
+        
+    }
+    
+});
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40 largeExample">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;form id=&quot;clientInfo&quot;&gt;
+    &lt;label for=&quot;fullname&quot;&gt;Full Name * :&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;fullname&quot; name=&quot;fullname&quot; /&gt;
+
+    &lt;label for=&quot;email&quot;&gt;Email * :&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;email&quot; name=&quot;email&quot; /&gt;
+
+    &lt;label for=&quot;message&quot;&gt;Message (20 chars min, 200 max) :&lt;/label&gt;
+    &lt;textarea id=&quot;message&quot; name=&quot;message&quot;&gt;&lt;/textarea&gt;
+    
+    &lt;button type="submit"&gt;Submit form&lt;/button&gt;
+&lt;/form&gt;</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+        <!-- The validate.js library -->
+        <script src="assets/js/validate.js"></script>
+
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

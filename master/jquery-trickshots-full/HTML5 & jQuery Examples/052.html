@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #52 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">52</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./051.html">&lt;</a>
+	            <a class="next" href="./053.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>The map method</h1>
+			<p class="descr">Another useful, but not well known method in the jQuery library, is .map(). It loops through all elements in a jQuery object, and assembles a new array. Here is how it is used:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				
+				<h3>Code</h3>
+				<div id="code">// Find the checkboxes:
+var checkboxes = $('#week .day');
+
+function callback(){
+	
+	// Loop through all selected checkboxes and output their values.
+	
+	var days = checkboxes.filter(':checked').map(function(){
+		// The returned value becomes part of the new array
+		return $(this).val();
+	}).get();
+	
+	$('#workdays').text('You want to work on ' + days.join(', '));
+	
+}
+
+checkboxes.on('click',callback);
+
+// Execute it on load
+callback();
+</div>
+				<button id="run">Run!</button>
+				
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">Which days would you like to work on?
+&lt;ul id="week"&gt;
+	&lt;li&gt;&lt;input type="checkbox" value="Monday" class="day" checked /&gt; Monday &lt;/li&gt;
+	&lt;li&gt;&lt;input type="checkbox" value="Tuesday" class="day" checked /&gt; Tuesday &lt;/li&gt;
+	&lt;li&gt;&lt;input type="checkbox" value="Wednesday" class="day" checked /&gt; Wednesday &lt;/li&gt;
+	&lt;li&gt;&lt;input type="checkbox" value="Thursday" class="day" checked /&gt; Thursday &lt;/li&gt;
+	&lt;li&gt;&lt;input type="checkbox" value="Friday" class="day" checked /&gt; Friday &lt;/li&gt;
+	&lt;li&gt;&lt;input type="checkbox" value="Saturday" class="day" /&gt; Saturday &lt;/li&gt;
+	&lt;li&gt;&lt;input type="checkbox" value="Sunday" class="day" /&gt; Sunday &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p id="workdays"&gt;&lt;/p&gt; 
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+				
+			</div>
+			
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

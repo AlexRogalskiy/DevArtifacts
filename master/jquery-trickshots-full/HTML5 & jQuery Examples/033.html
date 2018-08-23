@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #33 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">33</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./032.html">&lt;</a>
+	            <a class="next" href="./034.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Create custom events</h1>
+			<p class="descr">You can use jQuery's event handling infrastructure to your advantage. You can throw your own, custom events, and subscribe to them using the regular on/off methods.</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">var button1 = $('#button1'),
+	button2 = $('#button2'),
+	button3 = $('#button3'),
+	clear = $('#clear'),
+    div = $('#eventDiv');
+
+div.on({
+    jump : function(){
+        log('Jumped!');
+    },
+
+    punch : function(e,data){
+        log('Punched '+data+'!');
+    },
+
+    click : function(){
+        log('Simulated click!');
+    }
+
+});
+
+button1.click(function(){
+    div.trigger('jump');
+});
+
+button2.click(function(){
+    // Pass data along with the event
+    div.trigger('punch',['hard']);
+});
+
+button3.click(function(){
+    div.trigger('click');
+});
+
+clear.click(function(){
+	log.clear();
+});
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;button id="button1"&gt;Jump&lt;/button&gt;
+&lt;button id="button2"&gt;Punch&lt;/button&gt;
+&lt;button id="button3"&gt;Click&lt;/button&gt;
+&lt;button id="clear" style="float: right;"&gt;Clear&lt;/button&gt;
+&lt;div id="eventDiv"&gt;&lt;/div&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

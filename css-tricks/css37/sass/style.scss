@@ -1,0 +1,27 @@
+.element {
+	width: 300px;
+	height: 150px;
+	background-color: blue;
+	transition: background-color 0.1s ease-out;
+	color: white;
+	
+	&:after {
+		position: absolute;
+		display: block;
+		top: 10px;
+		left: 10px;
+		content: "Enabled";
+	}
+	
+	&.disabled {
+		background-color: grey;
+		
+		&:after {
+			content: "Disabled";
+		}
+	}
+	
+	&.active {
+		background-color: green;
+	}
+}

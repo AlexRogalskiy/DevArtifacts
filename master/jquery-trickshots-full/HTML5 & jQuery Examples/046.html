@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #46 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">46</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./045.html">&lt;</a>
+	            <a class="next" href="./047.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Use the global AJAX methods</h1>
+			<p class="descr">You can simplify how your web app handles AJAX requests (and save yourself from writing some code), by utilizing the ajax global methods:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// Create an indicator that would be shown whenever an AJAX request occurs:
+
+var preloader = $('&lt;div&gt;',{ 'class':'preloader' }).appendTo('body');
+var doc = $(document);
+
+// Show the preloader whenever you are making an AJAX request:
+
+doc.ajaxStart(function(){
+	preloader.fadeIn();
+});
+
+// Hide it when the ajax request finishes
+
+doc.ajaxComplete(function(){
+	// Keep it visible for 0.8 seconds after the request completes
+	preloader.delay(800).fadeOut();
+});
+
+// It will show automatically every time you do an AJAX request:
+
+$.get('assets/misc/1.json');
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

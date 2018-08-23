@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #59 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">59</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./058.html">&lt;</a>
+	            <a class="next" href="./060.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Create a custom pseudo selector</h1>
+			<p class="descr">You can extend jQuery with your own selectors. Here is how it's done:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// To create a custom selector, add it to the $.expr.pseudos property
+
+$.expr.pseudos.icontain = $.expr.createPseudo(function(arg) {
+
+	return function(elem) {
+	     return (elem.textContent
+	              || elem.innerText
+	              || jQuery(elem).text()
+	              || '')
+	    .toLowerCase()
+	    .indexOf(arg.toLowerCase()) &gt;= 0;
+	};
+});
+
+// Here is how it is used:
+log( 'Paragraphs that have the string "lorem" in them:', $('.lipsum:icontain(lorem)').length );
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html">&lt;p class="lipsum"&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+&lt;p class="lipsum"&gt;Aenean dapibus turpis ut justo congue id sodales mi dignissim.&lt;/p&gt;
+&lt;p class="lipsum"&gt;In sed lorem elit, sit amet mollis enim. Integer at feugiat orci.&lt;/p&gt;
+&lt;p class="lipsum"&gt;Integer dignissim, neque eu varius dignissim, risus lacus accumsan tellus, eu rutrum felis turpis sit amet felis.&lt;/p&gt;
+&lt;p class="lipsum"&gt;Proin tempus, tortor a sagittis auctor, urna felis ullamcorper tellus, vitae consectetur dui ligula eget nisi.&lt;/p&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

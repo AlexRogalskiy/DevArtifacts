@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #41 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">41</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./040.html">&lt;</a>
+	            <a class="next" href="./042.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Work with Facebook's Graph</h1>
+			<p class="descr">Facebook has a powerful API that you can hook into, to make your app social. Here is a simple example:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// Fetch the publicly accessible data on Tutorialzine's Page
+var api = 'http://graph.facebook.com/Tutorialzine/?callback=?',
+    holder = $('#fbdata');
+
+
+$.getJSON(api, function(r){
+
+	// This will always give the current picture
+	holder.append('&lt;img src="http://graph.facebook.com/Tutorialzine/picture/?type=large"&gt;');
+
+	holder.append('&lt;p&gt;'+ r.about +'&lt;/p&gt;')
+	holder.append('&lt;a href="'+ r.website +'"&gt;'+ r.website +'&lt;/a&gt;');
+
+});
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;div id="fbdata"&gt;&lt;/div&gt;</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

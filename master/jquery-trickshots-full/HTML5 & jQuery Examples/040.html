@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #40 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">40</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./039.html">&lt;</a>
+	            <a class="next" href="./041.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Binary File Uploads with jQuery</h1>
+			<p class="descr">Modern browsers support the FormData API, which allows you to send data easily through AJAX. Combine this with the HTML5 File APIs, and you are able to upload binary files. A few things must be done for it to work with jQuery, though:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// The file input field
+
+var fileInput = $('input[type=file]'),
+	button = $('#upload');
+
+button.on('click', function(){
+
+	// Access the files property, which holds 
+	// an array with the selected files
+	
+	var files = fileInput.prop('files');
+
+	// No file was chosen!
+	if(files.length == 0) {
+		alert('Please choose a file to upload!');
+		return false;
+	}
+	
+	// Create a new FormData object
+	
+	var fd = new FormData();
+	
+	fd.append('file', files[0]);
+	
+	// Upload the file to assets/php/upload.php. Open that file in a text 
+	// editor to get a better idea of how it works.
+	
+	$.ajax({
+		url: './assets/php/upload.php',
+		data: fd,
+		contentType:false,		// This will make the browser use the multipart/formdata encoding, which is required for transferring binary data.
+		processData:false,		// jQuery shouldn't do any processsing on the data - the browser will handle this when it sees we are passing a formdata object.
+		type:'POST',
+		success: function(m){
+			log(m);
+		}
+	});
+});
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;input type="file" &gt;&lt;br&gt;&lt;br&gt;
+&lt;button id="upload"&gt;Upload it!&lt;/button&gt;</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+				
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

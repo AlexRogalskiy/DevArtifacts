@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #14 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">14</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./013.html">&lt;</a>
+	            <a class="next" href="./015.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Prevent text from being selected</h1>
+			<p class="descr">In certain situations you might want to prevent text on the page from being selectable. Try selecting this text and hit view source to see how it is done.</p>
+
+		</section>
+
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+        <script>
+        	// Prevent text from being selected
+        	$(function(){
+				$('p.descr').attr('unselectable', 'on')
+		                   .css('user-select', 'none')
+		                   .on('selectstart', false);
+			});
+        </script>
+
+    </body>
+</html>
+
+

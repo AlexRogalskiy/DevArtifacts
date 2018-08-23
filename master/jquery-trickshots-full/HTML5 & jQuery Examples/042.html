@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #42 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">42</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./041.html">&lt;</a>
+	            <a class="next" href="./043.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Access weather information</h1>
+			<p class="descr">Open Weather Map provides free weather information, that you can use for free through their JSON API. Here is an example:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// Request weather data:
+var api = 'http://openweathermap.org/data/2.1/find/name?q=paris,france&amp;callback=?';
+
+
+$.getJSON(api, function(r){
+
+	// This will always give the current picture
+	log(r.list[0].name + ', ' + r.list[0].sys.country);
+	log(r.list[0].main);
+
+	// Temperatures are in kelvin, subtract 273.15 to convert to Celsius,
+	// or use the formula (kelvin*9⁄5 - 459.67) for Fahrenheit
+});
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<h3>Result</h3>
+				<div id="result"></div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

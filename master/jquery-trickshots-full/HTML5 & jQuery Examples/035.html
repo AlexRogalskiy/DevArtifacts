@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #35 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">35</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./034.html">&lt;</a>
+	            <a class="next" href="./036.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Simplify your Ajax calls with deferreds</h1>
+			<p class="descr">Deferreds are a powerful tool. jQuery returns a new deferred object for every AJAX request. Here is how you can use them to make your code more readable: <i class="note">Note: run this example through localhost. Opening it directly will result in a security exception.</i></p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// This is equivalent to passing a callback as the
+// second argument (executed on success):
+
+$.get('assets/misc/1.json').done(function(r){
+	log(r.message);
+});
+
+// Requesting a file that does not exist. This will trigger
+// the failure response. To handle it, you would normally have to
+// use the full $.ajax method and pass it as a failure callback,
+// but with deferreds you can can simply use the fail method:
+
+$.get('assets/misc/non-existing.json').fail(function(r){
+	log('Oops! The second ajax request was "' + r.statusText + '" (error ' + r.status + ')!');
+});
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+				<h3>Result</h3>
+				<div id="result"></div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

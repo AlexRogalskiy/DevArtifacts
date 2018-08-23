@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #98 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">98</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./097.html">&lt;</a>
+	            <a class="next" href="./099.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Handling file drag and drop</h1>
+			<p class="descr">Another cool feature that modern browsers provide is the ability to drag and drop files from your desktop into the browser. Here is how to do it with the Filereader.js library:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// Call and configure the plugin
+
+var pics = $('#pics');
+
+$('body').fileReaderJS({
+	on:{
+		
+		load: function(e, file){
+			
+			var img = $('&lt;img&gt;');
+			img.load(function() {
+				
+				img.css({
+					maxWidth:150,
+					maxHeight:150
+				});
+				
+				pics.append(img);
+			});
+			
+			img.attr('src', e.target.result);
+		},
+		
+		beforestart: function(file){
+			// Allow only images
+			return /^image/.test(file.type);
+		}
+	}
+});
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40 largeExample">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">Drop an image on the page and it will appear here.
+&lt;div id="pics"&gt;&lt;/div&gt;</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+
+			</div>
+			
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+        <!-- The Filereader jQuery plugin -->
+        <script src="assets/js/filereader.js"></script>
+
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #22 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">22</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./021.html">&lt;</a>
+	            <a class="next" href="./023.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Detach elements when doing complex modifications</h1>
+			<p class="descr">Modifying a DOM element requires the page to be repainted which can be expensive. If you want to squeeze every bit of performance, you can try detaching the element from the page when doing intense modifications on it.</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">var i = 0, iterations = 1000;
+
+// Modifying in place
+var elem = $('#elem');
+
+timer('In place');
+
+for(i=0; i &lt; iterations; i++){
+
+	elem.width(Math.round(100*Math.random()));
+	elem.height(Math.round(100*Math.random()));
+
+}
+
+timer_result('In place');
+
+var parent = elem.parent();
+
+// Detaching first
+timer('Detached');
+
+elem.detach();
+
+for(i=0; i &lt; iterations; i++){
+
+	elem.width(Math.round(100*Math.random()));
+	elem.height(Math.round(100*Math.random()));
+
+}
+
+elem.appendTo(parent);
+
+timer_result('Detached');
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;div id="elem" style="background:blue"&gt;&lt;/div&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

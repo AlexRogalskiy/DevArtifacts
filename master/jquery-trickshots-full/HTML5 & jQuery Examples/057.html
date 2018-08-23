@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #57 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">57</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./056.html">&lt;</a>
+	            <a class="next" href="./058.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>jQuery callback lists</h1>
+			<p class="descr">jQuery's $.Callback object gives you a way to manage a large number of callback functions easily. Here is how it is used:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				
+				<h3>Code</h3>
+				<div id="code">// First example - Using the callbacks object.
+
+// Create a new callbacks object
+var cb = $.Callbacks();
+
+// Add a callback
+cb.add(function(message){
+	log(message);
+});
+
+// Add one more
+cb.add(function(){
+	log('---');
+});
+
+// Trigger the callbacks
+$('#btn1').click(function(){
+	
+	clear();
+	
+	// Output three lines
+	cb.fire("Line 1");
+	cb.fire("Line 2");
+	cb.fire("Line 3");
+});
+
+// Second example - Using flags
+
+// Will stop executing callbacks on false
+var cflags = $.Callbacks('stopOnFalse')
+
+// Again add the clear function
+cflags.add(clear);
+
+cflags.add(function(){
+	// Is the checkbox checked?
+	return $('#checkBox').is(':checked');
+});
+
+cflags.add(function(){
+	log('Checkbox is checked!');
+});
+
+// Trigger the callbacks
+$('#btn2').click(function(){
+	cflags.fire();
+});
+
+
+// Handle the clearing of the screen 
+
+function clear(){
+	log.clear();
+}
+
+$('#clear').click(clear);
+</div>
+				<button id="run">Run!</button>
+				
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;button id="btn1"&gt;1&lt;/button&gt;
+&lt;button id="btn2"&gt;2&lt;/button&gt;
+&lt;input type="checkbox" id="checkBox" checked /&gt;
+&lt;button id="clear" style="float:right"&gt;Clear&lt;/button&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+				
+			</div>
+			
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

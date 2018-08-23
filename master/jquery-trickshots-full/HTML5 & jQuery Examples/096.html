@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #96 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">96</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./095.html">&lt;</a>
+	            <a class="next" href="./097.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>JavaScript and web cameras</h1>
+			<p class="descr">Do you know that new browsers have the ability to access your device's camera and mic? There is a library that makes it easy to work cross browser - the getUserMedia shim:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// The camera feed options
+var options = {
+	"audio": false,
+	"video": true,
+	el: "webcam",
+
+	// The plugin supports a flash fallback for IE. We won't be using it
+	noFallback:true,
+
+	width: 320,
+	height: 240,
+
+	mode: "callback"
+};
+
+getUserMedia(options, success, error);
+
+function success(stream) {
+	var video = options.videoEl;
+
+	// Firefox
+	if ((typeof MediaStream !== "undefined" &amp;&amp; MediaStream !== null) &amp;&amp; stream instanceof MediaStream) {
+
+		if (video.mozSrcObject !== undefined) { //FF18a
+			video.mozSrcObject = stream;
+		} else { //FF16a, 17a
+			video.src = stream;
+		}
+
+		return video.play();
+
+	} else { // The rest
+		var vendorURL = window.URL || window.webkitURL;
+		video.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
+	}
+
+	video.onerror = function () {
+		stream.stop();
+		streamError();
+	};
+
+}
+
+function error(){
+	log('No web cam found!');
+}
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40 largeExample">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;div id="webcam"&gt;&lt;/div&gt;</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+        <!-- The getUserMedia shim -->
+        <script src="assets/js/getUserMedia.js"></script>
+
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

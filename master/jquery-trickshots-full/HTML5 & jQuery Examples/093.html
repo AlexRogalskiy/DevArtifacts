@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #93 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">93</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./092.html">&lt;</a>
+	            <a class="next" href="./094.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Instagram-like filters with JavaScript</h1>
+			<p class="descr">There is a powerful image manipulation library called Caman.js that can create all kinds of image effects with the canvas element. <i class="note">Note that this example will only work when run through localhost and not opened directly.</i></p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// Initialize some variables
+
+var dropdown = $('#filters'),
+	canvas = $();
+
+dropdown.change(function(){
+
+	// Create a canvas element and insert it into the page
+	var tmp = $('&lt;canvas&gt;').insertAfter(dropdown).hide();
+
+	// Get the current value of the dropdown
+	var filter = this.value;
+
+	Caman(tmp[0], 'assets/img/Katy_Perry.jpg', function(){
+
+		// Remove the canvas element from the previous operation
+		canvas.remove();
+		canvas = tmp.show();
+
+		// If such a filter exists, use it
+		if(filter in this){
+			this[filter]().render();
+		}
+	});
+
+});
+
+// Show the regular image on load
+dropdown.trigger('change');
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40 largeExample">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;select id="filters" style="float:right"&gt;
+	&lt;option&gt;Choose a filter&lt;/option&gt;
+	&lt;option value="vintage"&gt;Vintage&lt;/option&gt;
+	&lt;option value="lomo"&gt;Lomo&lt;/option&gt;
+	&lt;option value="clarity"&gt;Clarity&lt;/option&gt;
+	&lt;option value="sinCity"&gt;Sin City&lt;/option&gt;
+	&lt;option value="sunrise"&gt;Sunrise&lt;/option&gt;
+	&lt;option value="crossProcess"&gt;Cross Process&lt;/option&gt;
+	&lt;option value="orangePeel"&gt;Orange Peel&lt;/option&gt;
+	&lt;option value="love"&gt;Love&lt;/option&gt;
+	&lt;option value="grungy"&gt;Grungy&lt;/option&gt;
+	&lt;option value="jarques"&gt;Jarques&lt;/option&gt;
+	&lt;option value="pinhole"&gt;Pinhole&lt;/option&gt;
+	&lt;option value="oldBoot"&gt;Old Boot&lt;/option&gt;
+	&lt;option value="glowingSun"&gt;Glowing Sun&lt;/option&gt;
+	&lt;option value="hazyDays"&gt;Hazy Days&lt;/option&gt;
+	&lt;option value="herMajesty"&gt;Her Majesty&lt;/option&gt;
+	&lt;option value="nostalgia"&gt;Nostalgia&lt;/option&gt;
+	&lt;option value="hemingway"&gt;Hemingway&lt;/option&gt;
+	&lt;option value="concentrate"&gt;Concentrate&lt;/option&gt;
+&lt;/select&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+        <!-- The jQuery Caman.js -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/camanjs/4.0.0/caman.full.min.js"></script>
+
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

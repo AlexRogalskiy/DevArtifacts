@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #01 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">01</span></h2>
+            <div class="arrows">
+	            <a class="next" href="./002.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>DOM Ready Event</h1>
+			<p class="descr">One of the main reasons we use jQuery and other libraries is to work around the countless browser differences and bugs (especially in the older browsers). This is an example of four different ways to bind a function to the DOM Ready event. View source to learn more.</p>
+
+		</section>
+
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+		<script>
+
+			// Different ways to achieve the Document Ready event
+
+			// With jQuery
+			$(document).ready(function(){ /* ... */});
+
+			// Short jQuery
+			$(function(){ /* ... */});
+
+			// Without jQuery (doesn't work in older IE versions)
+			document.addEventListener('DOMContentLoaded',function(){
+				// Your code goes here
+			});
+
+			// The Trickshot (works everywhere):
+
+			r(function(){
+				alert('DOM Ready!');
+			})
+
+			function r(f){/in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
+
+		</script>
+
+    </body>
+</html>
+
+

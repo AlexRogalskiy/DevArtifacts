@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #72 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">72</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./071.html">&lt;</a>
+	            <a class="next" href="./073.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>How to work with IndexedDB</h1>
+			<p class="descr">Modern browsers have support for a new client-side database called IndexedDB (see which browsers have support <a href="http://caniuse.com/#search=IndexedDB">here</a>). It has a verbose API, but there is a small library called db.js that you can use to make things easier:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// Define an array with people to be inserted
+var arr = [{
+	"email"	: "jack.sparrow@example.com",
+	"name"	: "Jack Sparrow",
+	"phone"	: "555-123-567-333"
+},{
+	"email"	: "blackbeard@example.com",
+	"name"	: "Black Beard",
+	"phone"	: "555-423-567-441"
+},{
+	"email"	: "silver_surfer@example.com",
+	"name"	: "Long John Silver",
+	"phone"	: "556-352-436-666"
+}];
+
+// Use the db.js library
+
+db.open({
+    name: 'test2',
+    version: 1,
+    schema: {
+        people: {
+            key: {
+                keyPath: 'id',
+                autoIncrement: true
+            },
+            indexes: {
+                email: { unique: true } // emails should be unique
+            }
+        }
+    }
+}).done(function(server){
+
+	// Listen for clicks on the buttons
+
+	$('#listRecords').click(function(){
+
+		server.people.query().filter().execute().done(function(results){
+			log.clear();
+
+			if(!results){
+				log('No records found!');
+			}
+
+			$.each(results, function(){
+				log(this);
+			});
+		});
+
+	});
+
+
+	$('#insertRecords').click(function(){
+
+		log.clear();
+		log('Inserted!');
+
+		$.each(arr, function(){
+			server.people.add(this);
+		});
+
+	});
+
+});
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40 largeExample">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;button id="insertRecords"&gt;Insert Records&lt;/button&gt;
+&lt;button id="listRecords"&gt;List Records&lt;/button&gt;</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/db.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

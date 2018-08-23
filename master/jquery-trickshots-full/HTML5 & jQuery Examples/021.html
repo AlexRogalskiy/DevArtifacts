@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #21 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">21</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./020.html">&lt;</a>
+	            <a class="next" href="./022.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Treat jQuery objects as arrays</h1>
+			<p class="descr">The jQuery object has index elements and a length. This means you can treat it as a regular array (with a nice performance benefit)!</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">var arr = $('li'),
+    iterations = 100000;
+
+timer('Native Loop');
+
+for(var z=0;z&lt;iterations;z++){
+
+    var length = arr.length;
+    for(var i=0; i &lt; length; i++){
+      arr[i];
+    }
+}
+timer_result('Native Loop');
+
+timer('jQuery Each');
+
+for(z=0;z&lt;iterations;z++){
+
+    arr.each(function(i, val) {
+      this;
+    });
+}
+timer_result('jQuery Each');</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html">&lt;ul id="testList"&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+	&lt;li&gt;Item&lt;/li&gt;
+&lt;/ul&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

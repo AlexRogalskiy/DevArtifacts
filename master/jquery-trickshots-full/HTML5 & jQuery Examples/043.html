@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #43 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">43</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./042.html">&lt;</a>
+	            <a class="next" href="./044.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Fetch your latest Tumblr posts</h1>
+			<p class="descr">The popular blogging service Tumblr offers a easy to use JSON api, which you can use to fetch the posts on any blog. Here is how to use it:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// Define variables
+var blog = 'minimaldesks.tumblr.com',
+	api  = 'http://' + blog + '/api/read/json?callback=?',
+	post = $('#post');
+
+
+$.getJSON(api, function(r){
+
+	log('Blog title: ' + r.tumblelog.title);
+	log('Description: ' + r.tumblelog.description);
+
+	// If this post has a photo, show it
+	if(r.posts[0]['photo-url-250']){
+		post.append('&lt;img src="' + r.posts[0]['photo-url-250'] + '" /&gt;');
+	}
+	else{
+		log('Latest post: ' + r.posts[0]['regular-title']);
+	}
+
+});
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;div id="post"&gt;&lt;/div&gt;</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #85 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">85</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./084.html">&lt;</a>
+	            <a class="next" href="./086.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Manipulate the browser history</h1>
+			<p class="descr">Another new feature provided by modern browsers is the history api, which allows your web app to modify the URL and record state. Here is how to use it with the History.js library:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+
+				<h3>Code</h3>
+				<div id="code">// Cache some variables
+var win = $(window),
+	m = $('#message'),
+	links = $('.page');
+
+// Unbind any previous event listeners, that may
+// have been set by running the example code
+win.off('statechange');
+
+// Bind to StateChange Event
+History.Adapter.bind(window,'statechange',function(){
+
+    var state = History.getState();
+    m.text(state.data.text);
+
+});
+
+var text = [
+	'This is the first page',
+	'This is the second page',
+	'This is the third page'
+];
+
+links.click(function(e){
+	var index = links.index(this);
+
+	History.pushState(
+		{ text: text[index] },	// Data that will be available
+		'Page ' + (index+1),	// Title of the page in the browser history
+		this.href				// The URL of the page to navigate to
+	);
+
+	e.preventDefault();
+});
+</div>
+				<button id="run">Run!</button>
+
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;p&gt; Click the links below. After this,
+use your browser's back/forward buttons to navigate
+through the history. See how the URL changes and the
+message paragraph gets updated.&lt;/p&gt;&lt;br&gt;
+
+&lt;a href="?page1" class="page"&gt;Page1&lt;/a&gt;
+&lt;a href="?page2" class="page"&gt;Page2&lt;/a&gt;
+&lt;a href="?page3" class="page"&gt;Page3&lt;/a&gt;
+
+&lt;p id="message" style="padding:10px;"&gt;&lt;/div&gt;
+</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+        <!-- The History.js library  -->
+        <script src="assets/js/jquery.history.js"></script>
+
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

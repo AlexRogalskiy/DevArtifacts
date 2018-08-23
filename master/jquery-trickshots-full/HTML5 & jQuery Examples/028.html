@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #28 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">28</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./027.html">&lt;</a>
+	            <a class="next" href="./029.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Event simulation</h1>
+			<p class="descr">That plugin you like doesn't have a proper api? No problem, you can always simulate a click on the buttons it listens to:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">var press = $('#press');
+
+// Just a regular event listener:
+press.on('click',function(e, how){
+	how = how || '';
+	alert('The buton was clicked ' + how + '!');
+});
+
+// Trigger the click event
+press.trigger('click');
+
+// Trigger it with an argument
+press.trigger('click',['fast']);
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<div class="row1">
+					<h3>HTML</h3>
+					<div id="html" class="visible">&lt;button id="press"&gt;Press me!&lt;/ul&gt;</div>
+				</div>
+
+				<div class="row2">
+					<h3>Result</h3>
+					<div id="result"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>

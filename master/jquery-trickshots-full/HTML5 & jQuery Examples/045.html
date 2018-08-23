@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="noindex" />
+		<title>Trick #45 | jQuery Trickshots</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700|Open+Sans+Condensed:700" />
+
+    </head>
+
+    <body>
+
+        <header>
+            <h2>Trickshot <span class="badge purple">45</span></h2>
+            <div class="arrows">
+	            <a class="prev" href="./044.html">&lt;</a>
+	            <a class="next" href="./046.html">&gt;</a>
+            </div>
+        </header>
+
+		<section class="main">
+
+			<h1>Scrape sites with YQL</h1>
+			<p class="descr">YQL is the ultimate API for the JavaScript developer. Here is how to use it to fetch and parse HTML from remote sites:</p>
+
+		</section>
+
+		<section class="example">
+
+			<div class="column60">
+				<h3>Code</h3>
+				<div id="code">// Define variables
+
+var query = 'select * from data.html.cssselect where url="http://www.chucknorrisfacts.com/chuck-norris-top-50-facts" and css=".field-content a"';
+var yqlAPI = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent(query) + ' &format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=?';
+
+
+$.getJSON(yqlAPI, function(r){
+	
+	log('Chuck Norris Facts:');
+	
+	$.each(r.query.results.results.a, function(){
+		log('----------');
+		log(this.content);
+	});
+	
+});
+</div>
+				<button id="run">Run!</button>
+			</div>
+
+			<div class="column40">
+
+				<h3>Result</h3>
+				<div id="result"></div>
+				
+			</div>
+
+		</section>
+
+		<footer>
+			<a href="http://tutorialzine.com/books/jquery-trickshots">jQuery Trickshots</a> <i><a href="http://tutorialzine.com/books/">A book by Tutorialzine</a></i>
+		</footer>
+
+
+		<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+    </body>
+</html>
