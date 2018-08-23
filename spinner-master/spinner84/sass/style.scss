@@ -1,0 +1,101 @@
+@import "compass/css3";
+
+html {
+  height: 100%;
+  overflow: hidden;
+  @include filter-gradient(#2ea8e5, #0077b2, horizontal);
+  @include background-image(radial-gradient(center, ellipse cover,  #2ea8e5 0%,#0077b2 100%));
+	background-size: cover;
+}
+
+.relative {
+  position: relative;
+  left: 50%;
+  margin-left: -37.5px;
+}
+
+.big-rosace {
+    opacity: 0.5;
+    width: 75px;
+    height: 75px;
+    -webkit-animation: rotate-left 15s linear infinite;
+            animation: rotate-left 15s linear infinite;
+    &::after, &::before {
+        height: 75px;
+        width: 75px;
+    }
+}
+
+.small-rosace {
+    width: 45px;
+    height: 45px;
+    top: 15px; left: 15px;
+    -webkit-animation: rotate-right 25s linear infinite;
+            animation: rotate-right 25s linear infinite;
+    &::after, &::before {
+        height: 45px;
+        width: 45px;
+    }
+}
+.big-rosace, .small-rosace {
+    position: absolute;
+    margin: 50px auto;
+    background: #fff;
+    text-align: center;
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #fff;
+    }
+    &::before {
+        -webkit-transform: rotate(30deg);
+           -moz-transform: rotate(30deg);
+            -ms-transform: rotate(30deg);
+             -o-transform: rotate(30deg);
+    }
+    &::after {
+        -webkit-transform: rotate(60deg);
+           -moz-transform: rotate(60deg);
+            -ms-transform: rotate(60deg);
+             -o-transform: rotate(60deg);
+    }
+}
+
+// ANIMATIONS
+@-webkit-keyframes rotate-right {
+    from {
+    	@include transform(rotate(0deg));
+    }
+    to {
+    	@include transform(rotate(360deg));
+    }
+}
+
+@keyframes rotate-right {
+	from {
+		@include transform(rotate(0deg));
+	}
+	to {
+		@include transform(rotate(360deg));
+	}
+}
+
+@-webkit-keyframes rotate-left {
+    from {
+    	@include transform(rotate(0deg));
+    }
+    to {
+    	@include transform(rotate(-360deg));
+    }
+}
+
+@keyframes rotate-left {
+	from {
+		@include transform(rotate(0deg));
+	}
+	to {
+		@include transform(rotate(-360deg));
+	}
+}
