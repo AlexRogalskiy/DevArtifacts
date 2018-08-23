@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.mkyong.stock.Category" table="category" catalog="mkyongdb">
+        <id name="categoryId" type="java.lang.Integer">
+            <column name="CATEGORY_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="10" not-null="true" />
+        </property>
+        <property name="desc" type="string">
+            <column name="[DESC]" not-null="true" />
+        </property>
+        <set name="stockCategories" table="stock_category" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pk.category" not-null="true" />
+            </key>
+            <one-to-many class="com.mkyong.stock.StockCategory" />
+        </set>
+    </class>
+</hibernate-mapping>

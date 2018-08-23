@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.mkyong.stock.StockCategory" table="stock_category"
+		catalog="mkyongdb">
+		
+		<composite-id name="pk" class="com.mkyong.stock.StockCategoryId" >
+			
+			<key-property name="stock" column="stock" />
+			<key-property name="category" column="category" />
+
+		</composite-id>
+ 
+		<component name="stock">
+		
+			<many-to-one name="stockId" class="com.mkyong.stock.Stock"
+				update="false" insert="false">
+				<column name="STOCK_ID" not-null="true" />
+			</many-to-one>
+
+		</component>
+		
+		<component name="category">
+		
+			<many-to-one name="categoryId" class="com.mkyong.stock.Category"
+				update="false" insert="false">
+				<column name="CATEGORY_ID" not-null="true" />
+			</many-to-one>
+
+		</component>
+		
+	<!-- 	<many-to-one name="stock" class="com.mkyong.stock.Stock"
+				update="false" insert="false">
+				<column name="STOCK_ID" not-null="true" />
+			</many-to-one>
+
+			<many-to-one name="category" class="com.mkyong.stock.Category"
+				update="false" insert="false">
+				<column name="CATEGORY_ID" not-null="true" />
+			</many-to-one>
+ -->
+
+		<property name="createdDate" type="date">
+			<column name="CREATED_DATE" length="10" not-null="true" />
+		</property>
+		<property name="createdBy" type="string">
+			<column name="CREATED_BY" length="10" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>
