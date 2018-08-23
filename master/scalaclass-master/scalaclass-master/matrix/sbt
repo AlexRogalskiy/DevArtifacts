@@ -1,0 +1,1 @@
+java -Xmx512M -jar `dirname $0`/sbt-launcher-0.5.6.jar "$@"
