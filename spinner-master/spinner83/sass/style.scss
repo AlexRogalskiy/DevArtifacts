@@ -1,0 +1,41 @@
+$size: 100px;
+$color: #D75858;
+$backgroundColor: #EFEDE9;
+$widthSpinner: 20px;
+$speed: 1.4s;
+
+body {
+  background: $backgroundColor;
+  
+  .l {
+    width: $size;
+    height: $size;
+    background: -webkit-linear-gradient(top, $color, $backgroundColor);
+    border-radius: $size;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    clip: rect(0, $size, $size, $size / 2);
+    animation: spin $speed infinite linear;
+  
+    &:before {
+      content: ' ';
+      width: $size - $widthSpinner;
+      height: $size - $widthSpinner;
+      background: $backgroundColor;
+      border-radius: $size;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}

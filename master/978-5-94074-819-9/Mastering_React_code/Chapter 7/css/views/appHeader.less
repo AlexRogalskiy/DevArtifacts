@@ -1,0 +1,50 @@
+@import "../colors.less";
+@import "../mixins.less";
+
+.app-header {
+	@headerHeight: 40px;
+
+	border-bottom: 1px solid #111;
+	height: @headerHeight;
+	background-color: white;
+   
+	h1 {
+		float: left;
+		margin: 0;
+		padding: 0 0 0 @headerHeight;
+		line-height: @headerHeight;
+
+		font-size: 16px;
+		text-align: center;
+		text-transform: uppercase;
+		font-weight: 200;
+		letter-spacing: 2px;
+
+		// override link styles for home link
+		color: black;
+		&:hover, &:active, &:visited {
+			color: black;
+		}
+	} 
+
+	section.account-ctrl {
+		float: right;
+		padding: 0 @headerHeight 0 0;
+
+		a {
+			color: @blue;
+			.slidelink(@blue);
+			display: inline-block;
+			margin: 0 0 0 @headerHeight;
+			font-size: 12px;
+			line-height: @headerHeight;
+ 
+			letter-spacing: 1px;
+			text-transform: uppercase;
+
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+}

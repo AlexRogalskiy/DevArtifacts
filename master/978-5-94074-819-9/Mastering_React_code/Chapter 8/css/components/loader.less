@@ -1,0 +1,85 @@
+.loader {
+	
+	.loader-container {
+		@width: 100px;
+		@numTiles: 5;
+		@margins: 2px;
+		@animTime: 2s;
+		@tileWidth: @width / @numTiles;
+		
+		perspective: 1000px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+
+		&.inline {
+			display: block;
+			position: initial;
+			margin: 0 auto;
+			min-height: 80px;
+
+			aside {
+				// vertical center
+				margin-top: 80px / 2 - @tileWidth / 2;
+			}
+		}
+
+		margin-left: -(@width + 2 * @numTiles) / 2;
+		margin-top: -(@tileWidth) / 2;
+		width: @width + @numTiles * @margins * 2;
+		white-space: nowrap;
+		
+		aside {
+			display: inline-block;
+			margin: 0 @margins;
+			width: @tileWidth;
+			height: @tileWidth;
+			float: left; 
+			
+			background-color: #000;
+			transform-origin: 0 0;
+			//transition: transform (@animTime / @numTiles / 4) ease;
+			
+			animation-name: flippy;
+			animation-duration: @animTime;
+			animation-iteration-count: infinite;
+			
+			transform: rotateX(-90deg);
+			opacity: 0.1;
+		
+			.generate-tile-delays(@n, @i: 0) when (@i =< @n) {
+				&:nth-child(@{i}) {
+					animation-delay: 0.2s * @i;
+				}
+				.generate-tile-delays(@n, (@i + 1));
+			}
+			.generate-tile-delays(@numTiles);
+		} // end tile
+		
+		@keyframes flippy {
+			0% {
+				transform: rotateX(-90deg);
+				opacity: 0.1;
+				//transform: scale(1, 1);
+			}
+			25% {
+				transform-origin: 15px 15px;
+				transform-origin: @tileWidth @tileWidth;
+				opacity: 1;
+				transform: rotateX(0deg);
+				background-color: #bb2233;
+
+			}
+			75% {
+				transform-origin: 15px 15px;
+				transform-origin: @tileWidth @tileWidth;
+				transform: rotateX(0deg);
+			} 
+			100% {
+				transform-origin: 15px 15px;
+				transform-origin: @tileWidth @tileWidth;
+				transform: rotateX(90deg);
+			}
+		}
+	}
+}

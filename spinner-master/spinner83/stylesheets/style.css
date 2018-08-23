@@ -1,0 +1,35 @@
+body {
+  background: #EFEDE9;
+}
+body .l {
+  width: 100px;
+  height: 100px;
+  background: -webkit-linear-gradient(top, #D75858, #EFEDE9);
+  border-radius: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  clip: rect(0, 100px, 100px, 50px);
+  animation: spin 1.4s infinite linear;
+}
+body .l:before {
+  content: ' ';
+  width: 80px;
+  height: 80px;
+  background: #EFEDE9;
+  border-radius: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

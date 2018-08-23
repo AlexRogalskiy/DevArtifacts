@@ -1,0 +1,48 @@
+$green: #22b573;
+$grey: #555;
+$transitionSpeed: 200ms;
+
+input[type="checkbox"] + label {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 10px solid $grey;
+  border-radius: 100%;
+  top: 50%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  transition: all ease-out $transitionSpeed;
+  text-indent: 90px;
+  font: normal normal 30px/60px "Helvetica";
+  white-space: nowrap;
+  color: $grey;
+  user-select: none;
+  
+   &:after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 25px;
+    border-bottom: 10px solid $green;
+    border-left: 10px solid $green;
+    top: 25%;
+    left: 50%;
+    transform-origin: bottom left;
+    transform: rotate(-45deg);
+    opacity: 0;
+    transition: all ease-out $transitionSpeed;
+  }
+}
+
+input[type="checkbox"]:checked + label {
+  border: 10px solid $green;
+  
+  &:after {
+    opacity: 1;
+    width: 70px;
+  }
+}
+
+#chk {
+  display: none;
+}

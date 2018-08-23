@@ -1,0 +1,39 @@
+@import "../../mixins.less";
+
+.post-edit {
+	fieldset {
+		width: 650px;
+		margin: 0 auto;
+ 
+		.basic-input[name="title"]  {
+			input, input::placeholder {
+				font-size: 18px;
+			}	
+		}
+
+		.basic-input[name="tags"] {
+			width: 50%;
+			float: left;
+		}
+
+		.basic-input[name="tags"], input[type="submit"] {
+			margin: 20px 0;
+		}
+	}
+
+	.rich-editor {
+		box-shadow: 0 0 6px 1px #666;
+		width: 100%;
+		height: 300px;
+
+		.ql-toolbar {
+			height: 40px;
+			border-bottom: 1px solid #666
+		}
+
+		.ql-container{
+			height: ~'calc(100% - 40px)';
+			overflow: auto;
+		}
+	}
+}
