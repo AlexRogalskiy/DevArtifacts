@@ -1,0 +1,66 @@
+.TH countdown 1 "06 June 2015"
+.SH NAME
+countdown - count down a specified time interval
+.SH SYNOPSIS
+.B countdown
+.I interval
+.SH DESCRIPTION
+.PP
+countdown counts down a specified time interval, then beeps and exits.
+I use it mainly as an egg timer.
+.PP
+There are a number of different formats for specifying the time interval.
+A plain unadorned number is interpreted as seconds.
+.nf
+    % countdown 30        # 30 seconds
+.fi
+You can also use a single-letter suffix to indicate units.
+Available suffices are s for seconds, m for minutes, h for hours,
+d for days, and w for weeks.
+Note that the number doesn't have to be an integer.
+.nf
+    % countdown 30s        # 30 seconds
+    % countdown 0.5m       # also 30 seconds
+    % countdown 12h        # twelve hours
+    % countdown 0.5d       # also twelve hours
+    % countdown 1.5w       # one and a half weeks
+.fi
+You can also string together two adjacent time units.
+.nf
+    % countdown 1m30s      # 90 seconds
+    % countdown 2h30m      # two and a half hours
+    % countdown 1d1h       # twenty-five hours
+    % countdown 1w3d       # ten days
+.fi
+In addition, you can specify a time of day, rather than a duration.
+.nf
+    % countdown 4:20am
+    % countdown 4:20pm
+    % countdown 4:20
+    % countdown 4:20:00am
+    % countdown 4:20:00pm
+    % countdown 4:20:00
+.fi
+.SH AUTHOR
+Copyright © 2014,2015 by Jef Poskanzer <jef@mail.acme.com>.
+All rights reserved.
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\" 
+.\" THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.

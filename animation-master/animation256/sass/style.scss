@@ -1,0 +1,95 @@
+@import "compass/css3";
+
+html {
+  height: 100%;
+  @include filter-gradient(#2ea8e5, #0077b2, horizontal);
+  @include background-image(radial-gradient(center, ellipse cover,  #2ea8e5 0%,#0077b2 100%));
+	background-size: cover;
+}
+
+.bubble {
+  opacity: 0;
+  position: absolute;
+  top: 0; right: 0;
+  bottom: 0; left: 0;
+  margin: auto;
+  border-radius: 50%;
+  background: #c1f1ff;
+  -webkit-animation: bubbles-appear, bubbles;
+			    animation: bubbles-appear, bubbles;
+  -webkit-animation-timing-function: ease-out, ease-in-out;
+				animation-timing-function: ease-out, ease-in-out;
+	-webkit-animation-fill-mode: forwards;			    
+			    animation-fill-mode: forwards;
+  &.big-bubble {
+    height: 35px;
+    width: 35px;
+    border: 4px solid #c1f1ff;
+    @include box-shadow(#e0f9ff 8px 0px 0px inset);
+    -webkit-animation-duration: 0.05s, 5s;
+			    animation-duration: 0.05s, 5s;
+	  -webkit-animation-delay: 0.9s, 1s;
+			     animation-delay: 0.9s, 1s;
+  }
+  &.medium-bubble {
+    top: 120px;
+    left: 80px;
+    height: 25px;
+    width: 25px;
+    border: 4px solid #c1f1ff;
+    @include box-shadow(#e0f9ff 5px 0px 0px inset);
+    -webkit-animation-duration: 0.05s, 4.9s;
+			    animation-duration: 0.05s, 4.9s;
+	  -webkit-animation-delay: 0.8s, 1s;
+			    animation-delay: 0.8s, 1s;
+  }
+  &.small-bubble {
+    top: 100px;
+    left: -60px;
+    height: 15px;
+    width: 15px;
+    @include box-shadow(#e0f9ff 3px 0px 0px inset);
+    -webkit-animation-duration: 0.05s, 4.6s;
+			    animation-duration: 0.05s, 4.6s; 
+	  -webkit-animation-delay: 0.7s, 1s;
+			    animation-delay: 0.7s, 1s;
+  }
+}
+
+// Bubbles
+@-webkit-keyframes bubbles {
+    from {
+    	@include transform(translate3d(0px, 0px, 0px));
+    }
+    to {
+    	@include transform(translate3d(0, -100px, 0px));
+    }
+}
+
+@keyframes bubbles {
+	from {
+		@include transform(translate3d(0px, 0px, 0px));
+	}
+	to {
+		@include transform(translate3d(0, -100px, 0px));
+	}
+}
+
+// Opacity
+@-webkit-keyframes bubbles-appear {
+    from {
+    	opacity: 0;
+    }
+    to {
+    	opacity: 1;
+    }
+}
+
+@keyframes bubbles-appear {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
