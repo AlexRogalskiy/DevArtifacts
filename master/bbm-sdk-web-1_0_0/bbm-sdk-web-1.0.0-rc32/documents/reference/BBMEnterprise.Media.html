@@ -1,0 +1,1779 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="generator" content="JSDoc 3.5.5">
+  <meta charset="utf-8">
+  <title>Class: Media</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link href="css/baseline.css" rel="stylesheet">
+</head>
+
+<body onload="prettyPrint()">
+  <nav id="jsdoc-navbar" role="navigation" class="jsdoc-navbar">
+    <div id="jsdoc-navbar-container">
+      <div id="jsdoc-navbar-content">
+        <a href="index.html" class="jsdoc-navbar-package-name">Home</a>
+      </div>
+    </div>
+  </nav>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-static">static</span></div>
+            <h1><small><a href="BBMEnterprise.html">BBMEnterprise</a>.<wbr></small><span class="symbol-name">Media</span></h1>
+            <div class="symbol-classdesc">
+              <p>This class manages the media calls and data only connections.</p>
+              <p>This class depends on <a href="BBMEnterprise.html">BBMEnterprise</a> and an instance is created by the <a href="BBMEnterprise.html">BBMEnterprise</a> after it is successfully setup (see <a href="BBMEnterprise.html#setup">BBMEnterprise#setup</a>).</p>
+              <p><strong>NOTE</strong>, Media calls are only supported on browsers with WebRTC implementation. Certain browsers may require running with the adapter.js
+                <a href="https://github.com/webrtc/adapter">See</a></p>
+            </div>
+            <dl class="dl-compact">
+            </dl>
+            <dl class="dl-compact">
+              <dt>Fires</dt>
+              <dd><a href="BBMEnterprise.Media.html#event:incomingCall">BBMEnterprise.Media#event:incomingCall</a></dd>
+              <dd><a href="BBMEnterprise.Media.html#event:incomingDataConnection">BBMEnterprise.Media#event:incomingDataConnection</a></dd>
+            </dl>
+          </header>
+          <section id="summary">
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Child classes</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.Call.html">Call(callInstance, media)</a></dt>
+                    <dd>
+                      <p>A media call session for voice and/or video</p>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.Callee.html">Callee(regId)</a></dt>
+                    <dd>
+                      <p>The callee of a call</p>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.Caller.html">Caller(pin, regId, uri)</a></dt>
+                    <dd>
+                      <p>The caller of a call</p>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.CallMediaStatus.html">CallMediaStatus()</a></dt>
+                    <dd>
+                      <p>The media status of a call</p>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.CallOptions.html">CallOptions(video, remoteRender, localRender)</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.CallStatus.html">CallStatus()</a></dt>
+                    <dd>
+                      <p>The status of the call when it is terminated</p>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.DataConnection.html">DataConnection(session, media)</a></dt>
+                    <dd>
+                      <p>A connection used to transmit data at real-time</p>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.Exceptions.html">Exceptions()</a></dt>
+                    <dd>
+                      <p>The various errors the Media class may throw</p>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.TurnServerConfig.html">TurnServerConfig(transport, url, username, password)</a></dt>
+                    <dd>
+                      <p>Configuration of the TURN servers</p>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Properties</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.html#.CallQosLevels">CallQosLevels</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.html#.SipStatusCode">SipStatusCode</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.html#.CallEndCause">CallEndCause</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.html#.CallEndReason">CallEndReason</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.html#.CallState">CallState</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Methods</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.html#configure">configure(config)</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.html#createDataConnection">createDataConnection(callee, metaData)</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.html#makeCall">makeCall(callee, callOPtions)</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.html#supported">supported()</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                </div>
+              </div>
+            </div>
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Events</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.html#event:incomingCall">incomingCall</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.html#event:incomingDataConnection">incomingDataConnection</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+          </section>
+          <section>
+            <h2>Classes</h2>
+            <section id='members-links'>
+              <h3><a href="BBMEnterprise.Media.Call.html">Call</a></h3>
+              <p>A media call session for voice and/or video</p>
+              <h3><a href="BBMEnterprise.Media.Callee.html">Callee</a></h3>
+              <p>The callee of a call</p>
+              <h3><a href="BBMEnterprise.Media.Caller.html">Caller</a></h3>
+              <p>The caller of a call</p>
+              <h3><a href="BBMEnterprise.Media.CallMediaStatus.html">CallMediaStatus</a></h3>
+              <p>The media status of a call</p>
+              <h3><a href="BBMEnterprise.Media.CallOptions.html">CallOptions</a></h3>
+              <h3><a href="BBMEnterprise.Media.CallStatus.html">CallStatus</a></h3>
+              <p>The status of the call when it is terminated</p>
+              <h3><a href="BBMEnterprise.Media.DataConnection.html">DataConnection</a></h3>
+              <p>A connection used to transmit data at real-time</p>
+              <h3><a href="BBMEnterprise.Media.Exceptions.html">Exceptions</a></h3>
+              <p>The various errors the Media class may throw</p>
+              <h3><a href="BBMEnterprise.Media.TurnServerConfig.html">TurnServerConfig</a></h3>
+              <p>Configuration of the TURN servers</p>
+            </section>
+            <h2>Properties</h2>
+            <section>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".CallQosLevels"><span class="symbol-name">CallQosLevels</span><small class="property-type">
+            &nbsp;number</small></h3>
+              <p>The Call Quality Status codes that is returned to the client Upon <a href="BBMEnterprise.Media.Call.html#event:qualityChanged">BBMEnterprise.Media.Call#event:qualityChanged</a></p>
+              <section>
+                <h4>Properties</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>QUALITY_UNKNOWN</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>quality is unknown as not enough samples have been collected</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>QUALITY_GOOD</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>quality is good and no visual or audible glitches should appear</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>QUALITY_MODERATE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>quality is moderate and minor visual or audible glitches may appear</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>QUALITY_POOR</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>quality is poor and major visual or audible glitches may appear</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".SipStatusCode"><span class="symbol-name">SipStatusCode</span><small class="property-type">
+            &nbsp;number</small></h3>
+              <p>The SIP Status codes that is returned to the client.</p>
+              <p> <strong>See RFC3261 for full description</strong></p>
+              <section>
+                <h4>Properties</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>TRYING</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>RINGING</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_BEING_FORWARDED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>QUEUED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>PROGRESS</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>OK</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>ACCEPTED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>MULTIPLE_CHOICES</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>MOVED_PERMANENTLY</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>MOVED_TEMPORARILY</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>USE_PROXY</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>ALTERNATIVE_SERVICE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>BAD_REQUEST</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>UNAUTHORIZED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>PAYMENT_REQUIRED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>FORBIDDEN</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>NOT_FOUND</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>METHOD_NOT_ALLOWED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>NOT_ACCEPTABLE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>PROXY_AUTHENTICATION_REQUIRED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>REQUEST_TIMEOUT</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>GONE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>REQUEST_ENTITY_TOO_LARGE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>REQUEST_URI_TOO_LONG</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>UNSUPPORTED_MEDIA_TYPE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>UNSUPPORTED_URI_SCHEME</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>BAD_EXTENSION</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>EXTENSION_REQUIRED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>SESSION_TIMER_TOO_SMALL</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>INTERVAL_TOO_BRIEF</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>TEMPORARILY_UNAVAILABLE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_TSX_DOES_NOT_EXIST</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>LOOP_DETECTED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>TOO_MANY_HOPS</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>ADDRESS_INCOMPLETE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>PJSIP_AC_AMBIGUOUS</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>BUSY_HERE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>REQUEST_TERMINATED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>NOT_ACCEPTABLE_HERE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>BAD_EVENT</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>REQUEST_UPDATED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>REQUEST_PENDING</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>UNDECIPHERABLE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>INTERNAL_SERVER_ERROR</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>NOT_IMPLEMENTED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>BAD_GATEWAY</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>SERVICE_UNAVAILABLE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>SERVER_TIMEOUT</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>VERSION_NOT_SUPPORTED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>MESSAGE_TOO_LARGE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>PRECONDITION_FAILURE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>BUSY_EVERYWHERE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>DECLINE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>DOES_NOT_EXIST_ANYWHERE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>NOT_ACCEPTABLE_ANYWHERE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".CallEndCause"><span class="symbol-name">CallEndCause</span><small class="property-type">
+            &nbsp;number</small></h3>
+              <p>Call ending causes that is returned to the client</p>
+              <section>
+                <h4>Properties</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>CALL_SUCCESS</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call completed without error</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_FAILURE_FIREWALL</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call failed due to media blocked by firewall or network congestion</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_FAILURE_MEDIASETUP</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call failed during setting up the media connections</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_FAILURE_NOMEDIA</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call failed due to media connection lost and couldn't be regained</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_END_USER</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call ended due to user operations</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_TIMEOUT</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call timed out</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_CANCELLED_UNKNOWN</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call canceled before connected</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_END_NETWORKUNAVAILABLE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call disconnected as the network is unavailable</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_END_PEER</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call disconnected with other unknown reasons</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_RECOVERY_CALL_TRANSFER</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call terminated due to recovery call is made</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_SECURE_CALL_UNSUPPORTED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call failed due to secure call negotiation error</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_SECURE_CALL_KEY_ERROR</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call failed due to secure call has mismatched keys</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_SECURE_CALL_KEY_TIMEOUT</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call failed due to secure call timed out in encryption/decryption operations</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_END_BUSY</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call rejected by the callee due to conflict</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_REJECTED_ELSEWHERE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call rejected by another end point of the user</p>
+                        <p>Typically, the client receiving this cause should silently drop the call without having to create a call history, as the other endpoint rejecting the call should have created a call history already.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_ACCEPTED_ELSEWHERE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call accepted by another end point of the user</p>
+                        <p>Typically, the client receiving this cause should silently drop the call without having to create a call history, as the other endpoint accepting the call should create a call history once the call disconnects.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".CallEndReason"><span class="symbol-name">CallEndReason</span><small class="property-type">
+            &nbsp;number</small></h3>
+              <p>Call ending reasons that is passed from the user to the media instance</p>
+              <section>
+                <h4>Properties</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>USER_HANGUP</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Normal hangup</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>REJECT_CALL</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Rejected</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>TIMEOUT</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>No answer for a certain period of time after ringing</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>FAILURE_MEDIASETUP</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Answer failed due to media unavailable</p>
+                        <p>e.g. answering with video failed as camera is not available and the client decides to fail the call</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".CallState"><span class="symbol-name">CallState</span><small class="property-type">
+            &nbsp;number</small></h3>
+              <p>The state of the call session</p>
+              <section>
+                <h4>Properties</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>CALL_STATE_UNKNOWN</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Unknown state</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_STATE_INITIATED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call has been created/initiated</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_STATE_RINGING</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call is ringing on both ends</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_STATE_CONNECTING</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call has been accepted by the callee and is waiting for the caller to ACK</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_STATE_CONNECTED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call has been established successfully</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CALL_STATE_DISCONNECTED</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Call has been disconnected</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+            </section>
+            <h2>Methods</h2>
+            <section>
+              <h3 id="configure"><span class="symbol-name">configure</span><span class="signature"><span class="signature-params">(config)</span></span>
+              </h3>
+              <p>Overrides the server configuration for media.</p>
+              <p><strong>NOTE</strong>, new configurations will take effect the next call.</p>
+              <section>
+                <h4>Parameters</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>config</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>the configuration of the media servers.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>config.stunServers</p>
+                      </td>
+                      <td>
+                        <p>Array of String</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Optional, the URIs of the stun servers used for media calls, in the format of scheme:url:port, e.g. stun:stun.l.google.com:19302.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>config.turnServers</p>
+                      </td>
+                      <td>
+                        <p>Array of Object</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Optional, the configuration <a href="BBMEnterprise.Media.TurnServerConfig.html">BBMEnterprise.Media.TurnServerConfig</a> of the turn servers used for media calls.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Throws</dt>
+                <dd>
+                  <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.InvalidArgumentError">BBMEnterprise.Media.Exceptions.InvalidArgumentError</a> if the configuration is invalid.</p>
+                </dd>
+              </dl>
+              <h3 id="createDataConnection"><span class="symbol-name">createDataConnection</span><span class="signature"><span class="signature-params">(callee, metaData)</span>&nbsp;&rarr; <span class="signature-returns"> Promise</span></span>
+              </h3>
+              <p>Makes an outgoing request to establish a data connection.</p>
+              <section>
+                <h4>Parameters</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>callee</p>
+                      </td>
+                      <td>
+                        <p>Object</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>the callee <a href="BBMEnterprise.Media.Callee.html">BBMEnterprise.Media.Callee</a> of the outgoing request.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>metaData</p>
+                      </td>
+                      <td>
+                        <p>Object</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>an object sent to the callee as meta data of the request.</p>
+                        <p> It is typically used to describe the purpose of the data connection.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Throws</dt>
+                <dd>
+                  <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.NotSupportedError">BBMEnterprise.Media.Exceptions.NotSupportedError</a> if the media features are not supported on the platform.</p>
+                </dd>
+                <dd>
+                  <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.InvalidArgumentError">BBMEnterprise.Media.Exceptions.InvalidArgumentError</a> if the arguments are invalid.</p>
+                </dd>
+                <dd>
+                  <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.InvalidStateError">BBMEnterprise.Media.Exceptions.InvalidStateError</a> if the call cannot be made due to transport state (e.g. no connection).</p>
+                </dd>
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Promise</code>&nbsp;
+                    <p>a Promise, which is resolved to a DataConnection object
+                      <a href="BBMEnterprise.Media.DataConnection.html">BBMEnterprise.Media.DataConnection</a> and may reject to the following errors:</p>
+                  </p>
+                  <ol>
+                    <li>
+                      <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.TimeoutError">BBMEnterprise.Media.Exceptions.TimeoutError</a> if the data connection fails to be requested due to timeout. e.g. if the server failed to resolve the
+                        callee's identity.</p>
+                    </li>
+                    <li>
+                      <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.InvalidStateError">BBMEnterprise.Media.Exceptions.InvalidStateError</a> if the data connection fails to be requested due to connection state. e.g. if the connection
+                        to server has dropped during the request.
+                      </p>
+                    </li>
+                  </ol>
+                </dd>
+              </dl>
+              <h3 id="makeCall"><span class="symbol-name">makeCall</span><span class="signature"><span class="signature-params">(callee, callOPtions)</span>&nbsp;&rarr; <span class="signature-returns"> Promise</span></span>
+              </h3>
+              <p>Makes an outgoing voice/video call.</p>
+              <section>
+                <h4>Parameters</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>callee</p>
+                      </td>
+                      <td>
+                        <p>Object</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>the callee <a href="BBMEnterprise.Media.Callee.html">BBMEnterprise.Media.Callee</a> of the outgoing call.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>callOPtions</p>
+                      </td>
+                      <td>
+                        <p>Object</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>the call options <a href="BBMEnterprise.Media.CallOptions.html">BBMEnterprise.Media.CallOptions</a> of the outgoing call.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Throws</dt>
+                <dd>
+                  <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.NotSupportedError">BBMEnterprise.Media.Exceptions.NotSupportedError</a> if the media calls are not supported on the platform.</p>
+                </dd>
+                <dd>
+                  <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.InvalidArgumentError">BBMEnterprise.Media.Exceptions.InvalidArgumentError</a> if the arguments are invalid.</p>
+                </dd>
+                <dd>
+                  <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.InvalidStateError">BBMEnterprise.Media.Exceptions.InvalidStateError</a> if the call cannot be made due to transport state (e.g. no connection).</p>
+                </dd>
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Promise</code>&nbsp;
+                    <p>a Promise, which is resolved to a call object <a href="BBMEnterprise.Media.Call.html">BBMEnterprise.Media.Call</a> and may reject to the following errors:</p>
+                  </p>
+                  <ol>
+                    <li>
+                      <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.NotSupportedError">BBMEnterprise.Media.Exceptions.NotSupportedError</a> if the requested call options cannot be satisfied, e.g. video device is unavailable on the
+                        platform when the video option is enabled.</p>
+                    </li>
+                    <li>
+                      <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.PermissionDeniedError">BBMEnterprise.Media.Exceptions.PermissionDeniedError</a> if the media fails to be requested due to permission error. e.g. if the user denied
+                        the request to allow camera or mic to be accessed.</p>
+                    </li>
+                    <li>
+                      <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.TimeoutError">BBMEnterprise.Media.Exceptions.TimeoutError</a> if the media fails to be requested due to timeout. e.g. if the server failed to resolve the callee's
+                        identity.</p>
+                    </li>
+                    <li>
+                      <p><a href="BBMEnterprise.Media.BBMEnterprise.Media.Exceptions.html#.InvalidStateError">BBMEnterprise.Media.Exceptions.InvalidStateError</a> if the media fails to be requested due to connection state. e.g. if the connection to server
+                        has dropped during the request.
+                      </p>
+                    </li>
+                  </ol>
+                </dd>
+              </dl>
+              <h3 id="supported"><span class="symbol-name">supported</span><span class="signature"><span class="signature-params">()</span>&nbsp;&rarr; <span class="signature-returns"> Boolean</span></span>
+              </h3>
+              <p>Checks whether the media calls can be supported on the platform.</p>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Boolean</code>&nbsp;
+                    <p>true if media calls can be supported.</p>
+                  </p>
+                </dd>
+              </dl>
+            </section>
+            <h2>Events</h2>
+            <section>
+              <h3 id="event:incomingCall"><span class="symbol-name">incomingCall</span></h3>
+              <p>An incoming media call is received</p>
+              <section>
+                <h4>Parameter</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>The</p>
+                      </td>
+                      <td>
+                        <p>Object</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>call session <a href="BBMEnterprise.Media.Call.html">BBMEnterprise.Media.Call</a> representing the incoming call</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="event:incomingDataConnection"><span class="symbol-name">incomingDataConnection</span></h3>
+              <p>An incoming Data Connection is received</p>
+              <section>
+                <h4>Parameter</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>The</p>
+                      </td>
+                      <td>
+                        <p>Object</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>data connection <a href="BBMEnterprise.Media.DataConnection.html">BBMEnterprise.Media.DataConnection</a> that is created</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+            </section>
+          </section>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <footer id="jsdoc-footer" class="jsdoc-footer">
+    <div id="jsdoc-footer-container">
+      <p>
+        Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> 3.5.5 on November 24, 2017.
+      </p>
+    </div>
+  </footer>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
+</body>
+
+</html>

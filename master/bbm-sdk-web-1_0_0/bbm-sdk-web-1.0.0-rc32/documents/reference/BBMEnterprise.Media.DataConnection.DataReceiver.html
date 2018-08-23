@@ -1,0 +1,498 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="generator" content="JSDoc 3.5.5">
+  <meta charset="utf-8">
+  <title>Class: DataReceiver</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link href="css/baseline.css" rel="stylesheet">
+</head>
+
+<body onload="prettyPrint()">
+  <nav id="jsdoc-navbar" role="navigation" class="jsdoc-navbar">
+    <div id="jsdoc-navbar-container">
+      <div id="jsdoc-navbar-content">
+        <a href="index.html" class="jsdoc-navbar-package-name">Home</a>
+      </div>
+    </div>
+  </nav>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-static">static</span></div>
+            <h1><small><a href="BBMEnterprise.html">BBMEnterprise</a>.<wbr><a href="BBMEnterprise.Media.html">Media</a>.<wbr><a href="BBMEnterprise.Media.DataConnection.html">DataConnection</a>.<wbr></small><span class="symbol-name">DataReceiver</span></h1>
+            <div class="symbol-classdesc">
+              <p>This class manages the data receiver of a data connection.</p>
+              <p> A data receiver is created by the data connection when a new incoming data channel is detected. All incoming data associated with the data channel is handled by the receiver.</p>
+              <p>Based on the data type of the receiver, the client could configure the data receiver to appropriate receiving modes with
+                <a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#configure">BBMEnterprise.Media.DataConnection.DataReceiver#configure</a>.</p>
+            </div>
+            <dl class="dl-compact">
+            </dl>
+            <dl class="dl-compact">
+              <dt>Fires</dt>
+              <dd><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#event:dataChunk">BBMEnterprise.Media.DataConnection.DataReceiver#event:dataChunk</a></dd>
+              <dd><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#event:done">BBMEnterprise.Media.DataConnection.DataReceiver#event:done</a></dd>
+            </dl>
+          </header>
+          <section id="summary">
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Properties</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#.DataType">DataType</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#.Mode">Mode</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                </div>
+              </div>
+            </div>
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Methods</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#configure">configure(cfg, chunkSize)</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#deplete">deplete()</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#done">done()</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#id">id()</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#size">size()</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#type">type()</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Events</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#event:dataChunk">dataChunk</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#event:done">done</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+          </section>
+          <section>
+            <h2>Properties</h2>
+            <section>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".DataType"><span class="symbol-name">DataType</span><small class="property-type">
+            &nbsp;number</small></h3>
+              <p>The original type of the data that is received.</p>
+              <p><strong>NOTE:</strong></p>
+              <p> This is the type of the data the sender has specified, which can be used to help the receiver restore the raw data(Uint8Array) received to the original form.</p>
+              <section>
+                <h4>Properties</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>RAW</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>raw binary data</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>STRING</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>plain text</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>FILE</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>file</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>STREAM</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>stream</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".Mode"><span class="symbol-name">Mode</span><small class="property-type">
+            &nbsp;number</small></h3>
+              <p>The data channel transferring mode for the data receiver.</p>
+              <section>
+                <h4>Properties</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>STREAM</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>streaming mode, data delivered upon arrival</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>DATA_CHUNK</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>data chunks mode, data delivered with fulfilled data chunks or when the entire job has finished.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>DATA_FULL</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>data full mode, data delivered when the entire job is completed.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+            </section>
+            <h2>Methods</h2>
+            <section>
+              <h3 id="configure"><span class="symbol-name">configure</span><span class="signature"><span class="signature-params">(cfg, chunkSize)</span></span>
+              </h3>
+              <p>
+                <p>Configures the receiving mode of the data receiver.</p>
+              </p>
+              <p>
+                <p><strong>NOTE</strong>:</p>
+              </p>
+              <ul>
+                <li>
+                  <p>Can only be called in the handler of <a href="BBMEnterprise.Media.DataConnection.html#event:dataReceived">BBMEnterprise.Media.DataConnection#event:dataReceived</a>.</p>
+                </li>
+                <li>
+                  <p>STREAM data type can only be configured as STREAM mode.</p>
+                </li>
+              </ul>
+              <section>
+                <h4>Parameters</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>cfg</p>
+                      </td>
+                      <td>
+                        <p>Object</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The configuration of the receiver.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>cfg.mode</p>
+                      </td>
+                      <td>
+                        <p>Enum</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The receiving mode in <a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#.Mode">BBMEnterprise.Media.DataConnection.DataReceiver.Mode</a>.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>chunkSize</p>
+                      </td>
+                      <td>
+                        <p>Number</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The size of the chunk when cfg.mode is DATA_CHUNK.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="deplete"><span class="symbol-name">deplete</span><span class="signature"><span class="signature-params">()</span>&nbsp;&rarr; <span class="signature-returns"> Uint8Array</span></span>
+              </h3>
+              <p>Consumes the buffered data upon the event of
+                <a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#event:dataChunk">BBMEnterprise.Media.DataConnection.DataReceiver#event:dataChunk</a> and
+                <a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#event:done">BBMEnterprise.Media.DataConnection.DataReceiver#event:done</a>.</p>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Uint8Array</code>&nbsp;
+                    <p>the data that is currently buffered.</p>
+                  </p>
+                </dd>
+              </dl>
+              <h3 id="done"><span class="symbol-name">done</span><span class="signature"><span class="signature-params">()</span>&nbsp;&rarr; <span class="signature-returns"> Boolean</span></span>
+              </h3>
+              <p>Checks whether the receiver has completed the data transfer.</p>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Boolean</code>&nbsp;
+                    <p>true if the data transfer has completed, otherwise false.</p>
+                  </p>
+                </dd>
+              </dl>
+              <h3 id="id"><span class="symbol-name">id</span><span class="signature"><span class="signature-params">()</span>&nbsp;&rarr; <span class="signature-returns"> String</span></span>
+              </h3>
+              <p>Gets the identifier of the receiver.</p>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>String</code>&nbsp;
+                    <p>the identifier received for this this receiver.</p>
+                  </p>
+                </dd>
+              </dl>
+              <h3 id="size"><span class="symbol-name">size</span><span class="signature"><span class="signature-params">()</span>&nbsp;&rarr; <span class="signature-returns"> Number</span></span>
+              </h3>
+              <p>Returns the full size of the data to receive.</p>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Number</code>&nbsp;
+                    <p>size in bytes of the data to be received. -1 is returned for type STREAM.</p>
+                  </p>
+                </dd>
+              </dl>
+              <h3 id="type"><span class="symbol-name">type</span><span class="signature"><span class="signature-params">()</span>&nbsp;&rarr; <span class="signature-returns"> Enum</span></span>
+              </h3>
+              <p>Checks the type of the data received.</p>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Enum</code>&nbsp;
+                    <p>one of the <a href="BBMEnterprise.Media.DataConnection.DataReceiver.html#.DataType">BBMEnterprise.Media.DataConnection.DataReceiver.DataType</a>.</p>
+                  </p>
+                </dd>
+              </dl>
+            </section>
+            <h2>Events</h2>
+            <section>
+              <h3 id="event:dataChunk"><span class="symbol-name">dataChunk</span></h3>
+              <p>A fulfilled data chunk is received.</p>
+              <p>Consume with BBMEnterprise.Media.DataConnection.DataReceiver#deplete or the data is ignored.</p>
+              <section>
+                <h4>Parameter</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>connection</p>
+                      </td>
+                      <td>
+                        <p>Object</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The data connection <a href="BBMEnterprise.Media.DataConnection.html">BBMEnterprise.Media.DataConnection</a> that fires the event.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="event:done"><span class="symbol-name">done</span></h3>
+              <p>The entire data is received.</p>
+              <p>Consume with BBMEnterprise.Media.DataConnection.DataReceiver#deplete or the data is ignored.</p>
+              <section>
+                <h4>Parameter</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>connection</p>
+                      </td>
+                      <td>
+                        <p>Object</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The data connection <a href="BBMEnterprise.Media.DataConnection.html">BBMEnterprise.Media.DataConnection</a> that fires the event.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+            </section>
+          </section>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <footer id="jsdoc-footer" class="jsdoc-footer">
+    <div id="jsdoc-footer-container">
+      <p>
+        Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> 3.5.5 on November 24, 2017.
+      </p>
+    </div>
+  </footer>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
+</body>
+
+</html>

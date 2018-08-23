@@ -1,0 +1,9 @@
+@ECHO OFF
+FOR /F "DELIMS=; TOKENS=1-3" %%A  IN (table.txt) DO CALL :LOOP "%%A" "%%B" "%%C" & ECHO - - - -
+PAUSE
+GOTO :EOF
+:LOOP
+FOR /F "DELIMS=, TOKENS=1-3" %%A IN (%1) DO ECHO 1: [%%A] [%%B] [%%C]
+FOR /F "DELIMS=, TOKENS=1-3" %%A IN (%2) DO ECHO 2: [%%A] [%%B] [%%C]
+FOR /F "DELIMS=, TOKENS=1-3" %%A IN (%3) DO ECHO 3: [%%A] [%%B] [%%C]
+GOTO :EOF

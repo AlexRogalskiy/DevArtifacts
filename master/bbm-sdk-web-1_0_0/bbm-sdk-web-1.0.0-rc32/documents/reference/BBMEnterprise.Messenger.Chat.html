@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="generator" content="JSDoc 3.5.5">
+  <meta charset="utf-8">
+  <title>Class: Chat</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link href="css/baseline.css" rel="stylesheet">
+</head>
+
+<body onload="prettyPrint()">
+  <nav id="jsdoc-navbar" role="navigation" class="jsdoc-navbar">
+    <div id="jsdoc-navbar-container">
+      <div id="jsdoc-navbar-content">
+        <a href="index.html" class="jsdoc-navbar-package-name">Home</a>
+      </div>
+    </div>
+  </nav>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-static">static</span></div>
+            <h1><small><a href="BBMEnterprise.html">BBMEnterprise</a>.<wbr><a href="BBMEnterprise.Messenger.html">Messenger</a>.<wbr></small><span class="symbol-name">Chat</span></h1>
+            <div class="symbol-classdesc">
+              <p>Provides a structure to encapsulate the details related to a chat. Each instance of a Chat is immutable.</p>
+            </div>
+            <dl class="dl-compact">
+            </dl>
+            <dl class="dl-compact">
+            </dl>
+          </header>
+          <section id="summary">
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Properties</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Messenger.Chat.html#chatId">chatId</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Messenger.Chat.html#invitePolicy">invitePolicy</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Messenger.Chat.html#isOneToOne">isOneToOne</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Messenger.Chat.html#lastActivity">lastActivity</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Messenger.Chat.html#participants">participants</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Messenger.Chat.html#state">state</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Messenger.Chat.html#subject">subject</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Messenger.Chat.html#.InvitePolicy">InvitePolicy</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Data.Chat.html#.State">State</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+          </section>
+          <section>
+            <h2>Properties</h2>
+            <section>
+              <h3 id="chatId"><span class="symbol-name">chatId</span><small class="property-type">
+            &nbsp;string</small></h3>
+              <p>The unique identifier of the chat. This is the chat identifier to use when identifying a chat to any of the Messenger functions. This value will never change.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="invitePolicy"><span class="symbol-name">invitePolicy</span><small class="property-type">
+            &nbsp;<a href="BBMEnterprise.Messenger.Chat.html#.InvitePolicy">Chat.InvitePolicy</a></small></h3>
+              <p>The policy that controls who may invite participants to the chat. This will only be defined when 'isOneToOne' is false because invites cannot be extended to others in a one-to-one chat.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="isOneToOne"><span class="symbol-name">isOneToOne</span><small class="property-type">
+            &nbsp;boolean</small></h3>
+              <p>This will be set to true when the chat is a one-to-one chat between the local user and one other participant. This value will never change.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="lastActivity"><span class="symbol-name">lastActivity</span><small class="property-type">
+            &nbsp;Date</small></h3>
+              <p>The time of the most recent notable activity in the chat. Notable activity includes chat creation and new messages.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="participants"><span class="symbol-name">participants</span><small class="property-type">
+            &nbsp;Array of <a href="BBMEnterprise.Messenger.Participant.html">BBMEnterprise.Messenger.Participant</a></small></h3>
+              <p>The list of participants that are currently in the chat. A chat may contain messages from past participants which are no longer in this list.
+              </p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="state"><span class="symbol-name">state</span><small class="property-type">
+            &nbsp;<a href="Data.Chat.html#.State">Chat.State</a></small></h3>
+              <p>The current state of the chat.</p>
+              <p>A chat that is created in the current session by the local user will start in the Ready state.</p>
+              <p>A chat that is known to the SDK but has not yet been restored, will start in the Waiting state.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="subject"><span class="symbol-name">subject</span><small class="property-type">
+            &nbsp;string</small></h3>
+              <p>The current subject of the chat. The local user may change the subject of a chat using the <a href="BBMEnterprise.Messenger.html#chatUpdate">BBMEnterprise.Messenger#chatUpdate</a> method.</p>
+              <p>When a subject change has been made by either the application or by another participant in the chat, a <a href="BBMEnterprise.Messenger.html#event:chatUpdated">BBMEnterprise.Messenger#event:chatUpdated</a> event will be issued.</p>
+              <dl class="dl-compact">
+              </dl>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".InvitePolicy"><span class="symbol-name">InvitePolicy</span><small class="property-type">
+            &nbsp;string</small></h3>
+              <p>The possible invite policies that can be applied to a <a href="BBMEnterprise.Messenger.Chat.html">BBMEnterprise.Messenger.Chat</a></p>
+              <section>
+                <h4>Properties</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>AdminsOnly</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Only chat admins may invite participants to the chat.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>ParticipantsOnly</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Only chat participants may invite participants to the chat. This is the default state.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".State"><span class="symbol-name">State</span><small class="property-type">
+            &nbsp;string</small></h3>
+              <p>The possible states of a <a href="BBMEnterprise.Messenger.Chat.html">BBMEnterprise.Messenger.Chat</a>.</p>
+              <section>
+                <h4>Properties</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>Waiting</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The chat has been created and is waiting to be restored on demand. To restore the Chat, a call to Messenger.fetchChatMessages must be made by the application. Although, the chat has not been restored, new messages may still arrive
+                          via the Event.ChatMessageAdded event.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>Restoring</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The chat is being restored. A Event.MessageListUpdate event will be issued each time new data has become available.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>Defunct</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The infrastructure has indicated this chat is no longer available. This state exists so the user knows why their previously functional chat is no longer functional, and gives the user a chance to consume the content of the chat
+                          until they remove it. The SDK will not send or receive any further messages for a chat in this state. The SDK will not automatically remove defunct chats. The app may remove it explicitly via Messenger.chatLeave.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>Ready</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The chat has been fully restored. No further Event.MessageListUpdate events will be issued for this chat. Once a chat has reached this state, new messages will arrive via the Event.ChatMessageAdded event.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+            </section>
+          </section>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <footer id="jsdoc-footer" class="jsdoc-footer">
+    <div id="jsdoc-footer-container">
+      <p>
+        Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> 3.5.5 on November 24, 2017.
+      </p>
+    </div>
+  </footer>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
+</body>
+
+</html>

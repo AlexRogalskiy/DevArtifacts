@@ -1,0 +1,36 @@
+@ECHO OFF
+SET DISK=M:
+IF NOT EXIST %DISK%\NUL GOTO CONT1
+ECHO =================================
+ECHO Имеется подключённый диск %DISK%.
+ECHO Перед выполнением сценария
+ECHO его нужно отключить!
+ECHO =================================
+GOTO :EOF
+:CONT1
+IF EXIST later.txt DEL list.txt & REN later.txt list.txt
+FOR /F "EOL=; TOKENS=1,2" %%a IN (list.txt) DO CALL :DOACT %%a %%b
+ECHO Выполнение сценария завершено.
+GOTO :EOF
+REM ============================================
+REM Выполнение действия для текущего устройства.
+REM %1 - IP-адрес, %2 - имя устройства
+REM ============================================
+:DOACT
+ECHO Обрабатывается %2 (%1)...
+IF EXIST %DISK%\NUL net use %DISK% /delete
+IF ERRORLEVEL 1 GOTO ERR
+ping -n 1 %1 > NUL
+IF ERRORLEVEL 1 GOTO ERR
+net use %DISK% \\%1\C$
+IF ERRORLEVEL 1 GOTO ERR
+CALL action.cmd %2 %1
+IF ERRORLEVEL 1 GOTO ERR
+ECHO %2 (%1) - ok.
+IF EXIST %DISK%\NUL net use %DISK% /delete
+GOTO :EOF
+:ERR
+ECHO %1 %2 >> later.txt
+ECHO %2 (%1) - ERROR!
+REM Сброс признака ошибки ERRORLEVEL
+dir >nul

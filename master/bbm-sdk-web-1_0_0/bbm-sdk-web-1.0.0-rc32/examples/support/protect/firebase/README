@@ -1,0 +1,45 @@
+The rules.sample.js file provides information on how to setup and secure
+private and public key data suitable for use with the BBM SDK products that
+employ the Firebase Realtime Database as its cloud key store.
+
+Firebase offers a cloud hosted NoSQL realtime database:
+https://firebase.google.com/docs/database/
+
+It also offers a variety of authentication system integration options that
+allow for a large degree of flexibility in design:
+https://firebase.google.com/docs/auth/
+
+These rules describe a mechanism for storing:
+1) A user's private key data such that
+   * only the user may read or write their private key data
+   * other users have no read or write access to it
+2) A user's public key data such that
+   * only the user may read and write their public key data
+   * other user only have read access to it
+
+An important additional constraint factored into this design is to maintain a
+separation between a user's regId (BBM identifier) and the identity employed
+by the authentication system.  This means that any drop-in authentication
+solution that is compatible with Firebase can be used - this includes popular
+federated identity providers such as Google Sign-In and Facebook Login.
+
+An alternative design which can authoritatively link the user's regId (BBM
+identifier) and their system user ID is not discussed beyond acknowledging
+that the data store design is made much simpler and rigorous when a custom
+authentication system is used to either:
+1) set the regId (BBM identifier) as a user's OAuth UID; or
+2) establish an authoritative claim in the OAuth token which declares the
+   user's ownership of a regId, which is guaranteed to have a 1:1 mapping with
+   the UID by the authorization system issuing the token.
+
+For more information on the rules, please refer to the Firebase Realtime
+Database documentation for Security & Rules:
+https://firebase.google.com/docs/database/security/
+
+Because the Firebase Realtime Database employs JSON as a means of data storage
+and transfer, it is recommended that all encryption, signing, and symmetric
+keys stored in this database be base64 encoded.
+
+The rules.sample.js may be installed into a project's Firebase Realtime
+Database via the project's Firebase console:
+https://console.firebase.google.com/

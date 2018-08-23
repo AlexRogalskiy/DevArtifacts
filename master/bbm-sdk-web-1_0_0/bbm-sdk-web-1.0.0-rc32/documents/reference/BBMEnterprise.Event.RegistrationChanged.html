@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="generator" content="JSDoc 3.5.5">
+  <meta charset="utf-8">
+  <title>Class: RegistrationChanged</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link href="css/baseline.css" rel="stylesheet">
+</head>
+
+<body onload="prettyPrint()">
+  <nav id="jsdoc-navbar" role="navigation" class="jsdoc-navbar">
+    <div id="jsdoc-navbar-container">
+      <div id="jsdoc-navbar-content">
+        <a href="index.html" class="jsdoc-navbar-package-name">Home</a>
+      </div>
+    </div>
+  </nav>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-static">static</span></div>
+            <h1><small><a href="BBMEnterprise.html">BBMEnterprise</a>.<wbr><a href="BBMEnterprise.Event.html">Event</a>.<wbr></small><span class="symbol-name">RegistrationChanged</span></h1>
+            <div class="symbol-classdesc">
+              <p>Construct a RegistrationChanged event.</p>
+            </div>
+            <dl class="dl-compact">
+            </dl>
+          </header>
+          <section id="summary">
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Properties</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Event.RegistrationChanged.html#failureReason">failureReason</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Event.RegistrationChanged.html#pin">pin</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Event.RegistrationChanged.html#regId">regId</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="BBMEnterprise.Event.RegistrationChanged.html#state">state</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="BBMEnterprise.Event.RegistrationChanged.html#.Failure">Failure</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2 id="RegistrationChanged">new&nbsp;<span class="symbol-name">RegistrationChanged</span><span class="signature"><span class="signature-params">([data])</span></span>
+            </h2>
+            <section>
+              <h3>Parameters</h3>
+              <table class="jsdoc-details-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Optional</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p>data</p>
+                    </td>
+                    <td>
+                      <p>Object</p>
+                    </td>
+                    <td>
+                      <p>Yes</p>
+                    </td>
+                    <td>
+                      <p>When not defined, the registration changed event will be considered a failure for reason=GeneralFailure.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>data.regId</p>
+                    </td>
+                    <td>
+                      <p>String</p>
+                    </td>
+                    <td>
+                      <p>Yes</p>
+                    </td>
+                    <td>
+                      <p>The registration id of the user. This must always be set on success and may be set for a failure to provide additional context.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>data.pin</p>
+                    </td>
+                    <td>
+                      <p>String</p>
+                    </td>
+                    <td>
+                      <p>Yes</p>
+                    </td>
+                    <td>
+                      <p>The PIN of the user. This must always be set on success and may be set for a failure to provide additional context.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>data.reason</p>
+                    </td>
+                    <td>
+                      <p><a href="BBMEnterprise.Event.RegistrationChanged.html#.Failure">RegistrationChanged.Failure</a></p>
+                    </td>
+                    <td>
+                      <p>Yes</p>
+                    </td>
+                    <td>
+                      <p>The failure reason. When this is set, registration failed with the given reason. This may only ever be set when the registration has failed.</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+            <dl class="dl-compact">
+            </dl>
+          </section>
+          <section>
+            <h2>Properties</h2>
+            <section>
+              <h3 id="failureReason"><span class="symbol-name">failureReason</span><small class="property-type">
+            &nbsp;<a href="BBMEnterprise.Event.RegistrationChanged.html#.Failure">RegistrationChanged.Failure</a></small></h3>
+              <p>The reason given by the BBMEnterprise Web SDK for the failure.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="pin"><span class="symbol-name">pin</span><small class="property-type">
+            &nbsp;string</small></h3>
+              <p>The PIN of the user on success, or undefined on failure.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="regId"><span class="symbol-name">regId</span><small class="property-type">
+            &nbsp;string</small></h3>
+              <p>The BBM registration ID of the user on success, or undefined on failure.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="state"><span class="symbol-name">state</span><small class="property-type">
+            &nbsp;String</small></h3>
+              <p>A string to indicate the state of the registration. This may be either 'Success' or 'Failure'.</p>
+              <dl class="dl-compact">
+              </dl>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".Failure"><span class="symbol-name">Failure</span><small class="property-type">
+            &nbsp;string</small></h3>
+              <p>The possible registration failure reasons of a <a href="BBMEnterprise.Event.RegistrationChanged.html">BBMEnterprise.Event.RegistrationChanged</a> event.</p>
+              <section>
+                <h4>Properties</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>GeneralFailure</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The registration failed for unspecified reasons. All errors that are not directly actionable by the application will have this failure reason.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>DeviceSwitchRequired</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>The registration failed because another client that supports only a single point of presence (SPoP) is currently registered with the infrastructure.
+                        </p>
+                        <p>This account cannot be used with the BBMEnterprise Web SDK until such time that a persistent client that supports multiple points of presence (MPoP) has been registered and the current SPoP device has been deregistered.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>RegistrationRevoked</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Another client has superseded this client's registration with the infrastructure. This client is no longer registered and can no longer service requests.</p>
+                        <p>This client must be re-setup before it can begin processing requests again. When this failure reason is issued, only a successful call to
+                          <a href="BBMEnterprise.html#setup">BBMEnterprise#setup</a> can allow traffic to resume.</p>
+                        <p>IMPORTANT: Do not call <a href="BBMEnterprise.html#setup">BBMEnterprise#setup</a> automatically when this failure reason is reported as this can result in clients alternately being kicked off the infrastructure. It is recommended
+                          that the application notify the user of this condition and allow them to log-in again.
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+            </section>
+          </section>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <footer id="jsdoc-footer" class="jsdoc-footer">
+    <div id="jsdoc-footer-container">
+      <p>
+        Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> 3.5.5 on November 24, 2017.
+      </p>
+    </div>
+  </footer>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
+</body>
+
+</html>
