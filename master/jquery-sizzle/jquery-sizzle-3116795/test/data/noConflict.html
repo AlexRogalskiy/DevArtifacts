@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="../../dist/sizzle.js"></script>
+	<script>
+		var Sizzle1 = Sizzle;
+	</script>
+	<script src="../../dist/sizzle.js"></script>
+	<script>
+		var Sizzle2 = Sizzle;
+	</script>
+</head>
+<body>
+	<script>
+		var selector = "html > *",
+			elem = document.documentElement.firstChild,
+			expected = [],
+			originalSizzle = Sizzle,
+			sizzle1Selection = Sizzle1( selector ),
+			sizzle2Selection = Sizzle2( selector ),
+			replaced = Sizzle.noConflict();
+
+		do {
+			if ( elem.nodeType === 1 ) {
+				expected.push( elem );
+			}
+		} while ( (elem = elem.nextSibling) );
+
+		window.parent.iframeCallback( function( assert ) {
+			assert.notStrictEqual( originalSizzle, Sizzle1, "first Sizzle overwritten" );
+			assert.deepEqual( sizzle1Selection, expected, "selection by first Sizzle" );
+			assert.deepEqual( sizzle2Selection, expected, "selection by second Sizzle" );
+
+			assert.strictEqual( Sizzle, Sizzle1, "first Sizzle restored by noConflict" );
+			assert.strictEqual( replaced, Sizzle2, "second Sizzle returned by noConflict" );
+			assert.deepEqual( Sizzle1( selector ), expected, "another selection by first Sizzle" );
+			assert.deepEqual( Sizzle2( selector ), expected, "another selection by second Sizzle" );
+		} );
+	</script>
+</body>
+</html>
