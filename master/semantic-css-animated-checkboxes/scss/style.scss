@@ -1,0 +1,91 @@
+@import "bourbon";
+
+/* check box styles: */
+$color: #b4d;
+$box-color: darken($color,10);
+$check-color: lighten(green,10);
+
+.hidden {
+  display: none;
+}
+
+.check-label {
+  cursor: pointer;
+  display: inline-block;
+  @include perspective(0);
+  @include perspective-origin(center center);
+  
+  [type=checkbox]:checked + & {
+    font-weight: bold;
+  }
+}
+
+.check-box {
+  display: inline-block;
+  vertical-align: middle;
+  left: 0; top: 0;
+  width: 1.5em;
+  height: 1.5em;
+  @include transition(all 0.25s $ease-in-circ);
+  @include transform-style(preserve-3d); 
+  
+  [type=checkbox]:checked + .check-label & {
+    @include transform(rotateX(90deg));
+    @include transition(all 0.45s $ease-in-out-back);
+  }
+}
+
+.check-off, .check-on {
+  display: inline-block;
+  font-size: 1.5em;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.check-off {
+  color: $box-color;
+  @include transform(translateZ(0.5em));
+}
+
+.check-on {
+  color: $check-color;
+  @include transform(rotateX(-90deg) translateZ(0.5em));
+}
+
+/* demo styles: */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 2em 0;
+}
+
+.check-container {
+  width: 500px;
+  margin: 0 auto;
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 4px solid lighten($color,10);
+  background: $color;
+  color: white;
+  
+  h1 {
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.check-row {  
+  padding: 0.5em;
+  border-bottom: 1px solid lighten($color,10);
+  font-size: 2em;
+  
+  &:last-child {
+    border: none;
+  }
+}
+
+.check-on {
+  text-shadow: 0 0 20px green;
+}

@@ -1,0 +1,88 @@
+@import "compass/css3";
+
+@import "compass";
+@import url("http://fonts.googleapis.com/css?family=Lato");
+
+$background: #2ecc71;
+$checkbox-base-color: #27ae60;
+
+* {
+  margin: 0; 
+  padding: 0;
+  @include box-sizing(border-box);
+}
+body {
+  font-family: lato;
+  color: #fff;
+  background: $background;
+  padding: 55px 30px;
+}
+h1 {
+  font-weight: normal;
+  font-size: 40px;
+  font-weight: normal;
+  text-transform: uppercase; 
+  span { 
+    font-size: 13px;
+    display: block;
+    padding-left: 4px;
+  }
+}
+p {
+  display: block;
+  float: left;
+  font-size: 20px;
+  margin: 70px 0;
+  padding: 10px 30px 12px; 
+  //background: $checkbox-base-color;
+  //@include background-image(linear-gradient(right, $checkbox-base-color 0%, darken($checkbox-base-color, 20) 80%, darken($checkbox-base-color, 20) 100%));
+  &.sad {
+      //@include background-image(linear-gradient(left, $checkbox-base-color 0%, darken($checkbox-base-color, 20) 80%, darken($checkbox-base-color, 20) 100%));
+  }
+}
+.checkbox-styled {
+    display: block; 
+    margin: 40px 0 0 0;
+    float: left;
+    //Normal State
+    input[type="checkbox"] {
+        display:none;
+        + span {
+            text-transform: uppercase;
+            background: $checkbox-base-color;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            width: 200px;
+            height: 100px; 
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            padding-top: 60px;
+            @include transition(background 0.1s ease-in);
+            &:hover {
+              background: darken($checkbox-base-color, 10);
+            }  
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                margin-left: -12px;
+                font-size: 55px;
+                display: block;
+                content: ":)";
+                @include transform(rotate(90deg));
+            }
+            &.sad:before {
+                content: ":(";
+            }
+        }
+        //Checked State
+        &:checked {
+            + span {
+                background: darken($checkbox-base-color, 20);
+            }
+        }
+    }   
+}

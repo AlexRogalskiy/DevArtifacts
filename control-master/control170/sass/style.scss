@@ -1,0 +1,61 @@
+@import "compass/css3";
+
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+$base-color: #3498db; 
+
+* {
+  margin: 0;
+  padding: 0; 
+  @include box-sizing(border-box);
+}
+body {
+  padding: 20px;
+  text-align: left;
+  font-family: Lato;
+  color: #fff; 
+  background: $base-color;  
+}
+h1 {
+  font-weight: normal;
+  font-size: 40px;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin: 20px 0 35px 10px; 
+  span { 
+    font-size: 13px;
+    display: block;
+    padding-left: 4px;
+  }
+}
+
+// 1 - With Mixin
+@mixin vertical-align($value) {
+  position: relative;
+  top: $value;
+  -webkit-transform: translateY(-$value);
+  -moz-transform: translateY(-$value);
+  -o-transform: translateY(-$value);
+  -ms-transform: translateY(-$value);
+  transform: translateY(-$value);
+}
+
+.container {
+  display: block;
+  float: left;
+  width: 30%;
+  margin-right: 10px;
+  height: 150px;
+  text-align: center;
+  font-size: 2em;
+  background: darken($base-color, 20%);
+  p.top {
+    @include vertical-align(0%);
+  }
+  p.middle {
+    @include vertical-align(50%);
+  }
+  p.bottom {
+    @include vertical-align(100%);
+  }
+}

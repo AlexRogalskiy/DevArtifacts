@@ -1,0 +1,15 @@
+{{#if isDev}}
+  {{#each jsPaths}}
+    <script src="/js/{{this}}"></script>
+  {{/each}}
+{{else}}
+  <script src="/scripts.js?4"></script>
+{{/if}}
+
+{{#unless isDev}}
+  {{! Google analyltics }}
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-58739927-2','auto');ga('send','pageview')
+  </script>
+{{/unless}}
