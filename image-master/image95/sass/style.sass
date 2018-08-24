@@ -1,0 +1,227 @@
+$yellow: #F1A111
+$red: #C40002
+$blue: #021075
+$green: #3D7A3E
+$black: #15100E
+$white: #FFFFFF
+
+@mixin ratio
+  @media screen and ( orientation: landscape )
+    @content
+
+html, body
+  font-family: "Alfa Slab One", cursive
+  -webkit-font-smoothing: antialiased
+  -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px
+  color: $black
+  background: rgb( 240, 240, 240 )
+  position: absolute
+  overflow: hidden
+  width: 100%
+  height: 100%
+  left: 0
+  top: 0
+  
+.dot, .stroked
+  position: absolute
+  
+.poster
+  background-color: $white
+  position: absolute
+  transform: translate( -50%, -50% )
+  left: 50%
+  top: 50%
+  
+  width: 71.3vw
+  height: 100vw
+  @include ratio
+    width: 71.3vh
+    height: 100vh
+  
+.stroked
+  border-style: solid
+  border-width: 4vw
+  @include ratio
+    border-width: 4vh
+    
+  &.red
+    border-color: $red
+    
+  &.yellow
+    border-color: $yellow
+    
+  &.green
+    border-color: $green
+    
+  &.blue
+    border-color: $blue
+    
+  &.black
+    border-color: $black
+  
+.dot
+  border-radius: 50%
+  width: 6.25vw
+  height: 6.25vw
+  @include ratio
+    width: 6.25vh
+    height: 6.25vh
+  
+  &.yellow
+    background-color: $yellow
+    
+  &.green
+    background-color: $green
+    
+  &.blue
+    background-color: $blue
+    
+  &.black
+    background-color: $black
+    
+  &.red
+    background-color: $red
+    
+.head, .left-arm, .right-arm
+  position: absolute
+  width: 100%
+  height: 100%
+  left: 0
+  top: 0
+  
+.head
+  .eye-left, .eye-right, .inner, .middle, .outer, .mouth, .nose
+    transform: translate( -50%, -50% )
+    
+  .eye-left
+    left: 42%
+    top: 24%
+    
+  .eye-right
+    left: 76.6%
+    top: 25%
+    
+  .nose
+    top: 31.25%
+    left: 54.75%
+    
+  .inner, .middle, .outer, .mouth
+    border-radius: 50%
+    left: 55.5%
+    top: 30.1%
+    
+  .inner
+    $radius: 12
+    width: #{$radius}vw
+    height: #{$radius}vw
+    @include ratio
+      width: #{$radius}vh
+      height: #{$radius}vh
+    
+  .mouth, .middle
+    $radius: 26
+    width: #{$radius}vw
+    height: #{$radius}vw
+    @include ratio
+      width: #{$radius}vh
+      height: #{$radius}vh
+    
+  .mouth
+    border-right-color: transparent
+    border-top-color: transparent
+    border-left-color: transparent
+    
+  .outer
+    $radius: 40
+    width: #{$radius}vw
+    height: #{$radius}vw
+    @include ratio
+      width: #{$radius}vh
+      height: #{$radius}vh
+  
+.arm, .finger-top, .finger-bottom, .body
+  border-width: 2vw
+  @include ratio
+    border-width: 2vh
+    
+.left-arm .finger-bottom, .body, .right-arm .finger-bottom
+  transform: translate( -50%, -50% ) rotate( -65deg )
+    
+.left-arm
+  .arm
+    width: 19vw
+    @include ratio
+      width: 19vh
+    transform: translate( -50%, -50% ) rotate( -10deg )
+    top: 57%
+    left: 23.5%
+    
+  .finger-top, .finger-bottom
+    width: 6.5vw
+    @include ratio
+      width: 6.5vh
+      
+  .finger-top
+    top: 51.5%
+    left: 17.5%
+    transform: translate( -50%, -50% ) rotate( 45deg )
+    
+  .finger-bottom
+    top: 62%
+    left: 22%
+    
+.right-arm
+  .arm
+    width: 21vw
+    @include ratio
+      width: 21vh
+    transform: translate( -50%, -50% ) rotate( 58deg )
+    top: 66%
+    left: 58%
+    
+  .finger-top, .finger-bottom
+    width: 9vw
+    @include ratio
+      width: 9vh
+      
+  .finger-top
+    top: 67%
+    left: 70.5%
+    transform: translate( -50%, -50% ) rotate( 5deg )
+    
+  .finger-bottom
+    top: 72%
+    left: 55%
+    
+.body
+  width: 38vw
+  @include ratio
+    width: 38vh
+  top: 74%
+  left: 33%
+  
+.deco
+  transform: translate( -50%, -50% )
+  
+  &.green
+    top: 60.25%
+    left: 32.75%
+
+  &.blue
+    top: 87%
+    left: 38.75%
+    
+  &.red
+    top: 73%
+    left: 82%
+    
+.copy
+  transform: translate( -50%, -50% ) rotate( -18deg )
+  position: absolute
+  white-space: nowrap
+  top: 64.25%
+  left: 46%
+  font-size: 4.35vw
+  @include ratio
+    font-size: 4.35vh
+  

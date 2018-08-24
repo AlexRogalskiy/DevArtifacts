@@ -1,0 +1,307 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html , body {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    bottom: 0%;
+    left: 0%;
+}
+
+html {
+    background-color: rgba(235,248,250,1);
+    overflow: hidden;
+}
+
+body {
+    bottom: -60px;
+    overflow: visible;
+}
+
+#letter {
+    font-size: 120px;
+    font-family: Helvetica;
+    font-weight: Bold;
+    color: rgba(18,22,26,0.7);
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 120px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -60px;
+    z-index: -100;
+}
+
+@media all and (min-height: 500px){
+    body {
+        height: 500px;
+        bottom: 0px;
+    }
+    
+    #letter {
+        margin-top: -60px;
+    }
+}
+
+#description {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    z-index: 100;
+    font-family: Helvetica;
+    font-weight: 200;
+    color: rgba(18,22,26,0.7);
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.millBase {
+    position: absolute;
+    width: 40px;
+    top: 50%;
+    left: 50%;
+    margin-left: -45px;
+    border-bottom: 300px solid rgba(245,248,250,1);
+    border-right: 25px solid transparent;
+    border-left: 25px solid transparent;
+}
+
+.millBase div {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    margin-left: -7px;
+    width: 15px;
+    height: 34px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    background-color: rgba(190,198,208,0.7);
+    box-shadow: 0 0 0 2px rgba(190,198,208,0.8);
+    overflow: hidden;
+}
+
+.millBase div:before {
+    content: "";
+    width: 6px;
+    height: 7px;
+    position: absolute;
+    top: -1px;
+    left: 0px;
+    background-color: rgba(190,198,208,0.7);
+    box-shadow: 9px 0 0 0 rgba(190,198,208,0.7),
+                0 9px 0 0 rgba(190,198,208,0.7),
+                9px 9px 0 0 rgba(190,198,208,0.7),
+                0 18px 0 0 rgba(190,198,208,0.7),
+                9px 18px 0 0 rgba(190,198,208,0.7),
+                0 27px 0 0 rgba(190,198,208,0.7),
+                9px 27px 0 0 rgba(190,198,208,0.7);
+}
+
+.millBase div:nth-of-type(2) , .millBase div:nth-of-type(3) {
+    
+}
+
+.millBase div:nth-of-type(2) {
+    -webkit-transform: translate(-50px) rotateY(45deg) skew(-11deg);
+    top: 90px;
+}
+
+.millBase div:nth-of-type(3) {
+    -webkit-transform: translate(47px) rotateY(-45deg) skew(11deg);
+    top: 65px;
+}
+
+.millBase:before , .millBase:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 30px;
+}
+
+.millBase:before {
+    border-bottom: 300px solid rgba(205,210,228,1);
+    border-left: 55px solid transparent;
+    margin-left: -84px;
+}
+
+.millBase:after {
+    border-bottom: 300px solid rgba(252,254,255,1);
+    border-right: 55px solid transparent;
+    margin-left: 40px;
+}
+
+.millRoof {
+    position: absolute;
+    width: 99px;
+    height: 80px;
+    border-top-right-radius: 60px;
+    border-top-left-radius: 60px;
+    background: -webkit-repeating-linear-gradient( rgba( 218,110,101,1 ) , rgba( 218,110,101,1 ) 6% , rgba( 208,100,101,1 ) 7% , rgba( 218,110,101,1 ) 8% );
+    background: -moz-repeating-linear-gradient( rgba( 218,110,101,1 ) , rgba( 218,110,101,1 ) 6% , rgba( 208,100,101,1 ) 7% , rgba( 218,110,101,1 ) 8% );
+    background: -ms-repeating-linear-gradient( rgba( 218,110,101,1 ) , rgba( 218,110,101,1 ) 6% , rgba( 208,100,101,1 ) 7% , rgba( 218,110,101,1 ) 8% );
+    background: -o-repeating-linear-gradient( rgba( 218,110,101,1 ) , rgba( 218,110,101,1 ) 6% , rgba( 208,100,101,1 ) 7% , rgba( 218,110,101,1 ) 8% );
+    background: repeating-linear-gradient( rgba( 218,110,101,1 ) , rgba( 218,110,101,1 ) 6% , rgba( 208,100,101,1 ) 7% , rgba( 218,110,101,1 ) 8% );
+    box-shadow: 30px -10px 0 0 rgba( 208,100,101,0.5 ) inset , -30px -10px 0 0 rgba( 238,130,121,0.3 ) inset;
+    top: 50%;
+    left: 50%;
+    margin-left: -49px;
+    margin-top: -55px;
+    z-index: -1;
+}
+
+.millRoof:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -25px;
+    height: 25px;
+    width: 2px;
+    margin-left: -1px;
+    background-color: rgba(212,222,235,1);
+    box-shadow: 1px 0 0 0 rgba(200,202,215,1) inset;
+}
+
+.millRoof:after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: rgba(212,222,235,1);
+    top: -25px;
+    left: 50%;
+    margin-top: -4px;
+    margin-left: -4px;
+    box-shadow: 1px -2px 0 0 rgba(200,202,215,1) inset;
+}
+
+.millSpin {
+    width: 400px;
+    height: 400px;
+    border-radius: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+    animation: spin 7s linear 0s infinite reverse none;
+	-webkit-animation: spin 7s linear 0s infinite reverse none;
+}
+
+.millSpin:before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    background-color: rgba(212,222,235,1);
+    box-shadow: 2px -4px 0 0 rgba(200,202,215,1) inset;
+    animation: spin 7s linear 0s infinite normal none;
+	-webkit-animation: spin 7s linear 0s infinite normal none;
+    border-radius: 19px;
+    margin-top: -7px;
+    margin-left: -7px;
+    z-index: 10;
+}
+
+.millSpin div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 190px;
+    margin-left: -2px;
+    background-color: rgba( 88,60,50,1 );
+    -webkit-transform-origin: top center;
+    -moz-transform-origin: top center;
+    -ms-transform-origin: top center;
+    -o-transform-origin: top center;
+    transform-origin: top center;
+}
+
+.millSpin div:before , .millSpin div:after {
+    position: absolute;
+    content: "";
+}
+
+.millSpin div:before {
+    top: 40px;
+    height: 3px;
+    width: 35px;
+    left: 0px;
+    background-color: rgba( 88,60,50,1 );
+    box-shadow: 0 15px 0 0 rgba( 88,60,50,1 ),
+                0 30px 0 0 rgba( 88,60,50,1 ),
+                0 45px 0 0 rgba( 88,60,50,1 ),
+                0 60px 0 0 rgba( 88,60,50,1 ),
+                0 75px 0 0 rgba( 88,60,50,1 ),
+                0 90px 0 0 rgba( 88,60,50,1 ),
+                0 105px 0 0 rgba( 88,60,50,1 ),
+                0 120px 0 0 rgba( 88,60,50,1 ),
+                0 135px 0 0 rgba( 88,60,50,1 ),
+                0 150px 0 0 rgba( 88,60,50,1 );
+}
+
+.millSpin div:after {
+    top: 40px;
+    width: 3px;
+    height: 150px;
+    left: 2px;
+    background-color: rgba( 88,60,50,1 );
+    box-shadow: -4px 3px 0 0 rgba( 88,60,50,1 ),
+                -4px 0 0 0 rgba( 88,60,50,1 ),
+                2px 0 0 0 rgba( 88,60,50,1 ),
+                16px 0 0 0 rgba( 88,60,50,1 ),
+                30px 0 0 0 rgba( 88,60,50,1 );
+}
+
+.millSpin div:nth-of-type(1){
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);    
+}
+
+.millSpin div:nth-of-type(2){
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);    
+}
+
+.millSpin div:nth-of-type(3){
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);    
+}
+
+.millSpin div:nth-of-type(4){
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);    
+}
+
+@keyframes spin {
+	100% { -webkit-transform: rotate( -360deg ); -moz-transform: rotate( -360deg ); -ms-transform: rotate( -360deg ); -o-transform: rotate( -360deg ); transform: rotate( -360deg );} 
+	0% { -webkit-transform: rotate( 0deg ); -moz-transform: rotate( 0deg ); -ms-transform: rotate( 0deg ); -o-transform: rotate( 0deg ); transform: rotate( 0deg );} 
+}
+
+@-webkit-keyframes spin {
+	100% { -webkit-transform: rotate( -360deg ); -moz-transform: rotate( -360deg ); -ms-transform: rotate( -360deg ); -o-transform: rotate( -360deg ); transform: rotate( -360deg );} 
+	0% { -webkit-transform: rotate( 0deg ); -moz-transform: rotate( 0deg ); -ms-transform: rotate( 0deg ); -o-transform: rotate( 0deg ); transform: rotate( 0deg );} 
+}

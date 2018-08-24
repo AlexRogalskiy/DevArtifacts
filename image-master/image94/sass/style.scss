@@ -1,0 +1,387 @@
+$black: #15100E;
+$white: #FFFFFF;
+
+@mixin ratio {
+  @media screen and (orientation: landscape) {
+    @content;
+  }
+}
+
+html, body {
+  font-family: "Helvetica", sans-serif;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+  color: $white;
+  background: rgb(240, 240, 240);
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.poster {
+  background-color: $black;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  width: 70.4457vw;
+  height: 100vw;
+
+  @include ratio {
+    width: 70.4457vh;
+    height: 100vh;
+  }
+}
+
+ul, aside {
+  position: absolute;
+  bottom: 1.9%;
+}
+
+aside {
+  letter-spacing: 0.05em;
+  font-size: 0.45vw;
+  white-space: nowrap;
+
+  @include ratio {
+    font-size: 0.45vh;
+  }
+
+
+  left: 98.25%;
+  transform-origin: left center;
+  transform: rotate(-90deg);
+}
+
+ul {
+  text-align: right;
+  width: 27.34%;
+  left: 0;
+}
+
+li {
+  line-height: 180%;
+  letter-spacing: 0.05em;
+  font-size: 0.8vw;
+
+  @include ratio {
+    font-size: 0.8vh;
+  }
+}
+
+.die, .gute, .form {
+  position: absolute;
+}
+
+.d, .i, .e, .g, .u, .t, .f, .o, .r, .m {
+  backface-visibility: hidden;
+  border: 4.375vw solid $white;
+
+  @include ratio {
+    border: 4.375vh solid $white;
+  }
+
+
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.d, .e, .g, .u, .t, .f, .o, .r {
+  width: 16.41vw;
+
+  @include ratio {
+    width: 16.41vh;
+  }
+}
+
+.i, .e, .g, .o, .r, .u {
+  height: 16.41vw;
+
+  @include ratio {
+    height: 16.41vh;
+  }
+}
+
+.d, .u, .t {
+  border-bottom-left-radius: 100vmax;
+  border-bottom-right-radius: 100vmax;
+}
+
+.d, .t, .f, .die, .gute, .form {
+  height: 24.296vw;
+
+  @include ratio {
+    height: 24.296vh;
+  }
+}
+
+.d {
+  border-left-color: transparent;
+  border-top: none;
+
+  &:before {
+    content: "";
+
+    @extend .o;
+
+    transform: translate(-50%, 0);
+    position: absolute;
+    left: 50%;
+    bottom: -4.375vw;
+
+    @include ratio {
+      bottom: -4.375vh;
+    }
+  }
+}
+
+.i {
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.e {
+  border-radius: 50%;
+  border-bottom-color: transparent;
+  transform: rotate(-45deg);
+}
+
+.g {
+  border-radius: 50%;
+  border-top-color: transparent;
+  transform: rotate(45deg);
+
+  &:before {
+    content: "";
+    position: absolute;
+    border-bottom: 8.205vw solid $white;
+    border-top: 0 solid transparent;
+    border-left: 8.205vw solid transparent;
+
+    @include ratio {
+      border-bottom: 8.205vh solid $white;
+      border-top: 0 solid transparent;
+      border-left: 8.205vh solid transparent;
+    }
+
+
+    top: 50%;
+    left: 50%;
+    transform-origin: top left;
+    transform: rotate(-45deg);
+  }
+}
+
+.o, .u {
+  border-radius: 50%;
+}
+
+.u {
+  border-top-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(45deg);
+}
+
+.t {
+  border-top: none;
+  border-right-color: transparent;
+
+  &:before {
+    backface-visibility: hidden;
+    content: "";
+
+    @extend .o;
+
+    transform: translate(-50%, 0) rotate(45deg);
+    position: absolute;
+    left: 50%;
+    top: auto !important;
+    bottom: -4.375vw;
+
+    @include ratio {
+      top: auto !important;
+      bottom: -4.375vh;
+    }
+
+
+    border-top-color: transparent;
+  }
+
+  &:after {
+    content: "";
+    width: 55%;
+    background: $white;
+    position: absolute;
+    top: 50%;
+    transform: translate(-5%, -50%);
+    height: 4.375vw;
+
+    @include ratio {
+      height: 4.375vh;
+    }
+  }
+}
+
+.f {
+  @extend .t;
+
+  transform: scale(1, -1);
+
+  &:before {
+    left: 50% !important;
+  }
+}
+
+.r {
+  border-radius: 50%;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: none;
+  border-right-color: transparent;
+
+  &:before {
+    content: "";
+
+    @extend .u;
+
+    transform: rotate(-135deg);
+    left: -4.375vw;
+    top: -4.375vw;
+
+    @include ratio {
+      left: -4.375vh;
+      top: -4.375vh;
+    }
+  }
+}
+
+.m {
+  border: none;
+
+  &:before, &:after {
+    content: "";
+
+    @extend .u;
+  }
+
+  &:before {
+    transform: rotate(-135deg);
+  }
+
+  &:after {
+    transform: translate(100%) rotate(-135deg);
+    left: -4.375vw;
+
+    @include ratio {
+      left: -4.375vh;
+    }
+  }
+}
+
+.die {
+  .i, .e {
+    bottom: 0;
+  }
+
+  .i {
+    left: 16.75vw;
+
+    @include ratio {
+      left: 16.75vh;
+    }
+  }
+
+  .e {
+    left: 21.225vw;
+
+    @include ratio {
+      left: 21.225vh;
+    }
+  }
+}
+
+.gute {
+  .g, .u, .t, .e {
+    bottom: 0;
+  }
+
+  .u {
+    left: 16.75vw;
+
+    @include ratio {
+      left: 16.75vh;
+    }
+  }
+
+  .t {
+    left: 33.26vw;
+
+    @include ratio {
+      left: 33.26vh;
+    }
+  }
+
+  .e {
+    left: 50.001vw;
+
+    @include ratio {
+      left: 50.001vh;
+    }
+  }
+}
+
+.form {
+  .f, .o, .r, .m {
+    top: 0;
+  }
+
+  .o {
+    left: 16.75vw;
+
+    @include ratio {
+      left: 16.75vh;
+    }
+  }
+
+  .r {
+    left: 33.26vw;
+
+    @include ratio {
+      left: 33.26vh;
+    }
+  }
+
+  .m {
+    left: 50.001vw;
+
+    @include ratio {
+      left: 50.001vh;
+    }
+  }
+}
+
+.die, .gute, .form {
+  transform: scale(0.6875);
+}
+
+.form, .gute {
+  left: 23.35%;
+}
+
+.die {
+  top: 18.58%;
+  left: 2.57%;
+}
+
+.gute {
+  top: 30.1%;
+}
+
+.form {
+  top: 47%;
+}

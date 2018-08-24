@@ -1,0 +1,65 @@
+@import compass
+
+$star: rgba(255,255,255,1)
+$space: rgba( 23,32,45,1 )
+$crater: rgba( 23,32,45,0.1 )
+
+html
+  background-color: $space
+  &:before
+    content: ""
+    background-color: transparent
+    position: absolute
+    border-radius: 3px
+    top: 50%
+    left: 50%
+    margin-top: -2px
+    margin-left: -2px
+    width: 4px
+    height: 4px
+    z-index: 10
+    box-shadow: 80px 140px $star, -120px -60px $star, 70px -40px $star, 300px 90px $star, -190px -220px $star, 190px -90px $star, -220px 60px $star, 320px 120px $star, -410px 90px $star, -20px 220px $star, 120px -220px $star
+    
+
+body
+  position: absolute
+  width: 120px
+  height: 120px
+  border-radius: 120px
+  top: 50%
+  left: 50%
+  background-color: $star
+  margin-top: -60px
+  margin-left: -60px
+  overflow: hidden
+  
+  &:before , &:after
+    content: ""
+    position: absolute
+  
+  &:before
+    width: 100%
+    height: 100%
+    border-radius: 120px
+    background-color: $space
+    box-shadow: 0 0 0 2px $space
+    @include animation( moon 15s infinite )
+      
+  &:after
+    top: 50%
+    left: 50%
+    width: 20px
+    height: 20px
+    border-radius: 20px
+    margin-left: 15px
+    margin-top: -20px
+    background-color: $crater
+    box-shadow: 10px 60px 0 -1px $crater, -80px -15px 0 6px $crater, -45px 18px 0 -6px $crater, -25px 50px 0 6px $crater, -15px -45px 0 4px $crater
+      
+@keyframes moon
+  100%
+    @include translate( 110% , 0 )
+  80%
+    @include translate( 110% , 0 )
+  0%
+    @include translate( -110% , 0 )
