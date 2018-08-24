@@ -1,0 +1,119 @@
+@import "compass/css3";
+
+/*
+See the explanation of the animation here:
+https://codepen.io/timseverien/pen/yvJkm
+*/
+
+// Mixin for keyframes
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} { @content; }
+  @-moz-keyframes #{$name} { @content; }
+  @-ms-keyframes #{$name} { @content; }
+  @keyframes #{$name} { @content; } 
+}
+
+// Mixin for animations
+@mixin animation($prop) {
+  -webkit-animation: $prop;
+  -moz-animation: $prop;
+  -o-animation: $prop;
+  animation: $prop;
+}
+
+// Create animation called 'check'
+@include keyframes(check) {
+  0% { height: 0; width: 0; }
+  25% { height: 0; width: 10px; }
+  50% { height: 20px; width: 10px; }
+}
+
+body {
+  background-color: #6aa;
+  font-family: 'Lato', sans-serif;
+  font-weight: 100%;
+}
+
+// For centering things horizontally and vertically
+.wrapper {
+  @include transform(translate(-50%, -50%));
+  
+  color: #fff;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+}
+
+// Create the backgrounds for the checkboxes
+.checkbox, .checkbox-alt {
+  background-color: #fff;
+  display: inline-block;
+  height: 50px;
+  margin: 0 0.25em;
+  width: 50px;
+  
+  // This label functions as actual clickable area, because the default checkbox is rubbish
+  label {
+    display: block;
+    height: 50px;
+    position: relative;
+    width: 50px;
+    
+    // This is the pseudo-element for the check mark
+    &:after {
+      /*
+      This element has a border on the right, and top. By rotating it looks like a check symbol, but the wrong way. That's why I'm flipping it with scaleX(-1)
+      */
+      @include transform(scaleX(-1) rotate(180deg + -45deg));
+      
+      /*
+      I want to position the symbol using the left top, because when increasing the width and height of an object, it expands from the top left corner as well. That is what makes it looks like it's being drawn.
+      */
+      @include transform-origin(left, top);
+      
+      // The borders
+      border-right: 4px solid #cee;
+      border-top: 4px solid #cee;
+      
+      // Positioning and stuff
+      content: '';
+      display: block;
+      height: 20px;
+      left: 14px;
+      position: absolute;
+      top: 26px;
+      width: 10px;
+    }
+    
+    // Change the colour when you hover
+    &:hover:after { border-color: #bdd; }
+  }
+  
+  // Hide the input!
+  input { display: none; }
+  
+  // When the input is checked (by clicking the label), I wan't the animation to run and the colour to change.
+  input:checked + label:after {
+    @include animation(check 0.8s);
+    border-color: #6aa;
+  }
+  
+  // Options for the alternative checkbox
+  &.checkbox-alt {
+    // The alternative checkbox must animate infinitely when I hover
+    label:hover:after {
+      @include animation(check 0.8s ease infinite);
+    }
+    
+    // When it's checked, dont bother animating
+    input:checked + label:after {
+      @include animation(none);
+    }
+  }
+}
+
+// Yes to hairline fonts!
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 100;
+}
