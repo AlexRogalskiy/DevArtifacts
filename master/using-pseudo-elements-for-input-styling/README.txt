@@ -1,0 +1,3 @@
+A Pen created at CodePen.io. You can find this one at http://codepen.io/abergin/pen/kjwBz.
+
+ On supported browsers, the pseudo elements can be used to style the inputs for checkbox/radio for their checked and unchecked states while still providing a functional fallback for browsers that don't support input styling without doing weird resets. Most notable issue is pseudo elements not existing for inputs on firefox. Check it out in Chrome & Safari.

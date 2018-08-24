@@ -1,0 +1,155 @@
+<widget-toolbar (updateStyle)="isDarkTheme=!isDarkTheme" [seachView]="isSearchView" [totalAmount]="this.ticketStore.getTotalAmount()" [totalPrice]="this.ticketStore.getTotalPrice()" [items]="items"></widget-toolbar>
+
+<md-sidenav-layout [class.defaultLayoutThemeView]="isDarkTheme">
+	<div class="app-content">
+		<div class="container">
+			<div class="resume">
+				<header class="page-header">
+					<h1 class="page-title">Информация о мероприятии № {{ this.eventEntity?.id }}</h1>
+					<small> <i class="fa fa-clock-o"></i> {{ eventUpdatedLabel }} <time>Sunday, October 05, 2014</time></small>
+				</header>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+						<div class="panel panel-default">
+							<div class="panel-heading resume-heading">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="col-xs-12 col-sm-4">
+											<figure>
+												<img class="img-circle img-responsive" alt="" src="{{ this.eventEntity?.posterSrc }}"/>
+											</figure>
+											<div class="row">
+												<div class="col-xs-12 social-btns">
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-google">
+														<i class="fa fa-google"></i> </a>
+													</div>
+												  
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-facebook">
+														<i class="fa fa-facebook"></i> </a>
+													</div>
+												  
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-twitter">
+														<i class="fa fa-twitter"></i> </a>
+													</div>
+												  
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-linkedin">
+														<i class="fa fa-linkedin"></i> </a>
+													</div>
+												  
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-github">
+														<i class="fa fa-github"></i> </a>
+													</div>
+												  
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-stackoverflow">
+														<i class="fa fa-stack-overflow"></i> </a>
+													</div>
+												</div>
+											</div>
+										</div>
+											<div class="col-xs-12 col-sm-8">
+											<ul class="list-group">
+												<li class="list-group-item"><span>{{ eventNameLabel }}</span> {{ this.eventEntity?.name }}</li>
+												<li class="list-group-item"><span>{{ eventStartDateLabel }}</span> {{ this.eventEntity?.startTime | date:'dd/MM/yyyy hh:mm' }}</li>
+												<li class="list-group-item"><span>{{ eventEndDateLabel }}</span> {{ this.eventEntity?.endTime | date:'dd/MM/yyyy hh:mm' }}</li>
+												<li class="list-group-item"><span class="fa fa-phone"></span> {{ eventPhoneLabel }} </li>
+												<li class="list-group-item"><span class="fa fa-envelope"></span> {{ eventEmailLabel }} </li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="bs-callout bs-callout-danger">
+								<h4> {{ eventAboutLabel }} </h4>
+								<p>
+									Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu, 
+									te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
+								</p>
+							</div>
+							<div class="bs-callout bs-callout-info">
+								<h4> {{ eventOrgLabel }} </h4>
+								<p>
+									Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu, 
+									te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
+								</p>
+							</div>
+							<div class="bs-callout bs-callout-success">
+								<h4> {{ eventServicesLabel }} </h4>
+								<table class="table table-striped table-responsive item-data-table">
+									<thead>
+										<tr>
+											<th>{{ eventNameTableLabel }}</th>
+											<th>{{ eventStartDateTableLabel }}</th>
+											<th>{{ eventEndDateTableLabel }}</th>
+											<th>{{ eventTicketNumberTableLabel }}</th>
+											<th>{{ eventPriceTableLabel }}</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let product of this.eventEntity?.products">
+											<td>{{ product.name }}</td>
+											<td>{{ product.startTime | date:'dd/MM/yyyy hh:mm'}}</td>
+											<td>{{ product.endTime | date:'dd/MM/yyyy hh:mm'}}</td>
+											<td><span class="item-counter"><counter [counterValue]="1" [counterRangeMax]="9999" [counterRangeMin]="1" (update)="onUpdate(product, $event.text)" (change)="onUpdate(product, $event.text)" class="counter"></counter></span></td>
+											<td><span class="item-price">{{ this.getTotalPrice(product.id) | currency:'RUB':true:'1.2-2' }}</span></td>
+											<td><span class="item-button"><button md-button (click)="addToCart(product.id);"><md-icon svgIcon="shopping-cart-add" aria-hidden="true"></md-icon></button></span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="bs-callout bs-callout-primary">
+								<h4> {{ eventTariffLabel }} </h4>
+								<ul class="list-group">
+									<a class="list-group-item inactive-link" href="#">
+										<div class="progress">
+											<div data-placement="top" style="width: 80%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" class="progress-bar progress-bar-success">
+												<span class="sr-only">80%</span>
+												<span class="progress-type">Взрослый</span>
+											</div>
+										</div>
+										<div class="progress">
+											<div data-placement="top" style="width: 70%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="1" role="progressbar" class="progress-bar progress-bar-success">
+												<span class="sr-only">70%</span>
+												<span class="progress-type">Студенческий</span>
+											</div>
+										</div>
+										<div class="progress">
+											<div data-placement="top" style="width: 70%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="1" role="progressbar" class="progress-bar progress-bar-success">
+												<span class="sr-only">70%</span>
+												<span class="progress-type">Школьный</span>
+											</div>
+										</div>
+										<div class="progress">
+											<div data-placement="top" style="width: 65%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="1" role="progressbar" class="progress-bar progress-bar-warning">
+												<span class="sr-only">65%</span>
+												<span class="progress-type">Детский</span>
+											</div>
+										</div>
+											<div class="progress-meter">
+											<div style="width: 25%;" class="meter meter-left"><span class="meter-text">1000</span></div>
+											<div style="width: 25%;" class="meter meter-left"><span class="meter-text">2000</span></div>
+											<div style="width: 25%;" class="meter meter-right"><span class="meter-text">10000</span></div>
+											<div style="width: 25%;" class="meter meter-right"><span class="meter-text">7000</span></div>
+										</div>
+									</a>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</md-sidenav-layout>
+
+<!--<shopping-cart-dialog #shoppingCartDialog [items]="this.ticketsEntity"></shopping-cart-dialog>-->
+<!-- [items]="this.ticketsEntity" -->
+<scroll-button></scroll-button>

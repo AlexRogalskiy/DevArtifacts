@@ -1,0 +1,23 @@
+<!--<md-toolbar color="primary">
+	<menu-bar (update)="onUpdate($event.text); isDarkTheme=!isDarkTheme"></menu-bar>
+	<!-
+	<button class="app-icon-button" (click)="openMenu()">
+		<i class="material-icons app-toolbar-menu">Меню</i>
+	</button>
+	->
+	<event-search (change)="searchTerm($event.text)"></event-search>
+	<button md-button (click)="openShoppingCart()">{{ shoppingCart }}</button>
+</md-toolbar>
+-->
+<widget-toolbar (updateSearch)="onUpdateSearch($event.text)" (updateStyle)="isDarkTheme=!isDarkTheme" [seachView]="isSearchView"></widget-toolbar>
+
+<!--<div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" [scrollWindow]="true" (scrolled)="onScroll()"></div>-->
+<md-sidenav-layout [class.defaultLayoutThemeView]="isDarkTheme">
+	<div class="app-content" infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollThrottle]="scrollThrottle" (scrolled)="onScrollDown()">
+		<event-card *ngFor="let event of events | orderBy:'startTime'" [event]="event"></event-card>
+	</div>
+</md-sidenav-layout>
+
+<!-- <shopping-cart-dialog #shoppingCartDialog></shopping-cart-dialog> -->
+
+<scroll-button></scroll-button>
