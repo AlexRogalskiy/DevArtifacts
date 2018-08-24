@@ -1,0 +1,136 @@
+@import "compass/css3";
+
+/**
+/* Mixins:
+*/
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content
+  }
+  @-moz-keyframes #{$name} {
+    @content
+  }
+  @-ms-keyframes #{$name} {
+    @content
+  }
+  @-o-keyframes #{$name} {
+    @content
+  }
+  @keyframes #{$name} {
+    @content
+  }
+}
+
+@mixin animation($value) {
+  -webkit-animation: $value;
+  -moz-animation: $value;
+  -ms-animation: $value;
+  -o-animation: $value;
+  animation: $value;
+}
+
+/**
+/* Animations:
+*/
+@include keyframes(wiggle) {
+  0%   {
+    
+  }
+  50% {
+    -webkit-transform: rotate(-1.5deg);
+  }
+  100% {
+    -webkit-transform: scale(1.25);
+    -webkit-transform: rotate(1.5deg);
+  }
+}
+
+@include keyframes(zoom) {
+  0%   {
+    -webkit-transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.25);
+  }
+  100% {
+    -webkit-transform: scale(1.25);
+    -webkit-transform: rotate(1deg);
+  }
+}
+
+@include keyframes(zoom) {
+  0%   {
+    -webkit-transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.25);
+  }
+  100% {
+    -webkit-transform: scale(1.25);
+    -webkit-transform: rotate(1deg);
+  }
+}
+
+/**
+/* Styles:
+*/
+* {box-sizing: border-box;}
+body {margin: 3em; background: beige;}
+
+.animate-me {
+  display: inline-block;
+  position: relative;
+  height: 45px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 0 3em;
+  @include border-radius(4px);
+  
+  &:hover {
+    
+    span {
+      @include transform(translateY(0px));
+    }
+  }
+  
+  span {
+    display: inline-block;
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 45px;
+    color: white;
+    @include text-shadow(0px -1px 1px darken(skyblue,25));
+    @include transform(translateY(45px));
+    @include transition(all .25s cubic-bezier(0.75, -0.25, 0.25, 1.75));
+  }
+}
+
+.skyblue {background: skyblue;}
+.salmon {background: salmon;}
+.teal {background: lighten(mix(green,blue,70),20);}
+
+.wiggle {
+  &:hover {
+    @include animation(wiggle .25s cubic-bezier(0, -1, 1, 1.25) infinite);
+  }
+}
+
+.zoom {
+  &:hover {
+    @include animation(zoom .25s cubic-bezier(0, -1, 1, 1.25) alternate);
+  }
+}
+
+/**
+ * Circular nav:
+**/
+nav.circular {
+  @include border-radius(50%);
+  background: silver;
+
+  &:hover {
+    .circle1 {
+      display: inline-block;
+    }
+  }
+}

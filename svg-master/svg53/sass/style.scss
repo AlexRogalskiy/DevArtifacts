@@ -1,0 +1,56 @@
+@import "compass/css3";
+
+body {@include background-image(linear-gradient(45deg, #fefefe 0%, #aeaeae 100%));}
+
+.states {
+  width: 400px;
+  margin: 0 auto;
+  float:left;
+  
+  path, polygon {
+    cursor: pointer;
+    opacity: 0.75;
+    fill: #0e3e7c;
+    @include transition(all .25s ease);
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.tip {
+  position: absolute;
+  z-index: 9999;
+  background: #333;
+  border: 1px solid black;
+  @include border-radius(4px);
+  padding: 0.5em;
+  color: white;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+#state-info {
+  float:left;
+  @include transform(translateX(-100px) scale(.8));
+  @include transition(all .25s ease);
+  opacity: 0;
+  width: 200px;
+  padding: 1em;
+  border: 2px solid silver;
+  @include border-radius(5px);
+  background: white;
+  pointer-events: none;
+  
+  &.active {
+    display: block;
+    opacity: 1;
+    @include transform(translateX(0px) scale(1));
+    pointer-events: all;
+  }
+  
+  h1 {margin: 0;}
+  h2 {margin: .25em 0;}
+  ul {margin: 0;}
+}

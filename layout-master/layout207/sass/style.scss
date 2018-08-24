@@ -1,0 +1,80 @@
+@import "compass/css3";
+
+body {
+  font-family: Helvetica, Arial, san-serif;
+  text-align: center;
+}
+
+.flipper {
+  position: relative;
+  float: left;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  -webkit-perspective: 600px; // VERY important for 3d look. (sets the view angle on the div)
+  -moz-perspective: 600px;
+  margin: 2em;
+  -webkit-box-reflect: below 3px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(20%, transparent), to(rgba(255, 255, 255, 0.5)));
+    
+    .pad {padding: 2em;}
+  
+  > div {
+    float: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 20px rgba(black,.3);
+  }
+  
+  .front {
+    background: #bbb;
+    color: #333;
+    z-index: 1000;
+    -webkit-transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+  
+    -webkit-transition: all .5s ease-in-out;
+    
+    -moz-transform: rotateY(0deg);
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
+  
+    -moz-transition: all .5s ease-in-out;
+  }
+  
+  .back {
+    background: #333;
+    z-index: 900;
+    -webkit-transform: rotateY(-180deg) scale(1);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: all .5s ease-in-out;
+    
+    -moz-transform: rotateY(-180deg) scale(1);
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
+    -moz-transition: all .5s ease-in-out;
+  }
+  
+  &.flip {
+    z-index: 9999;
+    .front {
+      -webkit-transform: rotateY(180deg);
+      -moz-transform: rotateY(180deg);
+      z-index:900;
+      top:-2em;
+    }
+    
+    .back {
+      -webkit-transform: rotateY(0deg);
+      -moz-transform: rotateY(0deg);
+      z-index: 1000;
+      top: -2em;
+    }
+  }
+}

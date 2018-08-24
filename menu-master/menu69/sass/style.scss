@@ -1,0 +1,82 @@
+@import "compass/css3";
+
+nav.nav-vertical {
+  position: relative;
+  width: 300px;
+  margin-left: 2em;
+  margin-top: 2em;
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+    }
+  }
+  
+  a {
+    display: block;
+    position: relative;
+    z-index: 9;
+    margin: 0;
+    padding: 0 .5em;
+    text-decoration: none;
+    line-height: 2em; /* must equal .box line-height */
+    color: #333;
+    @include transition(.5s all ease);
+    
+    &:hover {
+      background: #efefef;
+    }
+  }
+  
+  .box {
+    position: absolute;
+    z-index: 10;
+    width: 1px;
+    height: 2em; /* must equal menu item line-height */
+    border-left: 3px solid skyblue;
+    opacity: 0.8;
+    pointer-events: none;
+  }
+}
+
+nav.nav-horizontal {
+  position: relative;
+  margin-left: 2em;
+  margin-top: 2em;
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      float: left;
+      width: (100%/4);  /* must equal .box width */
+      text-align: center;
+    }
+  }
+  
+  a {
+    display: block;
+    z-index: 10;
+    line-height: 2em;
+    text-decoration: none;
+    color: #333;
+    @include transition(.5s all ease);
+    
+    &:hover {
+      background: #efefef;
+    }
+  }
+  
+  .box {
+    position: absolute;
+    z-index: 9;
+    width: (100%/4); /* must equal menu item width */
+    border-bottom: 3px solid skyblue;
+    pointer-events: none;
+  }
+}

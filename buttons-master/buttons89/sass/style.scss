@@ -1,0 +1,45 @@
+body {margin: 3em;}
+
+@mixin button() {
+  position: relative;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  
+  &:hover, &:focus {
+    outline: none;
+  }
+  
+  &:active {
+    top: 2px;
+  }
+}
+
+@mixin button-color($color) {
+  background: $color;
+  color: white;
+  border: 1px solid lighten($color,5);
+  box-shadow: 0 4px 0px darken($color,15);
+
+  &:hover, &:focus {
+    text-shadow: 0 0 8px rgba(darken($color,30), 0.5);
+    border: 1px solid lighten($color,20);
+  }
+
+  &:active {
+    box-shadow: 0 1px 0px darken($color,10);
+    border: 1px solid $color;
+    top: 2px;
+    }
+}
+
+$colors: skyblue, orange, cornflowerblue, cadetblue, thistle, salmon;
+
+.button {
+  @include button();
+  
+  @each $color in $colors {
+    &.#{$color} {
+      @include button-color($color);
+    }
+  }
+}

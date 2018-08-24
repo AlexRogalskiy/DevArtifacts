@@ -1,0 +1,79 @@
+body {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlZmVmZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2FlYWVhZSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(45deg, #fefefe 0%, #aeaeae 100%);
+  background-image: -webkit-linear-gradient(45deg, #fefefe 0%, #aeaeae 100%);
+  background-image: linear-gradient(45deg, #fefefe 0%, #aeaeae 100%);
+}
+
+.states {
+  width: 400px;
+  margin: 0 auto;
+  float: left;
+}
+.states path, .states polygon {
+  cursor: pointer;
+  opacity: 0.75;
+  fill: #0e3e7c;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.states path:hover, .states polygon:hover {
+  opacity: 1;
+}
+
+.tip {
+  position: absolute;
+  z-index: 9999;
+  background: #333;
+  border: 1px solid black;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  padding: 0.5em;
+  color: white;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#state-info {
+  float: left;
+  -moz-transform: translateX(-100px) scale(0.8);
+  -ms-transform: translateX(-100px) scale(0.8);
+  -webkit-transform: translateX(-100px) scale(0.8);
+  transform: translateX(-100px) scale(0.8);
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  opacity: 0;
+  width: 200px;
+  padding: 1em;
+  border: 2px solid silver;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: white;
+  pointer-events: none;
+}
+#state-info.active {
+  display: block;
+  opacity: 1;
+  -moz-transform: translateX(0px) scale(1);
+  -ms-transform: translateX(0px) scale(1);
+  -webkit-transform: translateX(0px) scale(1);
+  transform: translateX(0px) scale(1);
+  pointer-events: all;
+}
+#state-info h1 {
+  margin: 0;
+}
+#state-info h2 {
+  margin: .25em 0;
+}
+#state-info ul {
+  margin: 0;
+}
