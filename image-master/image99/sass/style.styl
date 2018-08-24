@@ -1,0 +1,352 @@
+@import "../node_modules/nib"
+
+@import url("https://fonts.googleapis.com/css?family=Patrick+Hand+SC");
+
+//! color variable 
+
+table = #deb778
+cup = #1d80c2
+cupinner = #46a8eb
+teatag = #c1ebc3
+teatagaccent = #45ac71
+notepad = #f17777
+
+//! functions 
+
+border-radius-top()
+  border-top-left-radius arguments
+  border-top-right-radius arguments
+
+border-radius-bottom()
+  border-bottom-left-radius arguments
+  border-bottom-right-radius arguments
+
+animation()
+  -webkit-animation arguments
+  -moz-animation arguments
+  -o-animation arguments
+  animation arguments
+
+transform()
+  -webkit-transform arguments
+  -moz-transform arguments
+  -ms-transform arguments
+  -o-transform arguments
+  transform arguments
+
+transform-origin()
+  -webkit-transform-origin arguments
+  -moz-transform-origin arguments
+  -ms-transform-origin arguments
+  -o-transform-origin arguments
+  transform-origin arguments
+
+pos(a,b)
+  top a
+  left b
+
+//! styles
+
+body
+  margin 0
+
+.on
+  width 720px
+  position absolute
+  margin-left -15px
+  bottom 0
+  left 50%
+  transform translateX(-50%)
+
+.table
+  height 377px
+  width 100%
+  position absolute
+  bottom 0
+  background table
+  border-radius-top 7px
+  box-shadow inset 0 -16px 0 0 rgba( red(#724822), green(#724822), blue(#724822), 0.4 )
+  
+.notepad
+  height 193px
+  width 136px
+  background  linear-gradient(to bottom,
+  notepad 0px, notepad 34px,
+  #ffffff 34px, #ffffff 62px,
+  #cee8ef 62px, #cee8ef 66px, 
+  #fffefe 66px, #ffffff 90px,
+  #cee8ef 90px, #cee8ef 94px,
+  #ffffff 94px, #ffffff 118px,
+  #cee8ef 118px, #cee8ef 122px,
+  #ffffff 122px, #ffffff 146px,
+  #cee8ef 146px, #cee8ef 150px,
+  #ffffff 150px, #ffffff 176px,
+  #cee8ef 176px, #cee8ef 193px)
+  box-shadow -10px 0 0 0 rgba(red(#ac5b14),green(#ac5b14),blue(#ac5b14),0.2)
+  position absolute
+  bottom 43px
+  left 76px
+  overflow hidden
+  line-height 1.9em
+  font-family 'Patrick Hand SC', Arial, sans-serif
+  font-weight bold
+
+.notebook
+  height 522px
+  width 457px
+  position absolute
+  bottom 84px
+  left 262px
+
+.display
+  position relative
+  height 290px
+  width 100%
+  background linear-gradient(30deg, #333333 0%,#333333 50%,#3b3b3b 50%,#3b3b3b 100%)
+  border-radius 10px
+  box-sizing border-box
+  border 25px solid #515555
+
+.keyboard
+  position relative
+  height 232px
+  width 100%
+  background #d7e2e6
+  border-radius 10px
+  box-shadow inset 0 -15px 0 0 #959fa0,
+  -15px 0 0 0 rgba(red(#ac5b14),green(#ac5b14),blue(#ac5b14),0.2)
+
+.arrow
+  &::before
+  &::after
+    content ""
+    height 12px
+    width 36px
+    background #cccccc
+    position absolute
+    border-radius 6px
+    left 21px
+  &::before
+    transform rotate(40deg)
+    transform-origin right center
+    top 44px
+  &::after
+    transform rotate(-40deg)
+    transform-origin right center
+    top 38px
+
+.cursor
+  height 62px
+  width 50px
+  border-radius 6px
+  background linear-gradient(30deg, #4d4d4d 0%,#4d4d4d 50%,#545454 50%,#545454 100%)
+  position relative
+  top 15px
+  left 77px
+  background-position 0px -3px
+  background-size 220%
+  animation blink 2s step-end infinite
+  
+.key
+  height 25px
+  width 25px
+  background #515555
+  border-radius 8px
+  position absolute
+  
+  t1 = 22px
+  t2 = 56px
+  t3 = 90px
+
+  // line one
+
+  &:nth-child(1)
+    pos t1 61px
+  
+  &:nth-child(2)
+    pos t1 92px
+  
+  &:nth-child(3)
+    pos t1 123px
+
+  &:nth-child(4)
+    pos t1 154px
+
+  &:nth-child(5)
+    pos t1 185px
+
+  &:nth-child(6)
+    pos t1 216px
+
+  &:nth-child(7)
+    pos t1 247px
+
+  &:nth-child(8)
+    pos t1 278px
+
+  &:nth-child(9)
+    pos t1 308px
+
+  &:nth-child(10)
+    pos t1 339px
+
+  &:nth-child(11)
+    pos t1 370px
+
+  // line two
+  
+  &:nth-child(12)
+    pos t2 58px
+    width 59px
+  
+  &:nth-child(13)
+    pos t2 123px
+
+  &:nth-child(14)
+    pos t2 154px
+
+  &:nth-child(15)
+    pos t2 185px
+
+  &:nth-child(16)
+    pos t2 216px
+
+  &:nth-child(17)
+    pos t2 247px
+
+  &:nth-child(18)
+    pos t2 278px
+
+  &:nth-child(19)
+    pos t2 308px
+
+  &:nth-child(20)
+    pos t2 339px
+    width 60px
+
+  // line three
+  
+  &:nth-child(21)
+    pos t3 58px
+    width 42px
+
+  &:nth-child(22)
+    pos t3 105px
+    width 41px
+
+  &:nth-child(23)
+    pos t3 151px
+    width 155px
+
+  &:nth-child(24)
+    pos t3 311px
+    width 42px
+
+  &:nth-child(25)
+    pos t3 358px
+    width 41px
+
+.trackpad
+  height 60px
+  width 124px
+  border-radius 6px
+  background #c2cdcf
+  position absolute
+  top 134px
+  left 167px
+
+.cup
+  height 155px
+  width 131px
+  position absolute
+  bottom 269px
+  left 60px
+  background cup
+  border-radius-top 50% 34%
+  border-radius-bottom 45% 67%
+
+.cupshadow
+  height 56px
+  width 100px
+  background rgba( red(#ac5b14), green(#ac5b14), blue(#ac5b14), 0.2 )
+  border-radius-bottom 56px
+  position absolute
+  bottom 265px
+  left 52px
+
+.top
+  height 97px
+  width 131px
+  background #8f6739
+  border-radius 50%
+  box-sizing border-box
+  border 12px solid cupinner
+  box-shadow inset 0 50px 0 -20px #6b4b28
+  position absolute
+  
+.handle
+  height 66px
+  width 60px
+  background transparent
+  box-sizing border-box
+  border 16px solid cup
+  border-radius-top 50%
+  border-bottom-left-radius 80% 60%
+  position absolute
+  top 60px
+  left -31px
+  
+.teatag
+  height 36px
+  width 32px
+  position absolute
+  top 103px
+  left -20px  
+  background teatag
+  box-shadow inset 0 -6px 0 0 teatagaccent
+  &::before
+    content ""
+    width: 0px;
+    height: 0px;
+    position absolute
+    top -8px
+    border-style: solid;
+    border-width: 0 16px 8px 16px;
+    border-color: transparent transparent teatag transparent;
+
+.teabagcord
+  height 57px
+  width 60px
+  position absolute
+  top 57px
+  left -7px
+  box-sizing border-box
+  border 6px solid #fff5e6
+  border-radius-top 29px
+  clip rect(0px 44px 41px 0px)
+
+.teabagcordbeginingandend
+  position absolute
+  top 57px
+  left -7px
+  &::before
+  &::after
+    content ""
+    background #fff5e6
+    border-radius 50%
+    position absolute
+  &::before
+    top 3.1px
+    left 40px
+    height 7.1px
+    width 6.6px
+    clip rect(0px 6.6px 7px 3.8px)
+  &::after
+    top 38px
+    left 0px
+    height 6px
+    width 6px
+
+@keyframes blink 
+  50%
+    opacity 0

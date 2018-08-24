@@ -1,0 +1,305 @@
+@import "compass/css3";
+
+body {
+  background-color: #6da;
+  text-align: center;
+}
+
+h1 {
+  position: relative;
+
+  color: #fff;
+  font-family: sans-serif;
+  text-align: center;
+
+  margin: 100px 0 0 0;
+  
+  text-shadow: 0 1px 3px #000;
+  
+  &:before, &:after {
+    position: absolute;
+    content: '';
+    
+    width: 50px;
+    height: 50px;
+    
+    top: -50px;
+    left: 50%;
+    
+    border-radius: 50%;
+    @include box-shadow( 0 1px 1px #000 );
+    @include transition( margin 0.2s ease-in );
+  }
+  
+  &:before {
+    background-color: #63D6A5;
+    
+    margin-left: -37.5px;
+  }
+  
+  &:after {
+    margin-left: -12.5px;
+    background-color: #fbd;
+  }
+  
+  &:hover {
+    &:before {
+      margin-left: -12.5px;
+    }  
+  
+    &:after {
+      margin-left: -37.5px;
+    }
+  }
+}
+
+ul {
+  list-style: none;
+  margin: 1em 0 0 0;
+  padding: 0;
+  
+  li {
+    margin: 1em;
+    display: inline-block;
+  }
+}
+
+
+/*
+ * Component styles
+ */
+
+// z-indexes
+$z-switch: 0;
+$z-switchCircle: 1;
+$z-switchInput: 2;
+$z-switchInnerCircles: 3;
+$z-switchLabel: 4;
+
+// colors
+$c-switchShadow: #393939;
+$c-switchBase: #baf0d8;
+$c-switchBaseDark: #9ec;
+$c-switchOn : #63D6A5;
+$c-switchOff: #fbd;
+
+$c-white: #fff;
+$c-black: #000;
+
+// let's style this checkbox! :)
+.switch {
+  position: relative;
+  
+  width: 150px;
+  height: 150px;
+  
+  background-color: $c-switchBase;
+  
+  border-radius: 20%;
+  
+  overflow-x: hidden;
+  @include box-shadow( 0 0.333em 0.75em $c-switchShadow );
+             
+  z-index: $z-switch;
+  
+  &:before, &:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    
+    width: 100%;
+    height: 20%;
+  }
+  
+  &:before {
+    top: 0;
+    
+    @include box-shadow(
+               inset 0 5px 10px adjust-lightness( $c-switchBase, 10 )
+             );
+  }
+  
+  &:after {
+    bottom: 0;
+    @include box-shadow( inset 0 -3px 5px $c-switchBaseDark );
+  }
+  
+  &::selection {
+  }
+  
+  
+  /*
+   * Helper classes for defining size
+   */
+  &.small {
+    width: 50px;
+    height: 50px;
+    
+    font-size: 0.5em;
+  }
+  &.medium {
+    width: 100px;
+    height: 100px;
+    
+    font-size: 1em;
+  }
+  &.big {
+    width: 150px;
+    height: 150px;
+    
+    font-size: 2em;
+  }  
+}
+
+.switch__circle {
+  position: absolute;
+  width: 96%;
+  height: 96%;
+  
+  top: 2%;
+  left: 2%;
+  
+  border-radius: 50%;  
+ 
+  background-color: #bfd;
+
+  @include background-image( linear-gradient( $c-white, $c-switchBaseDark ) );
+  @include box-shadow( 0 0 1em rgba( 255, 255, 255, 0.2 ) );
+  
+  z-index: $z-switchCircle;
+  
+  &:before, &:after {
+    position: absolute;
+    content: '';
+    
+    border-radius: 50%;
+  }
+  
+  &:before {
+    width: 85%;
+    height: 85%;
+    
+    top: 7.5%;
+    left: 7.5%;
+    
+    @include background-image(
+      linear-gradient(
+        adjust-lightness( $c-switchBaseDark, -15 ),
+        $c-white
+       )
+     );
+  }
+  
+  &:after {
+    width: 70%;
+    height: 70%;
+    
+    top: 15%;
+    left: 15%;
+    
+    background-color: #7ed;
+    
+    @include box-shadow( inset 0 0.175em 0.5em $c-switchShadow );
+  }
+}
+
+.switch__innerCircles {
+  position: absolute;
+  
+  width: 40%;
+  height: 40%;
+  
+  top: 30%;
+  left: 30%;
+  
+  z-index: $z-switchInnerCircles;
+  
+  &:before, &:after {
+    position: absolute;
+      
+    content: '';
+      
+    width: 100%;
+    height: 100%;
+      
+    top: 0;
+      
+    border-radius: 50%;
+      
+    @include box-shadow( inset 0 1px 1px $c-black );
+  }
+    
+  &:before {
+    right: -25%;
+      
+    background-color: $c-switchOn;
+  }
+    
+  &:after {
+    left: -25%;
+      
+    background-color: $c-switchOff;
+  }
+}
+
+.switch__input {
+  position: absolute;
+  width: 10%;
+  height: 10%;
+    
+  top: 50%;
+  left: 50%;
+    
+  margin: -5% 0 0 -5%;
+    
+  z-index: $z-switchInput;
+    
+  &:checked {
+    ~ .switch__label {
+      left: 20%;
+    }
+  }
+}
+
+.switch__label {
+  position: absolute;
+    
+  width: 40%;
+  height: 0;
+    
+  top: 30%;
+  left: 40%;
+    
+  overflow: hidden;
+    
+  padding-top: 40%;
+  background-color: #fff;
+    
+  border-radius: 50%;
+    
+  @include background-image( linear-gradient( $c-white, adjust-lightness( $c-white, -7.5 ) ) );
+  @include box-shadow( 0 0.15em 0.2em $c-switchShadow );
+  @include transition( all 0.2s ease-in );
+    
+  z-index: $z-switchLabel;
+  
+  &:before {
+    position: absolute;
+    content: '';
+      
+    width: 70%;
+    height: 70%;
+      
+    top: 15%;
+    left: 15%;
+      
+    border-radius: 50%;
+      
+    @include background-image(
+      linear-gradient(
+        adjust-lightness( $c-white, -12 ),
+        adjust-lightness( $c-white, -7.5 )
+      )
+    );
+  }
+}
