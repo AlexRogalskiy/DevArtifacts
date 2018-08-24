@@ -1,0 +1,87 @@
+@mixin delay($delay) {
+  @for $i from 1 to 5 {
+    &:nth-child(#{$i}) {
+      animation-delay: ($delay+$i*0.25)+s
+    }
+  }
+}
+// foa: stroke animations
+#liniensystem {
+  line {
+    stroke-dasharray: 0 100%;
+    stroke-width:0;
+    animation: strokes 1s ease-in-out forwards;
+    @include delay(0);
+  }
+}
+
+@keyframes strokes {
+  0% {stroke-dasharray: 0% 100%; stroke-width: 0}
+  100% {stroke-dasharray: 150% 100%; stroke-width: 3}
+}
+
+// next: letters
+.letter-wrapper path {
+  opacity: 0;
+  transform-origin: 50%;
+  animation: letters 1s ease-in-out forwards;
+  @include delay(1);
+  
+}
+
+@keyframes letters {
+  0% {opacity: 0; transform: scale(0);}
+  50% {transform: scale(1.2)}
+  85% {transform: scale(0.84)}
+  100% {opacity: 1; transform: scale(1); }
+}
+
+// microtypographic details
+// axis
+.details-wrapper {
+  line {
+    stroke-width: 0;
+    animation: stroke-width 1s ease-in-out forwards;
+    transform-origin: 50%;
+    @include delay(2.25);
+  
+    &.for-o {transform: rotate(1.87deg);}
+    &.for-g-first {transform: rotate(-0.81deg);}
+    &.for-g-second {transform: rotate(6.7deg);}
+  }
+}
+
+@keyframes stroke-width {
+  0% {stroke-width: 0;} 
+  30% {stroke-width: 10;}
+  100% {stroke-width: 10;  transform: rotate(0);}
+}
+
+// Circles
+.details-circles {
+  circle {
+    transform: scale(0);
+    animation: circles 1s ease-in-out forwards;
+    transform-origin: 50%;
+    @include delay(3);
+  }
+}
+
+@keyframes circles {
+  0% {transform: scale(0)} 
+  100% {transform: scale(1)}
+}
+
+//others
+.details-other {
+  path {
+    opacity: 0;
+    animation: others 1s ease-in-out forwards;
+    @include delay(3.5);
+  }
+}
+
+@keyframes others {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}

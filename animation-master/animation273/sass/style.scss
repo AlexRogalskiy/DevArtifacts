@@ -1,0 +1,170 @@
+@mixin box-model($i) {
+	padding: $i+px;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+header {
+  font-family: sans-serif;
+  text-align: center;
+}
+section {
+	position: relative;
+}
+
+.wrap {
+	width: 800px;
+	margin: 50px auto;
+	height: 400px;
+	padding: 25px;
+	position: relative;
+
+	&[data-margin="4"] {
+		.margin {
+			background: rgba(255,113,0,0.4);
+			border: dashed 2px orange;
+		}
+	}
+
+	&[data-border="1"] {
+		.border {
+			background: #1A81A3;
+		}
+	}
+
+	&[data-padding="4"] {
+		.padding {background:rgba(194, 240, 194, 1);}
+		.content {border: 2px dashed darkgreen;}
+	}
+}
+
+.margin {
+	background: rgba(80,80,80,0.1);
+	@include box-model(50);
+	border: dashed 2px darkgrey;
+	transition: all 250ms ease-in-out;
+}
+
+.border {
+	background: #000;
+	@include box-model(10);
+	transition: all 250ms ease-in-out;
+}
+
+.padding {
+	@include box-model(50);
+	background: #EBEBEB;
+	transition: all 250ms ease-in-out;
+}
+
+.content {
+	@include box-model(0);
+	background: #fff;
+	border: dashed 2px darkgrey;
+
+	&:before {
+		content: "Content";
+		font-size: 2em;
+		font-family: sans-serif;
+		display: block;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 3.5;
+	}
+}
+
+.check {
+	width: 40px;
+	height: 40px;
+	background: rgba(255,0,0,0.3);
+	border: 1px solid darkred;
+	position: absolute;
+
+	&[data-check=margin-left] {
+		top: 50%;
+		left: 32px;
+		margin-top: -20px;
+	}
+
+	&[data-check=margin-top] {
+		left: 50%;
+		top: 32px;
+		margin-left: -20px;
+	}
+
+	&[data-check=margin-bottom] {
+		bottom: 32px;
+		left: 50%;
+		margin-left: -20px;
+	}
+
+	&[data-check=margin-right] {
+		top: 50%;
+		right: 32px;
+		margin-top: -20px;
+	}
+
+	&[data-check=padding-left] {
+		top: 50%;
+		left: 92px;
+		margin-top: -20px;
+	}
+
+	&[data-check=padding-top] {
+		left: 50%;
+		top: 92px;
+		margin-left: -20px;
+	}
+
+	&[data-check=padding-bottom] {
+		bottom: 92px;
+		left: 50%;
+		margin-left: -20px;
+	}
+
+	&[data-check=padding-right] {
+		top: 50%;
+		right: 92px;
+		margin-top: -20px;
+	}
+
+	&[data-check=border] {
+		top: 57px;
+		right: 57px;
+	}
+}
+.finders {
+	left: -90px;
+	margin-top: 90px;
+}
+.finders .find {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	// float:left;
+	background: lightgreen;
+	border: 1px dashed grey;
+
+	&:after {
+		content: attr(data-find);
+		padding-left: 25px;
+		position: absolute;
+		width: 100px;
+		top: 25px;
+		font-family: sans-serif;
+		text-align: center;
+		left: -50%;
+		margin-left: -50px;
+	}
+
+	@for $i from 0 to 10 {
+		&:nth-of-type(#{$i}) {
+			left: ($i*90)+px
+		}
+	}
+}

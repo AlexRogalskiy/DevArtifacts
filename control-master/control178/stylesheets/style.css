@@ -1,0 +1,172 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+body {
+  padding: 3em 2em;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  background: #333333;
+}
+
+h2 {
+  text-align: center;
+  color: #f0f0f0;
+  font-weight: 400;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.165);
+}
+
+.pen {
+  max-width: 400px;
+  width: 100%;
+  margin: 50px auto 0;
+  position: relative;
+}
+
+.credit {
+  display: block;
+  max-width: 400px;
+  text-align: center;
+  margin: 150px auto 0;
+  padding: 0;
+  font-size: 0.8em;
+  color: #f0f0f0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.9);
+}
+
+.credit p a,
+.credit a {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.credit p a:hover,
+.credit a:hover,
+.credit p a:active,
+.credit a:active {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.credit p a.button,
+.credit a.button {
+  padding: 6px 12px;
+  margin-top: 10px;
+  background: #1a1a1a;
+  border-radius: 3px;
+}
+
+.credit p a.button:hover,
+.credit a.button:hover {
+  background: #4d4d4d;
+}
+
+.credit p:last-of-type {
+  margin-bottom: 30px;
+}
+
+.check {
+  text-align: center;
+}
+
+.container {
+  width: 150px;
+  height: 70px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+
+.state {
+  width: 150px;
+  height: 70px;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background: #8a8787;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.state:after {
+  content: '';
+  background: url("https://vsxed.github.io/ubuntu-touch-checkbox/img/sprite.png") 0 0 no-repeat;
+  position: absolute;
+  bottom: 18px;
+  left: 25px;
+  width: 30px;
+  height: 30px;
+}
+
+.state:before {
+  content: '';
+  background: url("https://vsxed.github.io/ubuntu-touch-checkbox/img/sprite.png") -34px 0 no-repeat;
+  position: absolute;
+  bottom: 18px;
+  right: 25px;
+  width: 30px;
+  height: 30px;
+}
+
+.switch {
+  width: 150px;
+  height: 70px;
+  overflow: hidden;
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  left: 0;
+  top: 0;
+}
+
+.switch:after {
+  content: '';
+  display: block;
+  width: 219px;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: translateX(-69px);
+  -moz-transform: translateX(-69px);
+  transform: translateX(-69px);
+  height: 73px;
+  background: url("https://vsxed.github.io/ubuntu-touch-checkbox/img/sprite.png") 0 -31px no-repeat;
+}
+
+.ubuntu-touch {
+  width: 150px;
+  height: 70px;
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  margin: 0;
+  z-index: 2;
+}
+
+.ubuntu-touch:checked ~ .state {
+  background: #cd5428;
+}
+
+.ubuntu-touch:checked ~ .switch:after {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}

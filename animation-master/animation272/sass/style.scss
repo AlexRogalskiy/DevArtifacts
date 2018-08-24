@@ -1,0 +1,176 @@
+@mixin prefix($method, $arg) {
+	-webkit-#{$method}: ($arg);
+	-moz-#{$method}: ($arg);
+  -o-#{$method}: ($arg);
+  #{$method}: ($arg);
+}
+
+@mixin gradient($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+  background-image: -webkit-gradient(linear, left $start-percent, left $end-percent, from($start-color), to($end-color));
+  background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);
+  background-image:  -moz-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);
+  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0);
+}
+$grey: #f0f0f0;
+$bg-col: #333;
+$elem-width: 500px;
+// ---
+$orangeDark: #fd540e;
+$orangeLight: #FFAD00;
+$sun: #fa5c19;
+$rise: transparent;
+
+// -- Codepen related --
+body {
+  padding: 3em 2em;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  background: $bg-col;
+  color: #fff;
+}
+
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+.pen {
+	max-width: $elem-width;
+	margin: 0 auto;
+	position: relative;
+}
+.credit {
+	display: block;
+	max-width: 400px;
+	text-align: center;
+	margin: 150px auto 0;
+	padding: 0;
+	font-size: 0.8em;
+	color: $grey;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.9);
+
+	p a, a {
+		color: white;
+		text-decoration: none;
+		font-weight: 700;
+
+		&:hover,&:active {
+			text-shadow: 0 0 5px rgba(255,255,255,0.4);
+			color: white;
+		}
+
+		&.button {
+			padding: 6px 12px;
+			margin-top: 10px;
+			background: darken($bg-col, 10%);
+			border-radius: 3px;
+
+			&:hover {background: lighten($bg-col, 10%);}
+		}
+	}
+
+	p:last-of-type {
+		margin-bottom: 30px;
+	}
+}
+
+// -- Pen related --
+//
+.iphone-holder {
+	background: url(http://www.eduardmayer.de/codepen-css-resources/images/iphone.png) 0 0 transparent;
+	width:500px;
+	height: 750px;
+	position: relative;
+
+	.screen {
+		position: absolute;
+		width: 393px;
+		overflow: hidden;
+		@include gradient($orangeLight, $orangeDark);
+		height: 601px;
+		left: 55px;
+		top: 149px;
+
+		.content {
+			display: block;
+			margin-top: 236px;
+			
+			position: relative;
+			text-align: center;
+			@include prefix(transition, all 500ms ease-in-out);
+
+			&:hover {@include prefix(transform, translateY(-110px));}
+			&:hover h1, &:hover p, &:hover hr {
+				@include prefix(animation, move 500ms ease-in-out forwards);
+			}
+			&:hover h1 {@include prefix(animation-delay, 500ms);}
+			&:hover hr {@include prefix(animation-delay, 1.5s);}
+			&:hover p:nth-child(4) {@include prefix(animation-delay, 1s);}
+			&:hover p:last-child {@include prefix(animation-delay, 1.5s);}
+			h1, p, hr {
+				position: relative;
+				z-index: 10;
+				color: #fff;
+				line-height: 1.5;
+				padding: 0 3em;
+				opacity: 0;
+			}
+			h1 {margin-top: 2em;}
+			hr {
+				max-width: 75%;
+				border:0;
+				height: 1px;
+				background: #fff;
+			}
+		}
+
+		.sunrise {
+			position: absolute;
+			display: block;
+			width: 100%;
+
+			svg {
+				margin-left: -25%;
+				@include prefix(transform-origin, center 50%);
+				margin-top: -5%;
+				position: relative;
+				top: -236px;
+				@include prefix(transform, scale(2));
+				@include prefix(animation, rotate 10s infinite linear);
+			}
+		}
+
+		.pin {
+			font-family: "FontAwesome";
+			border-radius: 50%;
+			background: transparent;
+			width: 55px;
+			margin: 0 auto;
+			z-index: 1;
+			position: relative;
+			text-align: center;
+			height: 55px;
+			border: 2px solid #fff;
+			box-shadow: 0 0 54px 12px transparentize($orangeDark, 0.5), inset 0 0 34px 4px transparentize($orangeDark, 0.65);
+
+			svg {
+				width:30%;
+				fill: #fff;
+				height: 100%;
+				@include prefix(transform, rotate(45deg));
+			}
+		}
+	}
+}
+
+@keyframes rotate {
+	from 	{-webkit-transform: rotate(0deg); transform: rotate(0deg);}
+	to 		{-webkit-transform: rotate(360deg); transform: rotate(360deg);}
+}
+
+@keyframes move {
+	from 	{transform: translateX(100px);opacity: 0;}
+	to 		{transform: translateX(0px); opacity: 1;}
+}

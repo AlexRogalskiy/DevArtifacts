@@ -1,0 +1,150 @@
+/* Basic Config
+ * $nav-size (px) sets the size of the menu button
+ * $nav-color (#) is set the be the main color when a background is set
+ * $nav-color-active (#) is the color of the button when toggled. If theres no background, it is also the main color when untoggled
+ * $hasBackground (boolean) sets whether there's a background or not.
+ */
+* {
+  box-sizing: border-box;
+}
+
+.material--burger {
+  cursor: pointer;
+  padding: 12.5px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+.material--burger:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #445566;
+  animation: material-menu-background 300ms ease-in-out forwards;
+}
+.material--burger span {
+  top: 50%;
+  transform-origin: center center;
+  animation-name: material-menu;
+}
+.material--burger span, .material--burger span:before, .material--burger span:after {
+  width: 25px;
+  background-color: #fff;
+  height: 3px;
+  position: absolute;
+  z-index: 525;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  transition: background-color 300ms ease-in-out;
+}
+.material--burger span:before, .material--burger span:after {
+  content: '';
+  display: block;
+}
+.material--burger span:before {
+  top: 300%;
+  transform-origin: right bottom;
+  animation-name: material-menu-before;
+}
+.material--burger span:after {
+  bottom: 300%;
+  transform-origin: right top;
+  animation-name: material-menu-after;
+}
+.material--burger.material--arrow:after {
+  animation: material-arrow-background 300ms ease-in-out forwards;
+}
+.material--burger.material--arrow span, .material--burger.material--arrow span:before, .material--burger.material--arrow span:after {
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  background-color: #445566;
+}
+.material--burger.material--arrow span {
+  animation-name: material-arrow;
+}
+.material--burger.material--arrow span:before {
+  animation-name: material-arrow-before;
+}
+.material--burger.material--arrow span:after {
+  animation-name: material-arrow-after;
+}
+
+@keyframes material-arrow-background {
+  100% {
+    transform: rotate(180deg) scale(0);
+  }
+}
+@keyframes material-menu-background {
+  0% {
+    transform: rotate(180deg) scale(0);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+@keyframes material-arrow {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes material-arrow-before {
+  100% {
+    top: 0;
+    transform: rotate(-40deg) scaleX(0.7);
+  }
+}
+@keyframes material-arrow-after {
+  100% {
+    bottom: 0;
+    transform: rotate(40deg) scaleX(0.7);
+  }
+}
+@keyframes material-menu {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes material-menu-before {
+  0% {
+    top: 0;
+    transform: rotate(-40deg) scaleX(0.7);
+  }
+  100% {
+    top: 300%;
+    transform: rotate(0) scaleX(1);
+  }
+}
+@keyframes material-menu-after {
+  0% {
+    bottom: 0;
+    transform: rotate(40deg) scaleX(0.7);
+  }
+  100% {
+    bottom: 300%;
+    transform: rotate(0) scaleX(1);
+  }
+}
+.material--burger {
+  margin: 90px auto;
+}
+
+h1 {
+  text-align: center;
+  color: #445566;
+  font-family: "Lato", sans-serif;
+  font-size: 118px;
+}
+h1 span {
+  display: block;
+  font-weight: normal;
+  font-size: 28px;
+}

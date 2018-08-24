@@ -1,0 +1,159 @@
+/* Basic Config
+ * $nav-size (px) sets the size of the menu button
+ * $nav-color (#) is set the be the main color when a background is set
+ * $nav-color-active (#) is the color of the button when toggled. If theres no background, it is also the main color when untoggled
+ * $hasBackground (boolean) sets whether there's a background or not.
+ */
+
+$nav-size: 50px;
+$nav-color: #fff;
+$nav-color-active: #445566;
+$hasBackground: true;
+
+// Advanced Config
+$animation-time: 300ms;
+$animation-easing: ease-in-out;
+
+$z-index-navigation-button: 500;
+$z-index-navigation-inner: $z-index-navigation-button + 25;
+
+@if $hasBackground == false {
+  $nav-color: $nav-color-active;
+}
+
+* {box-sizing: border-box;}
+
+.material--burger {
+	cursor: pointer;
+	padding: ($nav-size / 4);
+	position: relative;
+	width: $nav-size;
+	height: $nav-size;
+  
+@if $hasBackground == true {
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: $nav-color-active;
+		animation: material-menu-background $animation-time $animation-easing forwards;
+	}
+}
+
+	span {
+		top: 50%;
+		transform-origin: center center;
+		animation-name: material-menu;
+
+		&, &:before, &:after {
+			width: ($nav-size / 2);
+      
+        
+      
+			background-color: $nav-color;
+			height: ceil($nav-size / 20);
+			position: absolute;
+			z-index: $z-index-navigation-inner;
+			animation-duration: $animation-time;
+			animation-fill-mode: forwards;
+			animation-timing-function: $animation-easing;
+			transition: background-color $animation-time $animation-easing;
+		}
+
+		&:before, &:after {
+			content: '';
+			display: block;
+		}
+
+		&:before {
+			top: 300%;
+			transform-origin: right bottom;
+			animation-name: material-menu-before;
+		}
+
+		&:after {
+			bottom: 300%;
+			transform-origin: right top;
+			animation-name: material-menu-after;
+		}
+	}
+
+	&.material--arrow {
+    @if $hasBackground == true {
+      &:after {
+        animation: material-arrow-background $animation-time $animation-easing forwards;
+      }
+    }
+
+		span, span:before, span:after {
+			animation-duration: $animation-time;
+			animation-fill-mode: forwards;
+			animation-timing-function: $animation-easing;
+			background-color: $nav-color-active;
+		}
+		span 		{animation-name: material-arrow;}
+		span:before {animation-name: material-arrow-before;}
+		span:after 	{animation-name: material-arrow-after;}
+	}
+}
+
+@if $hasBackground == true {
+  @keyframes material-arrow-background {
+    100% 	{ transform: rotate(180deg) scale(0); }
+  }
+
+  @keyframes material-menu-background {
+    0% 		{ transform: rotate(180deg) scale(0); }
+    100% 	{ transform: rotate(360deg) scale(1); }
+  }
+}
+
+@keyframes material-arrow {
+	100% 	{ transform: rotate(180deg); }
+}
+
+@keyframes material-arrow-before {
+	100% 	{ top: 0; transform: rotate(-40deg) scaleX(0.7); }
+}
+
+@keyframes material-arrow-after {
+	100% 	{ bottom: 0; transform: rotate(40deg) scaleX(0.7);}
+}
+
+@keyframes material-menu {
+	0% 		{ transform: rotate(180deg); }
+	100% 	{ transform: rotate(360deg); }
+}
+
+@keyframes material-menu-before {
+	0% 		{ top: 0; 		transform: rotate(-40deg) scaleX(0.7); }
+	100% 	{ top: 300%; 	transform: rotate(0) scaleX(1); }
+}
+
+@keyframes material-menu-after {
+	0% 		{ bottom: 0; 	transform: rotate(40deg) scaleX(0.7); }
+	100% 	{ bottom: 300%; transform: rotate(0) scaleX(1); }
+}
+
+// Codepen-only style
+
+.material--burger {
+  margin: 90px auto;
+}
+
+h1 {
+  text-align: center;
+  color: $nav-color-active;
+  font-family: "Lato", sans-serif;
+  font-size: 118px;
+  
+  span {
+    display: block;
+    font-weight: normal;
+    font-size: 28px;
+  }
+}
