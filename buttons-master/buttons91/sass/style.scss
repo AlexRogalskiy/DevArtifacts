@@ -1,0 +1,123 @@
+@import "compass/css3";
+
+/**
+ * Variable power
+ */
+
+$z-buttonShadow: -1;
+
+$c-shadowGray: #333;
+$c-buttonBright: #f1f1f1;
+$c-buttonDark: #aaa;
+
+
+@import url(http://weloveiconfonts.com/api/?family=brandico);
+
+/* brandico */
+[class*="brandico-"]:before {
+  font-family: 'brandico', sans-serif;
+}
+
+
+body {
+  @include background-image(
+    linear-gradient(
+      adjust-lightness( $c-shadowGray, 50 ),
+      rgba( $c-shadowGray, 0 )
+    )
+  );
+}
+
+.twitter--button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  margin: -100px 0 0 -100px;
+  
+  width: 200px;
+  height: 200px;
+  
+  border: 1px solid $c-buttonDark;
+  outline: 0;
+  
+  cursor: pointer;
+  
+  @include border-radius( 50% );
+  @include box-shadow( 0 0.75em 0.75em $c-shadowGray );
+  @include background-image(
+    linear-gradient(
+      $c-buttonBright,
+      $c-buttonDark
+    )
+  );
+  
+  &:before {
+    position: absolute;
+    content: '';
+    
+    width: 100%;
+    height: 66.666%;
+    
+    top: 50%;
+    left: 0;
+    z-index: $z-buttonShadow;
+
+    -webkit-filter: blur(2px);
+
+    @include background-image(
+      linear-gradient(
+        adjust-lightness( $c-shadowGray, 30 ),
+        rgba( $c-shadowGray, 0 )
+      )
+    );
+  }
+
+  &:after {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    
+    font-size: 11em;
+    margin: -0.5em 0 0 -0.625em;
+  
+    font-family: 'brandico', sans-serif;
+    content: "\f303";
+  
+    color: adjust-lightness( $c-buttonBright, -6 );
+  
+    @include text-shadow(
+      0 -0.025em $c-shadowGray,
+      0 0.02em adjust-lightness( $c-buttonBright, 5 ) 
+    );
+  }
+  
+  &:active {
+    @include box-shadow(
+      inset 0 0.5em 1em $c-shadowGray,
+      inset 0 -0.333em 0.25em #fff 
+    );
+    
+    &:before {
+      @include background-image( none );
+    }
+  
+    &:after {
+      top: 50%;
+      color: adjust-lightness( $c-buttonBright, -10 );
+    }
+  }
+
+  &:hover {
+    @include background-image(
+      linear-gradient(
+        adjust-lightness( $c-buttonBright, 5 ),
+        adjust-lightness( $c-buttonDark, 5 )
+      )
+    );
+
+    &:after {
+      color: adjust-lightness( $c-buttonBright, 0 );
+    }
+  }  
+}

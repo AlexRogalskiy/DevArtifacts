@@ -1,0 +1,160 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+/**
+ * Colors
+ */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Q1ZDVkNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzY2NjY2NiIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d5d5d5), color-stop(100%, rgba(102, 102, 102, 0)));
+  background-image: -moz-linear-gradient(#d5d5d5, rgba(102, 102, 102, 0));
+  background-image: -webkit-linear-gradient(#d5d5d5, rgba(102, 102, 102, 0));
+  background-image: linear-gradient(#d5d5d5, rgba(102, 102, 102, 0));
+}
+
+.check, .check--input, .check--label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.check {
+  position: absolute;
+  overflow: hidden;
+  top: 20%;
+  left: 50%;
+  z-index: 0;
+  height: 5rem;
+  padding: 1rem 1rem 1rem 4rem;
+  margin: 0 0 0 -5rem;
+  background: #cfcfcf;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2NmY2ZjZiIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjZTJlMmUyIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjY2ZjZmNmIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cfcfcf), color-stop(50%, #e2e2e2), color-stop(100%, #cfcfcf));
+  background-image: -moz-linear-gradient(#cfcfcf, #e2e2e2, #cfcfcf);
+  background-image: -webkit-linear-gradient(#cfcfcf, #e2e2e2, #cfcfcf);
+  background-image: linear-gradient(#cfcfcf, #e2e2e2, #cfcfcf);
+  border-radius: 4rem;
+  border: 1px solid #eee;
+  box-shadow: inset 0 1px 0.333rem #888, 0 0 1px 1px #fff, 0 3px 0.1rem #888;
+}
+
+.check--input {
+  position: absolute;
+  z-index: 1;
+  top: 1rem;
+  left: 1rem;
+  height: 3rem;
+  width: 3rem;
+  margin: 0;
+  cursor: pointer;
+}
+.check--input:checked + .check--label {
+  max-width: 0;
+  padding: 0;
+  color: transparent;
+  text-shadow: none;
+}
+.check--input:checked + .check--label:before {
+  box-shadow: inset 0 1px 0.1rem #888;
+}
+.check--input:checked + .check--label:after {
+  color: #eeaa44;
+}
+.check--input:checked ~ .check--svg > circle {
+  stroke-dashoffset: 0;
+}
+
+.check--label {
+  position: relative;
+  max-width: 200px;
+  padding: 0 0 0 1.5rem;
+  font-size: 1rem;
+  line-height: 3rem;
+  color: #777;
+  text-shadow: 0 1px 0 #fff;
+  cursor: pointer;
+  -moz-transition: max-width 0.5s ease-in, padding 0.5s ease-in, color 0.5s ease-in, text-shadow 0.5s ease-in;
+  -o-transition: max-width 0.5s ease-in, padding 0.5s ease-in, color 0.5s ease-in, text-shadow 0.5s ease-in;
+  -webkit-transition: max-width 0.5s ease-in, padding 0.5s ease-in, color 0.5s ease-in, text-shadow 0.5s ease-in;
+  transition: max-width 0.5s ease-in, padding 0.5s ease-in, color 0.5s ease-in, text-shadow 0.5s ease-in;
+}
+.check--label:hover:after {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2RkZGRkZCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2Y4ZjhmOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dddddd), color-stop(100%, #f8f8f8));
+  background-image: -moz-linear-gradient(#dddddd, #f8f8f8);
+  background-image: -webkit-linear-gradient(#dddddd, #f8f8f8);
+  background-image: linear-gradient(#dddddd, #f8f8f8);
+}
+.check--label:before, .check--label:after {
+  position: absolute;
+}
+.check--label:before {
+  top: -0.5rem;
+  left: -3.5rem;
+  content: '';
+  z-index: 1;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y1ZjVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2QxZDFkMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f5f5f5), color-stop(100%, #d1d1d1));
+  background-image: -moz-linear-gradient(#f5f5f5, #d1d1d1);
+  background-image: -webkit-linear-gradient(#f5f5f5, #d1d1d1);
+  background-image: linear-gradient(#f5f5f5, #d1d1d1);
+  box-shadow: 0 0.2rem 0.25rem #888, inset 0 1px 2px #fff;
+}
+.check--label:after {
+  top: 0;
+  left: -3rem;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  z-index: 2;
+  content: "\1f50b";
+  text-align: center;
+  font-family: 'entypo', sans-serif;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  color: #777;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2UxZTFlMSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2VlZWVlZSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e1e1e1), color-stop(100%, #eeeeee));
+  background-image: -moz-linear-gradient(#e1e1e1, #eeeeee);
+  background-image: -webkit-linear-gradient(#e1e1e1, #eeeeee);
+  background-image: linear-gradient(#e1e1e1, #eeeeee);
+  -moz-transition: color 0.5s ease-in-out 2.25s;
+  -o-transition: color 0.5s ease-in-out 2.25s;
+  -webkit-transition: color 0.5s ease-in-out;
+  -webkit-transition-delay: 2.25s;
+  transition: color 0.5s ease-in-out 2.25s;
+  box-shadow: inset 0 0.25rem 0.75rem #ccc;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.check--svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.check--svg circle {
+  fill: transparent;
+  stroke: #eeaa44;
+  stroke-width: 6px;
+  stroke-dashoffset: 230;
+  stroke-dasharray: 230 230;
+  -moz-transition: stroke-dashoffset 1s ease-in-out 1s;
+  -o-transition: stroke-dashoffset 1s ease-in-out 1s;
+  -webkit-transition: stroke-dashoffset 1s ease-in-out;
+  -webkit-transition-delay: 1s;
+  transition: stroke-dashoffset 1s ease-in-out 1s;
+}

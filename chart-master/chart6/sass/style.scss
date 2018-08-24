@@ -1,0 +1,267 @@
+/**
+ * Variable power
+ */
+
+// color stuff
+$c-bg             : #fff;
+$c-baseColor      : #333;
+$c-baseColorBright: #666;
+
+$c-border           : #eee;
+$c-borderDark       : $c-baseColor;
+$c-borderBright     : adjust-lightness( $c-baseColor, 30 );
+$c-borderBrightPlus : adjust-lightness( $c-baseColor, 50 );
+$c-shadow           : $c-baseColor;
+$c-dashedLine       : adjust-lightness( $c-baseColor, 40 );
+
+$c-borderDevider : $c-borderBright;
+
+$c-red  : #d79d91;
+$c-blue : #6bb7c7;
+
+// font-stuff
+$f-family : sans-serif;
+
+// sizes
+$f-baseSize               : 14px;
+
+$f-sizeHeadline           : 2 * $f-baseSize;
+$f-sizeSubHeadline        : $f-baseSize;
+
+$f-sizePieChartPercentage : 3 * $f-baseSize;
+$f-sizePieChartText       : 2 * $f-baseSize;
+
+$f-sizeBubbleLabel : 0.9 * $f-baseSize;
+$f-sizeBubbleValue : 1.5 * $f-baseSize;
+
+// weights
+$f-weight            : 100;
+$f-weightHeadline    : $f-weight;
+$f-weightSubHeadline : 400;
+
+$f-weightPieChartPercentage : 100;
+
+// spacing
+$f-spacing : 1px;
+
+// dimensions
+$d-chartHeight : 400px;
+
+// set base styles
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+} 
+
+body {
+  font-size: $f-baseSize;
+  font-family: $f-family;
+  font-weight: $f-weight;
+
+  background-color: #ccc;
+  background-image: linear-gradient(transparent 50%, rgba(255,255,255,.5) 25%);
+  background-size: 4px 4px;
+  
+  ul {
+    list-style: none;
+  }
+  
+  ul, li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.chart {
+  min-height: $d-chartHeight;
+  border-bottom: 1px solid $c-border;
+
+  padding: 1em;
+}
+
+.chart--headline, .chart--subHeadline {
+  text-align: center;
+}
+
+.chart--headline {
+  position: relative;
+  
+  font-weight: $f-weightHeadline;
+  font-size: $f-sizeHeadline;
+
+  &:before {
+    position: absolute;
+    content: '';
+    
+    bottom: 133%;
+    left: 50%;
+    
+    width: 25%;
+    margin: 0 0 0 -12.5%;
+    
+    border-top: 1px dashed $c-dashedLine;
+  }
+}
+
+.chart--subHeadline {
+  font-weight: $f-weightSubHeadline;
+  font-size: $f-sizeSubHeadline;
+  letter-spacing: $f-spacing;
+}
+
+.charts--container {
+  background-color: $c-bg;
+  width: 100%;
+  
+  @media screen and (min-width: 700px) {
+    max-width: 700px;
+    
+    left : 50%;
+    top : 10%;
+    margin: 5em auto; 
+    
+    box-shadow: 0 2em 2em $c-shadow;
+  }
+}
+
+.charts--headline {
+  text-align: center;
+  color: #444;
+  background-color: #fff;
+  padding: 1em;
+}
+
+.lineChart--area {
+  fill: url(#lineChart--gradientBackgroundArea);
+}
+
+.lineChart--areaLine {
+  fill   : none;
+  stroke : $c-blue;
+  stroke-width: 3;
+}
+
+.lineChart--bubble--label {
+  fill: none;
+  stroke: $c-blue;
+  
+  font-size: $f-sizeBubbleLabel;
+  font-style: italic;
+  font-weight: $f-weight;
+}
+
+.lineChart--bubble--value {
+  fill: #fff;
+  stroke: #fff;
+  
+  font-size: $f-sizeBubbleValue;
+  font-weight: $f-weight;
+}
+.lineChart--circle {
+  fill: $c-blue;
+  stroke: #fff;
+  stroke-width: 3;
+}
+
+.lineChart--circle__highlighted {
+  fill: #fff;
+  stroke: adjust-lightness( $c-blue, -15 );
+}
+
+.lineChart--gradientBackgroundArea--top {
+  stop-color   : $c-blue;
+  stop-opacity : 0.1;
+}
+
+.lineChart--gradientBackgroundArea--bottom {
+  stop-color   : $c-blue;
+  stop-opacity : 0.6;
+}
+
+.lineChart--svg {
+  border: 1px solid $c-border;
+}
+
+// d3.js doesn't let me BEM it. :(
+.lineChart--xAxisTicks, .lineChart--xAxis, .lineChart--yAxisTicks {
+  .domain {
+    display: none;
+  }
+}
+
+.lineChart--xAxis {
+  .tick {
+    line {
+      display: none;
+    }
+  }
+}
+
+.lineChart--xAxisTicks, .lineChart--yAxisTicks {
+  .tick {
+    line {
+      fill: none;
+      stroke: $c-borderBrightPlus;
+      stroke-width: 1;
+      stroke-dasharray: 2,2;
+    }
+  }
+}
+
+.pieChart--center--innerCircle {
+  fill: #fff;
+}
+
+.pieChart--center--text {
+  font-size: $f-sizePieChartText;
+}
+
+.pieChart--center--outerCircle {
+  fill: rgba( 255, 255, 255, 0.75 );
+}
+
+.pieChart--detail--divider {
+  stroke: $c-borderDevider;
+  stroke-width: 1;
+}
+
+.pieChart--detail--percentage {
+  font-size: $f-sizePieChartPercentage;
+  font-weight: $f-weightPieChartPercentage;
+  
+  fill: $c-baseColor;
+  stroke-width: 1px;
+}
+
+.pieChart--detail--textContainer {
+  background-color: transparent;
+  padding: 10px 0 0 0;
+  margin: 0;
+  
+  color: $c-baseColorBright;
+  font-style: italic;
+}
+
+.pieChart--detail__left {
+  text-align: left;
+}
+
+.pieChart--detail__right {
+  text-align: right;
+}
+
+.pieChart__blue {
+  fill: $c-blue;
+}
+
+.pieChart__red {
+  fill: $c-red;
+}
+
+/**
+ * Helper classes
+ */ 
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,543 @@
+@import "compass/css3";
+
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+/* zocial */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+/*
+ * variables
+ */
+
+$c-body: #2c2c2d;
+$c-sidebarBright: #4a5463;
+$c-sidebarDark: #22262e;
+
+$c-borderBright: #aaa;
+$c-borderDark: #777;
+
+$c-signalGreen: #33aa6b;
+$c-signalBlue: #18a8f1;
+$c-signalOrange: #ec6941;
+$c-signalRed: #e60012;
+
+$c-redBright: #ff5440;
+$c-redDark: #f1301a;
+$c-purpleBright: #a8aff1;
+$c-purpleDark: #777ec3;
+$c-cyanBright: #62d6eb;
+$c-cyanDark: #00a8c9;
+
+// font stuff
+$font-color: #dbdcdf;
+$font-size: 16px;
+$font-family: Sans-Serif;
+
+// z-index stuff
+$z-navItemLabel: 3;
+$z-navItemSignal: 2;
+$z-navItemBackground: 1;
+
+* {
+  &, &:before, &:after {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+}
+
+body {
+  min-width: 960px;
+  background-color: $c-body;
+  color: $font-color;
+  font-size: $font-size;
+  font-family: $font-family;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ui {
+  position: absolute;
+  
+  width: 960px;
+  height: 600px;
+  
+  top: 50%;
+  left: 50%;
+  
+  overflow: hidden;
+  
+  margin: -300px 0 0 -480px;
+  
+  @include box-shadow( 0 2em 6em #000 );
+
+  .redBackgroundStop1 { stop-color: adjust-lightness( $c-redBright, 7 ); }
+  .redBackgroundStop2 { stop-color: $c-redBright; }  
+  .purpleBackgroundStop1 { stop-color: adjust-lightness( $c-purpleBright, 7 ); }
+  .purpleBackgroundStop2 { stop-color: $c-purpleBright; }
+  .cyanBackgroundStop1 { stop-color: adjust-lightness( $c-cyanBright, 7 ); }
+  .cyanBackgroundStop2 { stop-color: $c-cyanBright; }
+  .redForegroundStop1 { stop-color: adjust-lightness( $c-redBright, 35 ); }
+  .redForegroundStop2 { stop-color: adjust-lightness( $c-redBright, 23 ); }
+  .purpleForegroundStop1 { stop-color: adjust-lightness( $c-purpleBright, 17 ); }
+  .purpleForegroundStop2 { stop-color: adjust-lightness( $c-purpleBright, 8 ); }
+  .cyanForegroundStop1 { stop-color: adjust-lightness( $c-cyanBright, 29 ); }
+  .cyanForegroundStop2 { stop-color: adjust-lightness( $c-cyanBright, 15 ); }
+}
+
+.ui__downloadList {
+  margin: 1em 0 0 -3.333%;
+}
+
+.ui__downloadList__graphic {
+  margin: 0.5em;
+  height: 10em;
+}
+
+.ui__downloadList__headline {
+  position: absolute;
+  
+  bottom: 1.25em;
+  
+  width: 100%;
+  
+  margin: 0;
+  padding: 0;
+  
+  font-weight: 100;
+  text-align: center;
+  
+  font-size: 1.75em;
+  
+  @include text-shadow( 0.1em 0.1em 0.2em $c-sidebarDark );
+}
+
+.ui__downloadList__backgroundCircle {
+  fill: #fff;
+}
+
+.ui__downloadList__foregroundCircle {
+  fill: #fff;
+  stroke-width: 1px;
+}
+
+.ui__downloadList__item {
+  position: relative;
+  
+  width: 30%;
+  height: 15em;
+
+  float: left;
+  margin-left: 3.333%;
+  background-color: blue;
+  
+  @include box-shadow( 0 0.75em 2.5em #222 );
+  
+  &.red {
+    @include background-image(
+      linear-gradient(right bottom, $c-redDark, $c-redBright )
+    );
+    
+    .ui__downloadList__backgroundCircle {
+      fill: url(#gradientBackgroundRed);
+    }
+    .ui__downloadList__foregroundCircle {
+      fill: url(#gradientForegroundRed);
+    }
+  }
+  
+  &.purple {
+    @include background-image(
+      linear-gradient(right bottom, $c-purpleDark, $c-purpleBright )
+    );  
+    
+    .ui__downloadList__backgroundCircle {
+      fill: url(#gradientBackgroundPurple);
+    }
+    .ui__downloadList__foregroundCircle {
+      fill: url(#gradientForegroundPurple);
+    }
+  }
+  
+  &.cyan {
+    @include background-image(
+      linear-gradient(right bottom, $c-cyanDark, $c-cyanBright )
+     );
+    
+    .ui__downloadList__backgroundCircle {
+      fill: url(#gradientBackgroundCyan);
+    }
+    .ui__downloadList__foregroundCircle {
+      fill: url(#gradientForegroundCyan);
+    }
+  }
+}
+
+.ui__downloadList__subHeadline {
+  position: absolute;
+  
+  bottom: 1.5em;
+  
+  width: 100%;
+  
+  margin: 0;
+  padding: 0;
+  
+  font-weight: 100;
+  font-size: 0.75em;
+  
+  text-align: center;
+  
+  @include text-shadow( 0.125em 0.125em 0.2em $c-sidebarDark );
+}
+
+.ui__friendsList {
+  padding: 0 1.5em 0 0.5em;
+}
+
+.ui__friendsList__headline {
+  margin: 1.25em;
+  font-size: 0.8em;
+  font-weight: 200;
+}
+
+.ui__main {
+  width: 85%;
+  height: 100%;
+  float: left;
+
+  @include background-image(
+    linear-gradient(right, adjust-lightness( $c-sidebarDark, -5 ), adjust-lightness( $c-sidebarBright, 15 ) )
+  );
+}
+
+.ui__main__content {
+  width: 75%;
+  
+  padding: 2em;
+}
+
+.ui__main__headline {
+  margin: 0;
+  padding: 0;
+  font-weight: 100;
+  font-size: 1.75em;
+}
+
+.ui__nav {
+
+}
+
+.ui__nav__item {
+  position: relative;
+  
+  padding: 1.5em 0;
+  border-bottom: 1px solid $c-borderDark;
+  
+  @include transition(
+    background-color 0.2s ease-in,
+    color 0.2s ease-in
+   );
+  
+  &:hover {
+    color: $c-signalBlue;
+  }
+  
+  input {
+    display: none;
+    
+    &:checked {
+      + label {
+        &:before {
+          position: absolute;
+          content: '';
+        
+          width: 0.25em;
+          height: 100%;
+        
+          left: 0;
+          top: 0;
+          
+          margin: 0;
+        
+          background-color: $c-signalBlue;
+          
+          z-index: $z-navItemSignal;
+        }
+        
+        &:after {
+          left: 0;
+        }
+      }
+    }
+  }
+  
+  label {
+    display: block;
+    
+    height: 2em;
+    line-height: 2em;
+    
+    margin: 0 0.5em;
+    padding: 0 0 0 3em;
+    
+    cursor: pointer;
+    
+    z-index: $z-navItemLabel;
+    
+    &:before {
+      position: absolute;
+      
+      top: 50%;
+      left: 0.5em;
+      font-size: 2em;
+      
+      margin: -0.5em 0 0 0;
+    }
+    
+    &:after {
+      content: attr(data-label);
+      position: absolute;
+      
+      width: 100%;
+      height: 100%;
+      
+      top: 0;
+      left: -100%;
+      
+      color: $c-signalBlue;
+      line-height: 5em;
+      
+      padding: 0 0 0 2em;
+      
+      background-color: $c-sidebarDark;
+      
+      // would liked to use transformations
+      // but doesn't seem to be supported 
+      // on pseudo elements
+      @include transition( left 0.2s ease-in );
+      
+      z-index: $z-navItemBackground;
+    }
+  }
+}
+
+.ui__sidebar {
+  height: 100%;
+
+  &.left {
+    width: 15%;
+    
+    border-right: 1px solid $c-borderBright;
+    
+    background-color: $c-sidebarBright;
+    @include background-image(  linear-gradient(left bottom, $c-sidebarDark, $c-sidebarBright ) );
+  }
+  
+  &.right {
+    width: 25%;
+
+    border-left: 1px solid adjust-lightness( $c-borderDark, -20 );
+  }
+}
+
+.ui__search__input {
+  width: calc(100% - 4em);
+  line-height: 2em;
+  margin: 2em;
+  
+  background-color: $c-sidebarBright;
+  border: 0;
+  
+  border-radius: 1em;
+  
+  font-style: italic;
+  
+  outline: 0;
+  
+  &::-webkit-input-placeholder {
+    position: relative;
+    color: transparent;
+  
+    &:before, &:after {
+      position: absolute;
+      color: adjust-lightness( $c-sidebarBright, 30 );
+    }
+    
+    &:before {
+      content: 'search...';
+      
+      left: 2em;
+      top: 0;
+      
+      width: 100%;
+      height: 100%;
+    }
+    
+    &:after {
+      content: "\1f526";
+      
+      top: 0;
+      left: 0.25em;
+      
+      width: 1.6em;
+      height: 1.6em;
+      line-height: 1.6em;
+      
+      font-size: 1.25em;
+      
+      font-family: 'entypo', sans-serif;
+      font-style: normal;
+    }
+  }
+  
+  &::-webkit-search-cancel-button {
+    margin: 0 1em 0 0;
+  }
+}
+
+.ui__person {
+  padding: 1.5em 0;
+  border-bottom: 1px solid $c-borderDark;
+}
+
+.ui__person__small {
+  padding: 0.5em 0;
+}
+
+.ui__person__name {
+  position: relative;
+  
+  margin: 0 1em 0 0.5em;
+  padding: 0 0 0 2.5em;
+
+  height: 2em;  
+  line-height: 2em;
+  
+  cursor: pointer;
+  
+  &:hover {
+    &:after {
+      width: 0.75em;
+      height: 0.75em;
+      
+      margin: -0.375em -0.175em 0 0;
+    }
+  }
+  
+  &.away {
+    &:after {
+      border: 0.125em solid $c-signalOrange;
+    }
+  }
+  
+  &.notDisturb {
+    &:after {
+      border: 0.125em solid $c-signalRed;
+    }
+  }
+  
+  &.online {
+    &:after {
+      border: 0.125em solid $c-signalGreen;
+    }
+  }
+  
+  &.offline {
+    &:after {
+      border: 0.125em solid $c-sidebarBright;
+    }
+  }
+  
+  &:before, &:after {
+    position: absolute;
+    
+    top: 50%;
+    
+    border-radius: 50%;
+  }
+  
+  &:before {
+    content: url('http://gravatar.com/avatar/22725c2d3eb331146549bf0d5d3c050c?s=30');
+
+    height: 2em;
+    width: 2em;
+    
+    left: 0;
+    
+    margin: -1em 0 0 0;
+    
+    border: 0.125em solid #fff;
+    
+    overflow: hidden;
+  }
+  
+  &:after {
+    content: '';
+    
+    height: 0.5em;
+    width: 0.5em;
+   
+    top: 50%;
+    right: 0;
+    
+    margin: -0.25em 0 0 0;
+    
+    border: 0.125em solid $c-signalGreen;
+    
+    z-index: 1;
+    
+    @include transition(
+      width 0.2s ease-in,
+      height 0.2s ease-in,
+      margin 0.2s ease-in
+    );
+  }
+}
+
+.ui__timeline {
+  height: 14em;
+  margin: 1em 0 0 0;
+ 
+  .domain {
+    display: none;
+  }
+  
+  .tick {
+    fill: $font-color;
+    font-size: 0.8em;
+  }
+}
+
+.ui__timeline__area {
+  stroke-width: 0.125em;
+  
+  &.red {
+    fill: rgba( $c-redDark, 0.7 );
+    stroke: $c-redBright;
+  }
+  &.purple {
+    fill: rgba( $c-purpleDark, 0.7 );
+    stroke: $c-purpleBright;
+  }
+  &.cyan {
+    fill: rgba( $c-cyanDark, 0.7 );
+    stroke: $c-cyanBright;
+  }
+}
+
+/*
+ * Helper classes
+ */
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}

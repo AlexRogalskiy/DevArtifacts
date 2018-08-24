@@ -1,0 +1,199 @@
+$c-black      : #000;
+$c-shadowGray : #333;
+$c-blue       : #2e71b4;
+$c-darkGrey   : #2c323c;
+
+$DURATION : 0.33s;
+
+body {
+  background-image : linear-gradient(
+                        adjust-lightness( $c-shadowGray, 50 ),
+                        rgba( $c-shadowGray, 0 )
+                      );
+}
+
+.container {
+  position : absolute;
+  
+  top : 50%;
+  left : 50%;
+  
+  width : 30em;
+  height : 20em;
+  
+  overflow : hidden;
+  
+  transform : translate( -50%, -50% );
+  
+  background : $c-darkGrey;
+  
+  border-radius : 0.5em;
+  
+  box-shadow : 0 0.125em 0.25em $c-black;
+  
+  &__image {
+    border-radius : 50%;
+    
+    opacity : 0;
+    
+    overflow : hidden;
+    
+    transform : translate( 0, 50% );
+    
+    transition :
+      opacity $DURATION ease,
+      transform $DURATION cubic-bezier( .25,-0.5,.5,1.5 );
+    
+    
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        transition-delay: 0.125s + 0.0625s * $i;       
+      }
+    }
+  
+    > img {
+      display : block;
+    }
+  }
+  
+  &__label {
+    display : block;
+    height : 5em;
+    width  : 5em;
+    
+    padding : 0;
+    
+    text-indent : -9999px;
+    
+    position : absolute;
+    
+    top : 50%;
+    left : 50%;
+    
+    transform : translate( -50%, -50% );
+    
+    border-radius : 50%;
+    
+    transition :
+      left       $DURATION ease 0.35s,
+      background $DURATION / 4 ease,
+      width      $DURATION / 4 ease,
+      height     $DURATION / 4 ease;
+    
+    background : $c-blue;
+    
+    &:hover {
+      background : lighten( $c-blue, 10 );
+    }
+    
+    &:active {
+      width : 4.25em;
+      height : 4.25em;
+      background : darken( $c-blue, 5 );
+    }
+    
+    &:before {
+      content : '';
+      background : url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 480 480" xml:space="preserve"><g id="cross" fill="#fff"><path d="M310.182,235.995l103.285-103.259c5.006-5.018,5.006-13.237,0-18.251l-54.721-54.733c-5.014-5-13.229-5-18.24,0   l-103.281,103.28L133.944,59.752c-5.018-5-13.229-5-18.246,0l-54.717,54.733c-5.008,5.014-5.008,13.233,0,18.251l103.281,103.259   L60.999,339.263c-5.018,5.014-5.018,13.232,0,18.25l54.717,54.738c5.018,5.001,13.229,5.001,18.242,0l103.268-103.285   l103.264,103.285c5.018,5.001,13.229,5.001,18.24,0l54.721-54.738c5.014-5.018,5.014-13.236,0-18.25L310.182,235.995z"/></g></svg>' );
+      background-size : 100% 100%;
+      color : #fff;
+      
+      z-index : 2;
+      
+      height : 2em;
+      width  : 2em;
+      
+      position : absolute;
+      
+      top : 50%;
+      left : 50%;
+      
+      transform : translate( -50%, -50% ) rotate( 0 );
+      transform-origin : 1em 1em;
+      
+      transition : transform $DURATION * 1.33 cubic-bezier( .25,-0.5,.5,1.5 );
+      transition-delay : 0.35s;
+    }
+    
+    &:after {
+      position : absolute;
+      
+      content : '';
+      
+      top : 50%;
+      left : 50%;
+      
+      width : 90%;
+      height : 90%;
+      
+      border : 0 solid $c-blue;
+      border-radius : 50%;
+      
+      z-index : -1;
+      
+      transform : translate( -50%, -50% );
+      
+      transition : border $DURATION ease 0.35s;
+      
+      pointer-events : none;
+    }
+  }
+  
+  &__list {
+    position : absolute;
+    
+    pointer-events : none;
+    
+    top : 50%;
+    left : 30%;
+    
+    list-style : none;
+    
+    margin  : 0;
+    padding : 0;
+    
+    transform : translate( 0, -50% );
+    
+    > li {
+      display : inline-block;
+      
+      margin : 0 0.5em;
+    }
+  }
+  
+  &__toggle {
+    display : none;
+    
+    &:checked {
+      ~ .container__label {
+        left : 15%;
+        
+        transition-delay : 0s;
+        
+        &:before {
+          transform : translate( -50%, -50% ) rotate( -180deg );
+          transition-delay : 0s;
+        }
+        
+        &:after {
+          border-width : 25em;          
+        }
+      }
+      
+      ~ .container__list {
+        pointer-events : auto;
+        
+        .container__image {
+          opacity : 1;
+          transform : translate( 0, 0 );
+          
+          @for $i from 1 through 4 {
+            &:nth-child(#{$i}) {
+              transition-delay: 0.3s + 0.0625s * $i;       
+            }
+          }
+        }
+      }
+    }
+  }
+}
