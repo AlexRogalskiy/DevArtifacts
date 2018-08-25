@@ -1,0 +1,137 @@
+@import "compass/css3";
+
+$color-alpha: #000;
+$color-beta: #0c0;
+$color-gamma: #c00;
+$color-delta: #cc0;
+
+$unit-alpha: 1.15s;
+$unit-beta: 1s;
+$unit-gamma: $unit-beta + -.3s;
+$unit-delta: $unit-beta + .3s;
+$unit-epsilon: $unit-alpha * 1.85;
+$unit-zeta: .25em;
+
+@mixin monster-background($color) {
+  background-color: $color-alpha;
+  
+  background-image:     
+    radial-gradient(circle, rgba(255, 255, 255, .45) 25%, transparent 30%),
+    linear-gradient(to top, $color-alpha, $color-alpha 50%, darken($color, 35%) 50%, lighten($color, 15%) 100%);
+  
+  @include background(
+    radial-gradient(circle, rgba(255, 255, 255, .45) 25%, transparent 30%),
+    linear-gradient(bottom, $color-alpha, $color-alpha 50%, darken($color, 35%) 50%, lighten($color, 15%) 100%)
+  );
+  background-size: 100% 300%, 100% 200%;
+  background-position: 100% 100%, 100% 100%;
+}
+
+body {
+  background: $color-alpha;
+}
+
+.monster {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: inline-block;
+  height: 168pt;
+  width: 120pt;
+  animation: 
+    alpha $unit-alpha 1 linear forwards $unit-beta,
+    gamma $unit-epsilon infinite linear forwards ($unit-epsilon)
+  ;
+  
+  @include transform(scale(1.25, 1.25) translate(-50%, -45%));
+  @include monster-background($color-beta);
+  @include transition(background .15s ease-in-out);
+  @include backface-visibility(hidden);
+  
+  &:hover {
+    animation: beta $unit-alpha 1 linear forwards $unit-beta;
+    @include monster-background($color-alpha);
+  }
+  
+  &:nth-child(2) {
+    @include transform(scale(1, 1) translate(-200%, -50%));
+    @include monster-background($color-gamma);
+    animation: 
+      alpha $unit-alpha 1 linear forwards $unit-gamma,
+      gamma $unit-epsilon infinite linear forwards ($unit-epsilon + $unit-delta)
+    ;
+    
+    &:hover {
+      animation: beta $unit-alpha 1 linear forwards $unit-beta;
+      @include monster-background($color-alpha);
+    }
+  }
+  
+  &:nth-child(3) {
+    @include transform(scale(.75, .75) translate(100%, -60%));
+    @include monster-background($color-delta);
+    animation: 
+      alpha $unit-alpha 1 linear forwards $unit-delta,
+      gamma $unit-epsilon infinite linear forwards ($unit-epsilon + $unit-gamma)
+    ;
+    
+    &:hover {
+      animation: beta $unit-alpha 1 linear forwards $unit-beta;
+      @include monster-background($color-alpha);
+    }
+  }
+}
+
+@keyframes alpha {
+  0% {
+    margin-top: -.5em;
+    background-position: 100% 100%, 100% 100%;
+  }
+  
+  70% {
+    background-position: 100% 100%, 100% 85%;
+  }
+  
+  75% {
+    @include filter(blur(0));
+  }
+  
+  80% {
+    margin-top: -.5em;
+  }
+  
+  85% {
+    margin-top: $unit-zeta;
+    @include filter(blur(5px));
+  }
+  
+  100% {
+    background-position: 100% 0, 100% 0%;
+    margin-top: $unit-zeta;
+    @include filter(blur(0));
+  }
+}
+
+@keyframes beta {}
+
+@keyframes gamma {
+  0% {
+    background-position: 100% 100%, 100% 0;
+  }
+
+  90% {
+    opacity: .15; 
+    background-position: 100% 100%, 100% 0;
+    @include filter(blur(0));
+  }
+  
+  95% {
+    opacity: 1;
+    @include filter(blur(5px));
+  }
+  
+  100% {
+    background-position: 100% 0, 100% 0;
+    @include filter(blur(0));
+  }
+}
