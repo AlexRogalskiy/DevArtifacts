@@ -1,0 +1,145 @@
+// Variables
+
+$toggle-width: 80;
+$toggle-height: 40;
+
+$toggle--knob--spacing: 5;
+$toggle--knob--diameter: $toggle-height - $toggle--knob--spacing * 2;
+
+$toggle--animation-duration: 0.2s;
+$toggle--animation-easing: cubic-bezier(.34,.93,.85,.91);
+$toggle--label--animation-duration-in: 0.4s;
+$toggle--label--animation-duration-out: 0.05s;
+$toggle--label--animation-easing: linear;
+
+$toggle-off: (
+  color: #222222,
+  bg-color: #F7F7F7,
+  border-color: #E4E4E4
+);
+
+$toggle-on: (
+  color: white,
+  bg-color: #FCA68B,
+  border-color: #EE967A
+);
+
+// Functions
+
+@function to-rem($size) {
+  @return $size / 16 * 1rem;
+}
+
+// Styles
+
+.toggle-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: to-rem($toggle-width);
+  height: to-rem($toggle-height);
+  font-family: sans-serif;
+  font-size: to-rem(12);
+  font-weight: 100;
+}
+
+.toggle {
+  display: none;
+}
+
+.foux-toggle {
+  position: relative;
+  width: to-rem($toggle-width);
+  height: to-rem($toggle-height);  
+  border-radius: to-rem($toggle-height);
+  margin: 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: map-get($toggle-off, border-color);
+  background-color: map-get($toggle-off, bg-color);
+  transition: background-color $toggle--animation-duration $toggle--animation-easing;
+  
+  // Toggle Knob
+  
+  &:before {
+    $top: $toggle--knob--spacing - 1;
+    
+    content:"";
+    position:absolute;
+    top: to-rem($top);
+    left: to-rem($toggle--knob--spacing);
+    display: block;
+    width: to-rem($toggle--knob--diameter);
+    height: to-rem($toggle--knob--diameter);
+    border-radius: to-rem($toggle--knob--diameter);
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    transition: left $toggle--animation-duration $toggle--animation-easing;
+  }
+ 
+  // Checked State
+  
+  .toggle:checked ~ &{
+    border-color: map-get($toggle-on, border-color);
+    background-color: map-get($toggle-on, bg-color);
+    &:before {
+      $left: $toggle-width - $toggle--knob--spacing - $toggle--knob--diameter - 1;
+      left: to-rem($left);
+    }
+  }
+}
+
+%toggle--label--copy {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transition: opacity $toggle--label--animation-duration-in $toggle--label--animation-easing;
+}
+
+.toggle--label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  line-height: to-rem($toggle-height);
+  cursor: pointer;
+  z-index: 10;
+  letter-spacing: to-rem(1);
+  
+  &:before {
+    @extend %toggle--label--copy;
+    
+    content: 'On';
+    right: 40%;
+    left: 0;
+    color: map-get($toggle-on, color);
+    opacity: 0;
+    
+    .toggle:checked + & {
+      opacity: 1;
+    }
+    
+  }
+    &:after {
+    @extend %toggle--label--copy;
+      
+    content: 'Off';
+    position: absolute;
+    right: 0;
+    left: 40%;
+    opacity: 1;
+
+    .toggle:checked + & {
+      opacity: 0;
+      transition-duration: $toggle--label--animation-duration-out;
+    }
+  }
+  
+}
+
+html {
+  background-color: #FBFBFB;
+}
