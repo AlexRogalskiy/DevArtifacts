@@ -1,0 +1,37 @@
+body {
+  background: #000;
+}
+
+.box {
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  float: left;
+  margin-right: 5em;
+}
+
+#box1 {
+  background-image: linear-gradient(to right, #2d2d2d, rgba(45, 45, 45, 0.2), #2d2d2d), linear-gradient(to bottom, #2d2d2d, rgba(45, 45, 45, 0.2), #2d2d2d), linear-gradient(to right, #2d2d2d, rgba(45, 45, 45, 0.2), #2d2d2d), linear-gradient(to bottom, #2d2d2d, rgba(45, 45, 45, 0.2), #2d2d2d);
+  background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+  background-position: 0 0, 100% 0, 0 100%, 0;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+}
+
+#box2 {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+#box2:before {
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  width: inherit;
+  height: inherit;
+  border-image-source: radial-gradient(#2d2d2d, rgba(45, 45, 45, 0.2), #2d2d2d);
+  border-width: 3px;
+  border-style: solid;
+  border-image-slice: 1;
+  border-radius: 6px;
+}
