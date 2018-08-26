@@ -1,0 +1,158 @@
+@import url(https://fonts.googleapis.com/css?family=Nova+Script);
+body{
+  background:#000;
+  margin:0;
+  border:0;
+  font-family:'Nova Script', Arial, sans-serif;
+}
+section{
+  width:100vw;
+  height:100vh;
+  left:0;
+  top:0;
+}
+.memory, .bubble-01, .bubble-02, .bubble-03{
+  animation-fill-mode:forwards;
+  -webkit-animation-fill-mode:forwards;
+  animation:appear 5s ease-in-out 0s;
+  -webkit-animation:appear 5s ease-in-out 0s;
+  visibility:hidden;
+}
+.memory{
+  position:relative;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  -webkit-transform:translate(-50%, -50%);
+  width:200px;
+  height:50px;
+  padding-top:30px;
+  background:rgba(255,255,255,0.6);
+  box-shadow: 0px 0px 20px rgba(255,255,255,0.6);
+  border-radius:50px;
+  animation-delay:0.7s;
+  -webkit-animation-delay:0.7s;
+  animation-fill-mode:forwards;
+  -webkit-animation-fill-mode:forwards;
+}
+.bubble-01{
+  position:absolute;
+  left:calc(50% + 200px);
+  top:calc(50% + 100px);
+  transform:translate(-50%, -50%);
+  -webkit-transform:translate(-50%, -50%);
+  border-radius:50%;
+  height:10px;
+  width:10px;
+  background:rgba(255,255,255,0.6);
+  box-shadow: 0px 0px 10px rgba(255,255,255,0.6);
+  animation-delay:0s;
+  -webkit-animation-delay:0s;
+  animation-fill-mode:forwards;
+  -webkit-animation-fill-mode:forwards;
+}
+.bubble-02{
+  position:absolute;
+  left:calc(50% + 180px);
+  top:calc(50% + 70px);
+  transform:translate(-50%, -50%);
+  -webkit-transform:translate(-50%, -50%);
+  border-radius:50%;
+  height:30px;
+  width:30px;
+  background:rgba(255,255,255,0.6);
+  box-shadow: 0px 0px 20px rgba(255,255,255,0.6);
+  animation-delay:0.2s;
+  -webkit-animation-delay:0.2s;
+  animation-fill-mode:forwards;
+  -webkit-animation-fill-mode:forwards;
+}
+.bubble-03{
+  position:absolute;
+  left:calc(50% + 130px);
+  top:calc(50% + 40px);
+  transform:translate(-50%, -50%);
+  -webkit-transform:translate(-50%, -50%);
+  border-radius:50%;
+  height:50px;
+  width:50px;
+  background:rgba(255,255,255,0.6);
+  box-shadow: 0px 0px 20px rgba(255,255,255,0.6);
+  animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+  animation-fill-mode:forwards;
+  -webkit-animation-fill-mode:forwards;
+}
+.memory .text{
+  position:relative;
+  text-align:center;
+  opacity:1;
+}
+@keyframes appear{
+  0%{
+    visibility:visible;
+    background:rgba(255,255,255,0);
+    box-shadow: 0px 0px 0px rgba(255,255,255,0);
+    transform:translate(-50%, -50%) scale(0.2);
+  }
+  20%{
+    background:rgba(255,255,255,0);
+    box-shadow: 0px 0px 0px rgba(255,255,255,0);
+    transform:translate(-50%, -50%) scale(0.2);
+  }
+  30%{
+    background:rgba(255,255,255,0.6);
+    box-shadow: 0px 0px 20px rgba(255,255,255,0.6);
+    transform:translate(-50%, -50%) scale(1.2);
+  }
+  40%{
+    transform:translate(-50%, -50%) scale(1);
+    visibility:visible;
+  }
+  80%{
+    transform:translate(-50%, -50%) scale(1);
+    background:rgba(255,255,255,0.6);
+    box-shadow: 0px 0px 20px rgba(255,255,255,0.6);
+    visibility:visible;
+  }
+  100%{
+    transform:translate(-50%, -50%) scale(2);
+    background:rgba(255,255,255,0);
+    box-shadow: 0px 0px 40px rgba(255,255,255,0);
+    visibility:hidden;
+  }
+}
+@-webkit-keyframes appear{
+  0%{
+    visibility:visible;
+    background:rgba(255,255,255,0);
+    box-shadow: 0px 0px 0px rgba(255,255,255,0);
+    -webkit-transform:translate(-50%, -50%) scale(0.2);
+  }
+  20%{
+    background:rgba(255,255,255,0);
+    box-shadow: 0px 0px 0px rgba(255,255,255,0);
+    -webkit-transform:translate(-50%, -50%) scale(0.2);
+  }
+  30%{
+    background:rgba(255,255,255,0.6);
+    box-shadow: 0px 0px 20px rgba(255,255,255,0.6);
+    -webkit-transform:translate(-50%, -50%) scale(1.2);
+  }
+  40%{
+    -webkit-transform:translate(-50%, -50%) scale(1);
+    visibility:visible;
+  }
+  80%{
+    -webkit-transform:translate(-50%, -50%) scale(1);
+    background:rgba(255,255,255,0.6);
+    box-shadow: 0px 0px 20px rgba(255,255,255,0.6);
+    visibility:visible;
+  }
+  100%{
+    -webkit-transform:translate(-50%, -50%) scale(2);
+    background:rgba(255,255,255,0);
+    box-shadow: 0px 0px 40px rgba(255,255,255,0);
+    visibility:hidden;
+  }
+}
