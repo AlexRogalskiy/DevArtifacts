@@ -1,0 +1,170 @@
+body {
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* the app - a beer menu / ordering app */
+#menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  /* note: the translateZ(0) enables hardware accel */
+  /* without it, there is a weird gap between panels */
+  transform: translate(-50%, -50%) translateZ(0);
+  width: 99%;
+  height: 99%;
+  max-height: 85vh;
+  max-width: 50vh;
+  border-radius: 1vh;
+  overflow: hidden;
+  box-shadow: 0px -2px 11px -4px #414143, 4vh 7vh 14vh -6vh rgba(0, 0, 0, 0.35), -4vh 7vh 14vh -6vh rgba(0, 0, 0, 0.35);
+}
+
+/* info panels for each beer */
+.panel {
+  position: relative;
+  flex-grow: 1;
+  transition: all 0.4s ease;
+  transition-delay: 0s;
+  border-radius: 1vh 1vh 0 0;
+  box-shadow: 0px -2px 11px -4px rgba(65, 65, 67, 0.85);
+  color: #ffffff;
+  /* the icon for this beer (initially invisible) */
+}
+.panel:after {
+  content: "";
+  height: 1vh;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+}
+.panel .icon {
+  font-size: 0;
+}
+.panel .name, .panel .type, .panel .icon, .panel .abv {
+  position: absolute;
+  transition: all 0.4s ease;
+  transition-delay: 0;
+}
+.panel .name {
+  left: 5vh;
+  top: 50%;
+  margin-top: -2.5vh;
+  font-size: 4vh;
+  line-height: 4vh;
+  font-weight: 300;
+  pointer-events: none;
+}
+.panel .type {
+  left: 5vh;
+  top: 50%;
+  margin-top: 2.5vh;
+  font-size: 0;
+  line-height: 2.5vh;
+  font-weight: 100;
+  pointer-events: none;
+}
+.panel .icon {
+  top: 50%;
+  left: 5vh;
+  margin-top: 20vh;
+  line-height: 2.5vh;
+  font-weight: 500;
+}
+.panel svg {
+  position: absolute;
+  left: 3vh;
+  top: 50%;
+  margin-top: -6vh;
+  height: 12vh;
+  opacity: 0;
+  transition: all 0.4s ease;
+  transition-delay: 0s;
+}
+
+.bio {
+  background-color: #44b3b7;
+}
+.bio:after {
+  background-color: #44b3b7;
+}
+
+.work {
+  background-color: #414143;
+}
+.work:after {
+  background-color: #414143;
+}
+
+.edu {
+  background-color: #3a87ad;
+}
+.edu:after {
+  background-color: #3a87ad;
+}
+
+.social {
+  background-color: #e35559;
+}
+.social:after {
+  background-color: #e35559;
+}
+
+/* panels get larger and show more info when you hover over them */
+.panel.hidden:hover {
+  flex-grow: .2;
+}
+.panel.hidden:hover .name {
+  left: 15vh;
+  margin-top: -3.75vh;
+}
+.panel.hidden:hover .type {
+  left: 15vh;
+  margin-top: 1.75vh;
+  font-size: 2.5vh;
+}
+.panel.hidden:hover .abv {
+  margin-top: 1.25vh;
+}
+.panel.hidden:hover svg {
+  opacity: 1;
+  transition-delay: 0.4s;
+}
+
+/* when you click on a panel, the others are hidden */
+.panel.hidden {
+  flex-grow: 0.1;
+}
+
+/* when you click on a panel, it becomes active */
+.panel.active {
+  flex-grow: 1;
+  transition-delay: 0s;
+}
+.panel.active svg {
+  transition-delay: 0s;
+  height: 9vh;
+  margin-top: 2.75vh;
+  left: 5vh;
+  opacity: 1;
+}
+.panel.active .name, .panel.active .type, .panel.active .abv, .panel.active .icon {
+  transition-delay: 0s;
+}
+.panel.active .name {
+  left: 15vh;
+  margin-top: 5vh;
+  font-size: 7.5vh;
+  font-weight: 100;
+}
+.panel.active .type {
+  font-size: 0;
+}
+.panel.active .abv {
+  margin-top: 20vh;
+}
+.panel.active .icon {
+  font-size: 2.5vh;
+}

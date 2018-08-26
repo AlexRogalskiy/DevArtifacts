@@ -1,0 +1,174 @@
+$animation-time: 0.4s;
+$colors:
+  #ffffff, #44b3b7, #3a87ad,
+  #D6795E, #A75377, #3B3B56;
+
+body {
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* the app - a beer menu / ordering app */
+#menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  /* note: the translateZ(0) enables hardware accel */
+  /* without it, there is a weird gap between panels */
+  transform: translate(-50%, -50%) translateZ(0);
+  width: 99%;
+  height: 99%;
+  max-height: 85vh;
+  max-width: 50vh;
+  border-radius: 1vh;
+  overflow: hidden;
+  box-shadow:
+    0px -2px 11px -4px rgba(65,65,67,1),
+    4vh 7vh 14vh -6vh rgba(0,0,0,0.35),
+    -4vh 7vh 14vh -6vh rgba(0,0,0,0.35);
+}
+
+/* info panels for each beer */
+.panel {
+  position: relative;
+  flex-grow: 1;
+  transition: all $animation-time ease;
+  transition-delay: 0s;
+  border-radius: 1vh 1vh 0 0;
+  box-shadow: 0px -2px 11px -4px rgba(65,65,67,.85);
+  color: #ffffff;
+  &:after {
+    content: "";
+    height: 1vh;
+    width: 100%;
+    position:absolute;
+    top:100%;
+  }
+  .icon {
+    font-size: 0;
+  }
+  .name, .type, .icon, .abv {
+    position: absolute;
+    transition: all $animation-time ease;
+    transition-delay: 0;
+  }
+  .name {
+    left: 5vh;
+    top: 50%;
+    margin-top: -2.5vh;
+    font-size: 4vh;
+    line-height: 4vh;
+    font-weight: 300;
+    pointer-events: none;
+  }
+  .type {
+    left: 5vh;
+    top: 50%;
+    margin-top: 2.5vh;
+    font-size: 0;
+    line-height: 2.5vh;
+    font-weight: 100;
+    pointer-events: none;
+  }
+  .icon {
+    top: 50%;
+    left: 5vh;
+    margin-top: 20vh;
+    line-height: 2.5vh;
+    font-weight: 500;
+  }
+  /* the icon for this beer (initially invisible) */
+  svg {
+    position: absolute;
+    left: 3vh;
+    top: 50%;
+    margin-top: -6vh;
+    height: 12vh;
+    opacity: 0;
+    transition: all $animation-time ease;
+    transition-delay: 0s;
+  }
+}
+.bio { 
+  background-color: #44b3b7;
+  &:after {
+    background-color: #44b3b7;
+  }
+}
+.work { 
+  background-color: #414143;
+  &:after {
+    background-color: #414143;
+  }
+}
+.edu { 
+  background-color: #3a87ad;
+  &:after {
+    background-color: #3a87ad;
+  }
+}
+.social { 
+  background-color: #e35559;
+  &:after {
+    background-color: #e35559;
+  }
+}
+/* panels get larger and show more info when you hover over them */
+.panel.hidden:hover {
+  flex-grow: .2;
+  .name {
+    left: 15vh;
+    margin-top: -3.75vh;
+  }
+  .type {
+    left: 15vh;
+    margin-top: 1.75vh;
+    font-size: 2.5vh;
+  }
+  .abv {
+    margin-top: 1.25vh;
+  }
+  svg {
+    opacity: 1;
+    transition-delay: $animation-time;
+  }
+}
+
+/* when you click on a panel, the others are hidden */
+.panel.hidden {
+  flex-grow: 0.1;
+}
+
+/* when you click on a panel, it becomes active */
+.panel.active {
+  flex-grow: 1;
+  //background-color: #ff00ff;
+  transition-delay: 0s;
+  svg {
+    transition-delay: 0s;
+    height: 9vh;
+    margin-top: 2.75vh;
+    left: 5vh;
+    opacity: 1;
+  }
+  .name, .type, .abv, .icon {
+    transition-delay: 0s;
+  }
+  .name {
+    left: 15vh;
+    margin-top: 5vh;
+    font-size: 7.5vh;
+    font-weight: 100;
+  }
+  .type {
+    font-size: 0;
+  }
+  .abv {
+    margin-top: 20vh;
+  }
+  .icon {
+    font-size: 2.5vh;
+  }
+}

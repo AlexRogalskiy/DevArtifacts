@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata",rel="stylesheet" type="text/css" charset="utf-8" media="all" />
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+<div class="container">
+<!--   <img src="https://wpengine.com/wp-content/uploads/2016/06/WP-LOGO-EmailSignature-White.png" height="24px">
+  <br> -->
+  <h1 class="text-center">Email Signature Generator</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Employee Information</h2>
+      <p>Fill out this form with your information to generate a custom WP Engine email signature.</p>
+      <hr>
+      <button id="reset-form" type="button" class="btn btn-default btn-xs">Reset Form</button>
+      <hr>
+      <form id="employee-information-form">
+        <fieldset>
+          <div class="input_full_name form-group">
+            <label>Full name</label>
+            <input class="form-control" type="text" name="full_name" placeholder="Enter your name">
+          </div>
+          <div class="input_position form-group">
+            <label>Position at Bayleys</label>
+            <input class="form-control" type="text" name="position" placeholder="Enter your position at Bayleys">
+          </div>
+          <div class="input_email_address form-group">
+            <label>Email address</label>
+            <input class="form-control" type="text" name="email_address" placeholder="Enter your email address">
+          </div>
+          <div class="input_phone_office form-group">
+            <label>Office phone number</label>
+            <input class="form-control" type="tel" name="phone_office" placeholder="Enter your phone number">
+          </div>
+          <div class="input_phone_mobile form-group">
+            <label>Mobile phone number</label>
+            <input class="form-control" type="tel" name="phone_mobile" placeholder="Enter your mobile phone number">
+            <span class="help-block">Use <mark>spaces</mark> for your separator. Example: +64 9 309 6020</span>
+          </div>
+          <div class="input_twitter_username form-group">
+            <label>Twitter username</label>
+            <div class="input-group">
+              <span class="input-group-addon">@</span>
+              <input class="form-control" type="text" name="twitter_username" placeholder="username">
+            </div>
+          </div>
+          <div class="input_office form-group">
+            <label>Office location</label><br>
+            <div id="choose-office" class="btn-group" data-toggle="buttons">
+              <label class="btn btn-default active">
+                <input type="radio" name="location" id="location_auckland" autocomplete="off" checked> Austin
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="location" id="location_san_antonio" autocomplete="off"> San Antonio
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="location" id="location_san_francisco" autocomplete="off"> San Francisco
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="location" id="location_london" autocomplete="off"> London
+              </label>
+            </div> <!-- /btn-group -->
+          </div>
+          <div class="input_promotion form-group">
+            <label>Promotional line</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="promotion" id="promotion-0">
+                No promotion line
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="promotion" id="promotion-2" checked>
+                Voted #1 Top Workplace of Greater Austin
+              </label>
+            </div>
+          </div>
+          <div class="input_logo form-group">
+            <label>WP Engine logo</label><br>
+            <div id="choose-logo" class="btn-group" data-toggle="buttons">
+              <label class="btn btn-default active">
+                <input type="radio" name="logo" id="logo_show" autocomplete="off" checked> Show logo
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="logo" id="logo_hide" autocomplete="off"> Hide logo
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div id="signature-output" class="col-md-6">
+      <h2>Generated Signatures</h2>
+      <p>Copy the signature you want to use and paste into your email program.</p>
+      <hr>
+
+      <h3>1) HTML Full</h3>
+      <ul id="html-signature-full-tabs" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a role="tab" href="#signature-full-visual">Visual</a></li>
+        <li role="presentation"><a role="tab" href="#signature-full-html">HTML</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="signature-full-visual" class="tab-pane active" role="tabpanel">
+          <table style="font-family:'Open Sans', sans-serif;color:#162a33;font-style:normal;font-size:14px;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;line-height:1.15;" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr border="0" cellpadding="0" cellspacing="0">
+                <td border="0" cellpadding="0" cellspacing="0">
+                  <strong style="font-size:13px;"><span class="output_full_name"></span></strong><br>
+                  <span style="color:#40bac8;font-size:10px;text-transform:uppercase;" class="output_position"></span><br><br>
+                </td>
+              </tr>
+
+              <tr border="0" cellpadding="0" cellspacing="0">
+                <td border="0" cellpadding="0" cellspacing="0">
+                  <strong style="color:#eb6126;font-size:10px;">E:</strong> <a class="email_address_anchor" style="color:#a0a3a5;font-size:10px;text-decoration:none;" href="mailto:"><span class="output_email_address"></span></a>
+                  <span class="phone_numbers_element">
+                    <br>
+                    <span class="phone_office_element"><strong style="color:#eb6126;font-size:10px;">O:</strong> <span style="color:#a0a3a5;font-size:10px;text-decoration:none;" class="output_phone_office"></span>&nbsp;&nbsp;</span>
+                    <span class="phone_mobile_element"><strong style="color:#eb6126;font-size:10px;">M:</strong> <span style="color:#a0a3a5;font-size:10px;text-decoration:none;" class="output_phone_mobile"></span></span>
+                  </span>
+                  <span class="twitter_element">
+                    <br>
+                    <strong style="color:#eb6126;font-size:10px;">T:</strong> <a class="twitter_anchor" style="color:#a0a3a5;font-size:10px;text-decoration:none;" href="https://twitter.com/wpengine">@<span class="output_twitter_username"></span></a>
+                  </span>
+                  <br><br>
+                </td>
+              </tr>
+
+              <tr border="0" cellpadding="0" cellspacing="0">
+                <td border="0" cellpadding="0" cellspacing="0">
+                  <font style="margin:0;padding:0;font-size:10px;color:#a0a3a5;">
+                    <strong style="color:#162a33;"><span class="output_company_name"></span></strong><br>
+                    <span class="output_address_full"></span>
+                  </font>
+                  <br><br>
+                </td>
+              </tr>
+
+              <tr border="0" cellpadding="0" cellspacing="0">
+                <td border="0" cellpadding="0" cellspacing="0">
+                  <font style="margin:0;padding:0;">
+                    <span style="font-family: arial, sans-serif; font-size: 10px; color: #dbdad6;">
+                      <a href="https://www.bayleys.co.nz" style=" color: #40bac8;">bayleys.co.nz</a> |
+                      <a href="https://www.bayleys.co.nz" style=" color: #40bac8;">Website</a>
+                    </span>
+                  </font>
+                  <br>
+                </td>
+              </tr>
+
+              <tr class="promo_line_element" border="0" cellpadding="0" cellspacing="0">
+                <td border="0" cellpadding="0" cellspacing="0">
+                  <br><br>
+                  <font style="font-size: 12px; color: #eb6126; font-family: arial, sans-serif; margin: 0; padding: 0; ">
+                    <strong><span class="output_promo_line"></span></strong>
+                  </font>
+                </td>
+              </tr>
+              <tr class="promo_line_element" height="0" border="0" cellpadding="0" cellspacing="0"><td border="0" cellpadding="0" cellspacing="0"></td></tr>
+              <tr class="logo_element" border="0" cellpadding="0" cellspacing="0"></tr>
+            </tbody>
+          </table>
+        </div> <!-- /signature-full-visual -->
+        <div id="signature-full-html" class="tab-pane" role="tabpanel">
+          <textarea class="form-control" rows="10"></textarea>
+        </div> <!-- /signature-full-html -->
+      </div> <!-- /tab-content -->
+
+      <hr>
+      <h3>2) HTML Horizontal</h3>
+      <ul id="html-signature-horizontal-tabs" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a role="tab" href="#signature-horizontal-visual">Visual</a></li>
+        <li role="presentation"><a role="tab" href="#signature-horizontal-html">HTML</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="signature-horizontal-visual" class="tab-pane active" role="tabpanel">
+          <table style="font-family:'Open Sans', sans-serif;color:#162a33;font-style:normal;font-size:14px;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;line-height:1.15;" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr border="0" cellpadding="0" cellspacing="0">
+                <td border="0" cellpadding="0" cellspacing="0">
+                  <strong style="font-size:13px;"><span class="output_full_name"></span></strong><br>
+                  <span style="color:#40bac8;font-size:10px;text-transform:uppercase;" class="output_position"></span><br><br>
+                </td>
+              </tr>
+
+              <tr border="0" cellpadding="0" cellspacing="0">
+                <td border="0" cellpadding="0" cellspacing="0">
+                  <strong style="color:#eb6126;font-size:10px;">E:</strong> <a class="email_address_anchor" style="color:#a0a3a5;font-size:10px;text-decoration:none;" href="mailto:"><span class="output_email_address"></span></a>&nbsp;&nbsp;
+                  <span class="phone_numbers_element">
+                    <span class="phone_office_element"><strong style="color:#eb6126;font-size:10px;">O:</strong> <span style="color:#a0a3a5;font-size:10px;text-decoration:none;" class="output_phone_office"></span>&nbsp;&nbsp;</span>
+                    <span class="phone_mobile_element"><strong style="color:#eb6126;font-size:10px;">M:</strong> <span style="color:#a0a3a5;font-size:10px;text-decoration:none;" class="output_phone_mobile"></span></span>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+
+              <tr border="0" cellpadding="0" cellspacing="0">
+                <td border="0" cellpadding="0" cellspacing="0">
+                  <font style="margin:0;padding:0;font-size:10px;color:#a0a3a5;">
+                    <strong style="color:#162a33;"><span class="output_company_name"></span></strong>&nbsp;
+                    <span class="output_address_horizontal"></span>
+                  </font>
+                  <br><br>
+                </td>
+              </tr>
+
+              <tr border="0" cellpadding="0" cellspacing="0">
+                <td border="0" cellpadding="0" cellspacing="0">
+                  <font style="margin:0;padding:0;">
+                    <span style="font-family: arial, sans-serif; font-size: 10px; color: #dbdad6;">
+                      <a href="https://www.bayleys.co.nz" style=" color: #40bac8;">bayleys.co.nz</a> |
+                      <a href="https://www.bayleys.co.nz" style=" color: #40bac8;">Website</a>
+                    </span>
+                  </font>
+                  <br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div> <!-- /signature-horizontal-visual -->
+        <div id="signature-horizontal-html" class="tab-pane" role="tabpanel">
+          <textarea class="form-control" rows="10"></textarea>
+        </div> <!-- /signature-horizontal-html -->
+      </div><!-- /tab-content -->
+
+      <hr>
+      <h3>3) Plaintext</h3>
+      <div id="plaintext-signature" class="well">
+        <strong><span class="output_full_name"></span></strong>, <span class="output_position"></span><br>
+        <span class="output_email_address"></span><br>
+        <span class="phone_numbers_element">
+          <span class="phone_office_element">O: <span class="output_phone_office"></span>&nbsp;&nbsp;</span>
+          <span class="phone_mobile_element">M: <span class="output_phone_mobile"></span></span>
+          <br>
+        </span>
+        <span class="twitter_element">T: @<span class="output_twitter_username"></span><br></span>
+        <br>
+        <strong><span class="output_company_name"></span></strong><br>
+        <span class="output_address_full"></span>
+        <br>
+        <span class="promo_line_element">
+          <br>
+          <span class="output_promo_line"></span>
+        </span>
+      </div>
+    </div> <!-- /signature-output -->
+  </div> <!-- /row -->
+</div> <!-- /container -->
+
+
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+<!--  footer -->
+</html>

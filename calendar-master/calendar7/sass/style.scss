@@ -1,0 +1,550 @@
+:focus {
+    outline: 0;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+
+.TodoAR {
+    padding: 25px 15px;
+}
+
+.container {
+    max-width: 350px;
+    margin: auto;
+    margin-top: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 50px 2px rgb(125, 165, 201);
+    background: url(https://images.unsplash.com/photo-1503611989099-ef347ff8f348?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=346f93f17d5bd9f54f87932fbeb2b094);
+}
+
+.header-container {
+
+    opacity: 0.8;
+    overflow: hidden;
+}
+
+.header {
+
+    padding: 5px 35px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    position: relative;
+}
+
+.header::after {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    content: "";
+    background: rgb(125, 165, 201);
+    width: 100%;
+    height: 200px;
+    display: block;
+    position: absolute;
+    opacity: 0.7;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.header img {
+    margin: 20px 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: solid 2px white;
+}
+
+.info {
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    margin-left: 10px;
+    color: white;
+}
+
+.info h3 {
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+}
+
+.info span {
+    font-size: 10px;
+}
+
+.triangle {
+    opacity: 0.5;
+    border-bottom: solid 50px white;
+    border-right: solid 175px transparent;
+    border-top: solid 50px transparent;
+    border-left: solid 180px white;
+    position: relative;
+}
+
+.t-text {
+    position: absolute;
+    display: block;
+    width: 120px;
+    left: -150px;
+    font-size: 22px;
+    top: 5px;
+}
+
+.title {
+    color: white;
+    font-size: 15px;
+}
+
+.activity-container {
+    position: relative;
+    background: white;
+    padding: 10px 0 15px 25px;
+    color: #aaa;
+    transition: 300ms;
+
+    position: relative;
+    z-index: 100;
+    transition: 300 ms;
+    border-bottom: solid 1px #ddd;
+    opacity: 0.8
+}
+
+.activity-container::before {
+    content: "";
+    display: block;
+    height: 78px;
+    width: 5px;
+    position: absolute;
+    background: #84aacf;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    left: 0;
+    top: 0;
+    transition: 300ms;
+    z-index: -1;
+}
+
+.activity-container:hover {
+    z-index: 200;
+
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px 2px rgba(133, 177, 183, 0.37);
+    color: white;
+    opacity: 1;
+    border-radius: 10px;
+}
+
+.activity-container:hover::before {
+
+    width: 100%;
+    background: linear-gradient(45deg, rgb(103, 144, 188), rgba(157, 191, 222, 0.8));
+    border-radius: 10px;
+}
+
+.activity-container.active>.activity-data>h3 {
+    text-decoration: line-through;
+    color: #55C1E7;
+}
+
+.activity-container.active>.activity-data>span {
+    text-decoration: line-through;
+    color: #55C1E7;
+}
+
+.activity-container.active::before {
+    content: "";
+    display: block;
+    height: 78px;
+    width: 5px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    background: #55C1E7;
+    left: 0;
+    top: 0;
+    transition: 300ms;
+    z-index: -1;
+}
+
+.activity-container.active:hover {
+    z-index: 200;
+    border-radius: 10px;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px 2px rgba(133, 177, 183, 0.37);
+    color: white;
+    opacity: 1;
+}
+
+.activity-container.active:hover::before {
+    background: linear-gradient(45deg, #7dac3a, #CDDC39);
+}
+
+.activity-container.active:hover>.activity-data>h3 {
+    color: white;
+}
+
+.activity-container.active:hover>.activity-data>span {
+    color: white;
+}
+
+.activity-container.active:hover::before {
+
+    width: 100%;
+}
+
+.a-text {
+    margin: 0;
+    padding: 5px 0 0 0;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.controle {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    padding: 15px;
+
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.c-icon {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    color: rgb(125, 165, 201);
+    cursor: pointer;
+    background: white;
+    padding: 10px;
+    border-radius: 50%;
+    outline: none;
+    box-shadow: 0px 0px 20px 2px rgba(133, 177, 183, 0.37);
+    border: solid 2px transparent;
+}
+
+.operator {
+    position: absolute;
+    right: 50px;
+    top: -9px;
+    display: none;
+}
+
+.c-icon-op {
+
+    display: block;
+    background: white;
+    color: rgb(125, 165, 201);
+    width: 30px;
+    border: none;
+    outline: none;
+    height: 30px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px 2px rgba(133, 177, 183, 0.37);
+}
+
+.c-icon-op.tl {
+    margin-left: 25px;
+}
+
+.c-icon-op.delete:hover {
+    background: #f44336;
+    color: white;
+}
+
+.c-icon-op.check:hover {
+    background: #55C1E7;
+    color: white;
+}
+
+.c-icon-op.edit:hover {
+    background: orange;
+    color: white;
+}
+
+.c-icon:hover {
+    animation: wave 1s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0% {
+        box-shadow: 0px 0px 20px 2px white
+    }
+    100% {
+        box-shadow: 0px 0px 80px 2px white;
+    }
+}
+
+.footer {
+
+    padding: 5px 35px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: rgba(122, 149, 171, 0.85);
+}
+
+.add-btn-container {
+    position: relative;
+    left: 170px;
+    top: -80px;
+    z-index: 9999;
+}
+
+.addButton {
+
+    width: 70px;
+    height: 70px;
+    border: none;
+    color: white;
+    background: #55C1E7;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1000;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 200 ms;
+}
+
+.addButton::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    left: 50%;
+    top: 50%;
+
+    border-radius: 50%;
+    position: absolute;
+    z-index: 0;
+    transition: 300ms;
+}
+
+.addButton:hover {
+    color: white;
+}
+
+.addButton:hover::before {
+    position: absolute;
+    top: 0px;
+    left: 0PX;
+    background: orange;
+    width: 70PX;
+    height: 70px;
+    z-index: -1;
+}
+
+
+
+.AddEventContainer {
+    background: #aaa;
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    opacity: 0.8;
+}
+
+.AddEventControle {
+
+    position: relative;
+    top: 10%;
+    background: white;
+    border-radius: 10px;
+    width: 150px;
+    padding: 50px;
+    padding-bottom: 0;
+    margin: 0 auto;
+
+    animation: show 500ms;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0.1;
+        padding: 30px
+    }
+    100% {
+        opacity: 1;
+        padding: 50px;
+    }
+}
+
+.close-w {
+    border: none;
+    background: #f44336;
+    color: white;
+    padding: 6px 8px;
+    font-size: 16px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    cursor: pointer;
+}
+
+.btn-save {
+    outline: none;
+    margin-left: 30px;
+    margin: 15px auto -30px 35px;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    background: #55C1E7;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.containerTime {
+    text-align: center;
+}
+
+.containerInput {
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+    margin: 0 10px;
+    background: #55C1E7;
+    color: white;
+
+    border-radius: 15px;
+}
+
+.containerInput:nth-child(1) {
+    position: relative;
+}
+
+.containerInput:nth-child(1)::after {
+    content: ':';
+    font-size: 25px;
+    display: block;
+    position: absolute;
+    right: -14px;
+    top: 25px;
+}
+
+.containerInput>button {
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+    color: white;
+}
+
+.timeInput {
+    width: 25px;
+    display: inline;
+    text-align: center;
+    outline: none;
+    background: #55C1E7;
+    color: white;
+    border: none;
+    padding: 15px 0;
+}
+
+label {
+    text-align: center;
+    display: block;
+    padding: 25px;
+    color: #333333;
+}
+
+.InputEventName {
+    border: none;
+    border: solid 2px #55C1E7;
+    border-radius: 25px;
+    color: #000;
+    padding: 10px;
+    margin-left: -20px;
+    outline: none;
+}
+
+.InputEventName.required {
+    border-color: red;
+}
+
+.notifiy {
+    background: #ffffff;
+    color: #55C1E7;
+    padding: 10px 5px;
+    border-radius: 15px;
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    border: 2px solid #55C1E7;
+    -webkit-animation: blink 1s linear infinite;
+    animation: blink 5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes blink {
+    0% {
+        top: -10px;
+        opacity: 0.8
+    }
+    50% {
+        top: -20px;
+        opacity: 1
+    }
+    100% {
+        top: -30px;
+        opacity: 0
+    }
+}
+
+@-webkit-keyframes notifi {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: 0.5;
+        top: -10px
+    }
+    100% {
+        opacity: 0;
+        top: -20px
+    }
+}
+
+.notifiy-icon {
+    color: #55C1E7;
+    background: white;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.notifiy-text {
+    padding: 5px;
+}
+
+.notifiy-Event {
+    margin: 5px;
+    margin-left: 30px;
+}
+
+.tCompleted {
+    color: white;
+    font-size: 12px;
+}
