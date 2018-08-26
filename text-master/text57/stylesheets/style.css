@@ -1,0 +1,52 @@
+.Mirror {
+  position: relative;
+}
+
+.Mirror-original,
+.Mirror-reflection {
+  width: 100%;
+}
+
+.Mirror-reflection {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: translateX(-50%) scaleX(-1);
+  filter: opacity(0.3) blur(7px);
+}
+
+.Content {
+  padding: 20px;
+}
+
+.Title {
+  font-size: 72px;
+  font-weight: bold;
+  line-height: 91px;
+  color: #fa2471;
+}
+@supports (background-clip: text) or (-webkit-background-clip: test) {
+  .Title {
+    background-image: linear-gradient(118deg, #fd7d57, #fa2471);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+}
+
+html,
+body,
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+body,
+.root {
+  min-height: 100%;
+  flex-grow: 1;
+}
