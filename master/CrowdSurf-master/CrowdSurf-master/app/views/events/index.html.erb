@@ -1,0 +1,39 @@
+<div class="row event-search">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <%= form_tag events_path, method: :get do %>
+      <div class="input-group">
+        <%= text_field_tag :search, params[:search], class: 'form-control', placholder: 'Enter your city..' %>
+        <span class="input-group-btn">
+        <%= submit_tag 'Search Near', :name => nil, class: 'btn btn-success' %>
+      </span>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+<div class="page-header row">
+  <% if params[:search].present? %>
+    <h1 class="col-md-10"><%= params[:search].upcase %> Events </h1>
+  <% else %>
+    <h1 class="col-md-10">All Events</h1>
+  <% end %>
+  <span class="pull-right btn btn-default col-md-2"><%= link_to '+ Create Event', new_event_path %></span>
+</div>
+
+<div>
+  <% @events.each do |event| %>
+    <div class="event <%= "event-#{event.id}" %> col-md-4">
+      <div class="event-info card">
+        <div class="gradient">
+          <div class="event-index-details">
+            <h4><%= link_to event.title, event_path(event) %></h4>
+            <span class="location"><%= event.location_name %></span><br>
+            <span class="address"><%= "#{event.city.name}, #{event.state.name} #{event.zip}" %></span><br>
+            <span class="time"><%= event.start.strftime('%a %b %d, %Y | %I:%M %p') %></span><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end  %>
+</div>

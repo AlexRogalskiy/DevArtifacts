@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CrowdSurf</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body <%= yield(:id) if :id.present?  %>>
+<%= render 'layouts/header' %>
+<main class="container">
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <%= yield %>
+</main>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</body>
+</html>

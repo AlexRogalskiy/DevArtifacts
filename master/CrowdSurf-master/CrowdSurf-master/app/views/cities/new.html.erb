@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1>Create City</h1>
+</div>
+<%= render 'form' %>
+<%= link_to "Back to Admin Panel", admin_path %>
+
+<h1>All Cities</h1>
+<% City.all.each do |city| %>
+  <ul>
+    <li><%= city.name %></li>
+  </ul>
+<% end %>

@@ -1,0 +1,142 @@
+<% provide(:title, "#{@event.title}") %>
+<div class="event col-sm-12">
+  <div class="page-header">
+    <h1><%= @event.title %></h1>
+    <% if current_user == @event.user %>
+      <span><%= link_to "", edit_event_path, class: 'glyphicon glyphicon-pencil' %></span>
+    <span><%= link_to "", @event, class: 'glyphicon glyphicon-trash', method: :delete,
+                      data: { confirm: "Are you sure you want to delet #{@event.title}?"}, title: @event.title %>
+    </span>
+    <% end %>
+    <% if user_signed_in? %>
+      <%= render 'events/like_form' %>
+    <% end %>
+  </div>
+  <div class="event-flyer"></div>
+
+  <div class="event-header">
+    <div class="event-host">
+      <h5>Host: <%= link_to "#{@event.user.username}", user_path(@event.user) %></h5>
+    </div>
+  </div>
+
+  <div class="event-body">
+    <div class="event-col-a col-md-8">
+      <div class="event-summary">
+
+        <div class="event-times">
+          <table class="event-table">
+            <tbody>
+            <tr>
+              <td class="event-lable">
+                <b>Time:</b>
+              </td>
+              <td>
+                <p><%= @event.start.strftime('%A %B %d, %Y | %I:%M %p') %></p>
+                <p><%= @event.end.strftime('%A %B %d, %Y | %I:%M %p') %></p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="event-address">
+          <table class="event-table">
+            <tbody>
+            <tr>
+              <td class="event-label">
+                <b>Location</b>
+              </td>
+              <td>
+                <p><%= @event.location_name %></p>
+                <p><%= "#{@event.address}" %></p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="event-category">
+          <table class="event-table">
+            <tbody>
+            <tr>
+              <td class="event-label">
+                <b>Event Type</b>
+              </td>
+              <td>
+                <p><%= @event.category.name %></p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <% if @event.youtube_id.present? %>
+        <div class="event-video">
+          <div class="video-container">
+            <iframe width="778" height="438" src="//www.youtube.com/embed/<%= @event.youtube_id %>"
+                    frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @event.ticket_types.present? %>
+        <div class="event-tickets">
+          <table style="width: 100%;">
+            <tr class="ticket-header">
+              <td>Name</td>
+              <td>Cost</td>
+              <td>Fee</td>
+              <td>Total Price</td>
+              <td></td>
+            </tr>
+          <% @event.ticket_types.each do |ticket| %>
+            <tr class="ticket-types">
+              <td><%= ticket.name %></td>
+              <td><%= number_to_currency(ticket.cost) %></td>
+              <td><%= number_to_currency(ticket.ticket_fee) %></td>
+              <td><%= number_to_currency(ticket.total_price) %></td>
+              <td><button class="btn btn-success btn-xs">Get Now!</button> </td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
+      <%end %>
+      <div class="event-details">
+        <b>EVENT DETAILS</b>
+        <%= simple_format(@event.details) %>
+      </div>
+    </div>
+    <!-- Event Sidebar -->
+    <div class="event-col-b col-md-4">
+      <div class="event-guest">
+        <% if user_signed_in? %>
+          <%= render 'events/attend_form' %>
+        <% end %>
+        <% if user_signed_in? %>
+          <h2>Guest</h2>
+          <div id="attendees_count"><%= @event.attendees.count %></div>
+          <ul id="attendees">
+            <% @attendees.each do |attendee| %>
+            <li><%= link_to attendee.username, attendee %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <h2>Guest</h2>
+          <p>Find out who's going by singing in <%= link_to "here", new_user_session_path %></p>
+        <% end %>
+      </div>
+      <div class="nearby">
+        <h3>Nearby Events</h3>
+        <ul>
+          <% for event in @event.nearbys(10).limit(5) %>
+            <li><%= link_to event.title, event %> (<%= event.distance.round(2) %> miles)</li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+</div>

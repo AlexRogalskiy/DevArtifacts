@@ -1,0 +1,11 @@
+<div>
+  <%= form_for @city do |f| %>
+    <div><%= f.label :name %><br/>
+    <%= f.text_field :name %></div>
+
+    <div><%= f.label :state_id %><br/>
+    <%= f.collection_select(:state_id, State.order(:name), :id, :name, {prompt: 'Select a state or province'}) %></div>
+
+    <%= f.submit %>
+  <% end %>
+</div>

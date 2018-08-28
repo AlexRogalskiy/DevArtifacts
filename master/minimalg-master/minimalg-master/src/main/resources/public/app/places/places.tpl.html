@@ -1,0 +1,23 @@
+<div class="page-header">
+    <h2>Places i've been</h2>
+</div>
+<pre ng-if="false" class="code">{{model | json}}</pre>
+
+
+<div class="row">
+    <div class="col-md-offset-4 col-md-4">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="model.selected">
+      <span class="input-group-btn">
+        <button class="btn btn-success" ng-click="add(model.selected)" type="button">Add
+        </button>
+
+      </span>
+        </div>
+        <div class="list-group margin-top-20" ng-repeat="place in model.places">
+
+            <a href="#" class="list-group-item text-center" ng-click="selectProfile(profile.ID_PROFILE)"><h4><span
+                    class="climacon" ng-class="place.icon" style="font-size: 2em;"></span> {{place.address}} {{place.temp}}</h4></a>
+        </div>
+    </div>
+</div>

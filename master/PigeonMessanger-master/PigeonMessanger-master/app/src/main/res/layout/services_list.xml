@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="top"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:tag="services">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:text="This device"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/primary" />
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardviewLocalDevice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:clickable="true"
+        android:elevation="100dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardBackgroundColor="@color/cardview_light_background">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/localDeviceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="New Text"
+                android:textColor="@color/black"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/imageView"
+                android:layout_marginStart="9dp" />
+
+            <TextView
+                android:id="@+id/localDeviceAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="New Text"
+                android:textColor="@color/black"
+                android:layout_below="@+id/localDeviceName"
+                android:layout_alignStart="@+id/localDeviceName" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignBottom="@+id/localDeviceIpAddress"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/localDeviceName"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="18dp"
+                android:src="@drawable/android_logo_device" />
+
+            <ImageView
+                android:id="@+id/go_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/i_am_a_go_textview"
+                android:layout_alignStart="@+id/i_am_a_go_textview"
+                android:layout_alignTop="@+id/localDeviceName"
+                android:layout_above="@+id/localDeviceIpAddress" />
+
+            <TextView
+                android:id="@+id/i_am_a_go_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:text="I&apos;m a GO"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="8sp"
+                android:visibility="invisible"
+                android:layout_below="@+id/go_logo"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/localDeviceIpAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ip_not_available"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:layout_below="@+id/localDeviceAddress"
+                android:layout_alignStart="@+id/localDeviceAddress" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/LocalDeviceHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:text="Other devices"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/primary" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

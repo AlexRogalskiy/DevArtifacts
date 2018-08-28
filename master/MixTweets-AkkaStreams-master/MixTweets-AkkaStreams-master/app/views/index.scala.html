@@ -1,0 +1,38 @@
+@main("Mixed Tweets") {
+  <script type="text/javascript" charset="utf-8">
+      var feed = new EventSource("@routes.MainController.stream()");
+        feed.addEventListener('message', function(event) {
+          var result  = jQuery.parseJSON(event.data);
+          console.log(result);
+
+          var msg = result.message.toLowerCase();
+          if (msg.indexOf('java') > -1) {
+            $('<li class="list-group-item">' + result.message + '</li>').hide().appendTo('#java-list').slideDown();
+          } else if (msg.indexOf('scala') > -1) {
+            $('<li class="list-group-item">' + result.message + '</li>').hide().appendTo('#scala-list').slideDown();
+          } else if (msg.indexOf('haskell') > -1) {
+            $('<li class="list-group-item">' + result.message + '</li>').hide().appendTo('#haskell-list').slideDown();
+          }
+        }, false);
+  </script>
+  <div class="container">
+    <h1>Reactive tweets</h1>
+    <p>Tweets mentioning three languages</p>
+
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="background-color:lavender;">
+        <ul id="java-list" class="list-group">
+        </ul>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="background-color:lavenderblush;">
+        <ul id="scala-list" class="list-group">
+        </ul>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="background-color:palegreen;">
+        <ul id="haskell-list" class="list-group">
+        </ul>
+      </div>
+    </div>
+
+  </div>
+}

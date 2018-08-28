@@ -1,0 +1,5 @@
+<%= form_for(current_user.attends.build(attended_id: @event.id),
+             remote: true) do |f| %>
+  <div><%= f.hidden_field :attended_id %></div>
+  <%= f.submit "Attend", class: "btn btn-default" %>
+<% end %>

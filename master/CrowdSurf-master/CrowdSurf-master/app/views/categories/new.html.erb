@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1>Create Category</h1>
+</div>
+<%= render 'form' %>
+<%= link_to "Back to Admin Panel", admin_path %>
+
+<h1>All Categories</h1>
+<% Category.all.each do |category| %>
+  <ul>
+    <li><%= category.name %></li>
+  </ul>
+<% end %>

@@ -1,0 +1,20 @@
+<fieldset class="ticket-form">
+  <div class="form-group">
+    <%= f.label :name, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10"><%= f.text_field :name, placeholder: 'General Admission', class: 'form-control' %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Details', class: 'control-label col-sm-2' %>
+    <div class="col-sm-10"><%= f.text_area :description, rows: 3, placeholder: 'Add your details', class: 'form-control' %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :cost, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10"><%= f.number_field :cost, placeholder: '15.00', class: 'form-control' %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :quantity, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10"><%= f.number_field :quantity, placeholder: '100', class: 'form-control' %></div>
+  </div>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "", '#', class: 'remove_fields glyphicon glyphicon-trash' %>
+</fieldset>
