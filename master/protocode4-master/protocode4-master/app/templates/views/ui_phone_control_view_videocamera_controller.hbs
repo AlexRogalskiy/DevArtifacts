@@ -1,0 +1,14 @@
+<div class="control-content">
+    {{#if isNormalBackType}}
+        Videocamera
+    {{else}}
+        {{#if isIconBackType}}
+            <div class="videocamera_icon"></div>
+        {{/if}}
+    {{/if}}
+</div>
+{{#if controller.currentRouteIsViewController}}
+    {{#link-to "viewController.controlVideocameraController" this tagName="div" class="inner-control"}}{{/link-to}}
+{{else}}
+    {{#link-to "scene.controlVideocameraController" this tagName="div" class="inner-control"}}{{/link-to}}
+{{/if}}

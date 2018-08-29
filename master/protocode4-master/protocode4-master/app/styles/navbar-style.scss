@@ -1,0 +1,65 @@
+$background_default   : #F44336;
+$background_darker   : #D32F2F;
+$background_highlight : white;
+$color_default  : white;
+$color_highlight: #EE2945;
+$background_selected: #E0E0E0;
+
+.navbar-default .navbar-nav > li > a {
+    cursor: hand;
+    font-size: 14px;
+}
+
+.navbar-default {
+    background-color: $background_default !important;
+    border-color: $background_highlight !important;
+    .navbar-brand {
+        color: $color_default;
+        &:hover, &:focus {
+            color: $color_default; }}
+    .navbar-text {
+        color: $color_default; }
+    .navbar-nav {
+        > li {
+            min-width: 110px !important;
+            text-align: center;
+            cursor: hand;
+            > a {
+
+                background-color: $background_darker !important;
+                color: $color_default;
+                &:hover,  &:focus {
+                    color: $color_highlight;
+                    background-color: $background_highlight !important; }}}
+        > .active {
+            > a, > a:hover, > a:focus {
+                color: $color_highlight;
+                background-color: $background_selected !important; }}
+        > .open {
+            > a, > a:hover, > a:focus {
+                color: $color_highlight;
+                background-color: $background_selected !important; }}}
+    .navbar-toggle {
+        border-color: $background_highlight;
+        &:hover, &:focus {
+            background-color: $background_highlight !important; }
+        .icon-bar {
+            background-color: $color_default; }}
+    .navbar-collapse,
+    .navbar-form {
+        border-color: $color_default; }
+    .navbar-link {
+        color: $color_default;
+        &:hover {
+            color: $color_highlight; }}}
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu {
+        > li > a {
+            color: $color_default;
+            &:hover, &:focus {
+                color: $color_highlight; }}
+        > .active {
+            > a, > a:hover, > a:focus {
+                color: $color_highlight;
+                background-color: $background_highlight !important; }}}
+}

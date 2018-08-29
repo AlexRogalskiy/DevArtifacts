@@ -1,0 +1,115 @@
+<div class="col-md-3">
+    {{#unless controller.controllers.editor.deviceContext}}
+        <div class="form-inline">
+            <div class="input-group" style="width:100%">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+                </span>
+                {{view Ember.Select
+                       content=controller.controllers.editor.devices
+                       optionLabelPath='content.label'
+                       optionValuePath="content"
+                       class="form-control input-sm"
+                       value=controller.controllers.editor.device
+                }}
+            </div>
+        </div>
+    {{else}}
+        <div class="form-inline">
+            <div class="input-group" style="width:100%">
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+              </span>
+                {{view Ember.Select
+                    content=controller.controllers.editor.smartwatches
+                    optionLabelPath='content.label'
+                    optionValuePath="content"
+                    class="form-control input-sm"
+                    value=controller.controllers.editor.smartwatch}}
+            </div>
+        </div>
+    {{/unless}}
+    <br>
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation">
+            {{#link-to "scenes"}}Smartphone & Tablet{{/link-to}}
+        </li>
+        <li role="presentation" class="active">
+            {{#link-to ""}}Smartwatch{{/link-to}}
+        </li>
+    </ul>
+    <div class="panel-group">
+        <div id="application-watch-controllers-panel" class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" data-target="#collapse-views">
+                Application
+            </div>
+            <div class="panel-body">
+                <div class="input-group">
+                    <span class="input-group-addon input-sm">Application</span>
+                    {{input value=controller.controllers.editor.model.name class="form-control input-sm" placeholder="name" type="text"
+                            focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon input-sm">Company Identifier</span>
+                    {{input value=controller.controllers.editor.model.companyIdentifier class="form-control input-sm" placeholder="companyId"
+                            type="text" focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                </div>
+                <br>
+                <!-- View Controllers -->
+                <div id="watch-controllers-panel" class="panel panel-dark">
+                    <div class="panel-heading fixed-height-50">
+                        <h3 class="panel-title" style="float:left;">
+                            Watch Controllers
+                        </h3>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-sm" {{action "setCreating" true}}>
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="list-group" id="collapse-views" class="collapse in">
+                        {{#each item in controller item-controller="watchController"}}
+                            <li class="list-group-item">
+                                {{#link-to "watchController" item}}
+                                    {{#if item.launcher}}
+                                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                                    {{/if}}
+                                    {{item.name}}
+                                {{/link-to}}
+                            </li>
+                        {{/each}}
+                        {{#if isCreating}}
+                            <li class="list-group-item">
+                                <div class="input-group">
+                                    {{focus-input value=newNameWatchController class="form-control input-sm"
+                                                  focus-out="createWatchController" insert-newline="createWatchController"}}
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default btn-sm" {{action "createWatchController"}}>
+                                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-sm" {{action "setCreating" false}}>
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </span>
+                                </div>
+                            </li>
+                        {{/if}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading collapsed" data-toggle="collapse" data-target="#collapse-ui-watch-control"
+                 style="cursor:pointer">
+                UIWatchControls (Drag and drop) <span style="float:right">&#9660;</span>
+            </div>
+            <div class="panel-body collapse" id="collapse-ui-watch-control">
+                {{#each controllers.uiWatchControlTemplates itemController="uiWatchControlTemplate" }}
+                    {{view App.UiWatchControlTemplateView}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+{{outlet}}

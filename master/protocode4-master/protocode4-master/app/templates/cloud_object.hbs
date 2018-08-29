@@ -1,0 +1,107 @@
+{{#if model}}
+    <div class='entity-editor'>
+        <div class='entity-header'>
+            <div class='col-md-2'></div>
+            <div class='col-md-6'>
+                <div class="input-group col-md-6">
+                    <span class="input-group-addon input-sm">Name:</span> {{input value=name
+                                                                                  class="form-control input-sm"
+                                                                                  id="entity-name" placeholder="name"
+                                                                                  type="text" focus-out="acceptChanges"
+                                                                                  insert-newline="acceptChanges"}}
+                </div>
+            </div>
+            <div class='col-md-1'>
+                <button type="button" class="btn btn-default btn-sm btn-danger" id='del-entity' {{action
+                    "deleteObject"}}>
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class='col-md-2'></div>
+        </div>
+        <hr>
+        <div class='entity-property'>
+            <div class='entity-property-title'>Attributes:</div>
+            <div class='panel table-container table-entity-properties'>
+                <table class='table table-bordered table-hover'>
+                    <thead>
+                    <tr class='table-header'>
+                        <th class='col-md-1'>#</th>
+                        <th class='col-md-3'>Name</th>
+                        <th class='col-md-2'>Type</th>
+                        <th class='col-md-3'>Object</th>
+                        <th class='col-md-3'></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each item in model.objectAttributes }}
+                        <tr class='table-row'>
+                            <td class='col-md-1'>{{_view.contentIndex}}</td>
+                            <td class='col-md-3'>{{item.name}}</td>
+                            <td class='col-md-2'>{{item.type}}</td>
+                            <td class='col-md-3'>{{item.object}}</td>
+                            <td class='col-md-3' id='row-controls'>
+                                <button type="button" class="btn btn-default btn-xs" id='del-row-button' {{action
+                                    "deleteAttribute" item.id }}>
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    {{#if isCreatingAttribute}}
+                        <tr class='table-row'>
+                            <td class='col-md-1'>{{_view.contentIndex}}</td>
+                            <td class='col-md-3'>{{focus-input value=attributeName class="form-control input-sm"}}</td>
+                            <td class='col-md-2'>
+                                {{view Ember.Select content=types class="form-control input-sm" value=attributeType }}
+                            </td>
+                            <td class='col-md-3'>
+                                {{#if isObjectType}}
+                                    {{view Ember.Select
+                                           content=cloudObjects
+                                           class="form-control input-sm"
+                                           value=attributeObject
+                                    }}
+                                {{/if}}
+                            </td>
+                            <td class='col-md-3 row-controls'>
+                                {{#if isAttNameValid }}
+                                    <span class="input-group-btn">
+                <button type="button" class="btn btn-default btn-xs" {{action "createAttribute"}}>
+                  <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-default btn-xs" id='rem-row-button' {{action "setCreatingAttribute"
+                                                                                                  false}}>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+              </span>
+                                {{else}}
+                                    <span class='error-message'>invalid name</span>
+                                    <button type="button" class="btn btn-danger btn-xs" {{action "setCreatingAttribute"
+                                                                                                 false}}>
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+                                {{/if}}
+                            </td>
+                        </tr>
+                    {{/if}}
+                    <tr>
+                        <td class='col-md-1'></td>
+                        <td class='col-md-3'></td>
+                        <td class='col-md-2'></td>
+                        <td class='col-md-3'></td>
+                        <td class='col-md-3 row-controls'>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs" id="button-add-property" {{action
+                                    "setCreatingAttribute" true}}>
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{{/if}}

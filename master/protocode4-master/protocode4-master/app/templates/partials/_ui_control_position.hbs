@@ -1,0 +1,40 @@
+<!-- Constraints -->
+<div class="panel panel-dark">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Constraints
+        </h3>
+    </div>
+    <ul class="list-group" id="collapse-views" class="collapse in">
+        {{#each item in constraints}}
+            {{#if item.valid}}
+                <li class="list-group-item">
+                    {{#if controller.currentRouteIsViewController}}
+                        {{#link-to 'viewController.constraint' item}}{{item.name}}{{/link-to}}
+                    {{else}}
+                        {{#link-to 'scene.constraint' item}}{{item.name}}{{/link-to}}
+                    {{/if}}
+                </li>
+            {{else}}
+                <li class="list-group-item-highlight">
+                    {{#if controller.currentRouteIsViewController}}
+                        {{#link-to 'viewController.constraint' item}}{{item.name}}{{/link-to}}
+                    {{else}}
+                        {{#link-to 'scene.constraint' item}}{{item.name}}{{/link-to}}
+                    {{/if}}
+                </li>
+            {{/if}}
+        {{/each}}
+    </ul>
+    <div class="panel-footer">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm" {{action "createConstraint"}}>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Position -->
+{{input-number label="Position X" min="0" value=posX action='acceptChanges'}}
+{{input-number label="Position Y" min="0" value=posY action='acceptChanges'}}

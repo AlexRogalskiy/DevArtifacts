@@ -1,0 +1,113 @@
+<!-- Opzioni ViewController -->
+<div class="col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {{name}}
+            </h3>
+        </div>
+        <div class="panel-body">
+            {{partial "partials/first_commands"}}
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#home" data-toggle="tab">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#alert-dialogs" data-toggle="tab" title="Alert dialogs">
+                        <span class="glyphicon glyphicon-exclamation-sign"
+                              aria-hidden="true"></span> {{alertDialogs.length}}
+                    </a>
+                </li>
+                <li>
+                    <a href="#progress-dialogs" data-toggle="tab" title="Progress dialogs">
+                        <span class="glyphicon glyphicon-credit-card"
+                              aria-hidden="true"></span> {{progressDialogs.length}}
+                    </a>
+                </li>
+                <li>
+                    <a href="#async-task-tab" data-toggle="tab" title="Async tasks">
+                        <span class="glyphicon glyphicon-random" aria-hidden="true"></span> {{asyncTasks.length}}
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active form-horizontal" id="home">
+                    <br>
+                    {{input-text label="Name" value=name action='acceptChanges' disabled=isParent}}
+                    {{input-color-picker label="Background Color" value=backgroundColor action='acceptChanges'}}
+                    {{input-text label="Background Image" value=backgroundImage action='acceptChanges'}}
+                    <br>
+                    <button type="button" {{bind-attr class=":btn :btn-block :btn-sm :btn-chain"}} {{action
+                        "createChain"}}>
+                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                        Create Control Chain
+                    </button>
+                    <br>
+                    <br>
+                    <p align="center"><b>UiPhoneControls & Control Chains</b></p>
+                    <div class="tree col-sm-11">
+                        <ul>
+                            <li>
+                                <span><i class="fa fa-mobile"></i> {{name}}</span>
+                            </li>
+                            <ul>
+                                {{partial "partials/tree_container"}}
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="alert-dialogs">
+                    <h5 align="center">Alert dialogs</h5>
+                    <button type="button" class="btn btn-default btn-block btn-sm" {{action "createAlertDialog"}}>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add alert dialog
+                    </button>
+                    <br>
+                    <ul class="list-group">
+                        {{#each item in alertDialogs}}
+                            <li class="list-group-item">
+                                {{#link-to "viewController.alertDialog" item}}{{item.name}}{{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="progress-dialogs">
+                    <h5 align="center">Progress dialogs</h5>
+                    <button type="button" class="btn btn-default btn-block btn-sm" {{action "createProgressDialog"}}>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add progress dialog
+                    </button>
+                    <br>
+                    <ul class="list-group">
+                        {{#each item in progressDialogs}}
+                            <li class="list-group-item">
+                                {{#link-to "viewController.progressDialog" item}}{{item.name}}{{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="async-task-tab">
+                    <h5 align="center">Async tasks</h5>
+                    <button type="button" class="btn btn-default btn-block btn-sm" {{action "createAsyncTask"}}>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add async task
+                    </button>
+                    <br>
+                    <ul class="list-group">
+                        {{#each item in asyncTasks}}
+                            <li class="list-group-item">
+                                {{#link-to "viewController.asyncTask" item}}{{item.name}}{{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm" {{action "deleteViewController"}}>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

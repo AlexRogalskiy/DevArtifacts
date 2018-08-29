@@ -1,0 +1,9 @@
+{{#each uiPhoneControls}}
+    <li {{bind-attr class="valid::invalid"}}>
+        {{#if controller.currentRouteIsViewController}}
+            {{#link-to 'viewController.dispatchUiPhoneControl' this}}{{name}}{{/link-to}}
+        {{else}}
+            {{#link-to 'scene.dispatchUiPhoneControl' this}}{{name}}{{/link-to}}
+        {{/if}}
+    </li>
+{{/each}}

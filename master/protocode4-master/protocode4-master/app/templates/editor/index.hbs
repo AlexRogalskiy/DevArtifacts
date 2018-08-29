@@ -1,0 +1,28 @@
+<!-- /editor/ -->
+<div class="col-md-3">
+    <div class="form-inline">
+        <div class="input-group" style="width:100%">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+            </span>
+            {{view Ember.Select
+                   content=controller.controllers.editor.devices
+                   optionLabelPath='content.label'
+                   optionValuePath="content"
+                   class="form-control input-sm"
+                   value=controller.controllers.editor.device
+            }}
+        </div>
+    </div>
+    <br>
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation"
+            style="border: 1px solid #ddd;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom:none;border-right:none">
+            {{#link-to "scenes"}}Smartphone & Tablet{{/link-to}}
+        </li>
+        <li role="presentation"
+            style="border: 1px solid #ddd;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom:none;">
+            {{#link-to "watchControllers"}}Smartwatch{{/link-to}}
+        </li>
+    </ul>
+</div>

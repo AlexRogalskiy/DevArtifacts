@@ -1,0 +1,90 @@
+<div class='panel table-container table-preferences-container'>
+    <table class='table table-hover table-bordered'>
+        <thead>
+        <tr class='table-header'>
+            <th class='col-md-1'>#</th>
+            <th class='col-md-3'>Type</th>
+            <th class='col-md-3'>Key</th>
+            <th class='col-md-3'>Default value</th>
+            <th class='col-md-2'></th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each item in controller item-controller="PreferenceRecords" }}
+            <tr class='table-row'>
+                <td class='col-md-1'>{{_view.contentIndex}}</td>
+                <td class='col-md-3'>{{item.type}}</td>
+                <td class='col-md-3'>{{item.key}}</td>
+                <td class='col-md-3'>{{item.value}}</td>
+                <td class='col-md-2 row-controls'>
+                    <button type="button" class="btn btn-default btn-sm" id='del-row-button' {{action "deletePrefRecord" item.key }}>
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </td>
+            </tr>
+        {{/each}}
+        {{#if isCreating}}
+            <tr class='table-row'>
+                <td class='col-md-1'>{{_view.contentIndex}}</td>
+                <td class='col-md-3'>
+                    {{view Ember.Select
+                           content=types
+                           class="form-control input-sm"
+                           value=typePreferenceRecord
+                    }}
+                </td>
+                <td class='col-md-3'>{{focus-input value=keyPreferenceRecord class="form-control input-sm"}}</td>
+                <td class='col-md-3'>
+                    {{#if isBooleanRec}}
+                        {{view Ember.Select
+                               content=booleanOptions
+                               class="form-control input-sm"
+                               value=valuePreferenceRecord
+                        }}
+                    {{else}}
+                        {{focus-input value=valuePreferenceRecord class="form-control input-sm"}}
+                    {{/if}}
+                </td>
+                <td class='col-md-2 row-controls'>
+                    {{#if isKeyValid}}
+                        {{#if isValueValid}}
+                            <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm" {{action "createPrefRecord"}}>
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-sm" id='rem-row-button' {{action "setCreating" false}}>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </span>
+                        {{else}}
+                            <span class='error-message'>invalid value</span>
+                            <button type="button" class="btn btn-danger btn-xs" id='rem-row-button' {{action
+                                "setCreating" false}}>
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                        {{/if}}
+                    {{else}}
+                        <span class='error-message'>invalid key</span>
+                        <button type="button" class="btn btn-danger btn-xs" id='rem-row-button' {{action "setCreating" false}}>
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/if}}
+        <tr class='table-row'>
+            <td class='col-md-1'></td>
+            <td class='col-md-3'></td>
+            <td class='col-md-3'></td>
+            <td class='col-md-3'></td>
+            <td class='col-md-2 row-controls'>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm" {{action "setCreating" true}}>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

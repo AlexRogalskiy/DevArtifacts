@@ -1,0 +1,134 @@
+<div class="col-md-3">
+    {{#unless controller.controllers.editor.deviceContext}}
+        <div class="form-inline">
+            <div class="input-group" style="width:100%">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+                </span>
+                {{view Ember.Select
+                       content=controller.controllers.editor.devices
+                       optionLabelPath='content.label'
+                       optionValuePath="content"
+                       class="form-control input-sm"
+                       value=controller.controllers.editor.device
+                }}
+            </div>
+        </div>
+    {{else}}
+        <div class="form-inline">
+            <div class="input-group" style="width:100%">
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+              </span>
+                {{view Ember.Select
+                    content=controller.controllers.editor.smartwatches
+                    optionLabelPath='content.label'
+                    optionValuePath="content"
+                    class="form-control input-sm"
+                    value=controller.controllers.editor.smartwatch}}
+            </div>
+        </div>
+    {{/unless}}
+    <br>
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" class="active">
+            {{#link-to ""}}Smartphone & Tablet{{/link-to}}
+        </li>
+        <li role="presentation">
+            {{#link-to "watchControllers"}}Smartwatch{{/link-to}}
+        </li>
+    </ul>
+    <div class="panel-group">
+        <div id="application-scenes-panel" class="panel panel-default dropdown">
+            <div class="panel-heading">
+                Application<span class="dropdown-rotate" style="float:right">&#9660;</span>
+            </div>
+            <div class="panel-body dropdown-content">
+                <div class="input-group">
+                    <span class="input-group-addon input-sm">Application</span>
+                    {{input value=model.name class="form-control input-sm" placeholder="name" type="text"
+                            focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon input-sm">Company Identifier</span>
+                    {{input value=model.companyIdentifier class="form-control input-sm" placeholder="companyId"
+                            type="text" focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                </div>
+                <br>
+                <!-- View Controllers -->
+                <div id="view-controllers-panel" class="panel panel-dark">
+                    <div class="panel-heading fixed-height-50">
+                        <h3 class="panel-title" style="float:left;">
+                            View Controllers
+                        </h3>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-sm" {{action "createViewController"}}>
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="list-group" id="collapse-views" class="collapse in">
+                        {{#each vc in model.viewControllers}}
+                            <li class="list-group-item">
+                                {{#link-to "viewController" vc}}
+                                    {{vc.name}}
+                                {{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <!-- Scenes -->
+                <div id="scenes-panel" class="panel panel-dark">
+                    <div class="panel-heading fixed-height-50">
+                        <h3 class="panel-title" style="float:left;">
+                            Scenes
+                        </h3>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-sm" {{action "createScene"}}>
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="list-group" id="collapse-views" class="collapse in">
+                        {{#each scene in model.scenes}}
+                            {{#if scene.valid}}
+                                <li class="list-group-item">
+                                    {{#link-to "scene" scene}}
+                                        {{#if scene.launcher}}
+                                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                                        {{/if}}
+                                        {{scene.name}}
+                                    {{/link-to}}
+                                </li>
+                            {{else}}
+                                <li class="list-group-item-highlight">
+                                    {{#link-to "scene" scene}}
+                                        {{#if scene.launcher}}
+                                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                                        {{/if}}
+                                        {{scene.name}}
+                                    {{/link-to}}
+                                </li>
+                            {{/if}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- uiPhoneControlTemplates -->
+<div class="col-md-9">
+    <div class="panel panel-default">
+        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#collapse-ui-phone-control" style="cursor:pointer">
+            UIPhoneControls (Drag and drop) <span style="float:right">&#9660;</span>
+        </div>
+        <div class="panel-body collapse" id="collapse-ui-phone-control">
+            {{#each controllers.uiPhoneControlTemplates itemController="uiPhoneControlTemplate" }}
+                {{view App.UiPhoneControlTemplateView}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{outlet}}

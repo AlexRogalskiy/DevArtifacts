@@ -1,0 +1,42 @@
+<div class='col-md-3 items-sidebar'>
+    <div class="items-panel">
+        <div class='items-title'>ENTITIES</div>
+        <hr>
+        <ul class="items-list">
+            {{#each item in controller item-controller="entitiesController" }}
+                {{#link-to "entity" item}}
+                    <li class="items-list-item">
+                        <i class="fa fa-table"></i>{{item.name}}
+                    </li>
+                {{/link-to}}
+            {{/each}}
+            {{#if isCreating}}
+                <li class="items-list-edit">
+                    <div class='col-md-1'></div>
+                    <div class="input-group col-md-10">
+                        {{focus-input value=entityName class="form-control input-sm"}}
+                        <span class="input-group-btn">
+                      <button type="button" class="btn btn-default btn-sm" {{action "createEntity"}}>
+                          <span class="fa fa-floppy-o"></span>
+                      </button>
+                      <button type="button" class="btn btn-default btn-sm" {{action "setCreating" false}}>
+                          <span class="fa fa-times"></span>
+                      </button>
+                  </span>
+                    </div>
+                    <div class='col-md-1'></div>
+                </li>
+            {{/if}}
+        </ul>
+        <div class="panel-footer panel-buttons">
+            <div class="btn-group">
+                <button type="button" id="button-add" class="btn btn-default btn-sm" {{action "setCreating" true}}>
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='col-md-9' id='entity-right-panel'>
+    {{outlet}}
+</div>

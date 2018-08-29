@@ -1,0 +1,80 @@
+<div class='panel table-container table-preferences-container'>
+    <table class='table table-hover table-bordered'>
+        <thead>
+        <tr class='table-header'>
+            <th class='col-md-1'>#</th>
+            <th class='col-md-3'>File name</th>
+            <th class='col-md-3'>Extension</th>
+            <th class='col-md-3'>tempFile</th>
+            <th class='col-md-2'></th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each item in controller item-controller="StorageRecords" }}
+            <tr class='table-row'>
+                <td class='col-md-1'>{{_view.contentIndex}}</td>
+                <td class='col-md-3'>{{item.name}}</td>
+                <td class='col-md-3'>{{item.extension}}</td>
+                <td class='col-md-3'>{{item.tempFile}}</td>
+                <td class='col-md-2 row-controls'>
+                    <button type="button" class="btn btn-default btn-sm" id='del-row-button' {{action
+                        "deleteStorageRecord" item.id }}>
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </td>
+            </tr>
+        {{/each}}
+        {{#if isCreating}}
+            <tr class='table-row'>
+                <td class='col-md-1'>{{_view.contentIndex}}</td>
+                <td class='col-md-3'>{{focus-input value=nameStorageRecord class="form-control input-sm"}}</td>
+                <td class='col-md-3'>
+                    {{view Ember.Select
+                           content=extensions
+                           class="form-control input-sm"
+                           value=extensionStorageRecord
+                    }}
+                </td>
+                <td class='col-md-3'>
+                    {{view Ember.Select
+                           content=booleanOptions
+                           class="form-control input-sm"
+                           value=tempStorageRecord
+                    }}
+                </td>
+                <td class='col-md-2 row-controls'>
+                    {{#if isNameValid}}
+                        <span class="input-group-btn">
+                <button type="button" class="btn btn-default btn-sm" {{action "createStorageRecord"}}>
+                  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm" id='rem-row-button' {{action "setCreating" false}}>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+              </span>
+                    {{else}}
+                        <span class='error-message'>invalid name</span>
+                        <button type="button" class="btn btn-danger btn-xs" id='rem-row-button' {{action "setCreating"
+                                                                                                         false}}>
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/if}}
+        <tr class='table-row'>
+            <td class='col-md-1'></td>
+            <td class='col-md-3'></td>
+            <td class='col-md-3'></td>
+            <td class='col-md-3'></td>
+            <td class='col-md-2 row-controls'>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm" {{action "setCreating" true}}>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

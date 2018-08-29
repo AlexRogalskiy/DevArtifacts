@@ -1,0 +1,28 @@
+<div class='col-md-12'>
+    <div class='section-header'>
+        <div class='section-header-title'>
+            {{#if model}}
+                Internal storage enabled
+            {{else}}
+                Enable Internal storage in your app
+            {{/if}}
+        </div>
+        <div class='switch-button'>
+            {{#if model}}
+                <button type="button" class="btn btn-danger" id='en-di-button' {{action 'disableStorage'}}>
+                    Disable
+                </button>
+            {{else}}
+                <button type="button" class="btn btn-success" id="en-di-button" {{action 'enableStorage'}}>
+                    Enable
+                </button>
+            {{/if}}
+        </div>
+    </div>
+    <hr class='section-header-hr'>
+</div>
+<div class='col-md-12'>
+    {{#if model}}
+        {{outlet}}
+    {{/if}}
+</div>

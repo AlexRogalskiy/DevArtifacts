@@ -1,0 +1,93 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon input-sm">Application</span>
+                    {{input value=application.name class="form-control input-sm" placeholder="name" type="text"
+                            focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon input-sm">Company Identifier</span>
+                    {{input value=application.companyIdentifier class="form-control input-sm" placeholder="companyId"
+                            type="text" focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sidebar col-md-3">
+    <div class="side-title">
+        <span>STORAGE OPTIONS</span>
+    </div>
+    <hr>
+    <ul class="side-menu">
+        {{#if model.prefHandler}}
+            {{#link-to 'preference_records'}}
+                <li class="side-item">
+                    Default preferences
+                    <span class="side-icon fa fa-cogs"></span>
+                </li>
+            {{/link-to}}
+        {{else}}
+            {{#link-to 'preference_handler'}}
+                <li class="side-item">
+                    Default preferences
+                    <span class="side-icon fa fa-cogs"></span>
+                </li>
+            {{/link-to}}
+        {{/if}}
+        {{#if model.databaseHandler}}
+            {{#link-to 'entities'}}
+                <li class="side-item">
+                    SQL Database
+                    <span class="side-icon fa fa-database" aria-hidden="true"></span>
+                </li>
+            {{/link-to}}
+        {{else}}
+            {{#link-to 'database_handler'}}
+                <li class="side-item">
+                    SQL Database
+                    <span class="side-icon fa fa-database" aria-hidden="true"></span>
+                </li>
+            {{/link-to}}
+        {{/if}}
+        {{#if model.storageHandler}}
+            {{#link-to 'storage_records'}}
+                <li class="side-item">
+                    File storage
+                    <span class="side-icon fa fa-file-text-o"></span>
+                </li>
+            {{/link-to}}
+        {{else}}
+            {{#link-to 'storage_handler'}}
+                <li class="side-item">
+                    File storage
+                    <span class="side-icon fa fa-file-text-o"></span>
+                </li>
+            {{/link-to}}
+        {{/if}}
+        {{#if model.cloudHandler}}
+            {{#link-to 'cloud_objects'}}
+                <li class="side-item">
+                    Cloud Database
+                    <span class="side-icon fa fa-cloud"></span>
+                </li>
+            {{/link-to}}
+        {{else}}
+            {{#link-to 'cloud_handler'}}
+                <li class="side-item">
+                    Cloud Database
+                    <span class="side-icon fa fa-cloud"></span>
+                </li>
+            {{/link-to}}
+        {{/if}}
+    </ul>
+</div>
+<div class="col-md-9">
+    <div class="storage-selection">
+        {{outlet}}
+    </div>
+</div>

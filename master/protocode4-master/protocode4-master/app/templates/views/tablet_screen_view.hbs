@@ -1,0 +1,45 @@
+<div class="status-bar"></div>
+
+<!-- Menus and Buttons (only for scenes) -->
+{{#if isScene}}
+    <!-- App Menu button and Back navigation button -->
+    {{#if model.hasMenu}}
+        <div class="action-bar">
+            {{#link-to "appMenu" menu}}<div class="icon-menu"></div>{{/link-to}}
+            <div class="bar-content-menu">{{controllers.editor.name}}</div>
+        </div>
+    {{else}}
+        {{#if viewControllerToShow.hasBackButton}}
+        <div class="action-bar">
+            <div class="icon-back"></div>
+            <div class="bar-content-menu">{{controllers.editor.name}}</div>
+        </div>
+        {{else}}
+        <div class="action-bar">
+            <div class="bar-content-menu">{{controllers.editor.name}}</div>
+        </div>
+        {{/if}}
+    {{/if}}
+
+    <!-- Tab Menu (Multiple screens in a scene) -->
+    {{#if model.mustShowTabMenu}}
+        {{view App.MenuTabView}}
+    {{/if}}
+
+    <!-- App Menu -->
+    {{view App.MenuView}}
+    {{#if viewControllerToShow}}
+        {{#link-to "vc" viewControllerToShow}}{{view App.MenuViewShadow}}{{/link-to}}
+    {{else}}
+        {{#link-to "scene"}}{{view App.MenuViewShadow}}{{/link-to}}
+    {{/if}}
+{{else}}
+    <div class="action-bar">
+        <div class="bar-content-menu">{{controllers.editor.name}}</div>
+    </div>
+{{/if}}
+
+<div class="command-bar"></div>
+
+{{view App.ViewControllerPreviewView id="view-controller-background"}}
+{{screen-canvas viewControllerToShow=viewControllerToShow}}

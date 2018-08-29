@@ -1,0 +1,16 @@
+<div class="control-content">
+    {{#if isBold}}
+        <b>{{title}}</b>
+    {{else}}
+        {{#if isItalic}}
+            <i>{{title}}</i>
+        {{else}}
+            {{title}}
+        {{/if}}
+    {{/if}}
+</div>
+{{#if controller.currentRouteIsViewController}}
+    {{#link-to "viewController.controlLabel" this tagName="div" class="inner-control"}}{{/link-to}}
+{{else}}
+    {{#link-to "scene.controlLabel" this tagName="div" class="inner-control"}}{{/link-to}}
+{{/if}}

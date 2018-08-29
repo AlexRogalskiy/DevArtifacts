@@ -1,0 +1,43 @@
+<div class="col-md-3">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {{#link-to 'scene' class="btn btn-default btn-sm"}}
+                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                {{/link-to}}
+                &nbsp;&nbsp;<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>&nbsp;&nbsp;Edit
+                menu
+            </h3>
+        </div>
+        <ul class="list-group" id="collapse-views" class="collapse in">
+            {{#each item in menuItems}}
+                <li class="list-group-item">
+                    {{#link-to "appMenuItem" item}}{{item.name}}{{/link-to}}
+                </li>
+            {{/each}}
+            {{#if isCreating}}
+                <li class="list-group-item">
+                    <div class="input-group">
+                        {{focus-input value=newNameMenuItem class="form-control input-sm"
+                                      insert-newline="createMenuItem"}}
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-sm" {{action "createMenuItem"}}>
+                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm" {{action "setCreating" false}}>
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                    </div>
+                </li>
+            {{/if}}
+        </ul>
+        <div class="panel-footer">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm" {{action "setCreating" true}}>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

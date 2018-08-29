@@ -1,0 +1,26 @@
+<div class="control-content">
+    {{#if isWithImage}}
+        <div class="list-image"></div>
+        <div class="list-text-container">
+            <p class="list-text">{{title}}</p>
+        </div>
+    {{else}}
+        {{#if isDetailed}}
+            <div class="list-image"></div>
+            <div class="list-text-container-detailed">
+                <p class="list-text">{{title}}</p>
+                <p class="list-subtext">{{subtitle}}</p>
+            </div>
+            <div class="list-icon"></div>
+        {{else}}
+            <div class="list-text-container">
+                <p class="list-text">{{title}}</p>
+            </div>
+        {{/if}}
+    {{/if}}
+</div>
+{{#if controller.currentRouteIsViewController}}
+    {{#link-to "viewController.controlListViewCell" this tagName="div" class="inner-control"}}{{/link-to}}
+{{else}}
+    {{#link-to "scene.controlListViewCell" this tagName="div" class="inner-control"}}{{/link-to}}
+{{/if}}

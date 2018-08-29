@@ -1,0 +1,18 @@
+<div class="control-content">
+    {{#if isWithImage}}
+        <div class="grid-image"></div>
+    {{else}}
+        {{#if isDetailed}}
+            <div class="grid-image"></div>
+            <p class="grid-text">{{title}}</p>
+        {{else}}
+            <div class="grid-image-empty"></div>
+            <p class="grid-text">{{title}}</p>
+        {{/if}}
+    {{/if}}
+</div>
+{{#if controller.currentRouteIsViewController}}
+    {{#link-to "viewController.controlGridViewCell" this tagName="div" class="inner-control"}}{{/link-to}}
+{{else}}
+    {{#link-to "scene.controlGridViewCell" this tagName="div" class="inner-control"}}{{/link-to}}
+{{/if}}

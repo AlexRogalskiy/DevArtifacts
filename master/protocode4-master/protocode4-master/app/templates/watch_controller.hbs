@@ -1,0 +1,26 @@
+<!-- Preview WatchController -->
+<div class="col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" style="float:left">{{name}}</h3>
+            <div class="col-xs-4 input-group pull-right">
+			        	<span class="input-group-btn">
+			      				<button class="btn btn-default btn-sm" {{action 'decreaseZoom'}}>
+											<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+										</button>
+			      		</span>
+                {{input type="number" value=zoomLevel class="form-control input-sm" step="0.2" min="0.1"}}
+                <span class="input-group-btn">
+			      				<button class="btn btn-default btn-sm" {{action 'increaseZoom'}}>
+											<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+										</button>
+			      		</span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body plotted">
+            {{view App.SmartwatchView}}
+        </div>
+    </div>
+</div>
+{{outlet}}

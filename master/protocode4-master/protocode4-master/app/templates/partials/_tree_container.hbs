@@ -1,0 +1,50 @@
+{{#each uiPhoneControlsToShow}}
+    {{#unless controlChain}}
+        {{#if uiPhoneControls}}
+            <li>
+                <span><i class="fa fa-plus-square-o"></i>
+                    {{#if controller.currentRouteIsViewController}}
+                        {{#link-to 'viewController.dispatchUiPhoneControl' this}}{{name}}{{/link-to}}
+                    {{else}}
+                        {{#link-to 'scene.dispatchUiPhoneControl' this}}{{name}}{{/link-to}}
+                    {{/if}}
+                </span>
+                <ul>
+                    {{partial "partials/tree_container"}}
+                </ul>
+            </li>
+        {{else}}
+            <li>
+                {{#if controller.currentRouteIsViewController}}
+                    {{#link-to 'viewController.dispatchUiPhoneControl' this}}{{name}}{{/link-to}}
+                {{else}}
+                    {{#link-to 'scene.dispatchUiPhoneControl' this}}{{name}}{{/link-to}}
+                {{/if}}
+            </li>
+        {{/if}}
+    {{/unless}}
+{{/each}}
+{{#each controlChains}}
+    {{#if uiPhoneControls}}
+        <li>
+            <span {{bind-attr class="valid::invalid"}}><i class="fa fa-plus-square-o"></i>
+                {{#if controller.currentRouteIsViewController}}
+                    {{#link-to 'viewController.controlChain' this}}{{name}}{{/link-to}}
+                {{else}}
+                    {{#link-to 'scene.controlChain' this}}{{name}}{{/link-to}}
+                {{/if}}
+            </span>
+            <ul>
+                {{partial "partials/subtree_container"}}
+            </ul>
+        </li>
+    {{else}}
+        <li><span {{bind-attr class="valid::invalid"}}><i class="fa fa-plus-square-o"></i>
+            {{#if controller.currentRouteIsViewController}}
+                {{#link-to 'viewController.controlChain' this}}{{name}}{{/link-to}}
+            {{else}}
+                {{#link-to 'scene.controlChain' this}}{{name}}{{/link-to}}
+            {{/if}}
+        </span></li>
+    {{/if}}
+{{/each}}

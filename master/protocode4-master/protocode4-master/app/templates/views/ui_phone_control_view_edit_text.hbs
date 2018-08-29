@@ -1,0 +1,12 @@
+<div class="control-content">
+    {{#if title}}
+        <span class="title">{{title}}</span>
+    {{else}}
+        <span class="placeholder">{{placeholder}}</span>
+    {{/if}}
+</div>
+{{#if controller.currentRouteIsViewController}}
+    {{#link-to "viewController.controlEditText" this tagName="div" class="inner-control"}}{{/link-to}}
+{{else}}
+    {{#link-to "scene.controlEditText" this tagName="div" class="inner-control"}}{{/link-to}}
+{{/if}}

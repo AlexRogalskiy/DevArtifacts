@@ -1,0 +1,24 @@
+<div class="control-content">
+    <div class="card-image"></div>
+    <p class="card-title">{{title}}</p>
+    <p class="card-subtitle">{{subtitle}}</p>
+    <div class="card-buttons">
+        {{#if hasOneAction}}
+            <p class="card-button">Action 1</p>
+        {{/if}}
+        {{#if hasTwoActions}}
+            <p class="card-button">Action 1</p>
+            <p class="card-button">Action 2</p>
+        {{/if}}
+        {{#if hasThreeActions}}
+            <p class="card-button">Action 1</p>
+            <p class="card-button">Action 2</p>
+            <p class="card-button">Action 3</p>
+        {{/if}}
+    </div>
+</div>
+{{#if controller.currentRouteIsViewController}}
+    {{#link-to "viewController.controlCard" this tagName="div" class="inner-control"}}{{/link-to}}
+{{else}}
+    {{#link-to "scene.controlCard" this tagName="div" class="inner-control"}}{{/link-to}}
+{{/if}}

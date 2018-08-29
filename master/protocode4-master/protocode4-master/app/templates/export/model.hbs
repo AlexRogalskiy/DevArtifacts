@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metamodel:Application
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0"
+    xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore"
+    name="{{name}}"
+    companyIdentifier="it.polimi">
+    {{#for viewControllers}}
+        ciao
+    {{/for}}
+    <viewControllers
+        name="Description"
+        launcher="true">
+        <buttons
+            id="videoButton"
+            title="Video">
+            <clickListener>
+                <navigation
+                    destination="Video"/>
+            </clickListener>
+        </buttons>
+        <webViews
+            id="descriptionWebView"
+            HTMLFileName="valtellina.html"/>
+        <imageViews
+            id="logoImageView"
+            sourceType="remoteFile"
+            fileUri="http://www.elitestudio.it/news/valtellina.gif"/>
+    </viewControllers>
+    <viewControllers
+        name="Video">
+        <videoView
+            id="videoView"
+            sourceType="localFile"
+            fileUri="valtellina_video.mp4"/>
+    </viewControllers>
+    <viewControllers
+        name="TurismLocationsList">
+        <listViews
+            id="turismLocationListView">
+            <listViewCells
+                title="Aprica"/>
+            <listViewCells
+                title="Bormio"/>
+            <listViewCells
+                title="Chiesa Valmalenco"/>
+            <listViewCells
+                title="Livigno"/>
+            <listViewCells
+                title="Madesimo"/>
+            <listViewCells
+                title="Santa Caterina Valfurva"/>
+            <listViewCells
+                title="Teglio"/>
+            <listViewCells
+                title="Tirano"/>
+            <listViewCells
+                title="Val Masino"/>
+            <listViewCells
+                title="Piantedo"/>
+            <listViewCells
+                title="Dazio"/>
+            <clickListener>
+                <navigation
+                    destination="TurismLocationDetail"/>
+            </clickListener>
+        </listViews>
+    </viewControllers>
+    <viewControllers
+        name="TurismLocationDetail">
+        <textViews
+            id="titleTextView"/>
+        <textViews
+            id="descriptionTextView"/>
+        <imageViews
+            id="imageView"
+            sourceType="localFile"/>
+    </viewControllers>
+    <menu>
+        <menuItems
+            id="descriptionItem"
+            title="La Valtellina">
+            <navigation
+                destination="Description"/>
+        </menuItems>
+        <menuItems
+            id="turismLocationItem"
+            title="Localita' Turistiche">
+            <navigation
+                destination="TurismLocationsList"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>
