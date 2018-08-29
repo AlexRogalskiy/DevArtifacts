@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<script src="file:///Users/mkoltsov/Downloads/vue"></script>
+
+<html>
+  <head>
+  <meta charset="UTF-8">
+    <title>Vue.js - binding data</title>
+  </head>
+  <body>
+    <div id="app">
+      <img width="100%" v-bind:src="name ? gladSrc : sadSrc">
+      <!-- <label for="name" v-bind:class="{green: name, red: !name}">What's your name? </label> -->
+      <input type="text" v-model.lazy.trim="name">
+      <input type="text" v-model="name">
+      <div><h1>&#x1f638;</h1></div>
+      <div>{{animalCodes.cat}}</div>
+      <div v-text="animalCodes.cat"></div>
+      <div v-html="animalCodes.cat"></div>
+      <ol>
+		  <li>&#x1f638;</li>
+		  <li>&#x1f436;</li>
+		  <li>&#x1f435;</li>
+		  <li>&#x1f984;</li>
+	  </ol>
+
+	   <ol>
+   		 <li v-html="animalCodes.cat"></li>
+	     <li v-html="animalCodes.dog"></li>
+	     <li v-html="animalCodes.monkey"></li>
+	     <li v-html="animalCodes.unicorn"></li>
+       </ol>
+
+       <ol>
+		<h2><span>{{name}}! </span>Here's your Zoo</h2> 
+  		<li v-for="animal in animals" v-html="animalCodes[animal]"></li>
+	   </ol>
+
+	   <ol>
+  		<li v-for="animal in animalsForZoo"><span class="animal" v-html="animalCodes[animal]"></span></li>
+		</ol>
+
+		<!-- <select @change="populateAnimalsForZoo" multiple="multiple" name="animals" id="animals">
+  			<option v-for="animal in animals" :value="animal">{{animal}}</option>
+		</select> -->
+
+		<select v-model="animalsForZoo" multiple="multiple" name="animals" id="animals">
+  			<option v-for="animal in animals" :value="animal">{{animal}}</option>
+		</select>
+
+      <h1><span v-show="name">Hello, <strong>{{name}}</strong>! </span>Let's learn Vue.js</h1>
+      <h1><span v-if="name">Hello, <strong>{{name}}</strong>! </span>Let's learn Vue.js</h1>
+    </div>
+  </body>
+</html>
+
+<script>
+ var animalsForZoo = []
+var animalCodes = {
+  dog     : '&#x1f436;',
+  cat     : '&#x1f638;',
+  monkey  : '&#x1f435;',
+  unicorn : '&#x1f984;',
+  tiger   : '&#x1f42f;',
+  mouse   : '&#x1f42d;',
+  rabbit  : '&#x1f430;',
+  cow     : '&#x1f42e;',
+  whale   : '&#x1f433;',
+  horse   : '&#x1f434;',
+  pig     : '&#x1f437;',
+  frog    : '&#x1f438;',
+  koala   : '&#x1f43c;'
+}
+ var animals = Object.keys(animalCodes)
+var data = {name:'Olga', animalCodes, animals, sadSrc: 'images/sad.png',
+  gladSrc: 'images/glad.png', animalsForZoo};
+
+new Vue({
+  el: '#app',
+  data//,
+  // methods: {
+  //   populateAnimalsForZoo(ev) {
+  //     this.animalsForZoo = []
+  //     const selected = document.querySelectorAll('#animals option:checked')
+  //     for (var i = 0; i < selected.length; i++) {
+  //       this.animalsForZoo.push(selected[i].value)
+  //     }
+  //   }}
+})
+
+</script>
