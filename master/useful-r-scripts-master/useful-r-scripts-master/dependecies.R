@@ -1,0 +1,8 @@
+install.packages("arm")
+install.packages("ggplot2")
+install.packages("glmnet")
+install.packages("lme4")
+install.packages("RCurl")
+install.packages("RJSONIO")
+install.packages("tm")
+install.packages("xml")

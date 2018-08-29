@@ -1,0 +1,576 @@
+Release Notes
+=============
+
+Here you can see the full list of changes between nameko versions. Versions
+are in form of *headline.major.minor* numbers. Backwards-compatible changes
+increment the minor version number only.
+
+
+Version 2.8.1
+-------------
+
+Released: 2017-11-29
+
+* Added the 'show-config' command which will print the service configuration
+  to the console, after environment variable substitution.
+  
+
+Version 2.8.0
+-------------
+
+Released: 2017-10-31
+
+* Environment variables substituted into config files are now interpreted
+  as YAML rather than bare values, allowing use of rich data types.
+
+
+Version 2.7.0
+-------------
+
+Released: 2017-10-07
+
+* Set stopped flag in register_provider() to allow PollingQueueConsumer
+  object reuse [fixes #462]
+* Refactor of AMQP message publishing logic into `nameko.amqp.publish`
+* Exposes delivery options and other messaging configuration to AMQP-based
+  DependencyProviders. [addresses #374]
+* Class attributes for configuring `use_confirms`, `retry` and `retry_policy`
+  have been deprecated from the Publisher, EventDispatcher, and RPC MethodProxy
+  classes. If you were subclassing these classes to set these options, you
+  should now set them at class instantiation time.
+
+
+Version 2.6.0
+-------------
+
+Released: 2017-04-30
+
+* Environment variables are now interpreted as native YAML data types rather
+  than just strings
+* The WSGI Server now uses an explicit logger so it can be controlled using a
+  logging config
+* Drops several backwards-compatibility shims that were marked as being
+  maintained only until this release
+
+
+Version 2.5.4
+-------------
+
+Released: 2017-04-20
+
+* Don't block the QueueConsumer thread on the worker pool, which could cause
+  service deadlock and occasional dropped AMQP connections [fixes #428]
+* Revert prefetch count change from 2.5.3 and ack messages outside of the
+  QueueConsumer thread. [fixes #417 more robustly]
+
+
+Version 2.5.3
+-------------
+
+Released: 2017-03-16
+
+* Bump the amqp `prefetch_count` by 1 to `max_workers + 1` to fix throughput
+  issue. [fixes 417]
+
+
+Version 2.5.2
+-------------
+
+Released 2017-02-28
+
+* Improves teardown speed of the `rabbit_config` pytest fixture
+* Support for providing an alternative reply listener to the standalone
+  RPC proxy
+
+Version 2.5.1
+-------------
+
+Released 2017-01-19
+
+* Adds a DependencyProvider to give services access to the config object
+* Internal refactor to make all worker lifecycle steps run in the same thread
+
+Version 2.5.0
+-------------
+
+Released 2016-12-20
+
+* Enables publish confirms by default for all AMQP message publishers
+* Refactors common AMQP connection code into `nameko.amqp`
+
+Version 2.4.4
+-------------
+
+Released 2016-11-28
+
+* Adds AMQP heartbeats to Consumer connections
+* Handles an uncaught exception caused by a fast-disconnecting client under
+  Python 3 [fixes #367]
+
+Version 2.4.3
+-------------
+
+Released 2016-11-16
+
+* Pins kombu back to a compatible release (<4) [fixes #378]
+* Fixes compatibility with latest bpython and ipython shells
+  [fixes #355 and #375]
+* Fixes socket cleanup bug in websocket hub [fixes #367]
+
+Version 2.4.2
+-------------
+
+Released 2016-10-10
+
+* Added support for environment variables in YAML config files
+* Enhanced :func:`~nameko.testing.services.entrypoint_waiter`. The new
+  implementation is backwards compatible but additionally:
+
+    - Gives you access to the result returned (or exception raised)
+    - Adds the ability to wait for a specific result
+    - Doesn't fire until the worker is completely torn down
+
+Version 2.4.1
+-------------
+
+Released 2016-09-14
+
+* Enhanced :class: `~nameko.web.server.WebServer` with `get_wsgi_app` and
+  `get_wsgi_server` to allow easy usage of WSGI middleware and modifications
+  of the WSGI server.
+* Enhanced :func:`~nameko.testing.services.replace_dependencies` to allow
+  specific replacement values to be provided with named arguments.
+
+Version 2.4.0
+-------------
+
+Released 2016-08-30
+
+* Add dictionary access to ``standalone.rpc.ClusterProxy`` to allow the proxy
+  to call services whose name is not a legal identifier in python
+  (e.g. name has a ``-`` in it).
+* Add the ability to specify a custom `ServiceContainer` class via config key.
+  Deprecate the keyword arguments to `ServiceRunner` and `run_services` for
+  the same purpose.
+* Deprecate the keyword arguments to `run_services`, `ServiceContainer` and
+  `ServiceRunner.add_service` for specifying a custom `WorkerContext` class.
+  Custom `WorkerContext` classes can now only be specified with a custom
+  `ServiceContainer` class that defines the `worker_ctx_cls` attribute.
+* Remove the `context_keys` attribute of the `WorkerContext`, which was
+  previously used to "whitelist" worker context data passed from call to call.
+  It was a feature that leaked from a specific implementation into the main
+  framework, and not useful enough in its own right to continue to be
+  supported.
+* Refactor `ServiceContainer` internals for better separation between "managed"
+  and "worker" threads. Improved logging when threads are killed.
+
+Version 2.3.1
+-------------
+
+Released 2016-05-11
+
+* Deprecate ``MethodProxy.async`` in favour of ``MethodProxy.call_async`` in
+  preparation for async becoming a keyword
+* Add support for loading logging configuration from ``config.yaml``
+
+
+Version 2.3.0
+-------------
+
+Released 2016-04-05
+
+* Add support for loading configuration file in ``nameko shell`` via
+  ``--config`` option
+* Changed :class:`~nameko.web.handlers.HttpRequestHandler` to allow override
+  how web exceptions are handled
+* Enabled reliable delivery on broadcast events when combined with a custom
+  :py:attr:`~nameko.events.EventHandler.broadcast_identity`. Reliable delivery
+  now defaults to enabled for all handler types. It must be explicitly turned
+  off with broadcast mode unless you override the default `broadcast_identity`.
+* Update bundled pytest fixtures to use a random vhost in RabbitMQ by default
+* Now requires eventlet>=0.16.1 because older versions were removed from PyPI
+
+Version 2.2.0
+-------------
+
+Released 2015-10-04
+
+* Add support for alternative serializers in AMQP messages
+* Add pytest plugin with common fixtures
+* Fix examples in documentation and add tests to prevent future breakage
+* Fix bug handling non-ascii characters in exception messages
+* Various documentation fixes
+
+
+Version 2.1.2
+-------------
+
+Released 2015-05-26
+
+* Refactor the standalone queue consumer for more extensibility
+
+
+Version 2.1.1
+-------------
+
+Released 2015-05-11
+
+* Nameko shell to use bpython or ipython interpreter if available
+* Support for marking entrypoint arguments as sensitive (for later redaction)
+
+
+Version 2.1.0
+-------------
+
+Released 2015-04-13
+
+* Changed default AMQP URI so examples work with an unconfigured RabbitMQ.
+* Heuristic messages for AMQP connection errors.
+* Added six to requirements.
+* Minor documentation fixes.
+
+
+Version 2.0.0
+-------------
+
+Released 2015-03-31
+
+* python 3 compatibility
+* Added HTTP entrypoints and experimental websocket support (contributed by
+  Armin Ronacher)
+* Added CLI and console script
+* Introduction of nameko "extensions" and nomenclature clarification
+* Removal of ``DependencyFactory`` in favour of prototype pattern
+* Complete documentation rewrite
+* Spun out ``nameko.contrib.sqlalchemy`` into
+  `nameko-sqlalchemy <https://pypi.python.org/pypi/nameko-sqlalchemy>`_
+  as a **community extension**.
+* Spun out ``nameko.legacy`` package into
+  `nameko-nova-compat <https://pypi.python.org/pypi/nameko-nova-compat>`_
+* Rename the standalone rpc proxy to
+  :class:`~nameko.standalone.rpc.ServiceRpcProxy` and add a
+  :class:`~nameko.standalone.rpc.ClusterRpcProxy`, using a single reply queue
+  for communicating with multiple remote services.
+* Make the standalone event dispatcher more shell-friendly, connecting on
+  demand.
+
+
+Version 1.14.0
+--------------
+
+Released 2014-12-19
+
+* Remove parallel provider in favour of async RPC
+* Update :func:`~nameko.testing.services.worker_factory` to raise if asked to
+  replace a non-existent injection.
+* Add various ``__repr__`` methods for better logging
+* Support for timeouts in the (non-legacy) standalone RPC proxy
+* Add helper for manipulating an AMQP URI into a dict
+
+
+Version 1.13.0
+--------------
+
+Released 2014-12-02
+
+* RPC reply queues now auto-delete.
+* Extra protection against badly-behaved dependencies during container kill
+* Make legacy :class:`~nameko.legacy.nova.NovaRpcConsumer` more robust against
+  failures in the :class:`~nameko.legacy.nova.NovaRpc` provider.
+
+
+Version 1.12.0
+--------------
+
+Released 2014-11-25
+
+* Add ability to make asynchronous rpc calls using the rpc proxy.
+* Add a new nameko context key ``user_agent`` to support including such info
+  in the rpc header.
+
+
+Version 1.11.5
+--------------
+
+Released 2014-11-18
+
+* Have the standalone rpc proxy mark its reply queues as auto-delete, to stop
+  them staying around after use.
+
+
+Version 1.11.4
+--------------
+
+Released 2014-11-10
+
+* Make :class:`~nameko.rpc.RpcConsumer` more robust against failures in the
+  :class:`~nameko.rpc.Rpc` provider.
+* Add a new exception :class:`~nameko.exceptions.MalformedRequest` that RPC
+  providers can raise if they detect an invalid message. Raise this exception
+  in the default ``Rpc`` provider if ``args`` or ``kwargs`` keys are missing
+  from the message.
+* Fix issues in queue consumer tests against non-localhost brokers.
+* Upgrade to eventlet 0.15.2.
+* Include pyrabbit in ``requirements.txt`` (no longer just for tests).
+* Catch dying containers in the entrypoint_hook to avoid hangs.
+* Add ``expected_exceptions`` kwarg to the rpc entrypoint to enable different
+  exception handling (in dependencies) for user vs system errors.
+
+
+Version 1.11.3
+--------------
+
+Released 2014-10-10
+
+* Add more logging for workers killed by
+  :meth:`~nameko.containers.ServiceContainer.kill`.
+
+
+Version 1.11.2
+--------------
+
+Released 2014-09-18
+
+* Add a default implementation for ``acquire_injection`` (returning ``None``)
+  for dependency providers that are used for side-effects rather than injecting
+  dependencies.
+
+
+Version 1.11.1
+--------------
+
+Released 2014-09-15
+
+* New test helper :func:`~nameko.testing.services.entrypoint_waiter` to wait
+  for entrypoints (e.g. event handlers) to complete.
+
+
+Version 1.11.0
+--------------
+
+Released 2014-09-01
+
+* Raise a specific ``RpcTimeout`` error in the RPC proxy rather than
+  ``socket.timeout`` to avoid confusing kombu's ``Connection.ensure``
+* Improve logging helpers
+* Use ``inspect.getcallargs`` instead of shadow lambda for RPC argument
+  checking
+* Add default retry policies to all publishers
+* Stricter handling of connections between tests
+* Workarounds for RabbitMQ bugs described at
+  https://groups.google.com/d/topic/rabbitmq-users/lrl0tYd1L38/discussion
+
+Version 1.10.1
+--------------
+
+Released 2014-08-27
+
+* Inspect the service class (instead of an instance) in
+  :func:`~nameko.testing.services.worker_factory`. Works better with
+  descriptors.
+* Explicitly delete ``exc_info`` variable when not needed, to help the
+  garbage collector.
+
+
+Version 1.10.0
+--------------
+
+Released 2014-08-14
+
+* Entrypoint providers' handle_result is now able to manipulate and modify and
+  return the ``(result, exc_info)`` tuple. This enables default post-processing
+  (e.g. serialization, translations)
+* Added serialization safety to legacy RPC entrypoint.
+
+
+Version 1.9.1
+-------------
+
+Released 2014-08-12
+
+* Bugfix to exception handling in ``nameko.legacy.dependencies``
+
+
+Version 1.9.0
+-------------
+
+Released 2014-07-15
+
+* No longer relying on eventlet for standalone RPC proxy timeouts.
+* Introduced RPC entrypoints compatible with the 'legacy' proxy.
+
+
+Version 1.8.2
+-------------
+
+Released 2014-07-07
+
+* Documentation generator accepts a function listing event classes and adds
+  to output accordingly.
+
+
+Version 1.8.1
+-------------
+
+Released 2014-06-23
+
+* Adding ``wait_for_worker_idle`` test helper.
+
+Version 1.8.0
+-------------
+
+Released 2014-06-13
+
+* Now passing ``exc_info`` tuples instead of bare exceptions to
+  ``worker_result`` and ``handle_result``, to enable exception processing in
+  non-worker greenthreads.
+
+Version 1.7.2
+-------------
+
+Released 2014-06-10
+
+* :meth:`~nameko.containers.ServiceContainer._run_worker` now calls any
+  ``handle_result`` method before dependency teardown.
+* Serialization errors now generate a specific error message rather
+  than bubbling into the container.
+* Minor change to ``nameko_doc`` output.
+
+Version 1.7.1
+-------------
+
+Released 2014-05-20
+
+* Added ``language``, ``auth_token`` and ``user_id`` dependency providers to
+  make context data available to service workers.
+* Refactored constants into their own module.
+* Minor test changes to enable testing on shared rabbit brokers.
+
+Version 1.7.0
+-------------
+
+Released 2014-05-07
+
+* :meth:`~nameko.containers.ServiceContainer.spawn_worker` now throws
+  :class:`~nameko.exceptions.ContainerBeingKilled` if a ``kill`` is
+  in progress, since some providers may already be dead. Providers should catch
+  this and e.g. requeue rpc messages. There is a race condition between
+  completing the kill sequence and remaining entrypoints firing.
+
+
+Version 1.6.1
+-------------
+
+Released 2014-04-03
+
+* Revert changes to legacy exception serialization to maintain backwards
+  compatibility with old clients.
+* Add forwards compatibility for future clients that wish to serialize
+  exceptions into more data
+* Promote conftest rabbit manipulations to test helpers
+
+
+Version 1.6.0
+-------------
+
+Released 2014-03-31
+
+* Rename instance_factory to worker_factory
+* Raise :class:`~nameko.exception.IncorrectSignature` instead of
+  ``RemoteError: TypeError`` if an RPC method is called with invalid arguments.
+* Raise :class:`~nameko.exception.MethodNotFound` instead of
+  ``RemoteError: MethodNotFound`` if a non-existent RPC method is called.
+* Let log handlers format warning messages so that aggregators group them
+  correctly.
+* Expose the entire dependency provider (rather than just the method name) to
+  the worker context.
+
+
+Version 1.5.0
+-------------
+
+Released 2014-03-27
+
+* Improvements to :class:`~nameko.containers.ServiceContainer.kill()` enabling
+  better tracebacks and cleaner teardown:
+
+    - Using ``sys.exc_info`` to preserve tracebacks
+    - No longer passing exception into
+      :meth:`~nameko.extensions.DependencyProvider.kill()`, removing race
+      conditions.
+    - No longer requiring ``exc`` in
+      :class:`~nameko.containers.ServiceContainer.kill()`
+
+Version 1.4.1
+-------------
+
+Released 2014-03-26
+
+* Adds the ``nameko_doc`` package, for easing the creation of service-oriented
+  documentation.
+
+
+Version 1.4.0
+-------------
+
+Released 2014-03-20
+
+* RPC calls to non-existent services (no queues bound to the RPC exchange with
+  the appropriate routing key) now raise an exception instead of hanging
+  indefinitely. Note that calls to existing but non-running services (where the
+  queue exists but has no consumer) behave as before.
+
+
+Version 1.3.5
+-------------
+
+Released 2014-03-05
+
+* Increased test resilience. Force-closing existing connections on rabbit
+  reset
+
+
+Version 1.3.4
+-------------
+
+Released 2014-03-05
+
+* Use ``MagicMock`` for dependency replacement in test utilities
+* Use ``autospec=True`` wherever possible when mocking
+* Merge ``ServiceContainers`` into a single class
+
+
+Version 1.3.3
+-------------
+
+Released 2014-02-25
+
+* Bugfixes enabling reconnection to the broker if the connection is temporarily
+  lost.
+
+
+Version 1.3.2
+-------------
+
+Released 2014-02-13
+
+* Dropping headers with a ``None`` value because they can't be serialized by
+  AMQP
+
+
+Version 1.3.1
+-------------
+
+Released 2014-01-28
+
+* Add ``event_handler_cls`` kwarg to the ``event_handler`` entrypoint, for
+  using a custom subclass of the ``EventHandler`` provider
+
+
+Version 1.3.0
+-------------
+
+Released 2014-01-23
+
+* Standalone RPC proxy interface changed to class with contextmanager interface
+  and manual ``start()`` and ``stop()`` methods.
