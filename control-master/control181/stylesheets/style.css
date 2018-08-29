@@ -1,0 +1,294 @@
+*, *:before, *:after {
+  transform-style: preserve-3d;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+  outline: none;
+}
+
+a {
+  cursor: pointer;
+}
+
+body, html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  background: #eee;
+  font-family: "Libre Franklin", sans-serif;
+}
+
+#styles {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+#styles h1 {
+  font-size: 20vw;
+  color: #343434;
+}
+
+fieldset .container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+fieldset .container > div {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+fieldset input {
+  cursor: pointer;
+  appearance: none;
+  opacity: 0;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+fieldset label {
+  cursor: pointer;
+  margin-left: 6px;
+}
+fieldset:not(:first-child) {
+  margin-top: 12px;
+}
+
+.svg {
+  background: #c9c9c9;
+}
+.svg div {
+  opacity: 0;
+  position: absolute;
+}
+.svg div:nth-of-type(1) {
+  transition: all 150ms ease-out;
+  will-change: opacity;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #b5c1ce;
+}
+.svg div:nth-of-type(2) {
+  transition: opacity 150ms ease-out, transform 0ms 150ms;
+  transform: scale(0) translateZ(0);
+  will-change: transform, opacity;
+  transform-origin: center center;
+  z-index: 1;
+  top: calc(50% - 18px);
+  left: calc(50% - 18px);
+  border-radius: 100%;
+  background: #07f;
+  width: 36px;
+  height: 36px;
+}
+.svg svg {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.svg svg line {
+  stroke-width: 2px;
+  stroke-linecap: round;
+}
+.svg svg g:first-child line {
+  stroke: #d6d6d6;
+}
+.svg svg g:last-child line {
+  opacity: 0;
+  stroke: white;
+}
+.svg svg g:last-child line:first-child {
+  transition: stroke-dashoffset 100ms ease-out;
+  stroke-dasharray: 6.708;
+  stroke-dashoffset: 6.708;
+}
+.svg svg g:last-child line:last-child {
+  transition: stroke-dashoffset 200ms ease-out 100ms;
+  stroke-dasharray: 14.873;
+  stroke-dashoffset: 14.873;
+}
+.svg input:hover ~ div:nth-of-type(1) {
+  opacity: 1;
+}
+.svg input:active ~ div:nth-of-type(2), .svg input:checked ~ div:nth-of-type(2) {
+  opacity: 1;
+  transition: transform 200ms ease-out;
+  transform: translateZ(0);
+}
+.svg input:active ~ svg g:last-child line, .svg input:checked ~ svg g:last-child line {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+.svg input:checked ~ svg {
+  background: #07f;
+}
+
+.line {
+  background: #c9c9c9;
+  width: 24px;
+  height: 24px;
+}
+.line div {
+  position: absolute;
+}
+.line div:nth-of-type(1) {
+  transition: opacity 150ms ease-out, transform 0ms 150ms;
+  transform: scale(0) translateZ(0);
+  will-change: transform, opacity;
+  transform-origin: center center;
+  opacity: 0;
+  z-index: 1;
+  top: calc(50% - 18px);
+  left: calc(50% - 18px);
+  border-radius: 100%;
+  background: #07f;
+  width: 36px;
+  height: 36px;
+}
+.line div:nth-of-type(2), .line div:nth-of-type(3) {
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.line div:nth-of-type(2):before, .line div:nth-of-type(2):after, .line div:nth-of-type(3):before, .line div:nth-of-type(3):after {
+  transform-origin: left center;
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  border-radius: 2px;
+}
+.line div:nth-of-type(2):before, .line div:nth-of-type(3):before {
+  bottom: 10px;
+  left: 3px;
+  width: 8px;
+}
+.line div:nth-of-type(2):after, .line div:nth-of-type(3):after {
+  bottom: 5px;
+  right: -1px;
+  width: 17px;
+}
+.line div:nth-of-type(2) {
+  transition: all 150ms ease-out;
+}
+.line div:nth-of-type(2):before, .line div:nth-of-type(2):after {
+  background: #d6d6d6;
+}
+.line div:nth-of-type(2):before {
+  transform: rotate(45deg) translateZ(0);
+}
+.line div:nth-of-type(2):after {
+  transform: rotate(-45deg) translateZ(0);
+}
+.line div:nth-of-type(3):before, .line div:nth-of-type(3):after {
+  opacity: 0;
+  background: white;
+}
+.line div:nth-of-type(3):before {
+  transition: transform 100ms ease-out;
+  transform: rotate(45deg) scaleX(0) translateZ(0);
+}
+.line div:nth-of-type(3):after {
+  transition: transform 200ms ease-out 100ms;
+  transform: rotate(-45deg) scaleX(0) translateZ(0);
+}
+.line input:hover ~ div:nth-of-type(2) {
+  background: rgba(0, 119, 255, 0.1);
+}
+.line input:active ~ div:nth-of-type(1), .line input:checked ~ div:nth-of-type(1) {
+  opacity: 1;
+  transition: transform 200ms ease-out;
+  transform: translateZ(0);
+}
+.line input:active ~ div:nth-of-type(3):before, .line input:active ~ div:nth-of-type(3):after, .line input:checked ~ div:nth-of-type(3):before, .line input:checked ~ div:nth-of-type(3):after {
+  opacity: 1;
+}
+.line input:active ~ div:nth-of-type(3):before, .line input:checked ~ div:nth-of-type(3):before {
+  transform: rotate(45deg) translateZ(0);
+}
+.line input:active ~ div:nth-of-type(3):after, .line input:checked ~ div:nth-of-type(3):after {
+  transform: rotate(-45deg) translateZ(0);
+}
+.line input:checked ~ div:nth-of-type(2) {
+  background: #07f;
+}
+
+.symbol {
+  background: #c9c9c9;
+  width: 24px;
+  height: 24px;
+}
+.symbol div {
+  position: absolute;
+}
+.symbol div:nth-of-type(1) {
+  transition: opacity 150ms ease-out, transform 0ms 150ms;
+  transform: scale(0) translateZ(0);
+  will-change: transform, opacity;
+  transform-origin: center center;
+  opacity: 0;
+  z-index: 1;
+  top: calc(50% - 18px);
+  left: calc(50% - 18px);
+  border-radius: 100%;
+  background: #07f;
+  width: 36px;
+  height: 36px;
+  color: transparent;
+  font-size: 0;
+}
+.symbol div:nth-of-type(2), .symbol div:nth-of-type(3) {
+  transition: all 150ms ease-out;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+}
+.symbol div:nth-of-type(2) {
+  color: rgba(255, 255, 255, 0.2);
+}
+.symbol div:nth-of-type(3) {
+  opacity: 0;
+  color: white;
+}
+.symbol input:hover ~ div:nth-of-type(2) {
+  background: rgba(0, 119, 255, 0.1);
+}
+.symbol input:active ~ div:nth-of-type(1), .symbol input:checked ~ div:nth-of-type(1) {
+  opacity: 1;
+  transition: transform 200ms ease-out;
+  transform: translateZ(0);
+}
+.symbol input:active ~ div:nth-of-type(3), .symbol input:checked ~ div:nth-of-type(3) {
+  opacity: 1;
+}
+.symbol input:checked ~ div:nth-of-type(2) {
+  background: #07f;
+}

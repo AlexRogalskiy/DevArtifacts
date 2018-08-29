@@ -1,0 +1,111 @@
+@charset "UTF-8";
+[class^="support-"]::after {
+  display: block;
+  color: #afafaf;
+  background: #19212a;
+  text-align: center;
+  padding: 20px;
+}
+
+/* CSS Flexbox */
+.support-flexbox::after {
+  content: "💪🏼 Stop flexing; flexbox is unsupported in your browser.";
+}
+
+@supports (display: flex) {
+  .support-flexbox::after {
+    display: none;
+  }
+}
+/* CSS Grid */
+.support-grid::after {
+  content: "😢 Sorry, CSS Grid is unsupported in your browser.";
+}
+
+@supports (display: grid) {
+  .support-grid::after {
+    display: none;
+  }
+}
+/* initial-letter */
+.support-initial-letter::after {
+  content: "✋🏼 Hold on there cowboy; initial-letter is unsupported in your browser.";
+}
+
+@supports (initial-letter: 1) or (-webkit-initial-letter: 1) {
+  .support-initial-letter::after {
+    display: none;
+  }
+}
+/* backdrop-filter */
+.support-backdrop-filter::after {
+  content: "💀 No good, backdrop-filter is unsupported in your browser.";
+}
+
+@supports (backdrop-filter: blur()) or (-webkit-backdrop-filter: blur()) {
+  .support-backdrop-filter::after {
+    display: none;
+  }
+}
+/* css-shapes */
+.support-css-shapes::after {
+  content: "📐 Dangit, CSS Shapes are unsupported in your browser.";
+}
+
+@supports (shape-outside: circle()) or (-webkit-shape-outside: circle()) {
+  .support-css-shapes::after {
+    display: none;
+  }
+}
+/* scrollsnap */
+.support-scrollsnap::after {
+  content: "🍋 fairly predictably, CSS scrollsnap is unsupported in your browser.";
+}
+
+@supports (shape-outside: circle()) or (-webkit-shape-outside: circle()) {
+  .support-scrollsnap::after {
+    display: none;
+  }
+}
+/* css-excludes */
+.support-css-excludes::after {
+  content: "✂️ No joy, CSS Excludes are excluded from your browser.";
+}
+
+@supports (-ms-wrap-flow: both) or (-ms-wrap-flow: both) {
+  .support-css-excludes::after {
+    display: none;
+  }
+}
+html {
+  font: 100%/1.6 'Karla', arial, sans-serif;
+  background: #fbfcfc;
+  color: #4c4e4d;
+}
+
+a {
+  color: #304ffe;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+p {
+  font-size: 1.25em;
+  width: 80%;
+  max-width: 35em;
+  margin: 3em auto 0 auto;
+}
+
+p::first-letter {
+  -webkit-initial-letter: 3 2;
+  initial-letter: 3 2;
+  color: #c69c6d;
+  margin: 1em 0.5em 0 0;
+  font-weight: bold;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/martian.jpg");
+  background-size: cover;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

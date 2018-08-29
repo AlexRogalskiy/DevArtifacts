@@ -1,0 +1,29 @@
+%main
+	%fieldset
+		.container
+			.svg
+				%input#checkbox-svg{:type => "checkbox"}
+				- 2.times do
+					%div
+				%svg{:viewBox => "0 0 24 24"}
+					- 2.times do
+						%g
+							%line{:x1 => "4.5", :x2 => "9.24", :y1 => "12.5", :y2 => "17.24"}
+							%line{:x1 => "9.24", :x2 => "19.76", :y1 => "17.24", :y2 => "6.73"}
+			%label{:for => "checkbox-svg"} SVG
+
+	%fieldset
+		.container
+			.line
+				%input#checkbox-html{:type => "checkbox"}
+				- 3.times do
+					%div
+			%label{:for => "checkbox-html"} HTML
+
+	%fieldset
+		.container
+			.symbol
+				%input#checkbox-sym{:type => "checkbox"}
+				- 3.times do
+					%div &#10003;
+			%label{:for => "checkbox-sym"} Symbol
