@@ -1,0 +1,9 @@
+<?php require("declaration-header.inc"); ?>
+<?php include("menu.inc"); ?>
+<?php include("pageheader.inc"); ?>
+<?php include("section1.inc"); ?>
+<?php include("section2.inc"); ?>
+<?php include("section3.inc"); ?>
+<?php include("footer-menu.inc"); ?>
+<?php include("credits.inc"); ?>
+<?php include("closing-tags.inc"); ?>

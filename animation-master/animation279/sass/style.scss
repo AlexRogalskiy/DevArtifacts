@@ -1,0 +1,110 @@
+:root {
+  --br: 15px;
+  text-align: center;
+  color: white;
+  background: #f06d06;
+  padding: 1rem;
+}
+body {
+  background: #222;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+h1 {
+  font-family: 'Spectral', serif;
+  font-size: calc(1rem + 3.3vw);
+}
+
+input {
+  width: 100%;
+  margin: 0 0 1rem 0;
+}
+
+.br-all {
+  border-radius: var(--br);
+}
+.br-top-left {
+  border-top-left-radius: var(--br);
+}
+.br-top-right {
+  border-top-right-radius: var(--br);
+}
+.br-bottom-left {
+  border-bottom-left-radius: var(--br);
+}
+.br-bottom-right {
+  border-bottom-right-radius: var(--br);
+}
+
+.br-four-value {
+  border-radius: var(--br) calc(var(--br)*2) calc(var(--br)*3) calc(var(--br)/2);
+}
+.br-three-value {
+  border-radius: var(--br) calc(var(--br)*2) calc(var(--br)*3);
+}
+.br-two-value {
+  border-radius: var(--br) calc(var(--br)*2);
+}
+.br-slash-one {
+  border-radius: var(--br)/calc(var(--br)*3);
+}
+.br-slash-two {
+  border-radius: calc(var(--br)*3)/var(--br);
+}
+.br-slash-three {
+  border-radius: calc(var(--br)*4) calc(var(--br)*3) calc(var(--br)*2) calc(var(--br)*1)/calc(var(--br)*1) calc(var(--br)*2) calc(var(--br)*3) calc(var(--br)*4);
+}
+
+.box {
+  background: white;
+  color: #222;
+  height: 100px;
+  font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 1rem;
+  @media (max-width: 550px) {
+    margin-bottom: 2rem;
+  }
+}
+.allBoxes {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 3rem;
+  .br-four-value {
+    grid-column-start: 3;
+    grid-column-end: -1;
+    grid-row-start: 1;
+  }
+  .br-all {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+  }
+  .br-slash-three {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    .br-four-value {
+      grid-column-start: 1;
+      grid-column-end: -1;
+      grid-row-start: auto;
+    }
+    .br-all {
+      grid-column-end: 1;
+      grid-column-end: -1;
+      grid-row-start: auto;
+    }
+  }
+  @media (max-width: 550px) {
+    display: block;
+  }
+}
