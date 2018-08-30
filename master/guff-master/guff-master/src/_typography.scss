@@ -1,0 +1,84 @@
+// ###Typography
+
+// Safe Rem
+@mixin safe-rem($property: font-size, $num: 14){
+  $valid: true;
+  @if type-of($property) != "string" {
+    @warn "property: #{$property} is not a string";
+    $valid: false;
+  }
+  @if type-of($num) != "number" {
+    @warn "num: #{$num} is not a number";
+    $valid: false;
+  }
+  @if $valid == true {
+    #{$property}: #{_strip-unit($num)}px;
+    #{$property}: rem-calc($num);
+  }
+}
+
+// Typographic Rhythm Mixin
+@mixin type($rem-base: $rem-base,$line-height-base: $line-height-base, $type-rhythm-ratio: $type-rhythm-ratio){
+  $valid: true;
+  @if type-of($rem-base) != "number" {
+    @warn "rem-base: #{$rem-base} is not a number";
+    $valid: false;
+  }
+  @if type-of($line-height-base) != "number" {
+    @warn "line-height: #{$line-height-base} is not a number";
+    $valid: false;
+  }
+  @if type-of($type-rhythm-ratio) != "number" {
+    @warn "type-rhythm-ratio: #{$type-rhythm-ratio} is not a number";
+    $valid: false;
+  }
+  @if $valid == true {
+    // Scale type at $type-rhythm-ratio
+    $h6-size: round(_strip-unit($rem-base) * $type-rhythm-ratio);
+    $h5-size: round($h6-size * $type-rhythm-ratio);
+    $h4-size: round($h5-size * $type-rhythm-ratio);
+    $h3-size: round($h4-size * $type-rhythm-ratio);
+    $h2-size: round($h3-size * $type-rhythm-ratio);
+    $h1-size: round($h2-size * $type-rhythm-ratio);
+
+    @if unit($line-height-base) == "px" {
+      // Set line-height
+      body {
+        line-height: _strip-unit($line-height-base) / _strip-unit($rem-base);
+      }
+    } @else {
+      body {
+        line-height: $line-height-base;
+      }
+    }
+
+    // Set heading sizes to size variables
+    h1 {
+      @include safe-rem(font-size, $h1-size);
+    }
+
+    h2 {
+      @include safe-rem(font-size, $h2-size);
+    }
+
+    h3 {
+      @include safe-rem(font-size, $h3-size);
+    }
+
+    h4 {
+      @include safe-rem(font-size, $h4-size);
+    }
+
+    h5 {
+      @include safe-rem(font-size, $h5-size);
+    }
+
+    h6 {
+      @include safe-rem(font-size, $h6-size);
+    }
+
+    p {
+      @include safe-rem(font-size, $rem-base);
+    }
+  }
+}

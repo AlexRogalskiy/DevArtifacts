@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
+		{{#collection tag="ul" class="list-group"}}
+		  <li class="list-group-item {{#done}}done{{/done}}">
+			<input type="checkbox" data-objectid="{{objectId}}" {{#done}}checked{{/done}}>
+		   	{{title}}
+		   	<a href="#" class="trash pull-right"><span class="glyphicon glyphicon-trash"></span></a>
+			</div>
+		  </li>
+		{{/collection}}
+		<form role="form">
+		  <div class="form-group">
+		  <input type="text" name="title" class="form-control" placeholder="New Todo" required/>
+		  </div>
+		  <div class="form-group">
+		  <button type="submit" class="btn btn-primary">Add</button>
+		  </div>
+		  <div class="form-group">
+		  <button type="button" class="logout btn btn-primary pull-right">Logout</button>
+		  </div>
+		</form>
+		</div>
+	</div>
+</div>

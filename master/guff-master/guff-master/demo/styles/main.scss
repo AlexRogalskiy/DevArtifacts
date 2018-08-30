@@ -1,0 +1,138 @@
+@import "../../guff";
+
+$grid-max-width: 600px;
+
+@include reset;
+
+@include type;
+
+body {
+    font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+}
+
+code {
+    background: #eee;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    color: #aaa;
+    display: block;
+    font-family: monospace;
+    margin: 20px 0px;
+    padding: 0px 20px;
+    white-space: pre-wrap;
+    width: 100%;
+    span.pun { color: black; }
+    span.pln { color: #c0f; }
+    span.lit { color: #f0c; }
+    span.kwd { color: #c0f; }
+}
+
+a.download-button {
+    display: block;
+    padding: 10px 20px 10px 20px;
+    color: #555;
+    text-decoration: none;
+    font-size: rem-calc(18);
+    font-weight: bold;
+    background: #eee;
+    border: 1px solid #ddd;
+    @include prefixer(border-radius, 5px, webkit moz);
+    @include transition(all 50ms linear);
+    margin: 0px 0px 20px;
+}
+
+a.download-button:hover {
+    background-color: #ddd;
+    border-color: #ccc;
+}
+
+a.download-button span {
+    font-size: 14px;
+    display: block;
+    margin-top: 2px;
+}
+
+header.primary {
+    width: span(12);
+    border-bottom: 1px solid #eee;
+    margin: 0px auto 20px;
+    text-align: center;
+    h1 {
+        font-size: rem-calc(84);
+        font-weight: bold;
+        padding: 20px 0px 0px 0px;
+
+    }
+    p {
+        font-size: rem-calc(16);
+        padding: 0px 0px 20px 0px;
+    }
+    @include breakpoint($mobile) {
+        @include span(12);
+        h1 {
+            @include span(12);
+            @include offset(0);
+        }
+    }
+}
+main {
+    @include container();
+    margin: auto;
+    section {
+        @include span(12);
+        @include clear;
+        header {
+            margin: 0px 0px 20px 0px;
+            text-align: center;
+            @include clear;
+            h2 {
+                background: none;
+                font-size: rem-calc(24);
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+        }
+        &.typography {
+            margin: 0px 0px 15px;
+            h1,h2,h3,h4,h5,h6,p {
+                background: #fee;
+                margin: 10px 0px;
+            }
+            header h2 { background: none; margin: 0px 0px 5px; }
+        }
+        .container {
+            @include container();
+            margin-bottom: 20px;
+        }
+        .float-tile {
+            @include span(4, true);
+            background: #fee;
+            border: 1px solid #dcc;
+            height: 100px;
+            float: left;
+            &.offset-tile {
+                @include offset(4);
+            }
+        }
+        .col-container {
+            @include col-container();
+            margin-bottom: 20px;
+        }
+        .col-tile {
+            @include col(4);
+            border: 1px solid #dcc;
+            background: #fee;
+            height: 100px;
+        }
+    }
+}
+footer.primary {
+    width: span(12);
+    margin: 0px auto 20px;
+    padding: 10px 0px;
+    text-align: center;
+    p {
+        font-size: rem-calc(12);
+        color: #555;
+    }
+}
