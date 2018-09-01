@@ -1,0 +1,47 @@
+html{text-align:center;}
+body{width:950px;margin:0 auto 40px auto;font-family:trebuchet ms;text-align:left}
+.clear{clear:both;}
+	
+@-webkit-keyframes oscillation
+{
+	from
+	{
+		-webkit-transform:rotate(-9deg);
+	}
+	to{
+		-webkit-transform:rotate(9deg);
+	}
+}
+
+@-moz-keyframes oscillation
+{
+	from{
+		-moz-transform:rotate(-9deg);
+	}
+	to{
+		-moz-transform:rotate(9deg);
+	}
+}
+
+#container {
+	background: url('http://www.webdeveloperjuice.com/wp-content/uploads/2011/08/wall-clock1.jpg') no-repeat;	
+	width:200px;
+	height:400px;
+	margin: 0 auto; 
+	position:relative;
+	z-index:1;
+}
+
+.oscillate{  
+	-webkit-transform-origin:50% -40px;  
+	-moz-transform-origin:50% -40px;   
+	-webkit-animation: oscillation 1s ease-in-out infinite alternate;
+	-moz-animation: oscillation 1s ease-in-out infinite alternate;
+	background: url('http://www.webdeveloperjuice.com/wp-content/uploads/2011/08/pendulum.png') no-repeat;
+	width: 50px; 
+	height:110px;
+	z-index:0;
+	position:absolute;
+	top:217px;
+	left:83px;
+}

@@ -1,0 +1,48 @@
+	html{text-align:center;}
+	body{width:950px;margin:0 auto;font-family:trebuchet ms;text-align:left}
+	.block{border:5px solid #ccc;padding:10px;-webkit-border-radius:5px;}
+	.accordion a{display:block;padding:5px 10px;background-color:#333;color:#eee;text-decoration:none}
+	.accordion a:hover{background-color:#999}
+	.accordion div{background-color:#ccc;color:#222;}
+	.accordion div p{padding:20px}
+
+	#bounce{width:200px;}
+	#pulsate{width:200px;height:100px;}
+	.clear{clear:both;}
+
+	#fade{opacity: 1;-webkit-transition: opacity 1s linear;}
+	#fade:hover{opacity: 0;}
+
+	#pulsate:hover {-webkit-animation-name: pulsate;-webkit-animation-duration: 20s;-webkit-animation-timing-function: ease-in-out;}
+	@-webkit-keyframes pulsate {
+	0% { width:140px; }
+	5% { width:190px; left:-25px; }
+	10% { width:140px; left:0px; }
+	15% { width:190px; left:-25px; }
+	20% { width:140px; left:0px; }	
+	40% { width:140px; }
+	45% { width:190px; left:-25px; }
+	50% { width:140px; left:0px;}
+	55% { width:190px; left:-25px;}
+	60% { width:140px; left:0px;}
+	80% { width:140px; }
+	100% { width:140px;  }
+	}
+
+	#nudge{-webkit-transition-property:color,background-color,padding-left;-webkit-transition-duration:500ms,500ms,500ms}
+	#nudge:hover{background-color:#efefef;color:#333;padding-left:50px}
+
+	#expand{background-color:#eee;-webkit-transition: all 500ms linear; border:10px solid black}
+	#expand:hover{border:30px solid #800}
+
+	#bounce:hover {-webkit-animation-name:bounce;-webkit-animation-duration:1s;-webkit-animation-iteration-count:2;-webkit-animation-direction:alternate}
+	@-webkit-keyframes bounce{from{margin-left:0px;}
+		to{margin-left:250px;}
+		}
+
+
+	#spin{-webkit-transition: -webkit-transform 3s ease-in;}
+	#spin:hover{-webkit-transform:rotate(360deg)}
+
+	#accordion div{height:0;overflow:hidden;-webkit-transition:height 600ms ease}
+	#accordion div:target{height:110px}
