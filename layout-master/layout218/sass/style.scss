@@ -1,0 +1,1668 @@
+//  Foundation for Emails Settings
+//  ------------------------------
+//
+//  Table of Contents:
+//
+//   1. Global
+//   2. Grid
+//   3. Block Grid
+//   4. Typography
+//   5. Button
+//   6. Callout
+//   7. Menu
+//   8. Thumbnail
+
+
+// 1. Global
+// ---------
+
+$primary-color: #2199e8;
+$secondary-color: #777777;
+$success-color: #3adb76;
+$warning-color: #ffae00;
+$alert-color: #ec5840;
+$light-gray: #f3f3f3;
+$medium-gray: #cacaca;
+$dark-gray: #8a8a8a;
+$black: #0a0a0a;
+$white: #fefefe;
+$pre-color: #ff6908;
+$global-width: 580px;
+$global-width-small: 95%;
+$global-gutter: 16px;
+$body-background: $light-gray;
+$container-background: $white;
+$global-padding: 16px;
+$global-margin: 16px;
+$global-radius: 3px;
+$global-rounded: 500px;
+$global-breakpoint: $global-width + $global-gutter;
+
+// 2. Grid
+// -------
+
+$grid-column-count: 12;
+$column-padding-bottom: $global-padding;
+$container-radius: 0;
+
+// 3. Block Grid
+// -------------
+
+$block-grid-max: 8;
+$block-grid-gutter: $global-gutter;
+
+// 4. Typography
+// -------------
+
+$global-font-color: $black;
+$body-font-family: Helvetica, Arial, sans-serif;
+$global-font-weight: normal;
+$header-color: inherit;
+$global-line-height: 1.3;
+$global-font-size: 16px;
+$body-line-height: $global-line-height;
+$header-font-family: $body-font-family;
+$header-font-weight: $global-font-weight;
+$h1-font-size: 34px;
+$h2-font-size: 30px;
+$h3-font-size: 28px;
+$h4-font-size: 24px;
+$h5-font-size: 20px;
+$h6-font-size: 18px;
+$header-margin-bottom: 10px;
+$paragraph-margin-bottom: 10px;
+$small-font-size: 80%;
+$small-font-color: $medium-gray;
+$lead-font-size: $global-font-size * 1.25;
+$lead-line-height: 1.6;
+$text-padding: 10px;
+$subheader-lineheight: 1.4;
+$subheader-color: $dark-gray;
+$subheader-font-weight: $global-font-weight;
+$subheader-margin-top: 4px;
+$subheader-margin-bottom: 8px;
+$hr-width: $global-width;
+$hr-border: 1px solid $black;
+$hr-margin: 20px auto;
+$anchor-text-decoration: none;
+$anchor-color: $primary-color;
+$anchor-color-visited: $anchor-color;
+$anchor-color-hover: darken($primary-color, 10%);
+$anchor-color-active: $anchor-color-hover;
+$stat-font-size: 40px;
+
+// 5. Button
+// ---------
+
+$button-padding: (
+  tiny: 4px 8px 4px 8px,
+  small: 5px 10px 5px 10px,
+  default: 8px 16px 8px 16px,
+  large: 10px 20px 10px 20px,
+);
+$button-font-size: (
+  tiny: 10px,
+  small: 12px,
+  default: 16px,
+  large: 20px,
+);
+$button-color: $white;
+$button-color-alt: $medium-gray;
+$button-font-weight: bold;
+$button-margin: 0 0 $global-margin 0;
+$button-background: $primary-color;
+$button-border: 2px solid $button-background;
+$button-radius: $global-radius;
+$button-rounded: $global-rounded;
+
+// 6. Callout
+// ----------
+
+$callout-background: $white;
+$callout-background-fade: 85%;
+$callout-padding: 10px;
+$callout-margin-bottom: $global-margin;
+$callout-border: 1px solid darken($callout-background, 20%);
+$callout-border-secondary: 1px solid darken($secondary-color, 20%);
+$callout-border-success: 1px solid darken($success-color, 20%);
+$callout-border-warning: 1px solid darken($warning-color, 20%);
+$callout-border-alert: 1px solid darken($alert-color, 20%);
+
+// 7. Menu
+// -------
+
+$menu-item-padding: 10px;
+$menu-item-gutter: 10px;
+$menu-item-color: $primary-color;
+
+// 8. Thumbnail
+// ------------
+
+$thumbnail-border: solid 4px $white;
+$thumbnail-margin-bottom: $global-margin;
+$thumbnail-shadow: 0 0 0 1px rgba($black, 0.2);
+$thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
+$thumbnail-transition: box-shadow 200ms ease-out;
+$thumbnail-radius: $global-radius;
+
+
+
+
+
+
+
+
+// Foundation for Emails by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+/// Calculates a percentage value for a grid column width.
+/// @access private
+/// @param {number} $colNumber - Column count of the column.
+/// @param {number} $totalColumns - Column count of the entire row.
+/// @returns {number} A percentage width value.
+@function -zf-grid-calc-pct($colNumber, $totalColumns) {
+  @return floor(percentage(($colNumber / $totalColumns)) * 1000000) / 1000000;
+}
+
+/// Calculates a pixel value for a grid column width.
+/// @access private
+/// @param {number} $columnNumber - Column count of the column.
+/// @param {number} $totalColumns - Column count of the entire row.
+/// @param {number} $containerWidth - Width of the surrounding container, in pixels.
+/// @returns {number} A pixel width value.
+@function -zf-grid-calc-px($columnNumber, $totalColumns, $containerWidth) {
+  @return ($containerWidth / $totalColumns * $columnNumber - $global-gutter);
+}
+// Foundation for Emails by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////
+/// @group global
+////
+
+/// Primary color for interactive components like links and buttons.
+/// @type Color
+$primary-color: #2199e8 !default;
+
+/// Secondary color, used with components that support the `.secondary` class.
+/// @type Color
+$secondary-color: #777777 !default;
+
+/// Color to indicate a positive status or action, used with the `.success` class.
+/// @type Color
+$success-color: #3adb76 !default;
+
+/// Color to indicate a caution status or action, used with the `.warning` class.
+/// @type Color
+$warning-color: #ffae00 !default;
+
+/// Color to indicate a negative status or action, used with the `.alert` class.
+/// @type Color
+$alert-color: #ec5840 !default;
+
+/// Color used for light gray UI items within Foundation.
+/// @type Color
+$light-gray: #f3f3f3 !default;
+
+/// Color used for medium gray UI items within Foundation.
+/// @type Color
+$medium-gray: #cacaca !default;
+
+/// Color used for dark gray UI items within Foundation.
+/// @type Color
+$dark-gray: #8a8a8a !default;
+
+/// Color used for black ui items within Foundation
+/// @type Color
+$black: #0a0a0a !default;
+
+/// Color used for white ui items within Foundation
+/// @type Color
+$white: #fefefe !default;
+
+/// Color used code.
+/// @type Color
+$pre-color: #ff6908 !default;
+
+/// Width of the container.
+/// @type Number
+$global-width: 580px !default;
+
+/// Width of the container on small screens.
+/// @type Length
+$global-width-small: 95% !default;
+
+/// Gutter for grid elements.
+/// @type length
+$global-gutter: 16px !default;
+
+/// Body background color.
+/// @type Length
+$body-background: $light-gray !default;
+
+/// Color for the container background
+/// @type Color
+$container-background: $white !default;
+
+/// Global padding.
+/// @type Number
+$global-padding: 16px !default;
+
+/// Global margin. Margin requires a capital 'M' to workin Outlook.com
+/// @type Number
+$global-margin: 16px !default;
+
+/// Global raidus of radius-corners.
+/// @type Number
+$global-radius: 3px !default;
+
+/// Global rounded radius of rounded-corners.
+/// @type Number
+$global-rounded: 500px !default;
+
+/// Global media query to switch from desktop to mobile styles.
+/// @type String
+$global-breakpoint: $global-width + $global-gutter !default;
+
+.wrapper {
+  width: 100%;
+}
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group normalize
+////
+
+#outlook a {
+  padding: 0;
+}
+
+body {
+  width: 100% !important;
+  min-width: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  margin: 0;
+  Margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.ExternalClass {
+  width: 100%;
+
+  &,
+  p,
+  span,
+  font,
+  td,
+  div {
+    line-height: 100%;
+  }
+}
+
+#backgroundTable {
+  margin: 0;
+  Margin: 0;
+  padding: 0;
+  width: 100% !important;
+  line-height: 100% !important;
+}
+
+img {
+  outline: none;
+  text-decoration: none;
+  -ms-interpolation-mode: bicubic;
+  width: auto;
+  max-width: 100%;
+  clear: both;
+  display: block;
+}
+
+center {
+  width: 100%;
+  min-width: $global-width;
+}
+
+a img {
+  border: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td {
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  border-collapse: collapse !important;
+}
+
+table, tr, td {
+  padding: 0;
+  vertical-align: top;
+  text-align: left;
+}
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group grid
+////
+
+/// Default number of columns for an email.
+/// @type Number
+$grid-column-count: 12 !default;
+
+/// Default padding for the bottom of a column.
+/// @type Number
+$column-padding-bottom: $global-padding !default;
+
+/// Default border radius for the container. Use a px value
+/// @type Number
+$container-radius: 0 !default;
+
+//For viewing email in browser
+@media only screen {
+  html {
+    min-height: 100%;
+    background: $body-background;
+  }
+}
+
+table {
+  &.body {
+    background: $body-background;
+    height: 100%;
+    width: 100%;
+  }
+
+  &.container {
+    background: $container-background;
+    width: $global-width;
+    margin: 0 auto;
+    Margin: 0 auto;
+    text-align: inherit;
+  }
+
+  &.row {
+    padding: 0;
+    width: 100%;
+    position: relative;
+  }
+
+  &.spacer {
+    width: 100%;
+    td {
+      mso-line-height-rule: exactly;
+    }
+  }
+}
+
+table.container table.row {
+  display: table;
+}
+
+td.columns,
+td.column,
+th.columns,
+th.column {
+  margin: 0 auto;
+  Margin: 0 auto;
+  padding-left: $global-gutter;
+  padding-bottom: $column-padding-bottom;
+
+  // Prevents Nested columns from double the padding
+  .column,
+  .columns {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    center {
+      min-width: none !important;
+    }
+  }
+}
+
+td.columns.last,
+td.column.last,
+th.columns.last,
+th.column.last {
+  padding-right: $global-gutter;
+}
+
+//makes sure nested tables are 100% width
+td.columns,
+td.column,
+th.columns,
+th.column {
+  table:not(.button) {
+    width: 100%;
+  }
+}
+
+@for $i from 1 through $grid-column-count {
+  td.large-#{$i},
+  th.large-#{$i} {
+    width: -zf-grid-calc-px($i, $grid-column-count, $global-width);
+    padding-left: $global-gutter / 2;
+    padding-right: $global-gutter / 2;
+  }
+
+  td.large-#{$i}.first,
+  th.large-#{$i}.first {
+    padding-left: $global-gutter;
+  }
+
+  td.large-#{$i}.last,
+  th.large-#{$i}.last {
+    padding-right: $global-gutter;
+  }
+
+  //Collapsed logic
+  .collapse {
+    > tbody > tr > td.large-#{$i},
+    > tbody > tr > th.large-#{$i} {
+      padding-right: 0;
+      padding-left: 0;
+      width: -zf-grid-calc-px($i, $grid-column-count, $global-width) + $global-gutter;
+    }
+
+    //Gotta give it that extra love for the first and last columns.
+    td.large-#{$i}.first,
+    th.large-#{$i}.first,
+    td.large-#{$i}.last,
+    th.large-#{$i}.last {
+      width: -zf-grid-calc-px($i, $grid-column-count, $global-width) + ($global-gutter * 1.5);
+    }
+  }
+
+  td.large-#{$i} center,
+  th.large-#{$i} center {
+    min-width: -zf-grid-calc-px($i, $grid-column-count, $global-width) - ($global-gutter * 2);
+  }
+
+  .body .columns td.large-#{$i},
+  .body .column td.large-#{$i},
+  .body .columns th.large-#{$i},
+  .body .column th.large-#{$i} {
+    width: -zf-grid-calc-pct($i, $grid-column-count);
+  }
+}
+
+@for $i from 1 through ($grid-column-count - 1) {
+  td.large-offset-#{$i},
+  td.large-offset-#{$i}.first,
+  td.large-offset-#{$i}.last,
+  th.large-offset-#{$i},
+  th.large-offset-#{$i}.first,
+  th.large-offset-#{$i}.last {
+    //1.5 takes in effect a whole empty cell.
+    padding-left: -zf-grid-calc-px($i, $grid-column-count, $global-width) + $global-gutter * 2;
+  }
+}
+
+td.expander,
+th.expander {
+  visibility: hidden;
+  width: 0;
+  padding: 0 !important;
+}
+
+// adds radius to container
+table.container.radius {
+  border-radius: $container-radius;
+  border-collapse: separate;
+}
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group block-grid
+////
+
+/// The highest number of `.x-up` classes available when using the block grid CSS.
+/// @type Number
+$block-grid-max: 8 !default;
+
+/// Gutter between elements in a block grid.
+/// @type Number
+$block-grid-gutter: $global-gutter !default;
+
+.block-grid {
+  width: 100%;
+  max-width: $global-width;
+
+  td {
+    display: inline-block;
+    padding: $block-grid-gutter / 2;
+  }
+}
+
+// Sizing classes
+@for $i from 2 through $block-grid-max {
+  .up-#{$i} td {
+    width: floor(($global-width - $i * $block-grid-gutter) / $i) !important;
+  }
+}
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group alignment
+////
+
+table,
+th,
+td,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  &.text-center {
+    text-align: center;
+  }
+
+  &.text-left {
+    text-align: left;
+  }
+
+  &.text-right {
+    text-align: right;
+  }
+}
+
+span.text-center {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+@media only screen and (max-width: #{$global-breakpoint}) {
+  .small-float-center {
+    margin: 0 auto !important;
+    float: none !important;
+    text-align: center !important;
+  }
+
+  .small-text-center {
+    text-align: center !important;
+  }
+
+  .small-text-left {
+    text-align: left !important;
+  }
+
+  .small-text-right {
+    text-align: right !important;
+  }
+}
+
+img.float-left {
+  float: left;
+  text-align: left;
+}
+
+img.float-right {
+  float: right;
+  text-align: right;
+}
+
+img.float-center,
+img.text-center {
+  margin: 0 auto;
+  Margin: 0 auto;
+  float: none;
+  text-align: center;
+}
+
+table,
+td,
+th {
+  &.float-center {
+    margin: 0 auto;
+    Margin: 0 auto;
+    float: none;
+    text-align: center;
+  }
+}
+
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group visibility
+////
+
+.hide-for-large {
+  display: none !important;
+  mso-hide: all; // hide selected elements in Outlook 2007-2013
+  overflow: hidden;
+  max-height: 0;
+  font-size: 0;
+  width: 0;
+  line-height: 0;
+
+  @media only screen and (max-width: #{$global-breakpoint}) {
+    display: block !important;
+    width: auto !important;
+    overflow: visible !important;
+    max-height: none !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+}
+
+table.body table.container .hide-for-large * {
+  mso-hide: all; // hide selected elements in Outlook 2007-2013
+}
+
+table.body table.container .hide-for-large,
+table.body table.container .row.hide-for-large {
+  @media only screen and (max-width: #{$global-breakpoint}) {
+    display: table !important;
+    width: 100% !important;
+  }
+}
+
+table.body table.container .callout-inner.hide-for-large {
+  @media only screen and (max-width: #{$global-breakpoint}) {
+    display: table-cell !important;
+    width: 100% !important;
+  }
+}
+
+table.body table.container .show-for-large {
+  @media only screen and (max-width: #{$global-breakpoint}) {
+    display: none !important;
+    width: 0;
+    mso-hide: all; // hide selected elements in Outlook 2007-2013
+    overflow: hidden;
+  }
+}
+
+// [todo] add image resets
+// img {
+//   max-height: 0;
+//   width: 0;
+// }
+// in media query
+// img { 
+//   max-height: none !important; 
+//   width: auto !important; 
+// }
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group typography
+////
+
+/// Global font color.
+/// @type Color
+$global-font-color: $black !default;
+
+/// Global font family.
+/// @type Font
+$body-font-family: Helvetica, Arial, sans-serif !default;
+
+/// Global font weight.
+/// @type Keyword
+$global-font-weight: normal !default;
+
+/// Global font weight.
+/// @type Keyword
+$header-color: inherit !default;
+
+/// Global line height.
+/// @type Number
+$global-line-height: 1.3 !default;
+
+/// Font size of body text.
+/// @type Number
+$global-font-size: 16px !default;
+
+/// Line height of body text.
+/// @type Number
+$body-line-height: $global-line-height !default;
+
+/// Font family of headings.
+/// @type List
+$header-font-family: $body-font-family !default;
+
+/// Font family of headings.
+/// @type List
+$header-font-weight: $global-font-weight !default;
+
+/// Font size of `<h1>` elements.
+/// @type Number
+$h1-font-size: 34px !default;
+
+/// Font size of `<h2>` elements.
+/// @type Number
+$h2-font-size: 30px !default;
+
+/// Font size of `<h3>` elements.
+/// @type Number
+$h3-font-size: 28px !default;
+
+/// Font size of `<h4>` elements.
+/// @type Number
+$h4-font-size: 24px !default;
+
+/// Font size of `<h5>` elements.
+/// @type Number
+$h5-font-size: 20px !default;
+
+/// Font size of `<h6>` elements.
+/// @type Number
+$h6-font-size: 18px !default;
+
+/// Margin bottom of `<h1>` through `<h6>` elements.
+/// @type Number
+$header-margin-bottom: 10px !default;
+
+/// Margin bottom of paragraphs.
+/// @type Number
+$paragraph-margin-bottom: 10px !default;
+
+/// Default font size for `<small>`.
+/// @type Number
+$small-font-size: 80% !default;
+
+/// Color of `<small>` elements when placed inside headers.
+/// @type Color
+$small-font-color: $medium-gray !default;
+
+/// Font size of lead paragraphs.
+/// @type Number
+$lead-font-size: $global-font-size * 1.25 !default;
+
+/// Line height of lead paragraphs.
+/// @type Number
+$lead-line-height: 1.6 !default;
+
+/// Padding inside paragraphs.
+/// @type Number
+$text-padding: 10px !default;
+
+/// Default line height for subheaders.
+/// @type Number
+$subheader-lineheight: 1.4 !default;
+
+/// Default font color for subheaders.
+/// @type Color
+$subheader-color: $dark-gray !default;
+
+/// Default font weight for subheaders.
+/// @type String
+$subheader-font-weight: $global-font-weight !default;
+
+/// Default top margin for subhheaders.
+/// @type Number
+$subheader-margin-top: 4px !default;
+
+/// Default bottom margin for subheaders.
+/// @type Number
+$subheader-margin-bottom: 8px !default;
+
+/// Maximum width of a divider.
+/// @type Number
+$hr-width: $global-width !default;
+
+/// Default border for a divider.
+/// @type List
+$hr-border: 1px solid $black !default;
+
+/// Default margin for a divider.
+/// @type Number | List
+$hr-margin: 20px auto !default;
+
+/// Text decoration for anchors.
+/// @type Keyword
+$anchor-text-decoration: none !default;
+
+/// Text color of anchors.
+/// @type Color
+$anchor-color: $primary-color !default;
+
+/// Text color of anchors to visited links.
+/// @type Color
+$anchor-color-visited: $anchor-color !default;
+
+/// Text color of anchors on hover.
+/// @type Color
+$anchor-color-hover: darken($primary-color, 10%) !default;
+
+/// Text color of active anchors.
+/// @type Color
+$anchor-color-active: $anchor-color-hover !default;
+
+/// Default font size for statistic numbers.
+/// @type Number
+$stat-font-size: 40px !default;
+
+body,
+table.body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+td,
+th,
+a {
+  color: $global-font-color;
+  font-family: $body-font-family;
+  font-weight: $global-font-weight;
+  padding: 0;
+  margin: 0;
+  Margin: 0;
+  text-align: left;
+  line-height: $global-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $header-color;
+  word-wrap: normal;
+  font-family: $header-font-family;
+  font-weight: $header-font-weight;
+  margin-bottom: $header-margin-bottom;
+  Margin-bottom: $header-margin-bottom;
+}
+
+h1 {
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+h4 {
+  font-size: $h4-font-size;
+}
+
+h5 {
+  font-size: $h5-font-size;
+}
+
+h6 {
+  font-size: $h6-font-size;
+}
+
+body,
+table.body,
+p,
+td,
+th {
+  font-size: $global-font-size;
+  line-height: $body-line-height;
+}
+
+p {
+  margin-bottom: $paragraph-margin-bottom;
+  Margin-bottom: $paragraph-margin-bottom;
+
+  &.lead {
+    font-size: $lead-font-size;
+    line-height: $lead-line-height;
+  }
+
+  &.subheader {
+    margin-top: $subheader-margin-top;
+    margin-bottom: $subheader-margin-bottom;
+    Margin-top: $subheader-margin-top;
+    Margin-bottom: $subheader-margin-bottom;
+    font-weight: $subheader-font-weight;
+    line-height: $subheader-lineheight;
+    color: $subheader-color;
+  }
+}
+
+small {
+  font-size: $small-font-size;
+  color: $small-font-color;
+}
+
+a {
+  color: $anchor-color;
+  text-decoration: $anchor-text-decoration;
+
+  &:hover {
+    color: $anchor-color-hover;
+  }
+
+  &:active {
+    color: $anchor-color-active;
+  }
+
+  &:visited {
+    color: $anchor-color-visited;
+  }
+}
+
+h1 a,
+h1 a:visited,
+h2 a,
+h2 a:visited,
+h3 a,
+h3 a:visited,
+h4 a,
+h4 a:visited,
+h5 a,
+h5 a:visited,
+h6 a,
+h6 a:visited {
+  color: $anchor-color;
+}
+
+pre {
+  background: $light-gray;
+  margin: 30px 0;
+  Margin: 30px 0;
+
+  code {
+    color: $medium-gray;
+
+    span.callout {
+      color: $dark-gray;
+      font-weight: bold;
+    }
+
+    span.callout-strong {
+      color: $pre-color;
+      font-weight: bold;
+    }
+  }
+}
+
+// Horizontal rule
+table.hr {
+  width: 100%;
+  
+  th {
+    height: 0;
+    max-width: $hr-width;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: $hr-border;
+    border-left: 0;
+    margin: $hr-margin;
+    Margin: $hr-margin;
+    clear: both;
+  }
+}
+
+// Use to style a large number to display a statistic
+.stat {
+  font-size: $stat-font-size;
+  line-height: 1;
+
+  p + & {
+    margin-top: -16px;
+    Margin-top: -16px;
+  }
+}
+
+// preheader styles
+span.preheader {
+  display: none !important;
+  visibility: hidden;
+  mso-hide: all !important;
+  font-size: 1px;
+  color: $body-background; // needs to match background color of it's container
+  line-height: 1px;
+  max-height: 0px;
+  max-width: 0px;
+  opacity: 0;
+  overflow: hidden;
+}
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group button
+////
+
+/// Padding inside buttons at various sizes.
+/// @type Map
+$button-padding: (
+  tiny: 4px 8px 4px 8px,
+  small: 5px 10px 5px 10px,
+  default: 8px 16px 8px 16px,
+  large: 10px 20px 10px 20px,
+) !default;
+
+/// Font sizes of buttons at various sizes.
+/// @type Map
+$button-font-size: (
+  tiny: 10px,
+  small: 12px,
+  default: 16px,
+  large: 20px,
+) !default;
+
+/// Text color of buttons.
+/// @type Color
+$button-color: $white !default;
+
+/// Text color of buttons with a light background.
+/// @type Color
+$button-color-alt: $medium-gray !default;
+
+/// Font weight of buttons.
+/// @type Weight
+$button-font-weight: bold !default;
+
+/// Margin around buttons.
+/// @type List
+$button-margin: 0 0 $global-margin 0 !default;
+
+/// Background color of buttons.
+/// @type Color
+$button-background: $primary-color !default;
+
+/// Border around buttons.
+/// @type Border
+$button-border: 2px solid $button-background !default;
+
+/// Border radius of buttons. Not supported by all email clients.
+/// @type Number
+$button-radius: $global-radius !default;
+
+/// Border radius of rounded buttons. Not supported by all email clients.
+/// @type Number
+$button-rounded: $global-rounded !default;
+
+table.button {
+  width: auto;
+  margin: $button-margin;
+  Margin: $button-margin;
+
+  table {
+
+    td {
+      text-align: left;
+      color: $button-color;
+      background: $button-background;
+      border: $button-border;
+
+      a {
+        font-family: $body-font-family;
+        font-size: map-get($button-font-size, default);
+        font-weight: $button-font-weight;
+        color: $button-color;
+        text-decoration: none;
+        display: inline-block;
+        padding: map-get($button-padding, default);
+        border: 0 solid $button-background;
+        border-radius: $button-radius;
+      }
+    }
+  }
+
+  &.radius table td {
+    border-radius: $button-radius;
+    border: none;
+  }
+
+  &.rounded table td {
+    border-radius: $button-rounded;
+    border: none;
+  }
+}
+
+table.button:hover table tr td a,
+table.button:active table tr td a,
+table.button table tr td a:visited,
+table.button.tiny:hover table tr td a,
+table.button.tiny:active table tr td a,
+table.button.tiny table tr td a:visited,
+table.button.small:hover table tr td a,
+table.button.small:active table tr td a,
+table.button.small table tr td a:visited,
+table.button.large:hover table tr td a,
+table.button.large:active table tr td a,
+table.button.large table tr td a:visited {
+  color: $button-color;
+}
+
+table.button.tiny {
+  table {
+    td,
+    a {
+      padding: map-get($button-padding, tiny);
+    }
+
+    a {
+      font-size: map-get($button-font-size, tiny);
+      font-weight: normal;
+    }
+  }
+}
+
+table.button.small {
+  table {
+    td,
+    a {
+      padding: map-get($button-padding, small);
+      font-size: map-get($button-font-size, small);
+    }
+  }
+}
+
+table.button.large {
+  table {
+    a {
+      padding: map-get($button-padding, large);
+      font-size: map-get($button-font-size, large);
+    }
+  }
+}
+
+table.button.expand,
+table.button.expanded {
+  width: 100% !important;
+
+  table {
+    width: 100%;
+
+    a {
+      text-align: center;
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  center {
+    min-width: 0;
+  }
+}
+
+table.button:hover,
+table.button:visited,
+table.button:active {
+  table {
+    td {
+      background: darken($button-background, 10%);
+      color: $button-color;
+    }
+  }
+}
+
+table.button:hover,
+table.button:visited,
+table.button:active {
+  table {
+    a {
+      border: 0 solid darken($button-background, 10%);
+    }
+  }
+}
+
+table.button.secondary {
+  table {
+    td {
+      background: $secondary-color;
+      color: $button-color;
+      border: 0px solid $secondary-color;
+    }
+
+    a {
+      color: $button-color;
+      border: 0 solid $secondary-color;
+    }
+  }
+}
+
+table.button.secondary:hover {
+  table {
+    td {
+      background: lighten($secondary-color, 10%);
+      color: $button-color;
+    }
+
+    a {
+      border: 0 solid lighten($secondary-color, 10%);
+    }
+  }
+}
+
+table.button.secondary:hover {
+  table {
+    td a {
+      color: $button-color;
+    }
+  }
+}
+
+table.button.secondary:active {
+  table {
+    td a {
+      color: $button-color;
+    }
+  }
+}
+
+table.button.secondary {
+  table {
+    td a:visited {
+      color: $button-color;
+    }
+  }
+}
+
+table.button.success {
+  table {
+    td {
+      background: $success-color;
+      border: 0px solid $success-color;
+    }
+
+    a {
+      border: 0 solid $success-color;
+    }
+  }
+}
+
+table.button.success:hover {
+  table {
+    td {
+      background: darken($success-color, 10%);
+    }
+
+    a {
+      border: 0 solid darken($success-color, 10%);
+    }
+  }
+}
+
+table.button.alert {
+  table {
+    td {
+      background: $alert-color;
+      border: 0px solid $alert-color;
+    }
+
+    a {
+      border: 0 solid $alert-color;
+    }
+  }
+}
+
+table.button.alert:hover {
+  table {
+    td {
+      background: darken($alert-color, 10%);
+    }
+
+    a {
+      border: 0 solid darken($alert-color, 10%);
+    }
+  }
+}
+
+table.button.warning {
+  table {
+    td {
+      background: $warning-color;
+      border: 0px solid $warning-color;
+    }
+
+    a {
+      border: 0px solid $warning-color;
+    }
+  }
+}
+
+table.button.warning:hover {
+  table {
+    td {
+      background: darken($warning-color, 10%);
+    }
+
+    a {
+      border: 0px solid darken($warning-color, 10%);
+    }
+  }
+}
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group callout
+////
+
+/// Background color of a callout.
+/// @type Color
+$callout-background: $white !default;
+
+/// Fade value for callout backgrounds.
+/// @type Number
+$callout-background-fade: 85% !default;
+
+/// Padding inside a callout.
+/// @type Length
+$callout-padding: 10px !default;
+
+/// Bottom margin of a callout.
+/// @type Length
+$callout-margin-bottom: $global-margin !default;
+
+/// Border around a callout.
+/// @type Border
+$callout-border: 1px solid darken($callout-background, 20%) !default;
+
+/// Border around a callout with the `.success` class.
+/// @type Border
+$callout-border-secondary: 1px solid darken($secondary-color, 20%) !default;
+
+/// Border around a callout with the `.success` class.
+/// @type Border
+$callout-border-success: 1px solid darken($success-color, 20%) !default;
+
+/// Border around a callout with the `.warning` class.
+/// @type Border
+$callout-border-warning: 1px solid darken($warning-color, 20%) !default;
+
+/// Border around a callout with the `.alert` class.
+/// @type Border
+$callout-border-alert: 1px solid darken($alert-color, 20%) !default;
+
+table.callout {
+  margin-bottom: $callout-margin-bottom;
+  Margin-bottom: $callout-margin-bottom;
+}
+
+th.callout-inner {
+  width: 100%;
+  border: $callout-border;
+  padding: $callout-padding;
+  background: $callout-background;
+
+  &.primary {
+    background: scale-color($primary-color, $lightness: $callout-background-fade);
+    border: $callout-border-secondary;
+    color: $black;
+  }
+
+  &.secondary {
+    background: scale-color($secondary-color, $lightness: $callout-background-fade);
+    border: $callout-border-secondary;
+    color: $black;
+  }
+
+  &.success {
+    background: scale-color($success-color, $lightness: $callout-background-fade);
+    border: $callout-border-success;
+    color: $white;
+  }
+
+  &.warning {
+    background: scale-color($warning-color, $lightness: $callout-background-fade);
+    border: $callout-border-warning;
+    color: $white;
+  }
+
+  &.alert {
+    background: scale-color($alert-color, $lightness: $callout-background-fade);
+    border: $callout-border-alert;
+    color: $white;
+  }
+}
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group thumbnail
+////
+
+/// Border around thumbnail images.
+/// @type Border
+$thumbnail-border: solid 4px $white !default;
+
+/// Bottom margin for thumbnail images.
+/// @type Length
+$thumbnail-margin-bottom: $global-margin !default;
+
+/// Box shadow under thumbnail images.
+/// @type Shadow
+$thumbnail-shadow: 0 0 0 1px rgba($black, 0.2) !default;
+
+/// Box shadow under thumbnail images.
+/// @type Shadow
+$thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5) !default;
+
+/// Transition proprties for thumbnail images.
+/// @type Transition
+$thumbnail-transition: box-shadow 200ms ease-out !default;
+
+/// Default radius for thumbnail images.
+/// @type Number
+$thumbnail-radius: $global-radius !default;
+
+/// Adds thumbnail styles to an element.
+.thumbnail {
+  border: $thumbnail-border;
+  box-shadow: $thumbnail-shadow;
+  display: inline-block;
+  line-height: 0;
+  max-width: 100%;
+  transition: $thumbnail-transition;
+  border-radius: $thumbnail-radius;
+  margin-bottom: $thumbnail-margin-bottom;
+
+  &:hover,
+  &:focus {
+    box-shadow: $thumbnail-shadow-hover;
+  }
+}
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group outlook
+////
+
+body.outlook p {
+  display: inline !important;
+}
+// Foundation for Emails by ZURB
+// zurb.com/ink/
+// Licensed under MIT Open Source
+
+////
+/// @group media-query
+////
+
+@media only screen and (max-width: #{$global-breakpoint}) {
+  table.body img {
+    width: auto;
+    height: auto;
+  }
+
+  table.body center {
+    min-width: 0 !important;
+  }
+
+  table.body .container {
+    width: $global-width-small !important;
+  }
+
+  //If it supports border-box, why not? Am I right?
+  //Also, by default pad that to the global-gutter variable
+  table.body .columns,
+  table.body .column {
+    height: auto !important;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: $global-gutter !important;
+    padding-right: $global-gutter !important;
+
+    // Nested columns won't double the padding
+    .column,
+    .columns {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  // Collpased columns have no gutter.
+  .collapse {
+    table.body & .columns,
+    table.body & .column {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  // Basic grid rules
+  @for $i from 1 through $grid-column-count {
+    td.small-#{$i},
+    th.small-#{$i} {
+      display: inline-block !important;
+      width: -zf-grid-calc-pct($i, $grid-column-count) !important;
+    }
+  }
+
+  //If it's the last column in column count (12 by default),
+  //give it block and 100% width to knock down the wimpy columns to their own row.
+  .columns td.small-#{$grid-column-count},
+  .column td.small-#{$grid-column-count},
+  .columns th.small-#{$grid-column-count},
+  .column th.small-#{$grid-column-count} {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  @for $i from 1 through ($grid-column-count - 1) {
+    table.body td.small-offset-#{$i},
+    table.body th.small-offset-#{$i} {
+      //1.5 takes in effect a whole empty cell.
+      margin-left: -zf-grid-calc-pct($i, $grid-column-count) !important;
+      Margin-left: -zf-grid-calc-pct($i, $grid-column-count) !important;
+    }
+  }
+
+  table.body table.columns td.expander,
+  table.body table.columns th.expander {
+    display: none !important;
+  }
+
+  table.body .right-text-pad,
+  table.body .text-pad-right {
+    padding-left: $text-padding !important;
+  }
+
+  table.body .left-text-pad,
+  table.body .text-pad-left {
+    padding-right: $text-padding !important;
+  }
+
+  //menu
+  table.menu {
+    width: 100% !important;
+
+    td,
+    th {
+      width: auto !important;
+      display: inline-block !important;
+    }
+
+    &.vertical,
+    &.small-vertical {
+      td,
+      th {
+        display: block !important;
+      }
+    }
+  }
+
+  // Centers the menus!
+  table.menu[align="center"] {
+    width: auto !important;
+  }
+
+  // expands buttons for small only
+  table.button.small-expand,
+  table.button.small-expanded {
+    width: 100% !important;
+
+    table {
+      width: 100%;
+
+      a {
+        text-align: center !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    }
+
+    center {
+      min-width: 0;
+    }
+  }
+}
+
+.footer h5 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  a {
+    color: #333 !important;
+    font-weight: bold;
+  }
+}
+
+.footer p {
+  text-align: center;
+  margin-bottom: 0px;
+  font-size: 11px;
+  color: #999;
+
+  a {
+    color: #999;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,59 @@
+body {
+  margin: 40px;
+}
+
+.wrapper { 
+  display: grid; 
+  grid-template-columns: 6fr 6fr; 
+  grid-template-rows: 1fr;
+  
+  @media screen and (max-width: 775px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.img-container {
+  z-index: 10;
+}
+
+.card-container {
+  z-index: 20;
+}
+
+.align-middle {
+  align-self: center;
+}
+
+.card {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+@media print, screen and (min-width: 815px) {
+  .medium-push-1 {
+    position: relative;
+    left: 8.33333%; 
+  }
+  
+  .medium-pull-1 {
+    position: relative;
+    left: -8.33333%; 
+  }
+}
+
+.no-grid-warning {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  color: red;
+  left:0;
+  top:0;
+  background-color: #fff;
+  text-align:center;
+  padding: 20px;
+}

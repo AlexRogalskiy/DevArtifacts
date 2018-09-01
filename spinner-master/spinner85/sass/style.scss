@@ -1,0 +1,72 @@
+@import 'master.css';
+
+body {
+	-webkit-animation-name: bodyBackground;
+	-webkit-animation-duration: 20s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes bodyBackground {
+	from {
+		background-color: #fff;
+	}
+	25% {
+		background-color: #fc3;
+	}
+	50% {
+		background-color: #3f9;
+	}
+	75% {
+		background-color: #c3f;
+	}
+	to {
+		background-color: #fff;
+	}
+}
+
+#spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -100px 0 0 -100px;
+	height: 200px;
+	width: 200px;
+	text-indent: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+	background-color: #000;
+	-webkit-mask-image: url(../images/spinner.png);
+	-webkit-animation-name: spinnerRotate, spinnerColor;
+	-webkit-animation-duration: 2s, 10s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes spinnerRotate {
+	from {
+		-webkit-transform:rotate(0deg);
+	}
+	to {
+		-webkit-transform:rotate(360deg);
+	}
+}
+
+@-webkit-keyframes spinnerColor {
+	from {
+		background-color: rgba(0, 0, 0, .5);
+	}
+	25% {
+		background-color: rgba(102, 0, 102, .5);
+	}
+	50% {
+		background-color: rgba(0, 102, 102, .5);
+	}
+	75% {
+		background-color: rgba(102, 102, 0, .5);
+	}
+	to {
+		background-color: rgba(0, 0, 0, .5);
+	}
+}
+
