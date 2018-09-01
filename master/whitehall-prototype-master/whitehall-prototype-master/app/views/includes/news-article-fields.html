@@ -1,0 +1,99 @@
+<div class="govuk-o-grid">
+  <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+    <div class="govuk-!-mb-r6">
+      <label class="govuk-c-label" for="title">
+        Title
+        <span class="form-hint">65 characters or fewer</span>
+      </label>
+      <input type="text" name="title" class="form-control" id="title" value="{% if editing %}{{data['title']}}{% else %}{{data['new-format-title']}}{% endif %}">
+    </div>
+
+    <div class="govuk-!-mb-r6">
+      <label class="govuk-c-label" for="summary">
+        Summary
+      </label>
+      <textarea name="summary" class="form-control" name="textarea" id="summary" rows="2">{% if editing %}{{data['summary']}}{% endif %}</textarea>
+    </div>
+  </div>
+</div>
+
+<div class="govuk-o-grid">
+  <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+    <div class="govuk-!-mb-r6">
+      <label class="govuk-c-label" for="body">
+        Body
+      </label>
+      <textarea name="body" class="form-control" name="textarea" id="body" rows="20">{% if editing %}{{data['body']}}{% endif %}</textarea>
+    </div>
+  </div>
+  <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+    <h2 style="margin-top: 2em" class="govuk-heading-s">Markdown guidance</h2>
+    <p>For details, read the guide to using Markdown</p>
+    <ul>
+      <li><a href="#">Headings</a></li>
+      <li><a href="#">Links</a></li>
+      <li><a href="#">Bullets</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="govuk-o-grid">
+  <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+    <div class="govuk-!-mb-r6">
+      <label class="govuk-c-label" for="government-organisations">
+        Lead organisation
+      </label>
+      <select id="government-organisations" name="organisation">
+        {% include "includes/organisation-select-options.html" %}
+      </select>
+      <div style="margin-top: 10px">
+        <a href="#">Add more organisations</a>
+      </div>
+    </div>
+
+    <div class="govuk-!-mb-r6">
+      <div class="multiple-choice">
+        <input id="limit-access" name="limit-access" type="checkbox" value="true" {% if editing %}{{ checked("limit-access", "true") }}{% endif %}>
+        <label for="limit-access">Limit access to this draft to users in your organisation (Cabinet Office)</label>
+      </div>
+    </div>
+
+    <details class="govuk-!-mb-r6">
+      <summary><span class="summary">Exclude nations</span></summary>
+      <div class="panel panel-border-wide">
+        <div class="govuk-!-mb-r6">
+          <fieldset>
+            <div class="multiple-choice" data-target="alternative-url-scotland">
+              <input id="exclude-scotland" name="exclude-nations" type="checkbox" value="scotland" {% if editing %}{{ checked("exclude-nations", "scotland") }}{% endif %}>
+              <label for="exclude-scotland">Exclude Scotland</label>
+            </div>
+            <div class="panel panel-border-wide js-hidden" id="alternative-url-scotland">
+              <label class="govuk-c-label" for="alternative-url-scotland">Alternative URL</label>
+              <input class="form-control" type="text" id="alternative-url-scotland" name="alternative-url-scotland" value="{% if editing %}{{data['alternative-url-scotland']}}{% endif %}">
+            </div>
+            <div class="multiple-choice" data-target="alternative-url-wales">
+              <input id="exclude-wales" name="exclude-nations" type="checkbox" value="wales" {% if editing %}{{ checked("exclude-nations", "wales") }}{% endif %}>
+              <label for="exclude-wales">Exclude Wales</label>
+            </div>
+            <div class="panel panel-border-wide js-hidden" id="alternative-url-wales">
+              <label class="govuk-c-label" for="alternative-url-wales">Alternative URL</label>
+              <input class="form-control" type="text" id="alternative-url-wales" name="alternative-url-wales" value="{% if editing %}{{data['alternative-url-wales']}}{% endif %}">
+            </div>
+            <div class="multiple-choice" data-target="alternative-url-northern-ireland">
+              <input id="exclude-northern-ireland" name="exclude-nations" type="checkbox" value="northern-ireland" {% if editing %}{{ checked("exclude-nations", "northern-ireland") }}{% endif %}>
+              <label for="exclude-northern-ireland">Exclude Northern Ireland</label>
+            </div>
+            <div class="panel panel-border-wide js-hidden" id="alternative-url-northern-ireland">
+              <label class="govuk-c-label" for="alternative-url-northern-ireland">Alternative URL</label>
+              <input class="form-control" type="text" id="alternative-url-northern-ireland" name="alternative-url-northern-ireland" value="{% if editing %}{{data['alternative-url-northern-ireland']}}{% endif %}">
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </details>
+
+    <div class="govuk-!-mb-r6">
+      <input type="submit" class="govuk-c-button" value="{% if editing %}Save{% else %}Create draft{% endif %}">
+    </div>
+  </div>
+</div>

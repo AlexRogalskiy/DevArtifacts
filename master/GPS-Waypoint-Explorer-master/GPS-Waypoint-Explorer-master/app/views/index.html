@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1 class="add-bottom-margin">Tortoises</h1>
+<table class="table table-bordered">
+  <thead>
+    <tr class="table-header">
+      <th>Tortoise</th>
+      <th>GPS</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>V3 Scute Width</th>
+      <th>V3 Scute Length</th>
+      <th>Carapace Width</th>
+      <th>Carapace Length</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in tortoises %}
+    <tr>
+      <td><a href="/tortoise/{{ t.number }}">{{ t.number }}</a></td>
+      <td><a href="/map?tortoise={{ t.number }}">{{ t.count }}&nbsp;points</a></td>
+      <td>{{ t.name }}</td>
+      <td>{{ t.sex }}</td>
+      <td>{{ t.v3ScuteWidth }}</td>
+      <td>{{ t.v3ScuteLength }}</td>
+      <td>{{ t.carapaceLength }}</td>
+      <td>{{ t.carapaceWidth }}</td>
+      <td>{{ t.notes }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

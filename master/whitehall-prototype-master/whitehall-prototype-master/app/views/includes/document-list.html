@@ -1,0 +1,88 @@
+<ul class="documents">
+  {% set docs = [
+    {
+      name: 'Improving social mobility through education',
+      format: 'Detailed guidance',
+      status: 'Draft - 2nd edition',
+      date: '10 August 2017',
+      editor: 'Peter Parker',
+      organisation: 'Government Digital Service (GDS)'
+    },
+    {
+      name: data['draft-title'] or 'Custom title',
+      format: data['draft-format'] or 'News article',
+      status: data['draft-state'] + ' - ' + data['draft-edition'],
+      date: '14 March 2018',
+      editor: 'Peter Parker',
+      organisation: data['draft-lead-organisation'],
+      link: '/draft/document-tasks'
+    },
+    {
+      name: 'Product manager: skills they need',
+      format: 'Publication',
+      status: 'Published - 1st edition',
+      date: '1 July 2017',
+      editor: 'Peter Parker',
+      organisation: 'Centre for Connected and Autonomous Vehicles (CCAV)'
+    },
+    {
+      name: 'Disabled Person’s Railcard and assisted journeys data: 2017 to 2018 (P5 to P7)',
+      format: 'Official statistics',
+      status: 'Force published - 2nd edition',
+      date: '23 January 2017',
+      editor: 'Peter Parker',
+      organisation: 'Advisory Committee on the Microbiological Safety of Food (ACMSF)'
+    },
+    {
+      name: data['published-title'] or 'Custom title',
+      format: data['published-format'] or 'News article',
+      status: 'Published - 1st edition',
+      date: '10 August 2017',
+      editor: 'Peter Parker',
+      organisation: 'Government Digital Service (GDS)',
+      link: '/published/document-tasks'
+    },
+    {
+      name: 'New offshore patrol vessel named HMS Trent',
+      format: 'News story',
+      status: 'Force published - 2nd edition',
+      date: '23 January 2017',
+      editor: 'Peter Parker',
+      organisation: 'Ministry of Defence'
+    },
+    {
+      name: 'Defence Secretary reviews tax on Armed Forces in Scotland',
+      format: 'News story',
+      status: 'Force published - 2nd edition',
+      date: '23 January 2017',
+      editor: 'Peter Parker',
+      organisation: 'Ministry of Defence'
+    },
+    {
+      name: 'Defence Secretary praises contribution female military personnel make to keeping Britain safe',
+      format: 'News story',
+      status: 'Force published - 2nd edition',
+      date: '23 January 2017',
+      editor: 'Peter Parker',
+      organisation: 'Ministry of Defence'
+    }
+  ] %}
+  {% for x in docs -%}
+  <li>
+    <h3 class="govuk-heading-m govuk-!-mb-r3"><a href="{% if x.link %}{{ x.link }}{% else %}#{% endif %}">{{ x.name }}</a></h3>
+    <dl class="metadata govuk-body govuk-!-mb-r2">
+      <dt>Organisation:</dt>
+      <dd>{{ x.organisation }}</dd>
+      <dt>Document type:</dt>
+      <dd>{{ x.format }}</dd>
+      <dt>Status:</dt>
+      <dd>{{ x.status }}</dd>
+      <dt>Editor:</dt>
+      <dd>{{ x.editor }}</dd>
+      <dt>Updated on:</dt>
+      <dd> {{ x.date }}</dd>
+    </dl>
+    <p class="govuk-body govuk-!-mb-r0"><a href="">View on GOV.UK</a></p>
+  </li>
+  {%- endfor %}
+</ul>

@@ -1,0 +1,432 @@
+{% extends "layout.html" %}
+{% block page_title %}{{ data[prefix + 'title'] }}{% endblock %}
+
+{% block content %}
+<main role="main" class="govuk-o-main-wrapper">
+
+  {% if data[prefix + 'show-errors'] and errors %}
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+        <h3 class="govuk-heading-m error-summary-heading" id="error-summary-heading-example-1">
+          You need to complete the following sections before you can send to review:
+        </h3>
+        <ul class="error-summary-list">
+          {% for error in errors %}
+          <li><a href="{{ urlPrefix }}/{{ error.page }}#{{ error.field }}">{{ error.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if data[prefix + 'show-success'] and success %}
+    <div class="success-summary" role="alert" tabindex="-1">
+      <p>
+        Your draft has been submitted for review
+      </p>
+    </div>
+  {% endif %}
+
+  <h1 class="form-title govuk-heading-xl">
+    <span class="govuk-caption-xl">{{ data[prefix + 'format'] }}</span>
+    {% if data[prefix + 'title'] %}
+      {{ data[prefix + 'title'] }}
+    {% else %}
+      Some title
+    {% endif %}
+  </h1>
+
+  <dl class="metadata govuk-!-mb-r6">
+    <dt>Created by</dt>
+    <dd>Kamala Khan</dd>
+    <dt>Last updated</dt>
+    <dd>20 February 2018</dd>
+    <dt>Status</dt>
+    <dd>
+      {{ data[prefix + 'state'] }} – {{ data[prefix + 'edition'] }}
+    </dd>
+  </dl>
+
+  <ul class="tabs">
+    <li class="active">
+      <a href="{{ urlPrefix }}/document-tasks">Edit document</a>
+    </li>
+    <li>
+      <a href="{{ urlPrefix }}/document-history">Document history</a>
+    </li>
+  </ul>
+
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <ol class="document-list">
+        <li>
+          <ul class="document-list-items">
+            {% if data[prefix + 'document-type'] %}
+            <li class="document-list-item">
+              <div class="task-heading-wrapper govuk-!-mb-r4">
+                <h3 class="document-task">
+                  Type of {{ data[prefix + 'format'] | lower }}
+                </h3>
+                <a href="{{ urlPrefix }}/document-type" class="document-task-action">Change</a>
+              </div>
+              <div>
+                <h3 class="govuk-heading-s">{{ data[prefix + 'document-type'] }}</h3>
+                {% if data[prefix + 'document-type'] == 'Press release' %}
+                  Unedited press releases as sent to the media, and official statements from the organisation or a minister.
+                {% endif %}
+              </div>
+            </li>
+            {% endif %}
+            <li class="document-list-item">
+              <h3 class="document-task">
+                Title, summary and body
+              </h3>
+
+              <a class="document-task-action" id="eligibility-completed" href="{{ urlPrefix }}/title-summary-body">Change</a>
+
+              <dl class="document-task-part">
+                <div>
+                  <dt class="document-part-label">
+                    Title
+                  </dt>
+                  <dd class="document-part-value">
+                    {% if data[prefix + 'title'] %}
+                      {{ data[prefix + 'title'] }}
+                    {% else %}
+                      Some title
+                    {% endif %}
+                  </dd>
+                </div>
+
+                <div>
+                  <dt class="document-part-label">
+                    Summary
+                  </dt>
+                  {% if data[prefix + 'summary'] %}
+                    <dd class="document-part-value">
+                      {{ data[prefix + 'summary'] }}
+                    </dd>
+                  {% else %}
+                    <dd class="document-part-value document-part-value--empty">
+                      This field is empty
+                    </dd>
+                  {% endif %}
+                </div>
+
+                <div>
+                  <dt class="document-part-label">
+                    Body
+                  </dt>
+                  {% if data[prefix + 'body'] %}
+                    <dd class="document-part-value">
+                      {{ data[prefix + 'body'] | truncate(200) }}
+                    </dd>
+                  {% else %}
+                    <dd class="document-part-value document-part-value--empty">
+                      This field is empty
+                    </dd>
+                  {% endif %}
+                </div>
+              </dl>
+            </li>
+            {% if not data[prefix + 'specialist'] %}
+              <li class="document-list-item">
+                <h3 class="document-task">
+                  Images
+                </h3>
+                <a href="#" class="document-task-action">Add</a>
+              </li>
+            {% endif %}
+            <li class="document-list-item">
+              <div style="overflow: hidden">
+                <h3 class="document-task">
+                  Attachments
+                </h3>
+                <a href="{{ urlPrefix }}/attachment" class="document-task-action">Add</a>
+              </div>
+              {% set attachment_count = data[prefix + 'attachment-count'] | int %}
+
+              {% if attachment_count > 0 %}
+                <div style="clear: both">
+                  <ul class="govuk-!-mt-r6 govuk-list">
+                {% for i in range(0, attachment_count) %}
+                    <li class="attachment">
+                      <div class="govuk-!-mb-r4">
+                        <h3 class="govuk-heading-s govuk-!-mt-r0 govuk-!-mb-r1">{{ data[ prefix + (i + 1) + '-attachment-title'] }}</h3>
+                        <a class="govuk-link js-edge" href="{{ urlPrefix }}/attachment/{{ data[ prefix + (i + 1) + '-attachment-filename'] }}">{{ data[ prefix + (i + 1) + '-attachment-filename'] }}</a>
+                      </div>
+                      <a href="{{ urlPrefix }}/attachment/{{ i + 1 }}" class="document-task-action">Change</a>
+                    </li>
+                {% endfor %}
+                  </ul>
+                </div>
+                {% if attachment_count > 1 and data[prefix + 'format'] == 'Publication' %}
+                  <a href="{{ urlPrefix }}/reorder-attachment" class="govuk-body">Change attachment order</a>
+                {% endif %}
+              {% endif %}
+              <!-- <div style="clear: both">
+                <ul class="govuk-!-mt-r6 govuk-!-mb-r0 govuk-list">
+                  <li class="attachment">
+                    <div class="govuk-!-mb-r4">
+                      <h3 class="govuk-heading-s govuk-!-mt-r0 govuk-!-mb-r1">Minutes meeting January 2018</h3>
+                      <a class="govuk-link" href="">minutes-meeting-january-2018.pdf</a>
+                    </div>
+                    <a href="" class="document-task-action">Change</a>
+                  </li>
+                  <li class="attachment">
+                    <div class="govuk-!-mb-r4">
+                      <h3 class="govuk-heading-s govuk-!-mt-r0 govuk-!-mb-r1">Address February 2018</h3>
+                      <a class="govuk-link" href="">address-february-2018.pdf</a>
+                    </div>
+                    <a href="" class="document-task-action">Change</a>
+                  </li>
+                  <li class="attachment">
+                    <div class="govuk-!-mb-r4">
+                      <h3 class="govuk-heading-s govuk-!-mt-r0 govuk-!-mb-r1">Speech transcript March 2018</h3>
+                      <a class="govuk-link" href="">speech-transcript-march-2018.pdf</a>
+                    </div>
+                    <a href="" class="document-task-action">Change</a>
+                  </li>
+                </ul>
+
+              </div> -->
+            </li>
+            <li class="document-list-item">
+              <h3 class="document-task">
+                About this content
+              </h3>
+              <a href="{{ urlPrefix }}/about-content" class="document-task-action">Change</a>
+              <dl class="document-task-part">
+                {% if not data[prefix + 'specialist'] %}
+                  <div>
+                    <dt class="document-part-label">
+                      Tags
+                    </dt>
+                    {% set tag_count = data[prefix + 'tag-count'] | int %}
+                    {% if tag_count > 0 %}
+                      <dd class="document-part-value">
+                        <ul>
+                        {% for i in range(0, tag_count) %}
+                          <li class="govuk-!-mb-r1">
+                            {{ data[prefix + 'selected-tag-' + (i + 1)] }}
+                          </li>
+                        {% endfor %}
+                        </ul>
+                      </dd>
+                    {% else %}
+                      <dd class="document-part-value document-part-value--empty">
+                        This field is empty
+                      </dd>
+                    {% endif %}
+                  </div>
+                  {%
+                    set dtags = [
+                      {
+                        name: 'Review frequency',
+                        key: 'review-frequency'
+                      },
+                      {
+                        name: 'Expected audience',
+                        key: 'expected-audience'
+                      },
+                      {
+                        name: 'Subject matter expert',
+                        key: 'expert'
+                      },
+                      {
+                        name: 'Published before',
+                        key: 'published-before'
+                      },
+                      {
+                        name: 'Lead organisations',
+                        key: 'lead-organisation'
+                      },
+                      {
+                        name: 'Supporting organisations',
+                        key: 'supporting-organisation'
+                      },
+                      {
+                        name: 'Ministers',
+                        key: 'minister'
+                      },
+                      {
+                        name: 'Topical events',
+                        key: 'topical-event'
+                      },
+                      {
+                        name: 'World locations',
+                        key: 'world-location'
+                      }
+                    ]
+                  %}
+                {% elseif data[prefix + 'format'] == 'Drug safety update' %}
+                  {%
+                    set dtags = [
+                      {
+                        name: 'Therapeutic area',
+                        key: 'therapeutic-area'
+                      },
+                      {
+                        name: 'Review frequency',
+                        key: 'review-frequency'
+                      },
+                      {
+                        name: 'Expected audience',
+                        key: 'expected-audience'
+                      }
+                    ]
+                  %}
+                {% else %}
+                  {%
+                    set dtags = [
+                      {
+                        name: 'Medical specialism',
+                        key: 'medical-specialism'
+                      },
+                      {
+                        name: 'Issue date',
+                        key: 'issue-date-year'
+                      },
+                      {
+                        name: 'Review frequency',
+                        key: 'review-frequency'
+                      },
+                      {
+                        name: 'Expected audience',
+                        key: 'expected-audience'
+                      }
+                    ]
+                  %}
+                {% endif %}
+
+                {% for dtag in dtags %}
+                  <div>
+                    <dt class="document-part-label">
+                      {{ dtag.name }}
+                    </dt>
+                    {% if data[prefix + dtag.key] %}
+                      <dd class="document-part-value">
+                        {% if dtag.key == 'issue-date-year' %}
+                          {{ data[prefix + dtag.key] }}-{{ data[prefix + 'issue-date-month'] }}-{{ data[prefix + 'issue-date-day'] }}
+                        {% else %}
+                          {{ data[prefix + dtag.key] }}
+                        {% endif %}
+                      </dd>
+                    {% else %}
+                      <dd class="document-part-value document-part-value--empty">
+                        This field is empty
+                      </dd>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </dl>
+            </li>
+
+            {% if not data[prefix + 'specialist'] %}
+            <li class="document-list-item">
+              <h3 class="document-task">
+                Scheduling
+              </h3>
+              {% if data[prefix + 'schedule-time'] %}
+                <a href="{{ urlPrefix }}/publish-settings" class="document-task-action">Change</a>
+
+                <dl class="document-task-part">
+                  {%
+                    set ptags = [
+                      {
+                        name: 'Scheduled',
+                        key: 'schedule-year'
+                      }
+                    ]
+                  %}
+                  {% for ptag in ptags %}
+                    <div>
+                      <dt class="document-part-label">
+                        {{ ptag.name }}
+                      </dt>
+                      {% if data[prefix + ptag.key] %}
+                        <dd class="document-part-value">
+                          {% if ptag.key == 'schedule-year' %}
+                            {{ data[prefix + ptag.key] }}-{{ data[prefix + 'issue-date-month'] }}-{{ data[prefix + 'issue-date-day'] }}
+                          {% else %}
+                            {{ data[prefix + ptag.key] }}
+                          {% endif %}
+                        </dd>
+                      {% else %}
+                        <dd class="document-part-value document-part-value--empty">
+                          {% if ptag.key == 'schedule-year' %}
+                            This post has not been scheduled
+                          {% else %}
+                            This field is empty
+                          {% endif %}
+                        </dd>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </dl>
+              {% else %}
+                <a href="{{ urlPrefix }}/publish-settings" class="document-task-action">Schedule</a>
+              {% endif %}
+            </li>
+            <li class="document-list-item">
+              <h3 class="document-task">
+                Translations
+              </h3>
+              <a href="#" class="document-task-action">Add</a>
+            </li>
+            {% endif %}
+          </ul>
+        </li>
+      </ol>
+
+      <!-- <a href="{{ urlPrefix }}/submit-for-review" class="govuk-c-button">Request review</a>
+      <ul class="govuk-list">
+        <li><a href="#">Request fact-check</a></li>
+        <li><a href="{{ urlPrefix }}/preview">Preview</a></li>
+        <li><a href="{{ urlPrefix }}/submit-for-review">Force-publish</a></li>
+        <li><a href="#" class="danger">Delete this draft</a></li>
+      </ul> -->
+    </div>
+    <div class="govuk-o-grid__item govuk-o-grid__item--one-third extra-gutter">
+      <div class="side-column">
+        {% if data[prefix + 'state'] == 'Published' %}
+          <h3 class="govuk-heading-s govuk-!-mb-r1">This document has been published</h3>
+          <p class="govuk-body govuk-!-mb-r0">
+            Go to the <a href="{{ urlPrefix }}/document-history">document history</a> to see the changes or <a href="">view it on GOV.UK</a>.
+          </p>
+        {% endif %}
+        {% if data[prefix + 'state'] == 'Draft' and data[prefix + 'edition'] == '4th edition' %}
+          <div class="draft-info">
+            <h3 class="govuk-heading-s govuk-!-mb-r1">This is a draft of a new edition</h3>
+            <p class="govuk-body govuk-!-mb-r0">
+              Go to the <a href="{{ urlPrefix }}/document-history">document history</a> to see the changes or view the <a href="">last published edition</a> on GOV.UK.
+            </p>
+          </div>
+        {% endif %}
+        <div class="actions">
+          {% if data[prefix + 'state'] == 'Draft' %}
+            <a href="{{ urlPrefix }}/submit-for-review" class="govuk-c-button">Request review</a>
+            <ul class="govuk-list">
+              <li><a href="#">Request fact-check</a></li>
+              <li><a href="{{ urlPrefix }}/preview">Preview</a></li>
+              <li><a href="{{ urlPrefix }}/submit-for-review">Force-publish</a></li>
+              <li><a href="#" class="danger">Delete this draft</a></li>
+            </ul>
+          {% endif %}
+          {% if data[prefix + 'state'] == 'Submitted' %}
+            <a href="{{ urlPrefix }}/submit-for-review" class="govuk-c-button">Publish</a>
+            <ul class="govuk-list">
+              <li><a href="#">Reject</a></li>
+              <li><a href="#" class="danger">Delete this draft</a></li>
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

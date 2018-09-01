@@ -1,0 +1,534 @@
+// Path to assets for use with the file-url function
+// in the govuk frontend toolkit's url-helpers partial
+$path: "/public/images/";
+
+%contain-floats {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+// Import GOV.UK Frontend
+@import "@govuk-frontend/all/all";
+
+$govuk-gutter-two-thirds: ($govuk-gutter / 3) * 2;
+$govuk-gutter-half: ($govuk-gutter / 2);
+
+// Import from node modules
+@import 'node_modules/normalize.css/normalize.css';
+@import 'node_modules/codemirror/lib/codemirror';
+@import 'node_modules/highlight-within-textarea/jquery.highlight-within-textarea';
+
+// Patterns that aren't in Frontend
+@import 'patterns/check-your-answers';
+@import 'patterns/related-items';
+
+@import 'vendor/accessible-autocomplete';
+@import 'vendor/codemirror-theme';
+@import 'vendor/elements-panel';
+@import 'vendor/elements-form-validation';
+//@import 'margin-helpers';
+
+@import 'patterns/check-your-answers';
+@import 'patterns/task-list';
+@import 'patterns/document-list';
+@import 'patterns/success-summary';
+@import 'patterns/modal-dialog';
+@import 'patterns/buttons';
+@import 'header';
+
+.code {
+  color: $govuk-text-colour;
+  background-color: $govuk-highlight-colour;
+
+  text-shadow: 0 1px $govuk-page-colour;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+  border: 1px solid $govuk-border-colour;
+  padding: 4px 4px 2px;
+}
+
+
+// Local fixes to GOV.UK frontend
+
+.markdown hr {
+  @include govuk-responsive-margin($govuk-spacing-responsive-6, "top");
+  @include govuk-responsive-margin($govuk-spacing-responsive-6, "bottom");
+}
+
+.govuk-list + .govuk-heading-l,
+.govuk-list + .govuk-heading-m,
+.govuk-list + .govuk-heading-s,
+.govuk-prose-scope ul + h2,
+.govuk-prose-scope ul + h3,
+.govuk-prose-scope ul + h4,
+.govuk-prose-scope pre + h2,
+.govuk-prose-scope pre + h3,
+.govuk-prose-scope pre + h4 {
+  @include govuk-responsive-padding($govuk-spacing-responsive-4, "top");
+}
+
+// Take a look at in app/assets/sass/patterns/ to see which files are imported.
+// @import 'patterns/check-your-answers';
+// @import 'patterns/task-list';
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+a:visited, .govuk-list a:visited, .govuk-prose-scope ul a:visited, .govuk-prose-scope ol a:visited {
+  color: $govuk-link-colour;
+}
+
+.empty {
+  color: $govuk-grey-1;
+}
+
+.danger {
+  color: $govuk-error-colour !important;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.govuk-heading-xl {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-body {
+  max-width: 100%;
+  white-space: pre-wrap;
+}
+
+.metadata dt, .metadata dd {
+  display: inline-block;
+  font-size: 16px;
+}
+
+.metadata dt {
+  width: 20%;
+}
+
+.metadata dd {
+  width: 79%;
+  margin-left: 0;
+}
+
+.govuk-o-grid__item {
+  position: relative;
+}
+
+.govuk-c-button {
+  color: $govuk-white !important;
+}
+
+.inserts {
+  @include govuk-font-regular-19;
+
+  background-color:  $govuk-grey-4;
+  border: 2px solid $govuk-black;
+  border-bottom: 0;
+  padding: 7px;
+  margin-top: 5px;
+  position: relative;
+  z-index: 1;
+}
+
+.contextual-guidance {
+  @include govuk-responsive-padding($govuk-spacing-responsive-5, "top");
+  background: #fff;
+  position: absolute;
+  border-top: 5px solid $govuk-focus-colour;
+  margin-top: 1.5em;
+  width: 100%;
+
+  .body-guidance & {
+    position: static;
+  }
+}
+
+// Update highlight-within-textarea to be more like Design System
+
+.hwt-container {
+  .is-textarea & {
+    @extend .govuk-c-textarea;
+  }
+
+  .is-input & {
+    padding: 0 4px;
+    @extend .govuk-c-input;
+
+    input {
+      margin-top: -2px !important;
+      margin-left: 1px;
+    }
+  }
+
+  display: block;
+
+  &.is-focused {
+    outline: 3px solid $govuk-focus-colour;
+  }
+
+  input[type="text"],
+  textarea {
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.hwt-backdrop {
+  // left: 3px !important;
+  // top: 4px !important;
+  .is-textarea & {
+    padding: 5px 4px 4px;
+  }
+
+  .is-input & {
+    padding: 5px;
+  }
+
+  border: 2px solid transparent;
+  margin: -2px 0 0 -2px;
+}
+
+.hwt-content mark {
+  background-color: transparent;
+  box-shadow: inset 0 -4px 0 0 $govuk-error-colour;
+}
+
+.task-heading-wrapper {
+  overflow: hidden;
+}
+
+textarea#summary {
+  height: 180px;
+}
+
+ul.recommendations {
+  margin-bottom: 20px;
+  list-style-type: disc;
+  padding-left: 20px;
+
+  li {
+    margin-bottom: 5px 0;
+  }
+}
+
+details {
+  margin-bottom: 50px;
+}
+
+// tags section
+
+.tag {
+  max-width: 380px;
+}
+
+.full-wrapper {
+  background: #fff;
+  padding: $govuk-gutter;
+}
+
+.tabs {
+  padding-left: 0;
+  border-bottom: 1px solid $govuk-border-colour;
+  font-size: 19px;
+
+  li {
+    margin-bottom: -1px;
+    display: inline-block;
+  }
+
+  a {
+    display: block;
+    padding: 15px 20px;
+  }
+
+  .active a {
+    border: 1px solid $govuk-border-colour;
+    border-bottom-color: #fff;
+    text-decoration: none;
+
+    &:link,
+    &:visited {
+      color: $govuk-text-colour;
+    }
+  }
+}
+
+.about {
+  .inline {
+    margin-left: 5px;
+  }
+  .button-link, .inline {
+    display: inline-block;
+  }
+  label, legend {
+    font-weight: bold;
+    margin-bottom: 5px;
+    &.govuk-c-radios__label {
+      font-weight: normal;
+      margin-bottom: 0;
+    }
+  }
+  .tags-empty {
+    background:  $govuk-panel-colour;
+    padding: 20px;
+  }
+  .arrow {
+    color: $govuk-border-colour;
+  }
+}
+
+.pipe {
+  color: $govuk-border-colour;
+  display: inline-block;
+  padding: 0 5px;
+}
+
+.attachment {
+  div {
+    display: inline-block;
+    width: 80%;
+    margin: 0 0 5px 0;
+  }
+  .document-task-action {
+    padding: 0;
+  }
+}
+
+.reorder .attachment {
+  padding: 15px;
+  background: $govuk-grey-4;
+  margin-bottom: 30px;
+  &:last-child {
+    margin-bottom: 50px;
+  }
+}
+
+// #global-header .header-wrapper, .govuk-o-width-container {
+//   max-width: 1180px;
+// }
+
+table.documents th, table.documents td {
+  vertical-align: top;
+  padding: 20px 40px 15px 0;
+  font-size: 16px;
+  &.name {
+    max-width: 340px;
+  }
+}
+
+ul.documents {
+  padding-left: 0;
+  list-style-type: none;
+  li {
+    padding: 25px 0;
+    &:first-child {
+      padding-top: 0;
+    }
+    dl.metadata dt, dl.metadata dd {
+      font-size: 19px;
+      margin-bottom: 5px;
+      vertical-align: top;
+    }
+    dl.metadata dt {
+      width: 25%;
+    }
+    dl.metadata dd {
+      width: 74%;
+    }
+    p a {
+      padding-right: 20px;
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+}
+.pagination {
+  border-top: 1px solid $govuk-border-colour;
+  padding-top: 50px;
+  overflow: hidden;
+  p {
+    display: inline-block;
+    &.pages {
+      float: right;
+    }
+    a, .active-page {
+      padding-left: 5px;
+    }
+  }
+}
+
+.document-list:first-child {
+  margin-top: 0;
+}
+
+.document-list-item:first-child {
+  border-top: none;
+}
+
+.draft-info {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid $govuk-grey-3;
+}
+
+.actions {
+  a.govuk-c-button {
+    margin-bottom: 15px;
+  }
+  ul {
+    margin-bottom: 0;
+    li:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.side-column {
+  margin-top: 30px;
+  padding: 25px;
+  background: $govuk-grey-4;
+}
+
+.extra-gutter {
+  padding-left: 50px;
+}
+
+.timeline {
+  padding-left: 0;
+  list-style-type: none;
+  .edition h2 {
+    margin: 60px 0 40px 0;
+  }
+  .edition-timeline {
+    padding-left: 0;
+  }
+  .timeline-day-wrapper {
+    border-left: 4px solid $govuk-grey-2;
+    position: relative;
+    margin-top: 10px;
+  }
+  .timeline-day {
+    margin-bottom: 40px;
+    padding-left: 30px;
+    position: relative;
+    top: -10px;
+    &:before {
+      content: " ";
+      height: 4px;
+      width: 10px;
+      background: $govuk-grey-2;
+      display: inline-block;
+      position: absolute;
+      top: 10px;
+      left: 0;
+    }
+  }
+  .events {
+    padding-left: 0;
+  }
+  .event {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    h4 {
+      margin-bottom: 0;
+    }
+  }
+  .metadata {
+    color: $govuk-secondary-text-colour;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+}
+
+.results-sort {
+  overflow: hidden;
+  h3 {
+    float: left;
+  }
+  .sort {
+    float: right;
+    font-weight: bold;
+    &:after {
+      display: inline-block;
+      content: " ";
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 10px solid $govuk-text-colour;
+      margin-left: 5px;
+    }
+  }
+}
+.date-filter {
+  width: 42%;
+}
+
+.date-divider {
+  padding: 0 10px;
+}
+
+.dropdown {
+  position: relative;
+  &:after {
+    position: relative;
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid $govuk-text-colour;
+    left: 275px;
+    top: -55px;
+  }
+  &.wide:after {
+    left: 290px;
+  }
+  &.organisation:after {
+    top: -24px;
+  }
+}
+
+.govuk-o-form-group--error {
+  padding-left: 15px;
+  border-left: 5px solid #b10e1e;
+
+  .govuk-c-input--error {
+    border: 4px solid #b10e1e;
+  }
+}
+
+.draft {
+  background-image: url(../images/draft-watermark.png);
+  background-repeat: repeat-y;
+  background-position: 50% 0;
+  background-size: contain;
+}

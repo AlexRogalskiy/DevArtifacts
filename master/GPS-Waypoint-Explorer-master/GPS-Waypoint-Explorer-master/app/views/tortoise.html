@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+<ol class="breadcrumb">
+  <li><a href="/">Tortoises</a></li>
+  <li class="active">Tortoise {{ tortoise.number }}</li>
+</ol>
+
+<h1 class="add-bottom-margin">Tortoise {{ tortoise.number }}</h1>
+<div class="row">
+  <div class="col-md-4">
+    Sex: {{ tortoise.sex }}<br />
+    Name: {{ tortoise.name }}<br />
+    V3 Scute Width: {{ tortoise.v3ScuteWidth }}<br />
+    V3 Scute Length: {{ tortoise.v3ScuteLength }}<br />
+    Carapace Length: {{ tortoise.carapaceLength }}<br />
+    Carapace Width: {{ tortoise.carapaceWidth }}<br />
+    Notes: {{ tortoise.notes }}<br />
+
+    <!-- <ul>
+    {% for point in waypoints %}
+      <li>{{ point.dateString }}</li>
+    {% endfor %}
+  </ul> -->
+  </div>
+  <div class="col-md-5">
+    <div class="map-container" style="height: 300px">
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
+
+
+<h2 class="add-top-margin add-bottom-margin">Average distance from each tortoise</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr class="table-header">
+      <th class="text-right">Tortoise</th>
+      <th>Average distance</th>
+      <th>Calculated from recordings on same day</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tortoiseAverage in averageDistanceFromTortoise %}
+      <tr>
+        <td class="text-right">
+          <a href="/tortoise/{{ tortoiseAverage.tortoise }}">{{ tortoiseAverage.tortoise }}</a>
+        </td>
+        <td>
+          {{ tortoiseAverage.average }}m
+        </td>
+        <td {% if tortoiseAverage.count < 10 %}class="text-muted"{% endif %}>
+          <a href="/map?tortoise={{ tortoiseAverage.tortoise}},{{ tortoise.number }}">{{ tortoiseAverage.count }} points</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% include "partials/map-js.html" %}
+{% endblock %}

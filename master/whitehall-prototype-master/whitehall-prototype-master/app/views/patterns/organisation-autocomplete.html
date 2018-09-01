@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block page_title %}Organisation autocomplete{% endblock %}
+
+{% block content %}
+<main role="main" class="govuk-o-main-wrapper">
+  <h1 class="govuk-heading-xl">
+    Organisation autocomplete
+  </h1>
+
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <p class="govuk-body-l">
+        An autocomplete for UK Government organisations based on work by <a href="https://github.com/frankieroberto/govuk-government-organisations-autocomplete">Frankie Roberto</a>.
+      </p>
+      <form method="get" action="/examples">
+        <div class="govuk-!-mb-r6">
+          <label class="govuk-c-label" for="government-organisations">Organisation</label>
+          <select id="government-organisations" name="organisation">
+            {% include "../includes/organisation-select-options.html" %}
+          </select>
+        </div>
+      </form>
+    </div>
+</main>
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+  govukGovernmentOrganisationsAutocomplete({
+    selectElement: document.getElementById('government-organisations'),
+    showAllValues: false,
+    minLength: 2,
+    defaultValue: ''
+  })
+</script>
+{% endblock %}

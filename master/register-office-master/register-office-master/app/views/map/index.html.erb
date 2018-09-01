@@ -1,0 +1,47 @@
+<div id="wrapper" class="place service">
+    <div class="grid-row">
+      <main id="content" role="main" class=""><header class="page-header"><div>
+    <h1>
+
+      Find a register office
+    </h1>
+  </div>
+</header><div class="group">
+  <div class="content-block">
+    <div class="map-container">
+      <div id="map" class="map" style="height: 900px"></div>
+    </div>
+  </div>
+</section>
+</div>
+  </div>
+  <div class="meta-data group">
+  <p class="modified-date">Last updated:  9 March 2015</p>
+</div>
+
+
+</div>
+</main>
+
+    </div>
+
+</div>
+
+<script src="//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry"></script>
+<script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js'></script>
+<script>
+handler = Gmaps.build('Google');
+handler.buildMap({ internal: {id: 'map'}}, function(){
+  var markers = handler.addMarkers([
+    <% @offices.each do |loc|
+      lat = loc['entry']['latitude']
+      long = loc['entry']['longitude'] %>
+      <% if lat.present? && long.present? %>
+        <%= "{ lat: #{loc['entry']['latitude']}, lng: #{loc['entry']['longitude']} }," %>
+      <% end %>
+    <% end %>
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>

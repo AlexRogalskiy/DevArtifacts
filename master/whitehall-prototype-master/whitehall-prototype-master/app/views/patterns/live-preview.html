@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block page_title %}Live preview{% endblock %}
+
+{% block content %}
+<main role="main" class="govuk-o-main-wrapper">
+  <h1 class="govuk-heading-xl">
+    Live preview
+  </h1>
+
+  <div class="govuk-o-grid" data-module="live-preview" data-target="preview">
+    <div class="govuk-o-grid__item govuk-o-grid__item--one-half">
+      <form action="/patterns/realtime-preview" method="post">
+        <div class="govuk-!-mb-r6 is-textarea">
+          <label class="govuk-c-label" for="text">Markdown</label>
+          <textarea id="text" name="text" class="govuk-c-textarea js-preview-input" rows="20">{{ data['text']}}</textarea>
+        </div>
+      </form>
+    </div>
+    <div class="govuk-o-grid__item govuk-o-grid__item--one-half">
+      <div id="preview" class="govuk-prose-scope">
+
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+$(function(){
+
+
+});
+</script>
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+{% block page_title %}{{ data['title'] }}{% endblock %}
+
+{% block content %}
+<main role="main" class="govuk-o-main-wrapper">
+  <!-- <div class="success-summary" role="alert" tabindex="-1">
+    <p>
+      Your draft has been saved
+    </p>
+  </div> -->
+
+  <h1 class="form-title govuk-heading-xl">
+    <span class="govuk-caption-xl">{{ data['format'] }}</span>
+    {% if data['title'] %}
+      {{ data['title'] }}
+    {% else %}
+      New {{ data['news-article-sub-type'] | lower }}
+    {% endif %}
+  </h1>
+
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <!-- only add a heading for a list if there is more than one list -->
+      <h2 class="govuk-heading-m">
+        The content
+      </h2>
+
+      <!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
+      <!--   * `cya-questions-short` for short questions -->
+      <!--   * `cya-questions-long` for long questions -->
+      <!--   * none for single group of q&a -->
+      <dl class="govuk-check-your-answers cya-questions-short">
+        <div>
+          <dt class="cya-question">
+            Title
+          </dt>
+          <dd class="cya-answer">
+            Some title
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change<span class="visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="cya-question">
+            Summary
+          </dt>
+          <dd class="cya-answer">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change<span class="visually-hidden"> date of birth</span>
+            </a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="cya-question">
+            Body
+          </dt>
+          <dd class="cya-answer">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam…
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change<span class="visually-hidden"> home address</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <h2 class="govuk-heading-m">
+        Application details
+      </h2>
+
+      <dl class="govuk-check-your-answers cya-questions-short">
+        <div>
+          <dt class="cya-question">
+            Previous application number
+          </dt>
+          <dd class="cya-answer">
+            502135326
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change<span class="visually-hidden"> previous application number</span>
+            </a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="cya-question">
+            Licence type
+          </dt>
+          <dd class="cya-answer">
+            For personal use
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change<span class="visually-hidden"> licence type</span>
+            </a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="cya-question">
+            Home address
+          </dt>
+          <dd class="cya-answer">
+            72 Guild Street<br />
+            London<br />
+            SE23 6FH
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change<span class="visually-hidden"> home address</span>
+            </a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="cya-question">
+            Licence period
+          </dt>
+          <dd class="cya-answer">
+            This is a longer paragraph of text provided by the user to provide additional information.<br /><br />
+            This is a second paragraph of text provided by the user.
+          </dd>
+          <dd class="cya-change">
+            <a href="#">
+              Change<span class="visually-hidden"> licence period</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <h2 class="govuk-heading-m">Now send your application</h2>
+
+      <p class="text">
+        By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.
+      </p>
+
+      <div class="govuk-!-mb-r6">
+        <a href="confirmation-page" class="govuk-c-button">Accept and send application</a>
+      </div>
+    </div>
+    <!-- <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+      <div>
+        <h2 class="govuk-heading-m remove-top-margin">Workflow</h2>
+        <ul class="list">
+          <li><a href="#">Preview on website</a></li>
+          <li><a href="#">Submit for review</a></li>
+          <li><a href="#">Delete draft</a></li>
+          <li><a href="#">Schedule publication</a></li>
+          <li><a href="#">Request fact check</a></li>
+          <li><a href="#">Force publish</a></li>
+        </ul>
+
+        <h2 class="govuk-heading-m remove-top-margin">Edit</h2>
+        <ul class="list">
+          <li><a href="#">Attachments</a></li>
+          <li><a href="#">Images</a></li>
+          <li><a href="#">Translations</a></li>
+          <li><a href="#">User need</a></li>
+        </ul>
+
+        <h2 class="govuk-heading-m remove-top-margin">History</h2>
+        <ul class="list">
+          <li><a href="#">History and notes</a></li>
+        </ul>
+      </div>
+    </div> -->
+  </div>
+</main>
+{% endblock %}

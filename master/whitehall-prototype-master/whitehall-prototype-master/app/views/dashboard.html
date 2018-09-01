@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<main role="main" class="govuk-o-main-wrapper">
+  <h1 class="form-title govuk-heading-xl">
+    Dashboard
+  </h1>
+  <p class="add-bottom-margin">
+    <a href="/new/intent" class="govuk-c-button">New document</a>
+  </p>
+  <p>
+    <a href="/new/specialist-format" class="govuk-c-button">New specialist document</a>
+  </p>
+
+  <h2 class="form-title govuk-heading-l">
+    Search for a document
+  </h2>
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+      <form action="#" method="post" class="form">
+        <h3 class="govuk-heading-s">Filter by</h3>
+        <label class="govuk-c-label" for="title">
+          Title or slug
+        </label>
+        <input type="text" class="govuk-c-input" id="title">
+
+        <label class="govuk-c-label" for="author">
+          Document type
+        </label>
+        <span class="dropdown"><input type="text" class="govuk-c-input" id="doc-type"></span>
+        <label class="govuk-c-label" for="status">
+          Status
+        </label>
+        <span class="dropdown"><input type="text" class="govuk-c-input" id="format"></span>
+        <label class="govuk-c-label" for="author">
+          Editor
+        </label>
+        <input type="text" class="govuk-c-input" id="author">
+        <label class="govuk-c-label" for="author">
+          Last updated date
+        </label>
+        <span class="govuk-c-label__hint">For example, 31/12/2017 to 31/12/2018</span>
+        <input type="text" class="govuk-c-input date-filter" id="author"> <span class="govuk-body date-divider">to</span> <input type="text" class="govuk-c-input date-filter" id="author">
+        <label class="govuk-c-label" for="government-organisations">
+          Organisation
+        </label>
+        <span class="dropdown organisation"><select id="government-organisations" name="organisation">
+          {% include "includes/organisation-select-options.html" %}
+        </select></span>
+
+        <label class="govuk-c-label govuk-!-mt-r6" for="author">
+          Internal theme
+        </label>
+        <span class="govuk-c-label__hint">For example, EU Exit</span>
+        <span class="dropdown"><input type="text" class="govuk-c-input" id="author"></span>
+        <label class="govuk-c-label" for="author">
+          Subject matter expert
+        </label>
+        <span class="dropdown"><input type="text" class="govuk-c-input" id="author"></span>
+        <div class="govuk-c-checkboxes">
+          <div class="govuk-o-form-group">
+            <fieldset class="govuk-c-fieldset">
+              <div class="govuk-c-checkboxes__item">
+              <input class="govuk-c-checkboxes__input" id="nationality-1" name="nationality" type="checkbox" value="british">
+              <label class="govuk-c-label govuk-c-checkboxes__label" for="nationality-1">
+                Show only documents with broken links
+              </label>
+            </div>
+          </fieldset>
+          </div>
+        </div>
+        <input value="Apply filters" type="submit" class="govuk-c-button">
+        <ul class="govuk-list">
+          <li><a href="#">Clear filters</a></li>
+        </ul>
+      </form>
+    </div>
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds extra-gutter">
+      <div class="results-sort">
+        <h3 class="govuk-heading-s">106 documents found</h3>
+        <span class="sort govuk-body">Sort by last updated</span>
+      </div>
+      {% set documentCount = 50 %}
+      {% include "includes/document-list.html" %}
+      <div class="pagination">
+        <p class="govuk-body">Displaying documents 1 - 20 of 106 in total</p>
+        <p class="govuk-body pages">
+          <span class="active-page">1</span>
+          <a href="">2</a>
+          <a href="">3</a>
+          <a href="">4</a>
+          <a href="">Next</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+      <div style="border: 5px solid #dee0e2; padding: 15px">
+        <h2 class="govuk-heading-m remove-top-margin">Manage documents</h2>
+        <ul class="list">
+          <li></li>
+          <li><a href="#">All documents</a></li>
+          <li><a href="#">Review submitted documents</a></li>
+          <li><a href="#">Review force-published documents</a></li>
+        </ul>
+
+        <h2 class="govuk-heading-m">Writing and publishing guidance</h2>
+        <ul class="list">
+          <li><a href="https://www.gov.uk/guidance/style-guide">GOV.UK style guide</a></li>
+          <li><a href="https://www.gov.uk/guidance/how-to-publish-on-gov-uk">How to publish content on GOV.UK</a></li>
+          <li><a href="https://www.gov.uk/guidance/content-design">Planning, writing and managing content</a></li>
+        </ul>
+
+        <h2 class="govuk-heading-m">Government Digital Service</h2>
+        <ul class="list">
+          <li><a href="#">Featured documents</a></li>
+          <li><a href="#">Corporate information</a></li>
+        </ul>
+
+        <h2 class="govuk-heading-m">Statistics</h2>
+        <ul class="list">
+          <li><a href="#">Statistics announcements</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <h2 class="heading-large remove-top-margin">Your drafts</h2>
+      {% set documentCount = [0,1,2,3,4,5,5,5,5,5] | random %}
+      {% include "includes/document-table.html" %}
+    </div>
+  </div> -->
+</main>
+
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+  govukGovernmentOrganisationsAutocomplete({
+    selectElement: document.getElementById('government-organisations'),
+    showAllValues: false,
+    minLength: 2,
+    defaultValue: ''
+  })
+</script>
+{% endblock %}

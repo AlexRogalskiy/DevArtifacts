@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block page_title %}GOV.UK prototype kit{% endblock %}
+
+{% block content %}
+
+<a href="/dashboard" class="govuk-c-back-link">Back</a>
+<main role="main" class="govuk-o-main-wrapper">
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <form action="{{ urlPrefix }}/format" method="post" class="form">
+        <div class="govuk-!-mb-r6">
+          <fieldset>
+            <legend>
+              <h1 class="govuk-heading-xl form-title govuk-!-mb-r7">
+                What is this content for?
+              </h1>
+            </legend>
+
+            {% set fields = [
+                {
+                  name: 'Help users to do something',
+                  text: '<p class="govuk-body">This content will help users to complete a task with government.</p>'
+                },
+                {
+                  name: 'Tell users about something',
+                  text: '<p class="govuk-body">This content will inform users about something government has done or will do.</p>'
+                },
+                {
+                  name: 'I’m not sure if this should be on GOV.UK',
+                  more: '<p class="govuk-body">View this guide to <a href="/publishing-guidance">what should go on GOV.UK and where else we can publish content</a></p>'
+                }
+              ]
+            %}
+
+            {% for field in fields %}
+              <div class="multiple-choice govuk-c-radios__item" data-target="radio-part-{{ loop.index }}-extra">
+                <input required id="radio-part-{{ loop.index }}" type="radio" name="intent" value="{{ field.name }}" class="govuk-c-radios__input">
+                <label for="radio-part-{{ loop.index }}" class="govuk-c-label govuk-c-radios__label">
+                  <span class="govuk-c-label--bold">{{ field.name }}</span>
+                  {{ field.text | safe }}
+
+                  {% if field.more %}
+                  <div class="panel panel-border-wide js-hidden govuk-!-mt-r4 govuk-!-mb-r4" id="radio-part-{{ loop.index }}-extra">
+                    {{ field.more | safe }}
+                  </div>
+                  {% endif %}
+                </label>
+              </div>
+            {% endfor %}
+          </fieldset>
+        </div>
+        <div class="govuk-!-mb-r6">
+          <input type="submit" class="govuk-c-button" value="Continue">
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

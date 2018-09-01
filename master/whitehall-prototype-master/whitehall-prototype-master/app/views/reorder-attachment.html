@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block page_title %}Add attachment{% endblock %}
+
+{% block content %}
+<a href="{{ urlPrefix }}/document-tasks" class="govuk-c-back-link">Back</a>
+<main role="main" class="govuk-o-main-wrapper">
+  <form action="{{ urlPrefix }}/document-tasks" method="post" class="form" data-module="fake-filename-from-title">
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <h1 class="form-title govuk-heading-xl">
+          Reorder attachments
+        </h1>
+
+        <div class="panel panel-border-wide govuk-!-mb-r7">
+          <p class="govuk-body">Drag and drop the attachments to reorder them.</p>
+        </div>
+
+        {% set attachment_count = data[prefix + 'attachment-count'] | int %}
+        <ul class="govuk-!-mt-r6 govuk-!-mb-r0 govuk-list reorder">
+          {% for i in range(0, attachment_count) %}
+            <li class="attachment" style="cursor: move">
+              <h3 class="govuk-heading-s govuk-!-mt-r0 govuk-!-mb-r1">{{ data[ prefix + (i + 1) + '-attachment-title'] }}</h3>
+              <a class="govuk-link js-edge" href="{{ urlPrefix }}/attachment/{{ data[ prefix + (i + 1) + '-attachment-filename'] }}">{{ data[ prefix + (i + 1) + '-attachment-filename'] }}</a>
+            </li>
+          {% endfor %}
+          <!-- <li class="attachment">
+            <h3 class="govuk-heading-s govuk-!-mt-r0 govuk-!-mb-r1">Minutes meeting January 2018</h3>
+            <a class="govuk-link" href="">minutes-meeting-january-2018.pdf</a>
+          </li>
+          <li class="attachment">
+            <h3 class="govuk-heading-s govuk-!-mt-r0 govuk-!-mb-r1">Address February 2018</h3>
+            <a class="govuk-link" href="">address-february-2018.pdf</a>
+          </li>
+          <li class="attachment">
+            <h3 class="govuk-heading-s govuk-!-mt-r0 govuk-!-mb-r1">Speech transcript March 2018</h3>
+            <a class="govuk-link" href="">speech-transcript-march-2018.pdf</a>
+          </li> -->
+        </ul>
+
+        <input type="submit" class="govuk-c-button" value="Save">
+        <div class="govuk-!-mb-r6">
+          <a href="{{ urlPrefix }}/document-tasks" class="button button-link govuk-body">Discard changes</a>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</main>
+{% endblock %}

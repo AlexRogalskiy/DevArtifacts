@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block page_title %}Publish settings{% endblock %}
+
+{% block content %}
+<a href="{{ urlPrefix }}/document-tasks" class="govuk-c-back-link">Back</a>
+<main role="main" class="govuk-o-main-wrapper">
+  <form action="{{ urlPrefix }}/document-tasks" method="post" class="form">
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <h1 class="form-title govuk-heading-xl">
+          Scheduling
+        </h1>
+
+        <div class="govuk-o-form-group">
+          <fieldset class="govuk-c-fieldset">
+            <legend class="govuk-c-fieldset__legend">
+              <h2 class="govuk-heading-l">Schedule publication</h2>
+              <span class="govuk-c-fieldset__hint">For example, 9:30am 31 3 2018</span>
+            </legend>
+            <div class="govuk-c-date-input" id="dob">
+              <div class="govuk-c-date-input__item govuk-c-date-input__item--day" style="width: 100px; margin-right: 40px">
+                <div class="govuk-o-form-group">
+                  <label class="govuk-c-label govuk-c-date-input__label" for="schedule-time">
+                    Time
+                  </label>
+                  <input class="govuk-c-input govuk-c-date-input__input" id="schedule-time" name="{{ prefix }}schedule-time" type="text" value="{{ data[prefix + 'schedule-time'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-c-date-input__item govuk-c-date-input__item--day">
+                <div class="govuk-o-form-group">
+                  <label class="govuk-c-label govuk-c-date-input__label" for="schedule-day">
+                    Day
+                  </label>
+                  <input class="govuk-c-input govuk-c-date-input__input" id="schedule-day" name="{{ prefix }}schedule-day" type="text" value="{{ data[prefix + 'schedule-day'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-c-date-input__item govuk-c-date-input__item--month">
+                <div class="govuk-o-form-group">
+                  <label class="govuk-c-label govuk-c-date-input__label" for="schedule-month">
+                    Month
+                  </label>
+                  <input class="govuk-c-input govuk-c-date-input__input" id="schedule-month" name="{{ prefix }}schedule-month" type="text" value="{{ data[prefix + 'schedule-month'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-c-date-input__item govuk-c-date-input__item--year">
+                <div class="govuk-o-form-group">
+                  <label class="govuk-c-label govuk-c-date-input__label" for="schedule-year">
+                    Year
+                  </label>
+                  <input class="govuk-c-input govuk-c-date-input__input" id="schedule-year" name="{{ prefix }}schedule-year" type="text" value="{{ data[prefix + 'schedule-year'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-!-mb-r6">
+          <input type="submit" class="govuk-c-button" value="Save">
+        </div>
+
+        <div class="govuk-!-mb-r6">
+          <a href="{{ urlPrefix }}/document-tasks" class="button button-link govuk-body">Discard changes</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</main>
+{% endblock %}

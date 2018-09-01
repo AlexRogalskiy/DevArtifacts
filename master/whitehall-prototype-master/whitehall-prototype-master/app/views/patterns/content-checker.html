@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block page_title %}Content checker{% endblock %}
+
+{% block content %}
+<main role="main" class="govuk-o-main-wrapper">
+  <h1 class="govuk-heading-xl">
+    Content checker
+  </h1>
+
+  {% if report.length > 0 %}
+    <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+      <h3 class="govuk-heading-m error-summary-heading" id="error-summary-heading-example-1">
+        We found problems with your content
+      </h3>
+      <ul class="error-summary-list">
+        {% for error in report %}
+          <li>
+            <a href="#{{ error.name }}" class="js-content-error" data-range="{{ error.name }}" data-actual="{{ error.actual }}">
+              {{ error.message }} ({{ error.source }}, {{ error.ruleId }})
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form action="/patterns/content-checker" method="post" data-module="live-content-check">
+    <div class="govuk-!-mb-r6 is-textarea">
+      <label class="govuk-c-label" for="text">Text to check</label>
+      <textarea id="text" name="text" class="govuk-c-textarea js-check-content" rows="20">{{ data['text']}}</textarea>
+    </div>
+
+    <!-- <div class="govuk-!-mb-r6">
+      <label for="another-text">Text to check</label>
+      <textarea id="another-text" name="text" class="form-control" rows="20">{{ data['text']}}</textarea>
+    </div> -->
+    <input type="submit" value="Check text" class="govuk-c-button" />
+  </form>
+</main>
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+$(function(){
+
+  $('.js-content-error').on('click', function(evt) {
+    evt.preventDefault();
+
+    var textToHighlight = $(this).data('actual')
+
+    $('#text').highlightWithinTextarea({
+      highlight: textToHighlight
+    });
+  });
+
+  var highlights = [];
+  $('[data-actual]').each(function() {
+    highlights.push($(this).data('actual'))
+  });
+
+  $('#text').highlightWithinTextarea({
+    highlight: highlights
+  });
+});
+</script>
+{% endblock %}

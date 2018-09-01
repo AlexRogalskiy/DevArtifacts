@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block page_title %}GOV.UK prototype kit{% endblock %}
+
+{% block content %}
+<a href="{{ urlPrefix }}/intent" class="govuk-c-back-link">Back</a>
+<main role="main" class="govuk-o-main-wrapper">
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <form action="{{ urlPrefix }}/document-type" method="post" class="form">
+        <div class="govuk-!-mb-r6">
+          <fieldset>
+            <legend>
+              <h1 class="govuk-heading-xl">
+                What type of document?
+              </h1>
+              <p class="govuk-body">Read the full guidance on choosing the right <a href="https://www.gov.uk/guidance/content-design/content-types">GOV.UK content type</a> for users.</p>
+            </legend>
+
+            {% set fields = [
+                {
+                  name: 'Case study',
+                  text: '<p class="govuk-body">Use for real examples that help users understand someone’s experience of a process or an important aspect of government policy.</p>',
+                  more: '<p class="govuk-body">Do not use to promote your organisation or if it doesn’t relate to something covered on GOV.UK.</p>
+                  <p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#case-study">case study guidance</a> in full.</p>',
+                  intent: ['Tell users about something']
+                },
+                {
+                  name: 'Consultation',
+                  text: '<p class="govuk-body">Use for documents requiring collective agreement across government, including calls for evidence.</p>',
+                  intent: ['Help users to do something']
+                },
+                {
+                  name: 'Detailed guide',
+                  text: '<p class="govuk-body">Use to tell users the steps they need to take to complete a clearly defined task. They are usually aimed at specialist or professional audiences.</p>',
+                  more: '<p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#detailed-guide">detailed guides guidance</a> in full.</p>',
+                  intent: ['Help users to do something']
+                },
+                {
+                  name: 'Document collection',
+                  text: '<p class="govuk-body">Use for grouping closely related documents on a single page for a specific audience.</p>',
+                  more: '<p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#detailed-guide">document collection guidance</a> in full.</p>',
+                  intent: ['Make something available']
+                },
+                {
+                  name: 'News article',
+                  text: '<p class="govuk-body">Use for news stories, press releases, and responses to media coverage including official statements.',
+                  more: '<p class="govuk-body">Do not use to promote the publication of other content.</p>
+                  <p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#government-response">news article guidance</a> in full.</p>',
+                  intent: ['Tell users about something']
+                },
+                {
+                  name: 'Publication',
+                  text: '<p class="govuk-body">Use for stand-alone government documents, issued on a specified date and usually not updated once published. This includes white papers, strategy documents, and reports.</p>',
+                  more: '<p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#publications">publication guidance</a> in full.</p>',
+                  intent: ['Help users to do something', 'Tell users about something', 'Make something available']
+                },
+                {
+                  name: 'Speech',
+                  text: '<p class="govuk-body">Use for transcripts or speaking notes for public speeches by ministers or other named spokespeople, or for statements to Parliament, or bylined articles.</p>',
+                  more: '<p class="govuk-body">Do not publish a speech or statement unless you expect a high level of public interest in everything that was said. It’s better to publish a press release or government response for quotes or a summary.</p>
+                  <p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#speech">speech guidance</a> in full.</p>',
+                  intent: ['Tell users about something']
+                }
+              ]
+            %}
+
+            {% for field in fields %}
+              {% if field.intent.includes(data['intent']) %}
+                <div class="multiple-choice govuk-c-radios__item" data-target="radio-part-{{ loop.index }}-extra">
+                  <input required id="radio-part-{{ loop.index }}" type="radio" name="{{ prefix }}format" value="{{ field.name }}" class="govuk-c-radios__input">
+                  <label for="radio-part-{{ loop.index }}" class="govuk-c-label govuk-c-radios__label">
+                    <span class="govuk-c-label--bold">{{ field.name }}</span>
+                    {{ field.text | safe }}
+
+                    {% if field.more %}
+                    <div class="panel panel-border-wide govuk-!-mt-r4 govuk-!-mb-r4 js-hidden" id="radio-part-{{ loop.index }}-extra">
+                      {{ field.more | safe }}
+                    </div>
+                    {% endif %}
+                  </label>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </fieldset>
+        </div>
+        <div class="govuk-!-mb-r6">
+          <input type="submit" class="govuk-c-button" value="Continue">
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

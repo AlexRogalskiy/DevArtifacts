@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block page_title %}Live preview{% endblock %}
+
+{% block content %}
+<style>
+#global-header {
+  display: none;
+}
+
+.govuk-o-width-container {
+  width: auto;
+  max-width: none;
+  margin: 0;
+}
+</style>
+
+<div class="full-wrapper">
+  <div class="govuk-o-grid" data-module="live-preview" data-target="preview">
+    <div class="govuk-o-grid__item govuk-o-grid__item--one-half">
+      <form action="/patterns/realtime-preview" method="post">
+        <div class="govuk-!-mb-r6 is-textarea">
+          <label class="govuk-heading-m" for="text">Body</label>
+          <div class="inserts">
+            Insert:
+            <a href="#" style="margin-left: 20px">attachment</a>
+            <a href="#" style="margin-left: 20px">image</a>
+            <a href="#" style="margin-left: 20px">link</a>
+          </div>
+          <textarea id="text" name="text" class="govuk-c-textarea js-preview-input" rows="100">{{ data['text']}}</textarea>
+        </div>
+      </form>
+    </div>
+    <div class="govuk-o-grid__item govuk-o-grid__item--one-half">
+      <label class="govuk-heading-m govuk-!-mb-r4">Preview</label>
+      <div id="preview" class="govuk-prose-scope">
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+$(function(){
+
+
+});
+</script>
+{% endblock %}

@@ -1,0 +1,107 @@
+<div id="global-breadcrumb" class="header-context">
+      <ol role="breadcrumbs" class="group">
+<li><a href="/">Home</a></li>
+      <li><a href="/browse/births-deaths-marriages">Births, deaths, marriages and care</a></li>
+<li><strong><a href="/browse/births-deaths-marriages/register-offices">Certificates, register offices, changes of name or gender</a></strong></li>
+</ol>
+</div>
+
+  <div id="wrapper" class="place service">
+      <div class="grid-row">
+        <main id="content" role="main" class=""><header class="page-header"><div>
+      <h1>
+
+        Find a register office
+      </h1>
+    </div>
+  </header><div class="article-container group">
+
+
+    <div class="content-block">
+      <div class="inner">
+
+  <section class="intro"><div class="get-started-intro">
+
+      <div class="find-nearest">
+
+        <p>Enter your postcode to find a register office near you.  </p>
+
+        <div class="find-nearest">
+  <form method="get" id="local-locator-form" class="find-location-for-service">
+    <fieldset>
+<legend class="visuallyhidden">Postcode lookup</legend>
+
+
+      <div class="ask_location">
+        <label for="postcode">Enter your postcode (UK only) <input class="postcode" id="postcode" name="postcode" type="text" placeholder="eg SW1A 2AA"></label>
+        <button type="submit" class="button">Find</button>
+      </div>
+    </fieldset>
+</form>
+
+<% if @postcode %>
+  <section class="places">
+    <h2>Results near<strong> <%= @postcode %></strong>:</h2>
+    <ol id="options" class="places">
+      <% @offices.first(3).each do |office| %>
+        <% entry = office['entry'] %>
+        <li>
+          <div class="place group">
+            <div class="information">
+              <div class="address vcard">
+                <div class="adr org fn">
+                  <p class="adr">
+                    <% if office[:address] %>
+                      <%= office[:address]['property'] %><br />
+                      <%= office[:address]['street'] %><br />
+                      <%= office[:address]['town'] %><br />
+                      <%= office[:address]['area'] %>,
+                    <% else %>
+                      <%= entry['name'] %><br />
+                    <% end %>
+                      <br><span class="postal-code"><%= entry['postcode'] %></span>
+                  </p>
+
+                    <ul class="view-maps">
+      <li><a href="https://maps.google.com/maps?z=16&amp;ie=UTF8&amp;q=loc:50.82443380164425%2C-0.1429384925904862&amp;ll=50.82443380164425%2C-0.1429384925904862">View on Google Maps</a></li>
+                      <li><a href="http://www.openstreetmap.org/index.html?mlat=50.82443380164425&amp;mlon=-0.1429384925904862&amp;zoom=16">View on Open Street Map</a></li>
+                    </ul>
+      <div class="additional-information">
+                      <p class="url">
+                        Website: <a href="<%= entry['website'] %>"><%= entry['website'] %></a>
+                      </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ol>
+  </section>
+<% end %>
+</div>
+
+      </div>
+    </div>
+  </section><section class="more"><div class="further_information">
+        <h2>Further information</h2>
+        <ul>
+<li>Not available in Northern Ireland</li>
+</ul>
+</div>
+    </section>
+</div>
+    </div>
+    <div class="meta-data group">
+    <p class="modified-date">Last updated:  9 March 2015</p>
+</div>
+
+
+  </div>
+</main>
+
+      </div>
+
+  </div>
+</div>

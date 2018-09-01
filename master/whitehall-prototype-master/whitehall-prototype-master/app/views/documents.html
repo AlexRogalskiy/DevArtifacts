@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  GOV.UK prototype kit
+{% endblock %}
+
+{% block content %}
+
+<main role="main" class="govuk-o-main-wrapper">
+  <h1 class="form-title govuk-heading-xl">
+    Everyone’s documents
+  </h1>
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+      <form action="/docs/tutorials-and-examples" method="post" class="form">
+        <h2 class="govuk-heading-m">Filter documents</h2>
+        <label class="govuk-c-label" for="title">
+          Title or slug
+        </label>
+        <input type="text" class="govuk-c-input" id="title">
+
+        <label class="govuk-c-label" for="author">
+          Author
+        </label>
+        <input type="text" class="govuk-c-input" id="author">
+
+        <label class="govuk-c-label" for="government-organisations">
+          Organisation
+        </label>
+        <select id="government-organisations" name="organisation">
+          {% include "includes/organisation-select-options.html" %}
+        </select>
+      </form>
+    </div>
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <h2 class="govuk-heading-m">Documents</h2>
+      {% set documentCount = 50 %}
+      {% include "includes/document-table.html" %}
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+  govukGovernmentOrganisationsAutocomplete({
+    selectElement: document.getElementById('government-organisations'),
+    showAllValues: false,
+    minLength: 2,
+    defaultValue: ''
+  })
+</script>
+{% endblock %}

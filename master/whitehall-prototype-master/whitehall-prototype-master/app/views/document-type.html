@@ -1,0 +1,228 @@
+{% extends "layout.html" %}
+{% block page_title %}GOV.UK prototype kit{% endblock %}
+
+{% block content %}
+
+{% if referrer() == 'format' or referrer() == 'specialist-format' or referrer() == 'title-summary-body' %}
+  {% set editing = false %}
+{% else %}
+  {% set editing = true %}
+{% endif %}
+
+{% if data[prefix + 'specialist'] %}
+  {% set back = '/specialist-format' %}
+{% else %}
+  {% set back = '/format' %}
+{% endif %}
+
+<a href="{{ urlPrefix }}{% if editing %}/document-tasks{% else %}{{ back }}{% endif %}" class="govuk-c-back-link">Back</a>
+<main role="main" class="govuk-o-main-wrapper">
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <form action="{{ urlPrefix }}{% if editing %}/document-tasks{% else %}/title-summary-body{% endif %}" method="post" class="form">
+        <div class="govuk-!-mb-r6">
+          <fieldset>
+            <legend>
+              <h1 class="govuk-heading-xl form-title">
+                What type of {{ data[prefix + 'format'] | lower }}?
+              </h1>
+
+              {% if not data[prefix + 'specialist'] %}
+                <p class="govuk-body">Read the full guidance on choosing the right <a href="https://www.gov.uk/guidance/content-design/content-types">GOV.UK content type</a> for users.</p>
+              {% endif %}
+            </legend>
+
+            {% set fields = [
+                {
+                  name: 'Government response',
+                  format: 'News article',
+                  text: '<p class="govuk-body">Government statements in response to media coverage, such as rebuttals or ‘myth busters’.</p>',
+                  more: '<p class="govuk-body">Do not use for statements to Parliament. Use the “Speech” format for those.<p class="govuk-body"><p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#government-response">government response guidance</a> in full.</p>'
+                },
+                {
+                  name: 'News story',
+                  format: 'News article',
+                  text: '<p class="govuk-body">News written exclusively for GOV.UK which users need, can act on, and can’t get from other sources.</p>',
+                  more: '<p class="govuk-body">Do not duplicate press releases or news published by another department.</p>
+                  <p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#news-story">news story guidance</a> in full.</p>'
+                },
+                {
+                  name: 'Press release',
+                  format: 'News article',
+                  text: '<p class="govuk-body">Unedited press releases as sent to the media, and official statements from the organisation or a minister.',
+                  more: 'Do not use for statements to Parliament. Use the “Speech” format for those.</p>
+                  <p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#press-release">press release guidance</a> in full.</p>'
+                },
+                {
+                  name: 'World news story',
+                  format: 'News article',
+                  text: '<p class="govuk-body">Announcements specific to one or more world location.</p>',
+                  more: '<p class="govuk-body">Do not duplicate news published by another department.</p>
+                  <p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#world-location-news-article">world news story guidance</a> in full.'
+                },
+                {
+                  name: 'Foreign language only news story',
+                  format: 'News article',
+                  text: '<p class="govuk-body">A news story which will only be published in a foreign language and not in English. If there is an English version add translated versions to that instead.</p>',
+                  more: '<p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#world-location-news-article">world news story guidance</a> in full.</p>'
+                },
+                {
+                  name: 'Transcript',
+                  format: 'Speech',
+                  text: '<p class="govuk-body">A verbatim report of exactly what the speaker said (checked against delivery).</p>'
+                },
+                {
+                  name: 'Draft text',
+                  format: 'Speech',
+                  text: '<p class="govuk-body">A script of what the speaker was expected to say (check against delivery).</p>'
+                },
+                {
+                  name: 'Speaking notes',
+                  format: 'Speech',
+                  text: '<p class="govuk-body">Incomplete notes about what the speech covered.</p>'
+                },
+                {
+                  name: 'Written statement to Parliament',
+                  format: 'Speech',
+                  text: '<p class="govuk-body">Very significant written statements given to Parliament by a minister.</p>'
+                },
+                {
+                  name: 'Oral statement to Parliament',
+                  format: 'Speech',
+                  text: '<p class="govuk-body">Very significant oral statements given to Parliament by a minister.</p>'
+                },
+                {
+                  name: 'Authored article',
+                  format: 'Speech',
+                  text: '<p class="govuk-body">Bylined articles written in the name of a minister or official (usually re-published from elsewhere).</p>'
+                },
+                {
+                  name: 'Drug alert',
+                  format: 'Medical safety alert'
+                },
+                {
+                  name: 'Drug alert: company led',
+                  format: 'Medical safety alert'
+                },
+                {
+                  name: 'Medical device alert',
+                  format: 'Medical safety alert'
+                },
+                {
+                  name: 'Field safety notice',
+                  format: 'Medical safety alert'
+                },
+                {
+                  name: 'Policy paper',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">A policy paper explains the government’s position on something. It doesn’t include instructions on how to carry out a task, only the policy itself and how it’ll be implemented.</p>',
+                  more: '<p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#policy-paper">policy papers guidance</a> in full.</p>'
+                },
+                {
+                  name: 'Impact assessment',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Cost-benefit analyses and other assessments of the impact of proposed initiatives, or changes to regulations or legislation.</p>'
+                },
+                {
+                  name: 'Guidance',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Non-statutory guidance publications. Includes: manuals, handbooks and other documents that offer advice.</p>',
+                  more: '<p class="govuk-body">Do not use for: statutory guidance (use the “statutory guidance” publication type) or guidance about completing a form (attach to same publication as the form itself).</p>'
+                },
+                {
+                  name: 'Statutory guidance',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Guidance which relevant users are legally obliged to follow. (For non-statutory guidance publications, use the “guidance” sub-type).</p>'
+                },
+                {
+                  name: 'Form',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Pro-forma or form documents that need to be completed by the user. Can include guidance on how to fill in forms (ie no need to create a separate “guidance” publication for form instructions).</p>'
+                },
+                {
+                  name: 'Official Statistics',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Statistics governed by the UK Statistics Authority and produced by members of the Government Statistical Service.</p>'
+                },
+                {
+                  name: 'National Statistics',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Official Statistics that have been produced in accordance with the Code of Practice for Official Statistics, which is indicated using the National Statistics quality mark.</p>'
+                },
+                {
+                  name: 'Research and analysis',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Research and evaluation papers. Can be conducted by government, commissioned by government or independent of government.</p>'
+                },
+                {
+                  name: 'Corporate report',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Publications about what an organisation does (eg business plans, annual reports, accounts), or any plans that affect the organisation (eg structural reform plans, efficiency reviews). Corporate reports are shown automatically on the organisation’s “What we do” page.</p>'
+                },
+                {
+                  name: 'Transparency data',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Information made available about departmental operations with the intent of making government more transparent.Includes organisation charts, staff survey results, departmental spending, salaries, contracts, meetings with ministers, etc.</p>',
+                  more: '<p class="govuk-body">Do not use for: FOI responses.</p>'
+                },
+                {
+                  name: 'FOI release',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Responses to Freedom of Information requests. Ensure the title describes specifically what the request is about.</p>'
+                },
+                {
+                  name: 'Independent report',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Reviews, inquiries and other reports commissioned from or conducted by independent (ie non-governmental) bodies for consideration by the government.</p>'
+                },
+                {
+                  name: 'International treaty',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Treaties and memoranda of understanding between the UK and other nations.</p>'
+                },
+                {
+                  name: 'Notice',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Permit and licence applications published temporarily for public awareness.</p>'
+                },
+                {
+                  name: 'Decision',
+                  format: 'Publication',
+                  text: '<p class="govuk-body">Formal decisions by tribunals, regulators or adjudicators (including courts and Secretaries of State).</p>'
+                }
+              ]
+            %}
+
+            {% for field in fields %}
+              {% if data[prefix + 'format'] == field.format %}
+              <div class="multiple-choice govuk-c-radios__item" data-target="radio-part-{{ loop.index }}-extra">
+                <input required id="radio-part-{{ loop.index }}" type="radio" name="{{ prefix }}document-type" value="{{ field.name }}" {% if editing %}{{ checked(prefix + "document-type", field.name) }}{% endif %} class="govuk-c-radios__input">
+                <label for="radio-part-{{ loop.index }}" class="govuk-c-label govuk-c-radios__label">
+                  <span class="govuk-c-label--bold">{{ field.name }}</span>
+                  {{ field.text | safe }}
+
+                  {% if field.more %}
+                  <div class="panel panel-border-wide js-hidden govuk-!-mt-r4 govuk-!-mb-r4" id="radio-part-{{ loop.index }}-extra">
+                    {{ field.more | safe }}
+                  </div>
+                  {% endif %}
+                </label>
+              </div>
+              {% endif %}
+            {% endfor %}
+          </fieldset>
+        </div>
+        <div class="govuk-!-mb-r6">
+          <input type="submit" class="govuk-c-button" value="{% if editing %}Save{% else %}Continue{% endif %}">
+        </div>
+        {% if editing %}
+        <div class="govuk-!-mb-r6">
+          <a href="{{ urlPrefix }}/document-tasks" class="button button-link">Cancel</a>
+        </div>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

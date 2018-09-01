@@ -1,0 +1,273 @@
+{% extends "layout.html" %}
+{% block page_title %}New news article{% endblock %}
+
+{% block content %}
+
+{% if referrer() == 'document-type' or referrer() == 'format' %}
+  {% set editing = false %}
+{% else %}
+  {% set editing = true %}
+{% endif %}
+
+{% if data[prefix + 'format'] == 'Medical safety alert' %}
+  {% set slugPrefix = 'drug-device-alerts' %}
+{% elseif data[prefix + 'format'] == 'Drug safety update' %}
+  {% set slugPrefix = 'drug-safety-update' %}
+{% endif %}
+
+{% set attachment_count = data[prefix + 'attachment-count'] | int %}
+
+<a href="{{ urlPrefix }}{% if editing %}/document-tasks{% else %}/document-type{% endif %}" class="govuk-c-back-link">Back</a>
+<main role="main" class="govuk-o-main-wrapper">
+
+  {% if data[prefix + 'show-errors'] and title_summary_body_errors and title_summary_body_errors.length > 0 %}
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+        <h3 class="govuk-heading-m error-summary-heading" id="error-summary-heading-example-1">
+          You need to complete the following sections before you can send to review:
+        </h3>
+        <ul class="error-summary-list">
+          {% for error in title_summary_body_errors %}
+          <li><a href="{{ urlPrefix }}/{{ error.page }}#{{ error.field }}">{{ error.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <form action="{{ urlPrefix }}/document-tasks" method="post" class="form" data-module="slug-from-title" data-prefix= "{{ slugPrefix }}">
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <h1 class="form-title govuk-heading-xl">
+          {% if editing and data[prefix + 'title'] %}
+            <span class="govuk-caption-xl">{{ data[prefix + 'format'] }}</span>
+            {{ data[prefix + 'title'] }}
+          {% else %}
+            {% if data[prefix + 'document-type'] %}
+              <span class="govuk-caption-xl">{{ data[prefix + 'format'] }}</span>
+              Create {{ data[prefix + 'document-type'] | lower }}
+            {% else %}
+              Create {{ data[prefix + 'format'] | lower }}
+            {% endif %}
+          {% endif %}
+        </h1>
+        {% if data[prefix + 'document-type'] == 'News story' %}
+          <h2 class="govuk-heading-m">Guidance for writing a {{ data[prefix + 'document-type'] | lower }}</h2>
+          <p class="govuk-body">
+            News written exclusively for GOV.UK which users need, can act on, and can’t get from other sources. News stories should be self-contained and can be removed from the site without affecting other content.
+          </p>
+          <details class="govuk-c-details">
+            <summary class="govuk-c-details__summary"><span class="govuk-c-details__summary-text">Keep reading</span></summary>
+            <div class="govuk-c-border govuk-c-border--left-narrow">
+              <ul class="recommendations">
+                <li>Don’t duplicate news published by another department - collaborate if needed.</li>
+                <li>Don’t publish guidance in new stories - it can go out of date and won’t be found by users.</li>
+                <li>Don’t publish news just to announce other GOV.UK content - it confuses users and search results.</li>
+              </ul>
+              <p class="govuk-body">Read the <a href="https://www.gov.uk/guidance/content-design/content-types#news-story">news story guidance</a> in full.</p>
+            </div>
+          </details>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="govuk-o-grid" data-module="live-content-check">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <div class="govuk-!-mb-r6 is-input">
+          <label class="govuk-c-label" for="title">
+            Title
+          </label>
+          <input required type="text" name="{{ prefix }}title" autocomplete="off" class="js-check-content govuk-c-input" id="title" data-target="title-checks" value="{% if editing %}{{data[prefix + 'title']}}{% endif %}">
+          <span class="govuk-c-label__hint govuk-body" style="margin-top: -25px">65 characters or fewer. Current length: ##</span>
+        </div>
+      </div>
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+        <div class="js-contextual-guidance contextual-guidance" style="display: none">
+          <div id="title-checks"></div>
+          <h3 class="govuk-heading-s govuk-!-mb-r1">Writing a news title</h3>
+          <ul class="govuk-list">
+            <li>The title must make clear what the content offers users. Use the words your users do to help them find this. Avoid wordplay or teases.</li>
+            <li><a href="">Read more on titles</a></li>
+            <li><a class="govuk-link" href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#plain-english">Using plain English</a></li>
+            <li><a class="govuk-link" href="https://www.gov.uk/guidance/style-guide">The style guide</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="govuk-o-grid js-slug">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <div class="govuk-!-mb-r6 panel panel-border-wide">
+          <h3 class="govuk-heading-s govuk-!-mb-r1 govuk-!-m-r0">The web address for this content will look like:</h3>
+          <span class="govuk-body empty">
+            You haven’t entered a title yet.
+          </span>
+          <span class="govuk-body js-slug-parent">
+            https://www.gov.uk/<span class="js-dynamic-slug">government/this-is-the-title</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-o-grid" data-module="live-content-check">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <div class="govuk-!-mb-r6 is-textarea {% if data[prefix + 'show-errors'] and field_errors['summary'] %}govuk-o-form-group--error{% endif %}">
+          <label class="govuk-c-label" for="summary">
+            Summary
+          </label>
+          {% if data[prefix + 'show-errors'] and field_errors['summary'] %}<span class="govuk-c-error-message">{{ field_errors['summary'] }}</span>{% endif %}
+          <textarea name="{{ prefix }}summary" class="govuk-c-textarea js-check-content" data-target="summary-checks" id="summary" rows="3">{% if editing %}{{data[prefix + 'summary']}}{% endif %}</textarea>
+          <span class="govuk-c-label__hint govuk-body" style="margin-top: -25px">160 characters or fewer. Current length: ##</span>
+        </div>
+      </div>
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+        <div class="js-contextual-guidance contextual-guidance" style="display: none">
+          <div id="summary-checks"></div>
+          <h3 class="govuk-heading-s govuk-!-mb-r1">Writing a news summary</h3>
+          <ul class="govuk-list">
+            <li>The summary should explain the main point of the story. It is the first line of the story so don’t repeat it below and end with a full stop.</li>
+            <li><a class="govuk-link" href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#summaries">Read more on summaries.</a></li>
+            <li><a class="govuk-link" href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#plain-english">Using plain English</a></li>
+            <li><a class="govuk-link" href="https://www.gov.uk/guidance/style-guide">The style guide</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-o-grid body-guidance" data-module="live-content-check">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds" data-module="live-preview" data-target="preview">
+        <div data-module="toggle-markdown-preview">
+          <div class="govuk-!-mb-r6 is-textarea {% if data[prefix + 'show-errors'] and field_errors['body'] %}govuk-o-form-group--error{% endif %}">
+            <div class="js-markdown-preview-target">
+              <label class="govuk-c-label" for="body" id="body-label">
+                Body
+              </label>
+              {% if data[prefix + 'show-errors'] and field_errors['body'] %}<span class="govuk-c-error-message">{{ field_errors['body'] }}</span>{% endif %}
+              <div class="inserts">
+                <a href="/toggle" class="js-toggle-markdown-preview">Preview markdown</a>
+                {% if attachment_count > 0 %}
+                <a href="#" style="margin-left: 20px" id="openModal">Insert attachment</a>
+                <a href="#" style="margin-left: 20px">Insert image</a>
+                {% endif %}
+              </div>
+              <textarea name="{{ prefix }}body" class="govuk-c-textarea js-check-content js-preview-input" data-target="body-checks" name="{{ prefix }}textarea" id="body" rows="40">{% if editing %}{{data[prefix + 'body']}}{% endif %}</textarea>
+            </div>
+          </div>
+          <div class="js-markdown-preview-target" style="display: none">
+            <p class="govuk-body">
+              <a href="/toggle" class="js-toggle-markdown-preview">Continue editing</a>
+            </p>
+            <div id="preview" class="govuk-prose-scope"></div>
+          </div>
+        </div>
+      </div>
+      <div class="govuk-o-grid__item govuk-o-grid__item--one-third">
+        <div class="js-contextual-guidance contextual-guidance" style="display: none">
+          <div id="body-checks"></div>
+          <h3 class="govuk-heading-s govuk-!-mb-r1">Writing news</h3>
+          <ul class="govuk-list">
+            <li>Tell the story in the first lines with the most important information at the top. Use short words, short sentences, and short paragraphs. Use subheadings in longer content.</li>
+            <li><a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#structuring-content">Read more on structuring content</a></li>
+            <li><a class="govuk-link" href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#plain-english">Using plain English</a></li>
+            <li><a class="govuk-link" href="https://www.gov.uk/guidance/style-guide">The style guide</a></li>
+          </ul>
+          <h2 class="govuk-heading-s govuk-!-mb-r1">Markdown guidance</h2>
+          <p class="govuk-body">For details, read the guide to using Markdown</p>
+          <ul class="govuk-list" data-module="toggle">
+            <li>
+              <a class="govuk-link" href="#markdown-headings" data-controls="markdown-headings" data-expanded="false">Headings</a>
+              <div style="display: none" id="markdown-headings">
+                <pre>
+## Top level heading – H2
+### Second level heading – H3
+                </pre>
+              </div>
+            </li>
+            <li>
+              <a class="govuk-link" href="#markdown-links" data-controls="markdown-links" data-expanded="false">Links</a>
+              <div style="display: none" id="markdown-links">
+                <p class="govuk-body">Add:</p>
+                <ul class="govuk-list">
+                  <li>[ ] brackets around the clickable link text</li>
+                  <li>( ) brackets around the full destination page address (URL)</li>
+                </ul>
+                <p class="govuk-body">Don’t put a space between the link text and the address.</p>
+                <pre>
+[link text](http://www.example.com)
+                </pre>
+              </div>
+            </li>
+            <li>
+              <a class="govuk-link" href="#markdown-bullets" data-controls="markdown-bullets" data-expanded="false">Bullets</a>
+              <div style="display: none" id="markdown-bullets">
+                <pre>
+* item 1
+* item 2
+* item 3
+                </pre>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="govuk-!-mb-r6">
+      <input type="submit" class="govuk-c-button" value="Save">
+    </div>
+    <!-- <input type="submit" class="button add-left-margin" formaction="?saved" value="Save and continue editing"> -->
+    {% if editing %}
+    <div class="govuk-!-mb-r6 govuk-body">
+      <a href="{{ urlPrefix }}/document-tasks" class="button button-link">Discard changes</a>
+    </div>
+    {% endif %}
+  </form>
+
+  <dialog id="js-modal-dialog" class="modal-dialog dialog" role="dialog" aria-live="polite" aria-labelledby="dialog-title" aria-describedby="at-timer" data-module="attachment-insert">
+    <div class="modal-dialog__inner js-select-form">
+      <h1 id="dialog-title" class="heading-large govuk-!-mb-r6">
+        Insert attachment
+      </h1>
+      <div class="modal-dialog__inner__text govuk-!-mb-r2">
+        <h2 class="govuk-heading-m govuk-!-mb-r2">Select an attachment</h2>
+        {% include "includes/attachment-list.html" %}
+
+        <h2 class="govuk-heading-m govuk-!-mb-r2">Or insert a new one</h2>
+      </div>
+      <div class="modal-dialog__inner__block">
+        <a href="{{ urlPrefix }}/attachment" class="govuk-c-button dialog-button modal-dialog__inner__button js-upload-attachment">Insert new attachment</a>
+
+        <p class="govuk-body govuk-!-mb-r0">
+          <a href="{{ urlPrefix }}/" class="js-dialog-close">Cancel</a>
+        </p>
+      </div>
+    </div>
+    <div class="modal-dialog__inner js-upload-form" style="display: none">
+      <h1 id="dialog-title" class="heading-large govuk-!-mb-r6">
+        Insert a new attachment
+      </h1>
+      <div class="modal-dialog__inner__text">
+        <div class="is-input">
+          <label class="govuk-c-label govuk-c-label--bold" for="attachment-title">
+            Attachment title
+            <span class="govuk-c-label__hint">Use the official title of the document</span>
+          </label>
+          <input required type="text" name="{{ prefix }}{{ attachment_id }}-attachment-title" class="js-check-content govuk-c-input govuk-!-mb-r3" id="attachment-title" data-target="attachment-title-checks" value="{% if editing %}{{data[prefix + attachment_id + '-attachment-title']}}{% endif %}">
+        </div>
+
+        <label class="govuk-c-label govuk-c-label--bold" for="attachment-file">
+          File
+        </label>
+        <input type="file" name="{{ prefix }}attachment-file" class="govuk-c-file-upload govuk-!-mb-r0">
+      </div>
+      <div class="modal-dialog__inner__block">
+        <a href="{{ urlPrefix }}/attachment" class="govuk-c-button  govuk-!-mb-r6 dialog-button modal-dialog__inner__button js-edge ">Insert attachment</a>
+
+        <p class="govuk-body govuk-!-mb-r0">
+          <a href="{{ urlPrefix }}/" class="js-upload-close">Cancel</a>
+        </p>
+      </div>
+    </div>
+  </dialog>
+</main>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% if attachment_count > 0 %}
+  <div style="clear: both">
+    <ul class="govuk-!-mt-r2 govuk-list">
+  {% for i in range(0, attachment_count) %}
+      <li>
+        <h4 class="govuk-heading-s govuk-!-mb-r0">
+          <a class="govuk-link js-attachment js-dialog-close" data-markdown="[InlineAttachment:{{ data[ prefix + (i + 1) + '-attachment-filename'] }}]" href="{{ urlPrefix }}/attachment/{{ i + 1 }}">
+            {{ data[ prefix + (i + 1) + '-attachment-title'] }} (<span class="">{{ data[ prefix + (i + 1) + '-attachment-filename'] }}</span>)
+          </a>
+        </h4>
+      </li>
+  {% endfor %}
+    </ul>
+  </div>
+{% endif %}

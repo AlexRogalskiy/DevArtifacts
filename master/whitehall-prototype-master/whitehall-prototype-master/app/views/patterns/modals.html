@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block page_title %}Modals{% endblock %}
+
+{% block content %}
+<main role="main" class="govuk-o-main-wrapper">
+  <h1 class="govuk-heading-xl">
+    Modals
+  </h1>
+
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <p class="govuk-body-l">
+        A pop-up dialogue based on work by <a href="https://github.com/hannalaakso/accessible-timeout-warning">Hanna Laakso</a> for the GOV.UK design system. The button will open the modal.
+      </p>
+    </div>
+  </div>
+
+  <a href="#" id="openModal" class="govuk-c-button">Force publish</a>
+
+  <dialog id="js-modal-dialog" class="modal-dialog dialog" role="dialog" aria-live="polite" aria-labelledby="dialog-title" aria-describedby="at-timer">
+    <div class="modal-dialog__inner">
+      <h1 id="dialog-title" class="heading-large">
+        Are you sure you want to force publish?
+      </h1>
+      <div class="modal-dialog__inner__text">
+        <div class="timer" aria-hidden="true" aria-relevant="additions"></div>
+        <div id="at-timer" class="at-timer visually-hidden" role="status"></div>
+      </div>
+      <div class="modal-dialog__inner__block">
+        <button class="govuk-c-button dialog-button modal-dialog__inner__button js-dialog-close">Force publish</button>
+        <a href="/" class="govuk-c-button govuk-c-button--link modal-dialog__inner__link js-dialog-close">Don’t publish</a>
+      </div>
+    </div>
+  </dialog>
+</main>
+{% endblock %}

@@ -1,0 +1,53 @@
+<table class="govuk-c-table documents">
+  <thead class="govuk-c-table__head">
+    <tr class="govuk-c-table__row">
+      <th class="govuk-c-table__header">Title</th>
+      <th class="govuk-c-table__header">Document type</th>
+      <th class="govuk-c-table__header">Status</th>
+      <th class="govuk-c-table__header">Last updated</th>
+      <th class="govuk-c-table__header"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in range(0, documentCount) -%}
+      {% set x = [
+        {
+          name: data['title'] or 'Custom title',
+          format: data['format'] or 'News article',
+          status: 'Draft',
+          date: '14 March 2018',
+          edit: 'Change draft',
+          link: '/document-tasks'
+        },
+        {
+          name: 'Improving social mobility through education',
+          format: 'Detailed guidance',
+          status: 'Draft',
+          edit: 'Change draft',
+          date: '10 August 2017'
+        },
+        {
+          name: 'Product manager: skills they need',
+          format: 'Publication',
+          status: 'Published',
+          edit: 'Create new edition',
+          date: '1 July 2017'
+        },
+        {
+          name: 'Disabled Person’s Railcard and assisted journeys data: 2017 to 2018 (P5 to P7)',
+          format: 'Official statistics',
+          status: 'Force published',
+          edit: 'Create new edition',
+          date: '23 January 2017'
+        }
+      ] | random %}
+    <tr class="govuk-c-table__row">
+      <td class="govuk-c-table__cell name"><a href="{% if x.link %}{{ x.link }}{% else %}#{% endif %}">{{ x.name }}</a></td>
+      <td class="govuk-c-table__cell">{{ x.format}}</td>
+      <td class="govuk-c-table__cell">{{ x.status}}</td>
+      <td class="govuk-c-table__cell">{{ x.date }}</td>
+      <td class="govuk-c-table__cell"><a href="">View on GOV.UK</a></td>
+    </tr>
+    {%- endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block page_title %}Specialist format{% endblock %}
+
+{% block content %}
+<a href="/dashboard" class="govuk-c-back-link">Back</a>
+<main role="main" class="govuk-o-main-wrapper">
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <form action="{{ urlPrefix }}/document-type" method="post" class="form">
+        <div class="govuk-!-mb-r6">
+          <fieldset>
+            <legend>
+              <h1 class="govuk-heading-xl">
+                What type of specialist document?
+              </h1>
+            </legend>
+
+            {% set fields = [
+                {
+                  name: 'Medical safety alert',
+                  text: '<p class="govuk-body">Alerts and recalls for drugs and medical devices.</p>'
+                },
+                {
+                  name: 'Drug safety update'
+                }
+              ]
+            %}
+
+            {% for field in fields %}
+              <div class="multiple-choice govuk-c-radios__item" data-target="radio-part-{{ loop.index }}-extra">
+                <input required id="radio-part-{{ loop.index }}" type="radio" name="{{ prefix }}format" value="{{ field.name }}" class="govuk-c-radios__input">
+                <label for="radio-part-{{ loop.index }}" class="govuk-c-label govuk-c-radios__label">
+                  <span class="govuk-c-label--bold">{{ field.name }}</span>
+                  {{ field.text | safe }}
+                </label>
+              </div>
+            {% endfor %}
+          </fieldset>
+        </div>
+        <div class="govuk-!-mb-r6">
+          <input type="hidden" name="{{ prefix }}specialist" value="true">
+          <input type="submit" class="govuk-c-button" value="Continue">
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

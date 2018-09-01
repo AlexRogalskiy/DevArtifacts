@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block page_title %}Add attachment{% endblock %}
+
+{% block content %}
+<a href="{{ urlPrefix }}/document-tasks" class="govuk-c-back-link">Back</a>
+<main role="main" class="govuk-o-main-wrapper">
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <form action="{{ urlPrefix }}/document-type" method="post" class="form">
+        <div class="govuk-!-mb-r6">
+          <fieldset>
+            <legend>
+              <h1 class="govuk-heading-xl">
+                What type of attachment?
+              </h1>
+            </legend>
+
+            {% set fields = [
+                {
+                  name: 'Upload a file',
+                  text: '<p class="govuk-body">Use for real examples that help users understand someone’s experience of a process or an important aspect of government policy.</p>'
+                },
+                {
+                  name: 'Upload a zip file containing attachments',
+                  text: '<p class="govuk-body">The zip.</p>'
+                },
+                {
+                  name: 'Create an HTML attachment',
+                  text: '<p class="govuk-body">Use for real examples that help users understand someone’s experience of a process or an important aspect of government policy.</p>'
+                },
+                {
+                  name: 'Add an external attachment',
+                  text: '<p class="govuk-body">Link to a file hosted elsewhere.</p>'
+                }
+              ]
+            %}
+
+            {% for field in fields %}
+              <div class="multiple-choice govuk-c-radios__item" data-target="radio-part-{{ loop.index }}-extra">
+                <input required id="radio-part-{{ loop.index }}" type="radio" name="format" value="{{ field.name }}" class="govuk-c-radios__input">
+                <label for="radio-part-{{ loop.index }}" class="govuk-c-label govuk-c-radios__label">
+                  <span>{{ field.name }}</span>
+                </label>
+              </div>
+            {% endfor %}
+          </fieldset>
+        </div>
+        <div class="govuk-!-mb-r6">
+          <input type="submit" class="govuk-c-button" value="Continue">
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}

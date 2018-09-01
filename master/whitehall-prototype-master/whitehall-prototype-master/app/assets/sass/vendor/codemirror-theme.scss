@@ -1,0 +1,36 @@
+.CodeMirror {
+  @extend .govuk-c-textarea;
+  @include govuk-font-regular-19;
+  height: 500px;
+
+  // Don't highlight H1s
+  .cm-header-1 {
+    font-weight: normal;
+  }
+
+  // Don't highlight bold
+  .cm-strong {
+    font-weight: normal;
+  }
+
+  // Don't highlight italics
+  .cm-em {
+    font-style: normal;
+  }
+
+  .cm-header-2 {
+    @include govuk-font-bold-24;
+  }
+
+  .cm-quote,
+  .cm-variable-2,
+  .cm-variable-3,
+  .cm-header {
+    color: $govuk-black;
+  }
+
+  .cm-url,
+  .cm-link {
+    color: $govuk-link-colour;
+  }
+}

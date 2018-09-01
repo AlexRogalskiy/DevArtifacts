@@ -1,0 +1,114 @@
+// Document list pattern
+
+// Spacing to the left of the task list
+$document-list-indent: 35px;
+
+.document-list {
+  margin-top: $govuk-gutter;
+  padding-left: 0;
+  @include govuk-font-regular-19;
+
+  @include mq($from: tablet) {
+    margin-top: ($govuk-gutter * 1.5);
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
+  li {
+    list-style-type: none;
+  }
+}
+
+.document-list-section {
+  display: table;
+  @include govuk-font-bold-36;
+  margin-bottom: 15px;
+  padding-bottom: ($govuk-gutter / 6);
+}
+
+.document-list-items {
+  margin-bottom: $govuk-gutter;
+  @include mq($from: tablet) {
+    margin-bottom: ($govuk-gutter * 2);
+  }
+}
+
+.document-list-item {
+  border-bottom: 1px solid $govuk-border-colour;
+  padding-top: $govuk-gutter;
+  padding-bottom: $govuk-gutter;
+  list-style-type: none;
+  @extend %contain-floats;
+}
+
+.document-list-item:first-child {
+  border-top: 1px solid $govuk-border-colour;
+}
+
+.document-task {
+  width: 66.6666%;
+  float: left;
+  @include govuk-font-bold-24;
+  margin: 0;
+}
+
+.document-task-action {
+  float: right;
+  margin-right: 0;
+  padding-top: 3px;
+}
+
+.document-task-part {
+  margin-top: 60px;
+
+  @include mq($from: desktop) {
+    display: table;
+  }
+
+  > * {
+    position: relative;
+
+    @include mq($from: desktop) {
+      display: table-row;
+    }
+
+    > * {
+      display: block;
+
+      @include mq($from: desktop) {
+        display: table-cell;
+        padding: em(12, 19) em(20, 19) em(9, 19) 0; // copied from Elements' td padding
+        margin: 0;
+      }
+    }
+
+    @include mq($from: desktop) {
+      &:first-child > * {
+        padding-top: 0;
+      }
+    }
+  }
+
+  .document-part-label {
+    font-weight: bold;
+    margin: em(12, 19) 4em em(4,19) 0;
+
+    @include mq($from: desktop) {
+      width: 30%;
+    }
+  }
+
+  > *:first-child .document-part-label {
+    margin-top: 0;
+  }
+
+  .document-part-value {
+    padding-bottom: em(9, 19);
+
+    &--empty {
+      color: $govuk-grey-1;
+    }
+  }
+}

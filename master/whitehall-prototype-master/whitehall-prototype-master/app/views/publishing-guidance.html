@@ -1,0 +1,27 @@
+{% extends "govuk-layout.html" %}
+{% block page_title %}What to publish on GOV.UK{% endblock %}
+
+{% block body_classes %}
+  govuk-preview
+{% endblock %}
+
+{% block content %}
+<div class="govuk-o-width-container">
+  <main role="main" class="govuk-o-main-wrapper">
+    <h1 class="govuk-heading-xl">
+      <span class="govuk-caption-xl">Guidance</span>
+      What to publish on GOV.UK
+    </h1>
+
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <p class="govuk-body-l">{{ data[prefix + 'summary'] }}</p>
+        <div class="govuk-prose-scope">
+          {{ body_html | safe }}
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

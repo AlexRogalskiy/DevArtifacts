@@ -1,0 +1,36 @@
+<script>
+  var locations = [
+    {% for waypoint in waypoints %}
+      {% if not loop.first %},{% endif %}
+      ['{{ waypoint.name }}', {{ waypoint.lat }}, {{ waypoint.long }}, '{{ waypoint.color }}', '{{ waypoint.dateString }}', '{{ waypoint.tortoise }}', {{ waypoint.opacity }}]
+    {% endfor %}
+  ];
+
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 16,
+      center: {lat: -4.390904, lng: 55.244006},
+      mapTypeId: 'terrain'
+    });
+
+    for (var i = 0, l = locations.length; i < l; i++) {
+      var location = locations[i];
+      var marker = new google.maps.Marker({
+        position: {lat: location[1], lng: location[2]},
+        map: map,
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 10,
+          fillColor: location[3],
+          fillOpacity: location[6],
+          strokeWeight: 1,
+          strokeColor: '#aaa'
+        },
+        title: location[5] + ': ' + (1/location[6]) + ' months ago – '+ location[4]
+      });
+    }
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=KEY&callback=initMap">
+</script>

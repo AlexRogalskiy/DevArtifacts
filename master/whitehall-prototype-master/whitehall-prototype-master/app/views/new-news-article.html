@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block page_title %}New news article{% endblock %}
+
+{% block content %}
+<main role="main" class="govuk-o-main-wrapper">
+  <form action="{{ urlPrefix }}/news-article-created" method="post" class="form">
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <h1 class="form-title heading-large">
+          <span class="govuk-caption-xl">News article</span>
+          Create {{ data['news-article-sub-type'] | lower }}
+        </h1>
+        <hr />
+      </div>
+    </div>
+
+    {% set editing = false %}
+    {% include "includes/news-article-fields.html" %}
+  </form>
+</main>
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+  govukGovernmentOrganisationsAutocomplete({
+    selectElement: document.getElementById('government-organisations'),
+    showAllValues: false,
+    minLength: 2,
+    defaultValue: ''
+  })
+</script>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-2">
+    <h3 class="remove-top-margin">Tortoises</h3>
+    <ul class="list-group">
+    {% for tortoise in tortoises %}
+      <li class="list-group-item">
+        <a href="?tortoise={{ tortoise.number }}">{{ tortoise.number }}</a>
+        <span class="badge badge-default">{{ tortoise.count }}</span>
+        <span class="badge badge-default" style="background-color: {{ tortoise.color }}; border: 1px solid #aaa">&nbsp;</span>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+  <div class="col-md-10">
+    <div class="map-fixed-container">
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
+{% include "partials/map-js.html" %}
+{% endblock %}

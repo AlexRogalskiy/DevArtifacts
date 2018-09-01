@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Sprite Generator</title>
+        <link rel="stylesheet" type="text/css" href="css/master.css">
+    </head>
+    <body>
+        <h1>Sprite Generator</h1>
+        <form action="#" id="generate">
+            <fieldset>
+                <label for="files">Select multiple image files</label>
+                <input type="file" id="files" multiple />
+                <label for="resample"><input type="checkbox" id="resample" checked /> Generate both retina and standard sprites</label>
+            </fieldset>
+            <fieldset>
+                <input type="submit" class="submit" value="Generate Sprite and CSS" />
+            </fieldset>
+        </form>
+        <script src="js/lib/require.js"></script>
+        <script>
+            require(["js/spritegenerator"], function(SpriteGenerator) {
+                var spriteGenerator = new SpriteGenerator();
+                spriteGenerator.start();
+            });
+        </script>
+    </body>
+</html>

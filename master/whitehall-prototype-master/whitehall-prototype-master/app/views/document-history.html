@@ -1,0 +1,198 @@
+{% extends "layout.html" %}
+{% block page_title %}{{ data[prefix + 'title'] }}{% endblock %}
+
+{% block content %}
+<main role="main" class="govuk-o-main-wrapper">
+  <h1 class="form-title govuk-heading-xl">
+    <span class="govuk-caption-xl">{{ data[prefix + 'format'] }}</span>
+    {% if data[prefix + 'title'] %}
+      {{ data[prefix + 'title'] }}
+    {% else %}
+      Some title
+    {% endif %}
+  </h1>
+  <dl class="metadata govuk-!-mb-r6">
+    <dt>Created by</dt>
+    <dd>Kamala Khan</dd>
+    <dt>Last updated</dt>
+    <dd>20 February 2018</dd>
+    <dt>Status</dt>
+    <dd>
+      {{ data[prefix + 'state'] }} – {{ data[prefix + 'edition'] }}
+    </dd>
+  </dl>
+  <ul class="tabs">
+    <li>
+      <a href="{{ urlPrefix }}/document-tasks">Edit document</a>
+    </li>
+    <li class="active">
+      <a href="{{ urlPrefix }}/document-history">Document history</a>
+    </li>
+  </ul>
+
+  <div class="govuk-o-grid">
+    <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+      <ul class="timeline">
+        <li class="edition">
+          <h2 class="govuk-heading-l">4th edition</h2>
+          <ul class="edition-timeline">
+            <div class="timeline-day-wrapper">
+              <li class="timeline-day">
+                <h3 class="govuk-heading-m">15 December 2017</h3>
+                <ul class="events">
+                  <li class="event">
+                    <h4 class="govuk-heading-s">New edition</h4>
+                    <span class="metadata"> 7:03pm by Laura Kinney</span>
+                  </li>
+                </ul>
+              </li>
+              <!-- <li class="timeline-day">
+                <h3 class="govuk-heading-m">14 December 2017</h3>
+                <ul class="events">
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Updated</h4>
+                    <span class="metadata">10:25pm by Laura Kinney</span>
+                  </li>
+                </ul>
+              </li> -->
+            </div>
+          </ul>
+        </li>
+        <li class="edition">
+          <h2 class="govuk-heading-l">3rd edition</h2>
+          <ul class="edition-timeline">
+            <div class="timeline-day-wrapper">
+              <li class="timeline-day">
+                <h3 class="govuk-heading-m">12 December 2017</h3>
+                <ul class="events">
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Force published</h4>
+                    <span class="metadata">3:10pm by Laura Kinney</span>
+                    <p class="govuk-body">Major update - Public change note: Revised local authority consultation groups information and link. Now goes to DWP Local Authority Welfare Steering Group page.</p>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Remark</h4>
+                    <span class="metadata"> 3:08pm by Laura Kinney</span>
+                    <p class="govuk-body">Only editor available</p>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Submitted</h4>
+                    <span class="metadata">2:09pm by Laura Kinney</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="timeline-day">
+                <h3 class="govuk-heading-m">10 December 2017</h3>
+                <ul class="events">
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Updated</h4>
+                    <span class="metadata">2:01pm by Kate Bishop</span>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">New edition</h4>
+                    <span class="metadata">1:22pm by Kate Bishop</span>
+                  </li>
+                </ul>
+              </li>
+            </div>
+          </ul>
+        </li>
+        <li class="edition">
+          <h2 class="govuk-heading-l">2nd edition</h2>
+          <ul class="edition-timeline">
+            <div class="timeline-day-wrapper">
+              <li class="timeline-day">
+                <h3 class="govuk-heading-m">12 November 2017</h3>
+                <ul class="events">
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Published</h4>
+                    <span class="metadata">3:05pm by Miles Morales</span>
+                    <p class="govuk-body">Minor update</p>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Remark</h4>
+                    <span class="metadata">3:05pm by Riri Williams</span>
+                    <p class="govuk-body">Replaced FERIS link with link to RBI and added a link to caseload management information.</p>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Submitted</h4>
+                    <span class="metadata">10:02am by Riri Williams</span>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Updated</h4>
+                    <span class="metadata">9:42am by Riri Williams</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="timeline-day">
+                <h3 class="govuk-heading-m">5 November 2017</h3>
+                <ul class="events">
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Updated</h4>
+                    <span class="metadata">2:01pm by Riri Williams</span>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">New edition</h4>
+                    <span class="metadata">1:35pm by Riri Williams</span>
+                  </li>
+                </ul>
+              </li>
+            </div>
+          </ul>
+        </li>
+        <li class="edition">
+          <h2 class="govuk-heading-l">1st edition</h2>
+          <ul class="edition-timeline">
+            <div class="timeline-day-wrapper">
+              <li class="timeline-day">
+                <h3 class="govuk-heading-m">9 March 2017</h3>
+                <ul class="events">
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Published</h4>
+                    <span class="metadata">4:05pm by Laura Kinney</span>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Submitted</h4>
+                    <span class="metadata">11:02am by Riri Williams</span>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Updated</h4>
+                    <span class="metadata">9:42am by Riri Williams</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="timeline-day">
+                <h3 class="govuk-heading-m">8 March 2017</h3>
+                <ul class="events">
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Fact check</h4>
+                    <span class="metadata">3:39pm by <a href="">luna.lafayette@mod.gsi.gov.uk</a></span>
+                    <p class="govuk-body">Please add Housing Benefit Manual link and use email address example@dwp.gsi.gov.uk for Glasscubes</p>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Updated</h4>
+                    <span class="metadata">9:42am by Riri Williams</span>
+                  </li>
+                </ul>
+              </li>
+              <li class="timeline-day">
+                <h3 class="govuk-heading-m">5 March 2017</h3>
+                <ul class="events">
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Updated</h4>
+                    <span class="metadata">2:01pm by Riri Williams</span>
+                  </li>
+                  <li class="event">
+                    <h4 class="govuk-heading-s">Draft created</h4>
+                    <span class="metadata">1:35pm by Riri Williams</span>
+                  </li>
+                </ul>
+              </li>
+            </div>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>
+{% endblock %}

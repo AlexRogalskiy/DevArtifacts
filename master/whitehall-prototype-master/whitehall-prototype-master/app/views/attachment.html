@@ -1,0 +1,153 @@
+{% extends "layout.html" %}
+{% block page_title %}Add attachment{% endblock %}
+
+{% block content %}
+
+{% if data[prefix + 'attachment-count'] %}
+  {% set attachment_count = (data[prefix + 'attachment-count'] | int) + 1 %}
+{% else %}
+  {% set attachment_count = 1 %}
+{% endif %}
+
+{% if attachmentId %}
+  {% set editing = true %}
+  {% set attachment_id = attachmentId %}
+{% else %}
+  {% set attachment_id = attachment_count %}
+{% endif %}
+
+<a href="{{ urlPrefix }}/document-tasks" class="govuk-c-back-link">Back</a>
+<main role="main" class="govuk-o-main-wrapper">
+  <form action="{{ urlPrefix }}{% if data[prefix + 'format'] == 'Publication' %}/document-tasks{% else %}{% if editing %}/attachment-edit-done{% else %}/attachment-done{% endif %}{% endif %}" method="post" class="form" data-module="fake-filename-from-title">
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <h1 class="form-title govuk-heading-xl">
+          <span class="govuk-caption-xl">{{ data[prefix + 'title'] }}</span>
+          {% if editing %}
+            Edit attachment
+          {% else %}
+            Add attachment
+          {% endif %}
+        </h1>
+
+        <div class="govuk-prose-scope">
+          <p>You must upload attachments in an <a href="https://www.gov.uk/guidance/content-design/planning-content#open-formats">open standards</a> format.</p>
+          <!-- <ul>
+            <li>.odt (OpenDocument Text) for text documents</li>
+            <li>.ods (OpenDocument Spreadsheet) for spreadsheets</li>
+            <li>.odp (OpenDocument Presentation) for presentation slides</li>
+            <li>.csv (Comma-separated values) for datasets designed to be machine-readable</li>
+            <li>PDF/A for .pdf files to be archivable and accessible</li>
+          </ul>
+          <p>Most publishing software will allow you to select an open format from the Save As or Download menu.</p>
+          <p>Do not used closed formats like .docx or .xlsx.</p> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <div class="is-input">
+          <label class="govuk-c-label govuk-c-label--bold" for="attachment-title">
+            Attachment title
+            <span class="govuk-c-label__hint">Use the official title of the document</span>
+          </label>
+          <input required type="text" name="{{ prefix }}{{ attachment_id }}-attachment-title" class="js-check-content govuk-c-input" id="attachment-title" data-target="attachment-title-checks" value="{% if editing %}{{data[prefix + attachment_id + '-attachment-title']}}{% endif %}">
+
+          <input type="hidden" name="{{ prefix }}{{ attachment_id }}-attachment-filename" class="js-dynamic-filename" value="{% if editing %}{{data[prefix + attachment_id + '-attachment-filename']}}{% endif %}">
+
+          {% if editing %}
+          {% else %}
+            <input type="hidden" name="{{ prefix }}attachment-count" value="{{ attachment_count }}">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <div class="is-input">
+          <label class="govuk-c-label govuk-c-label--bold" for="attachment-file">
+            File
+          </label>
+          <input type="file" name="{{ prefix }}attachment-file" class="govuk-c-file-upload">
+        </div>
+        <div class="is-input govuk-!-mb-r1">
+          <label class="govuk-c-label govuk-c-label--bold" for="attachment-file">
+            Accessibility
+          </label>
+        </div>
+        <div class="govuk-c-checkboxes__item">
+        <div class="is-input govuk-!-mb-r7">
+          <input class="govuk-c-checkboxes__input" id="accessible" name="{{ prefix }}{{ attachment_id }}-accessible" type="checkbox" value="british">
+          <label class="govuk-c-label govuk-c-checkboxes__label" for="accessible">
+            This attachment is accessible.
+          </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if data[prefix + 'format'] == 'Publication' %}
+    <div class="govuk-o-grid">
+      <div class="govuk-o-grid__item govuk-o-grid__item--two-thirds">
+        <div class="is-input">
+          <label class="govuk-c-label govuk-c-label--bold" for="print-isbn">
+            Print ISBN
+          </label>
+          <input type="text" name="{{ prefix }}{{ attachment_id }}-print-isbn" id="print-isbn" class="govuk-c-input" value="{% if editing %}{{data[prefix + attachment_id + '-print-isbn']}}{% endif %}">
+        </div>
+        <div class="is-input">
+          <label class="govuk-c-label govuk-c-label--bold" for="unique-reference">
+            Unique reference
+          </label>
+          <input type="text" name="{{ prefix }}{{ attachment_id }}-unique-reference" class="govuk-c-input" id="unique-reference" value="{% if editing %}{{data[prefix + attachment_id + '-unique-reference']}}{% endif %}">
+        </div>
+        <div class="is-input">
+          <label class="govuk-c-label govuk-c-label--bold govuk-!-width-one-half" for="paper-number">
+            Command paper number
+          </label>
+          <input type="text" name="{{ prefix }}{{ attachment_id }}-paper-number" class="govuk-c-input govuk-!-width-one-half" id="paper-number" value="{% if editing %}{{data[prefix + attachment_id + '-paper-number']}}{% endif %}">
+        </div>
+        <div class="is-input">
+          <label class="govuk-c-label govuk-c-label--bold govuk-!-width-one-half" for="hc-paper-number">
+            House of Commons paper number
+          </label>
+          <input type="text" name="{{ prefix }}{{ attachment_id }}-hc-paper-number" class="govuk-c-input govuk-!-width-one-half" id="hc-paper-number" value="{% if editing %}{{data[prefix + attachment_id + '-hc-paper-number']}}{% endif %}">
+        </div>
+        <div class="is-input">
+          <label class="govuk-c-label govuk-c-label--bold govuk-!-width-one-half" for="parl-session">
+            Parliamentary session
+          </label>
+          <span class="dropdown wide">
+            <input type="text" name="{{ prefix }}{{ attachment_id }}-parl-session" id="parl-session" class="govuk-c-input govuk-!-width-one-half" value="{% if editing %}{{data[prefix + attachment_id + '-parl-session']}}{% endif %}">
+          </span>
+        </div>
+        <div class="is-input">
+          <label class="govuk-c-label govuk-c-label--bold" for="order-url">
+            Order URL
+          </label>
+          <input type="text" name="{{ prefix }}{{ attachment_id }}-order-url" class="govuk-c-input" id="order-url" value="{% if editing %}{{data[prefix + attachment_id + '-order-url']}}{% endif %}">
+        </div>
+        <div class="is-input">
+          <label class="govuk-c-label govuk-c-label--bold govuk-!-width-one-half" for="price">
+            Price in £s
+          </label>
+          <input type="text" name="{{ prefix }}{{ attachment_id }}-price" class="govuk-c-input" id="price" value="{% if editing %}{{data[prefix + attachment_id + '-price']}}{% endif %}">
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if editing %}
+      <input type="submit" class="govuk-c-button" value="Save">
+      <div class="govuk-!-mb-r6">
+        <a href="{{ urlPrefix }}/document-tasks" class="button button-link govuk-body">Discard changes</a>
+      </div>
+    {% else %}
+      <div class="govuk-!-mb-r6">
+        <input type="submit" class="govuk-c-button" value="Add attachment">
+      </div>
+    {% endif %}
+  </form>
+</main>
+{% endblock %}
