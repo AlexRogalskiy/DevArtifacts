@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Pure CSS 3d Meninas by Rom&aacute;n Cort&eacute;s</title>
+	<style type="text/css">
+		body
+		{
+			margin: 0;
+			padding: 0;
+			background-image: url('meninas_title.jpg');
+			background-repeat: no-repeat;
+			overflow: hidden;
+		}
+		a
+		{
+			float: left;
+			display: block;
+			width: 5px;
+			height: 455px;
+			text-decoration: none;
+		}
+		a span
+		{
+			position: absolute;
+			display: block;
+			width: 5px;
+			height: 455px;
+			z-index: 9999;
+			font-size: 455px;
+			line-height: 455px;
+			overflow: hidden;
+			cursor: default;			
+		}
+		a img
+		{
+			z-index: -1;
+			left: 0;
+			top: 0;
+			position: absolute;
+			display: none;
+			border: 0;
+		}
+		a b
+		{
+			display: block;
+		}
+		a b.d1
+		{
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: none;
+			background-image: url('meninas_bg1.jpg');
+		}
+		a b.d2, a b.d3, a b.d4
+		{
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: none;
+			width: 400px;
+			height: 455px;
+			background-image: url('meninas_sprites.png');
+		}
+		a b.d3
+		{
+			top: 224px;
+			height: 230px;
+		}
+		a b.d4
+		{
+			width: 300px;
+			left: 213px;
+			top: 231px;
+			height: 98px;
+		}
+		a:hover b.d1
+		{
+			z-index: -1;
+			display: block;
+			width: 200px;
+			height: 455px;
+		}
+		a:hover b.d2
+		{
+			z-index: 2;
+			display: block;
+		}
+		a:hover b.d3
+		{
+			z-index: 1;
+			display: block;
+		}
+		a:hover b.d4
+		{
+			z-index: 0;
+			display: block;
+		}
+		a:hover img
+		{
+			display: block;
+		}
+		<?php
+			for ($n=0; $n<80; $n++)
+			{
+				echo 'a#a'.$n.':hover img {';
+				echo 'left: '.(400-($n+80)).'px';
+				echo '}';
+				echo 'a#a'.$n.':hover b.d1 {';
+				echo 'background-position: '.(400-($n+80)).'px 0; width: '.(400-$n-80).'px';
+				echo '}';
+				echo 'a#a'.$n.':hover b.d2 {';
+				echo 'background-position: '.(-440-($n/10)).'px 18px;';
+				echo '}';
+				echo 'a#a'.$n.':hover b.d3 {';
+				echo 'background-position: '.(-($n/3)).'px -216px; width: '.(400-($n/3)).'px';
+				echo '}';
+				echo 'a#a'.$n.':hover b.d4 {';
+				echo 'background-position: '.(-($n/1.5)).'px -74px;';
+				echo '}';
+			}
+		?>
+	</style>
+</head>
+<body>
+	<?php
+		for ($n=0; $n<80; $n++)
+		{
+			echo '<a href="#" id="a'.$n.'">';
+			echo '<img src="meninas_bg2.jpg" width="'.($n+80).'" height="455" alt="" />';
+			echo '<b class="d1"></b>';
+			echo '<b class="d4"></b>';
+			echo '<b class="d3"></b>';
+			echo '<b class="d2"></b>';
+			echo '<span>&nbsp;</span>';
+			echo '</a>';
+		}
+	?>
+</body>
+</html>
