@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Video controlled with JavaScript 3</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    video {
+        width: 320px;
+        height: 180px;
+        /*outline: 1px solid #ccc;*/
+    }
+    meter {
+        display: block;
+        width: 320px;
+    }
+    </style>
+    <script>
+    function playFrom(secs) {
+        var v = document.getElementById('myvideo');
+        v.currentTime = secs;
+        v.play();
+    }
+    function dataLoaded(v) {
+        document.getElementById('source').innerHTML = 'Playing file ' + v.currentSrc.slice(v.currentSrc.lastIndexOf('/')+1);
+        m = document.getElementById('mymeter');
+        m.max = v.duration;
+        m.value = 0;
+    }
+    function updateTime(v) {
+        m = document.getElementById('mymeter');
+        m.value = v.currentTime;
+    }
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <menu>
+        <button onclick="playFrom(4);">Play from 4 secs</button>
+        <button onclick="playFrom(8);">Play from 8 secs</button>
+    </menu>
+    <video id="myvideo" ontimeupdate="updateTime(this);" onloadeddata="dataLoaded(this);">
+        <source src="00092.webm" type="video/webm">
+        <source src="00092.mp4" type="video/mp4">
+        <source src="00092.low.mp4" type="video/mp4">
+        <source src="00092.ogv" type="video/ogg">
+        No video!
+    </video>
+    <meter id="mymeter" min="0"></meter>
+    <div id="source"></div>
+    <canvas id="mycanvas"></canvas>
+</body>
+</html>

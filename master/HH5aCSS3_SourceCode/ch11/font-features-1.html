@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Font Features 1</title>
+    <style>
+    @font-face {
+    font-family: calluna;
+    src: url(Calluna-Regular.woff) format("woff"),
+         url(Calluna-Regular.otf) format("opentype");
+         /* A font by Jos Buivenga (exljbris) -> www.exljbris.nl */
+    }
+    body {
+        font-family: calluna;
+        font-size: 630%;
+    }
+    p {
+        margin: 5px;
+        padding: 5px;
+        outline: 1px solid #999;
+    }
+    .alloff {
+        -moz-font-feature-settings: "liga" 0;
+        -moz-font-feature-settings: "liga=0";
+        -webkit-font-feature-settings: "liga" 0;
+        -o-font-feature-settings: "liga" 0;
+        -ms-font-feature-settings: "liga" 0;
+    }
+    .normal {
+        /* Firefox enables ligatures by default */
+        -webkit-font-feature-settings: "liga";
+        -o-font-feature-settings: "liga";
+        -ms-font-feature-settings: "liga";
+    }
+    .allon {
+        -moz-font-feature-settings: "dlig";
+        -moz-font-feature-settings: "dlig=1";
+        -webkit-font-feature-settings: "liga", "dlig";
+        -o-font-feature-settings: "liga", "dlig";
+        -ms-font-feature-settings: "liga", "dlig";
+    }
+    .discretionary {
+        -moz-font-feature-settings: "liga" 0,"dlig";
+        -moz-font-feature-settings: "liga=0,dlig=1";
+        -webkit-font-feature-settings: "liga" 0, "dlig";
+        -o-font-feature-settings: "liga" 0, "dlig";
+        -ms-font-feature-settings: "liga" 0, "dlig";
+    }
+    </style>
+</head>
+<body>
+    <p class="alloff" title="alloff">fb ffb ffh ffi ffj ffk ffl fh fj fk ff fi fl</p>
+    <p class="normal" title="normal">fb ffb ffh ffi ffj ffk ffl fh fj fk ff fi fl</p>
+    <p class="allon" title="allon">fb ffb ffh ffi ffj ffk ffl fh fj fk ff fi fl</p>
+    <p class="discretionary" title="discretionary">fb ffb ffh ffi ffj ffk ffl fh fj fk ff fi fl</p>
+    <p class="alloff" title="alloff">cb ch ck cp gi ip it qu sb sh sk sp st ct</p>
+    <p class="normal" title="normal">cb ch ck cp gi ip it qu sb sh sk sp st ct</p>
+    <p class="allon" title="allon">cb ch ck cp gi ip it qu sb sh sk sp st ct</p>
+    <p class="discretionary" title="discretionary">cb ch ck cp gi ip it qu sb sh sk sp st ct</p>
+</body>
+</html>

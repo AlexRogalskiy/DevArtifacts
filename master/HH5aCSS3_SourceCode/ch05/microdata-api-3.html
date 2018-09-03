@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Microdata API 3</title>
+    <style>
+    body {
+        width: 95%;
+        margin: 1em;
+        font-family: "Komika Hand", sans-serif;
+    }
+    #addressbook > div, #appointmentbook > div {
+        display: inline-block;
+        position: relative;
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    #addressbook > div img {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+    }
+    </style>
+    <script>
+    function init() {
+        var md = document.getItems();
+        for (var i = 0; i < md.length; i++) {
+            log('Found: ' + md[i].itemType);
+            getMDProperties('',md[i].properties);
+        }
+    }
+    function getMDProperties(name, props) {
+        if (name.length > 0) name += '/';
+        for (var i = 0; i < props.length; i++) {
+            if (typeof(props[i].itemValue) == 'object') {
+                getMDProperties(props.names[i], props[i].itemValue.properties);
+            } else {
+                log(name + props.names[i] + ': ' + props[i].itemValue);
+            }
+        }
+    }
+    function log(text) {
+	document.getElementById('logger').innerHTML += text + '<br>';
+    }
+    </script>
+</head>
+<body onload="init()">
+    <section id="addressbook">
+        <h1>Addresses</h1>
+        <div id="aj" itemscope itemtype="http://microformats.org/profile/hcard">
+            <h2 itemprop="fn">
+                <span itemprop="n" itemscope>
+                    <span itemprop="given-name">A</span>.
+                    <span itemprop="family-name">J</span>.
+                </span>
+            </h2>
+            <img itemprop="photo" src="headshots/headshot_aj.gif" alt="AJ">
+            <!--<img itemprop="photo" src="http://www.userfriendly.org/cartoons/aj/headshot_aj.gif" alt="AJ">-->
+            <span itemprop="email"><a href="mailto:aj@userfriendly.org">aj@userfriendly.org</a></span>
+        </div>
+        <div id="miranda" itemscope itemtype="http://microformats.org/profile/hcard">
+            <h2 itemprop="fn">
+                <span itemprop="n" itemscope>
+                    <span itemprop="given-name">Miranda</span>
+                </span>
+            </h2>
+            <img itemprop="photo" src="headshots/headshot_miranda.gif" alt="Miranda">
+            <!--<img itemprop="photo" src="http://www.userfriendly.org/cartoons/miranda/headshot_miranda.gif" alt="Miranda">-->
+            <span itemprop="email"><a href="mailto:miranda@userfriendly.org">miranda@userfriendly.org</a></span>
+        </div>
+    </section>
+    <section id="appointmentbook">
+        <h1>Appointments</h1>
+        <div itemscope itemtype="http://microformats.org/profile/hcalendar#vevent">
+            <h2 itemprop="summary">The Big Date</h2>
+            <p><time itemprop="dtstart" datetime="2011-08-31T20:00:00Z">31st August @ 8pm</time>
+            until <time itemprop="dtend" datetime="2011-08-31T22:00:00Z">10pm</time>
+            (or all night, if things go well)</p>
+            <p>Location: <span itemprop="location">Macmillan Observatory</span></p>
+        </div>
+    </section>
+    <div id="logger"></div>
+</body>
+</html>

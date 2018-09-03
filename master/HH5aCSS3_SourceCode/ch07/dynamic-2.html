@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Dynamic pseudo-classes 2</title>
+    <style>
+    body {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+    }
+    div, section, article, header, aside, nav, ul, li, table, tr, td, footer {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    div input { display: block; margin: 1em;}
+    #one input:checked { outline: 4px solid #000; }
+    #two input:indeterminate { outline: 4px solid #000; }
+    </style>
+</head>
+<body>
+    <div>
+        <label>Not checked <input type="checkbox"></label>
+        <label>Checked <input type="checkbox" checked></label>
+    </div>
+    <div id="one">
+        <label>Not checked <input type="checkbox"></label>
+        <label>Checked <input type="checkbox" checked></label>
+    </div>
+    <div id="two">
+        <label>Not checked <input type="checkbox"></label>
+        <label>Checked <input type="checkbox" checked></label>
+    </div>
+    <script>
+    var els = document.getElementById('two').getElementsByTagName('input');
+    for (var i=0; i < els.length; i++) {
+        els[i].indeterminate = true;
+        window.alert(els[i].checked);
+    }
+    </script>
+</body>
+</html>

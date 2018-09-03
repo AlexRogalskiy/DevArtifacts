@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas example 4</title>
+    <script>
+    function draw(){
+        var canvas = document.getElementById('mycanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = 'rgb(255,0,0)';
+            ctx.fillRect(50,50,100,100);
+            ctx.beginPath();
+            ctx.fillStyle = 'rgb(0,255,0)';
+            ctx.arc(250, 100, 50, 0, Math.PI*2, false);
+            //ctx.closePath();
+            ctx.fill();
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgb(0,127,127)';
+            ctx.moveTo(50,50);
+            ctx.lineTo(150,150);
+            ctx.lineWidth = 5;
+            ctx.stroke();
+        }
+    }
+    </script>
+    <style>
+    canvas {
+        outline: 1px solid #999;
+    }
+    </style>
+</head>
+<body onload="draw()">
+    <canvas id="mycanvas" width="320" height="240">
+        Your browser does not support the canvas element.
+    </canvas>
+</body>
+</html>

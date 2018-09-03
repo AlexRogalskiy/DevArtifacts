@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Video controlled with JavaScript 2</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    video {
+        width: 320px;
+        height: 180px;
+        /*outline: 1px solid #ccc;*/
+    }
+    </style>
+    <script>
+    function playFrom(secs) {
+        var v = document.getElementById('myvideo');
+        v.currentTime = secs;
+        v.play();
+    }
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <menu>
+        <button onclick="playFrom(4);">Play from 4 secs</button>
+        <button onclick="playFrom(8);">Play from 8 secs</button>
+    </menu>
+    <video id="myvideo" onloadeddata="document.getElementById('source').innerHTML = 'Playing file ' + this.currentSrc.slice(this.currentSrc.lastIndexOf('/')+1);">
+        <source src="00092.webm" type="video/webm">
+        <source src="00092.mp4" type="video/mp4">
+        <source src="00092.low.mp4" type="video/mp4">
+        <source src="00092.ogv" type="video/ogg">
+        No video!
+    </video>
+    <div id="source"></div>
+    <canvas id="mycanvas"></canvas>
+</body>
+</html>

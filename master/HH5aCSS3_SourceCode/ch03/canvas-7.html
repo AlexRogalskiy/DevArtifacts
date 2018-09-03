@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas example 7</title>
+    <script>
+    function draw(){
+        var canvas = document.getElementById('mycanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            var img = document.getElementById('myimage');
+            //ctx.drawImage(img, 10, 10);
+            //ctx.drawImage(img, 10, 10, 118, 130);
+            ctx.drawImage(img, 80, 100, 80, 160, 10, 10, 160, 200);
+            
+        }
+    }
+    window.addEventListener("load", draw, false);
+    </script>
+    <style>
+    canvas {
+        outline: 1px solid #999;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="mycanvas" width="320" height="240">
+        Your browser does not support the canvas element.
+    </canvas>
+    <div style="display: none;">
+        <img id="myimage" src="example.png" width="236" height="260">
+    </div>
+</body>
+</html>

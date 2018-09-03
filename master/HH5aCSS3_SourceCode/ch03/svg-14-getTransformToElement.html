@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG example 14</title>
+    <style>
+    svg {
+        outline: 1px solid #999;
+        width: 320px;
+        height: 240px;
+    }
+    </style>
+</head>
+<body>
+    <svg id="mysvg" viewBox="0 0 640 480">
+        <g transform="skewX(45) skewY(33)">
+            <image x="10" y="10" width="236" height="260"
+               xlink:href="example6.png">
+            </image>
+            <text x="60" y="290" id="mytext">Example Image</text>
+        </g>
+    </svg>
+    <script>
+    var s = document.getElementById('mysvg');
+    var t = document.getElementById('mytext');
+    var m = s.getTransformToElement(t);
+    window.alert(m);
+    </script>
+</body>
+</html>

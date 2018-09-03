@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Drag and Drop example 1</title>
+    <style>
+    body {
+	max-width: 640px;
+	font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+    }
+    #drophere {
+	background-color: #ccc;
+	min-height: 2em;
+	outline: 1px solid black;
+	display: block;
+    }
+    </style>
+    <script>
+    function drag(ev) {
+	ev.dataTransfer.effectAllowed = 'copy';
+	ev.dataTransfer.setData('Text',event.srcElement.parentNode.id);
+	log('drag ' + ev.srcElement.parentNode.id);
+    }
+    function dragenter2(ev) {
+	log('dragEnter ' + ev.srcElement.id);
+	return false;
+    }
+    function dragOver(ev) {
+	ev.dataTransfer.dropEffect = 'copy';
+	log('dragOver ' + ev.srcElement.id);
+	return false;
+    }
+    function dragEnd(ev) {
+	log('dragEnd ' + ev.srcElement.parentNode.id);
+    }
+    function mydrop(ev) {
+	ev = ev || window.event;
+	if (ev.stopPropogation) e.stopPropogation();
+	var id = event.dataTransfer.getData('Text');
+	ev.srcElement.appendChild(document.getElementById(id));
+	log('drop ' + ev.srcElement.parentNode.id);
+	return false;
+    }
+    function log(text) {
+	document.getElementById('logger').innerHTML += text + '<br>';
+    }
+// ondragover="dragOver(event)" ondragend="dragEnd(event)" 
+</script>
+</head>
+<body>
+<h1>Columbia Internet Locations</h1>
+<ul id="locations">
+    <li draggable="true" id="recpt"><a href="#" ondragstart="drag(event);">Reception</a></li>
+    <li draggable="true" id="server"><a href="#" ondragstart="drag(event);">Server Room</a></li>
+    <li draggable="true" id="sid"><a href="#" ondragstart="drag(event);">Sid&rsquo;s Office</a></li>
+    <li draggable="true" id="finance"><a href="#" ondragstart="drag(event);">Finance Office</a></li>
+    <li draggable="true" id="support"><a href="#" ondragstart="drag(event);">Support Desk</a></li>
+</ul>
+<p>Items selected </p><!--ondragenter-->
+<ul id="drophere" ondrop="mydrop(event);" ondragenter="dragenter2(event);" ondragover="dragOver(event);">
+</ul>
+<div id="logger">
+</div>
+</body>  
+</html>

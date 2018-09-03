@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hello! HTML5 and CSS3 - Form 1</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        text-align: top;
+        background: url(stef-bg.png) right 15em no-repeat;
+    }
+    body > p {
+        width: 180px;
+        float: right;
+        background-color: rgba(255,255,255,0.5);
+        margin-top: -5em;
+    }
+    fieldset {
+        margin-right: 190px;
+    }
+    label {
+        display: inline-block;
+        width: 45%;
+        padding: 5px;
+    }
+    input[type="text"], select {
+        float: right;
+    }
+    input[type="radio"], input[type="checkbox"] {
+        float: left;
+    }
+    fieldset[title="Demographics"] label {
+        width: 30%;
+    }
+    </style>
+</head>
+<body>
+    <h1>Columbia Internet Customer Survey</h1>
+    <p>Hi, I’m Stef Murky of Columbia Internet. Sign up for our free newsletter
+    by filling in this form. All completed surveys will be entered into a prize
+    draw to win an iPod*.</p>
+    <form target="collector.php" method="post">
+        <fieldset title="Contact Information">
+            <legend>Your details</legend>
+            <label>
+                Name
+                <input type="text" name="name">
+            </label>
+            <label>
+                Email
+                <input type="text" name="email">
+            </label>
+            <label>
+                Address
+                <input type="text" name="address">
+            </label>
+            <label>
+                City
+                <input type="text" name="city">
+            </label>
+            <label>
+                Postal Code
+                <input type="text" name="postcode">
+            </label>
+            <label>
+                Province
+                <select name="province">
+                    <option selected>Please select...</option>
+                    <optgroup label="Provinces">
+                        <option>Alberta</option>
+                        <option>British Columbia</option>
+                        <option>Manitoba</option>
+                        <option>Newfoundland and Labrador</option>
+                        <option>New Brunswick</option>
+                        <option>Nova Scotia</option>
+                        <option>Ontario</option>
+                        <option>Prince Edward Island</option>
+                        <option>Quebec</option>
+                        <option>Saskatchewan</option>
+                    </optgroup>
+                    <optgroup label="Territories">
+                        <option>Northwest Territories</option>
+                        <option>Nunavut</option>
+                        <option>Yukon</option>
+                    </optgroup>
+                </select>
+            </label>
+            <label>
+                Telephone
+                <input type="text" name="telephone">
+            </label>
+        </fieldset>
+        <fieldset title="Demographics">
+            <legend>Personal Information</legend>
+            <p>Gender:</p>
+            <label>Male <input type="radio" name="gender" value="m"></label>
+            <label>Female <input type="radio" name="gender" value="f"></label>
+            <label>Other <input type="radio" name="gender" value="o"></label>
+            <label>
+                Date of birth
+                <input type="text" name="dob">
+            </label>
+        </fieldset>
+        <fieldset title="Survey questions">
+            <legend>Survey</legend>
+            <label>
+                Average number of hours spent browsing per day:
+                <input type="text" name="hours">
+            </label>
+            <p>Which web browsers do you use regularly?:</p>
+            <label>Internet Explorer <input type="checkbox" name="browser" value="ie"></label>
+            <label>Firefox <input type="checkbox" name="browser" value="firefox"></label>
+            <label>Safari <input type="checkbox" name="browser" value="safari"></label>
+            <label>Chrome <input type="checkbox" name="browser" value="chrome"></label>
+            <label>Opera <input type="checkbox" name="browser" value="opera"></label>
+            <label>Other <input type="checkbox" name="browser" value="other"></label>
+            <label>
+                What is your favorite website?:
+                <input type="text" name="website">
+            </label>
+        </fieldset>
+        <input type="submit">
+    </form>
+    <p>* Terms and conditions available on request</p>
+</body>
+</html>

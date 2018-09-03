@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Snapper</title>
+    <style>
+    body {
+        width: 90%;
+        height: 90%;
+        margin: 10% 5%;
+        font-family: "Komika Hand", 'KomikaHandRegular', sans-serif;
+    }
+    video, canvas { display: block; margin: 1em; }
+    #timestamp {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        font-size: 180%;
+    }    </style>
+    <script>
+    function snap() {
+        var video  = document.getElementById('myvideo');
+        var canvas = document.getElementById('mycanvas');
+        canvas.width  = video.videoWidth;
+        canvas.height = video.videoHeight;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0); 
+    }
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () {update_timestamp();window.setInterval(update_timestamp,500);}, false);
+    function update_source(el) {
+        document.getElementById('source').innerHTML = el.currentSrc;
+    }
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <button onclick="snap();">Snap</button>
+    <video id="myvideo" controls onloadeddata="document.getElementById('source').innerHTML = 'Playing file ' + this.currentSrc.slice(this.currentSrc.lastIndexOf('/')+1);">
+        <source src="00092.webm" type="video/webm">
+        <source src="00092.mp4" type="video/mp4">
+        <source src="00092.low.mp4" type="video/mp4">
+        <source src="00092.ogv" type="video/ogg">
+        No video!
+    </video>
+    <div id="source"></div>
+    <canvas id="mycanvas"></canvas>
+</body>
+</html>

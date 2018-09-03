@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG example 9</title>
+    <style>
+    svg {
+        outline: 1px solid #999;
+        width: 320px;
+        height: 240px;
+    }
+    </style>
+</head>
+<body>
+    <svg id="mysvg" viewBox="0 0 320 240">
+        <defs>
+            <path id="myTextPath"
+                   d="M235,120
+                      a75,75 0 1 1 -150,0 75,75 0 1 1 150,0">
+            </path>
+            <radialGradient id="myRadialGradient"
+                fx="5%" fy="5%" r="65%"
+                spreadMethod="pad">
+                <stop offset="10%"   stop-color="#00ff00" stop-opacity="0"></stop>
+                <stop offset="90%" stop-color="#003300" stop-opacity="1"></stop>
+            </radialGradient>
+        </defs>
+        <text>
+            <textPath xlink:href="#myTextPath" style="fill:url(#myRadialGradient); font-size: 20px; font-weight: bold;">
+                HAI! IZ IN YR ELEMENT WRITIN YR TXT 
+            </textPath>
+        </text>
+    </svg>
+</body>
+</html>

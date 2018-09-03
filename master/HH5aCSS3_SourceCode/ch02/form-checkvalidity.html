@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>The Email Game</title>
+    <style type="text/css">
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        vertical-align: top;
+    }
+    fieldset {
+        width: 80%;
+        padding: 2em;
+    }
+    fieldset.col {
+        display: inline-block;
+        width: 45%;
+    }
+    label, input {
+        display: inline-block;
+        width: 40%;
+        height: 2em;
+    }/*
+    input:valid {
+        outline: 1px solid green;
+    }
+    input:invalid {
+        outline: 1px solid red;
+        -moz-box-shadow: none;
+    }*/
+    </style>
+    <script>
+    var cdInterval;
+    var invalidAlert = function() {
+        window.alert('invalid');
+    }
+    var counter = function () {
+        var cd = document.getElementById('countdown');
+        var sc = document.getElementById('score');
+        if (cd.value > 1) {
+            cd.value = cd.value - 1;//stepDown, stepUp ooh
+            sc.value = calcScore(document.getElementById('email').value);
+        } else {
+            var countvalue = parseInt(cd.innerHTML,10);
+            cd.innerHTML = countvalue - 1;
+            sc.innerHTML = calcScore(document.getElementById('email').value);
+        }
+    }
+    var gameOver = function () {
+        window.clearInterval(cdInterval);
+        var email = document.getElementById('email');
+        var cd = document.getElementById('countdown');
+        var sc = document.getElementById('score');
+        var score = calcScore(email.value);
+        if (!email.checkValidity()) {
+            score = 0;
+            window.alert("You lose!");
+        }
+        if (cd.value) {
+            cd.value = 0;
+            sc.value = score;
+        } else {
+            cd.innerHTML = '0';
+            sc.innerHTML = score;
+        }
+        email.readOnly = true;
+    }
+    var gameStart = function () {
+        window.clearInterval(cdInterval);
+        var email = document.getElementById('email');
+        var cd = document.getElementById('countdown');
+        var sc = document.getElementById('score');
+        email.value = '';
+        email.readOnly = false;
+        if (cd.value) {
+            sc.value = 0;
+            cd.value = 10;
+        } else {
+            sc.innerHTML = '0';
+            cd.innerHTML = '10';
+        }
+        //email.addEventListener('invalid', invalidAlert,false)
+        cdInterval = window.setInterval(counter,1000);
+        window.setTimeout(gameOver,10000);
+    }
+    function calcScore(email) {
+        var s = 0;
+        s += email.length;
+        s += email.indexOf('@')>-1?email.indexOf('@'):0;
+        s += email.lastIndexOf('.')>-1?email.lastIndexOf('.'):0;
+        return s;
+    }    
+    </script>
+</head>
+<body>
+    <h1>The email game</h1>
+    <form id="payment">
+        <fieldset>
+            <legend>Enter a valid email address before the timer runs down</legend>
+            <label for="email">Email</label>
+            <input id="email" type="email" autofocus required x-moz-errormessage="You lose!">
+        </fieldset>
+        <label for="countdown">You have
+            <output id="countdown">10</output>
+            seconds.
+        </label>
+        <label for="score">You have
+            <output id="score">0</output>
+            points.
+        </label>
+    </form>
+<script src="isEventSupported.js"></script>
+<script>
+    if (isEventSupported('pageshow')) {
+        window.addEventListener('pageshow', gameStart, false);
+    } else {
+        window.addEventListener('load', gameStart, false);
+    }
+</script>
+</body>
+</html>

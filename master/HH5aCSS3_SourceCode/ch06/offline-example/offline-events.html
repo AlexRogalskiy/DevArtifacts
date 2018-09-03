@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Offline Events</title>
+    <link rel="stylesheet" href="offline-3.css">
+    <script>
+    function log(text) {
+	document.getElementById('logger').innerHTML += text + '<br>';
+    }
+    window.setInterval(function () { log('onLine: ' + navigator.onLine); }, 10000 );
+    window.addEventListener('online', function () { log('online event fired'); } , false );
+    window.addEventListener('offline', function () { log('offline event fired'); } , false );
+    </script>
+</head>
+<body>
+    <h1>Offline Events</h1>
+    <div id="logger"></div>
+</body>
+</html>

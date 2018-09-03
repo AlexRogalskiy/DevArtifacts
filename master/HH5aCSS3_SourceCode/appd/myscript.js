@@ -1,0 +1,1 @@
+window.alert('Linked script!');

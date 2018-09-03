@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Generated Content</title>
+    <meta author="Rob Crowther">
+    <style>
+    meta[author] { string-set: author attr(author); }
+    head > title { string-set: title contents; }
+    p:first-child:after {
+        @top {
+            text-align: left;
+            vertical-align: middle;
+            content: string(title);
+        }
+    }
+    p:last-child:before {
+        @top {
+            text-align: right;
+            vertical-align: middle;
+            content: string(author);
+        }
+    }
+    </style>
+    </head>
+<body>
+<section>
+    <p></p>
+    <p></p>
+</section>
+</body>
+</html>

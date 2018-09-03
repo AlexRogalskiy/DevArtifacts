@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Drag and Drop example 1</title>
+    <style>
+    body {
+	max-width: 640px;
+	font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+    }
+    #drophere {
+	background-color: #ccc;
+	min-height: 2em;
+	outline: 1px solid black;
+	display: block;
+    }
+    </style>
+    <script>
+    function grabOuterId(el) {
+	if (el.id) {
+	    return el.id;
+	} else {
+	    return grabOuterId(el.parentNode)
+	}
+    }
+    function dragstart(event) {
+	var target = event.target ? event.target : event.srcElement;
+	event.dataTransfer.setData('Text', grabOuterId(target));
+	log('drag ' + grabOuterId(target));
+    }
+    function dragover(event) {
+	var target = event.target ? event.target : event.srcElement;
+	if (event.preventDefault) event.preventDefault();
+	log('dragOver ' + grabOuterId(target));
+	return false;
+    }
+    function dragenter(event) {
+	var target = event.target ? event.target : event.srcElement;
+	log('dragEnter ' + grabOuterId(target));
+	return false;
+    }
+    function drop(event) {
+	var target = event.target ? event.target : event.srcElement;
+	if ('preventDefault' in event) { event.preventDefault(); log('prevent default'); }
+	var elname = event.dataTransfer.getData('Text');
+	var el = document.getElementById(event.dataTransfer.getData('Text'));
+	target.appendChild(el);
+	log('drop ' + grabOuterId(target));
+	return false;    
+    }
+    function log(text) {
+	document.getElementById('logger').innerHTML += text + '<br>';
+    }
+    </script>
+</head>
+<body>
+<h1>Columbia Internet Locations</h1>
+<ul id="locations">
+    <li id="recpt"><a draggable="true" ondragstart="dragstart(event);" href="#" onclick="return false;">Reception</a></li>
+    <li id="server"><a draggable="true" ondragstart="dragstart(event);" href="#" onclick="return false;">Server Room</a></li>
+    <li id="sid"><a draggable="true" ondragstart="dragstart(event);" href="#" onclick="return false;">Sid’s Office</a></li>
+    <li id="finance"><a draggable="true" ondragstart="dragstart(event);" href="#" onclick="return false;">Finance Office</a></li>
+    <li id="support"><a draggable="true" ondragstart="dragstart(event);" href="#" onclick="return false;">Support Desk</a></li>
+</ul>
+<p>Items selected </p><!--ondragenter-->
+<ul id="drophere" ondragenter="dragenter(event);" ondragover="dragover(event);" ondrop="drop(event);">
+</ul>
+<div id="logger"></div>
+<!--[if lte IE 8]>
+<script>
+//document.getElementById('drophere').attachEvent('ondrop', drop);
+document.getElementById('drophere').attachEvent('ondragover', dragover);
+</script>
+<![endif]-->
+</body>
+</html>

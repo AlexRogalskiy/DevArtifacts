@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Transitions 7</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    #animateme {
+        font-size: 180%;
+        display: inline-block;
+        padding: 1em;
+        margin: 1em;
+        background-color: #666;
+        color: #fff;
+        outline: none;
+        border: none;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        -moz-transition-duration: 10s;
+        -webkit-transition-duration: 10s;
+        -o-transition-duration: 10s;
+        -ms-transition-duration: 10s;
+        transition-duration: 10s;
+    }
+    .changeleft {
+        left: 250px !important;
+    }
+    .changetop {
+        top: 300px !important;
+    }
+    .changecolor {
+        background-color: #ff00ff !important;
+    }
+    #timestamp {
+        font-size: 180%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+    menu { margin-left: 0; }
+    </style>
+    <script>
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () {update_timestamp();window.setInterval(update_timestamp,500);}, false);
+    function clickme(classname) {
+        var el = document.getElementById('animateme');
+        el.className += " " + classname;
+    }
+    function reset() {
+        var el = document.getElementById('animateme');
+        el.className = "";
+    }
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <menu>
+        <button onclick="clickme('changeleft')">Change left</button>
+        <button onclick="clickme('changetop')">Change top</button>
+        <button onclick="clickme('changecolor')">Change color</button>
+        <button onclick="reset()">Reset</button>
+    </menu>
+    <div id="animateme">
+        Animate Me
+    </div>
+</body>
+</html>

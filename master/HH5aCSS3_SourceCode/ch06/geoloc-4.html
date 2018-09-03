@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Geolocation 4</title>
+    <script src="LatLon.js"></script>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        vertical-align: top;
+    }
+    </style>
+    <script>
+        function init() {
+            var eastSheen = new LatLon(Geo.parseDMS('51?27\'49"N'), Geo.parseDMS('0?15\'49"W'));
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position)
+                {
+                    var you = new LatLon(position.coords.latitude, position.coords.longitude);
+                    writeLoc(you.distanceTo(eastSheen), position.coords.accuracy);
+                }
+                , function(error)
+                {
+                    switch(error.code)
+                    {
+                        case error.PERMISSION_DENIED: writeLoc("User declined to share Geolocation data"); break;
+                        case error.POSITION_UNAVAILABLE: writeLoc("Unable to detect current location"); break;
+                        case error.TIMEOUT: writeLoc("Time out in retrieving location"); break;
+                        default: writeLoc("Unknown error"); break;
+                    }
+                })
+            }
+            else {
+                    alert("Geolocation not supported");
+            }
+        };
+        function writeLoc(message, accuracy) {
+            document.getElementById('distance').innerHTML = message;
+            if (accuracy > 100) {
+                document.getElementById('accuracy').innerHTML = 'approximately';
+            }
+        }
+    </script>
+</head>
+<body onload="init();">
+<div>
+    <h1>You are <span id="accuracy"></span> <span id="distance"></span> kilometres from the birthplace of Tim Berners-Lee</h1>
+    <!--51?27'49"N  is the latitude of  East Sheen, England  ([fact: ["368307295@trueknowledge.com"]])
+0?15'49"W is the longitude of East Sheen, England ([fact: ["368307299@trueknowledge.com"]])-->
+</div>
+</body>  
+</html>

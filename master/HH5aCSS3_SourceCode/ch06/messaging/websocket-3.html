@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Web Sockets 3</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 125%;
+        vertical-align: top;
+    }
+    </style>
+    <script>
+    var socket;
+    function init() {
+        socket = new WebSocket("ws://localhost:8080/");
+        socket.onopen = function () {
+            log("Socket has been opened!");
+        }
+        socket.onmessage = function(msg) {
+            log(msg.data);
+        }
+        socket.onclose = function () {
+            log("Socket has been closed");
+        }
+    }
+    function disconnect() {
+        try {
+            socket.close();
+        }
+        catch(err) {
+            log("Error closing socket");
+        }
+    }
+    function send() {
+        var msg = document.getElementById('message').value;
+        socket.send(msg);
+    }
+    function log(text) {
+        document.getElementById('logger').innerHTML += text + '<br>';
+    }
+    </script>
+</head>
+<body>
+    <menu>
+        <button onclick="init();">Connect</button>
+        <button onclick="disconnect();">Close</button>
+        <button onclick="send();">Send</button>
+        <input id="message">
+    </menu>
+    <div id="logger">
+    </div>
+</body>
+</html>

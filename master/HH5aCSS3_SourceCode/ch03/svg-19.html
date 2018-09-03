@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG example 19</title>
+    <style>
+    svg {
+        outline: 1px solid #999;
+        width: 320px;
+        height: 240px;
+    }
+    </style>
+    <script>
+    function init() {
+        draw();
+        window.setInterval(draw,1000);
+    }
+    function draw(){
+        var now = new Date();
+        document.getElementById('timestamp').innerHTML = now.toLocaleString();
+    }
+    </script>
+</head>
+<body onload="init();">
+    <svg id="mysvg" viewBox="0 0 320 240">
+        <defs>
+            <pattern id="img1" patternUnits="userSpaceOnUse" width="315" height="212">
+                <image xlink:href="uf009705.png" x="0" y="0"
+                    width="305" height="212" />
+            </pattern>
+        </defs>
+        <text x="0" y="120" font-family="sans-serif" font-size="80" font-weight="bold"  fill="url(#img1)">
+            <tspan>HTML5</tspan>
+            <tspan x="0" y="180" font-size="70">ROCKS!</tspan>
+            <animateMotion path="M0,0
+             l50,100 l-100,0 l50,-100
+             z" dur="10s" repeatCount="indefinite">
+        </text>
+    </svg>
+    <div id="timestamp"></div>
+</body>
+</html>

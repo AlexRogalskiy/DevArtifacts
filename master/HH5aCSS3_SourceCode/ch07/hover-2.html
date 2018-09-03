@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hover example 2</title>
+    <style>
+    body {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+    }
+    section, article, header, aside, nav, ul, li, table, tr, td, footer {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    a { color: black; }
+    nav ul { list-style: none;  background-color: #fff; }
+    ul li { position: relative; width: 10em; }
+    li ul { position: absolute; left: 10em; top: 0; }
+    li > ul { display: none; }
+    li:hover > ul, li:focus > ul, a:focus + ul { display: block; }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li tabindex="0"><a href="#">Main item 1</a>
+            <ul>
+                <li><a href="#">Sub item 1.1</a></li>
+                <li><a href="#">Sub item 1.2</a></li>
+            </ul></li>
+            <li tabindex="0"><a href="#">Main item 2</a>
+            <ul>
+                <li><a href="#">Sub item 2.1</a></li>
+                <li><a href="#">Sub item 2.2</a></li>
+                <li><a href="#">Sub item 2.3</a></li>
+            </ul></li>
+            <li tabindex="0"><a href="#">Main item 3</a>
+            <ul>
+                <li><a href="#">Sub item 3.1</a></li>
+                <li><a href="#">Sub item 3.2</a></li>
+            </ul></li>
+        </ul>
+    </nav>
+</body>
+</html>

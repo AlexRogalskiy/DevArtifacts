@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Grid Layout 3</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        display: grid;
+        grid-template: "aaaa"
+                       "bccc"
+                       "dddd";
+        grid-columns: auto minmax(min-content, 1fr);
+    }
+    div {
+        display: grid;
+        grid-template: "ef";
+        grid-columns: 50% 50%;
+    }
+    section, article, aside, figure, header, footer {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    article { margin-bottom: 0; }
+    header { grid-cell: a; }
+    aside { grid-cell: b; }
+    div { grid-cell: c; }
+    article:nth-child(2n+1) { grid-cell: e; }
+    article:nth-child(2n) { grid-cell: f; }
+    footer { grid-cell: d; }
+    </style>
+</head>
+<body>
+    <header>Header</header>
+    <aside>Side bar 1</aside>
+    <div>
+        <article>Content 1</article>
+        <article>Content 2</article>
+        <article>Content 3</article>
+        <article>Content 4</article>
+        <article>Content 5</article>
+        <article>Content 6</article>
+    </div>
+    <aside>Side bar 2</aside>
+    <footer>Footer</footer>
+</body>
+</html>

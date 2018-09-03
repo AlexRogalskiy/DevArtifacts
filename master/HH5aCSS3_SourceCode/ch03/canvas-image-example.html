@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas fancy example</title>
+    <script>
+    function draw(){
+        var canvas = document.getElementById('mycanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            var img = document.getElementById('myimage');
+            ctx.translate(0, 233);
+            ctx.scale(1, -1);
+            ctx.drawImage(img, 0, 0);
+            var lineargradient = ctx.createLinearGradient(0,0,0,233);
+            lineargradient.addColorStop(0,'rgba(255,255,255,1)');
+            lineargradient.addColorStop(0.35,'rgba(255,255,255,1)');  
+            lineargradient.addColorStop(1,'rgba(255,255,255,0)');
+            ctx.fillStyle = lineargradient;
+            ctx.fillRect(0,0,213,233);
+        }
+    }
+    window.addEventListener("load", draw, false);
+    </script>
+    <style>
+/*    canvas {
+        outline: 1px solid #999;
+    }*/
+    </style>
+</head>
+<body>
+    <div>
+        <img id="myimage" src="reflect-miranda-pitr.png" width="213" height="233">
+    </div>
+    <canvas id="mycanvas" width="213" height="233">
+        Your browser does not support the canvas element.
+    </canvas>
+</body>
+</html>

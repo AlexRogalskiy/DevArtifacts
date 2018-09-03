@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html manifest="dnd.manifest">
+<head>
+    <meta charset="utf-8">
+    <title>Drag and Drop example 3</title>
+    <style>
+    body {
+	max-width: 800px;
+	font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+    }
+    #locations, #people {
+	max-width: 200px;
+	display: inline-block;
+	vertical-align: top;
+    }
+    #people {
+	max-width: 600px
+    }
+    #drophere, #dropimages {
+	min-height: 2em; outline: 1px solid black;
+    }
+    </style>
+    <script>
+
+function dragText(event) {
+    event.dataTransfer.setData('text/plain',event.target.id);
+    log('dragText ' + event.target.id);
+}
+function dragGif(event) {
+    event.dataTransfer.setData('image/gif',event.target);
+    log('dragGif ' + event.target.id);
+}
+
+function dragOverText(event) {
+    /* Chrome: files
+     * Firefox: text/x-moz-url 
+     * text/x-moz-url-data
+     * text/x-moz-url-desc
+     * text/uri-list
+     * text/_moz_htmlcontext
+     * text/_moz_htmlinfo
+     * text/html
+     * text/plain
+     * application/x-moz-nativeimage
+     * application/x-moz-file-promise
+     * application/x-moz-file-promise-url
+     * application/x-moz-file-promise-dest-filename
+     * Files
+     */
+    var isGif, isText;
+    if (event.dataTransfer.types.contains) {
+	log('Found contains');
+	isGif = event.dataTransfer.types.contains("image/gif");
+	isText = event.dataTransfer.types.contains("text/plain");
+    } else {
+	log('Not found contains');
+	isGif = event.dataTransfer.getData("image/gif");
+	isText = event.dataTransfer.getData("text/plain");
+    }
+//    for (var i=0; i < event.dataTransfer.types.length; i++) {
+//	log('type: ' + event.dataTransfer.types[i]);
+//    }
+//    log('type: ' + event.dataTransfer.types);
+    if (isGif) {
+	log("It&rsquo;s a GIF");
+    }
+    else {
+	event.preventDefault();
+	log('dragOver ' + isText + ' ' + event.target.id + ":" + event.dataTransfer.getData('text/plain'));
+    }
+}
+
+function dragEndText(event) {
+//    event.target.parentNode.removeChild(event.target);
+    log('dragEnd ' + event.target.id);
+}
+
+function dropText(event) {
+    var id = event.dataTransfer.getData('text/plain');
+    if (id) {
+	if (event.target.nodeName != 'UL') {
+	    event.target.parentNode.appendChild(document.getElementById(id));//unless already a child of this element
+	} else {
+	    event.target.appendChild(document.getElementById(id));//unless already a child of this element
+	}
+	log('drop ' + id);
+    }
+    event.preventDefault();
+}
+function log(text) {
+    document.getElementById('logger').innerHTML += text + '<br>';
+}
+</script>
+</head>
+<body>
+<h1>Columbia Internet</h1>
+<p></p>
+<ul id="locations"  ondragover="dragOverText(event)" ondragend="dragEndText(event)" ondrop="dropText(event)" style="min-height: 2em; outline: 1px solid black">
+<li draggable="true" id="recpt" ondragstart="dragText(event)" ondrop="return false;">Reception</li>
+<li draggable="true" id="server" ondragstart="dragText(event)" ondrop="return false;">Server Room</li>
+<li draggable="true" id="sid" ondragstart="dragText(event)" ondrop="return false;">Sid&rsquo;s Office</li>
+<li draggable="true" id="finance" ondragstart="dragText(event)" ondrop="return false;">Finance Office</li>
+<li draggable="true" id="support" ondragstart="dragText(event)" ondrop="return false;">Support Desk</li>
+</ul>
+<div id="people">
+    <img src="headshots/headshot_aj.gif" ondragstart="dragGif(event)" id="aj" title="AJ">
+    <img src="headshots/headshot_dustpuppy.gif" ondragstart="dragGif(event)" id="dustpuppy" title="Dust Puppy">
+    <img src="headshots/headshot_erwin.gif" ondragstart="dragGif(event)" id="Erwin" title="Erwin">
+    <img src="headshots/headshot_greg.gif" ondragstart="dragGif(event)" id="greg" title="Greg">
+    <img src="headshots/headshot_mike.gif" ondragstart="dragGif(event)" id="mike" title="Mike">
+    <img src="headshots/headshot_miranda.gif" ondragstart="dragGif(event)" id="miranda" title="Miranda">
+    <img src="headshots/headshot_pitr.gif" ondragstart="dragGif(event)" id="pitr" title="Pitr">
+    <img src="headshots/headshot_sid.gif" ondragstart="dragGif(event)" id="sid" title="Sid">
+    <img src="headshots/headshot_smilingman.gif" ondragstart="dragGif(event)" id="smilingman" title="Smiling Man">
+    <img src="headshots/headshot_stef.gif" ondragstart="dragGif(event)" id="stef" title="Stef">
+    <img src="headshots/headshot_thechief.gif" ondragstart="dragGif(event)" id="thecheif" title="The Chief">
+</div>
+<p>Location Items selected </p>
+<ul id="drophere" ondrop="dropText(event)"  ondragover="dragOverText(event)" ondragend="dragEndText(event)">
+</ul>
+<p>People selected</p>
+<div id="dropimages">
+</div>
+<div id="logger">
+</div>
+</body>  
+</html>

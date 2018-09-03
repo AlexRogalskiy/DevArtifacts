@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Grid Layout 2</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <style>
+    body {
+        width: 90%;
+        height: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", 'KomikaHandRegular', sans-serif;
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: auto 1fr auto;
+        grid-columns: auto 1fr auto;
+        -ms-grid-rows: auto 1fr auto;
+        grid-rows: auto 1fr auto;
+    }
+    section, article, aside, figure, header, footer {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    header { -ms-grid-column: 1; -ms-grid-row: 2;
+              grid-column: 1; grid-row: 2; }
+    aside.b { -ms-grid-column: 2; -ms-grid-row: 2;
+              grid-column: 2; grid-row: 2; }
+    article { -ms-grid-column: 1; -ms-grid-row: 1; -ms-grid-column-span: 3;
+              grid-column: 1; grid-row: 1; grid-column-span: 3; }
+    aside.d { -ms-grid-column: 1; -ms-grid-row: 3; -ms-grid-column-span: 3;
+              grid-column: 1; grid-row: 3; grid-column-span: 3; }
+    footer { -ms-grid-column: 3; -ms-grid-row: 2;
+              grid-column: 3; grid-row: 2; }
+    </style>
+</head>
+<body>
+    <header>Header</header>
+    <aside class="b">Side bar</aside>
+    <article>I never am really satisfied that I understand anything; because,
+    understand it well as I may, my comprehension can only be an infinitesimal
+    fraction of all I want to understand about the many connections and
+    relations which occur to me, how the matter in question was first thought of
+    or arrived at, etc., etc.</article>
+    <aside class="d">Side bar</aside>
+    <footer>Footer</footer>
+</body>
+</html>

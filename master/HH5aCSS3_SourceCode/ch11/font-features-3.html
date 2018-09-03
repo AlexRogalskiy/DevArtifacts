@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Font Features 3</title>
+    <style>
+    @font-face {
+    font-family: calluna;
+    src: url(Calluna-Regular.woff) format("woff"),
+         url(Calluna-Regular.otf) format("opentype");
+         /* A font by Jos Buivenga (exljbris) -> www.exljbris.nl */
+    }
+    body {
+        font-family: calluna;
+        font-size: 400%;
+    }
+    ul {
+        list-style: none;
+        width: 6.5em;
+        margin: 1em 0;
+        padding: 5px;
+        border: 1px solid black;
+    }
+    li {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+    .salton {
+        -moz-font-feature-settings: "salt=1";
+    }
+    .saltoff {
+        -moz-font-feature-settings: "salt=0";
+    }
+    .histoff {
+        -moz-font-feature-settings: "hist=0";
+    }
+    .histon {
+        -moz-font-feature-settings: "hist=1,dlig=1";
+    }
+    .default {
+        /* it's normal, no setting required...*/
+    }
+    </style>
+</head>
+<body>
+    <ul class="saltoff">
+        <li>& OO</li>
+    </ul>
+    <ul class="salton">
+        <li>& OO</li>
+    </ul>
+    <ul class="histoff">
+        <li>succession</li>
+    </ul>
+    <ul class="histon">
+        <li>succession</li>
+    </ul>
+    <ul class="histon">
+        <li>most distinct</li>
+    </ul>
+</body>
+</html>

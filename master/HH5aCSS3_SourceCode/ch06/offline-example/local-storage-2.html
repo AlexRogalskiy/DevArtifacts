@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Local Storage 2</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        vertical-align: top;
+    }
+    </style>
+    <script>
+    function init() {
+        if (window.localStorage) {
+            var todo_index = window.localStorage.length;
+            for (var i = 0; i < todo_index; i++) {
+                add_listitem(window.localStorage.getItem(window.localStorage.key(i)));
+            }
+        } else {
+            window.alert('Error, no local storage detected');
+        }    
+    }
+    function add_listitem(item) {
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(item));
+        document.getElementById('todo_list').appendChild(li);
+    }
+    function add_storageitem(item) {
+        var key = new Date();
+        window.localStorage.setItem(key.getTime(),item);
+    }
+    function add_item() {
+        var new_item = document.getElementById('new_item');
+        add_listitem(new_item.value);
+        add_storageitem(new_item.value);
+        new_item.value = '';
+    }
+    </script>
+</head>
+<body onload="init()">
+    <h1>My Todo List</h1>
+    <input type="text" id="new_item"><button onclick="add_item()">Add</button>
+    <ul id="todo_list">
+        
+    </ul>
+</body>
+</html>

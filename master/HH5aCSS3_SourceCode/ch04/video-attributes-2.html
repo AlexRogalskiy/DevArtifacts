@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Video Attributes</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    audio, video {
+        outline: 1px solid #ccc;
+    }
+    video:first-of-type {
+        width: 320px;
+        height: 180px;
+    }
+    </style>
+</head>
+<body>
+    <h1>Video controls poster</h1>
+    <video src="00092.webm" controls poster="posterimage.jpg"></video>
+    <h1>Video controls width height</h1>
+    <video src="00092.webm" controls width="400px" height="300px"></video>
+    <h1>Video controls CSS width height</h1>
+    <video src="00092.webm" controls preload="metadata" style="width: 400px; height: 300px;"></video>
+    <h1>Video controls width height and CSS</h1>
+    <video src="00092.webm" controls width="400px" height="300px" style="width: 320px; height: 180px;"></video>
+    <h1>Video controls muted</h1>
+    <video src="00092.webm" controls audio="muted" onloadeddata="this.volume = 0;"></video>
+</body>
+</html>

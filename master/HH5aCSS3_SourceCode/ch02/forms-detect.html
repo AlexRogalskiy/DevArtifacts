@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HTML5 Forms</title>
+    <script>
+    //var el = document.createElement("input");
+    //el.setAttribute("type", "date");
+    //if (el.type == "text") {
+    //    window.alert('Date input type not supported');
+    //} else {
+    //    el.value = "text";
+    //    if (el. value == "text") {
+    //        window.alert('Date UI not supported');
+    //    } else {
+    //        window.alert('Date input type fully supported');
+    //    }
+    //}
+    //if (!!('placeholder' in el)) {
+    //    window.alert('Placeholder supported');
+    //} else {
+    //    window.alert('Placeholder not supported');
+    //}
+    //if (!!('autofocus' in el)) {
+    //    window.alert('Autofocus supported');
+    //} else {
+    //    window.alert('Autofocus not supported');
+    //}
+    //var eventName = "oninvalid";
+    //var isSupported = !!(eventName in el);  
+    //if (!isSupported && el.setAttribute) {
+    //    el.setAttribute(eventName, 'return;');
+    //    isSupported = typeof el[eventName] == 'function';
+    //}
+    //if (isSupported) {
+    //    window.alert('oninvalid supported');
+    //} else {
+    //    window.alert('oninvalid not supported');
+    //}
+    </script>
+    <style type="text/css">
+    body {
+        font-family: sans-serif;
+        font-size: 85%;
+        text-align: top;
+    }
+    fieldset {
+        width: 93.5%;
+    }
+    fieldset.col {
+        display: inline-block;
+        width: 45%;
+    }
+    label, input {
+        display: inline-block;
+        width: 40%;
+        margin: 2em 0.5em;
+    }
+    input:valid {
+        /*outline: 1px solid green;*/
+    }
+    input:invalid {
+        /*outline: 1px solid red;*/
+    }
+    </style>
+</head>
+<body>
+    <h1>Example HTML5 form</h1>
+    <form id="payment" action="collector.php" method="post">
+        <fieldset class="col">
+            <legend>Web style inputs</legend>
+            <label for="exemail">Email: </label>
+            <input type="email" id="exemail" name="exemail" placeholder="Enter an email" required>
+            <label for="exurl">URL: </label>
+            <input type="url" id="exurl" name="exurl" placeholder="Enter a URL" required>
+            <label for="extel">Tel: </label>
+            <input type="tel" id="extel" placeholder="Enter a phone number" required>
+        </fieldset>
+        <fieldset class="col">
+            <legend>Other</legend>
+            <label for="expattern">Pattern: </label>
+            <input type="text" id="expattern" pattern="[0-9][A-Z]{3}" title="A part number is a digit followed by three uppercase letters.">
+            <label for="exrange3">Range: </label>
+            <input type="range" id="exrange3" min="1" max="10" step="2" value="2" placeholder="Choose between 1 and 10" required onchange="exoutput1.value = exnumber1.valueAsNumber + exrange1.valueAsNumber">
+            <label for="exoutput3">Output: </label>
+            <output for="exnumber3 exrange3" id="exoutput3">6</output>
+        </fieldset>
+        <fieldset class="col">
+            <legend>Output multiple event handlers</legend>
+            <label for="exnumber1">Number: </label>
+            <input type="number" id="exnumber1" placeholder="Enter a number" min="4" max="10" value="4" required onchange="exoutput1.value = exnumber1.valueAsNumber + exrange1.valueAsNumber">
+            <label for="exrange1">Range: </label>
+            <input type="range" id="exrange1" min="1" max="10" step="2" value="2" placeholder="Choose between 1 and 10" required onchange="exoutput1.value = exnumber1.valueAsNumber + exrange1.valueAsNumber">
+            <label for="exoutput1">Output: </label>
+            <output for="exnumber1 exrange1" id="exoutput1">6</output>
+        </fieldset>
+        <fieldset class="col" oninput="exoutput2.value = exnumber2.valueAsNumber + exrange2.valueAsNumber;">
+            <legend>Output single event handler</legend>
+            <label for="exnumber2">Number: </label>
+            <input type="number" id="exnumber2" placeholder="Enter a number" min="4" max="10" value="4" required>
+            <label for="exrange2">Range: </label>
+            <input type="range" id="exrange2" min="1" max="10" step="2" value="2" placeholder="Choose between 1 and 10" required>
+            <label for="exoutput2">Output: </label>
+            <output for="exnumber2 exrange2" id="exoutput2">6</output>
+        </fieldset>
+        <fieldset>
+            <legend>Other new form elements</legend>
+            <label for="excolor">Color: </label>
+            <input type="color" id="excolor" name="excolor" placeholder="" >
+            <label for="exmeter">Meter</label>
+            <meter id="exmeter" name="exmeter" value="3" min="1" max="6" high="5" low="2" optimum="3"></meter>
+            <label for="exprogress">Progress</label>
+            <progress id="exprogress" name="exprogress" value="5" min="0" max="9">5 out of 9</progress>
+        </fieldset>
+        <input type="submit">
+    </form>
+</body>
+</html>

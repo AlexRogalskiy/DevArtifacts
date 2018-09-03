@@ -1,0 +1,117 @@
+#!/bin/csh -v
+
+alias g++ "g++ -DGNU_EXCEPTION_BUG"
+alias nativeg++ "g++ -c -fPIC -I$JAVA_HOME/include -I$JAVA_HOME/include/solaris"
+
+g++ First.cpp -o First
+javac FirstProgram.java
+g++ testMax2.cpp max2.cpp -o testMax2
+g++ squares.cpp -o squares
+g++ stringConcat.cpp -o stringConcat
+g++ swap2.cpp -o swap2
+g++ binarySearchBad.cpp -o binarySearchBad
+g++ binarySearch.cpp -o binarySearch
+
+
+g++ stringPointer.cpp -o stringPointer
+g++ leak.cpp -o leak
+g++ stale.cpp -o stale
+g++ returnStatic.cpp -o returnStatic
+
+g++ deepIntCellBad.cpp -o deepIntCellBad
+g++ deepIntCell.cpp -o deepIntCell
+g++ intQueue1.cpp -o intQueue1
+g++ intQueue2.cpp -o intQueue2
+g++ intQueue3.cpp -o intQueue3
+g++ intQueue4.cpp -o intQueue4
+g++ refreturn.cpp -o refreturn
+g++ -c TestIntCell.cpp IntCell.cpp
+g++ TestIntCell.o IntCell.o -o TestIntCell
+g++ TestTicket.cpp Ticket.cpp -o TestTicket
+g++ TestMathUtils.cpp MathUtils.cpp -o TestMathUtils
+
+g++ TestMatrixOfDouble.cpp -o TestMatrixOfDouble
+g++ TestRational.cpp Rational.cpp -o TestRational
+
+g++ inherit1.cpp -o inherit1
+g++ interfaces.cpp -o interfaces
+g++ multiple.cpp -o multiple
+g++ privateInheritance.cpp IntCell.o -o privateInheritance
+g++ hiding.cpp -o hiding
+
+g++ findMax.cpp IntCell.o -o findMax
+g++ ambiguous.cpp -o ambiguous
+g++ TestObjectCell1.cpp -o TestObjectCell1
+g++ TestMatrix.cpp -o TestMatrix
+g++ TestObjectCell.cpp ObjectCellExpand.cpp -o TestObjectCell
+g++ memberTemplates.cpp -o memberTemplates
+g++ funcObjects1.cpp -o funcObjects1
+g++ funcObjects2.cpp -o funcObjects2
+g++ funcObjects3.cpp -o funcObjects3
+
+g++ bad1.cpp -o bad1
+g++ bad2.cpp -o bad2
+g++ bad3.cpp -o bad3
+g++ bad4.cpp -o bad4
+g++ assertDemo.cpp -o assertDemo
+g++ exceptionDemo.cpp -o exceptionDemo
+
+g++ readData.cpp -o readData
+#g++ formattedOutput.cpp -o formattedOutput
+g++ getlineDemo.cpp -o getlineDemo
+#g++ lastChars.cpp -o lastChars
+javac TwoInts.java
+g++ twoInts1.cpp -o twoInts1
+g++ twoInts2.cpp -o twoInts2
+g++ toString.cpp -o toString
+
+g++ printContainer.cpp -o printContainer
+g++ heterogeneousContainers.cpp -o heterogeneousContainers
+g++ printReverse.cpp -o printReverse
+g++ queueDemo.cpp -o queueDemo
+g++ mapDemo.cpp -o mapDemo
+#g++ concordance.cpp -o concordance
+
+g++ getInts.cpp -o getInts
+g++ pointerHopping.cpp -o pointerHopping
+g++ testEcho.cpp -o testEcho
+g++ printEnvironment.cpp -o printEnvironment
+g++ twoD.cpp -o twoD
+
+g++ printDebug.cpp -o printDebug
+g++ reinterpretCast.cpp -o reinterpretCast
+g++ swapPtr.cpp -o swapPtr
+g++ friday13.cpp -o friday13
+g++ copyFile.cpp -o copyFile
+g++ getlineFastDemo.cpp -o getlineFastDemo
+g++ lastCharsInC.cpp -o lastCharsInC
+g++ qsortDemo.cpp -o qsortDemo
+g++ varargsDemo.cpp -o varargsDemo
+
+javac HelloNativeTest.java
+javah HelloNative
+nativeg++ HelloNative.cpp
+g++ -shared -o libHelloNative.so HelloNative.o 
+
+javac TestDate.java Date.java
+javah Date
+nativeg++ -DVERSION=1 Date.cpp
+g++ -shared -o libDate.so Date.o 
+
+javac StringAdd.java
+javah StringAdd
+nativeg++ -DVERSION=1 StringAdd.cpp
+g++ -shared -o libStringAdd.so StringAdd.o 
+
+javac NativeSumDemo.java
+javah NativeSumDemo
+nativeg++ -DVERSION=1 NativeSumDemo.cpp
+g++ -shared -o libSum.so NativeSumDemo.o 
+
+javac StringStuff.java
+javah StringStuff
+nativeg++ StringStuff.cpp
+g++ -shared -o libStringStuff.so StringStuff.o 
+
+javac Hello.java
+g++ -I$JAVA_HOME/include -I$JAVA_HOME/include/solaris InvokeHello.cpp -L$JAVA_HOME/jre/lib/sparc -o InvokeHello -ljvm

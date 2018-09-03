@@ -1,0 +1,181 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Mark A. Weiss">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win98; U) [Netscape]">
+   <title>Sample Code for COP-4338 (C++ Programming)</title>
+</head>
+<body>
+
+<h1>
+Sample Code for COP-4338 (C++ Programming)</h1>
+<b>LAST UPDATE: November 4, 2002</b>
+<br><b>BUG REPORTS ARE APPRECIATED!!</b>
+<P>
+The materials here are copyrighted.
+I have successfully compiled and tested the programs under Visual Studio Dot Net.
+
+
+<h3>
+Complete Bundle</h3>
+<a href="code.zip">code.zip</a>
+<br><a href="../code.tar">code.tar</a>
+<br><a href="../code.tar.Z">code.tar.Z</a>
+
+<h3>Compilation Instructions</h3>
+
+<a href="compileVisual.bat">Visual Dot Net</a> batch file; seems to work for Visual Studio 6.0 also.
+<br><a href="compileg++">Solaris, g++ 2.95</a> batch file.
+Note that some I/O is unsupported, so <tT>formattedOutput.cpp</tt>,
+<tt>lastChars.cpp</tt>, and <tt>concordance.cpp</tt> will need
+modificiations.
+Also, the exceptions in <tt>logic_error</tt> hierarchy are not
+implemented correctly.
+I have added <a href="exceptions.h"><tt>exceptions.h</tt></a> with this implementation,
+and if the code is compiled with <tt>-DGNU_EXCEPTION_BUG</tt>,
+so header file will be included.
+<br><a href="compileBcc.bat">Borland 5.5 free compiler</a>.
+You can get the free command line compiler at:
+<A HREF="http://downloads-zdnet.com.com/3000-2069-5964829.html?tag=pop">ZDNet</a>.
+Here's info <A HREF="http://www.objectcentral.com/vide/help/videdoc/bcc32.html">on setup and using bcc32</a>.
+
+
+<h3>
+Philosophy of C++</h3>
+
+<h3>
+Simplest C++</h3>
+<a href="First.cpp">First.cpp</a>: first C++ program
+<br><a href="FirstProgram.java">FirstProgram.java</a>: first Java program
+<br><a href="max2.h">max2.h</a>, <a href="max2.cpp">max2.cpp</a>, <a href="testMax2.cpp">testMax2.cpp</a>: separate compilation example
+<br><a href="squares.cpp">squares.cpp</a>: uses <tt>vector</tt> to store perfect squares
+<br><a href="stringConcat.cpp">stringConcat.cpp</a>: illustrates that <tt>StringBuffer</tt>s not needed
+<br><a href="swap2.cpp">swap2.cpp</a>: call-by-reference used to implement <tt>swap</tt> routine
+<br><a href="binarySearchBad.cpp">binarySearchBad.cpp</a>: bad binary search routine because of call-by-value
+<br><a href="binarySearch.cpp">binarySearch.cpp</a>: binary search routine with call-by-constant reference
+
+<h3>
+Pointers and Reference Variables</h3>
+<a href="stringPointer.cpp">stringPointer.cpp</a>: allocates strings from memory heap
+<br><a href="leak.cpp">leak.cpp</a>: illustrates memory leak (on some machines)
+<br><a href="stale.cpp">stale.cpp</a>: illustrates stale pointers, via returning pointer to stack-allocated local variable
+<br><a href="returnStatic.cpp">returnStatic.cpp</a>: illustrates returning pointer to static local variable
+
+<h3>
+Object-Based Programming: Classes</h3>
+<a href="deepIntCellBad.cpp">deepIntCellBad.cpp</a>: Data member is a pointer, so default Big-Three is no good
+<br><a href="deepIntCell.cpp">deepIntCell.cpp</a>: Data member is a pointer, with correct Big-Three
+<br><a href="intQueue1.cpp">intQueue1.cpp</a>: Linked list queue implementation (version #1)
+<br><a href="intQueue2.cpp">intQueue2.cpp</a>: Linked list queue implementation (version #2), <tt>ListNode</tt> is friend
+<br><a href="intQueue3.cpp">intQueue3.cpp</a>: Linked list queue implementation (version #3), <tt>ListNode</tt> is nested class
+<br><a href="intQueue4.cpp">intQueue4.cpp</a>: Linked list queue implementation (version #4), <tt>ListNode</tt> is nested struct
+<br><a href="refreturn.cpp">refreturn.cpp</a>: Two versions of <tt>findMax</tt> show difference between return by constant reference and return by value
+<br><a href="IntCell.h">IntCell.h</a>, <a href="IntCell.cpp">IntCell.cpp</a>,
+    <a href="TestIntCell.cpp">TestIntCell.cpp</a>: <tt>IntCell</tt> class declaration, implementation, and test program
+<br><a href="Ticket.h">Ticket.h</a>, <a href="Ticket.cpp">Ticket.cpp</a>,
+    <a href="TestTicket.cpp">TestTicket.cpp</a>: <tt>Ticket</tt> class declaration, implementation, and test program illustrates static members
+<br><a href="MathUtils.h">MathUtils.h</a>, <a href="MathUtils.cpp">MathUtils.cpp</a>,
+    <a href="TestMathUtils.cpp">TestMathUtils.cpp</a>: <tt>MathUtils</tt> class declaration, implementation, and test program illustrates static initializer
+
+<h3>
+Operator Overloading</h3>
+<a href="MatrixOfDouble.h">MatrixOfDouble.h</a>, <a href="TestMatrixOfDouble.cpp">TestMatrixOfDouble.cpp</a>: <tt>MatrixOfDouble</tt> class and test program
+<br><a href="Rational.h">Rational.h</a>, <a href="Rational.cpp">Rational.cpp</a>,
+    <a href="TestRational.cpp">TestRational.cpp</a>: <tt>Rational</tt> class declaration, implementation, and test program
+
+<h3>
+Object-Oriented Programming: Inheritance</h3>
+<a href="inherit1.cpp">inherit1.cpp</a>: <tt>Person</tt> and <tt>Student</tt> class
+<br><a href="interfaces.cpp">interfaces.cpp</a>: Illustrates multiple interface inheritance in C++
+<br><a href="multiple.cpp">multiple.cpp</a>: Illustrates multiple implementation inheritance in C++
+<br><a href="privateInheritance.cpp">privateInheritance.cpp</a>: Illustrates private inheritance in C++
+<br><a href="hiding.cpp">hiding.cpp</a>: Illustrates hiding of base class member functions
+<h3>
+Templates</h3>
+<a href="findMax.cpp">findMax.cpp</a>: <tt>findMax</tt> function template
+<br><a href="ambiguous.cpp">ambiguous.cpp</a>: Illustrates ambiguous calls to max
+<br><a href="ObjectCell1.h">ObjectCell1.h</a>, <a href="TestObjectCell1.cpp">TestObjectCell1.cpp</a>: Illustrates class template, without separate compilation
+<br><a href="Matrix.h">Matrix.h</a>, <a href="TestMatrix.cpp">TestMatrix.cpp</a>: Illustrates <tt>Matrix</tt> class template
+<br><a href="ObjectCell.h">ObjectCell.h</a>,
+    <a href="ObjectCell.cpp">ObjectCell.cpp</a>,
+    <a href="ObjectCellExpand.cpp">ObjectCellExpand.cpp</a>,
+    <a href="TestObjectCell.cpp">TestObjectCell.cpp</a>: Illustrates class template, with separate compilation and explicit instantations
+<br><a href="memberTemplates.cpp">memberTemplates.cpp</a>: member templates
+<br><a href="funcObjects1.cpp">funcObjects1.cpp</a>: function objects using Java style Comparator
+<br><a href="funcObjects2.cpp">funcObjects2.cpp</a>: function objects using Java style Comparator, but no inheritance
+<br><a href="funcObjects3.cpp">funcObjects3.cpp</a>: function objects using C++ style overloading <tt>operator()</tt>
+<h3>
+Abnormal Flow Control</h3>
+<a href="bad1.cpp">bad1.cpp</a>: Illustrates that uninitialized variables generate at most a warning in C++
+<br><a href="bad2.cpp">bad2.cpp</a>: Illustrates that type confusion is allowed in C++
+<br><a href="bad3.cpp">bad3.cpp</a>: Illustrates that <tt>const</tt> can be thrown away
+<br><a href="bad4.cpp">bad4.cpp</a>: Illustrates that array indexes are not checked
+<br><a href="assertDemo.cpp">assertDemo.cpp</a>: Illustrates the use of <tt>assert</tt>
+<br><a href="exceptionDemo.cpp">exceptionDemo.cpp</a>: Illustrates the use of exceptions
+
+<h3>
+Input and Output</h3>
+<a href="readData.cpp">readData.cpp</a>: Function template to read array of items, with error checking
+<br><a href="formattedOutput.cpp">formattedOutput.cpp</a>: Illustrates manipulators for formatted output
+<br><a href="getlineDemo.cpp">getlineDemo.cpp</a>: Illustrates an implementation of <tt>getline</tt>
+<br><a href="lastChars.cpp">lastChars.cpp</a>: Prints end of a file
+<br><a href="TwoInts.java">TwoInts.java</a>: Java code uses <tt>StringBuffer</tt> to reads lines containing exactly two ints
+<br><a href="twoInts1.cpp">twoInt1s.cpp</a>: C++ code uses <tt>istringstream</tt> to reads lines containing exactly two ints (version 1, block local <tt>istringstream</tt>)
+<br><a href="twoInts2.cpp">twoInt2s.cpp</a>: C++ code uses <tt>istringstream</tt> to reads lines containing exactly two ints (version 2, single <tt>istringstream</tt>)
+<br><a href="toString.cpp">toString.cpp</a>: Function template for <tt>toString</tt> using <tt>ostringstream</tt> 
+
+<h3>
+Collections: The Standard Template Library</h3>
+<a href="printContainer.cpp">printContainer.cpp</a>: Prints STL containers, including maps
+<br><a href="heterogeneousContainers.cpp">heterogeneousContainers.cpp</a>: STL containers storing objects related by inheritance
+<br><a href="printReverse.cpp">printReverse.cpp</a>: Prints container in reverse, using both forard iterators and reverse iterators
+<br><a href="queueDemo.cpp">queueDemo.cpp</a>: Illustrates <tt>queue</tt> adapter
+<br><a href="mapDemo.cpp">mapDemo.cpp</a>: Illustrates two ways to acccess values in a <tt>map</tt>
+<br><a href="concordance.cpp">concordance.cpp</a>: Generates a concordance
+
+<h3>
+Primitive Arrays and Strings</h3>
+<a href="getInts.cpp">getInts.cpp</a>: Reads an umlimited number of <tt>int</tt>s using array doubling
+<br><a href="pointerHopping.cpp">pointerHopping.cpp</a>: Illustration of pointer hopping
+<br><a href="testEcho.cpp">testEcho.cpp</a>: Echo program
+<br><a href="printEnvironment.cpp">printEnvironment.cpp</a>: Prints environment variables
+<br><a href="twoD.cpp">twoD.cpp</a>: Two dimensional primitive arrays is not pretty
+
+<h3>
+C-Style C++</h3>
+<a href="printDebug.cpp">printDebug.cpp</a>: Illustrates macro for debugging prints
+<br><a href="reinterpretCast.cpp">reinterpretCast.cpp</a>: Illustrates <tt>reinterpret_cast</tt>
+<br><a href="swapPtr.cpp">swapPtr.cpp</a>: Illustrates C-style simulation of call-by-reference via pointers
+<br><a href="friday13.cpp">friday13.cpp</a>: Illustrates <tt>mktime</tt> and <tt>asctime</tt>
+<br><a href="copyFile.cpp">copyFile.cpp</a>: Copying files using C-style I/O
+<br><a href="getlineFastDemo.cpp">getlineFastDemo.cpp</a>: Uses <tt>fgets</tt> to implement faster <tt>getline</tt>
+<br><a href="lastCharsInC.cpp">lastCharsInC.cpp</a>: Prints end of a file, using C-style I/O
+<br><a href="qsortDemo.cpp">qsortDemo.cpp</a>: Illustrates <tt>qsort</tt>
+<br><a href="varargsDemo.cpp">varargsDemo.cpp</a>: Illustrates variable-length argument lists
+
+<h3>
+Using Java and C++: The JNI</h3>
+<a href="HelloNativeTest.java">HelloNativeTest.java</a>,
+    <a href="HelloNative.h">HelloNative.h</a>,
+    <a href="HelloNative.cpp">HelloNative.cpp</A>: Simple native method to print <tt>hello world</tt>
+<br><a href="Date.java">Date.java</a>, <a href="TestDate.java">TestDate.java</a>,
+    <a href="Date.h">Date.h</a>,
+    <a href="Date.cpp">Date.cpp</A>: Native method to implement (three different ways) <tt>printDate</tt> method in <tt>Date</tt>
+<br><a href="StringAdd.java">StringAdd.java</a>,
+    <a href="StringAdd.h">StringAdd.h</a>,
+    <a href="StringAdd.cpp">StringAdd.cpp</A>.
+    <a href="StringAdd.c">StringAdd.c</A>: Native method to implement (two different ways in C++, one way in C) string concatenation method <tt>add</tt>
+<br><a href="NativeSumDemo.java">NativeSumDemo.java</a>,
+    <a href="NativeSumDemo.h">NativeSumDemo.h</a>,
+    <a href="NativeSumDemo.cpp">NativeSumDemo.cpp</A>: Native method to implement (two different ways both with and without exceptions)
+                                                      the <tt>sum</tt> method to add elements in an array
+<br><a href="StringStuff.java">StringStuff.java</a>,
+    <a href="StringStuff.h">StringStuff.h</a>,
+    <a href="StringStuff.cpp">StringStuff.cpp</A>: Native method that illustrates <tt>DeleteLocalRef</tt>
+<br><a href="Hello.java">Hello.java</a>,
+    <a href="InvokeHello.cpp">InvokeHello.cpp</A>
+    <a href="invoke.txt">: Illustrates invocation API
+</body>
+
+</html>

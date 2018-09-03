@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Transitions 6</title>
+    <style>
+    body {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    section, article, header, aside, nav, ul, li, table, tr, td, footer {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+        position: relative;
+    }
+    menu { padding: 0; }
+    menu a { display: inline-block; margin-right: 0.5em; }
+    p {
+        opacity: 0;
+        position: absolute;
+        -moz-transition-duration: 10s;
+        -webkit-transition-duration: 10s;
+        -o-transition-duration: 10s;
+        -ms-transition-duration: 10s;
+        transition-duration: 10s;
+        -moz-transition-timing-function: ease-out;
+        -webkit-transition-timing-function: ease-out;
+        -o-transition-timing-function: ease-out;
+        -ms-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+    p:target {
+        opacity: 1;
+        -moz-transition-timing-function: ease-in;
+        -webkit-transition-timing-function: ease-in;
+        -o-transition-timing-function: ease-in;
+        -ms-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+    }
+    #timestamp {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        font-size: 180%;
+    }
+    </style>
+    <script>
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () {update_timestamp();window.setInterval(update_timestamp,500);}, false);
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <menu>
+        <a href="#one">Show one</a>
+        <a href="#two">Show two</a>
+        <a href="#three">Show three</a>
+        <a href="#four">Show four</a>
+    </menu>
+    <section>
+    <p id="one">I never am really satisfied that I understand anything; because, understand
+    it well as I may, my comprehension can only be an infinitesimal fraction of
+    all I want to understand about the many connections and relations which occur
+    to me, how the matter in question was first thought of or arrived at, etc.,
+    etc.</p>
+    <p id="two">In almost every computation a great variety of arrangements for the
+    succession of the processes is possible, and various considerations must
+    influence the selections amongst them for the purposes of a calculating
+    engine. One essential object is to choose that arrangement which shall tend to
+    reduce to a minimum the time necessary for completing the calculation.</p>
+    <p id="three">Many persons who are not conversant with mathematical studies imagine that
+    because the business of [Babbage’s Analytical Engine] is to give its results
+    in numerical notation, the nature of its processes must consequently be
+    arithmetical and numerical, rather than algebraical and analytical. This is an
+    error. The engine can arrange and combine its numerical quantities exactly as
+    if they were letters or any other general symbols; and in fact it might bring
+    out its results in algebraical notation, were provisions made accordingly.</p>
+    <p id="four">The Analytical Engine has no pretensions whatever to originate anything. It
+    can do whatever we know how to order it to perform. It can follow analysis,
+    but it has no power of anticipating any analytical revelations or truths. Its
+    province is to assist us in making available what we are already acquainted
+    with.</p>
+    </section>
+    <!-- Quotes taken from http://strangewondrous.net/browse/author/l/lovelace+ada -->
+</body>
+</html>

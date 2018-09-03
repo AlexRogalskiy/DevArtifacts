@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Drag and Drop example 2</title>
+    <style>
+    body {
+	max-width: 640px;
+	font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+    }
+    </style>
+    <script>
+
+function drag(event) {
+    event.dataTransfer.setData('Text',event.target.id);
+    log('drag ' + event.target.id);
+}
+
+function dragOver(event) {
+    event.preventDefault();
+    log('dragOver ' + event.target.id);
+}
+
+function dragEnd(event) {
+    log('dragEnd ' + event.target.id);
+}
+
+function drop(event) {
+    var id = event.dataTransfer.getData('Text');
+    if (event.target.nodeName != 'UL') {
+	event.target.parentNode.appendChild(document.getElementById(id));//unless already a child of this element
+    } else {
+	event.target.appendChild(document.getElementById(id));//unless already a child of this element
+    }
+    log('drop ' + id);
+    event.preventDefault();
+}
+function log(text) {
+    document.getElementById('logger').innerHTML += text + '<br>';
+}
+</script>
+</head>
+<body>
+<h1>Columbia Internet Locations</h1>
+<ul id="locations"  ondragover="dragOver(event)" ondragend="dragEnd(event)" ondrop="drop(event)" style="min-height: 2em; outline: 1px solid black">
+    <li draggable="true" id="recpt" ondragstart="drag(event)" ondrop="return false;">Reception</li>
+    <li draggable="true" id="server" ondragstart="drag(event)" ondrop="return false;">Server Room</li>
+    <li draggable="true" id="sid" ondragstart="drag(event)" ondrop="return false;">Sid&rsquo;s Office</li>
+    <li draggable="true" id="finance" ondragstart="drag(event)" ondrop="return false;">Finance Office</li>
+    <li draggable="true" id="support" ondragstart="drag(event)" ondrop="return false;">Support Desk</li>
+</ul>
+<p>Items selected </p>
+<ul id="drophere" ondrop="drop(event)"  ondragover="dragOver(event)" ondragend="dragEnd(event)" style="min-height: 2em; outline: 1px solid black">
+</ul>
+<div id="logger">
+</div>
+</body>  
+</html>

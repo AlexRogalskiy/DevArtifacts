@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Transitions 8</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    #animateme {
+        font-size: 180%;
+        display: inline-block;
+        padding: 1em;
+        margin: 1em;
+        background-color: #666;
+        color: #fff;
+        outline: none;
+        border: none;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        -moz-transition-duration: 10s;
+        -webkit-transition-duration: 10s;
+        -o-transition-duration: 10s;
+        -ms-transition-duration: 10s;
+        transition-duration: 10s;
+    }
+    #timestamp {
+        font-size: 180%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+    input[type=number] { width: 50px; }
+    input[type=color] { width: 100px; }
+    menu { margin-left: 0; }
+    </style>
+    <script>
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () {update_timestamp();window.setInterval(update_timestamp,500);}, false);
+    function clickme() {
+        var el = document.getElementById('animateme');
+        var left =  document.getElementById('myleft').value;
+        var top =  document.getElementById('mytop').value;
+        var color =  document.getElementById('mycolor').value;
+        el.setAttribute("style","left: " + left + "px; top: " + top + "px; background-color: " + color + ";");
+    }
+    function reset() {
+        var el = document.getElementById('animateme');
+        el.setAttribute("style","");
+    }
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <menu>
+        <button onclick="clickme()">Click Me</button><button onclick="reset()">Reset</button>
+        <label for="myleft">left</label>:<input id="myleft" type="number" value="100">
+        <label for="mytop">top</label>:<input id="mytop" type="number" value="100">
+        <label for="mycolor">color</label>:<input id="mycolor" type="color" value="#666666">
+    </menu>
+    <div id="animateme">
+        Animate Me
+    </div>
+</body>
+</html>

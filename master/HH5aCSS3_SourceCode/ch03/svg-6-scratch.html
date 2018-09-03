@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG example 5</title>
+    <style>
+    svg {
+        outline: 1px solid #999;
+        width: 320px;
+        height: 240px;
+    }
+    </style>
+</head>
+<body>
+      <g transform="translate(300, 0) rotate(20)">
+    <foreignObject x="10" y="10" width="800" height="800">
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <iframe src="http://starkravingfinkle.org/blog" style="width:700px;height:700px"></iframe>
+      </body>
+    </foreignObject>
+  </g>
+
+  <rect x="10" y="10" width="100" height="150" fill="gray"/>
+  <foreignObject x="10" y="10" width="100" height="150">
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <div>Here is a <strong>paragraph</strong> that requires <em>word wrap</em></div>
+    </body>
+
+  </foreignObject>
+  
+  <circle cx="200" cy="200" r="100" fill="blue" stoke="red"/>
+  <foreignObject x="120" y="120" width="180" height="180">
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <div>
+        <ul>
+          <li><strong>First</strong> item</li>
+
+          <li><em>Second</em> item</li>
+          <li>Thrid item</li>
+        </ul>
+      </div>
+    </body>
+  </foreignObject>
+
+    
+    <rect x="50" y="50" height="110" width="110"
+          style="stroke:#ff0000; fill: #ccccff"
+          transform="translate(30) rotate(45 50 50)"
+            >
+    </rect>
+    <text x="70" y="100"
+          transform="translate(30) rotate(45 50 50)"
+    >Hello World</text>
+
+    
+    <defs>
+    <linearGradient id="myLinearGradient1"
+                    x1="0%" y1="0%"
+                    x2="0%" y2="100%"
+                    spreadMethod="pad">
+      <stop offset="0%"   stop-color="#00cc00" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#006600" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="10" y="10" width="75" height="100" rx="10" ry="10"
+     style="fill:url(#myLinearGradient1);
+            stroke: #005000;
+            stroke-width: 3;" />
+
+<defs>
+        <radialGradient id="myRadialGradient4"
+           fx="5%" fy="5%" r="65%"
+           spreadMethod="pad">
+          <stop offset="0%"   stop-color="#00ee00" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#006600" stop-opacity="1" />
+        </radialGradient>
+    </defs>
+
+    <rect x="340" y="10" width="100" height="100" rx="10" ry="10"
+           style="fill:url(#myRadialGradient4);
+                  stroke: #005000; stroke-width: 3;" />
+
+    
+      <image x="20" y="20" width="300" height="80"
+     xlink:href="http://jenkov.com/images/layout/top-bar-logo.png" />
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <text x="20" y="40">Example SVG text 1</text>
+</svg>
+
+    <svg id="mysvg" viewBox="0 0 320 240">
+        <defs>
+        <path id="myTextPath"
+              d="M75,20
+                 a1,1 0 0,0 100,0
+               "
+                />
+    </defs>
+
+    <text x="10" y="100" style="stroke: #000000;">
+      <textPath xlink:href="#myTextPath" >
+            Text along a curved path...
+      </textPath>
+    </text>
+
+        <path d="M5,50
+             l0,100 l100,0 l0,-100 l-100,0
+             M215,100
+             a50,50 0 1 1 -100,0 50,50 0 1 1 100,0
+             M265,50
+             l50,100 l-100,0 l50,-100
+             z"
+          style="stroke: rgb(51,51,51); fill: rgb(204,204,204); stroke-width: 5;"/>   
+    </svg>
+</body>
+</html>

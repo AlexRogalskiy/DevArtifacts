@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Local Storage 3</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        vertical-align: top;
+    }
+    </style>
+    <script>
+    function init() {
+        if (window.localStorage) {
+            var todo_index = window.localStorage.length;
+            for (var i = 0; i < todo_index; i++) {
+                add_listitem(window.localStorage.key(i), window.localStorage.getItem(window.localStorage.key(i)));
+            }
+        } else {
+            window.alert('Error, no local storage detected');
+        }    
+    }
+    function add_listitem(key, item) {
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(item));
+        li.setAttribute("data-key", key);
+        var but = document.createElement('button');
+        but.appendChild(document.createTextNode('Delete'));
+        but.onclick = remove_item;
+        li.appendChild(but);
+        document.getElementById('todo_list').appendChild(li);
+    }
+    function add_storageitem(key, item) {
+        window.localStorage.setItem(key, item);
+    }
+    function remove_storageitem(key) {
+        window.localStorage.removeItem(key);
+    }
+    function clear_storage() {
+        window.localStorage.clear();
+        var list = document.getElementById('todo_list');
+        while (list.firstChild) { list.removeChild(list.firstChild); }
+    }
+    function add_item() {
+        var new_item = document.getElementById('new_item');
+        var key = new Date();
+        add_listitem(key.getTime(), new_item.value);
+        add_storageitem(key.getTime(), new_item.value);
+        new_item.value = '';
+    }
+    function remove_item() {
+        var li = this.parentNode;
+        remove_storageitem(li.getAttribute("data-key"));
+        li.parentNode.removeChild(li);
+    }
+    </script>
+</head>
+<body onload="init()">
+    <h1>My Todo List</h1>
+    <input type="text" id="new_item"><button onclick="add_item()">Add</button>
+    <ul id="todo_list">
+        
+    </ul>
+    <button onclick="clear_storage()">Clear All</button>
+</body>
+</html>

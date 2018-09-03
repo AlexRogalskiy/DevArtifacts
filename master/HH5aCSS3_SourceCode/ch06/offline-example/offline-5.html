@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html manifest="offline-5.appcache">
+<head>
+    <meta charset="utf-8">
+    <title>Offline Web Applications 5</title>
+    <link rel="stylesheet" href="offline-5.css">
+    <script src="offline-checker.js"></script>
+    <script>
+    function log(text) {
+        document.getElementById('logger').innerHTML += text + '<br>';
+    }
+    function display_online_status() {
+        check_online(
+                     function() { log('online'); },
+                     function() { log('offline'); }
+                    );
+        return false;
+    }
+    </script>
+</head>
+<body>
+    <button onclick="display_online_status();">Check Offline Status</button>
+    <div id="logger"></div>
+</body>
+</html>

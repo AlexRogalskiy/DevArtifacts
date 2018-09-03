@@ -1,0 +1,7 @@
+ffmpeg-bin\ffmpeg2theora.exe "C:\Users\robertcrowther\Desktop\00092.MTS" -o "C:\Users\robertcrowther\Desktop\00092.theora.ogv" -x 1920 -y 1080 --videoquality 8 --audioquality 6  --frontend
+
+ffmpeg-bin\ffmpeg.exe -y -i "C:\Users\robertcrowther\Desktop\00092.MTS" -f webm -vcodec libvpx -acodec libvorbis -ab 160000 -crf 22 "C:\Users\robertcrowther\Desktop\00092.webmvp8.webm"
+
+ffmpeg-bin\ffmpeg.exe -i "C:\Users\robertcrowther\Desktop\00092.MTS" -acodec aac -strict experimental -ac 2 -ab 160k -vcodec libx264 -vpre slow -f mp4 -crf 22 "C:\Users\robertcrowther\Desktop\00092.mp4video.mp4"
+
+ffmpeg-bin\ffmpeg.exe -i "C:\Users\robertcrowther\Desktop\00092.MTS" -acodec aac -ac 2 -strict experimental -ab 160k -s 480x270 -vcodec libx264 -vpre slow -vpre ipod640 -b 1200k -f mp4 -threads 0 "C:\Users\robertcrowther\Desktop\00092.iphone.mp4"

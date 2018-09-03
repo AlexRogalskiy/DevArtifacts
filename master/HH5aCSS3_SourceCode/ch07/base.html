@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CSS Base Layout</title>
+    <style>
+    body {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+    }
+    section, article, header, aside, nav, ul, li, table, tr, td, footer {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    img {
+        max-width: 100%;
+    }
+    table {
+        width: 80%;
+        margin: 1em auto;
+        border-spacing: 1em;
+    }
+    table tr {
+        outline: none;
+    }
+    table thead tr, table tfoot tr {
+        outline: 4px dashed black;
+    }
+    table td, table th {
+        padding: 1em;
+        margin: 1em;
+        border-collapse: separate;
+    }
+    body > section, body > header, body > aside, body > nav, body > footer {
+        background-color: rgba(255,255,255,0.9);
+    }
+    body > section {
+        -moz-box-ordinal-group: 3;
+        -webkit-box-ordinal-group: 3;
+    }
+    body > header {
+        -moz-box-ordinal-group: 1;
+        -webkit-box-ordinal-group: 1;
+        padding: 1em;
+    }
+    header > img, header > h1 {
+      display: inline-block;
+    }
+    header > img {
+      max-height: 100px;
+    }
+    header > form {
+      display: inline-block;
+      width: 50%;
+      float: right;
+    }
+    body > nav {
+        -moz-box-ordinal-group: 2;
+        -webkit-box-ordinal-group: 2;
+    }
+    body > footer {
+        -moz-box-ordinal-group: 4;
+        -webkit-box-ordinal-group: 4;
+    }
+    nav {
+        width: auto;        
+    }
+    nav ul {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    footer small {
+      display: inline-block;
+    }
+    footer nav {
+        display: inline-block;
+        width: 66%;
+    }
+    nav li {
+        -moz-box-flex: 1;
+        -webkit-box-flex: 1;
+        box-flex: 1;
+        display: inline-block;
+        text-align: center;
+    }
+    nav li:first-child {
+    }
+    nav li:last-child {
+    }
+    nav li a {
+        display: inline-block;
+    }
+    section > article {
+        -moz-column-width: 14em;
+        -webkit-column-width: 14em;
+    }
+    body > section {
+        /*display: -moz-box;
+        -moz-box-orient: vertical;
+        -moz-box-direction: reverse;*/
+    }
+    body > section > article {
+        -moz-box-ordinal-group: 1;
+        -webkit-box-ordinal-group: 1;
+    }
+    body > section > h1 {
+        -moz-box-ordinal-group: 2;
+        -webkit-box-ordinal-group: 2;
+    }
+    section > article {
+    }
+    input {
+      max-width: 66%;
+    }
+    </style>
+    <!--<link rel="stylesheet" type="text/css" href="child-combinator-1a.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="child-combinator-1b.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="first-child-1a.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="first-child-1b.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="last-child-1b.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="nth-child-1.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="nth-child-2.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="nth-child-3.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="nth-child-4.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="nth-child-5.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="nth-child-6.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="first-of-type-1a.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="first-of-type-1b.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="last-of-type-1a.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="last-of-type-1b.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="nth-of-type-1.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="nth-of-type-2.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="nth-of-type-3.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="only-of-type.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="only-child.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="empty.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="sibling-combinator-1.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="sibling-combinator-2.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="sibling-combinator-3.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="sibling-combinator-4.css">-->
+    <link rel="stylesheet" type="text/css" href="attribute-selector-1.css">
+</head>
+<body>
+<header>
+  <img src="dust-puppy.svg" role="presentation">
+  <h1>The header</h1>
+  <form action="/search" method="post">
+    <label>Search
+      <input type="search" name="q">
+    </label>
+    <input type="submit" value="Go">
+  </form>
+</header>
+<section role="main">
+  <h1>Posts</h1>
+  <article id="post01" class="current">
+    <h1>First article</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+    viverra magna vel mauris porta ut porttitor tellus fermentum.</p>
+    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+    inceptos himenaeos. Vestibulum sagittis purus sed libero sodales et sagittis
+    est semper.<img src="example.png" alt="Stef: I hate being made an example
+    of!"></p>
+    <p>Nullam in dui enim. Aenean sit amet orci at ipsum consequat
+    ullamcorper. Sed lobortis varius condimentum. Sed tincidunt tempor
+    felis vitae euismod.</p>
+    <section class="comments">
+      <h1>Comments</h1>
+      <form action="/postcomment" method="post">
+        <input type="hidden" name="comment" value="post01">
+        <label>Handle: 
+          <input type="text" name="handle" required>
+        </label>
+        <label>Email:
+          <input type="email" name="email" required>
+        </label>
+        <label>Website:
+          <input type="url" name="website">
+        </label>
+        <label>Comment:
+          <textarea maxlength="512" name="comment">
+          </textarea>
+        </label>
+      </form>
+    </section>
+  </article>
+  <article id="post02" class="archive">
+    <h1>Second article</h1>
+    <p>Quisque id dui nec nisi pharetra egestas. Pellentesque
+    habitant morbi tristique senectus et netus et malesuada fames ac
+    turpis egestas.</p>
+    <ul>
+      <li>In nibh dolor,</li>
+      <li>tempus sed
+        <ul>
+          <li>ornare</li>
+          <li>vulputate,</li>
+        </ul>
+      </li>
+      <li>posuere non nibh.</li>
+    </ul>
+    <p>Ut mollis, tellus ac fermentum consequat, justo diam congue mi, vel
+    gravida quam augue vitae augue. Morbi eu augue ut tellus sodales
+    ultrices.</p>
+    <p>Vestibulum arcu lectus, dapibus ac luctus id, pretium ac purus.</p>
+    <p>Vestibulum quis lacus a elit suscipit condimentum.</p>
+    <p>Maecenas at sem ligula.</p>
+    <section class="comments">
+      <h1>Comments</h1>
+      <article data-user="user123">
+        <h1>Comment 1</h1>
+        <p>Proin eros nisi, tempor non lacinia vel, rutrum quis enim. Vivamus
+        mattis consectetur dui sed placerat.</p>
+      </article>
+      <article data-user="user456">
+        <h1>Comment 2</h1>
+        <p>Maecenas dignissim malesuada dui, nec convallis purus accumsan
+          quis.</p>
+      </article>
+    </section>
+  </article>
+  <footer>
+    <small>
+      <a href="#" rel="license"><img src="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAJUSURBVDiNjZO9S1thGMXPvTfJFbnkipNkLLS0ksFg0M0lf4CboNCEgIIg/RiKtEOn0qGWTtbVoBYcIji10I9J0ApWCjp0kRaXdhHjTW4+uGnur4NJ8GOwZ3nf4TnnfZ5z3scAdBGGYdyVdN+yrGHTNNOtVqsVhuG+pO+S3gE/LtV3BIxzPDJNc8FxHGN0dNRKpVIGoJ2dndr+/r5Vr9cl6bmkN0AoSQIEyHXdj5KYnZ3F932uolKpkM/nK5KQ9FmSCZwLOI7zQBLr6+vXiFdRLBaDtsiTTve3YrFYkM/nbyR3MDU1dSKpLumO+vr6Xruui+d5AFSrVVZWVtjY2KDRaABwdHTE4uIie3t7AJTLZaLRaFXSCyUSid1MJgOA53n09/eTTqdJJpPMzc2xurqKbduMj48Tj8fZ3d0FYHBw8FjSezmOU56fnwdgeXkZ27ap1WpUKhWazSZjY2Nks1kASqVSd4zp6eljSX/MtiHdRDpnEATyfb+bkiSVSqXu3TCM8xgHBga+dkY4OzvDdV2GhoZIJBLMzMxQKBSIRqNkMhlisRhbW1sAJJPJn5I+KB6Pv7poou/7rK2tsbm5SRAEXROXlpY4ODgAoFarYdu2J+llN8ZcLvffMeZyud+SGpLuCVBPT89jSRQKhRvJxWKxISmU9JTOT5Rk9Pb2fpHE5OQkJycn14inp6dMTEx4bdM/SbKAy8sk6WEkElmwLCuSSqUYGRmxgHB7e7t+eHgYazabgaRnkt7SeZnr63xbUtYwjGHTNNNhGP4F9iR9a6/zr4v1/wDE1D9XlC4rrAAAAABJRU5ErkJggg==" alt="Creative Commons"></a>
+      Text portions available under a creative commons license
+    </small>
+  </footer>
+</section>
+<section>
+  <h1>Elsewhere on the web</h1>
+  <article data-src="twitter">
+    <h1>First article</h1>
+    <p>Donec tincidunt, ligula quis fringilla rhoncus, diam nisi
+    aliquet felis, vitae interdum dui arcu ut sem.</p>
+    <p>Integer in nunc elit. Sed a dui in magna vulputate consequat.
+    Duis a nunc ligula. Suspendisse potenti.</p>
+  </article>
+  <article data-src="reddit">
+    <h1>Second article</h1>
+    <p>Phasellus tellus lectus, consequat nec bibendum
+    faucibus, blandit ut risus. Maecenas eu ipsum lacus.</p>
+    <p>Praesent vulputate velit eu massa bibendum nec laoreet odio
+    ullamcorper. Maecenas lacinia euismod nulla ac feugiat. Duis
+    adipiscing turpis at risus pellentesque in faucibus dui pretium.</p>
+  </article>
+  <table>
+    <thead>
+      <tr>
+        <th>One</th>
+        <th>Two</th>
+        <th>Three</th>
+        <th>Four</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.1</td>
+        <td>1.2</td>
+        <td class="fizz">1.3</td>
+        <td>1.4</td>
+      </tr>
+      <tr>
+        <td class="buzz">2.1</td>
+        <td class="fizz">2.2</td>
+        <td>2.3</td>
+        <td>2.4</td>
+      </tr>
+      <tr>
+        <td class="fizz">3.1</td>
+        <td class="buzz">3.2</td>
+        <td>3.3</td>
+        <td class="fizz">3.4</td>
+      </tr>
+      <tr>
+        <td>4.1</td>
+        <td>4.2</td>
+        <td class="fizz buzz">4.3</td>
+        <td>4.4</td>
+      </tr>
+      <tr>
+        <td>5.1</td>
+        <td class="fizz">5.2</td>
+        <td>5.3</td>
+        <td class="buzz">5.4</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>One</th>
+        <th>Two</th>
+        <th>Three</th>
+        <th>Four</th>
+      </tr>
+    </tfoot>
+  </table>
+</section>
+<nav>
+  <ul>
+    <li class="current">
+      <a href="/one.php">
+        Menu one
+      </a>
+    </li>
+    <li>
+      <a href="/two.php">
+        Menu two
+      </a>
+    </li>
+    <li>
+      <a href="/three.html">
+        Menu three
+      </a>
+    </li>
+    <li>
+      <a href="/four.php">
+        Menu four
+      </a>
+    </li>
+  </ul>
+</nav>
+<footer>
+  <small><img src="title_uforg.gif" role="presentation"><br>The footer</small>
+  <nav>
+    <ul>
+      <li><small>
+        <a href="/about.html">
+          About
+        </a>
+      </small></li>
+      <li><small>
+        <a href="mailto:r@uf.org">
+          Contact
+        </a>
+      </small></li>
+      <li><small>
+        <a href="/license.pdf">
+          License
+        </a>
+      </small></li>
+    </ul>
+  </nav>
+</footer>
+</body>
+</html>

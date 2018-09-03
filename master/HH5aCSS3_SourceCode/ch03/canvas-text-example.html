@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas fancy example</title>
+    <script>
+    function draw(){
+        var canvas = document.getElementById('mycanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            ctx.translate(75,-60)
+            ctx.rotate(Math.PI/6);
+            var lineargradient1 = ctx.createLinearGradient(0,0,320,240);
+            lineargradient1.addColorStop(0,'rgb(127,0,0)');
+            lineargradient1.addColorStop(0.5,'rgb(127,127,0)');  
+            lineargradient1.addColorStop(1,'rgb(255,127,255)');
+            var lineargradient2 = ctx.createLinearGradient(0,0,320,240);
+            lineargradient2.addColorStop(1,'rgb(127,0,0)');
+            lineargradient2.addColorStop(0.5,'rgb(127,127,0)');
+            lineargradient2.addColorStop(0,'rgb(255,127,255)');
+            ctx.beginPath();
+            ctx.font = "64pt sans-serif";
+            ctx.fillStyle = lineargradient1;
+            ctx.strokeStyle = lineargradient2;
+            ctx.lineWidth = 8;
+            ctx.shadowOffsetX = 4;  
+            ctx.shadowOffsetY = 4;  
+            ctx.shadowBlur = 8;  
+            ctx.shadowColor = "rgba(0, 0, 0, 0.9)";
+            ctx.strokeText('Canvas',0,140);
+            ctx.fillText('Canvas',0,140);
+            
+        }
+    }
+    window.addEventListener("load", draw, false);
+    </script>
+    <style>
+    canvas {
+        outline: 1px solid #999;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="mycanvas" width="320" height="240">
+        Your browser does not support the canvas element.
+    </canvas>
+    <div style="display: none;">
+        <img id="myimage" src="example6.png" width="236" height="260">
+    </div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Transition Delay 1</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        font-size: 180%;
+        margin-top: 3em;
+    }
+    div {
+        max-width: 22em;
+    }
+    div div {
+        display: inline-block;
+        padding: 1em;
+        margin: 1em;
+        background-color: #666;
+        color: #fff;
+        outline: none;
+        border: none;
+        -moz-transition-duration: 10s;
+        -webkit-transition-duration: 10s;
+        -o-transition-duration: 10s;
+        -ms-transition-duration: 10s;
+        transition-duration: 10s;    
+    }
+    div div:nth-child(2) {
+        -moz-transition-delay: 5s;
+        -webkit-transition-delay: 5s;
+        -o-transition-delay: 5s;
+        -ms-transition-delay: 5s;
+        transition-delay: 5s;
+    }
+    div div:nth-child(3) {
+        -moz-transition-delay: 10s;
+        -webkit-transition-delay: 10s;
+        -o-transition-delay: 10s;
+        -ms-transition-delay: 10s;
+        transition-delay: 10s;
+    }
+    div:hover div:nth-child(1) {
+        -webkit-transform: translateX(50px);
+        -moz-transform: translateX(50px);
+        -o-transform: translateX(50px);
+        -ms-transform: translateX(50px);
+        transform: translateX(50px);
+    }
+    div:hover div:nth-child(2) {
+        -webkit-transform: translateY(50px);
+        -moz-transform: translateY(50px);
+        -o-transform: translateY(50px);
+        -ms-transform: translateY(50px);
+        transform: translateY(50px);
+    }
+    div:hover div:nth-child(3) {
+        -webkit-transform: translate(-50px, -50px);
+        -moz-transform: translate(-50px, -50px);
+        -o-transform: translate(-50px, -50px);
+        -ms-transform: translate(-50px, -50px);
+        transform: translate(-50px, -50px);
+    }
+    #timestamp {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+    </style>
+    <script>
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () {update_timestamp();window.setInterval(update_timestamp,500);}, false);
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <div>
+        <div>One</div>
+        <div>Two</div>
+        <div>Three</div>
+    </div>
+</body>
+</html>

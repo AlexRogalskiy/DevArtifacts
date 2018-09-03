@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Font Features 2</title>
+    <style>
+    @font-face {
+    font-family: calluna;
+    src: url(Calluna-Regular.woff) format("woff"),
+         url(Calluna-Regular.otf) format("opentype");
+         /* A font by Jos Buivenga (exljbris) -> www.exljbris.nl */
+    }
+    body {
+        font-family: calluna;
+        font-size: 400%;
+    }
+    ul {
+        list-style: none;
+        width: 6.5em;
+        margin: 1em 0;
+        padding: 5px;
+        border: 1px solid black;
+    }
+    li {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+    .oldstyle {
+        -moz-font-feature-settings: "onum";
+        -moz-font-feature-settings: "onum=1";
+        -webkit-font-feature-settings: "onum";
+        -ms-font-feature-settings: "onum";
+        font-feature-settings: "onum";
+    }
+    .default {
+        /* it's normal, no setting required...*/
+    }
+    .tabular {
+        -moz-font-feature-settings: "tnum";
+        -moz-font-feature-settings: "tnum=1";
+        -webkit-font-feature-settings: "tnum";
+        -ms-font-feature-settings: "tnum";
+        font-feature-settings: "tnum";
+    }
+    .lining {
+        -moz-font-feature-settings: "lnum=1";
+    }
+    .tabular-oldstyle {
+        -moz-font-feature-settings: "onum=1,tnum=1";
+    }
+    .tabular-lining {
+        -moz-font-feature-settings: "lnum=1,tnum=1";
+    }
+    .zero {
+        -moz-font-feature-settings: "zero=1,lnum=1";
+    }
+    .frac {
+        -moz-font-feature-settings: "frac=1";
+    }
+    .afrc {
+        -moz-font-feature-settings: "afrc=1";
+    }
+    </style>
+</head>
+<body>
+    <ul class="default">
+        <li>987654321</li>
+        <li>1111111111</li>
+        <li>23232323</li>
+        <li>123456789</li>
+    </ul>
+    <ul class="oldstyle">
+        <li>987654321</li>
+        <li>1111111111</li>
+        <li>23232323</li>
+        <li>123456789</li>
+    </ul>
+    <ul class="tabular">
+        <li>987654321</li>
+        <li>1111111111</li>
+        <li>23232323</li>
+        <li>123456789</li>
+    </ul>
+    <ul class="lining">
+        <li>987654321</li>
+        <li>1111111111</li>
+        <li>23232323</li>
+        <li>123456789</li>
+    </ul>
+    <ul class="tabular-oldstyle">
+        <li>987654321</li>
+        <li>1111111111</li>
+        <li>23232323</li>
+        <li>123456789</li>
+    </ul>
+    <ul class="tabular-lining">
+        <li>987654321</li>
+        <li>1111111111</li>
+        <li>23232323</li>
+        <li>123456789</li>
+    </ul>
+    <ul class="lining">
+        <li>O0O0O0</li>
+        <li class="zero">O0O0O0</li>
+    </ul>
+    <ul>
+        <li>1 1/2</li>
+        <li>2 1/3</li>
+        <li>3 1/4</li>
+        <li>4 3/5</li>
+    </ul>
+    <ul class="frac">
+        <li>1 1/2</li>
+        <li>2 1/3</li>
+        <li>3 1/4</li>
+        <li>4 3/5</li>
+    </ul>
+    <ul class="afrc">
+        <li>1 1/2</li>
+        <li>2 1/3</li>
+        <li>3 1/4</li>
+        <li>4 3/5</li>
+    </ul>
+</body>
+</html>

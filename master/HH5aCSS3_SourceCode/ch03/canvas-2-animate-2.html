@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas example 2</title>
+    <script>
+    function init() {
+        draw();
+        window.setInterval(draw,1000);
+    }
+    function draw(){
+        var now = new Date();
+        document.getElementById('timestamp').innerHTML = now.toLocaleString();
+        var canvas = document.getElementById('mycanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            ctx.save();
+            ctx.clearRect(0,0,320,240);
+            ctx.fillStyle = 'rgb(255,0,0)';
+            ctx.fillRect(now.getSeconds() * 4,50,100,100);
+            ctx.strokeStyle = 'rgb(0,127,127)';
+            ctx.moveTo(now.getSeconds() * 4,50);
+            ctx.lineTo(now.getSeconds() * 4 + 100,150);
+            ctx.lineWidth = 5;
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
+    </script>
+    <style>
+    canvas {
+        outline: 1px solid #999;
+    }
+    </style>
+</head>
+<body onload="init()">
+    <canvas id="mycanvas" width="320" height="240">
+        Your browser does not support the canvas element.
+    </canvas>
+    <div id="timestamp"></div>
+</body>
+</html>

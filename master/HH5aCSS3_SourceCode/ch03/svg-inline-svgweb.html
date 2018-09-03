@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SVG inline with SVGWeb</title>
+    <script src="libs/svgweb/src/svg.js" data-path="libs/svgweb/src"></script>
+    <style>
+    svg {
+        outline: 1px solid #999;
+        width: 320px;
+        height: 240px;
+    }
+    </style>
+</head>
+<body>
+<script type="image/svg+xml">
+    <svg xmlns="http://www.w3.org/2000/svg" id="mysvg2" width="320" height="240" version="1.1" viewBox="0 0 320 240">
+        <rect x="50" y="50" width="100" height="100" style="fill: rgb(255,0,0)"></rect>
+        <line x1="50" y1="50" x2="150" y2="150" style="stroke: rgb(0,127,127); stroke-width: 5;"></line>
+    </svg>
+</script>
+<script type="image/svg+xml">
+    <svg xmlns="http://www.w3.org/2000/svg" id="mysvg4" width="320" height="240" version="1.1" viewBox="0 0 320 240">
+        <rect x="5" y="50" width="100" height="100" style="fill: rgb(255,0,0);"></rect>
+        <line x1="5" y1="50" x2="105" y2="150" style="stroke: rgb(0,127,127); stroke-width: 5;"></line>
+        <circle cx="165" cy="100" r="50" style="fill: rgb(0,255,0);"/>
+        <polygon points="265,50  315,150  215,150" style="stroke: rgb(51,51,51); fill: rgb(204,204,204); stroke-width: 5;"/>
+    </svg>
+</script>
+<script type="image/svg+xml">
+    <svg xmlns="http://www.w3.org/2000/svg" id="mysvg5" width="320" height="240" version="1.1" viewBox="0 0 320 240">
+        <path d="M5,50
+             l0,100 l100,0 l0,-100 l-100,0
+             M215,100
+             a50,50 0 1 1 -100,0 50,50 0 1 1 100,0
+             M265,50
+             l50,100 l-100,0 l50,-100
+             z"
+          style="stroke: rgb(51,51,51); fill: rgb(204,204,204); stroke-width: 5;"/>   
+    </svg>
+</script>
+<script type="image/svg+xml">
+    <svg xmlns="http://www.w3.org/2000/svg" id="mysvg9" width="320" height="240" version="1.1" viewBox="0 0 320 240">
+        <defs>
+            <path id="myTextPath"
+                   d="M235,120
+                      a75,75 0 1 1 -150,0 75,75 0 1 1 150,0">
+            </path>
+            <radialGradient id="myRadialGradient"
+                fx="5%" fy="5%" r="65%"
+                spreadMethod="pad">
+                <stop offset="10%"   stop-color="#00ff00" stop-opacity="0"></stop>
+                <stop offset="90%" stop-color="#003300" stop-opacity="1"></stop>
+            </radialGradient>
+        </defs>
+        <text>
+            <textPath xlink:href="#myTextPath" style="fill:url(#myRadialGradient); font-size: 20px; font-weight: bold;">
+                HAI! IZ IN YR ELEMENT WRITIN YR TXT 
+            </textPath>
+        </text>
+    </svg>
+</script>
+<script type="image/svg+xml">
+    <svg xmlns="http://www.w3.org/2000/svg" id="mysvg10" width="320" height="240" version="1.1" viewBox="0 0 320 240">
+        <rect x="5" y="5" width="110" height="160" style="stroke-width: 5; fill: none; stroke: rgb(102,102,102);"></rect>
+        <foreignObject x="10" y="10" width="100" height="150">
+            <body xmlns="http://www.w3.org/1999/xhtml">
+                <p><strong>HAI!</strong><br/> IZ IN YR ELEMENT <em>WRAPPIN</em> YR TXT</p>
+            </body>
+        </foreignObject>
+    </svg>
+</script>
+<script type="image/svg+xml">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="mysvg14" width="320" height="240" version="1.1" viewBox="0 0 640 480">
+        <g transform="skewX(45) skewY(33)">
+            <image x="10" y="10" width="236" height="260"
+               xlink:href="example6.png">
+            </image>
+            <text x="60" y="290">Example Image</text>
+        </g>
+    </svg>
+</script>
+</body>
+</html>

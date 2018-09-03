@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Dynamic pseudo-classes 1</title>
+    <style>
+    body {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+    }
+    div, section, article, header, aside, nav, ul, li, table, tr, td, footer {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    div input { display: block; margin: 1em;}
+    input:enabled { outline: 8px solid #00f; -moz-transition: outline 0.5s ease;}
+    input:disabled { outline: 2px solid #f00; -moz-transition: outline 0.5s ease; }
+    </style>
+    <script>
+    function flip() {
+        var els = document.getElementsByTagName('input');
+        for (var i=0; i < els.length; i++) {
+            els[i].disabled = !els[i].disabled;
+            //window.alert(els[i].checked);
+        }
+    }
+    </script>
+</head>
+<body>
+    <button onclick="flip()">Flip</button>
+    <div>
+        <label>Enabled <input type="text"></label>
+        <label>Disabled <input type="text" disabled></label>
+    </div>
+    <div id="one">
+        <label>Enabled <input type="text"></label>
+        <label>Disabled <input type="text" disabled></label>
+    </div>
+    <div id="two">
+        <label>Enabled <input type="text"></label>
+        <label>Disabled <input type="text" disabled></label>
+    </div>
+</body>
+</html>

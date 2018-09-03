@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Basic Audio / Video</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    audio, video {
+        /*width: 320px;
+        height: 240px;
+        outline: 1px solid #ccc;*/
+    }
+    </style>
+</head>
+<body>
+    <h1>Audio controls</h1>
+    <audio id="myaudio" controls onloadeddata="document.getElementById('source')
+    .innerHTML = 'Playing file ' +
+         this.currentSrc.slice(this.currentSrc.lastIndexOf('/')+1);">
+        <source src="myaudio.mp3" type="audio/mp3">
+        <source src="myaudio.ogg" type="audio/ogg">
+    </audio>
+    <div id="source"></div>
+</body>
+</html>

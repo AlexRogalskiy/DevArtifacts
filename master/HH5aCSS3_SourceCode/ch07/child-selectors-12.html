@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Child Selectors 12</title>
+    <style>
+    body {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+    }
+    section, article, header, aside, nav, ul, li, table, tr, td, footer {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    article {
+      position: relative;
+    }
+    article img:only-of-type {
+      position: absolute;
+      right: 1em;
+      top: 2.5em;
+      max-width: 30%;
+    }
+    article:first-of-type {
+      background-color: #000;
+    }
+    </style>
+</head>
+<body>
+<header>
+  <h1>Header</h1>
+</header>
+<article>
+  <h1>Article 1</h1>
+  <img src="example.png">
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+</article>
+<article>
+  <h1>Article 2</h1>
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+  <img src="example.png">
+</article>
+<footer>
+  Body footer
+</footer>
+</body>
+</html>

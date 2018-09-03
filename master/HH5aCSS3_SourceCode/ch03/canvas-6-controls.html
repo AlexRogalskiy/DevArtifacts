@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas example 6</title>
+    <script>
+    function draw(){
+        var canvas = document.getElementById('mycanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = 'rgb(255,0,0)';
+            ctx.fillRect(5,50,100,100);
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgb(0,127,127)';
+            ctx.moveTo(5,50);
+            ctx.bezierCurveTo(0,90,120,70,105,150)
+            ctx.lineWidth = 5;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(265,50);
+            ctx.quadraticCurveTo(315,50,315,150);
+            ctx.quadraticCurveTo(265,50,215,150);
+            ctx.quadraticCurveTo(215,0,265,50);
+            ctx.closePath();
+            ctx.strokeStyle = 'rgb(51,51,51)';
+            ctx.fillStyle = 'rgb(204,204,204)';
+            ctx.stroke();
+            ctx.fill();
+            
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'rgb(0,0,0)';
+            ctx.fillStyle = 'rgb(0,0,0)';
+            
+            ctx.beginPath();
+            ctx.moveTo(0,90);
+            ctx.fillRect(-2,88,4,4);
+            ctx.lineTo(5,50);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(120,70);
+            ctx.fillRect(118,68,4,4);
+            ctx.lineTo(105,150);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(265,50);
+            ctx.lineTo(315,50);
+            ctx.fillRect(313,48,4,4);
+            ctx.lineTo(315,150);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(315,150);
+            ctx.lineTo(265,50);
+            ctx.fillRect(263,48,4,4);
+            ctx.lineTo(215,150);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(215,150);
+            ctx.lineTo(215,0);
+            ctx.fillRect(213,-2,4,4);
+            ctx.lineTo(265,50);
+            ctx.stroke();
+        }
+    }
+    </script>
+    <style>
+    canvas {
+        outline: 1px solid #999;
+    }
+    </style>
+</head>
+<body onload="draw()">
+    <canvas id="mycanvas" width="320" height="240">
+        Your browser does not support the canvas element.
+    </canvas>
+</body>
+</html>

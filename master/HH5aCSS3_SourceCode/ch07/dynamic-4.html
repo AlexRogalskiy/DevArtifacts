@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Dynamic pseudo-classes </title>
+    <style>
+    body {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+    }
+    div, section, article, header, aside, nav, ul, li, table, tr, td, footer {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    div input { display: block; margin: 1em;}
+    #one input:required { outline: 4px solid #000; }
+    #two input:optional { outline: 4px solid #000; }
+    </style>
+</head>
+<body>
+    <div>
+        <label>Required <input type="text" required></label>
+        <label>Optional <input type="text"></label>
+    </div>
+    <div id="one">
+        <label>Required <input type="text" required></label>
+        <label>Optional <input type="text"></label>
+    </div>
+    <div id="two">
+        <label>Required <input type="text" required></label>
+        <label>Optional <input type="text"></label>
+    </div>
+</body>
+</html>

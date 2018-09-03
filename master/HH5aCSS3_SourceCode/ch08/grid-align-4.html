@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Grid Align 4</title>
+    <style>
+    body {
+        width: 90%;
+        height: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", 'KomikaHandRegular', sans-serif;
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-rows: auto;
+        grid-rows: auto;
+        -ms-grid-columns: 1fr;
+        grid-columns: 1fr;
+    }
+    section, article, aside, figure, header, footer {
+         margin: 1em;
+         padding: 1em;
+         outline: 4px dashed black;
+    }
+    header { -ms-grid-row: 1; grid-row: 1; }
+    #sidebar { -ms-grid-row: 3; grid-row: 3; }
+    #content1 { -ms-grid-row: 2; grid-row: 2; }
+    #content2 { -ms-grid-row: 4; grid-row: 4; }
+    footer {  -ms-grid-row: 5; grid-row: 5; }
+    
+    @media screen and (min-width: 600px) {
+        body {
+            -ms-grid-columns: auto 1fr;
+            grid-columns: auto 1fr;
+            -ms-grid-rows: auto 1fr 1fr auto;
+            grid-rows: auto 1fr 1fr auto;
+        }
+        header { -ms-grid-column: 1; -ms-grid-row: 1; -ms-grid-column-span: 2;
+                  grid-column: 1; grid-row: 1; grid-column-span: 2; }
+        #sidebar { -ms-grid-column: 1; -ms-grid-row: 2; -ms-grid-rowspan: 2;
+                  grid-column: 1; grid-row: 2; grid-rowspan: 2; }
+        #content1 { -ms-grid-column: 2; -ms-grid-row: 2;
+                  grid-column: 2; grid-row: 2; }
+        #content2 { -ms-grid-column: 2; -ms-grid-row: 3;
+                  grid-column: 2; grid-row: 3; }
+        footer { -ms-grid-column: 1; -ms-grid-row: 4; -ms-grid-column-span: 2;
+                  grid-column: 1; grid-row: 4; grid-column-span: 2; }
+    }
+    
+    @media screen and (min-width: 760px) {
+        body {
+            -ms-grid-columns: auto 1fr 1fr;
+            grid-columns: auto 1fr 1fr;
+            -ms-grid-rows: auto 1fr auto;
+            grid-rows: auto 1fr auto;
+        }
+        header { -ms-grid-column: 1; -ms-grid-row: 1; -ms-grid-column-span: 3;
+                  grid-column: 1; grid-row: 1; grid-column-span: 3; }
+        #sidebar { -ms-grid-column: 1; -ms-grid-row: 2;
+                  grid-column: 1; grid-row: 2; }
+        #content1 { -ms-grid-column: 2; -ms-grid-row: 2;
+                  grid-column: 2; grid-row: 2; }
+        #content2 { -ms-grid-column: 3; -ms-grid-row: 2;
+                  grid-column: 3; grid-row: 2; }
+        footer { -ms-grid-column: 1; -ms-grid-row: 3; -ms-grid-column-span: 3;
+                  grid-column: 1; grid-row: 3; grid-column-span: 3; }
+    }
+    </style>
+</head>
+<body>
+    <header>Header</header>
+    <div id="sidebar">
+        <aside>Side bar 1</aside>
+        <aside>Side bar 2</aside>
+    </div>
+    <div id="content1">
+        <article>Content 1</article>
+        <article>Content 3</article>
+        <article>Content 5</article>
+    </div>
+    <div id="content2">
+        <article>Content 2</article>
+        <article>Content 4</article>
+        <article>Content 6</article>
+    </div>
+    <footer>Footer</footer>
+</body>
+</html>

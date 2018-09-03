@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Font Features 4</title>
+    <style>
+    @font-face {
+        font-family: megalopolis;
+        src: url(MEgalopolisExtra.woff) format("woff"),
+             url(MEgalopolisExtra.otf) format("opentype");
+    }
+      
+    body {
+        font-family: megalopolis, sans-serif;
+        font-size: 150%;
+    }
+    p {
+        margin: 1em 0;
+        padding: 5px;
+        border: 1px solid black;
+    }
+    p::first-line {
+        font-variant: small-caps;
+    }
+    .saltoff {
+        -moz-font-feature-settings: "salt=0,dlig=1";
+        -webkit-font-feature-settings: "salt" 0, "dlig" 1;
+        -ms-font-feature-settings: "salt" 0, "dlig" 1;
+    }
+    .salton {
+        -moz-font-feature-settings: "salt=1,dlig=1";
+        -webkit-font-feature-settings: "salt" 1, "dlig" 1;
+        -ms-font-feature-settings: "salt" 1, "dlig" 1;
+    }
+    .ss1 {
+        -moz-font-feature-settings: "ss01=1,ss02=0,ss03=0,ss04=0,ss05=0,ss06=0,dlig=1";
+    }
+    .ss2 {
+        -moz-font-feature-settings: "ss01=0,ss02=1,ss03=0,ss04=0,ss05=0,ss06=0,dlig=1";
+    }
+    .ss3 {
+        -moz-font-feature-settings: "ss01=0,ss02=0,ss03=1,ss04=0,ss05=0,ss06=0,dlig=1";
+    }
+    .ss4 {
+        -moz-font-feature-settings: "ss01=0,ss02=0,ss03=0,ss04=1,ss05=0,ss06=0,dlig=1";
+    }
+    .ss5 {
+        -moz-font-feature-settings: "ss01=0,ss02=0,ss03=0,ss04=0,ss05=1,ss06=0,dlig=1";
+    }
+    .ss6 {
+        -moz-font-feature-settings: "ss01=0,ss02=0,ss03=0,ss04=0,ss05=0,ss06=1,dlig=1";
+    }
+    .histon {
+        -moz-font-feature-settings: "hist=1,dlig=1";
+    }
+    .default {
+        /* it's normal, no setting required...*/
+    }
+    </style>
+</head>
+<body>
+    <p>The Analytical Engine has no pretensions whatever to originate anything.
+    It can do whatever we know how to order it to perform.</p>
+    <p class="saltoff">The Analytical Engine has no pretensions whatever to originate anything.
+    It can do whatever we know how to order it to perform.</p>
+    <p class="salton">The Analytical Engine has no pretensions whatever to
+    originate anything. It can do whatever we know how to order it to
+    perform.</p>
+    <p class="ss1">The Analytical Engine has no pretensions whatever to
+    originate anything. It can do whatever we know how to order it to
+    perform.</p>
+    <p class="ss2">The Analytical Engine has no pretensions whatever to
+    originate anything. It can do whatever we know how to order it to
+    perform.</p>
+    <p class="ss3">The Analytical Engine has no pretensions whatever to
+    originate anything. It can do whatever we know how to order it to
+    perform.</p>
+    <p class="ss4">The Analytical Engine has no pretensions whatever to
+    originate anything. It can do whatever we know how to order it to
+    perform.</p>
+    <p class="ss5">The Analytical Engine has no pretensions whatever to
+    originate anything. It can do whatever we know how to order it to
+    perform.</p>
+    <p class="ss6">The Analytical Engine has no pretensions whatever to
+    originate anything. It can do whatever we know how to order it to perform.
+    </p>
+</body>
+</html>

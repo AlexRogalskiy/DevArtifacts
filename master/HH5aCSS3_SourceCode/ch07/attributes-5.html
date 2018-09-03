@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Attribute selectors 5</title>
+    <style>
+    body {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+    }
+    [itemprop*=tion] {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+        display: block;
+    }
+    </style>
+</head>
+<body>
+    <section id="rob" itemscope itemtype="http://microformats.org/profile/hcard">
+        <h1 itemprop="fn">Rob Crowther</h1>
+        <p itemprop="n" itemscope>Full name:
+            <span itemprop="given-name">Robert</span>
+            <span itemprop="additional-name">John</span>
+            <span itemprop="family-name">Crowther</span>
+        </p>
+        <p itemprop="org" itemscope>
+            <span itemprop="organization-name">Manning Publications Co.</span>
+            (<span itemprop="organization-unit">Hello! Series</span>)
+        </p>
+    </section>
+</body>
+</html>

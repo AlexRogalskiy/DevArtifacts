@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Video and CSS Transitions</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        font-size: 180%;
+        margin-top: 3em;
+    }
+    div {
+        max-width: 25em;
+    }
+    div video {
+        display: inline-block;
+        margin: 1em;
+        outline: none;
+        border: none;
+        -moz-transition-duration: 10s;
+        -webkit-transition-duration: 10s;
+        -o-transition-duration: 10s;
+        -ms-transition-duration: 10s;
+        transition-duration: 10s;
+    }
+    div:hover video:nth-child(1) {
+        -webkit-transform-origin: bottom right;
+        -moz-transform-origin: bottom right;
+        -o-transform-origin: bottom right;
+        -ms-transform-origin: bottom right;
+        transform-origin: bottom right;
+        -webkit-transform: rotate(16.5deg);
+        -moz-transform: rotate(16.5deg);
+        -o-transform: rotate(16.5deg);
+        -ms-transform: rotate(16.5deg);
+        transform: rotate(16.5deg);
+    }
+    div:hover video:nth-child(2) {
+        -webkit-transform-origin: top right;
+        -moz-transform-origin: top right;
+        -o-transform-origin: top right;
+        -ms-transform-origin: top right;
+        transform-origin: top right;
+        -webkit-transform: rotate(33deg);
+        -moz-transform: rotate(33deg);
+        -o-transform: rotate(33deg);
+        -ms-transform: rotate(33deg);
+        transform: rotate(33deg);
+    }
+    div:hover video:nth-child(3) {
+        -webkit-transform-origin: top left;
+        -moz-transform-origin: top left;
+        -o-transform-origin: top left;
+        -ms-transform-origin: top left;
+        transform-origin: top left;
+        -webkit-transform: rotate(66deg);
+        -moz-transform: rotate(66deg);
+        -o-transform: rotate(66deg);
+        -ms-transform: rotate(66deg);
+        transform: rotate(66deg);
+    }
+    #timestamp {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+    </style>
+    <script>
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () { update_timestamp();window.setInterval(update_timestamp,500); }, false);
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <div>
+        <video id="myvideo1" width="160" autoplay loop onended="this.play();">
+            <source src="00092.webm" type="video/webm">
+            <source src="00092.mp4" type="video/mp4">
+            <source src="00092.low.mp4" type="video/mp4">
+            <source src="00092.ogv" type="video/ogg">
+            No video!
+        </video>
+        <video id="myvideo2" width="160" autoplay loop onended="this.play();">
+            <source src="00092.webm" type="video/webm">
+            <source src="00092.mp4" type="video/mp4">
+            <source src="00092.low.mp4" type="video/mp4">
+            <source src="00092.ogv" type="video/ogg">
+            No video!
+        </video>
+        <video id="myvideo3" width="160" autoplay loop onended="this.play();">
+            <source src="00092.webm" type="video/webm">
+            <source src="00092.mp4" type="video/mp4">
+            <source src="00092.low.mp4" type="video/mp4">
+            <source src="00092.ogv" type="video/ogg">
+            No video!
+        </video>
+    </div>
+</body>
+</html>

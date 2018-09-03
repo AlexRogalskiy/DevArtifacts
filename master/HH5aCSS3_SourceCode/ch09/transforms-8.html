@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Transforms 8</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        font-size: 180%;
+        margin-top: 3em;
+        color: #fff;
+    }
+    .cube {
+        position: relative;
+        top: 100px;
+    }
+    .cube div:nth-child(1) div, .cube div:nth-child(2), .cube div:nth-child(3) {
+        padding: 10px;
+        width: 180px;
+        height: 180px;
+    }
+    .cube > div {
+        position: absolute;
+    }
+    .cube div:nth-child(2) {
+        -webkit-transform: skewY(30deg);
+        -moz-transform: skewY(30deg);
+        -o-transform: skewY(30deg);
+        -ms-transform: skewY(30deg);
+        transform: skewY(30deg);
+        background-color: #444;
+    }
+    .cube div:nth-child(3) {
+        -webkit-transform: skewY(-30deg);
+        -moz-transform: skewY(-30deg);
+        -o-transform: skewY(-30deg);
+        -ms-transform: skewY(-30deg);
+        transform: skewY(-30deg);
+        background-color: #666;
+        left: 200px;
+    }
+    .cube div:nth-child(1) div {
+        -webkit-transform: skewY(-30deg) scaleY(1.16);
+        -moz-transform: skewY(-30deg) scaleY(1.16);
+        -o-transform: skewY(-30deg) scaleY(1.16);
+        -ms-transform: skewY(-30deg) scaleY(1.16);
+        transform: skewY(-30deg) scaleY(1.16);
+        background-color: #888;
+        font-size: 0.862em;
+    }
+    .cube div:nth-child(1) {
+        -webkit-transform: rotate(60deg);
+        -moz-transform: rotate(60deg);
+        -o-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+        transform: rotate(60deg);
+        top: -158px;
+        left: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div class="cube">
+        <div>
+            <div>One</div>
+        </div>
+        <div>Two</div>
+        <div>Three</div>
+    </div>
+</body>
+</html>

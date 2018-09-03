@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>History API 1</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        vertical-align: top;
+    }
+    strong, b {
+        font-size: 102%;
+    }
+    em, i {
+      color: #999;
+    }
+    </style>
+    <script>
+    var state;
+    
+    window.onload = init;
+    window.onpopstate = popState;
+    window.onpageshow = popState;
+    
+    function init() {
+        state = {
+            undonum: 0,
+            content: document.getElementById('content').innerHTML
+        };
+    }
+    function save() {
+        state.undonum++;
+        state.content = document.getElementById('content').innerHTML;
+        history.pushState(state, '', '#undo' + state.undonum);
+    }
+    function popState(event) {
+        if (event.state) {
+            state = event.state;
+            document.getElementById('content').innerHTML = state.content;
+        } else {
+            history.replaceState(state, '', '#undo' + state.undonum);
+        }
+    }
+    </script>
+</head>
+<body>
+    <menu>
+        <button onclick="document.execCommand('bold',false,'');">Bold</button>
+        <button onclick="document.execCommand('italic',false,'');">Italic</button>
+        <button onclick="document.execCommand('underline',false,'');">Underline</button>
+        <button onclick="document.execCommand('formatblock',false,'<h1>');">Heading</button>
+        <button onclick="var selection = window.getSelection(); var range = selection.getRangeAt(0); var contents = range.extractContents(); document.execCommand('inserthtml',false,'<strong>' + contents.textContent + '</strong>');">Section</button>
+        <button onclick="if (document.getElementById('szURL').checkValidity()) { document.execCommand('CreateLink',false,document.getElementById('szURL').value);}">Link</button>
+        <input type="url" id="szURL" required><br>
+        <button onclick="save();">Save</button>
+        <button onclick="history.go(-1);">Undo</button>
+    </menu>
+    <h1>Stef</h1>
+    <p contenteditable="true" id="content">Stef works as the Corporate Sales
+    Manager. He runs most of the marketing efforts within the firm and sells
+    things before they exist. He can&rsquo;t understand the way techies think,
+    so doesn&rsquo;t get very far with them. He sucks at Quake. Although he
+    admires the power of Microsoft&rsquo;s marketing muscle, he has a real
+    problem with Microsoft salesmen, probably because they make much more money
+    than he does.</p>
+    <img src="../ch06/headshots/headshot_stef.gif" alt="Stef">
+</body>
+</html>

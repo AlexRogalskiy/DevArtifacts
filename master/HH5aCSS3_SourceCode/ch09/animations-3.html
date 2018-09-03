@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Animations 3</title>
+    <style>
+    body, html { height: 100%; }
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    @-moz-keyframes bounce {
+        from {
+            top: 50px;
+            -moz-transform: scale(1);
+            transform: scale(1);
+        }
+        25% {
+            top: 350px;
+            -moz-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        50% {
+            top: 50px;
+            -moz-transform: scale(1);
+            transform: scale(1);
+        }
+        75% {
+            top: 350px;
+            -moz-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        to {
+            top: 50px;
+            -moz-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    @-moz-keyframes slide {
+        from {
+            left: 100px;
+        }
+        25% {
+            left: 600px;
+        }
+        50% {
+            left: 100px;
+        }
+        75% {
+            left: 600px;
+        }
+        to {
+            left: 100px;
+        }
+    }
+    @-webkit-keyframes bounce {
+        from {
+            top: 50px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        25% {
+            top: 350px;
+            -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        50% {
+            top: 50px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        75% {
+            top: 350px;
+            -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        to {
+            top: 50px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    @-webkit-keyframes slide {
+        from {
+            left: 100px;
+        }
+        25% {
+            left: 600px;
+        }
+        50% {
+            left: 100px;
+        }
+        75% {
+            left: 600px;
+        }
+        to {
+            left: 100px;
+        }
+    }
+    @-o-keyframes bounce {
+        from {
+            top: 50px;
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+        25% {
+            top: 350px;
+            -o-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        50% {
+            top: 50px;
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+        75% {
+            top: 350px;
+            -o-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        to {
+            top: 50px;
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    @-o-keyframes slide {
+        from {
+            left: 100px;
+        }
+        25% {
+            left: 600px;
+        }
+        50% {
+            left: 100px;
+        }
+        75% {
+            left: 600px;
+        }
+        to {
+            left: 100px;
+        }
+    }
+    @-ms-keyframes bounce {
+        from {
+            top: 50px;
+            -ms-transform: scale(1);
+            transform: scale(1);
+        }
+        25% {
+            top: 350px;
+            -ms-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        50% {
+            top: 50px;
+            -ms-transform: scale(1);
+            transform: scale(1);
+        }
+        75% {
+            top: 350px;
+            -ms-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        to {
+            top: 50px;
+            -ms-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    @-ms-keyframes slide {
+        from {
+            left: 100px;
+        }
+        25% {
+            left: 600px;
+        }
+        50% {
+            left: 100px;
+        }
+        75% {
+            left: 600px;
+        }
+        to {
+            left: 100px;
+        }
+    }
+    #animateme {
+        font-size: 180%;
+        display: inline-block;
+        padding: 1em;
+        margin: 1em;
+        background-color: #666;
+        color: #fff;
+        outline: none;
+        border: none;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        -moz-animation-duration: 20s, 40s;
+        -moz-animation-name: bounce, slide;
+        -moz-animation-iteration-count: infinite, infinite;
+        -webkit-animation-duration: 20s, 40s;
+        -webkit-animation-name: bounce, slide;
+        -webkit-animation-iteration-count: infinite, infinite;
+        -o-animation-duration: 20s, 40s;
+        -o-animation-name: bounce, slide;
+        -o-animation-iteration-count: infinite, infinite;
+        -ms-animation-duration: 20s, 40s;
+        -ms-animation-name: bounce, slide;
+        -ms-animation-iteration-count: infinite, infinite;
+    }
+    #timestamp {
+        font-size: 180%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+    </style>
+    <script>
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () {update_timestamp();window.setInterval(update_timestamp,500);}, false);
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <div id="animateme">
+        Animate Me
+    </div>
+</body>
+</html>

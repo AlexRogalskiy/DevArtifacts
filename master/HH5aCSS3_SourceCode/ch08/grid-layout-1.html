@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Grid Layout 1</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        display: grid;
+        grid-template: "aaaa"
+                       "bccd"
+                       "eeee";
+    }
+    section, article, aside, figure, header, footer {
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    header { grid-cell: a; }
+    aside.b { grid-cell: b; }
+    article { grid-cell: c; }
+    aside.d { grid-cell: d; }
+    footer { grid-cell: e; }
+    </style>
+</head>
+<body>
+    <header>Header</header>
+    <aside class="b">Side bar</aside>
+    <article>Content</article>
+    <aside class="d">Side bar</aside>
+    <footer>Footer</footer>
+</body>
+</html>

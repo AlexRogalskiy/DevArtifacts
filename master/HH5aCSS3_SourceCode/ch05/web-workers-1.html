@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Web Workers 1</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        vertical-align: top;
+    }
+    menu {
+        margin-top: 3em;
+    }
+    #timestamp {
+        font-size: 180%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+    </style>
+    <script>
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () {update_timestamp();window.setInterval(update_timestamp,500);}, false);
+    function kill_browser() {
+        log('Starting');
+        var j = 0;
+        var n = 1e9;
+        var p = n/10;
+
+        for (var i=0;i<n;i++) {
+            if (j++ > p) { j=0; log(i); }
+        }
+        log('Done');
+    }
+    var worker = new Worker("web-worker-1.js");
+    worker.onmessage = function(event) { log(event.data); }
+    function log(text) {
+	document.getElementById('logger').innerHTML += text + '<br>';
+    }
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <menu>
+        <button onclick="kill_browser(); return false;">Kill browser</button>
+        <button onclick="worker.postMessage('Starting'); return false;">Start worker</button>
+    </menu>
+    <div id="logger"></div>
+</body>
+</html>

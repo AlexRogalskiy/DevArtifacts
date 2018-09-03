@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Animations 2</title>
+    <style>
+    body, html { height: 100%; }
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    @-moz-keyframes bounce {
+        from {
+            top: 50px;
+            -moz-transform: scale(1);
+            transform: scale(1);
+        }
+        25% {
+            top: 350px;
+            -moz-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        50% {
+            top: 50px;
+            -moz-transform: scale(1);
+            transform: scale(1);
+        }
+        75% {
+            top: 350px;
+            -moz-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        to {
+            top: 50px;
+            -moz-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    @-webkit-keyframes bounce {
+        from {
+            top: 50px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        25% {
+            top: 350px;
+            -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        50% {
+            top: 50px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        75% {
+            top: 350px;
+            -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        to {
+            top: 50px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    @-o-keyframes bounce {
+        from {
+            top: 50px;
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+        25% {
+            top: 350px;
+            -o-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        50% {
+            top: 50px;
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+        75% {
+            top: 350px;
+            -o-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        to {
+            top: 50px;
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    @-ms-keyframes bounce {
+        from {
+            top: 50px;
+            -ms-transform: scale(1);
+            transform: scale(1);
+        }
+        25% {
+            top: 350px;
+            -ms-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        50% {
+            top: 50px;
+            -ms-transform: scale(1);
+            transform: scale(1);
+        }
+        75% {
+            top: 350px;
+            -ms-transform: scale(1.25);
+            transform: scale(1.25);
+        }
+        to {
+            top: 50px;
+            -ms-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+    #animateme {
+        font-size: 180%;
+        display: inline-block;
+        padding: 1em;
+        margin: 1em;
+        background-color: #666;
+        color: #fff;
+        outline: none;
+        border: none;
+        position: absolute;
+        left: 100px;
+        top: 50px;
+        -moz-animation-duration: 20s;
+        -moz-animation-name: bounce;
+        -moz-animation-iteration-count: infinite;
+        -webkit-animation-duration: 20s;
+        -webkit-animation-name: bounce;
+        -webkit-animation-iteration-count: infinite;
+        -o-animation-duration: 20s;
+        -o-animation-name: bounce;
+        -o-animation-iteration-count: infinite;
+        -ms-animation-duration: 20s;
+        -ms-animation-name: bounce;
+        -ms-animation-iteration-count: infinite;
+    }
+    #timestamp {
+        font-size: 180%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+    </style>
+    <script>
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () {update_timestamp();window.setInterval(update_timestamp,500);}, false);
+    function clickme() {
+        var el = document.getElementById('animateme');
+        var left =  document.getElementById('myleft').value;
+        var top =  document.getElementById('mytop').value;
+        var color =  document.getElementById('mycolor').value;
+        el.setAttribute("style","left: " + left + "px; top: " + top + "px; background-color: " + color + ";");
+    }
+    function reset() {
+        var el = document.getElementById('animateme');
+        el.setAttribute("style","");
+    }
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <div id="animateme">
+        Animate Me
+    </div>
+</body>
+</html>

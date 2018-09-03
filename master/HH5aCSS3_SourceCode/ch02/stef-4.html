@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hello! HTML5 and CSS3 - Form 3</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        text-align: top;
+        background: url(stef-bg.png) right 15em no-repeat;
+    }
+    body > p {
+        width: 180px;
+        float: right;
+        background-color: rgba(255,255,255,0.5);
+        margin-top: -5em;
+    }
+    fieldset {
+        margin-right: 190px;
+    }
+    label {
+        display: inline-block;
+        width: 45%;
+        padding: 5px;
+    }
+    input[type=text], input[type=date], input[type=number], input[type=email], input[type=url], select {
+        float: right;
+    }
+    input[type=radio], input[type=checkbox] {
+        float: left;
+    }
+    fieldset[title=Demographics] label {
+        width: 30%;
+    }
+    input:required {
+        outline: 1px dotted red;
+        -moz-box-shadow: none;
+    }
+    input:invalid {
+        outline: 1px solid red;
+    }
+    datalist {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <h1>Columbia Internet Customer Survey</h1>
+    <p>Hi, I’m Stef Murky of Columbia Internet. Sign up for our free newsletter
+    by filling in this form. All completed surveys will be entered into a prize
+    draw to win an iPod*.</p>
+    <form target="collector.php" method="post">
+        <fieldset title="Contact Information">
+            <legend>Your details</legend>
+            <label>
+                Name
+                <input type="text" name="name" required>
+            </label>
+            <label>
+                Email
+                <input type="email" name="email" x-moz-errormessage="Email please!">
+            </label>
+            <label>
+                Address
+                <input type="text" name="address">
+            </label>
+            <label>
+                City
+                <input type="text" name="city">
+            </label>
+            <label>
+                Postal Code
+                <input type="text" name="postcode" pattern="[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ] \d[ABCEGHJKLMNPRSTVWXYZ]\d" title="Post code format is A0A 0A0, where A is an allowed uppercase letter and 0 is a digit.">
+            </label>
+            <label>
+                Province
+                <select name="province">
+                    <option selected>Please select...</option>
+                    <optgroup label="Provinces">
+                        <option>Alberta</option>
+                        <option>British Columbia</option>
+                        <option>Manitoba</option>
+                        <option>Newfoundland and Labrador</option>
+                        <option>New Brunswick</option>
+                        <option>Nova Scotia</option>
+                        <option>Ontario</option>
+                        <option>Prince Edward Island</option>
+                        <option>Quebec</option>
+                        <option>Saskatchewan</option>
+                    </optgroup>
+                    <optgroup label="Territories">
+                        <option>Northwest Territories</option>
+                        <option>Nunavut</option>
+                        <option>Yukon</option>
+                    </optgroup>
+                </select>
+            </label>
+            <label>
+                Telephone
+                <input type="text" name="telephone">
+            </label>
+        </fieldset>
+        <fieldset title="Demographics">
+            <legend>Personal Information</legend>
+            <p>Gender:</p>
+            <label>Male <input type="radio" name="gender" value="m"></label>
+            <label>Female <input type="radio" name="gender" value="f"></label>
+            <label>Other <input type="radio" name="gender" value="o"></label>
+            <label>
+                Date of birth
+                <input type="date" name="dob">
+            </label>
+        </fieldset>
+        <fieldset title="Survey questions">
+            <legend>Survey</legend>
+            <label>
+                Average number of hours spent browsing per day:
+                <input type="number" name="hours" min="0">
+            </label>
+            <label>Which web browsers do you use regularly?
+            <input type="text" name="browser" list="browsers">
+            </label>
+            <datalist id="browsers">
+                <option value="Internet Explorer">
+                <option value="Firefox">
+                <option value="Safari">
+                <option value="Chrome">
+                <option value="Opera">
+            </datalist>
+            <label>
+                What is your favorite website?:
+                <input type="url" name="website">
+            </label>
+        </fieldset>
+        <input type="submit">
+    </form>
+    <p>* Terms and conditions available on request</p>
+</body>
+</html>

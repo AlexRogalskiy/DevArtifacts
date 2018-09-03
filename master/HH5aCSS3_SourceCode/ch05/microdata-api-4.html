@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Microdata API 2</title>
+    <style>
+    body {
+        width: 95%;
+        margin: 1em;
+        font-family: "Komika Hand", sans-serif;
+    }
+    #addressbook > div {
+        display: inline-block;
+        position: relative;
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    #addressbook > div img {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+    }
+    </style>
+    <script>
+    function init() {
+        var md = document.getItems();
+        for (var i = 0; i < md.length; i++) {
+            //window.alert(md[i].properties['fn'].itemValue);
+            log('Found: ' + md[i].itemType);
+            getMDProperties('',md[i].properties);
+            /*for (var j = 0; j < md[i].properties.names.length; j++) {
+                //window.alert(typeof(md[i].properties[j].itemValue));
+                if (typeof(md[i].properties[j].itemValue) == 'object') {
+                    log('Object: ' + md[i].properties[j].itemValue.properties);
+                    //log(JSON.stringify(md[i].properties[j].itemValue));
+                }
+                log(md[i].properties.names[j] + ': ' + md[i].properties[j].itemValue);
+            }*/
+        }
+    }
+    function getMDProperties(name, props) {
+        if (name.length > 0) name += '/';
+        for (var i = 0; i < props.length; i++) {
+            if (typeof(props[i].itemValue) == 'object') {
+                getMDProperties(props.names[i], props[i].itemValue.properties);
+            } else {
+                log(name + props.names[i] + ': ' + props[i].itemValue);
+            }
+        }
+    }
+    function log(text) {
+	document.getElementById('logger').innerHTML += text + '<br>';
+    }
+    </script>
+</head>
+<body onload="init()">
+    <section id="addressbook">
+        <div id="aj" itemscope itemtype="http://microformats.org/profile/hcard">
+            <h1 itemprop="fn">
+                <span itemprop="n" itemscope>
+                    <span itemprop="given-name">A.</span>
+                    <span itemprop="family-name">J.</span>
+                </span>
+            </h1>
+            <img itemprop="photo" src="headshots/headshot_aj.gif" alt="AJ">
+            <p itemprop="org" itemscope>Company:
+                <span itemprop="organization-name">Columbia Internet</span>
+            </p>
+            <h2>Contact me</h2>
+            <ul>
+                <li><a itemprop="url" href="http://www.userfriendly.org/cartoons/aj/">AJ Gallery</a></li>
+                <li itemprop="email"><a href="mailto:aj@userfriendly.org">aj@userfriendly.org</a></li>
+            </ul>
+        </div>
+        <div id="miranda" itemtype="http://microformats.org/profile/hcard">
+            <h1 itemprop="fn">
+                <span itemprop="n" itemscope>
+                    <span itemprop="given-name">Miranda&rsquo;</span>
+                </span>
+            </h1>
+            <img itemprop="photo" src="headshots/headshot_miranda.gif" alt="Miranda">
+            <p itemprop="org" itemscope>Company:
+                <span itemprop="organization-name">Columbia Internet</span>
+            </p>
+            <h2>Contact me</h2>
+            <ul>
+                <li><a itemprop="url" href="http://www.userfriendly.org/cartoons/miranda/">Miranda Gallery</a></li>
+                <li itemprop="email"><a href="mailto:miranda@userfriendly.org">miranda@userfriendly.org</a></li>
+            </ul>
+        </div>
+    </section>
+    <div id="logger"></div>
+</body>
+</html>

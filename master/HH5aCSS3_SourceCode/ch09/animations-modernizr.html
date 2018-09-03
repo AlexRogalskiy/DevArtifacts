@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title>Animations with jQuery fallback</title>
+    <style>
+    body, html { height: 100%; }
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    @-moz-keyframes bounce {
+        from {
+            top: 50px;
+        }
+        25% {
+            top: 350px;
+        }
+        50% {
+            top: 50px;
+        }
+        75% {
+            top: 350px;
+        }
+        to {
+            top: 50px;
+        }
+    }
+    @-webkit-keyframes bounce {
+        from {
+            top: 50px;
+        }
+        25% {
+            top: 350px;
+        }
+        50% {
+            top: 50px;
+        }
+        75% {
+            top: 350px;
+        }
+        to {
+            top: 50px;
+        }
+    }
+    #wrapper { height: 400px; position: relative; display: block; }
+    #animateme {
+        font-size: 180%;
+        display: inline-block;
+        padding: 1em;
+        margin: 1em;
+        background-color: #666;
+        color: #fff;
+        outline: none;
+        border: none;
+        position: absolute;
+        left: 100px;
+        top: 50px;
+        height: auto;
+    }
+    #wrapper:hover > div {
+        -moz-animation-duration: 20s;
+        -moz-animation-name: bounce;
+        -moz-animation-iteration-count: infinite;
+        -webkit-animation-duration: 20s;
+        -webkit-animation-name: bounce;
+        -webkit-animation-iteration-count: infinite;
+    }
+    #timestamp {
+        font-size: 180%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+    </style>
+    <script src="../libs/modernizr-2.0.6.js"></script>
+    <script src="../libs/jquery-1.6.2.min.js"></script>
+    <script>
+    function bounce(el) {
+        $(el).animate({top: '350px'},5000).animate({top: '50px'},5000).animate({top: '350px'},5000).animate({top: '50px'},5000);
+    }
+    function update_timestamp() {
+        var d = new Date();
+        $('#timestamp').text(d.toLocaleString());
+    }
+    $(document).ready( function() {
+        update_timestamp();
+        if(!Modernizr.cssanimations) { // Test if CSS animations are supported
+            var refreshId;
+            $(function() {
+                $('#wrapper').hover(function() {
+                    bounce($('#animateme'));
+                    refreshId = setInterval(function(){ bounce($('#animateme')) }, 20000);
+                }, function(){
+                    clearInterval(refreshId);
+                    $('#animateme').stop(true,false).animate({top: '50px'},500);
+                });
+            });
+        }
+        window.setInterval(update_timestamp,500);
+    })
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <section id="wrapper">
+        <div id="animateme">
+            Animate Me
+        </div>
+    </section>
+</body>
+</html>

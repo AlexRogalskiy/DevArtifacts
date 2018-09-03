@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas example 9</title>
+    <script>
+    function draw(){
+        var canvas = document.getElementById('mycanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            var lineargradient = ctx.createLinearGradient(100,100,150,150);
+            lineargradient.addColorStop(0,'rgb(127,127,127)');
+            lineargradient.addColorStop(0.5,'rgb(255,255,255)');  
+            lineargradient.addColorStop(1,'rgb(127,127,127)');
+            ctx.fillStyle = lineargradient;
+            ctx.fillRect(20,20,200,200);
+            ctx.strokeStyle = 'rgb(0,127,127)';
+            ctx.moveTo(20,20);
+            ctx.lineTo(220,220);
+            ctx.lineWidth = 5;
+            ctx.stroke();
+        }
+    }
+    </script>
+    <style>
+    canvas {
+        outline: 1px solid #999;
+    }
+    </style>
+</head>
+<body onload="draw()">
+    <canvas id="mycanvas" width="320" height="240">
+        Your browser does not support the canvas element.
+    </canvas>
+</body>
+</html>

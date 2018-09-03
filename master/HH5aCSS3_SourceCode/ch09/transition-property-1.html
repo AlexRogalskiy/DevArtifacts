@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Transition property</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        margin-top: 3em;
+    }
+    section {
+        position: relative;
+        height: 350px;
+    }
+    section div {
+        font-size: 180%;
+        display: inline-block;
+        padding: 1em;
+        margin: 1em;
+        background-color: #666;
+        color: #fff;
+        outline: none;
+        border: none;
+        position: absolute;
+        top: 0px;
+        -moz-transition-duration: 10s, 20s;
+        -webkit-transition-duration: 10s, 20s;
+        -o-transition-duration: 10s, 20s;
+        -ms-transition-duration: 10s, 20s;
+        transition-duration: 10s, 20s;
+        -moz-transition-property: top, -moz-transform;
+        -webkit-transition-property: top, -webkit-transform;
+        -o-transition-property: top, -o-transform;
+        -ms-transition-property: top, -ms-transform;
+        transition-property: top, transform;
+    }
+    section:hover div {
+        top: 280px;
+        -moz-transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+    section div:nth-child(2) {
+        left: 200px;
+        -moz-transition-property: -moz-transform, top;
+        -webkit-transition-property: -webkit-transform, top;
+        -o-transition-property: -o-transform, top;
+        -ms-transition-property: -ms-transform, top;
+        transition-property: transform, top;
+    }
+    #timestamp {
+        font-size: 180%;
+        position: absolute;
+        top: 10px;
+        left: 100px;
+    }
+    </style>
+    <script>
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () {update_timestamp();window.setInterval(update_timestamp,500);}, false);
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <section>
+        <div>
+            One
+        </div>
+        <div>
+            Two
+        </div>
+    </section>
+</body>
+</html>

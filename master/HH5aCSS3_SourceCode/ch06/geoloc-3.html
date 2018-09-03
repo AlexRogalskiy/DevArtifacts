@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Geolocation 3</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        vertical-align: top;
+    }
+    </style>
+    <script>
+        function init() {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(function (position)
+                {
+                    writeLoc('Latitude: ' + position.coords.latitude +  
+                            ' Longitude: ' + position.coords.longitude +
+                            ' with an accuracy of: ' + position.coords.accuracy + 'm');
+                }
+                , function(error)
+                {
+                    switch(error.code)
+                    {
+                        case error.PERMISSION_DENIED: writeLoc("User declined to share Geolocation data"); break;
+                        case error.POSITION_UNAVAILABLE: writeLoc("Unable to detect current location"); break;
+                        case error.TIMEOUT: writeLoc("Time out in retrieving location"); break;
+                        default: writeLoc("Unknown error"); break;
+                    }
+                })
+            }
+            else {
+                    alert("Geolocation not supported");
+            }
+        };
+        function writeLoc(message) {
+            document.getElementById('location').innerHTML += message + '<br>';
+        }
+    </script>
+</head>
+<body onload="init();">
+<div>
+    <h1>Where are you?</h1>
+    <p id="location"></p>
+    <!--51?27'49"N  is the latitude of  East Sheen, England  ([fact: ["368307295@trueknowledge.com"]])
+0?15'49"W is the longitude of East Sheen, England ([fact: ["368307299@trueknowledge.com"]])-->
+</div>
+</body>  
+</html>

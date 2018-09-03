@@ -1,0 +1,40 @@
+<md-card class="card" [routerLink]=" ['event', event.id] " routerLinkActive="active">
+	<div class="card__front">
+		<md-card-title-group>
+			<div class="card_front_images">
+				<img md-card-md-image class="top" src="assets/img/angularclass-avatar.png"/>
+			</div>
+			<md-card-title>{{ event.name }}</md-card-title>
+			<md-card-subtitle>{{ event.startTime | date:'dd/MM/yyyy hh:mm' }}</md-card-subtitle>
+		</md-card-title-group>
+		
+		<md-card-content>
+			<p>{{ event.content }}</p>
+			<div *ngIf="!ticketBundle.exist" class="btn icon-btn btn-warning no-tickets-event"><span class="glyphicon btn-glyphicon glyphicon-remove img-circle text-warning"></span>Билетов нет</div>
+		</md-card-content>
+	</div>
+
+	<div class="card__back">
+		<md-card-title-group>
+			<div class="card_back_images">
+				<img md-card-md-image class="bottom" src="assets/img/angular-logo.png"/>
+			</div>
+			<md-card-title>{{ event.name }}</md-card-title>
+			<md-card-subtitle>{{ event.startTime | date:'fullDate' }}</md-card-subtitle>
+		</md-card-title-group>
+
+		<md-card-content>
+			<md-icons></md-icons>
+			<md-card-actions layout="row" layout-align="right center" class="layout-align-right-center layout-row">
+				<button class="md-button md-ink-ripple" type="button" aria-label="Action 1">
+					<span class="ng-scope">Заказать</span>
+					<div class="md-ripple-container"></div>
+				</button>
+				<button class="md-button md-ink-ripple" type="button" aria-label="Action 2">
+					<span class="ng-scope">Заказать</span>
+					<div class="md-ripple-container"></div>
+				</button>
+			</md-card-actions>
+		</md-card-content>
+	</div>
+</md-card>

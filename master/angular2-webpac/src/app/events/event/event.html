@@ -1,0 +1,447 @@
+<widget-toolbar (updateStyle)="isDarkTheme=!isDarkTheme" [seachView]="isSearchView" [totalAmount]="this.ticketStore.getTotalAmount()" [totalPrice]="this.ticketStore.getTotalPrice()" [items]="items"></widget-toolbar>
+
+<md-sidenav-layout [class.defaultLayoutThemeView]="isDarkTheme">
+	<div class="app-content">
+		<div class="container">
+			<div class="resume">
+				<header class="page-header">
+					<h1 class="page-title">Информация о мероприятии № {{ this.eventEntity?.id }}</h1>
+					<small> <i class="fa fa-clock-o"></i> {{ eventUpdatedLabel }} <time>Sunday, October 05, 2014</time></small>
+				</header>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+						<div class="panel panel-default">
+							<div class="panel-heading resume-heading">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="col-xs-12 col-sm-4">
+											<figure>
+												<img class="img-circle img-responsive" alt="" src="{{ this.eventEntity?.posterSrc }}"/>
+											</figure>
+											<div class="row">
+												<div class="col-xs-12 social-btns">
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-google">
+														<i class="fa fa-google"></i> </a>
+													</div>
+												  
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-facebook">
+														<i class="fa fa-facebook"></i> </a>
+													</div>
+												  
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-twitter">
+														<i class="fa fa-twitter"></i> </a>
+													</div>
+												  
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-linkedin">
+														<i class="fa fa-linkedin"></i> </a>
+													</div>
+												  
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-github">
+														<i class="fa fa-github"></i> </a>
+													</div>
+												  
+													<div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+													  <a href="#" class="btn btn-social btn-block btn-stackoverflow">
+														<i class="fa fa-stack-overflow"></i> </a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-12 col-sm-8">
+											<ul class="list-group">
+												<li class="list-group-item"><span>{{ eventNameLabel }}</span> {{ this.eventEntity?.name }}</li>
+												<li class="list-group-item"><span>{{ eventStartDateLabel }}</span> {{ this.eventEntity?.startTime | date:'dd/MM/yyyy hh:mm' }}</li>
+												<li class="list-group-item"><span>{{ eventEndDateLabel }}</span> {{ this.eventEntity?.endTime | date:'dd/MM/yyyy hh:mm' }}</li>
+												<li class="list-group-item"><span class="fa fa-phone"></span> {{ eventPhoneLabel }} </li>
+												<li class="list-group-item"><span class="fa fa-envelope"></span> {{ eventEmailLabel }} </li>
+											</ul>
+											
+											<div class="row rating">
+												<div class="col-sm-4 rating-average">
+													<div class="rating-block">
+														<h4>{{ eventAverageRatingLabel }}</h4>
+														<h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
+														<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+													</div>
+												</div>
+												<div class="col-sm-5 rating-details">
+													<h4>{{ eventPositionRatingLabel }}</h4>
+													<div class="row">
+														<div class="pull-left">
+															<div class="pull-left" style="width:35px; line-height:1;">
+																<div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span></div>
+															</div>
+															<div class="pull-left bar" style="width:180px;">
+																<div class="progress" style="height:9px; margin:8px 0;">
+																  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+																	<span class="sr-only">80% Complete (danger)</span>
+																  </div>
+																</div>
+															</div>
+															<div class="pull-right" style="margin-left:10px;">1</div>
+														</div>
+														<div class="pull-left">
+															<div class="pull-left" style="width:35px; line-height:1;">
+																<div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span></div>
+															</div>
+															<div class="pull-left bar" style="width:180px;">
+																<div class="progress" style="height:9px; margin:8px 0;">
+																  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+																	<span class="sr-only">80% Complete (danger)</span>
+																  </div>
+																</div>
+															</div>
+															<div class="pull-right" style="margin-left:10px;">1</div>
+														</div>
+														<div class="pull-left">
+															<div class="pull-left" style="width:35px; line-height:1;">
+																<div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span></div>
+															</div>
+															<div class="pull-left bar" style="width:180px;">
+																<div class="progress" style="height:9px; margin:8px 0;">
+																  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+																	<span class="sr-only">80% Complete (danger)</span>
+																  </div>
+																</div>
+															</div>
+															<div class="pull-right" style="margin-left:10px;">0</div>
+														</div>
+														<div class="pull-left">
+															<div class="pull-left" style="width:35px; line-height:1;">
+																<div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span></div>
+															</div>
+															<div class="pull-left bar" style="width:180px;">
+																<div class="progress" style="height:9px; margin:8px 0;">
+																  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+																	<span class="sr-only">80% Complete (danger)</span>
+																  </div>
+																</div>
+															</div>
+															<div class="pull-right" style="margin-left:10px;">0</div>
+														</div>
+														<div class="pull-left">
+															<div class="pull-left" style="width:35px; line-height:1;">
+																<div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span></div>
+															</div>
+															<div class="pull-left bar" style="width:180px;">
+																<div class="progress" style="height:9px; margin:8px 0;">
+																  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+																	<span class="sr-only">80% Complete (danger)</span>
+																  </div>
+																</div>
+															</div>
+															<div class="pull-right" style="margin-left:10px;">0</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="bs-callout bs-callout-danger">
+								<h4> {{ eventAboutLabel }} </h4>
+								<p>
+									Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu, 
+									te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
+								</p>
+							</div>
+							<div class="bs-callout bs-callout-info">
+								<h4> {{ eventOrgLabel }} </h4>
+								<p>
+									Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu, 
+									te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
+								</p>
+							</div>
+							<div class="bs-callout bs-callout-success">
+								<h4> {{ eventServicesLabel }} </h4>
+								<table class="table table-striped table-responsive item-data-table">
+									<thead>
+										<tr>
+											<th>{{ eventNameTableLabel }}</th>
+											<th>{{ eventStartDateTableLabel }}</th>
+											<th>{{ eventEndDateTableLabel }}</th>
+											<th>{{ eventTicketNumberTableLabel }}</th>
+											<th>{{ eventPriceTableLabel }}</th>
+											<th></th>
+										</tr>
+									</thead>
+									
+									<tbody *ngIf="!isTicketExist()" class="container">
+										<tr>
+											<td colspan="6" class="empty-cart text-center">
+												<h5>Событий нет</h5>
+											</td>
+										</tr>
+									</tbody>
+					
+									<tbody *ngIf="isTicketExist()">
+										<tr *ngFor="let product of this.eventEntity?.products">
+											<td><span class="item-name">{{ product.name }}</span></td>
+											<td><span class="item-starttime">{{ product.startTime | date:'dd/MM/yyyy hh:mm'}}</span></td>
+											<td><span class="item-endtime">{{ product.endTime | date:'dd/MM/yyyy hh:mm'}}</span></td>
+											
+											<td class="item-counter" *ngIf="product.couponExist">
+												<span class="item-counter">
+													<counter [counterValue]="1" [counterRangeMax]="product.couponLimit" [counterRangeMin]="1" (update)="onUpdate(product, $event.text)" (change)="onUpdate(product, $event.text)" class="counter"></counter>
+												</span>
+											</td>
+											<td *ngIf="product.couponExist"><span class="item-price">{{ this.getTotalPrice(product.id) | currency:'RUB':true:'1.2-2' }}</span></td>
+											<td *ngIf="product.couponExist">
+												<span class="item-button">
+													<button md-button (click)="addToCart(product.id, this.eventEntity.name)" class="btn"><md-icon svgIcon="shopping-cart-add" aria-hidden="true"></md-icon></button>
+												</span>
+											</td>
+											
+											<td colspan="3" class="empty-cart text-center" *ngIf="!product.couponExist">
+												<h5>Билетов нет</h5>
+											</td>
+											
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="bs-callout bs-callout-primary">
+								<h4> {{ eventTariffLabel }} </h4>
+								<ul class="list-group">
+									<a class="list-group-item inactive-link" href="#">
+										<div class="progress" *ngFor="let tariff of this.tariffs">
+											<div data-placement="top" [ngStyle]="tariff.style" aria-valuemax="100" aria-valuemin="0" aria-valuenow="1" role="progressbar" class="progress-bar progress-bar-success">
+												<span class="sr-only">{{ tariff.progress }}</span>
+												<span class="progress-type">{{ tariff.type }}</span>
+											</div>
+										</div>
+										<div class="progress-meter">
+											<div style="width: 25%;" *ngFor="let scale of this.scales" [ngClass]="scale.style">
+												<span class="meter-text">{{ scale.price }}</span>
+											</div>
+										</div>
+									</a>
+								</ul>
+							</div>
+							
+							
+							<div class="bs-callout bs-callout-default">
+								<h4> {{ eventRatingLabel }} </h4>
+							<!--<div class="row">
+									<div class="col-sm-4 rating-average">
+										<div class="rating-block">
+											<h4>{{ eventAverageRatingLabel }}</h4>
+											<h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
+											<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+											  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+											</button>
+											<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+											  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+											</button>
+											<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+											  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+											</button>
+											<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+											  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+											</button>
+											<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+											  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+											</button>
+										</div>
+									</div>
+									<div class="col-sm-5 rating-details">
+										<h4>{{ eventPositionRatingLabel }}</h4>
+										<div class="row">
+											<div class="pull-left">
+												<div class="pull-left" style="width:35px; line-height:1;">
+													<div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span></div>
+												</div>
+												<div class="pull-left" style="width:180px;">
+													<div class="progress" style="height:9px; margin:8px 0;">
+													  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+														<span class="sr-only">80% Complete (danger)</span>
+													  </div>
+													</div>
+												</div>
+												<div class="pull-right" style="margin-left:10px;">1</div>
+											</div>
+											<div class="pull-left">
+												<div class="pull-left" style="width:35px; line-height:1;">
+													<div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span></div>
+												</div>
+												<div class="pull-left" style="width:180px;">
+													<div class="progress" style="height:9px; margin:8px 0;">
+													  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+														<span class="sr-only">80% Complete (danger)</span>
+													  </div>
+													</div>
+												</div>
+												<div class="pull-right" style="margin-left:10px;">1</div>
+											</div>
+											<div class="pull-left">
+												<div class="pull-left" style="width:35px; line-height:1;">
+													<div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span></div>
+												</div>
+												<div class="pull-left" style="width:180px;">
+													<div class="progress" style="height:9px; margin:8px 0;">
+													  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+														<span class="sr-only">80% Complete (danger)</span>
+													  </div>
+													</div>
+												</div>
+												<div class="pull-right" style="margin-left:10px;">0</div>
+											</div>
+											<div class="pull-left">
+												<div class="pull-left" style="width:35px; line-height:1;">
+													<div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span></div>
+												</div>
+												<div class="pull-left" style="width:180px;">
+													<div class="progress" style="height:9px; margin:8px 0;">
+													  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+														<span class="sr-only">80% Complete (danger)</span>
+													  </div>
+													</div>
+												</div>
+												<div class="pull-right" style="margin-left:10px;">0</div>
+											</div>
+											<div class="pull-left">
+												<div class="pull-left" style="width:35px; line-height:1;">
+													<div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span></div>
+												</div>
+												<div class="pull-left" style="width:180px;">
+													<div class="progress" style="height:9px; margin:8px 0;">
+													  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+														<span class="sr-only">80% Complete (danger)</span>
+													  </div>
+													</div>
+												</div>
+												<div class="pull-right" style="margin-left:10px;">0</div>
+											</div>
+										</div>
+									</div>			
+								</div>-->
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="review-block">
+											<div class="row">
+												<div class="col-sm-3">
+													<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+													<div class="review-block-name"><a href="#">nktailor</a></div>
+													<div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+												</div>
+												<div class="col-sm-9">
+													<div class="review-block-rate">
+														<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+													</div>
+													<div class="review-block-title">Lorem ipsum dolor sit amet</div>
+													<div class="review-block-description">Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu, te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.</div>
+												</div>
+											</div>
+											<hr/>
+											<div class="row">
+												<div class="col-sm-3">
+													<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+													<div class="review-block-name"><a href="#">nktailor</a></div>
+													<div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+												</div>
+												<div class="col-sm-9">
+													<div class="review-block-rate">
+														<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+													</div>
+													<div class="review-block-title">Lorem ipsum dolor sit amet</div>
+													<div class="review-block-description">Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu, te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.</div>
+												</div>
+											</div>
+											<hr/>
+											<div class="row">
+												<div class="col-sm-3">
+													<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+													<div class="review-block-name"><a href="#">nktailor</a></div>
+													<div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+												</div>
+												<div class="col-sm-9">
+													<div class="review-block-rate">
+														<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+														<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+														  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+														</button>
+													</div>
+													<div class="review-block-title">Lorem ipsum dolor sit amet</div>
+													<div class="review-block-description">Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu, te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+	
+	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</md-sidenav-layout>
+
+<!--<shopping-cart-dialog #shoppingCartDialog [items]="this.ticketsEntity"></shopping-cart-dialog>-->
+<!-- [items]="this.ticketsEntity" -->
+<scroll-button></scroll-button>

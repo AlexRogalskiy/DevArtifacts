@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Transitions 2</title>
+    <style>
+    body {
+        width: 90%;
+        margin: 0 5%;
+        font-family: "Komika Hand", sans-serif;
+        font-size: 180%;
+        margin-top: 3em;
+    }
+    div {
+        max-width: 22em;
+    }
+    div div {
+        display: inline-block;
+        padding: 1em;
+        margin: 1em;
+        background-color: #666;
+        color: #fff;
+        outline: none;
+        border: none;
+        -moz-transition-duration: 10s;
+        -webkit-transition-duration: 10s;
+        -o-transition-duration: 10s;
+        -ms-transition-duration: 10s;
+        transition-duration: 10s;
+    }
+    div:hover div:nth-child(1) {
+        -webkit-transform: skewX(16.5deg);
+        -moz-transform: skewX(16.5deg);
+        -o-transform: skewX(16.5deg);
+        -ms-transform: skewX(16.5deg);
+        transform: skewX(16.5deg);
+    }
+    div:hover div:nth-child(2) {
+        -webkit-transform: skewY(33deg);
+        -moz-transform: skewY(33deg);
+        -o-transform: skewY(33deg);
+        -ms-transform: skewY(33deg);
+        transform: skewY(33deg);
+    }
+    div:hover div:nth-child(3) {
+        -webkit-transform: skewX(16.5deg) skewY(33deg);
+        -moz-transform: skewX(16.5deg) skewY(33deg);
+        -o-transform: skewX(16.5deg) skewY(33deg);
+        -ms-transform: skewX(16.5deg) skewY(33deg);
+        transform: skewX(16.5deg) skewY(33deg);
+    }
+    #timestamp {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+    </style>
+    <script>
+    function update_timestamp() {
+        var d = new Date();
+        document.getElementById('timestamp').innerHTML = d.toLocaleString();
+    }
+    window.addEventListener('load', function () {update_timestamp();window.setInterval(update_timestamp,500);}, false);
+    </script>
+</head>
+<body>
+    <div id="timestamp"></div>
+    <div>
+        <div>One</div>
+        <div>Two</div>
+        <div>Three</div>
+    </div>
+</body>
+</html>

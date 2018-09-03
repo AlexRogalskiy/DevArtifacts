@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Content editable 5</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        vertical-align: top;
+    }
+    strong, b {
+        font-size: 102%;
+    }
+    em, i {
+      color: #999;
+    }
+    </style>
+</head>
+<body>
+    <menu>
+        <button onclick="document.execCommand('bold',false,'');">Bold</button>
+        <button onclick="document.execCommand('italic',false,'');">Italic</button>
+        <button onclick="document.execCommand('underline',false,'');">Underline</button>
+        <button onclick="document.execCommand('formatblock',false,'<h1>');">Heading</button>
+        <button onclick="var selection = window.getSelection(); var range = selection.getRangeAt(0); var contents = range.extractContents(); document.execCommand('inserthtml',false,'<strong>' + contents.textContent + '</strong>');">Section</button>
+        <button onclick="if (document.getElementById('szURL').checkValidity()) { document.execCommand('CreateLink',false,document.getElementById('szURL').value);}">Link</button>
+        <input type="url" id="szURL" required>
+    </menu>
+    <h1>Stef</h1>
+    <p contenteditable="true">Stef works as the Corporate Sales Manager. He runs
+    most of the marketing efforts within the firm and sells things before they
+    exist. He can&rsquo;t understand the way techies think, so doesn&rsquo;t get
+    very far with them. He sucks at Quake. Although he admires the power of
+    Microsoft&rsquo;s marketing muscle, he has a real problem with Microsoft
+    salesmen, probably because they make much more money than he does.</p>
+    <img src="headshots/headshot_stef.gif" alt="Stef">
+</body>
+</html>

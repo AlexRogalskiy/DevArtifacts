@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Microdata API 1</title>
+    <style>
+    body {
+        width: 95%;
+        margin: 1em;
+        font-family: "Komika Hand", sans-serif;
+    }
+    #addressbook > div {
+        display: inline-block;
+        position: relative;
+        margin: 1em;
+        padding: 1em;
+        outline: 4px dashed black;
+    }
+    #addressbook > div img {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+    }
+    </style>
+    <script>
+    function init() {
+        var md = document.getItems();
+        for (var i = 0; i < md.length; i++) {
+            log('Found: ' + md[i].itemType);
+            for (var j = 0; j < md[i].properties.length; j++) {
+                log(md[i].properties.names[j] + ': ' + md[i].properties[j].itemValue);
+            }
+        }
+    }
+    function log(text) {
+	document.getElementById('logger').innerHTML += text + '<br>';
+    }
+    </script>
+</head>
+<body onload="init()">
+    <section id="addressbook">
+        <div id="aj" itemscope itemtype="http://microformats.org/profile/hcard">
+            <h1 itemprop="fn"><meta itemprop="n" content="AJ">A.J.</h1>
+            <img itemprop="photo" src="headshots/headshot_aj.gif" alt="AJ">
+            <!--<img itemprop="photo" src="http://www.userfriendly.org/cartoons/aj/headshot_aj.gif" alt="AJ">-->
+            <a itemprop="email" href="mailto:aj@userfriendly.org">aj@userfriendly.org</a>
+        </div>
+        <div id="miranda" itemscope itemtype="http://microformats.org/profile/hcard">
+            <h1 itemprop="fn"><meta itemprop="n" content="Miranda">Miranda</h1>
+            <img itemprop="photo" src="headshots/headshot_miranda.gif" alt="AJ">
+            <!--<img itemprop="photo" src="http://www.userfriendly.org/cartoons/miranda/headshot_miranda.gif" alt="AJ">-->
+            <a itemprop="email" href="mailto:miranda@userfriendly.org">miranda@userfriendly.org</a>
+        </div>
+    </section>
+    <div id="logger"></div>
+</body>
+</html>

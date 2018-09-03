@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cross document messaging 3</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        vertical-align: top;
+    }
+    textarea {
+        width: 90%;
+        font-size: 200%;
+    }
+    </style>
+    <script>
+    window.addEventListener('message', receiver, false);
+    function receiver(e) {
+        //if (e.origin == 'http://example.com') {
+            document.getElementById('message').value = e.data;
+        //} else {
+        //  alert(e.data);
+        //}
+    }
+    function update_parent() {
+        parent.postMessage('Updated from child', '*');
+    }
+    </script>
+</head>
+<body>
+    <h1>Cross document messaging - child</h1>
+    <textarea id="message">This is a message in the child frame</textarea><br>
+    <button onclick="update_parent()">Update parent</button>
+</body>
+</html>

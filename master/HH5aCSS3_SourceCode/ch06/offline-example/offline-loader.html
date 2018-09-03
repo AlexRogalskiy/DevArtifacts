@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Offline loader</title>
+    <style>
+    body {
+        font-family: "Komika Hand", sans-serif;
+        font-size: 85%;
+        vertical-align: top;
+    }
+    </style>
+    <script>
+    function ajax_load(page) {
+        //var page = this.parentNode.href;
+        var req = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("MSXML2.XMLHTTP.3.0");
+
+        req.open("GET", page, true);
+        req.onreadystatechange = function() {
+            if (req.readyState == 4 && req.status == 200) {
+                window.alert("Done");
+            } else {
+                //
+            }
+        }
+        req.send(null);
+    }
+    function iframe_load(page) {
+        var req = document.getElementById('tmploader');
+        if (!req) {
+            req = document.createElement('iframe');
+            req.width = 0;
+            req.height = 0;
+            req.style = 'display:none';
+            req.id = 'tmploader';
+        }
+        req.src = page;
+        document.body.appendChild(req);
+        //req.parentNode.removeChild(req);
+        applicationCache.onUpdateReady = function (req) {
+            req.parentNode.removeChild(req);
+            applicationCache.onUpdateReady = null;
+        };
+    }
+    </script>
+</head>
+<body>
+    <h1>Offline Loader</h1>
+    <ul>
+        <li><a href="offline-2-a.html" onclick="return false;">offline-2-a.html <button onclick="ajax_load(this.parentNode.href);">Ajax load</button> <button onclick="iframe_load(this.parentNode.href);">Iframe load</button></a></li>
+        <li><a href="offline-3.html" onclick="return false;">offline-3.html <button onclick="ajax_load(this.parentNode.href);">Ajax load</button> <button onclick="iframe_load(this.parentNode.href);">Iframe load</button></a></li>
+    </ul>
+</body>
+</html>
