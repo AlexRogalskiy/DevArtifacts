@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ua.maxtmn</groupId>
+	<artifactId>vowels-counter</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Vowels Counter</name>
+	<description>Simple java program, that determines the average number of vowels per word grouped by: set of vowels present in a word and length of the word </description>
+	<packaging>jar</packaging>
+
+	<properties>
+		<skip.unit.test>false</skip.unit.test>
+		<junit-version>4.10</junit-version>
+		<maven.resources.plugin.version>2.4.1</maven.resources.plugin.version>
+		<maven.surefire.plugin.version>2.12.4</maven.surefire.plugin.version>
+		<maven.cobertura.plugin>2.5.1</maven.cobertura.plugin>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<targetJdk>1.7</targetJdk>
+		<sourceJdk>1.7</sourceJdk>
+	</properties>
+
+	<dependencies>
+		<!-- TEST DEPENDENCIES -->
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>vowels-counter</finalName>
+		<testResources>
+			<testResource>
+				<directory>${pom.basedir}/src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven.resources.plugin.version}</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>filter</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${sourceJdk}</source>
+					<target>${targetJdk}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					<skipTests>${skip.unit.test}</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<!-- Jar file entry point -->
+							<addClasspath>true</addClasspath>
+							<mainClass>ua.maxtmn.Application</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>package-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>${maven.cobertura.plugin}</version>
+				<configuration>
+					<aggregate>true</aggregate>
+					<outputDirectory>%{project.reporting.outputDirectory}/cobertura</outputDirectory>
+					<formats>
+						<format>xml</format>
+						<format>html</format>
+					</formats>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<developers>
+		<developer>
+			<name>Maxym Tereshchenko</name>
+			<id>dn280784tmn</id>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<email />
+			<timezone>2</timezone>
+		</developer>
+
+	</developers>
+</project>
