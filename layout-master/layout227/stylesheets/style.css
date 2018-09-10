@@ -1,0 +1,122 @@
+@viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'open_sanslight', arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: 'liga', 'kern';
+  direction: ltr;
+  text-align: left;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.scroll-container {
+  position: relative;
+  overflow: auto;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-points-x: repeat(100vw);
+  scroll-snap-points-y: repeat(100vh);
+  scroll-snap-stop: always;
+  scroll-snap-type: mandatory;
+  -ms-scroll-snap-points-x: repeat(100vw);
+  -ms-scroll-snap-points-y: repeat(100vh);
+  -ms-scroll-snap-stop: always;
+  -ms-scroll-snap-type: mandatory;
+  -webkit-overflow-scrolling: touch;
+  -webkit-scroll-snap-points-x: repeat(100vw);
+  -webkit-scroll-snap-points-y: repeat(100vh);
+  -webkit-scroll-snap-stop: always;
+  -webkit-scroll-snap-type: mandatory;
+}
+
+.scroll-container .page {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  display: inline-block;
+}
+
+.scroll-inner {
+  width: 300vw;
+  height: 300vh;
+}
+
+.scroll-inner > div:nth-of-type(1) div .grid span:nth-of-type(1),
+.scroll-inner > div:nth-of-type(2) div .grid span:nth-of-type(2),
+.scroll-inner > div:nth-of-type(3) div .grid span:nth-of-type(3),
+.scroll-inner > div:nth-of-type(4) div .grid span:nth-of-type(4),
+.scroll-inner > div:nth-of-type(5) div .grid span:nth-of-type(5),
+.scroll-inner > div:nth-of-type(6) div .grid span:nth-of-type(6),
+.scroll-inner > div:nth-of-type(7) div .grid span:nth-of-type(7),
+.scroll-inner > div:nth-of-type(8) div .grid span:nth-of-type(8),
+.scroll-inner > div:nth-of-type(9) div .grid span:nth-of-type(9),
+.scroll-inner > div:nth-of-type(10) div .grid span:nth-of-type(10) {
+  background: #000;
+}
+
+.scroll-container .page .page-inner {
+  width: 80vw;
+  height: 80vh;
+  margin: 10vh 10vw;
+  text-align: center;
+}
+
+.scroll-container .page .page-inner .grid {
+  width: 9vw;
+  height: 9vh;
+  margin: 2vh auto;
+}
+
+.scroll-container .page .page-inner .grid span {
+  display: block;
+  box-sizing: border-box;
+  width: 3vw;
+  height: 3vh;
+  display: block;
+  float: left;
+  background: #ddd;
+  border: 1px solid #fff;
+}
+
+.scroll-container .page .page-inner h1 {
+  font: 300 8vmin/8vmin 'open_sanslight', arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 10vh 0 2vh 0;
+}
+
+.scroll-container .page .page-inner h2 {
+  font: 300 6vmin/6vmin 'open_sanslight', arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 1vh 0 2vh 0;
+}
+
+.scroll-container .page .page-inner p {
+  font: 300 4vmin/4.5vmin 'open_sanslight', arial, sans-serif;
+  color: #08c;
+  margin: 0;
+  padding: 1vh 0 0 0;
+}
+
+.scroll-container .page .page-inner p:nth-of-type(2) {
+  color: #080;
+}
+
+.scroll-container .page .page-inner p a {
+  color: #000;
+}
