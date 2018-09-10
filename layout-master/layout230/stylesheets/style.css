@@ -1,0 +1,215 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  border: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: fixed;
+}
+
+body {
+  font-size: 3vmin;
+  font-family: 'Lato', arial, sans-serif;
+  font-weight: 300;
+}
+
+body * {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  border: 0;
+}
+
+#wrapper {
+  position: fixed;
+  left: 0vw;
+  top: 0vh;
+  width: 100vw;
+  height: 100vh;
+  transition: left 1s, top 1s 1s;
+}
+
+#wrapper > div {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  overflow: x-hidden;
+  background: #f8f8f8;
+  -webkit-overflow-scrolling: touch;
+}
+
+div[id*="a"] {
+  top: 0;
+}
+
+div[id*="b"] {
+  top: 100vh;
+}
+
+div[id*="c"] {
+  top: 200vh;
+}
+
+div[id*="1"] {
+  left: 0;
+}
+
+div[id*="2"] {
+  left: 100vw;
+}
+
+div[id*="3"] {
+  left: 200vw;
+}
+
+.labels {
+  position: fixed;
+  right: 5vw;
+  top: 2vh;
+  z-index: 100;
+  width: 12vw;
+  height: 12vw;
+}
+
+.labels label {
+  display: block;
+  width: 4vw;
+  height: 4vw;
+  float: left;
+  line-height: 4vw;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(200, 200, 200, 0.8);
+  transition: 0.25s;
+}
+
+.labels label:hover {
+  background: rgba(140, 140, 140, 0.8);
+}
+
+input {
+  display: none;
+}
+
+input[id*="x"]:checked ~ #wrapper {
+  top: 0vh;
+}
+
+input[id*="y"]:checked ~ #wrapper {
+  top: -100vh;
+}
+
+input[id*="z"]:checked ~ #wrapper {
+  top: -200vh;
+}
+
+input[id*="1"]:checked ~ #wrapper {
+  left: 0vw;
+}
+
+input[id*="2"]:checked ~ #wrapper {
+  left: -100vw;
+}
+
+input[id*="3"]:checked ~ #wrapper {
+  left: -200vw;
+}
+
+input#x1:checked ~ .labels label:nth-of-type(1),
+input#x2:checked ~ .labels label:nth-of-type(2),
+input#x3:checked ~ .labels label:nth-of-type(3),
+input#y1:checked ~ .labels label:nth-of-type(4),
+input#y2:checked ~ .labels label:nth-of-type(5),
+input#y3:checked ~ .labels label:nth-of-type(6),
+input#z1:checked ~ .labels label:nth-of-type(7),
+input#z2:checked ~ .labels label:nth-of-type(8),
+input#z3:checked ~ .labels label:nth-of-type(9) {
+  background: rgba(140, 140, 140, 0.8);
+}
+
+.inner {
+  width: 80vw;
+  margin: 0 10vw;
+  padding: 10vh 0;
+  text-align: center;
+}
+
+.inner h1 {
+  color: #069;
+  padding: 0.1em 0;
+}
+
+.inner h2 {
+  color: #060;
+  padding: 0.1em 0;
+}
+
+.inner h3 {
+  color: #000;
+  padding: 0.1em 0;
+}
+
+.inner p {
+  text-align: justify;
+  color: #666;
+  padding: 0 0 1em 0;
+}
+
+#c3 .inner p {
+  text-align: center;
+}
+
+.inner img {
+  width: 50vw;
+}
+
+.columns {
+  width: 80vw;
+  padding-top: 1em;
+  -webkit-columns: 2;
+  -webkit-column-gap: 3vw;
+  -moz-columns: 2;
+  -moz-column-gap: 3vw;
+  columns: 2;
+  column-gap: 3vw;
+}
+
+@viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+@media only screen and (max-width: 480px) {
+  body {
+    font-size: 4vmin;
+  }
+
+  .columns {
+    -webkit-columns: 1;
+    -moz-columns: 1;
+    columns: 1;
+  }
+
+  .labels {
+    position: fixed;
+    right: 0;
+    top: 1vh;
+    z-index: 100;
+    width: 100vw;
+    height: 12vw;
+    text-align: center;
+  }
+
+  .labels label {
+    display: inline-block;
+    width: 8vw;
+    height: 8vw;
+    float: none;
+    line-height: 8vw;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(200, 200, 200, 0.8);
+  }
+}

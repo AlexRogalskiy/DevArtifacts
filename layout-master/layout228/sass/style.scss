@@ -1,0 +1,56 @@
+@viewport {width:extend-to-zoom; zoom:1.0;}
+html, body {padding:0; margin:0; width:100vw; height:100vh; overflow:hidden;}
+.background-image {width:60vw; height:100vh; position:fixed; left:15vw; background:url(../images/surface.png); background-size:contain; background-position:left bottom; background-repeat:no-repeat;}
+body {font-family:'open_sanslight', arial, sans-serif;
+font-synthesis: none;
+text-rendering: optimizeLegibility;
+-moz-osx-font-smoothing: grayscale;
+-moz-font-feature-settings: 'liga', 'kern';
+direction: ltr;
+text-align: left;
+-webkit-font-smoothing: antialiased !important;
+}
+
+.scroll-container {
+	position: relative;
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 100vw;
+	height: 100vh;
+	scroll-snap-points-y: repeat(100%);
+	scroll-snap-stop:always;
+	scroll-snap-type:mandatory;
+
+	-ms-scroll-snap-points-y: repeat(100%);
+	-ms-scroll-snap-stop:always;
+	-ms-scroll-snap-type:mandatory;
+
+	-webkit-overflow-scrolling: touch;
+	-webkit-scroll-snap-points-y: repeat(100%);
+	scroll-snap-stop:always;
+	-webkit-scroll-snap-type:mandatory;
+}
+.scroll-container .page {
+  height: 100vh;
+  width: 45vw;
+  margin:0 0 0 55vw;
+  display: block;
+ -webkit-scroll-snap-coordinate: 0% 0%;
+ scroll-snap-coordinate: 0% 0%;
+}
+
+h1 {font:300 7vmin/7vmin 'open_sanslight', arial, sans-serif; color:#333; margin:0; padding:10vh 5vw 2vh 0;}
+h2 {font:300 5vmin/5vmin 'open_sanslight', arial, sans-serif; color:#333; margin:0; padding:1vh 5vw 2vh 0;}
+p {font:300 3vmin/3.5vmin 'open_sanslight', arial, sans-serif; color:#08c; margin:0; padding:1vh 5vw 0 0;}
+
+@media only screen and (max-width:480px) {
+.background-image {background:#fff;}
+.scroll-container .page {
+  width: 90vw;
+  margin:0 5vw 0 5vw;
+}
+h1 {font:300 7vmin/7vmin 'open_sanslight', arial, sans-serif; color:#333; margin:0; padding:10vh 0 2vh 0;}
+h2 {font:300 5vmin/5vmin 'open_sanslight', arial, sans-serif; color:#333; margin:0; padding:1vh 0 2vh 0;}
+p {font:300 3vmin/3.5vmin 'open_sanslight', arial, sans-serif; color:#08c; margin:0; padding:1vh 0 0 0;}
+
+}
