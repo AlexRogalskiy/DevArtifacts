@@ -1,0 +1,75 @@
+		body{
+			font : 12px/1.5 Helvetica, Arial serif;
+		}
+		.clearboth{
+			clear:both;
+		}
+
+		
+		#csstabs li{ padding:2px;}
+
+		#csstabs{ position:relative; width:300px; height:290px; }
+		#csstabs h3{ padding:5px; height:30px; text-align:center; cursor:hand; display:block; 		font-size:16px; font-weight:bold; margin:0;
+		border-top:1px solid #000;
+		border-left:1px solid #000;
+		border-right:1px solid #000;
+		}
+
+
+		.tabcontent{
+			padding:10px 0 0 40px;
+			width:100%;
+			background:#fff;
+			border:1px solid #000;
+			position:absolute;
+			left:0;
+			top:40px;
+			height:230px;
+			display:block;
+			margin:0;
+		}
+
+
+		#tab1 .tabcontent{
+			z-index:2;
+			background:#fff;
+		}
+		#tab1 h3{
+			z-index:3;
+			width:150px;
+			position:absolute;
+			left:0;
+			top:0;
+			cursor:hand;
+			background:#fff;
+		}
+
+
+		#tab2 .tabcontent{
+			z-index:1; 
+			opacity:0;
+		}
+		#tab2 h3{
+			width:150px;
+			position:absolute;
+			left:180px;
+			top:0;
+			cursor:hand;
+		}
+
+		#csstabs:hover h3, #tabs:focus h3, #tabs:active h3{
+			background:none;
+			z-index:0;
+			}
+
+		#csstabs:hover .tabcontent, #tabs:focus .tabcontent, #tabs:active .tabcontent{
+			z-index:0;
+			opacity:0;
+			-webkit-transition : opacity .75s ease-in;
+			}
+
+		#tab1:hover h3,#tab1:focus h3,#tab1:active h3{z-index:4;background:#fff;}
+		#tab1:hover .tabcontent,#tab1:focus .tabcontent,#tab1:active .tabcontent{	z-index:3;	background:#fff; opacity:1; -webkit-transition : opacity 2s ease-in;}
+
+		#tab2:hover h3,#tab2:focus h3,#tab2:active h3{z-index:4;background:#fff;}
+		#tab2:hover .tabcontent,#tab2:focus .tabcontent,#tab2:active .tabcontent{	z-index:3;	background:#fff; opacity:1; -webkit-transition : opacity 2s ease-in;}
