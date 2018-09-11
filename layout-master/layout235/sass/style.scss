@@ -1,0 +1,146 @@
+html, body {padding:0; margin:0; width:100%; overflow-x:hidden; background: #fff; font-size:100%;}
+body {height:100%;}
+input.curtains {position:absolute; left:-9999px; display:none;}
+section {display:block; min-width:320px; -webkit-overflow-scrolling: touch;}
+nav {position:fixed; left:0; top:0; width:100%; z-index:100; background:rgba(0,0,0,0.4);}
+nav ul {padding:0; margin:0 auto; list-style:none; width:92%; text-align:right;}
+nav ul li {display:inline; color:#fff;}
+nav ul li:first-child {float:left;}
+nav ul li a {font-family: 'texgyreadventorregular', arial, sans-serif; font-weight: 400; text-decoration:none; color:#fff; line-height:50px; margin:0 0 0 20px; font-size:100%;}
+nav ul li a:first-child {padding:0 20px 0 0;}
+nav ul li a:hover {text-decoration:underline;}
+label.menu {display:none;}
+
+article {position:fixed; top:0; left:0; width:100%; height:100%; box-shadow:0 5px 10px rgba(0,0,0,0.8); overflow:hidden;
+transition: 2s;
+-webkit-transition: 2s;
+}
+
+article:nth-of-type(1) {background:url(../images/pic1.jpg) no-repeat center center; background-size:cover; z-index:16;}
+article:nth-of-type(2) {background:url(../images/pic2.jpg) no-repeat center center; background-size:cover; z-index:15;}
+article:nth-of-type(3) {background:url(../images/pic3.jpg) no-repeat center center; background-size:cover; z-index:14;}
+article:nth-of-type(4) {background:url(../images/pic4.jpg) no-repeat center center; background-size:cover; z-index:13;}
+article:nth-of-type(5) {background:url(../images/pic5.jpg) no-repeat center center; background-size:cover; z-index:12;}
+article:nth-of-type(6) {background:url(../images/pic6.jpg) no-repeat center center; background-size:cover; z-index:11;}
+article:nth-of-type(7) {background:url(../images/pic7.jpg) no-repeat center center; background-size:cover; z-index:10;}
+
+.overlay {position:absolute; left:0; top:0; width:100%; height:100%; background:url(../images/diagonal.png); z-index:40;}
+.inner {display:block; width:95%; height:50%; min-width:300px; margin:auto; position:absolute; top:0; right:0; bottom:0; left:0; z-index:100; text-align:center;}
+.lowerPanel {position:absolute; z-index:150; left:0; top:100%; min-height:100%; width:100%; display:none; background:#f3f5f9; margin-top:-10px;}
+.lowerPanel:before {display:block; content:""; width:100%; height:10px; position:absolute; left:0; top:0; background:#e44;}
+.lowerInner {display:block; width:90%; margin:70px auto;}
+.lowerInner img {width:90%; max-width:400px;}
+
+.leftArrow {display:none; width:30px; height:30px; border:8px solid transparent; border-color:transparent transparent rgba(255,255,255,0.6) rgba(255,255,255,0.6); position:fixed; left:20px; top:50%; z-index:80; cursor:pointer;
+transform:rotate(45deg);
+-webkit-transform:rotate(45deg);
+-ms-touch-action: none;
+}
+.rightArrow {display:none; width:30px; height:30px; border:8px solid transparent; border-color:rgba(255,255,255,0.6) rgba(255,255,255,0.6) transparent transparent; position:fixed; right:20px; top:50%; z-index:80; cursor:pointer;
+transform:rotate(45deg);
+-webkit-transform:rotate(45deg);
+-ms-touch-action: none;
+}
+label {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+.inner p {font-family: "texgyreadventorregular", arial, sans-serif; color:#fff; font-size:100%;}
+.inner a {font-family: "texgyreadventorregular", arial, sans-serif; text-decoration:none; color:#fff;}
+.inner a:hover {text-decoration:underline;}
+
+.inner h1, .inner h2 {margin:20px auto; padding:0 30px;
+font-family: "texgyreadventorbold", arial, sans-serif;
+}
+.inner h1 {display:inline-block; color:#dde; font-size: 350%;  text-transform: uppercase; background:#e44; border-radius:10px;}
+.inner h2 {color:#fff; font-size: 300%;}
+
+.bg {display:block; position:absolute; z-index:-1;}
+
+.lowerInner h1 {padding:0; margin:0; font:normal 200%/200% "texgyreadventorregular", arial, sans-serif; color:#222;}
+.lowerInner p {padding:0; margin:0; font:normal 100%/200% "texgyreadventorregular", arial, sans-serif; color:#555;}
+.lowerPanel .footer {position:absolute; bottom:0; left:0; width:100%; background:#e44; color:#fff;}
+.lowerPanel .footer span {display:block; width:90%; margin:0 auto; line-height:100px;}
+
+@media only screen and (max-width: 1024px){
+html, body {font-size:80%;}
+nav ul li a {font-size:150%;}
+}
+@media only screen and (max-width: 768px){
+html, body {font-size:70%;}
+.lowerInner p {font-size:150%;}
+.inner p {font-size:150%;}
+
+nav ul {width:100%; text-align:center; height:0; border-top:1px solid #888; overflow:hidden;
+transition: 0.5s;
+-webkit-transition: 0.5s;
+}
+nav ul li {display:block; width:50%; float:left; border-bottom:1px solid #888; border-right:1px solid #000; border-left:1px solid #888; margin:0 -1px;} 
+nav ul li a {padding:0; margin:0; text-align:center; font-size:150%; line-height:30px; float:none;}
+label.menu {display:block; width:40px; height:40px; position:relative; cursor:pointer; left:50%; margin-left:-20px;}
+label.menu:before {content:""; display:block; border-top:3px solid #fff; border-bottom:3px solid #fff; width:20px; height:9px; position:absolute; left:10px; top:13px;}
+label.menu:after {content:""; display:block; width:20px; height:3px; background:#fff; position:absolute; left:10px; top:19px;}
+#menu:checked ~ section nav ul {height:62px;}
+}
+
+#c0:checked ~ section article:nth-of-type(1) {transform:translate3d(0, 0, 0); -webkit-transform:translate3d(0, 0, 0);}
+#c0:checked ~ section label.r1 {display:block;}
+#c0:checked ~ section .lowerPanel.p1 {display:block;}
+
+#c1:checked ~ section article:nth-of-type(1) {transform:translate3d(-100%, 0, 0); -webkit-transform:translate3d(-100%, 0, 0);}
+#c1:checked ~ section label.l2 {display:block;}
+#c1:checked ~ section label.r2 {display:block;}
+#c1:checked ~ section .lowerPanel.p2 {display:block;}
+
+#c2:checked ~ section article:nth-of-type(1),
+#c2:checked ~ section article:nth-of-type(2) {transform:translate3d(-100%, 0, 0); -webkit-transform:translate3d(-100%, 0, 0);}
+#c2:checked ~ section label.l3 {display:block;}
+#c2:checked ~ section label.r3 {display:block;}
+#c2:checked ~ section .lowerPanel.p3 {display:block;}
+
+#c3:checked ~ section article:nth-of-type(1),
+#c3:checked ~ section article:nth-of-type(2),
+#c3:checked ~ section article:nth-of-type(3) {transform:translate3d(-100%, 0, 0); -webkit-transform:translate3d(-100%, 0, 0);}
+#c3:checked ~ section label.l4 {display:block;}
+#c3:checked ~ section label.r4 {display:block;}
+#c3:checked ~ section .lowerPanel.p4 {display:block;}
+
+#c4:checked ~ section article:nth-of-type(1),
+#c4:checked ~ section article:nth-of-type(2),
+#c4:checked ~ section article:nth-of-type(3),
+#c4:checked ~ section article:nth-of-type(4) {transform:translate3d(-100%, 0, 0); -webkit-transform:translate3d(-100%, 0, 0);}
+#c4:checked ~ section label.l5 {display:block;}
+#c4:checked ~ section label.r5 {display:block;}
+#c4:checked ~ section .lowerPanel.p5 {display:block;}
+
+#c5:checked ~ section article:nth-of-type(1),
+#c5:checked ~ section article:nth-of-type(2),
+#c5:checked ~ section article:nth-of-type(3),
+#c5:checked ~ section article:nth-of-type(4),
+#c5:checked ~ section article:nth-of-type(5) {transform:translate3d(-100%, 0, 0); -webkit-transform:translate3d(-100%, 0, 0);}
+#c5:checked ~ section label.l6 {display:block;}
+#c5:checked ~ section label.r6 {display:block;}
+#c5:checked ~ section .lowerPanel.p6 {display:block;}
+
+#c6:checked ~ section article:nth-of-type(1),
+#c6:checked ~ section article:nth-of-type(2),
+#c6:checked ~ section article:nth-of-type(3),
+#c6:checked ~ section article:nth-of-type(4),
+#c6:checked ~ section article:nth-of-type(5),
+#c6:checked ~ section article:nth-of-type(6) {transform:translate3d(-100%, 0, 0); -webkit-transform:translate3d(-100%, 0, 0);}
+#c6:checked ~ section label.l7 {display:block;}
+#c6:checked ~ section label.r7 {display:block;}
+#c6:checked ~ section .lowerPanel.p7 {display:block;}
+
+#c7:checked ~ section article:nth-of-type(1),
+#c7:checked ~ section article:nth-of-type(2),
+#c7:checked ~ section article:nth-of-type(3),
+#c7:checked ~ section article:nth-of-type(4),
+#c7:checked ~ section article:nth-of-type(5),
+#c7:checked ~ section article:nth-of-type(6),
+#c7:checked ~ section article:nth-of-type(7) {transform:translate3d(-100%, 0, 0); -webkit-transform:translate3d(-100%, 0, 0);}
