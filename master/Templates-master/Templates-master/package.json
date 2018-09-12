@@ -1,0 +1,36 @@
+{
+  "name": "vanilla-templates",
+  "version": "2.0.0",
+  "description": "Template parsing with jQuery and Hogan",
+  "main": "Templates.js",
+  "author": "Hans Christian Reinl <info@drublic.de> (https://drublic.de/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drublic/Templates.git"
+  },
+  "scripts": {
+    "start": "concurrently \"yarn js:watch\" \"yarn test:watch\"",
+    "build": "yarn test && yarn js",
+    "lint": "eslint",
+    "js": "webpack",
+    "js:watch": "webpack -p",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "babel-eslint": "^8.0.1",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "concurrently": "^3.5.0",
+    "eslint": "^4.8.0",
+    "hogan.js": "^3.0.2",
+    "jest-cli": "^21.1.0",
+    "webpack": "^3.6.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  }
+}

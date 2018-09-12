@@ -1,0 +1,219 @@
+/**
+ * Styling forms
+ */
+p + fieldset {
+  margin-top: 2em;
+}
+
+fieldset {
+  position: relative;
+  margin: 0.5em 0;
+  padding: 0;
+  border: 0;
+}
+
+label {
+  display: inline-block;
+  float: left;
+  width: 25%;
+  padding: 0.5em 1em;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+.form__validity {
+  display: none;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  width: 1.25em;
+  height: 1.25em;
+  background: #ee5f5b;
+  border-radius: 50%;
+  text-indent: -99em;
+  overflow: hidden;
+  cursor: help;
+
+  &:after {
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    content: '\00d7';
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.4em;
+    text-indent: 0;
+    text-align: center;
+  }
+}
+
+input:focus + .form__validity,
+textarea:focus + .form__validity,
+select:focus + .form__validity {
+  display: block;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="week"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+input[name*="form-"],
+select,
+textarea {
+  display: inline-block;
+  padding: 0.5em 0.6em;
+  border: 1px solid #888;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 2px;
+  box-sizing: border-box;
+  width: 75%;
+
+  & {
+    outline: 0;
+    outline: thin dotted \9; /* IE6-9 */
+    border-color: #129fea;
+  }
+}
+
+/*
+Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
+since IE8 won't execute CSS that contains a CSS3 selector.
+*/
+input:not([type]):focus {
+  outline: 0;
+  outline: thin dotted \9; /* IE6-9 */
+  border-color: #129fea;
+}
+
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: thin dotted #333;
+  outline: 1px auto #129fea;
+}
+
+input:focus:invalid,
+textarea:focus:invalid,
+select:focus:invalid {
+  color: #b94a48;
+  border-color: #ee5f5b;
+
+  & + .form__validity {
+    background: #ee5f5b;
+  }
+}
+
+input:valid + .form__validity,
+textarea:valid + .form__validity,
+select:valid + .form__validity {
+  background: #1cb841;
+
+  &:after {
+    top: -4px;
+    content: '\02713';
+  }
+}
+
+/**
+ * Submit
+ */
+.form__save {
+  float: right;
+  transition: 0.2s ease-in-out;
+
+  &[disabled] {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+}
+
+/* Error */
+.form__message {
+  display: none;
+  float: left;
+  margin: 1.7em 1em 0 25%;
+  color: #b94a48;
+}
+
+/**
+ * No JS
+ */
+.form__nojs {
+  padding: 1em;
+  color: #b94a48;
+  border: 1px solid #ee5f5b;
+  border-radius: 2px;
+}
+
+.form__nojs--hidden {
+  display: none;
+}
+
+/**
+ * Thanks
+ */
+.contact--thanks__gif {
+  margin: 2em 0 1em;
+  width: 100%;
+}
+
+.contact--thanks__follow {
+  margin: 1em 0 0;
+}
+
+.contact--thanks__error {
+  display: none;
+}
+
+/**
+ * Small screen
+ */
+@media screen and (max-width: 30em) {
+  label {
+    float: none;
+    display: block;
+    width: 100%;
+    padding: 0.5em 0;
+    text-align: left;
+  }
+
+  .form__validity {
+    top: 2.75em;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="url"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="week"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"],
+  input[name*="form-"],
+  select,
+  textarea {
+    float: none;
+    display: block;
+    width: 100%;
+  }
+}
+
+
+// @import url(../partials/import.css);

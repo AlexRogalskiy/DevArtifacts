@@ -1,0 +1,38 @@
+{
+  "name": "fetch-rest-connect",
+  "version": "1.2.0",
+  "main": "dist/index.js",
+  "repository": "https://github.com/drublic/fetch-rest-connect.git",
+  "author": "Hans Christian Reinl <info@drublic.de>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint **/*.js",
+    "build": "babel ./*.js -d dist",
+    "test": "jest",
+    "prepublishOnly": "yarn build"
+  },
+  "jest": {
+    "automock": false,
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "setupFiles": [
+      "./jestSetup.js"
+    ],
+    "testURL": "http://localhost"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "jest": "^22.1.4"
+  },
+  "dependencies": {
+    "jest-fetch-mock": "^1.4.1",
+    "whatwg-fetch": "^2.0.3"
+  }
+}

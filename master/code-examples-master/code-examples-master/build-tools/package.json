@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "jshint": "jshint ./js/**/*.js",
+    "sass": "sass --update sass:css",
+    "watch": "parallelshell 'npm run watch:js' 'npm run watch:css'",
+    "watch:js": "onchange './js/**/*.js' -- npm run jshint",
+    "watch:css": "onchange './sass/**/*.css' -- npm run sass"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-sass": "^1.1.0",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.12.0",
+    "gulp-sass": "^2.1.0",
+    "jshint": "^2.8.0",
+    "onchange": "^2.0.0",
+    "parallelshell": "^2.0.0"
+  }
+}

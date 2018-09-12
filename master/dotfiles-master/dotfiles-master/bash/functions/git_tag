@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Tag and publish a git version
+# @usage	gtag <version>
+# @example	gtag v1.0.0
+gtag() {
+	local version=$1
+
+	$(git push && git tag $version && git push origin $version)
+
+	# @TODO check if upstream is set
+	# if [[  ]]; then
+		echo "Created new tag $version and published it."
+	# fi
+}

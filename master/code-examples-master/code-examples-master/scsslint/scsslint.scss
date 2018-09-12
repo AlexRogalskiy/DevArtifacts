@@ -1,0 +1,111 @@
+/**
+ * Header
+ */
+$layout--header-background: $base--color-white !default;
+$layout--header-max-width: 1400 / 16;
+$layout--header-headroom-default: 1.375;
+$layout--header-headroom-bottom-default: 10px;
+$layout--header-headroom-narrow: 0.3125;
+$layout--header-headroom-mobile: 15px;
+$layout--header-navigation-height: 100px; // Height of both first and second level
+
+/**
+ * layout__header
+ *
+ * @state .is-sticky Header became sticky
+ * @state .is-narrow Header became narrow
+ * @state .navigation__main--is-visible Toggle visibility of navigation (mobile/tablet only)
+ */
+.layout__header {
+    position: relative;
+    z-index: 3;
+    background-color: $layout--header-background;
+    width: 100%;
+
+    // Make this a composited layer to increase scrolling performance
+    transform: translateZ(0);
+
+    &.is-sticky {
+        position: fixed;
+
+        // prevents misplaced header on Android 2.x
+        top: 0;
+        left: 0;
+    }
+
+    &.is-narrow {
+        border-bottom: 1px solid $base--color-neutral-1-lighter;
+
+        .layout__header__meta {
+            @include x-rem(padding-top, $layout--header-headroom-narrow);
+            @include x-rem(padding-bottom, $layout--header-headroom-narrow);
+        }
+    }
+
+    &.navigation__main--is-visible {
+        @include x-until($base--rwd-desktop) {
+            height: 100%;
+        }
+    }
+
+    // Display header static instead of fixed for print view
+    @media print {
+        &.is-sticky {
+            position: static;
+        }
+
+        &.is-narrow {
+            border: 0;
+        }
+    }
+}
+
+.layout__header__container {
+    @include x-rem(max-width, $layout--header-max-width);
+    @extend %clearfix;
+
+    margin: 0 auto;
+    padding: 0 $layout--grid-column-gutter;
+    box-sizing: content-box;
+
+    @include x-until ($layout--rwd-tablet) {
+        @include x-rem(padding-left, $base--grid-outer-padding/2); // 1rem
+        @include x-rem(padding-right, $base--grid-outer-padding/2); // 1rem
+    }
+}
+
+.layout__header__meta {
+    @include x-rem(padding-top, $layout--header-headroom-default);
+    @include x-rem(padding-bottom, $layout--header-headroom-bottom-default);
+
+    z-index: 11;
+    position: relative;
+    background: $base--color-white;
+    transition: padding 0.3s ease;
+    overflow: hidden; // IE8 needs this
+
+    @include x-until($base--rwd-desktop) {
+        @include x-rem(padding-top, $layout--header-headroom-mobile);
+        @include x-rem(padding-bottom, $layout--header-headroom-mobile);
+    }
+}
+
+// This element is moved via JavaScript, depending on the window size.
+// See also partials/search--vg.scss and layout--vg.js
+.layout__header__teleport-mobile {
+    @include clearfix;
+}
+
+.layout__header__logo {
+    @include x-rem(padding-top, 5px);
+
+    float: left;
+
+    @include x-until($base--rwd-smartphone) {
+        padding-top: 0;
+    }
+
+    @media print {
+        float: none;
+    }
+}

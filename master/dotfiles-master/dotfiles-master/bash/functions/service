@@ -1,0 +1,46 @@
+#!/bin/bash
+
+function service_apache() {
+  sudo apachectl "$1"
+}
+
+function service_mysql() {
+  mysql.server "$1"
+}
+
+function service_status() {
+  PROCESS="$(ps aux | grep $1 | wc -l | tr -d ' ')"
+  if [ "${PROCESS}" = "1" ];
+  then
+    echo "$2 is ${reset_color}${fg[red]}stopped${reset_color}"
+  else
+    echo "$2 is ${reset_color}${fg[green]}started${reset_color}"
+  fi
+}
+
+function services() {
+  if [ "$1" = "" ]; then
+    echo "service status:"
+    service_status "http"      "  apache   "
+    service_status "mysql"     "  mysql    "
+    service_status "postgres"  "  postgres "
+    service_status "memcached" "  memcache "
+  else
+    if [ "$2" = "apache" ]; then
+      echo "$1 $2"
+      service_apache "$1"
+    fi
+
+    if [ "$2" = "mysql" ]; then
+      echo "$1 $2"
+      service_mysql "$1"
+    fi
+
+    if [ "$2" = "" ]; then
+      echo "$1 $2"
+      service_apache "$1" > /dev/null 2>&1
+      service_mysql "$1" > /dev/null 2>&1
+      services
+    fi
+  fi
+}

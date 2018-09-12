@@ -1,0 +1,35 @@
+{
+  "name": "vanilla-store",
+  "version": "0.3.0",
+  "description": "A JavaScript lib to store stuff",
+  "main": "Store.js",
+  "scripts": {
+    "coveralls": "rm -rf ./coverage && npm run istanbul && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "istanbul": "istanbul cover jasmine-node --captureExceptions spec/",
+    "jasmine": "jasmine-node --captureExceptions spec/",
+    "test": "npm run jasmine && npm run coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:drublic/Store.git"
+  },
+  "keywords": [
+    "Store",
+    "Flux",
+    "React.js"
+  ],
+  "author": "Hans Christian Reinl <info@drublic.de> (https://drublic.de)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drublic/Store/issues"
+  },
+  "homepage": "https://github.com/drublic/Store",
+  "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.14",
+    "jasmine-node": "^1.14.5"
+  },
+  "dependencies": {
+    "vanilla-pubsub": "^1.1.2"
+  }
+}

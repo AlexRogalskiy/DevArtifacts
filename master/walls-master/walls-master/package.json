@@ -1,0 +1,42 @@
+{
+  "name": "walls",
+  "version": "1.0.0",
+  "main": "dist/walls.js",
+  "author": "Hans Christian Reinl <info@drublic.de>",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn server",
+    "server": "webpack-dev-server",
+    "js:lint": "eslint **/*.{js,jsx}",
+    "js:build": "webpack --config webpack-production.config.js",
+    "lint": "yarn js:lint",
+    "test": "yarn lint",
+    "build": "yarn js:build",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^3.1.3",
+    "webpack-dev-server": "^2.11.1",
+    "webpack": "^3.11.0"
+  }
+}
