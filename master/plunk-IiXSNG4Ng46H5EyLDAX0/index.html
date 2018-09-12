@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<title>jspm.io React Material-UI Example</title>
+<meta charset="utf-8">
+<body style="margin:0">
+  <div id="root">
+</body>
+
+<script type="module">
+import React from '//dev.jspm.io/react@16';
+import ReactDOM from '//dev.jspm.io/react-dom@16';
+import MuiThemeProvider from '//dev.jspm.io/material-ui@0.20/styles/MuiThemeProvider';
+import AppBar from '//dev.jspm.io/material-ui@0.20/AppBar';
+import DatePicker from '//dev.jspm.io/material-ui@0.20/DatePicker';
+
+const App = () => [
+  React.createElement(AppBar.default, {
+    key: 'titlebar',
+    title: 'Title',
+    iconClassNameRight: 'muidocs-icon-navigation-expand-more'
+  }),
+  React.createElement(DatePicker.default, {
+    key: 'datepicker',
+    hintText: 'Click to Select a Date'
+  })
+];
+
+ReactDOM.render(
+  React.createElement(MuiThemeProvider.default, null,
+    React.createElement(App, null)
+  ),
+  document.getElementById('root')
+);
+</script>
+</html>

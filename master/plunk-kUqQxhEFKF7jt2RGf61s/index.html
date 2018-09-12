@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<title>jspm.io Babel Transform Example</title>
+<meta charset="utf-8">
+<body style="font-family: monospace"></body>
+
+<script type="module">
+import babel from '//dev.jspm.io/@babel/core@7';
+import babelPluginProposalClassProperties from '//dev.jspm.io/@babel/plugin-proposal-class-properties@7';
+
+const { code } = babel.transform(`
+  class P {
+    classProperty = 'value'
+  }
+`, {
+  plugins: [babelPluginProposalClassProperties]
+});
+
+document.body.innerHTML = `<pre>${code}</pre>`;
+</script>
+</html>
