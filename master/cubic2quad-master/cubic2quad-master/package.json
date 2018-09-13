@@ -1,0 +1,31 @@
+{
+  "name": "cubic2quad",
+  "version": "1.1.1",
+  "description": "Approximate cubic Bezier curve with a number of quadratic ones",
+  "keywords": [
+    "cubic",
+    "quad",
+    "bezier"
+  ],
+  "license": "MIT",
+  "repository": "fontello/cubic2quad",
+  "scripts": {
+    "lint": "eslint .",
+    "benchmark": "npm run lint && ./benchmark/benchmark.js",
+    "test": "npm run lint && mocha",
+    "coverage": "rm -rf coverage && istanbul cover _mocha",
+    "report-coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+  },
+  "files": [
+    "index.js",
+    "lib/"
+  ],
+  "devDependencies": {
+    "ansi": "*",
+    "benchmark": "*",
+    "coveralls": "~2.11.2",
+    "eslint": "^3.8.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2"
+  }
+}
