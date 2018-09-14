@@ -1,0 +1,30 @@
+/**
+ * Converting between colors with filters
+ */
+
+div div {
+	width: 200px;
+	height: 200px;
+	background: var(--color);
+	xfilter: grayscale(0) brightness(10000%);
+}
+
+body > div {
+	display: flex;
+}
+
+.fake div {
+	background: red;
+}
+
+.fake div:nth-child(1) {
+	filter: hue-rotate(81deg) saturate(43%) brightness(241%);
+}
+
+.fake div:nth-child(2) {
+	filter: hue-rotate(187deg) brightness(185%) saturate(69%);
+}
+
+.fake div:nth-child(3) {
+	filter: grayscale(100%) brightness(299%);
+}

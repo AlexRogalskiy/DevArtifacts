@@ -1,0 +1,39 @@
+/**
+ * Animated line headings
+ */
+
+
+h1 {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+	font: bold 250% Palatino, sans-serif;
+	text-transform: uppercase;
+	color: black;
+}
+	
+	@keyframes noflex {
+		to {
+			flex: 0;
+		}
+	}
+	
+	h1::before,
+	h1::after {
+		content: "";
+		background: currentColor;
+		height: .1em;
+		flex: 1;
+		margin: 0 .2em;
+		animation: noflex 2s ease-in-out infinite alternate;
+	}
+	
+	h1::before {
+		margin-left: 0;
+	}
+		
+	h1::after {
+		margin-right: 0;
+		animation-direction: alternate-reverse;
+	}

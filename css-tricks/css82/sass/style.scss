@@ -1,0 +1,56 @@
+/**
+ * Responsive tables with text-shadow
+ * Pros: No markup changes, works with normal table markup, no content duplication
+ * Cons: Need to know max number of rows, doesn't work with all styles
+ */
+
+@media (max-width: 600px) {
+	tr, td, th, thead, tbody, table {
+		display: block;
+	}
+
+	table {
+		display: flex;
+		overflow: hidden;
+	}
+
+		tr {
+			margin: .2em 0;
+		}
+
+		thead {
+			--cols: 5;
+			--height: calc(1.67em * var(--cols));
+			text-shadow: 0 var(--height),
+			             0 calc(var(--height) * 2), 
+			             0 calc(var(--height) * 3),
+			             0 calc(var(--height) * 4); /* extra shadows are still ok */
+		}
+
+		th {
+			text-align: left;
+		}
+		
+		td:not(:first-child) {
+			border-top: none;
+		}
+}
+
+/* Just styling after this */
+body {
+	font: 150%/1.6 Helvetica Neue, sans-serif;
+}
+
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+	td, th {
+		padding: 0 .3em;
+		white-space: nowrap;
+	}
+
+	td {
+		border: 1px solid rgba(0,0,0,.1);
+	}

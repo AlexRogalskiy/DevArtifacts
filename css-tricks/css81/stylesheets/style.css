@@ -1,0 +1,50 @@
+/**
+ * Responsive tables with element()
+ * Pros: No markup changes, works with normal table markup, no content duplication
+ * Cons: element() is only implemented in Firefox :(
+ */
+@media (max-width: 600px) {
+  table, tr, td, th, thead, tbody {
+    display: block;
+  }
+
+  thead {
+    float: left;
+  }
+
+  tbody tr {
+    margin: .2em 0;
+    padding-left: 4em;
+  }
+
+  tr:not(:first-child) {
+    background: -moz-element(#header) no-repeat;
+    background: element(#header) no-repeat;
+  }
+
+  th {
+    text-align: left;
+  }
+
+  td:not(:first-child) {
+    border-top: none;
+  }
+}
+/* Just styling after this */
+body {
+  font: 150%/1.6 Helvetica Neue, sans-serif;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 0 .3em;
+  white-space: nowrap;
+}
+
+td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
