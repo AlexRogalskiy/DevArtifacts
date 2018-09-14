@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		
+        <link rel="stylesheet" href="https://get.mavo.io/mavo.css" rel="stylesheet" type="text/css" charset="utf-8" media="all" />
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+<div mv-app="appName">
+	<div class="controls">
+		<div property="axis" mv-multiple mv-value="[
+				{id: 'wght', name: 'Weight', min: 75, max: 500, value: 130},
+				{id: 'cntr', name: 'Contrast', min: 8, max: 170, value: 140},
+				{id: 'grad', name: 'Grade', min: 50, max: 500},
+				{id: 'opsz', name: 'Optical Size', min: 10, max: 72},
+				{id: 'wdth', name: 'Width', min: 120, max: 800},
+				{id: 'prwd', name: 'ParaWidth', min: 84, max: 804, value: 804},
+				{id: 'prwg', name: 'ParaWeight', min: 10, max: 999, value: 200},
+				{id: 'srfr', name: 'Serif rise', min: 0, max: 95},
+				{id: 'xhgt', name: 'x-height', min: 890, max: 1200}
+			]">
+			<label for="[id]"><span property="name" mv-default="[id]"></span> ([min]-[max]):</label>
+			<input type="range" property="value" min="[min]" max="[max]" mv-default="[(min + max) / 2]" id="[id]">
+			[value]
+			<meta property="css" content="'[id]' [value]" />
+		</div>
+	
+		<code property="code">font-variation-settings: [join(css, ', ')]</code>
+		<footer>Inspired by this <a href="http://axis-praxis.org">axis-praxis.org</a> <a href="http://www.axis-praxis.org/classic">Playground</a></footer>
+	</div>
+	<div class="demo">
+		<div class="mv-bar">
+			<button class="mv-edit">Edit sample text</button>
+		</div>
+		<p property="text" style="[code]">Variable Fonts</p>
+	</div>
+</div>
+
+	<script src="https://dev.mavo.io/dist/mavo.es5.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+<!--  footer -->
+</html>

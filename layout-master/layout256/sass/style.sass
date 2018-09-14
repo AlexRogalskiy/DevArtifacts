@@ -1,0 +1,91 @@
+*
+  box-sizing: border-box
+
+html, body
+  height: 100%
+  font-family: "Helvetica Neue", helvetica
+  font-size: 16px
+  background-color: #f6f6f6
+
+// Mavo UI
+[mv-app]
+  .mv-ui
+    &.mv-bar
+      display: none
+    &.mv-item-bar
+      top: 0
+      right: 0
+      height: 100%
+      border: none
+      filter: none
+      button
+        width: 2em
+        height: 100%
+        box-sizing: border-box
+        border-top: none
+        border-bottom: none
+      button:first-child
+        border-top-left-radius: 0
+        border-bottom-left-radius: 0
+      button:last-child
+        border-right: none
+        border-top-right-radius: 0
+        border-bottom-right-radius: 0
+      button.mv-add
+        display: none
+  button.mv-add-checklistItem
+    display: block
+    width: calc(100% - 2em)
+    height: 2.5em
+    margin: 1em 1em 0
+    color: #fff
+    background-color: #4285f4
+    border: 1px solid #3262ba
+    border-radius: 2px
+    font-size: 0.8em
+    font-weight: bold
+    cursor: pointer
+    transition: all 0.1s ease
+    &:hover
+      background-color: #3262ba
+    
+  
+// Container
+.app-container
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100%
+  
+// Checklist Component Styles
+.checklist
+  width: 16em
+  padding: 1em
+  background-color: #fff
+  border: 1px solid #ddd
+  border-radius: 2px
+  box-shadow: 0 10px 50px -20px rgba(0,0,0,0.5)
+  
+.checklist__progress-bar
+  width: 100%
+  height: 1.5em
+  
+.checklist__list
+  padding-top: 1em
+  
+.checklist__list-item
+  padding: 0.5em 0.25em
+  border: 1px solid #ddd
+  border-radius: 2px
+  margin-bottom: 0.5em
+  
+.checklist__list-item-control
+  float: left
+  
+.checklist__list-item-title
+  margin-left: 0.25em
+  transition: color 0.15s ease
+  .checklist__list-item-control:checked + &
+    text-decoration: line-through
+    color: #ccc
+    

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		
+        <link rel="stylesheet" href="https://get.mavo.io/mavo.css" rel="stylesheet" type="text/css" charset="utf-8" media="all" />
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+<div mv-app="aframe">
+	<aside>
+		<p>Adapted from a demo by <a href="https://twitter.com/karger">David Karger</a></p>
+		<fieldset>
+			<legend>Box</legend>
+			<label>
+				X: <input type="range" min="-10" max="10" step=".1" property="boxX" value="0"> [boxX]
+			</label>
+
+			<label>
+				Y: <input type="range" min="-10" max="10" step=".1" property="boxY" value="2"> [boxY]
+			</label>
+
+			<label>
+				Z: <input type="range" min="-10" max="10" step=".1" property="boxZ" value="-3"> [boxZ]
+			</label>
+			
+			<label>
+				Rotation: <input type="range" min="0" max="360" property="boxRotation" value="[if(animateRotation, ($now * 30) / 1000 mod 360, 45)]" disabled="[animateRotation]"> [boxRotation]°
+			</label>
+			<label>
+				<input type="checkbox" property="animateRotation" checked /> Animate rotation?
+			</label>
+		</fieldset>
+		<small><strong>Note:</strong> Rotation slider is a bit funky in Firefox, due to bug <a href="https://github.com/mavoweb/mavo/issues/310">#310</a></small>
+	</aside>
+	<a-scene>
+        <a-box position="[boxX] [boxY] [boxZ]" rotation="45 [boxRotation] 45" color="#4CC3D9" shadow></a-box>
+        <a-plane position="0 0 -5" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+        <a-sky color="#E9F2F9"></a-sky>
+      </a-scene>
+</div>
+
+	<script src="https://dev.mavo.io/dist/mavo.es5.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://aframe.io/releases/0.7.0/aframe.min.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+<!--  footer -->
+</html>

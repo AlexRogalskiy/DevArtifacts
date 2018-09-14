@@ -1,0 +1,80 @@
+@font-face {
+	/* Downloaded from axis-praxis.org, font from https://github.com/TypeNetwork/fb-Amstelvar. Oddly the one on Github supported fewer axes and had different values wtf */
+	src: url('https://lea.verou.me/files/AmstelvarAlpha-Variations.ttf') format('truetype');
+	font-family: Amstelvar;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+}
+
+@supports not (font-variation-settings: inherit) {
+	[property=text]::before {
+		content: "Your browser does not support "
+	}
+	
+	[property=text]::after {
+		content: "😭"
+	}
+}
+
+a {
+	color: inherit;
+}
+
+[property=text] {
+	font-family: Amstelvar;
+	font-size: 800%;
+}
+
+[property=axis] {
+	display: flex;
+	
+}
+
+	label {
+		width: 10em;
+	}
+
+	input[type=range] {
+		width: calc(100% - 20em);
+		margin: 0 1em;
+	}
+
+[mv-app] {
+	display: flex;
+	min-height: inherit;
+}
+
+.controls {
+	display: flex;
+	flex-flow: column;
+	width: 30vw;
+	padding: 1em;
+	margin-right: 1em;
+	background: hsl(220, 10%, 90%);
+}
+
+code {
+	display: block;
+	margin-top: 1em;
+}
+
+.mv-edit {
+	font-size: 150%;
+	white-space: pre-line;
+	overflow: hidden;
+	height: 1.8em;
+	line-height: 1.5;
+}
+
+[mv-mode="edit"] .mv-edit::before {
+	content: "Stop editing\a";
+}
+
+footer {
+	margin-top: 4em;
+	font-style: italic;
+	opacity: .5;
+}

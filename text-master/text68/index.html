@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	  <title>Old Clock</title>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	  
+      <link rel="stylesheet" href="https://dev.mavo.io/dist/mavo.css" type="text/css" charset="utf-8" media="all" />
+      <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+	  
+    </head>
+	
+<!--  header -->
+
+<body mv-app="words" mv-bar="none">
+	<h1>Word game!</h1>
+
+	Sentence:
+	<div class="sentence [if(join(orderedWord, ' ') = solution, correct)]" mv-mode="edit">
+		<button class="clear">Clear</button>
+		<button class="clear">Undo</button>
+
+		<span property="orderedWord" mv-multiple mv-optional mv-mode="read"></span>
+	</div>
+
+	<span property="word" mv-multiple mv-value="shuffle(unique(split(solution)))"></span>
+
+	<details>
+		<summary>Solution</summary>
+		<div property="solution" mv-mode="edit">Je suis une femme</div>
+	</details>
+	
+	<script src="https://dev.mavo.io/dist/mavo.js" type="text/javascript"></script>
+	
+</body>
+
+<!--  footer -->
+</html>

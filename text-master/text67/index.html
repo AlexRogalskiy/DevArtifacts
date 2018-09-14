@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	  <title>Old Clock</title>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	  
+      <link rel="stylesheet" href="https://dev.mavo.io/dist/mavo.css" type="text/css" charset="utf-8" media="all" />
+      <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+	  
+    </head>
+<!--  header -->
+<body>
+
+<div mv-app="readability" mv-bar="none">
+	<div class="controls">
+		<label>Line length: <input type="range" property="lineLength" max="150"></label>
+		<label>Leading: <input type="range" property="lineHeight" min="0" max="2" step=".1"></label>
+		<div class="grid">
+			Alignment: 
+			<div class="spread">
+			<label><input type="radio" property="align" name="align" value="left" checked /> Left</label>
+			<label><input type="radio" value="center" name="align" /> Center</label>
+			<label><input type="radio" value="right" name="align" /> Right</label>
+			<label><input type="radio" value="justify" name="align" /> Justify</label>
+			</div>
+		</div>
+		<div>
+			<label>
+				<input type="checkbox" property="hyphenate" />
+				Hyphenate?
+			</label>
+		</div>
+		<label>
+			Columns
+			<input type="range" property="columns" value="1" max="10">
+		</label>
+		<style>
+p {
+	max-width: [lineLength]ch;
+	line-height: [lineHeight]; 
+	text-align: [align]; [if(hyphenate, 'hyphens: auto;')]
+	[if(columns > 1, 'columns: ' & columns & ';')]
+}
+</style>
+	</div>
+	<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. "What's happened to me?" he thought. It wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather. Drops of rain could be heard hitting the pane, which made him feel quite sad. "How about if I sleep a little bit longer and forget all this nonsense", he thought, but that was something he was unable to do because he was used to sleeping on his right, and in his present state couldn't get into that position. </p>
+</div>
+
+
+<script src="https://dev.mavo.io/dist/mavo.es5.js" type="text/javascript"></script>
+
+</body>
+<!--  footer -->
+</html>

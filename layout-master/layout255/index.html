@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://get.mavo.io/mavo.css" rel="stylesheet" type="text/css" charset="utf-8" media="all" />
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+<div id="costes" mv-app="costes" mv-mode="edit" mv-bar="none" mv-storage="local" mv-autosave="1">
+  
+  <main>
+    <nav class="mainHeader">
+      <div class="select">
+        <select class="language" property="language">
+          <option value="ES">ES</option>
+          <option value="EN">EN</option>
+        </select>
+      </div>
+        
+      <div class="select">
+        <select name="currency" id="currency" mv-default="[if(language = 'EN', '£', '€')]" property="currency">
+          <option value="€">€</option>
+          <option value="$">$</option>
+          <option value="&#163">&#163</option>
+        </select>
+      </div>
+    </nav>
+
+    <header class="header">
+      <h1>
+        [if(language == "ES", "¿Cuánto debo cobrar por hora?", if(language == "EN", "How much should I earn per hour?", ))]
+        <div class="logos">
+          <em>[if(language == "ES", "por", if(language == "EN", "by", ))] </em><a href="https://www.squembri.com" target="_blank">
+            <img src="https://www.goana.es/pruebas/codepen/squembri.png" alt="Agencia creativa squembri">
+          </a>
+
+          <a href="https://www.pensandoenweb.es" target="_blank">
+            <img class="pew" src="https://www.goana.es/pruebas/codepen/pensando-en-web.png" alt="Pensando en web">
+          </a>    
+        </div> 
+      </h1>
+      <h2>[if(language == "ES", "Calcula tu tabla de gastos", if(language == "EN", "Calculate your initial outlay", ))]</h2>
+      <p>[if(language == "ES", "Rellena los campos a continuación y añade los costes fijos y/o puntuales que tiene la empresa en la tabla siguiente como coste único mensual. Ej: Alquiler, sueldos, electricidad, agua, telecomunicaciones, asesoría, etc.", if(language == "EN", "Fill in the fields below and add the different outlays that the company has as the rent, salaries, electricity, water, telecommunications, advice, etc.", ))]</p>   
+    </header>
+
+
+    <section class="count form">
+      <ul>
+        <li>          
+          <strong>[if(language == "ES", "Total de trabajadores en la empresa", if(language == "EN", "Total workers in the company", ))]</strong>
+          <span><input type="number" property="trabajadores" value="1" placeholder="Nº" /></span>
+          <span class="info">
+            <span class="tooltip">
+              [if(language == "ES", "Si quieres incluir trabajadores a media jornada contabilízalos como medio trabajador.", if(language == "EN", "If you want to add part-time workers set them as a half worker.", ))]
+            </span>
+          </span>
+        </li>
+
+        <li>
+          <strong>[if(language == "ES", "Total de meses trabajados al año", if(language == "EN", "Total working months per year", ))]</strong>
+          <span><input type="number" property="mesesLaborables" value="1" placeholder="Nº" /></span>
+        </li>
+
+        <li>
+          <strong>[if(language == "ES", "Total de días trabajados al mes", if(language == "EN", "Total working days per month", ))]</strong>
+          <span><input type="number" property="diasLaborables" value="1" placeholder="Nº" /></span>
+        </li>
+
+        <li>
+          <strong>[if(language == "ES", "Total de horas en una jornada laboral", if(language == "EN", "Total working hours per day", ))]</strong>
+          <span><input type="number" property="jornada" value="1" placeholder="Nº" /></span>
+        </li>
+
+      </ul>
+    </section>
+
+    <div class="grid">
+      <div class="thead thead_1">[if(language == "ES", "Coste único mensual", if(language == "EN", "Monthly expenditure", ))]</div>
+      <div class="thead">[if(language == "ES", "Coste anual", if(language == "EN", "Annual expenditure", ))]</div>
+      <div class="thead">[if(language == "ES", "Coste mensual laborable", if(language == "EN", "Monthly working expenditure", ))]</div>
+      <div class="thead">[if(language == "ES", "Coste diario", if(language == "EN", "Diary expend", ))]</div>
+      <div class="thead">[if(language == "ES", "Coste hora", if(language == "EN", "Hour expend", ))]</div>
+    </div>
+
+    <div class="grid item" property="item" mv-order="asc" mv-multiple>
+      <div class="list">[$index + 1]</div>
+      <div>
+        <input class="concepto" type="text" property="concepto" placeholder="Ej. Alquiler">
+        [if(currency == "$", "$", if(currency == "&#163", "&#163", ))]
+        <input class="costeUnico" type="number" property="costeUnico" value="" placeholder="Ej. 550" />[if(currency == "€", "€", )]
+      </div>
+      <div>[if(currency == "$", "$", if(currency == "&#163", "&#163", ))][costeUnico * 12][if(currency == "€", "€", )]</div>
+      <div>[if(currency == "$", "$", if(currency == "&#163", "&#163", ))][(costeUnico * 12) / mesesLaborables][if(currency == "€", "€", )]</div>
+      <div>[if(currency == "$", "$", if(currency == "&#163", "&#163", ))][((costeUnico * 12) / mesesLaborables) / diasLaborables][if(currency == "€", "€", )]</div>
+      <div class="hora" property="hora">[if(currency == "$", "$", if(currency == "&#163", "&#163", ))][(((costeUnico * 12) / mesesLaborables) / diasLaborables) / jornada][if(currency == "€", "€", )]</div>
+    </div>
+
+    <div class="grid item total">
+      <div></div>
+      <div>TOTAL</div>
+      <div>[if(currency == "$", "$", if(currency == "&#163", "&#163", ))][sum(costeUnico * 12)][if(currency == "€", "€", )]</div>
+      <div>[if(currency == "$", "$", if(currency == "&#163", "&#163", ))][sum((costeUnico * 12) / mesesLaborables)][if(currency == "€", "€", )]</div>
+      <div>[if(currency == "$", "$", if(currency == "&#163", "&#163", ))][sum(((costeUnico * 12) / mesesLaborables) / diasLaborables)][if(currency == "€", "€", )]</div>
+      <div>[if(currency == "$", "$", if(currency == "&#163", "&#163", ))][sum((((costeUnico * 12) / mesesLaborables) / diasLaborables) / jornada)][if(currency == "€", "€", )]</div>
+    </div>
+  <br>
+  <br>
+    <header class="header beneficios">
+      <h2>[if(language == "ES", "Añade los beneficios", if(language == "EN", "Add the benefits", ))]</h2>
+      <div class="question">
+        <p>
+       <!--<span class="tooltip">
+         Introduce el número de trabajadores que hay en tu empresa.
+       </span>-->
+        <strong>[if(language == "ES", "¿Qué porcentaje de beneficios quiéres?", if(language == "EN", "How much benefits do you want to earn?", ))]</strong>
+        <span><input class="ganancias" type="number" property="ganancias" value="0" placeholder="Porcentaje a ganar" />%</span>
+      </p> 
+    </div>
+
+    </header>
+    <section class="count">
+      <article class="totalPerHour">
+        <strong>
+          <span>[if(currency == "$", "$", if(currency == "&#163", "&#163", ))]</span>
+          [((SUM((((costeUnico * 12) / mesesLaborables) / diasLaborables) / jornada) * ganancias) / 100) + SUM((((costeUnico * 12) / mesesLaborables) / diasLaborables) / jornada)]<span>[if(currency == "€", "€", )]</span></strong>
+        <span><b>[if(language == "EN", "company", )]</b>[if(language == "ES", "Coste por hora de la ", if(language == "EN", " cost per hour", ))]<b>[if(language == "ES", "empresa", )]</b></span>    
+      </article>
+      <article class="totalPerHour totalTrabajador">
+
+        <strong>
+           <span>[if(currency == "$", "$", if(currency == "&#163", "&#163", ))]</span>
+          [(((SUM((((costeUnico * 12) / mesesLaborables) / diasLaborables) / jornada) * ganancias) / 100) + SUM((((costeUnico * 12) / mesesLaborables) / diasLaborables) / jornada)) / trabajadores]<span>[if(currency == "€", "€", )]</span>   
+        </strong>
+        
+        <span>
+          <b>[if(language == "EN", "worker", )]</b>[if(language == "ES", "Coste por hora del ", if(language == "EN", " cost per hour", ))]<b>[if(language == "ES", "trabajador", )] 
+          </b>
+          <span class="info">
+            <span class="tooltip">
+              [if(language == "ES", "Este es el coste por hora que debe generar un trabajador de la empresa.", if(language == "EN", "This is the cost per hour rate that a worker may generate in the company", ))]
+            </span>
+          </span>
+        </span>
+      </article>
+    </section> 
+
+
+      <button class="print" onclick="myFunction()">
+        <img src="https://www.goana.es/pruebas/codepen/download.png" alt="Download">
+     <span>[if(language == "ES", "Descarga el archivo", if(language == "EN", "Download this file", ))]</span>
+   </button>
+
+  </main>
+
+  <footer>
+    [if(language == "ES", "Esta herramienta ha sido creada por ", if(language == "EN", "This tool has been made by ", ))] <a href="https://www.pensandoenweb.es" target="_blank">Pensando en Web</a> [if(language == "ES", "y", if(language == "EN", "and", ))] <a href="https://www.squembri.com" target="_blank">squembri</a> [if(language == "ES", "y desarrollada con ", if(language == "EN", ". Developed with ", ))] <a href="http://mavo.io/" target="_blank">MAVO</a>.
+  </footer>
+</div>
+
+	<script src="https://get.mavo.io/mavo.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+<!--  footer -->
+</html>

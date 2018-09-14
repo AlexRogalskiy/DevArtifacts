@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Artist Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://dev.mavo.io/dist/mavo.css">
+<script src="https://dev.mavo.io/dist/mavo.js"></script>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body mv-app="portfolio" mv-storage="https://github.com/mavoweb/data/portfolio">
+
+<header>
+	<h1><a href="http://julesmuck.com"><img src="http://julesmuck.com/wp-content/uploads/2016/04/mucklogoBLCK.png" alt="Jules Muck" class="logo" /></a></h1>
+</header>
+
+<div>
+	<a property="painting" typeof="Painting" mv-multiple mv-attribute="none">
+		<img property="image" />
+		<p property="name" mv-default="[readable(to(filename(image), '.'))]"></p>
+	</a>
+</div>
+
+<footer>All art belongs to the awesome <a href="http://julesmuck.com">Jules Muck</a>, used here with permission.</footer>
+
+
+</body>
+</html>

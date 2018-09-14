@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>SVG &lt;path> builder</title>
+<link rel="stylesheet" href="https://dev.mavo.io/dist/mavo.css">
+<script src="https://dev.mavo.io/dist/mavo.js"></script>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body mv-app="svgpath" mv-storage="local" mv-plugins="clear" mv-autosave="0">
+
+<header>
+	<h1>
+		SVG &lt;path> builder
+		<a href='[svgfile]' download="path.svg" target="_blank">⏬ Download SVG</a>
+		<a property="svgfile" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 [width] [height]">
+	<path d="[path]" fill="[fill]" stroke="[stroke]" stroke-width="[strokeWidth]" />
+</svg>' target="_blank" title="You may need to right click and select “Open Link in new Tab” due to browser security restrictions.">↗️ View SVG</a>
+		<div class="mv-bar" mv-bar="with import export clear"></div>
+	</h1>
+
+	<section>
+		Coordinate system:
+		<input type="number" property="width" value="100" /> &times;
+		<input type="number" property="height" value="100" />
+	</section>
+
+	<section>
+		Fill color:
+		<input type="color" value="#FFFF00" property="fill" />
+	</section>
+	<section>
+		Stroke color:
+		<input type="color" value="#000000" property="stroke" />
+	</section>
+	<section>
+		Stroke width:
+		<input type="range" value="1" min="0" max="5" property="strokeWidth" />
+	</section>
+</header>
+
+<main>
+<section class="editor">
+	<h1>
+		Path segments
+		<details>
+			<summary>path code</summary>
+			<textarea property="path">[replace(join(pathsummary, ' '), '  ', ' ', 10)]</textarea>
+		</details>
+	</h1>
+	<div>
+		<article property="segment" data-segtype="[type]" class="[if(absolute, 'absolute')]" mv-multiple mv-mode="edit">
+			<h1>
+				<select property="type">
+					<option value="m">Move</option>
+					<option value="l">Line</option>
+					<option value="h">Horizontal Line</option>
+					<option value="v">Vertical Line</option>
+					<option value="a">Arc</option>
+					<option value="s">Smooth Bézier curve</option>
+					<option value="c">Bézier curve</option>
+					<option value="t">Smooth Quadratic Bézier</option>
+					<option value="q">Quadratic Bézier</option>
+					<option value="z">Close path</option>
+				</select>
+
+				<label mv-if="type != v and type != z">
+					X <input type="number" property="x" value="0" />
+				</label>
+
+				<label mv-if="type != h and type != z">
+					Y <input type="number" property="y" value="0" />
+				</label>
+
+				<label>
+					<input type="checkbox" property="absolute">
+					Absolute
+				</label>
+
+				<div class="mv-item-bar mv-ui"></div>
+			</h1>
+
+			<div mv-if="type = a">
+				<label>
+					rx: <input type="number" property="rx" value="0" />
+				</label>
+				<label>
+					ry: <input type="number" property="ry" mv-default="[rx]" />
+				</label>
+				<label>
+					X Axis rotation: <input type="number" property="axisRotation" value="0" />
+				</label>
+				<label>
+					<input type="checkbox" property="largeArc">
+					Large Arc
+				</label>
+				<label>
+					<input type="checkbox" property="sweep">
+					Other side
+				</label>
+				<meta property="arcFlags" content="[rx] [ry] [axisRotation] [largeArc + 0] [sweep + 0]">
+			</div>
+
+			<div mv-if="type = c or type = s or type = q">
+				<label mv-if="type = c or type = q">
+					<span mv-if="type = c">First</span> Control Point:
+					<input type="number" property="x1" value="0" />
+					<input type="number" property="y1" value="0" />
+				</label>
+				<label mv-if="type = c">
+					Second Control Point:
+					<input type="number" property="x2" value="0" />
+					<input type="number" property="y2" value="0" />
+				</label>
+			</div>
+
+			<meta property="pathsummary" content="[if(absolute, uppercase(type), type)] [arcFlags] [x1] [y1] [x2] [y2] [x] [y]">
+		</article>
+	</div>
+
+</section>
+<section class="preview">
+	<svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 [width] [height]" preserveAspectRatio="xMinYMin" style="--width: [width]; --height: [height];">
+		<pattern id="grid" viewBox="0 0 10 10" patternUnits="userSpaceOnUse" width="10" height="10">
+			<line y2="10" vector-effect="non-scaling-stroke" />
+			<line x2="10" vector-effect="non-scaling-stroke" />
+		</pattern>
+		<marker id="pos" viewBox="-1 -1 1 1" overflow="visible" markerUnits="userSpaceOnUse" markerWidth="1">
+			<circle r="1" cx="0" cy="0" />
+		</marker>
+		<rect width="100%" height="100%" fill="white" />
+		<rect width="100vw" height="100vh" fill="url(#grid)" />
+		<path d="[path]" marker-end="url(#pos)" fill="[fill]" stroke="[stroke]" stroke-width="[strokeWidth]" />
+	</svg>
+</section>
+
+</main>
+
+
+</body>
+</html>
