@@ -1,0 +1,15 @@
+/**
+ * Gradient interpolation test. Test passes if smooth animation.
+ */
+body {
+  background: #f06;
+  background: linear-gradient(to right, green, red 0);
+  min-height: 100%;
+  animation: gradient-interpolation 2s infinite;
+}
+
+@keyframes gradient-interpolation {
+  to {
+    background: linear-gradient(to right, green 100%, red);
+  }
+}

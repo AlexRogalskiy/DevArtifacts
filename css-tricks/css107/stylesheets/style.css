@@ -1,0 +1,36 @@
+/**
+ * Flexible browser frame with a tiny (4KB) image and 15 lines of CSS
+ */
+.browser {
+  position: relative;
+  width: fit-content;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+}
+
+.browser::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  border: solid;
+  --right: 146;
+  --left: 201;
+  border-width: 38px calc(var(--right) * 1px) 0 calc(var(--left) * 1px);
+  border-image: url("http://i.imgur.com/Hmlyfd7.png") 100% var(--right) 0 var(--left) repeat;
+}
+
+/* just for demo, ignore */
+img {
+  display: block;
+}
+
+div {
+  margin: 100px;
+}
+
+body {
+  background: #a3b3c2;
+}

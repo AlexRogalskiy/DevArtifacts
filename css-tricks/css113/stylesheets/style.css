@@ -1,0 +1,10 @@
+/**
+ * Variable concatenation
+ */
+body::before {
+  --foo: "foo";
+  --bar: "bar" var(--foo);
+  --url: "https://placekitten.com/200/300";
+  --kitten: url(var(--url));
+  content: var(--kitten, "url() is fucked");
+}

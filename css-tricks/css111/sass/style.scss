@@ -1,0 +1,38 @@
+/**
+ * Text-underline-animation with transparency
+ */
+
+a {
+	position: relative;
+	font-size: 500%;
+	text-decoration: none;
+}
+
+a::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	height: .1em;
+	width: 0;
+	background: currentColor;
+	transition: 1s width;	
+	opacity: .5;
+}
+
+a:hover::after {
+	width: 100%;
+}
+
+/* Variations */
+a.left::after {
+	left: 0;
+}
+
+a.center::after {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+a.right::after {
+	right: 0;
+}

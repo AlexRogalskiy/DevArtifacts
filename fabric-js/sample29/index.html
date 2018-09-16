@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+<canvas id="c" width="400" height="700"></canvas>
+<div class="controls">
+  <h3>Filters:</h3>
+  <label>Use WebGl<input type="checkbox" id="webgl" checked></label>
+  <div id="bench"></div>
+  <p>
+    <label><span>Grayscale:</span> <input type="checkbox" id="grayscale" disabled></label><br />
+    <label><span>Avg.</span> <input type="radio" id="average" name="grayscale" ></label>
+    <label><span>Lum.</span> <input type="radio" id="lightness" name="grayscale" ></label>
+    <label><span>Light.</span> <input type="radio" id="luminosity" name="grayscale" ></label>
+  </p>
+  <p>
+    <label><span>Invert:</span> <input type="checkbox" id="invert" disabled></label>
+  </p>
+  <p>
+    <label>Colormatrix filters:</label>
+  </p>
+  <p>
+    <label><span>Sepia:</span> <input type="checkbox" id="sepia" disabled></label>
+  </p>
+  <p>
+    <label><span>Black/White:</span> <input type="checkbox" id="blackwhite" disabled></label>
+  </p>
+  <p>
+    <label><span>Brownie:</span> <input type="checkbox" id="brownie" disabled></label>
+  </p>
+  <p>
+    <label><span>Vintage:</span> <input type="checkbox" id="vintage" disabled></label>
+  </p>
+  <p>
+    <label><span>Kodachrome:</span> <input type="checkbox" id="kodachrome" disabled></label>
+  </p>
+  <p>
+    <label><span>Technicolor:</span> <input type="checkbox" id="technicolor" disabled></label>
+  </p>
+  <p>
+    <label><span>Polaroid:</span> <input type="checkbox" id="polaroid" disabled></label>
+  </p>
+  <p>
+    <label><span>Remove color:</span> <input type="checkbox" id="remove-color" disabled></label><br>
+    <label>Color: <input type="color" id="remove-color-color" value="#00f900"></label><br>
+    <br>
+    <label>Distance: <input type="range" id="remove-color-distance" value="0.02" min="0" max="1" step="0.01" disabled></label>
+  </p>
+  <p>
+    <label><span>Brightness:</span> <input type="checkbox" id="brightness" disabled></label>
+    <br>
+    <label>Value: <input type="range" id="brightness-value" value="0.1" min="-1" max="1" step="0.003921" disabled></label>
+  </p>
+  <p>
+    <label><span>Gamma:</span> <input type="checkbox" id="gamma" disabled></label>
+    <br>
+    <label>Red: <input type="range" id="gamma-red" value="1" min="0.2" max="2.2" step="0.003921" disabled></label>
+    <br>
+    <label>Green: <input type="range" id="gamma-green" value="1" min="0.2" max="2.2" step="0.003921" disabled></label>
+    <br>
+    <label>Blue: <input type="range" id="gamma-blue" value="1" min="0.2" max="2.2" step="0.003921" disabled></label>
+
+  </p>
+  <p>
+    <label><span>Contrast:</span> <input type="checkbox" id="contrast" disabled></label>
+    <br>
+    <label>Value: <input type="range" id="contrast-value" value="0" min="-1" max="1" step="0.003921" disabled></label>
+  </p>
+  <p>
+    <label><span>Saturation:</span> <input type="checkbox" id="saturation" disabled></label>
+    <br>
+    <label>Value: <input type="range" id="saturation-value" value="0" min="-1" max="1" step="0.003921" disabled></label>
+  </p>
+  <p>
+    <label><span>Hue:</span> <input type="checkbox" id="hue" disabled></label>
+    <br>
+    <label>Value: <input type="range" id="hue-value" value="0" min="-2" max="2" step="0.002" disabled></label>
+  </p>
+  <p>
+    <label><span>Noise:</span> <input type="checkbox" id="noise" disabled></label>
+    <br>
+    <label>Value: <input type="range" id="noise-value" value="100" min="0" max="1000" disabled></label>
+  </p>
+  <p>
+    <label><span>Pixelate</span> <input type="checkbox" id="pixelate" disabled></label>
+    <br>
+    <label>Value: <input type="range" id="pixelate-value" value="4" min="2" max="20" disabled></label>
+  </p>
+  <p>
+    <label><span>Blur:</span> <input type="checkbox" id="blur" disabled></label>
+    <br>
+    <label>Value: <input type="range" id="blur-value" value="0.1" min="0" max="1" step="0.01" disabled></label>
+  </p>
+  <p>
+    <label><span>Sharpen:</span> <input type="checkbox" id="sharpen" disabled></label>
+  </p>
+  <p>
+    <label><span>Emboss:</span> <input type="checkbox" id="emboss" disabled></label>
+  </p>
+  <p>
+  <label><span>Blend Color:</span> <input type="checkbox" id="blend" disabled></label>
+  <br>
+  <label>Mode:</label>
+    <select id="blend-mode" name="blend-mode">
+      <option selected value="add">Add</option>
+      <option value="diff">Diff</option>
+      <option value="subtract">Subtract</option>
+      <option value="multiply">Multiply</option>
+      <option value="screen">Screen</option>
+      <option value="lighten">Lighten</option>
+      <option value="darken">Darken</option>
+      <option value="overlay">Overlay</option>
+      <option value="exclusion">Exclusion</option>
+      <option value="tint">Tint</option>
+    </select>
+    <br>
+    <label>Color: <input type="color" id="blend-color" value="#00f900"></label><br>
+    <label>Alpha: <input type="range" id="blend-alpha" min="0" max="1" value="1" step="0.01"></label><br>
+  </p>
+  <label><span>Blend Image:</span> <input type="checkbox" id="blend-image" disabled></label>
+  <br>
+  <label>Mode:</label>
+    <select id="blend-image-mode" name="blend-image-mode">
+      <option selected value="multiply">Multiply</option>
+      <option value="mask">Mask</option>
+    </select>
+    <br>
+    <label>Alpha: <input type="range" id="blend-image-alpha" min="0" max="1" value="1" step="0.01"></label><br>
+  </p>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.3.6/fabric.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+<!--  footer -->
+</html>

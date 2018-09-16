@@ -1,0 +1,26 @@
+/**
+ * Test for image(), image-set(), cross-fade(),
+ * and parsing of image-resolution, image-orientation, image-rendering
+ */
+
+div { padding: 1em; background: red; color: white; margin: 1em; text-align: center; font: bold 100% sans-serif; }
+
+#image {
+	background: image(green);
+}
+
+#image-set {
+	background: image-set(url('http://test.csswg.org/suites/css2.1/20110111/xhtml1/support/60x60-green.png') 1x, 
+	                      url('http://test.csswg.org/suites/css2.1/20110111/xhtml1/support/60x60-green.png') 2x);
+}
+
+#cross-fade {
+	background: cross-fade(url('http://test.csswg.org/suites/css2.1/20110111/xhtml1/support/60x60-green.png'), 
+	                       url('http://test.csswg.org/suites/css2.1/20110111/xhtml1/support/60x60-green.png'), 
+	                       50%);
+}
+
+/* The following only test property name recognition */
+@supports (image-resolution: inherit) { #image-resolution { background: green }}
+@supports (image-orientation: inherit) { #image-orientation { background: green }}
+@supports (image-rendering: inherit) { #image-rendering { background: green }}

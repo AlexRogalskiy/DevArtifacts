@@ -1,0 +1,16 @@
+/**
+ * Using variables in translate(). Pass: All green hues. Fail: Red is visible.
+ */
+body {
+  background: linear-gradient(red, red) 100px 100px/100px 100px no-repeat green;
+  margin: 0;
+  --x: 100px;
+  --y: 100px;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  background: lime;
+  transform: translate(var(--x), var(--y));
+}

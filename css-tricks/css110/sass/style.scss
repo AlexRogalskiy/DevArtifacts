@@ -1,0 +1,17 @@
+/**
+ * @apply test
+ * Requires "Experimental Web Platform features" flag
+ */
+
+:root {
+	--foo: orange;
+	--bg: {
+		background: var(--foo);
+	}
+}
+
+body {
+	background: red;
+	--foo: green;
+	@apply --bg;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+<body>
+
+<canvas id="canvas" width="600" height="600" style="border:1px solid #aaa"></canvas>
+
+<div class="controls">
+  <form id="numbers" >
+  <table>
+    <tr>
+      <td><span>a:</span><input type="number" value="1" step="0.02" id="a"></td>
+      <td><span>b:</span><input type="number" value="0" step="0.02" id="b"></td>
+    </tr>
+    <tr>
+      <td><span>c:</span><input type="number" value="0" step="0.02" id="c"></td>
+      <td><span>d:</span><input type="number" value="1" step="0.02" id="d"></td>
+    </tr>
+    <tr>
+      <td><span>tx:</span><input type="number" value="0" step="1" id="tx"></td>
+      <td><span>ty:</span><input type="number" value="0" step="1" id="ty"></td>
+    </tr>
+  </table>
+  </form>
+  <button id="merge" >Merge transform</button>
+  <code>
+    transformMatrix == [
+    <span id="a-val">1</span>,
+    <span id="b-val">0</span>,
+    <span id="c-val">0</span>,
+    <span id="d-val">1</span>,
+    <span id="tx-val">0</span>,
+    <span id="ty-val">0</span>
+    ]<br />
+    mergedProperties:<br />
+    ScaleX: <span id="scaleX">1</span>,<br />
+    ScaleY: <span id="scaleY">1</span>,<br />
+    SkewX: <span id="skewX">0</span>,<br />
+    SkewY: <span id="skewY">0</span>,<br />
+    top: <span id="top">0</span>,<br />
+    left: <span id="left">0</span>,<br />
+    flipX: <span id="flipX">0</span>,<br />
+    flipY: <span id="flipY">0</span>,<br />
+    angle: <span id="angle">0</span>
+  </code>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.3.6/fabric.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+<!--  footer -->
+</html>
