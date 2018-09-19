@@ -1,0 +1,38 @@
+<header>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">Tracker</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="top-navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            {{#link-to 'sightings'}}Sightings{{/link-to}}
+          </li>
+          <li>
+            {{#link-to 'cryptids'}}Cryptids{{/link-to}}
+          </li>
+          <li>
+            {{#link-to 'witnesses'}}Witnesses{{/link-to}}
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+</header>
+<div class="container">
+  {{#if isAlertShowing}}
+    {{flash-alert message=alertMessage alertType=alertType close=(action "removeAlert")}}{{outlet}}
+  {{/if}}
+  {{outlet}}
+</div>

@@ -1,0 +1,13 @@
+<div class="row">
+  {{#each model as |cryptid|}}
+    <div class="col-xs-12 col-sm-3 text-center">
+      {{#link-to 'cryptid' cryptid.id}}
+        {{listing-item imagePath=cryptid.profileImg name=cryptid.name}}
+      {{/link-to}}
+    </div>
+    {{else}}
+      <div class="jumbotron">
+        <h1>No Creatures</h1>
+      </div>
+  {{/each}}
+</div>

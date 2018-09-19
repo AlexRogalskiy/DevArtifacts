@@ -1,0 +1,17 @@
+<div class="row">
+  {{#each model as |sighting|}}
+    <div class="col-xs-12 col-sm-3 text-center">
+      {{#listing-item imagePath=sighting.cryptid.profileImg name=sighting.cryptid.name}}
+        {{#if sighting.location}}
+          <h3>{{sighting.location}}</h3>
+          <p>{{moment-from sighting.sightedAt}}</p>
+        {{else}}
+          <h3 class="text-danger">Bogus Sightings</h3>
+        {{/if}}
+        {{#link-to 'sighting.edit' sighting.id tagName="button" class="btn btn-success btn-block" }}
+          Edit
+        {{/link-to}}
+      {{/listing-item}}
+    </div>
+  {{/each}}
+</div>
