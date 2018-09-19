@@ -1,0 +1,37 @@
+# For more information about the configurations used
+# in this file, please see the Travis CI documentation:
+# https://docs.travis-ci.com
+
+after_success:
+  - |
+
+      # Update the content from the `gh-pages` branch
+
+      $(npm bin)/travis-after-all \
+        && $(npm bin)/set-up-ssh -k "$encrypted_ca2180397773_key" \
+                                 -iv "$encrypted_ca2180397773_iv" \
+                                 --path-encrypted-key ".travis/github_deploy_key.enc" \
+        && $(npm bin)/update-branch --commands "npm run build" \
+                                    --commit-message "Hey GitHub, this content is for you! [skip ci]" \
+                                    --directory "build" \
+                                    --distribution-branch "gh-pages" \
+                                    --source-branch "master"
+
+before_install:
+  - gem install sass compass
+
+env:
+  global:
+    - secure: "cI6pQQRzhc0UuXGMm4eXiP0bmATyb6JYjebFpHzaHFiOjYa2UNy2e4I01dzDbf4oMVwx+Js1GyZ1fkXsh+ryiH2AvDuAHIs+a46cBmUiX1l5eBdcwZp+o/1ug5lxeigCj6cbm2jE1Me/9jZgkYBJzpLD1c6rjOOETpnD1eJYjd0="
+
+git:
+  depth: 10
+
+language: node_js
+
+node_js:
+  - "0.12"
+  - "4"
+  - "5"
+
+sudo: false

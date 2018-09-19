@@ -1,0 +1,26 @@
+div class='page-header'
+  h2= @info['name'].dup.force_encoding('utf-8')
+table class='table'
+  - @data.each do |k, v|
+    tr
+      td= k
+      td
+        - if v.kind_of?(Array)
+          ul class='unstyled'
+            - v.each do |v|
+              li= v.first
+        - else
+          = v
+
+div class='css-treeview'
+  ul
+    - if @files_tree
+        li
+          input type='checkbox' checked='checked'
+          label= @info['name'].dup.force_encoding('utf-8')
+          ul
+            li
+              == slim :node, :locals => {:files_tree => @files_tree}
+    - else
+      li
+        a href='./' onclick='return false' = @info['name']

@@ -1,0 +1,10 @@
+- files_tree.each do |root, node|
+  - if node.empty?
+    li
+      a href='./' onclick='return false' = root.dup.force_encoding('utf-8')
+  - else
+    li
+      input type='checkbox'
+      label= root.dup.force_encoding('utf-8')
+      ul
+        li== slim :node, :locals => {:files_tree => node}
