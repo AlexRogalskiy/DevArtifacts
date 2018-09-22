@@ -1,0 +1,104 @@
+<div class="step" data-step="0">
+	<p>Welcome, student!</p>
+	<p>Let's play a little game, shall we?</p>
+</div>
+
+<div class="step" data-step="1">
+	<p>I'm going to give you a mystery variable, and your job is to figure out what type it is.</p>
+	<p>To get started, go ahead and <a href="#" data-toggle="popover" data-content="On Chrome (recommended), press Ctrl-Shift-J (PC) or &#8984;-Option-J (Mac).">open your JavaScript terminal</a>.</p>
+	<p>Once you've opened your terminal, use it to type <span class="code">ready()</span> and press Enter.</p>
+</div>
+
+<div class="step" data-step="2">
+	<p>Great job.  Now I'm going to give you a variable, and you have to guess what its type is.  Whenver you're
+	ready, just type <span class="code">var x = getMysteryVal()</span> and press Enter.</p>
+</div>
+
+<div class="step" data-step="3">
+	<p>Now you have a mystery value stored in <span type="code">x</span>.  You can do whatever you want to attempt to
+	determine its type.  When you you've got it, type <span class="code">guess('<i>your answer here</i>')</span>.  For
+	example, if you think it's a number, type <span class="code">guess('number')</span>.
+</div>
+
+<div class="step" data-step="4">
+	<p>You got it right!  You've now guessed <span class="_replacement" data-var="correctAnswers">1</span> of the <span class="_replacement" data-var="totalQuestions">N</span> questions.  Type <span class="code">x = getMysteryVal()</span> to get your next mystery value.</p>
+</div>
+
+<div class="step" data-step="5">
+	<p>That's not the correct answer.  <span class="code">x</span> still holds the mystery value...try again to figure out what it is, and when you're ready, type <span class="code">guess('<i>your answer here</i>')</a>.</p>
+</div>
+
+<hr>
+<button class="btn btn-default" data-action="step-prev"><span class="glyphicon glyphicon-backward"></span> Back</button>
+<button class="btn btn-default" data-action="step-next">Next <span class="glyphicon glyphicon-forward"></span></button>
+
+<script>
+	ready.push(function() {
+		window.ready = function() {
+			exercise.stepNext();
+		};
+
+		var mysteryVals = [
+			{ answer: 'null', value: null },
+			{ answer: 'undefined', value: undefined },
+			{ answer: 'string', value: 'yogurt' },
+			{ answer: 'object', value: { color: 'blue' } },
+			{ answer: 'array', value: [ 1, 'two', 3 ] },
+			{ answer: 'function', value: function() { return 'banana'; } },
+			{ answer: 'regex', value: /\bun\B/g },
+			{ answer: 'number', value: 3.14159 },
+			{ answer: 'boolean', value: true },
+			{ answer: 'date', value: new Date() },
+		];
+		// Fisher-Yates shuffle (in-place)
+		Object.defineProperty(Array.prototype, 'shuffle', {
+			enumerable: false,
+			value: function() {
+				var currentIndex = this.length,
+					temporaryValue,
+					randomIndex;
+				// while there remain elements to shuffle...
+				while (0 !== currentIndex) {
+					// pick a remaining element...
+					randomIndex = Math.floor(Math.random() * currentIndex);
+					currentIndex -= 1;
+
+					// and swap it with the current element.
+					temporaryValue = this[currentIndex];
+					this[currentIndex] = this[randomIndex];
+					this[randomIndex] = temporaryValue;
+				}
+			}
+		});
+		mysteryVals.shuffle();
+		var currentValue;
+		var correctAnswers = 0;
+		$('._replacement[data-var="totalQuestions"]').text(mysteryVals.length);
+
+		window.getMysteryVal = function() {
+			exercise.stepNext();
+			currentValue = mysteryVals.pop();
+			return currentValue.value;
+		};
+
+		window.guess = function(guess) {
+			if(!currentValue) {
+				console.log("Whoops!  You need to get a mystery value first.  Type 'var x = getMysteryVal()'.");
+				return;
+			}
+			if(typeof guess!=='string') {
+				console.log("Whoops!  Make sure you enter your guess as a string.");
+				return;
+			}
+			guess = guess.trim().toLowerCase();
+			if(guess===currentValue.answer) exercise.stepTo(4);
+			else exercise.stepTo(5);
+		};
+
+		$(document).on('exercise-step-change', function(evt, exerciseEvt) {
+			if(exerciseEvt.step===4) {
+				$('._replacement[data-var="correctAnswers"]').text(++correctAnswers);
+			}
+		});
+	});
+</script>

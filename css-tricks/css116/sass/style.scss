@@ -1,0 +1,30 @@
+/**
+ * Using calc() in <integer>
+ * If yellow underneath green and blue: No calc() support
+ * If yellow above green and below blue: Multiplication OK, division dropped
+ * If yellow on top of both green and blue: calc() fully supported 
+ */
+
+div {
+	background: yellowgreen;
+	border: 1px solid;
+	position: absolute;
+	z-index: 1;
+	width: 200px; height: 200px;
+}
+
+div:nth-child(2) {
+	left: 40px; top: 40px; 
+	z-index: 2;
+}
+div:nth-child(3) { 
+	left: 80px; top: 80px; 
+	background: #4ac;
+	z-index: 3;
+}
+
+div:first-child { 
+	background: yellow;
+	z-index: calc(1 * 3); /* Works in Chrome, Safari, Firefox, Edge */
+	z-index: calc(8 / 2); /* Doesn't work */
+}
