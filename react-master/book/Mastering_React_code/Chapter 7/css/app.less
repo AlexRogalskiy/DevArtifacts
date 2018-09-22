@@ -1,0 +1,136 @@
+@import "vendor/normalize.less";
+@import "mixins.less";
+@import "colors.less";
+
+html, body {
+	font-family: 'Open Sans' sans-serif;
+	height: 100%;
+	* {
+		font-family: 'Open Sans' sans-serif;
+	}
+}
+
+a {
+	cursor: pointer;
+}
+
+// layout
+.app-container {
+	height: 100%;
+
+	.app-header {
+		position: absolute;
+		top: 0;
+		height: 40px;
+		width: 100%;
+		min-width: 800px;
+		z-index: 100;
+	}
+	main {
+		width: 100%;
+		min-width: 800px;
+		height: ~'calc(100% - 40px)';
+		position: absolute;
+		top: 40px;
+		//padding: 40px 0 0 0;
+
+		&>* {
+			overflow-y: auto;
+			height: 100%;
+			width: 100%;
+		}
+	}
+}
+
+// standard across application
+fieldset {
+	border: none;
+
+	legend {
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		text-align: center;
+		margin: 10px 0;
+	}
+
+	.basic-input {
+		width: 100%;
+	}
+
+	button[type=submit] {
+		float: right;
+		margin: 20px 0 0 0;
+	}
+}  
+
+hr {
+	width: 50px;
+	content: '';
+	position: relative;
+
+	border-width: 0 0 0 0;
+	height: 20px;
+
+	&:before {
+		position: absolute;
+		display: block;
+	color: #aaa;
+		content: '§';
+		font-size: 18px;
+		transform: scaleX(6) rotateZ(-90deg) ;
+		height: 10px;
+		font-weight: 100;
+		line-height: 10px;
+		width: 20px;
+		text-align: center;
+		left: 50%;
+		margin-left: -10px;
+		top: 5px;
+	}
+} 
+
+button {
+	background-color: #bbb;
+	color: black;
+
+	line-height: 40px;
+	text-transform: uppercase;
+	font-size: 12px;
+	letter-spacing: 1px;
+	padding: 0 10px;
+	border: none;
+	outline: none;
+
+	&[type="submit"] {
+		background-color: darken(@blue, 20%);
+		color: white;
+
+		&:focus,&:hover {
+			background: #000099;
+		} 
+	}
+
+	box-shadow: 1px 3px 2px 0px #666;
+
+	transition: transform 100ms ease, box-shadow 100ms ease;
+
+	&:active {
+		transform: translateY(2px);
+		box-shadow: 1px 1px 2px 0px #666;
+	}
+}
+
+@import "components/basicInput.less";
+@import "components/loader.less";
+
+@import "components/users/view.less";
+
+@import "views/login.less";
+@import "views/appHeader.less";
+
+@import "views/users/edit.less";
+@import "views/users/list.less";
+@import "views/users/view.less";
+
+@import "vendor/quill.snow.less";
+
