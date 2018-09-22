@@ -1,0 +1,109 @@
+html *, body * {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, arial;
+}
+header {
+    background-color: #dcdcdc;
+    box-shadow: 0 1px 4px #666;
+    height: 40px;
+    line-height: 40px;
+}
+header h1 {
+    margin: 0;
+    padding: 0 0 0 50px;
+    font-size: 16px;
+    display: inline;
+}
+header > nav {
+    display: inline-block;
+    float: right;
+    margin: 0 80px 0 0;
+}
+header > nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+header > nav li {
+    display: inline-block;
+    position: relative;
+}
+header > nav li > label {
+    display: block;
+    color: #44e;
+    cursor: pointer;
+    padding: 0 10px;
+    /* prevent text selection */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+header > nav li > label:hover {
+    background-color: #eee;
+}
+main {
+    padding: 50px;
+}
+.popover-component {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    margin-left: -80px;
+    font-size: 12px;
+    width: 160px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid gray;
+    box-shadow: 1px 2px 4px gray;
+    line-height: 12px;
+    padding: 10px;
+}
+.popover-component:before, .popover-component::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    transform: rotateZ(-45deg);
+    top: -9px;
+    left: 50%;
+    margin-left: -15px;
+    
+    background-color: white;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    border-color: gray;
+}
+.popover-component ul {
+    list-style: square inside;
+    padding: 5px 10px;
+}
+.popover-component li {
+    display: list-item;
+    white-space: nowrap;
+}
+.popover-component strong {
+    white-space: nowrap;
+}
+
+/* ReactCSSTransitionGroup Animation styles*/
+.popoveranim-enter {
+    opacity: 0.01;
+    transform: translateY(10px);
+}
+
+.popoveranim-enter.popoveranim-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: opacity .3s ease, transform .3s ease;
+}
+
+.popoveranim-leave {
+    opacity: 1;
+}
+
+.popoveranim-leave.popoveranim-leave-active {
+    opacity: 0.01;
+    transition: opacity .3s ease;
+}

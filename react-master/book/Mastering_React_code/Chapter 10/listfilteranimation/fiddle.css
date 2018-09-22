@@ -1,0 +1,30 @@
+.super-fly-list-component .measure {
+  position: absolute;
+  left: -9999px;
+}
+.super-fly-list-component {
+  position: relative;
+}
+.super-fly-list-component li {
+  position: absolute;
+  transition: opacity .3s ease, transform .3s ease, top .1s ease;
+}
+
+/* ReactCSSTransitionGroup Animation styles*/
+.superfly-enter {
+  opacity: 0.01;
+  transform: translateX(-100px);
+}
+.superfly-enter.superfly-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition-delay: 0.25s; /* wait a bit for space to be made */
+}
+.superfly-leave {
+  opacity: 1;
+  transform: translateX(0px);
+}
+.superfly-leave.superfly-leave-active {
+  opacity: 0.01;
+  transform: translateX(100px);
+}
