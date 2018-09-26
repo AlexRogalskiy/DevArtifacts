@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="single-gallery">
+            {# todo pagination or lazy load #}
+
+            <h1 class="single-gallery__name">
+                {{ gallery.name }}
+            </h1>
+
+            <div class="single-gallery__description">
+                {{ gallery.description|markdown|raw }}
+            </div>
+
+            {% if canEdit %}
+                <div class="my-2 clearfix">
+                    <a href="{{ url('gallery.edit', {id: gallery.id}) }}" class="float-right">
+                        Edit gallery
+                    </a>
+                </div>
+            {% endif %}
+
+            <div class="single-gallery__items-container">
+                {% for image in gallery.images %}
+
+                    <div class="single-gallery__item card">
+
+                        {% autoescape false %}
+                            <img src="{{ image|getImageUrl(250) }}" alt="{{ image.originalFilename }}"
+                                 data-srcset="{{ image|getImageSrcset }}"
+                                 class="single-gallery__item-image card-img-top">
+                        {% endautoescape %}
+
+                        <div class="card-body">
+                            <div class="card-text single-gallery__item-description">
+                                {% if image.description is not empty %}
+                                    {{ image.description|markdown|raw }}
+                                {% else %}
+                                    <i>- No image description provided -</i>
+                                {% endif %}
+                            </div>
+
+                            {% if canEdit %}
+                                <div class="my-2">
+                                    <a href="{{ url('image.edit', {id: image.id}) }}">
+                                        Edit
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="single-gallery__related">
+                {{ renderRelatedGalleries(gallery, 5) }}
+            </div>
+
+            <div class="single-gallery__newest">
+                {{ renderNewestGalleries(5) }}
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="modal single-gallery__modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            $('.single-gallery__item-image').on('click', function () {
+                var src = $(this).attr('src');
+                var srcset = $(this).attr('data-srcset');
+                var $modal = $('.single-gallery__modal');
+                var $modalBody = $modal.find('.modal-body');
+
+                $modalBody.html('');
+                $modalBody.append($('<img src="' + src + '" srcset="' + srcset + '" class="single-gallery__modal-image">'));
+                $modal.modal({});
+            });
+        })
+    </script>
+{% endblock %}

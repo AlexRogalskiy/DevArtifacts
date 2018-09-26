@@ -1,0 +1,1 @@
+docker run --rm -v `pwd`:/var/siege:ro -t yokogawa/siege -i --file=/var/siege/galleries.txt -d1 -c50 -t1M

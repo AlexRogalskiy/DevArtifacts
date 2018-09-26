@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Sitepoint Image Blog!{% endblock %}</title>
+
+    {% block stylesheets %}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+              integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+              crossorigin="anonymous">
+
+        <link rel="stylesheet" href="{{ asset('assets/main.css') }}">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/dropzone.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    {% endblock %}
+
+</head>
+<body>
+{% block body %}
+
+    {% block header %}
+        {% include 'partials/header.html.twig' %}
+    {% endblock header %}
+
+    {% block flashMessages %}
+        {% set flashes = app.flashes(['warning', 'info','notice', 'error', 'success']) %}
+        {% if flashes|length > 0 %}
+            <div class="container">
+                {% for label, messages in flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock content %}
+
+{% endblock %}
+
+{% block javascripts %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+            integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+            crossorigin="anonymous"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/dropzone.js"></script>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        var markdownEditors = [];
+        $(function () {
+            $('.markdown-textarea').each(function () {
+                var simplemde = new SimpleMDE({element: $(this).get(0)});
+                markdownEditors.push(simplemde);
+            });
+        });
+    </script>
+
+{% endblock %}
+</body>
+</html>

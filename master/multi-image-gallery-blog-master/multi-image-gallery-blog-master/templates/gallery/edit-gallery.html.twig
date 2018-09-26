@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="gallery-edit">
+            <div class="gallery-edit__form">
+
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+
+                <button type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+
+                {{ form_end(form) }}
+
+            </div>
+
+            <div>
+                <a class="gallery-edit__delete-gallery-cta text-danger" href="javascript:void(0);"
+                   data-href="{{ url('gallery.delete', {id: gallery.id}) }}">
+                    Delete gallery
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('.gallery-edit__delete-gallery-cta').on('click', function (e) {
+                var isConfirmed = confirm('Are you sure?');
+
+                if (!isConfirmed) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    return false;
+                }
+
+                window.location = $(this).attr('data-href');
+            });
+        });
+    </script>
+{% endblock %}

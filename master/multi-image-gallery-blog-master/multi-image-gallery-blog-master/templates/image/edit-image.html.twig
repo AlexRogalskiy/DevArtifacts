@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('gallery.single-gallery', {id: image.gallery.id}) }}">{{ image.gallery.name }}</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{ image.originalFilename }}</li>
+            </ol>
+        </nav>
+
+        <div class="image-edit">
+            <div class="image-edit__image">
+                <img src="{{ image|getImageUrl }}" alt="{{ image.originalFilename }}">
+            </div>
+
+            <div class="image-edit__form">
+
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+
+                <button type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+
+                {{ form_end(form) }}
+
+            </div>
+
+            <div>
+                <a class="image-edit__delete-image-cta text-danger" href="javascript:void(0);"
+                   data-href="{{ url('image.delete', {id: image.id}) }}">
+                    Delete image
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('.image-edit__delete-image-cta').on('click', function (e) {
+                var isConfirmed = confirm('Are you sure?');
+
+                if (!isConfirmed) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    return false;
+                }
+
+                window.location = $(this).attr('data-href');
+            });
+        });
+    </script>
+{% endblock %}

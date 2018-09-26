@@ -1,0 +1,15 @@
+<template name="board">
+  <table id="board">
+    {{#each sideLength}}
+      {{#let rowIndex=@index}}
+      <tr>
+        {{#each sideLength}}
+        <td class="field" id="{{rowIndex}}{{@index}}">
+          {{{isMarked rowIndex @index}}}
+        </td>
+        {{/each}}
+      </tr>
+      {{/let}}
+    {{/each}}
+  </table>
+</template>

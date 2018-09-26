@@ -1,0 +1,24 @@
+<div class="gallery card" data-id="{{ gallery.id }}">
+
+    <a class="gallery__link" href="{{ url('gallery.single-gallery', {id: gallery.id}) }}">
+        <img src="{{ gallery.images.first|getImageUrl('250') }}"
+             alt="{{ gallery.name }}"
+             class="gallery__leading-image card-img-top">
+    </a>
+
+    <div class="card-body">
+        <h1 class="card-text gallery__name">
+            {{ gallery.name }}
+        </h1>
+
+        <div class="card-text gallery__images-count">
+            {{ gallery.images.count }} images
+        </div>
+
+        <div class="card-text gallery__user">
+            by {{ gallery.user.email }}
+        </div>
+
+    </div>
+
+</div>

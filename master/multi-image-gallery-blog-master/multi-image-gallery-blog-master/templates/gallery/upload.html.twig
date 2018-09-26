@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Upload images</h1>
+
+        <div class="gallery-upload">
+
+            <div class="form-group">
+                <label for="galleryName">Gallery name</label>
+                <input type="text" class="form-control gallery-upload__gallery-name"
+                       id="galleryName"
+                       placeholder="Enter gallery name">
+            </div>
+
+            <label>Images</label>
+            <div class="gallery-upload__dropzone dropzone"></div>
+
+            <label>Description</label>
+            <textarea class="gallery-upload__description"></textarea>
+
+            <a href="javascript:void(0);" class="btn btn-primary gallery-upload__upload-cta">
+                Save
+            </a>
+
+        </div>
+
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        Dropzone.autoDiscover = false;
+
+        $(function () {
+
+            var responses = [];
+
+            var $galleryName = $('.gallery-upload__gallery-name');
+            var simplemde = new SimpleMDE({element: $(".gallery-upload__description")[0]});
+            $(".gallery-upload__dropzone").dropzone({
+                url: "{{ url('upload.process') }}",
+                paramName: "file",
+                maxFilesize: 4,
+                maxFiles: 6,
+                parallelUploads: 6,
+                acceptedFiles: 'image/*',
+                autoProcessQueue: false,
+                uploadMultiple: true,
+                init: function () {
+                    myDropzone = this;
+
+                    this.on("success", function (file, response) {
+                        myDropzone.options.autoProcessQueue = true;
+                        responses.push(response);
+                    });
+
+                    this.on("queuecomplete", function () {
+                        myDropzone.options.autoProcessQueue = false;
+                    });
+
+                    this.on("sending", function (file, xhr, data) {
+                        data.append("description", simplemde.value());
+                        data.append("name", $('.gallery-upload__gallery-name').val());
+                    });
+
+                    this.on("completemultiple", function () {
+                        // Pretty naive appreach but will do the job for this example app
+
+                        if (responses[0]) {
+                            window.location = responses[0].redirectUrl;
+                        }
+                    });
+                }
+            });
+
+            var galleryDropzone = Dropzone.forElement(".gallery-upload__dropzone");
+            var $uploadCta = $('.gallery-upload__upload-cta');
+            $uploadCta.on('click', function () {
+                if (!$galleryName.val()) {
+                    alert('Gallery name is required');
+                    return;
+                }
+
+                if (galleryDropzone.getQueuedFiles() < 1) {
+                    alert('You have to upload at least 1 valid photo');
+                    return;
+                }
+
+                galleryDropzone.processQueue();
+            });
+
+        });
+    </script>
+{% endblock %}
