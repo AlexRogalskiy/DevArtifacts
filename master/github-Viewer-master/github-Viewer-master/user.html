@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" ng-app="githubViewer">
+<head>
+<meta charset="UTF-8">
+<title>User information from github</title>
+
+<!-- Bootstrap -->
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container" ng-controller="mainController">
+	<!-- header -->
+	<div class="row">
+		<h1 class="text-center">Viewer<small>&nbsp;github<span ng-show="countdown">, search in {{ countdown }}</span></small></h1>
+		
+		<div class="col-md-10">	
+		<form class="form-inline" role="form" name="searchUser" ng-submit="search(username)">
+			<div class="form-group">
+				<input type="search" class="form-control" required placeholder="username" ng-model="username">
+			</div>
+			<button type="submit" class="btn btn-default">Search</button>
+		</form>
+		
+		</div>
+		<!-- Sorting -->
+		<div class="col-md-2 pull-right">
+			<select ng-model="repoSortOrder" class="form-control">
+				<option value="name">name</option>
+				<option value="language">language</option>
+				<option value="-stargazers_count" selected="selected">stars</option>
+				<option value="-created_at" selected="selected">date</option>
+			</select>
+		</div>
+		<!-- error message when user not found -->
+		<div class="row">
+			<p class="bg-info error_message" ng-show="error_message">{{ error_message }}</p>
+		</div>
+		<!-- Sorting (end-block) -->
+	</div>
+	<hr>
+
+	<div class="row" ng-show="user">
+	<!-- User information -->
+	<div class="col-md-2" id="user_details">
+				
+		<dl>
+			<dt ng-show="user.name">Name</dt>
+				<dd>{{ user.name }}</dd>
+			<dt ng-show="user.location">location</dt>
+				<dd>{{ user.location }}</dd>
+			<dt>Avatar</dt>
+				<dd><img ng-src="{{ user.avatar_url }}" width="80"></img></dd>
+			<dt ng-show="user.blog">Site url</dt>
+				<dd><a href="http://{{ user.blog }}">{{ user.blog }}</a></dd>
+			<dt>Date creation</dt>
+				<dd>{{ user.created_at | date:'short' }}</dd>
+			<dt>Public repos count</dt>
+				<dd>{{ user.public_repos }}</dd>
+		</dl>
+
+	</div>	
+		<!-- User information (end-block) -->
+		
+		
+		<!-- Repos information -->
+		<div class="col-md-10" ng-show="repos">			
+			
+
+			<!-- Table for repos -->
+			<table class="table table-striped">				 
+				<thead>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Stars</th>
+					<th>Language</th>
+					<th>Creation Date</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="repo in repos | orderBy:repoSortOrder">
+						<td class="col-md-3"><a href="{{ repo.html_url }}">{{ repo.name }}</a></td>
+						<td class="col-md-5">{{ repo.description }}</td>
+						<td class="col-md-1">{{ repo.stargazers_count }}</td>
+						<td class="col-md-1">{{ repo.language }}</td>
+						<td class="col-md-2">{{ repo.created_at  | date:'short' }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- Table for repos (end-block) -->
+		<!-- Repos information  (end-block) -->	
+		</div>	
+	</div>
+</div>
+
+<!-- AngularJS -->
+<script src="angular.min.js"></script>	
+<script src="ng-github-viewer.js"></script>
+<script src="github.js"></script>
+<!-- AngularJS (end-block) -->	
+</body>
+</html>
