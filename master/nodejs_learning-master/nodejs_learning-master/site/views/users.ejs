@@ -1,0 +1,29 @@
+<% layout('boilerplate') -%>
+<% block('title', 'Users') %>
+<h2>Users list,<small>&nbsp;counter: <%= users.length %></small></h2>
+
+<div class="row">
+    
+    <p><input type="search" placeholder="Search" class="form-control" ng-model="search" autofocus></p>
+
+    <!-- users grid -->
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Hash</th>
+            <th>Date</th>        
+        <thead>
+        <tbody>
+            <% users.forEach(function (user) { %>
+                <tr>
+                    <td><%=  user._id %></td>
+                    <td><a href="/users/<%=  user._id %>"><strong><%=  user.name %></strong></a></td>
+                    <td><%=  user.hash %></td>
+                    <td><span class="label big-label label-primary"><%= moment(user.created).format("Do MMM YYYY") %></span></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <!-- users grid -->
+</div>

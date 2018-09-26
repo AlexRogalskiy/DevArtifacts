@@ -1,0 +1,1 @@
+mocha -w test/*.js index.js

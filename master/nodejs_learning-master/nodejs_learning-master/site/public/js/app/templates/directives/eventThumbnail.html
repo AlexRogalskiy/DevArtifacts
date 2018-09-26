@@ -1,0 +1,13 @@
+<div class="panel panel-default panel-primary event-width">
+    <div class="panel-heading" ng-click="deleteUser(event._id)">{{ event.name | lowercase }}</div>
+    
+    <div class="panel-body">
+        {{ event._id }}
+    </div>
+    
+    <div class="panel-footer">
+        <span class="glyphicon glyphicon-minus votes-cursor" ng-click="downVote(event)"></span>
+            votes: <span class="badge">{{ event.created | date:'short' }}</span>
+        <span class="glyphicon glyphicon-plus votes-cursor" ng-click="upVote(event)"></span>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node chat</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="content"></div> 
+    <form action="" id="form">
+            <input type="text" id="field">
+            <input type="submit" id="send" value="send">
+        </form>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+window.onload = function(){
+    var messages = [],
+        field = getElementById('field'),
+        form = getElementById('form'),
+        content = getElementById('content'),
+        socket = io.connect('http://localhost:5000');
+
+    form.onsubmit = function(){
+        var text = field.value;
+        socket.emit('send', { message: text });
+        return false;        
+    };
+    
+    socket.on('message', function(data){
+        if (data.message) {
+            messages.push(data.message);
+            var html = '';
+            for (var i = 0; i < messages.length; i++) {
+                html += messages[i] + '<br/>';
+            }
+            content.innerHTML = html;
+        }
+
+    });
+};
+  
+</script>     
+</body>
+</html>

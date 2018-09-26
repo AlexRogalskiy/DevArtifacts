@@ -1,0 +1,52 @@
+<html ng-app="app">
+<head>
+    <title>1</title>
+    <link rel="stylesheet" href="../public/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/vendor/bootstrap/dist/css/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/css/style.css">
+    
+  </head>
+<body>
+<div class="starter-template" ng-controller="eventsCtrl"> 
+    <h2>Events</h2>
+    <hr>
+    
+
+    <div class="row" style="margin-bottom:30px;">
+        <select class="form-control" ng-model="sortOrder">
+            <option name="title">Title</option>
+            <option name="-votes">Votes</option>       
+        </select>        
+    </div>        
+    
+    <div class="row">
+        <div class="panel panel-default panel-primary event-width" ng-repeat="event in events | orderBy:sortOrder">
+            <div class="panel-heading">{{ event.title | lowercase }}</div>
+            <div class="panel-body">
+                {{ event.body }}
+            </div>
+            <div class="panel-footer">
+                <span class="glyphicon glyphicon-minus votes-cursor" ng-click="downVote(event)"></span>
+                    votes: <span class="badge">{{ event.votes }}</span>
+                <span class="glyphicon glyphicon-plus votes-cursor" ng-click="upVote(event)"></span>
+            </div>
+        </div> 
+    </div>
+    
+    <!-- jQuery -->
+<script src="../public/vendor/jquery/dist/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<!-- Angular -->
+<script src="../public/vendor/angular/angular.min.js"></script>
+<script src="../public/vendor/angular-resource/angular-resource.min.js"></script>
+<script src="../public/vendor/angular-route/angular-route.min.js"></script>
+
+<!-- Custom -->
+<script src="../public/js/app/app.js"></script>
+<script src="../public/js/app/controllers/eventsCtrl.js"></script>
+</div>
+</body>
+</html>
