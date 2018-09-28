@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tic-Tac-Toe</title>
+<meta name="description" content="Tic Tac Toe">
+<meta name="keywords" content="tic-tac-toe javascript">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" language=javascript><!--
+var cells;
+var cmove = -1;
+var self;
+
+function connect() {
+  var host = location.origin.replace(/^http/, 'ws')
+  var ws = new WebSocket( host + '/all');
+  console.log( "connecting to ", host );
+  document.ws = ws;
+
+  ws.onmessage = processMsg;
+  ws.onclose = onclose;
+}
+
+function onclose() {
+  appendUpdate( "Game closed due to error" );
+}
+
+function processMsg( msg ) {
+  console.log( "received msg ", msg.data );
+  msg = JSON.parse( msg.data );
+  var path = msg.path;
+  msg = msg.body;
+
+  var showmsg;
+  switch( path ) {
+    case "/players" : {
+      if( msg.count < 2 )
+        showmsg = "Waiting for opponent ...";
+      else if( msg.count > 2 )
+        showmsg = "Game going on. Waiting for it to finish ...";
+      break;
+    }
+    case "/start": {
+      if( cmove > -1 ) {
+        console.error( "game has already started ... bad msg");
+        return;
+      }
+
+      self = msg.player;
+      ++cmove;
+      if( msg.player ) {
+        showmsg = "Game started ... waiting for player 1 move";
+      } else {
+        showmsg = "Game started ... Make a move";
+      }
+      break;
+    }
+    case "/move": {
+      ++cmove;
+      move( cells[msg.move], self ? 0 : 1 );
+      if( msg.state !== undefined )
+        showWinState( msg.state, msg.win, self );
+      break;
+    }
+    case "/end": {
+      if( cmove < 0 ) {
+        console.error( "game has not started ... bad msg");
+        return;
+      }
+      showWinState( msg.state, msg.win, self );
+      break;
+    }
+    default: {
+      console.error( "unknown msg");
+      break;
+    }
+  }
+  if( showmsg )
+    appendUpdate( showmsg );
+}
+
+function appendUpdate( msg ) {
+  console.log( msg );
+  var li = document.createElement('li');
+  li.innerHTML = msg;
+  document.querySelector('#updates').appendChild(li);
+}
+
+function showWinState( state, win, self ) {
+  var showmsg;
+  switch( state ) {
+    case -2 :
+      showmsg = "Game ended, error from other player";
+      break;
+    case 2 :
+      showmsg = "Game Drawn";
+      break;
+    default :
+      showmsg = "Game won by " + (state === self ? "<b>Self</b>" : "<b>Other</b>");
+      showWin( win );
+      break;
+  }
+  appendUpdate( showmsg );
+}
+
+function showWin( cis ) {
+  cis.forEach( ci => cells[ci].style.backgroundColor = 'red' );
+}
+
+function makeCells(){
+  var b = document.board;
+  cells = new Array(b.c1,b.c2,b.c3,b.c4,b.c5,b.c6,b.c7,b.c8,b.c9);
+}
+
+function findCellIndex( cell ) {
+  console.log( "find ", cells, cell );
+  return cells.findIndex( c => c === cell );
+}
+
+function move(cell, other) {
+  if( cell.value !== '' ||
+    (other === undefined && cmove < 0) )
+    return;
+
+  if( other === undefined && cmove%2 !== self )
+    return;
+
+  var by = other !== undefined ? other : self;
+  cell.value = by ? 'O' : 'X';
+  if (cell.style){
+      cell.style.backgroundColor='green';
+  } else {
+      value = '*' + value + '*';
+  }
+
+  var ci = findCellIndex( cell );
+  if( other === undefined ) {
+    ++cmove;
+    document.ws.send( JSON.stringify( { path : '/move', body : { move : ci } }));
+    appendUpdate( "selected <b>" + ci + "</b>");
+  } else {
+    appendUpdate( "Received a move </b>" + ci + "</b>. Its your <i>turn</i>");
+  }
+}
+
+//--></script>
+<style type="text/css">
+body {
+ color:black;
+ background-color:white;
+ font-family:Tahoma,Verdana,Helvetica,Arial,sans-serif;
+}
+.cell {
+ background-color:green;
+ color:white;
+ font-size:2cm;
+ font-family:Courier New,Courier,monospaced;
+ font-weight:bold;
+}
+input.cell {
+ border:none;
+ width:2cm;
+ vertical-align:bottom;
+}
+td.cell {
+ border:thick green outset;
+}
+.board {
+ border:thin black ridge;
+ background-color:green;
+ margin-right:1cm;
+}
+.winstat {
+ color:black;
+ background-color:white;
+ border:none;
+}
+.player {
+ font-family:Courier New,Courier,monospaced;
+ font-weight:bold;
+ font-size:150%;
+}
+</style>
+
+</head>
+<body onload="connect();makeCells();">
+
+<noscript><p style="color:red;">You must enable javascript to be able to play tic-tac-toe.</p></noscript>
+<form name=board onsubmit="return false;">
+<table align=left class=board cellspacing=6>
+<tr>
+ <td class=cell><input class=cell name=c1 type=button accesskey=1 onclick="move(this);"></td>
+ <td class=cell><input class=cell name=c2 type=button accesskey=2 onclick="move(this);"></td>
+ <td class=cell><input class=cell name=c3 type=button accesskey=3 onclick="move(this);"></td>
+</tr><tr>
+ <td class=cell><input class=cell name=c4 type=button accesskey=4 onclick="move(this);"></td>
+ <td class=cell><input class=cell name=c5 type=button accesskey=5 onclick="move(this);"></td>
+ <td class=cell><input class=cell name=c6 type=button accesskey=6 onclick="move(this);"></td>
+</tr><tr>
+ <td class=cell><input class=cell name=c7 type=button accesskey=7 onclick="move(this);"></td>
+ <td class=cell><input class=cell name=c8 type=button accesskey=8 onclick="move(this);"></td>
+ <td class=cell><input class=cell name=c9 type=button accesskey=9 onclick="move(this);"></td>
+</tr>
+</table>
+</form>
+<h1>Updates</h1>
+<ul id='updates'></ul>
+</body>
+</html>
