@@ -1,0 +1,34 @@
+' CaptainCork.sb
+
+' Read three numbers from the user
+TextWindow.Write("Enter first number: ")
+a = TextWindow.ReadNumber()
+
+TextWindow.Write("Enter second number: ")
+b = TextWindow.ReadNumber()
+
+TextWindow.Write("Enter third number: ")
+c = TextWindow.ReadNumber()
+
+' Now, sort these numbers from smallest to largest
+If (a < b) Then                
+  If (a < c) Then          
+    If (b < c) Then       
+      TextWindow.WriteLine(a + "," + b + "," + c)
+    Else                  
+      TextWindow.WriteLine(a + "," + c + "," + b)
+    EndIf
+  Else                     
+    TextWindow.WriteLine(c + "," + a + "," + b)
+  EndIf
+Else                            
+  If (b < c) Then              
+    If (a < c) Then           
+      TextWindow.WriteLine(b + "," + a + "," + c)
+    Else                      
+      TextWindow.WriteLine(b + "," + c + "," + a)
+    EndIf
+  Else                         
+    TextWindow.WriteLine(c + "," + b + "," + a)
+  EndIf
+EndIf

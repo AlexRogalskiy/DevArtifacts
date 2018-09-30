@@ -1,0 +1,21 @@
+' FirstGUIApp.sb
+GraphicsWindow.DrawText(20, 20, "First name:")  ' Label
+fnText = Controls.AddTextBox(100, 20)           ' First name text box
+
+GraphicsWindow.DrawText(20, 60, "Last name:") ' Label
+lnText = Controls.AddTextBox(100, 60)         ' Last name text box
+
+showBtn = Controls.AddButton("Show Message", 280, 20) ' Button
+
+msgText = Controls.AddMultiLineTextBox(100, 100)      ' Message text box
+Controls.SetSize(msgText, 280, 80)        ' Makes width = 280 and height = 80
+
+Controls.ButtonClicked = OnButtonClicked  ' Handler for button click
+
+Sub OnButtonClicked
+  firstName = Controls.GetTextBoxText(fnText)   ' First name text box
+  lastName = Controls.GetTextBoxText(lnText)    ' Last name text box
+  fullName = firstName + " " + lastName         ' Constructs full name
+  message = "Hello there, " + fullName + "!"    ' Greeting message
+  Controls.SetTextBoxText(msgText, message)
+EndSub  

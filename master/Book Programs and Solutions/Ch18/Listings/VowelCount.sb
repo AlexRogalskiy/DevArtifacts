@@ -1,0 +1,14 @@
+' VowelCount.sb
+TextWindow.Write("Enter a sentence: ")  ' Prompts the user for text
+str = TextWindow.Read() ' Reads text entered by the user
+
+count = 0               ' Sets vowel count to 0 (so far)
+For N = 1 To Text.GetLength(str)        ' Checks all characters
+  ch = Text.GetSubText(str, N, 1)       ' Gets Nth character
+  ch = Text.ConvertToUpperCase(ch)      ' Makes it uppercase
+  If ((ch = "A") Or (ch = "E") Or (ch = "I") Or (ch = "O") Or (ch = "U")) Then
+    count = count + 1   ' If it finds a vowel, increments count
+  EndIf
+EndFor
+TextWindow.Write("Your sentence contains [") ' Shows result
+TextWindow.WriteLine(count + "] vowels.")

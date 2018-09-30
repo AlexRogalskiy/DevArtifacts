@@ -1,0 +1,25 @@
+' SnarfPizza4.sb
+TextWindow.Write("How many dollars do you have? ")
+myMoney = TextWindow.ReadNumber()
+
+If (myMoney >= 25) Then ' I have enough money
+  TextWindow.WriteLine("Is Snarf's Pizza Open?")
+  TextWindow.Write("Enter 1 (for open) or 2 (for closed): ")
+  status = TextWindow.ReadNumber()
+  
+  If (status = 1) Then ' Snarf's is open
+    TextWindow.WriteLine("You bought a delicious pizza!")
+  Else ' Snarf's is closed, so you'll go to LongLine
+    TextWindow.WriteLine("Snarf's is closed. Try LongLine Grocery.")
+    hasPizza = Math.GetRandomNumber(2) ' Checks your luck
+    If (hasPizza = 1) Then
+      TextWindow.WriteLine("You got a frozen pizza!")
+    Else
+      TextWindow.WriteLine("You got a bag of frozen chicken wings!")
+    EndIf
+  EndIf
+Else ' I don't have enough money
+  TextWindow.Write("Go to Steve's house for dinner ")
+  TextWindow.WriteLine("(it's earthworm pizza night).")
+EndIf
+TextWindow.WriteLine("Time to go home!")

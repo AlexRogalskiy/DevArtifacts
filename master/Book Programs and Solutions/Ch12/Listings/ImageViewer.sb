@@ -1,0 +1,21 @@
+' ImageViewer.sb
+GraphicsWindow.DrawText(10, 14, "Search for an image:")
+tagText = Controls.AddTextBox(140, 10)
+Controls.SetSize(tagText, 160, 26)
+Controls.AddButton("Next", 305, 10)
+
+Controls.ButtonClicked = OnButtonClicked
+
+Sub OnButtonClicked
+  tag = Controls.GetTextBoxText(tagText)
+  If (tag <> "") Then
+    img = ImageList.LoadImage(Flickr.GetRandomPicture(tag))
+    If (img = "") Then
+      GraphicsWindow.ShowMessage("No images found.", "Sorry.")
+    Else
+      GraphicsWindow.Width = ImageList.GetWidthOfImage(img)
+      GraphicsWindow.Height = ImageList.GetHeightOfImage(img) + 40
+      GraphicsWindow.DrawImage(img, 0, 40)
+    EndIf
+  EndIf
+EndSub      

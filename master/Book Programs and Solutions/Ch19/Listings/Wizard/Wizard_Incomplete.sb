@@ -1,0 +1,20 @@
+' Wizard_Incomplete.sb
+TextWindow.Title = "MATH  WIZARD"
+TextWindow.WriteLine("========== MATH  WIZARD ==========")
+TextWindow.WriteLine("Press Enter after each instruction")
+TextWindow.WriteLine("==================================")
+TextWindow.WriteLine("")
+
+puzzle = File.GetFiles(Program.Directory) ' Stores filenames into an array
+
+For P = 1 to Array.GetItemCount(puzzle)
+  path = puzzle[P]                        ' File in the app's directory
+  If (Text.EndsWith(path, ".txt") = "True") Then
+    DoPuzzle()
+  EndIf
+EndFor
+TextWindow.WriteLine("The game was won, the math was fun, and the magic is done!")
+TextWindow.WriteLine("There is one Math Wizard to rule them all! Bye!")
+
+Sub DoPuzzle
+EndSub

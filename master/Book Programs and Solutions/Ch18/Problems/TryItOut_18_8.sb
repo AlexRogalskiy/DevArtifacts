@@ -1,0 +1,36 @@
+' TryItOut_18_8.sb
+
+words = "1=mountain;2=valley;3=house;4=college;5=program;6=mirror;7=instruction;8=preface;9=processing;10=operator;11=information;12=conversion;13=graphical;14=interface;15=decision;16=comment;17=variable;18=search;19=argument;20=function;21=object;22=animation;"
+
+While ("True")
+  strIn = words[Math.GetRandomNumber(Array.GetItemCount(words))]
+  
+  strX = strIn      ' Prepares the input
+  InsertRandChar()  ' Adds the first random character
+  
+  strX = strY       ' Prepares the input
+  InsertRandChar()  ' Adds the second random character
+  strOut = strY
+  
+  TextWindow.Write("Enter correct spelling for [" + strOut + "]: ")
+  ans = TextWindow.Read()
+  ans = Text.ConvertToLowerCase(ans)    
+  If (ans = strIn) Then
+    TextWindow.WriteLine("Good Job!")
+  Else
+    TextWindow.WriteLine("Incorrect. It is " + strIn + ".")
+  EndIf    
+  TextWindow.WriteLine("")   
+EndWhile
+
+' This subroutine inserts a random character into the input string
+' Input: strX
+' Output: strY
+Sub InsertRandChar
+  randChar = Text.GetCharacter(96 + Math.GetRandomNumber(26))
+  charPos = Math.GetRandomNumber(Text.GetLength(strX))
+  
+  strY = Text.GetSubText(strX, 1, charPos - 1)
+  strY = Text.Append(strY, randChar)
+  strY = Text.Append(strY , Text.GetSubTextToEnd(strX, charPos))
+EndSub

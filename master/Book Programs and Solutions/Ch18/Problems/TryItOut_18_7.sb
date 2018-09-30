@@ -1,0 +1,17 @@
+' TryItOut_18_7.sb
+
+TextWindow.Title = "Inverse Pig Latin"
+
+While ("True")
+  TextWindow.Write("Enter a pig latin word: ")
+  pigLatin = TextWindow.Read()
+  
+  len = Text.GetLength(pigLatin)
+  word = Text.GetSubText(pigLatin, 1, len-3)
+  first = Text.GetSubText(pigLatin, len-2, 1)
+  
+  word = Text.Append(first, word)
+  
+  TextWindow.WriteLine("The original word is: " + word)
+  TextWindow.WriteLine("")
+EndWhile

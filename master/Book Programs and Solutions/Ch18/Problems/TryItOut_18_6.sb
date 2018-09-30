@@ -1,0 +1,20 @@
+' TryItOut_18_6.sb
+
+Again:
+TextWindow.WriteLine("")
+TextWindow.Write("Enter a number: ")
+num = TextWindow.ReadNumber()
+
+len = Text.GetLength(num)
+rev = ""
+For N = len To 1 Step -1
+  rev = Text.Append(rev, Text.GetSubText(num, N, 1))
+EndFor
+
+If (num = rev) Then
+  TextWindow.WriteLine(num + " is a palindrome.")    
+Else
+  TextWindow.WriteLine(num + " isn't a palindrome.")
+EndIf
+
+Goto Again

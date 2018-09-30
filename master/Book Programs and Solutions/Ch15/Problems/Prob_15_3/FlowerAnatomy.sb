@@ -1,0 +1,43 @@
+' FlowerAnatomy.sb
+' Implements a flower anatomy quiz 
+
+GraphicsWindow.Title = "Flower Anatomy Quiz"
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+
+part = "1=Anther;2=Filament;3=Ovary;4=Ovule;5=Petal;6=Recepticle;7=Sepal;8=Stigma;9=Style"
+correctAns = "1=b;2=g;3=e;4=h;5=a;6=f;7=i;8=c;9=d"
+path = Program.Directory
+bkgndImg = path + "\Background.png"
+yesImg  = path + "\Yes.png"
+noImg = path + "\No.png"
+
+CreateGUI()    ' Creates the user interface
+Controls.ButtonClicked = OnButtonClicked
+
+Sub CreateGUI 
+  GraphicsWindow.DrawImage(bkgndImg, 0, 0)
+  
+  For N = 1 To 9
+    yPos = 20 + (N - 1) * 30
+    edit[N] = Controls.AddTextBox(370, yPos)
+    Controls.SetSize(edit[N], 25, 25)    
+    GraphicsWindow.DrawText(400, yPos + 5, part[N])
+  EndFor
+  
+  Controls.AddButton("Check", 370, 300)
+EndSub
+
+Sub OnButtonClicked
+  For N = 1 To 9
+    yPos = 20 + (N - 1) * 30   
+    ans = Controls.GetTextBoxText(edit[N])
+    ans = Text.ConvertToLowerCase(ans)
+    If (ans = correctAns[N]) Then
+      GraphicsWindow.DrawImage(yesImg, 350, yPos)
+    Else
+      GraphicsWindow.DrawImage(noImg, 350, yPos)        
+    EndIf        
+  EndFor  
+EndSub

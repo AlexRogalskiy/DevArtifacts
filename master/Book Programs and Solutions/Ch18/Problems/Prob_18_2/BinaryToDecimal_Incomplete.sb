@@ -1,0 +1,76 @@
+' BinaryToDecimal_Incomplete.sb
+' Converts an 8-bit binary number to decimal
+
+' Sets up the graphics window
+GraphicsWindow.Title = "Binary To Decimal"
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+
+' Sets up the text window
+TextWindow.Title = "Binary To Decimal"
+TextWindow.BackgroundColor = "White"
+TextWindow.ForegroundColor = "Black"
+TextWindow.Left = GraphicsWindow.Left + GraphicsWindow.Width
+TextWindow.Top = GraphicsWindow.Top
+TextWindow.Clear()
+
+path = Program.Directory
+offImg = path + "\Off.png"   ' Image for binary zero
+onImg = path + "\On.png"     ' Image for binary one
+
+' Draws the background image
+GraphicsWindow.DrawImage(path + "\Bkgnd.png", 0, 0)
+
+' Adds the text box to show the result of the conversion (the decimal number)
+GraphicsWindow.FontSize = 24
+txtID = Shapes.AddText("")
+Shapes.Move(txtID, 160, 210)
+
+' Starts the program's main loop
+While ("True")
+  GetInput()  ' Gets an 8-bit binary number from the user
+  
+  ' Draws 8 zeros on the interface
+  For N = 1 To 8
+    xPos = 30 + ((N - 1) * 60)    
+    GraphicsWindow.DrawImage(offImg, xPos - 23, 80)
+  EndFor    
+  
+  decimal = 0              ' Result of conversion
+  weight = 1               ' Weight of rightmost digit  
+  xPos = 450               ' Center of rightmost digit (for drawing)
+  For N = Text.GetLength(strIn) To 1 Step -1
+    digit = Text.GetSubText(strIn, N, 1)
+    If (digit = "1") Then  ' Replaces the 0 image with a 1
+      GraphicsWindow.DrawImage(onImg, xPos - 23, 80)
+      decimal = decimal + weight
+    EndIf 
+    weight = weight * 2    ' Weight of the next digit (to the left)
+    xPos = xPos - 60       ' x position of the next image
+  EndFor 
+  
+  ' Constructs the result of the conversion and displays it
+  result = strIn + " = " + decimal
+  Shapes.SetText(txtID, result)
+EndWhile
+
+
+' This subroutine prompts the user to enter an 8-bit binary number and reads their input
+' The subroutine validates that the input string is a valid binary number
+' a) The input string is non-empty and has at most 8 characters
+' b) The input string contains only ones and zeros
+
+Sub GetInput  
+TryAgain:
+  TextWindow.Write("Enter an 8-bit binary number: ")
+  strIn = TextWindow.Read()
+  len = Text.GetLength(strIn)
+  
+  ' ========================================
+  ' [TBD] ADD YOUR CODE HERE
+  ' If len is 0 or len is more than 8,  tell the user to try again (Goto TryAgain)
+  ' If the input strength has a valid length (between 1 and 8), start a loop to check the digits in strIn
+  ' If you find any digital other that 0 or 1, tell the user to try again (Goto TryAgain)
+  ' =======================================
+EndSub

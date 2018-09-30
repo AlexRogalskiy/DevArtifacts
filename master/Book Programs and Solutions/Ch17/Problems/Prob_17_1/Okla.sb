@@ -1,0 +1,149 @@
+' Okla.sb
+' Implements the Okla game
+
+GraphicsWindow.Title = "Okla"
+GraphicsWindow.Width = 331
+GraphicsWindow.Height = 364
+GraphicsWindow.CanResize = 0
+
+path = Program.Directory
+
+GraphicsWindow.FontSize = 18
+GraphicsWindow.BrushColor = "Black"
+energyText = Shapes.AddText("")
+Shapes.Move(energyText, 60, 337)
+
+GraphicsWindow.KeyDown = OnKeyDown
+
+Again:
+NewGame()
+While ("True") 
+  redraw = 0  
+  If (lastKey <> "" ) Then
+    MovePlayer()        ' Moves the player and collects the keys  
+    lastKey = ""
+    redraw = 1
+  EndIf
+  
+  ' Uses a lower number to make the game scroll faster (making it harder)
+  If (Clock.ElapsedMilliseconds - t0 >= 300) Then
+    Scroll()
+    t0 = Clock.ElapsedMilliseconds
+    redraw = 1
+  EndIf
+  
+  If (redraw = 1) Then
+    CheckHit()
+    DrawBoard()
+  EndIf
+  
+  If (numKeys = 4) Then
+    GraphicsWindow.ShowMessage("Congratulations! You won", "Game Over")
+    Goto Again
+  ElseIf (energy = 0) Then
+    GraphicsWindow.ShowMessage("Sorry! You lost", "Game Over")
+    Goto Again    
+  EndIf  
+EndWhile
+
+Sub OnKeyDown
+  lastKey = GraphicsWindow.LastKey
+EndSub
+
+Sub NewGame
+  GraphicsWindow.DrawImage( path + "\Background.png", 0, 0)
+  
+  ' Prepares the game board
+  For R = 1 To 10   		' 10 rows
+    For C = 1 To 10       	' 10 colums
+      board[R][C] = 0
+      ' Changes 90 to a lower number to get more bombs
+      If ((R<>5) And (Math.GetRandomNumber(100) > 90)) Then
+        board[R][C] = Math.GetRandomNumber(4)	' An object
+      EndIf
+    EndFor
+  EndFor
+  
+  chest[1] = 1    ' Chests at the four corners
+  chest[2] = 1
+  chest[3] = 1
+  chest[4] = 1
+  
+  rowP = 5      ' Player's row
+  colP = 5      ' Player's columns
+  energy = 100  ' Energy level
+  numKeys = 0   ' How many keys the player collected
+  
+  DrawBoard()
+  
+  lastKey = ""
+  t0 = Clock.ElapsedMilliseconds  
+EndSub
+
+
+Sub CheckHit
+  If ((board[colP][rowP] >= 1) And (board[colP][rowP] <= 4)) Then
+    Sound.PlayClick()
+    energy = energy - 10
+  EndIf
+EndSub
+
+Sub MovePlayer
+  If (lastKey = "Left") Then
+    rowP = Math.Max(1, rowP - 1)
+  ElseIf (lastKey = "Right") Then
+    rowP = Math.Min(10, rowP + 1)
+  ElseIf (lastKey = "Up") Then
+    colP = Math.Max(1, colP - 1)
+  ElseIf (lastKey = "Down") Then
+    colP = Math.Min(10, colP + 1)
+  EndIf
+  
+  If (rowP = 1 And colP = 1 And chest[1] = 1) Then
+    chest[1] = 0
+    numKeys = numKeys + 1
+  ElseIf (rowP = 10 And colP = 1 And chest[2] = 1) Then
+    chest[2] = 0
+    numKeys = numKeys + 1
+  ElseIf (rowP = 1 And colP = 10 And chest[3] = 1) Then
+    chest[3] = 0
+    numKeys = numKeys + 1
+  ElseIf (rowP = 10 And colP = 10 And chest[4] = 1) Then
+    chest[4] = 0
+    numKeys = numKeys + 1
+  EndIf  
+EndSub
+
+' Draws the game's user interface
+Sub DrawBoard
+  For R = 1 To 10
+    For C = 1 To 10
+      img = "\Blank.ico"
+      If ((board[R][C] >= 1) And (board[R][C] <= 4)) Then
+        img = "\Obj" + board[R][C] + ".ico"
+      EndIf
+      
+      If ((R = 1 And C = 1 And chest[1] = 1) Or (R = 1 And C = 10 And chest[2] = 1) Or (R = 10 And C = 1 And chest[3] = 1) Or (R = 10 And C = 10 And chest[4] = 1)) Then
+        img = "\Key.ico"
+      EndIf
+      
+      If ((R = colP) And (C = rowP)) Then
+        img = "\Player.ico"
+      EndIf
+      
+      GraphicsWindow.DrawImage(path + img, 1 + (C - 1) * 33, 1 + (R - 1) * 33)
+    EndFor
+  EndFor
+  
+  Shapes.SetText(energyText, "Energy: " + energy)
+EndSub
+
+Sub Scroll
+  For R = 1 To 10
+    temp = board[R][1]
+    For C = 1 To 9
+      board[R][C] = board[R][C + 1]
+    EndFor
+    board[R][10] = temp
+  EndFor
+EndSub

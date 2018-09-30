@@ -1,0 +1,20 @@
+' TryItOut_17_2.sb
+
+' Creates a 4x8 grid of randomly colored squares
+For r = 1 To 4    ' 4 rows
+  For c = 1 To 8  ' 8 columns
+    clr = GraphicsWindow.GetRandomColor()
+    GraphicsWindow.BrushColor = clr
+    box[r][c] = Shapes.AddRectangle(20, 20) ' Adds a square
+    Shapes.Move(box[r][c], c * 20, r * 20)  ' Positions it
+  EndFor
+EndFor
+
+' Animates the squares to the upper-left corner of the window
+' Animates by columns
+For c = 1 To 8
+  For r = 1 To 4
+    Shapes.Animate(box[r][c], 0, 0, 1000)
+    Program.Delay(400) ' A small delay (in milliseconds)
+  EndFor
+EndFor

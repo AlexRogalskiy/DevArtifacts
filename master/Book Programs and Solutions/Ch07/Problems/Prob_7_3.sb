@@ -1,0 +1,17 @@
+' Prob_7_3.sb
+
+TextWindow.Write("Enter the total number of seconds: ")
+totSec = TextWindow.ReadNumber()
+
+' Finds the total hours and the remaining seconds
+hours = Math.Floor(totSec / 3600)
+remSec = Math.Remainder(totSec, 3600)
+
+' Processes remSec to find the total minutes and the remaining seconds
+minutes = Math.Floor(remSec / 60)
+remSec = Math.Remainder(remSec, 60)
+
+TextWindow.WriteLine("That is: ")
+TextWindow.WriteLine(hours + " hours")
+TextWindow.WriteLine(minutes + " minutes")
+TextWindow.WriteLine(remSec + " seconds")

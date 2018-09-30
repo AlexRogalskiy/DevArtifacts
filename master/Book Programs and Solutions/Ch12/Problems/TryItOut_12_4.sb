@@ -1,0 +1,47 @@
+' TryItOut_12_4.sb
+
+GraphicsWindow.DrawText(10, 14, "What's your favorite animal?")
+tagText = Controls.AddTextBox(200, 10)
+Controls.SetSize(tagText, 100, 26)
+btnSearch = Controls.AddButton("Search", 305, 10)
+
+txtQues = Shapes.AddText("Like this one?")
+Shapes.Move(txtQues, 10, 50)
+btnYes = Controls.AddButton("Yes", 140, 40)
+btnNo = Controls.AddButton("No", 180, 40)
+Shapes.HideShape(txtQues)
+Controls.HideControl(btnYes)
+Controls.HideControl(btnNo)
+
+Controls.ButtonClicked = OnButtonClicked
+
+Sub OnButtonClicked
+  btn = Controls.LastClickedButton
+  If (btn = btnSearch) Then
+    DoSearch()
+  ElseIf (btn = btnYes) Then
+    GraphicsWindow.ShowMessage("Hooray!", "We found your image.")
+  Else
+    DoSearch()
+    Shapes.SetText(txtQues, "How about this one?")    
+  EndIf
+EndSub
+
+Sub DoSearch
+  tag = Controls.GetTextBoxText(tagText)
+  If (tag <> "") Then
+    img = ImageList.LoadImage(Flickr.GetRandomPicture(tag))
+    If (img = "") Then
+      GraphicsWindow.ShowMessage("No images found.", "Sorry")
+    Else
+      GraphicsWindow.Width = ImageList.GetWidthOfImage(img)
+      GraphicsWindow.Height = ImageList.GetHeightOfImage(img) + 40
+      GraphicsWindow.DrawImage(img, 0, 80)
+      
+      ' Shows the controls
+      Shapes.ShowShape(txtQues)
+      Controls.ShowControl(btnYes)
+      Controls.ShowControl(btnNo)      
+    EndIf
+  EndIf  
+EndSub

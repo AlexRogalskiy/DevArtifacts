@@ -1,0 +1,36 @@
+' Wizard.sb
+' Implements a game that simulates a math wizard
+
+TextWindow.Title = "MATH WIZARD"
+TextWindow.WriteLine("           MATH  WIZARD           ")
+TextWindow.WriteLine("Press Enter after each instruction")
+TextWindow.WriteLine("==================================")
+TextWindow.WriteLine("")
+
+puzzle = File.GetFiles(Program.Directory) ' Stores filenames into an array
+
+For P = 1 to Array.GetItemCount(puzzle)
+  path = puzzle[P]                        ' File in the app's directory
+  If (Text.EndsWith(path, ".txt") = "True") Then
+    DoPuzzle()
+  EndIf
+EndFor
+TextWindow.WriteLine("The game was won, the math was fun, and the magic is done!")
+TextWindow.WriteLine("There is one Math Wizard to rule them all! Bye!")
+
+Sub DoPuzzle
+  puzzleAns = File.ReadLine(path, 1)      ' Reads answer from first line
+  N = 2                                   ' Starts from second line
+  line = "?"                              ' To enter the loop
+  While (line <> "")                      ' Loops as long as we have instructions
+    line = File.ReadLine(path, N)         ' Reads the Nth line
+    If (line <> "") Then                  ' If we have an instruction
+      TextWindow.Write(line + "...")      ' Writes instruction
+      TextWindow.PauseWithoutMessage()    ' Waits for user to press a key
+      TextWindow.WriteLine("")
+      N = N + 1                           ' Prepares to read next line
+    EndIf    
+  EndWhile 
+  TextWindow.WriteLine("You still have: " +  puzzleAns)
+  TextWindow.WriteLine("")
+EndSub

@@ -1,0 +1,19 @@
+' StudentAvg2.sb
+nameList = "1=Scott;2=Jean;3=Logan;"
+subjList = "1=Math;2=Science;3=Combat;"
+
+For I = 1 To 3           ' Three students
+  name = nameList[I]     ' Name of the Ith student
+  For J = 1 To 3         ' Three subjects
+    subj = subjList[J]   ' Name of Jth subject
+    TextWindow.Write(name + "'s " + subj + " score: ")
+    score[name][subj] = TextWindow.ReadNumber()
+  EndFor
+EndFor
+TextWindow.Write("Enter student name: " )
+name = TextWindow.Read()
+sum = score[name]["Math"]
+sum = sum + score[name]["Science"]
+sum = sum + score[name]["Combat"]
+avg = Math.Round(sum / 3)
+TextWindow.WriteLine(name + " average score = " + avg)

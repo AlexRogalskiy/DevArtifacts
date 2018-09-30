@@ -1,0 +1,87 @@
+' HiddenTreasure.sb
+' Gambling game
+
+GraphicsWindow.Title = "Hidden Treasure"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.CanResize = "False"
+
+imgPath = Program.Directory + "\Bkgnd.png"
+GraphicsWindow.DrawImage(imgPath, 0, 0)
+
+' Creates the four buttons
+GraphicsWindow.FontSize = 14
+GraphicsWindow.BrushColor = "Black"
+btn1 = Controls.AddButton("1", 50,  195)
+btn2 = Controls.AddButton("2", 155, 195)
+btn3 = Controls.AddButton("3", 260, 195)
+btn4 = Controls.AddButton("4", 365, 195)
+btn5 = Controls.AddButton("Reset", 360, 300)
+
+txt1 = Shapes.AddText("")     ' Result for each round
+txt2 = Shapes.AddText("Round: ")
+txt3 = Shapes.AddText("Total score: ")
+Shapes.Move(txt1, 60, 250)
+Shapes.Move(txt2, 15, 300)
+Shapes.Move(txt3, 15, 330)
+
+' Resize the controls
+Controls.SetSize(btn1, 40, 30)
+Controls.SetSize(btn2, 40, 30)
+Controls.SetSize(btn3, 40, 30)
+Controls.SetSize(btn4, 40, 30)
+
+GraphicsWindow.FontSize = 18  ' For the question
+
+' Add your code here
+Controls.ButtonClicked = OnButtonClicked
+
+ResetGame()
+
+Sub OnButtonClicked
+  btnID = Controls.LastClickedButton
+  If (btnID = btn5) Then      ' Reset button
+    ResetGame()
+  Else
+    ProcessSelection()
+  EndIf
+EndSub
+
+Sub ResetGame
+  round = 0
+  score = 0
+  gameOver = 0
+  Shapes.SetText(txt1, "")
+  Shapes.SetText(txt2, "Round: ")
+  Shapes.SetText(txt3, "Total score: 0")  
+  NewRound()      
+EndSub
+
+Sub NewRound
+  round = round + 1
+  Shapes.SetText(txt2, "Round: " + round + "/10")
+  loc = Math.GetRandomNumber(4)
+EndSub
+
+Sub ProcessSelection
+  If (gameOver = 0) Then
+    btnText = Controls.GetButtonCaption(btnID)
+    If (btnText = loc) Then
+      score = score + 10
+      msg = "Correct. You won $10."
+    Else
+      score = score - 5
+      msg = "No. The money is in safe #"
+      msg = msg + loc + ". You lost $5."        
+    EndIf
+    
+    Shapes.SetText(txt1, msg)
+    Shapes.SetText(txt3, "Total score: " + score)
+    
+    If (round < 10) Then
+      NewRound()
+    Else
+      gameOver = 1
+    EndIf
+  EndIf
+EndSub

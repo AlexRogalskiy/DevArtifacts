@@ -1,0 +1,42 @@
+' PepperDare.sb
+player = 1                        ' 1 for player, 2 for computer
+pepper = Math.GetRandomNumber(10) ' Which card has the pepper
+
+Again:
+Pick()      ' Updates the two variables: card and name
+If (card = pepper) Then
+  TextWindow.Write("Hot tamale, it's a pepper! ")
+  TextWindow.WriteLine(name + " wins!")
+  TextWindow.WriteLine("")
+Else
+  TextWindow.Write("The card is blank. ")
+  TextWindow.WriteLine("You put it back in and shuffle the deck.")
+  TextWindow.WriteLine("")
+  player = 3 - player   ' Switches the player
+  Goto Again
+EndIf
+
+Sub Pick
+  If (player = 1) Then
+    name = "The computer"
+    TextWindow.WriteLine("Your turn. Pick a card.")
+  Else
+    name = "The player"
+    TextWindow.WriteLine("The computer picks a card.")
+  EndIf
+  
+  TextWindow.Write("[Press any key...]")
+  TextWindow.PauseWithoutMessage()
+  TextWindow.WriteLine("")
+  
+  card = Math.GetRandomNumber(10) ' Picks a random card
+  Animate()       ' Animates the delay in picking a card
+EndSub
+
+Sub Animate
+  For N = 1 To card
+    TextWindow.Write("-")
+    Program.Delay(100)
+  EndFor
+  TextWindow.Write("-> ")
+EndSub

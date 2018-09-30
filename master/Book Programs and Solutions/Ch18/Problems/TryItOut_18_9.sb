@@ -1,0 +1,39 @@
+' TryItOut_18_9.sb
+
+words = "1=mountain;2=valley;3=house;4=college;5=program;6=mirror;7=instruction;8=preface;9=processing;10=operator;11=information;12=conversion;13=graphical;14=interface;15=decision;16=comment;17=variable;18=search;19=argument;20=function;21=object;22=animation;"
+
+score = 0
+For round = 1 To 10
+  strIn = words[Math.GetRandomNumber(Array.GetItemCount(words))]  
+  Scramble()	'Returns strOut (scrambled version of strIn)
+  
+  TextWindow.Write("Round " + round + ": Unscramble [" + strOut + "]: ")
+  ans = TextWindow.Read()
+  ans = Text.ConvertToLowerCase(ans)
+  
+  If (ans = strIn) Then
+    TextWindow.WriteLine("Good Job!")
+    score = score + 1
+  Else
+    TextWindow.WriteLine("No. It is " + strIn + ".")
+  EndIf
+  TextWindow.WriteLine("")  
+EndFor
+
+TextWindow.WriteLine("Your final score is " + score + "/10")
+
+Sub Scramble
+  len = Text.GetLength(strIn)
+  For N = 1 To len
+    char[N] = Text.GetSubText(strIn, N, 1)
+  EndFor
+  
+  strOut = ""
+  While (Text.GetLength(strOut) < len)
+    pos = Math.GetRandomNumber(len)
+    If (char[pos] <> "") Then
+      strOut = strOut + char[pos]
+      char[pos] = ""
+    EndIf    
+  EndWhile
+EndSub     

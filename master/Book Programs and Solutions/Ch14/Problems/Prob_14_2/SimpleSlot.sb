@@ -1,0 +1,68 @@
+' SimpleSlot.sb
+' Simple slot machine
+
+GraphicsWindow.Title = "Simple Slot Machine"
+GraphicsWindow.Width = 300
+GraphicsWindow.Height = 200
+GraphicsWindow.CanResize = 0
+GraphicsWindow.BrushColor = "Black"
+
+GraphicsWindow.MouseDown = OnMouseDown
+
+Roll()
+ShowPrompt()
+
+' Main loop
+pullHandle = 0
+While ("True")
+  If (pullHandle = 1) Then  ' User clicked the mouse
+    For X = 1 To 10         ' Simulates movement
+      Roll()
+      Program.Delay(100)
+    EndFor
+    
+    ProcessRoll()           ' Checks for matches
+    
+    ShowPrompt()
+    pullHandle = 0          ' Ready for the next round
+  EndIf
+EndWhile
+
+Sub OnMouseDown
+  pullHandle = 1
+EndSub
+
+Sub Roll
+  GraphicsWindow.Clear()
+  
+  For N = 0 To 2
+    GraphicsWindow.DrawRectangle(N * 100, 10, 100, 100)
+  EndFor
+  
+  s1 = Text.GetCharacter(9811 + Math.GetRandomNumber(10))
+  s2 = Text.GetCharacter(9811 + Math.GetRandomNumber(10))
+  s3 = Text.GetCharacter(9811 + Math.GetRandomNumber(10))
+  
+  GraphicsWindow.FontSize = 100
+  GraphicsWindow.DrawText(0, 0, s1)
+  GraphicsWindow.DrawText(100, 0, s2)
+  GraphicsWindow.DrawText(200, 0, s3) 
+EndSub
+
+Sub ShowPrompt
+  GraphicsWindow.FontSize = 14
+  GraphicsWindow.DrawText(20, 180, "Click the mouse to pull the handle.")
+EndSub
+
+Sub ProcessRoll
+  If (s1 = s2 And s1 = s3) Then               ' All three are the same
+    msg = "Won: $20"
+  ElseIf (s1 = s2 Or s1 = s3 Or s2 = s3) Then ' Two shapes are a match
+    msg = "Won: $5"
+  Else                                        ' Three are different shapes
+    msg = "Lost: $1"
+  EndIf
+  
+  GraphicsWindow.FontSize = 18
+  GraphicsWindow.DrawText(20, 120, msg)  
+EndSub 

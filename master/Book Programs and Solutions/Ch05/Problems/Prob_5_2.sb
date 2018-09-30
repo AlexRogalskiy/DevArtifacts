@@ -1,0 +1,42 @@
+' Prob_5_2.sb
+' Draws a flowerpot
+
+GraphicsWindow.Title = "Flower Pot"
+Turtle.Speed = 10
+Turtle.X = 40
+Turtle.Y = Turtle.Y
+
+For K = 1 To 4      ' Draws the base (a square)
+  Turtle.Move(50)
+  Turtle.Turn(90)
+EndFor
+
+Turtle.Move(50)     ' Moves to the upper-left corner
+Turtle.Turn(90)     ' Turns right
+Turtle.Move(25)     ' Moves to the center of the top side
+Turtle.Turn(-90)    ' Points up again
+
+Turtle.Move(40)     ' Lower part of the stem
+
+Turtle.Turn(45)  
+For K = 1 To 4      ' Draws the right leaf
+  Turtle.Move(20)
+  Turtle.Turn(90)
+EndFor
+
+Turtle.Turn(-90)  
+For K = 1 To 4      ' Draws the left leaf
+  Turtle.Move(20)
+  Turtle.Turn(-90)
+EndFor
+
+Turtle.Turn(45)     ' Points up again
+Turtle.Move(100)    ' Upper part of the stem
+
+For I = 1 To 10     ' To rotate the square 10 times
+  For K = 1 To 4    ' Draws a square
+    Turtle.Move(30)
+    Turtle.Turn(90)
+  EndFor
+  Turtle.Turn(36)
+EndFor

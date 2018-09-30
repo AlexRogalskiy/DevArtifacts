@@ -1,0 +1,74 @@
+' Maze_Incomplete.sb
+' Find your way through a maze
+
+LW = 20       ' Line width
+GraphicsWindow.Width = 400 + LW
+GraphicsWindow.Height = 400 + 100
+GraphicsWindow.CanResize = 0
+
+' Creates the player's object (square shape)
+GraphicsWindow.PenColor = "Red"
+GraphicsWindow.BrushColor = "Red"
+s = Shapes.AddRectangle(16, 16)
+
+' Sets the player's initial position (initial direction is up)
+sx = 22
+sy = 202
+Shapes.Move(s, sx, sy)
+dir = "Up"
+
+DrawMaze()
+
+' Sets up a timer to automatically move the player
+Timer.Interval = 200
+Timer.Tick = OnTick
+GraphicsWindow.KeyDown = OnKeyDown
+
+Sub OnTick
+  newX = sx
+  newY = sy
+  If (dir = "Up") Then
+    newY = sy - LW
+  ElseIf (dir = "Down") Then
+    newY = sy + LW
+  ElseIf(dir = "Right") Then
+    newX = sx + LW
+  EndIf  
+  
+  clr = GraphicsWindow.GetPixel(newX, newY)  
+  If (clr <> "#000000") Then       ' Not crashing into a wall
+    sx = newX
+    sy = newY
+    Shapes.Move(s, sx, sy)
+  EndIf
+EndSub
+
+Sub OnKeyDown
+  dir = GraphicsWindow.LastKey
+EndSub
+
+Sub DrawMaze
+  GraphicsWindow.BrushColor = "White"
+  GraphicsWindow.FillRectangle(0, 0, 420, 420)
+  
+  For I = 1 To 11
+    xPos = (I - 1) * 2 * LW
+    
+    GraphicsWindow.BrushColor = "Black"
+    GraphicsWindow.FillRectangle(xPos, 0, LW, 420)
+    
+    If (I <> 1 And I <> 11) Then
+      GraphicsWindow.BrushColor = "White"
+      maxDoors = Math.GetRandomNumber(3)
+      For J = 1 To maxDoors
+        yPos = LW * (1 + Math.GetRandomNumber(18))
+        
+        GraphicsWindow.FillRectangle(xPos, yPos, LW, LW)
+      EndFor 
+    EndIf
+  EndFor
+  
+  GraphicsWindow.BrushColor = "Black"
+  GraphicsWindow.FillRectangle(0, 0, 420, LW)
+  GraphicsWindow.FillRectangle(0, 400, 420, LW)  
+EndSub

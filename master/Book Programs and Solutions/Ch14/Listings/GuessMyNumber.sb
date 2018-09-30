@@ -1,0 +1,14 @@
+' GuessMyNumber.sb
+num = Math.GetRandomNumber(100) ' From 1 to 100
+ans = 0               ' Any value that isn't equal to num
+While (ans <> num)    ' Repeats as long as the guess is wrong
+  TextWindow.Write("Enter your guess [1-100]: ")
+  ans = TextWindow.ReadNumber()
+  If (ans = num) Then ' Player guessed correctly
+    TextWindow.WriteLine("Good job! You get sprinkles!")
+  ElseIf (ans > num) Then
+    TextWindow.WriteLine("Too High. Lower your standards.")
+  Else
+    TextWindow.WriteLine("Too Low. Aim for the stars!")
+  EndIf
+EndWhile    

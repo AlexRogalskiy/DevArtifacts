@@ -1,0 +1,19 @@
+' LoginName.sb
+inFile = Program.Directory + "\Users.txt"
+outFile = Program.Directory + "\LoginNames.txt"
+
+N = 1             '  Tracks the line number
+While (N > 0)     ' We'll set N = 0 when we detect end of file
+  strLine = File.ReadLine(inFile, N)      ' Reads the Nth line
+  If (strLine = "") Then                  ' If the string's empty
+    N = 0                                 ' Exits the While loop
+  Else                                    ' We have an entry
+    idx = Text.GetIndexOf(strLine, " ")   ' Finds space in strLine
+    firstChar = Text.GetSubText(strLine, 1, 1)
+    lastName = Text.GetSubText(strLine, idx + 1, 5)
+    loginName = firstChar + lastName
+    loginName = Text.ConvertToLowerCase(loginName)
+    File.WriteLine(outFile, N, loginName) ' Saves it to a file
+    N = N + 1                             ' Gets ready for the next line
+  EndIf
+EndWhile

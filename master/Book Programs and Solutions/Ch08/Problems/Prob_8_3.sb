@@ -1,0 +1,20 @@
+' Prob_8_3.sb
+' Volume = π * r * r * h
+' Where r is the radius of the circular end of the cylinder, 
+' and h is the height of the cylinder 
+
+' Enter height
+TextWindow.Write("Enter the height of the can: ")
+h = TextWindow.ReadNumber()
+If (h < 0) Then
+  TextWindow.WriteLine("The height can't be negative.")
+Else ' Enter radius
+  TextWindow.Write("Enter the radius of the can: ")
+  r = TextWindow.ReadNumber()	
+  If (r < 0) Then
+    TextWindow.WriteLine("The radius can't be negative.")
+  Else  ' Both h and r are valid
+    v = Math.Pi * r * r * h
+    TextWindow.WriteLine("Volume = " + Math.Round(v))
+  EndIf
+EndIf

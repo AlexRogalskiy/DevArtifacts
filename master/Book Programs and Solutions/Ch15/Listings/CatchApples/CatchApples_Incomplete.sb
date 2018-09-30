@@ -1,0 +1,47 @@
+' CatchApples_Incomplete.sb
+GraphicsWindow.Title = "Catch Apples"
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.FontSize = 14
+GraphicsWindow.BrushColor = "Black"
+
+path = Program.Directory
+GraphicsWindow.DrawImage(path + "\Background.png", 0, 0 )
+
+msgID = Shapes.AddText("")
+Shapes.Move(msgID, 240, 0)
+
+MAX_APPLES = 5     ' Change this to have more apples
+AddApples()        ' Creates the apple array
+
+cartImg  = Shapes.AddImage(path + "\Cart.png")  ' 100x80 pixels
+
+numMissed = 0      ' Missed Apples
+numCaught = 0      ' Caught Apples
+
+While ("True")
+  Shapes.Move(cartImg, GraphicsWindow.MouseX - 50, 280)
+  MoveApples()   
+  Program.Delay(5)
+EndWhile
+
+' Creates an array to hold the apple shapes
+Sub AddApples	
+  ' Add the code from Listing 15-5 here
+EndSub
+
+'  Sets a random position for apple[aplNum]
+Sub SetApplePosition
+  ' Add the code from Listing 15-6 here
+EndSub
+
+' Moves the apples and checks if they were caught
+Sub MoveApples
+  ' Add the code from Listing 15-7 here
+EndSub  
+
+' Checks the distance between apple[aplNum] and the cart
+Sub CheckCatch
+  ' Add the code from Listing 15-8 here
+EndSub

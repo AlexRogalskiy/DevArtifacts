@@ -1,0 +1,13 @@
+' RotatedPolygon.sb
+numSides = 4         ' Set to 3 (triangle), 4 (square)...
+repeatCount = 12     ' How many times to rotate the polygon
+
+For I = 1 To repeatCount
+  ' 1) Draw the desired polygon
+  For J = 1 To numSides
+    Turtle.Move(60)  ' The polygon's side length
+    Turtle.Turn(360 / numSides)
+  EndFor
+  ' 2) Turn the turtle a little
+  Turtle.Turn(360 / repeatCount)
+EndFor

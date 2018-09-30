@@ -1,0 +1,14 @@
+' Prob_11_2.sb
+'  Stamps a turtle face
+
+' This image is 32 x 32 pixels
+imgPath = Program.Directory + "\turtleface.jpg"
+
+GraphicsWindow.MouseDown = OnMouseDown
+
+Sub OnMouseDown
+  GraphicsWindow.PenColor = GraphicsWindow.GetRandomColor()
+  X0 = GraphicsWindow.MouseX - 16
+  Y0 = GraphicsWindow.MouseY - 16
+  GraphicsWindow.DrawImage(imgPath, X0, Y0)
+EndSub  

@@ -1,0 +1,23 @@
+' Prob_11_1.sb
+'  Twilight trivia with He-Man
+
+GraphicsWindow.Title = "Twilight trivia"
+GraphicsWindow.Width = 280
+GraphicsWindow.Height = 330
+GraphicsWindow.FontName = "Arial"
+GraphicsWindow.FontSize = 400
+
+drawX = 1           ' 1 means yes, 0 means no
+
+GraphicsWindow.MouseDown = OnMouseDown
+
+Sub OnMouseDown
+  If (drawX = 1) Then
+    GraphicsWindow.DrawText(0, -60, "X")
+    Sound.PlayBellRing()
+    drawX = 0
+  Else  
+    GraphicsWindow.Clear()
+    drawX = 1
+  EndIf  
+EndSub  

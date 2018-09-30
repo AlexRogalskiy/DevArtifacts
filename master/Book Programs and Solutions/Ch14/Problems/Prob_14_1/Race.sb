@@ -1,0 +1,70 @@
+' Race.sb
+' Simulates a race between two players
+
+GraphicsWindow.Title = "Race"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 250
+GraphicsWindow.CanResize = 0
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.PenColor = "Blue"
+GraphicsWindow.FontSize = 60
+
+' Adds the shape for player 1
+shp1 = Shapes.AddText(Text.GetCharacter(9817))
+Shapes.Move(shp1, 0, 0)
+GraphicsWindow.DrawLine(10, 60, 470, 60)
+
+' Adds the shape for player 2
+shp2 = Shapes.AddText(Text.GetCharacter(9823))
+Shapes.Move(shp2, 0, 100)
+GraphicsWindow.DrawLine(10, 160, 470, 160)
+
+' Draws the finish line
+GraphicsWindow.DrawLine(450, 50, 450, 170)
+
+' Adds the shape for the text messages
+GraphicsWindow.FontSize = 20
+shp3 = Shapes.AddText("Click the mouse to start the race...")
+Shapes.Move(shp3, 10, 200)
+
+' Registers a handler to detect a mouse click
+GraphicsWindow.MouseDown = OnMouseDown
+
+' Waits until the user clicks the mouse
+start = 0
+While (start = 0)
+  Program.Delay(10)
+EndWhile
+Shapes.HideShape(shp3)
+
+' Starts the race
+done = 0        ' Sets the done flag to 0 (false)
+While(done = 0) ' Loops as long as the race isn't over
+  pos1 = Shapes.GetLeft(shp1)
+  pos2 = Shapes.GetLeft(shp2)
+  
+  pos1 = pos1 + Math.GetRandomNumber(4)
+  pos2 = pos2 + Math.GetRandomNumber(4)
+  
+  Shapes.Move(shp1, pos1, 0)
+  Shapes.Move(shp2, pos2, 100)
+  
+  If (pos1 > 410 Or pos2 > 410) Then
+    If (pos1 > pos2) Then
+      Shapes.SetText(shp3, "Player 1 wins the race! The secret is the slide!")
+    ElseIf (pos2 > pos1) Then
+      Shapes.SetText(shp3, "Player 2 wins the race! The bottom is better!")
+    Else
+      Shapes.SetText(shp3, "It's a tie! It happens once a pawn a time.")
+    EndIf
+    
+    Shapes.ShowShape(shp3)
+    done = 1  ' Sets the done flag to 1 to exit the loop
+  EndIf
+  
+  Program.Delay(100)
+EndWhile
+
+Sub OnMouseDown
+  start = 1
+EndSub

@@ -1,0 +1,17 @@
+' TryItOut_7_4.sb
+
+TextWindow.Write("Please enter a three digit number: ")
+num = TextWindow.ReadNumber()
+
+
+d1 = Math.Floor(num / 100)
+r1 = Math.Remainder(num, 100)
+
+' Processes the remainder from the previous step
+d2 = Math.Floor(r1 / 10)
+d3 = Math.Remainder(r1, 10)
+
+' Displays the output
+TextWindow.WriteLine(d1 + " Hundreds")
+TextWindow.WriteLine(d2 + " Tens")
+TextWindow.WriteLine(d3 + " Ones")

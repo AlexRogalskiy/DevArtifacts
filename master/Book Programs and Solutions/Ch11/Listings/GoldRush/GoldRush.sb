@@ -1,0 +1,80 @@
+' GoldRush.sb
+' A gold-collecting game
+
+GraphicsWindow.Title = "GOLD RUSH"
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+
+path = Program.Directory
+grid = Shapes.AddImage( path + "\Grid.png")
+player = Shapes.AddImage( path + "\Turtle.png" )
+gold = Shapes.AddImage( path + "\Gold.png")
+
+' Places the player (turtle) near the middle
+XP = 4          ' x position (from 0 to 7)
+YP = 3          ' y position (from 0 to 5)
+Shapes.Move(player, XP * 60, YP * 60)
+
+' Creates the score text shape (over a black rectangle)
+GraphicsWindow.BrushColor = "Black"
+Shapes.AddRectangle(90, 20)
+GraphicsWindow.FontSize = 14
+GraphicsWindow.BrushColor = "Red"
+scoreID = Shapes.AddText("Score: 0") ' For now
+
+' Registers two event handlers
+GraphicsWindow.KeyDown = OnKeyDown
+Timer.Tick = OnTick
+
+' Initializes variables
+Timer.Interval = 2000 ' Ticks every 2 sec
+score = 0             ' Keeps track of player's score
+bagCount = 0          ' Counts how many bags so far
+
+Sub OnKeyDown
+  key = GraphicsWindow.LastKey
+  If ((key = "Up") And (YP > 0)) Then
+    YP = YP - 1
+  ElseIf ((key = "Down") And (YP < 5)) Then
+    YP = YP + 1
+  ElseIf ((key = "Left") And (XP > 0)) Then
+    XP = XP - 1
+  ElseIf ((key = "Right") And (XP < 7)) Then
+    XP = XP + 1
+  EndIf  
+  Shapes.Move(player, XP * 60, YP * 60)
+  CheckTouch()           ' Checks if the player touched the bag
+EndSub
+
+Sub OnTick               ' Timer expires
+  NewRound()
+EndSub
+
+Sub CheckTouch
+  If ((XP = XG) And (YP = YG)) Then
+    score = score + 1    ' Gives the player one point
+    Shapes.SetText(scoreID, "Score: " + score)    
+    Sound.PlayClick()    ' Adds sound effect
+    Timer.Pause()        ' Resets the timer
+    Timer.Resume()       ' Starts the timer
+    NewRound()           ' Starts a new round    
+  EndIf  
+EndSub
+
+Sub NewRound
+  bagCount = bagCount + 1
+  If (bagCount <= 20) Then
+    XG = Math.GetRandomNumber(8) - 1    ' From 0 to 7
+    YG = Math.GetRandomNumber(6) - 1    ' From 0 to 5
+    Shapes.Move(gold, XG * 60, YG * 60)  
+    CheckTouch()
+  Else
+    Shapes.Remove(gold)                 ' Deletes the gold bag shape
+    GraphicsWindow.KeyDown = OnGameOver ' Do nothing
+    Timer.Tick = OnGameOver             ' Do nothing    
+  EndIf    
+EndSub
+
+Sub OnGameOver
+EndSub  

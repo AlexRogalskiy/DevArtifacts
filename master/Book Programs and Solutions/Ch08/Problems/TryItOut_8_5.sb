@@ -1,0 +1,12 @@
+' TryItOut_8_5.sb
+
+Again:
+TextWindow.Write("How many stars do you give this book [1-5]? ")
+ans = TextWindow.ReadNumber()
+ans = Math.Floor(ans) ' In case the user typed a decimal
+If (ans <> 5) Then
+  TextWindow.Write("Invalid number! Please enter an integer. ")
+  TextWindow.WriteLine("That's greater than 4 but less than 6.")
+  Goto Again
+EndIf
+TextWindow.WriteLine("Wow! Thank you. You made our day!")

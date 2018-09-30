@@ -1,0 +1,117 @@
+' GhostHunt.sb
+' Find the ghost before he finds you
+
+Setup()
+
+NewGame()
+
+While("True")
+  GetPlayerMove()       ' Asks the player which room to search in and moves him there
+  
+  Shapes.ShowShape(ghostImg)  ' Shows the ghost image
+  If (pos1 = pos2) Then
+    TextWindow.WriteLine("Good work! You trapped the ghost in your viking helmet!")
+    GameOver()
+  Else                  ' Didn't find him--now it is the ghost's turn to look for you
+    TextWindow.WriteLine("No luck. Now the ghost is looking for you! Better call the Ghost Busters!")
+    GetGhostMove()
+    
+    If (pos2 = pos1) Then
+      TextWindow.WriteLine("The ghost found you! You scream and run to Thor.")
+      GameOver()
+    Else                ' Moves the ghost to a different room
+      Shapes.HideShape(ghostImg)
+      pos2 = Math.GetRandomNumber(12)
+      MoveGhost()
+    EndIf
+  EndIf
+EndWhile
+
+Sub GameOver
+  TextWindow.Pause()
+  Program.End()
+EndSub
+
+Sub Setup
+  GraphicsWindow.Title = "Ghost Hunt"
+  TextWindow.Title = GraphicsWindow.Title
+  
+  GraphicsWindow.Width = 480
+  GraphicsWindow.Height = 360
+  GraphicsWindow.CanResize = 0
+  
+  ' Positions the TextWindow
+  TextWindow.Left = GraphicsWindow.Left + GraphicsWindow.Width + 140
+  TextWindow.Top = GraphicsWindow.Top
+  
+  GraphicsWindow.DrawImage(Program.Directory + "\bkgnd.png", 0, 0)
+  
+  ' Loads the ghost and the player images
+  ghostImg  = Shapes.AddImage(Program.Directory + "\ghost.png")
+  playerImg = Shapes.AddImage(Program.Directory + "\player.png")
+  Shapes.HideShape(ghostImg)
+EndSub
+
+Sub NewGame
+  pos1 = Math.GetRandomNumber(12)
+  PickAgain:
+  pos2 = Math.GetRandomNumber(12)
+  If (pos2 = pos1) Then
+    Goto PickAgain
+  EndIf
+  
+  MovePlayer()
+  MoveGhost()
+EndSub
+
+Sub GetRoomPosition
+  If ((room >= 1) And (room <= 4)) Then
+    xPos = 96 + (room - 1) * 72
+    yPos = 90
+  ElseIf ((room >= 5) And (room <= 8)) Then
+    xPos = 96 + (room - 5) * 72
+    yPos = 162   
+  Else                           ' Room between 9 and 12
+    xPos = 96 + (room - 9) * 72
+    yPos = 234   
+  EndIf
+EndSub
+
+Sub MovePlayer
+  room = pos1
+  GetRoomPosition()
+  Shapes.Move(playerImg, xPos, yPos)  
+EndSub
+
+Sub MoveGhost
+  room = pos2
+  GetRoomPosition()
+  Shapes.Move(ghostImg, xPos, yPos)  
+EndSub
+
+Sub GetPlayerMove
+  AskAgain:
+  TextWindow.Write("Which room do you want to look in [1-12]? ")
+  newPos = TextWindow.ReadNumber()
+  If ((newPos < 1) Or (newPos > 12) Or (newPos <> Math.Floor(newPos))) Then
+    Goto AskAgain
+  EndIf
+  
+  pos1 = newPos
+  MovePlayer()                   ' Moves the player to the selected room
+EndSub
+
+Sub GetGhostMove
+  PickAnother:
+  newPos = Math.GetRandomNumber(12)
+  If (newPos = pos2) Then
+    Goto PickAnother
+  EndIf
+  
+  pos2 = newPos
+  
+  room = pos2
+  GetRoomPosition()
+  Shapes.Animate(ghostImg, xPos, yPos, 2000)
+  Program.Delay(2000)  
+EndSub

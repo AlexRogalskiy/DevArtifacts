@@ -1,0 +1,66 @@
+' Shoot.sb
+' Estimates the turn angle and distance to hit a target
+
+' Sets up the graphics window
+GraphicsWindow.Title = "Shoot"
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+
+' Sets up the text window
+TextWindow.Title = "Shoot"
+TextWindow.BackgroundColor = "White"
+TextWindow.ForegroundColor = "Black"
+TextWindow.Left = GraphicsWindow.Left + GraphicsWindow.Width
+TextWindow.Top = GraphicsWindow.Top
+TextWindow.Clear()
+
+path = Program.Directory
+GraphicsWindow.DrawImage(path + "\Bkgnd.png", 0, 0)
+targetImg = Shapes.AddImage(path + "\Target.png")
+
+Turtle.Speed = 6
+Turtle.Show()
+Turtle.PenUp()
+
+While ("True")
+  ' Moves the turtle to the center of the window
+  Turtle.MoveTo(240, 180)  
+  Turtle.Angle = 0
+  
+  ' Randomly selects the target's position
+  xTarget = Math.GetRandomNumber(15) * 30
+  yTarget = Math.GetRandomNumber(11) * 30  
+  Shapes.Move(targetImg, xTarget - 16, yTarget - 16)
+  
+  TryAgain:    
+  TextWindow.Write("Enter [Angle, Distance]. Example 30, 100: ")
+  strIn = TextWindow.Read()
+
+  ' Finds the position of the comma in the input string
+  nIdx = Text.GetIndexOf(strIn, ",")
+  If (nIdx = 0) Then
+    Goto TryAgain
+  EndIf
+  
+  ' Splits the answer into two parts: angle and distance  
+  angle = Text.GetSubText(strIn, 1, nIdx - 1)
+  dist = Text.GetSubTextToEnd(strIn, nIdx + 1)
+  
+  ' Moves the turtle as specified by the user
+  Turtle.Turn(angle)
+  Turtle.Move(dist)
+  
+  ' How far is the turtle from the target?
+  xDiff = Math.Abs(xTarget - Turtle.X)
+  yDif = Math.Abs(yTarget - Turtle.Y)
+  
+  If ((xDiff > 15) Or (yDif > 15)) Then  ' The turtle is far from the target
+    Turtle.MoveTo(240, 180)              ' Moves the turtle back to the center
+    Turtle.Angle = 0                     ' Sets the turtle to point North
+    Goto TryAgain                        ' Lets the player try again
+  Else                                   ' Close enough
+    TextWindow.WriteLine("Good Job! You got it. Turtle Power!")
+    TextWindow.WriteLine("")
+  EndIf
+EndWhile

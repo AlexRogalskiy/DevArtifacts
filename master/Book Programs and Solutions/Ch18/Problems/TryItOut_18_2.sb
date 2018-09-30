@@ -1,0 +1,17 @@
+' TryItOut_18_2.sb
+
+While("True")
+  TextWindow.Write("Please enter a word or sentence: ")
+  strIn = TextWindow.Read()
+  
+  len = Text.GetLength(strIn)
+  strOut = ""
+  
+  For N = len To 1 Step - 1
+    ch = Text.GetSubText(strIn, N, 1)
+    strOut = Text.Append(strOut, ch)
+  EndFor
+  
+  TextWindow.WriteLine("In reverse, this is: " + strOut)
+  TextWindow.WriteLine("")
+EndWhile

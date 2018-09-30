@@ -1,0 +1,38 @@
+' TryItOut_19_2.sb
+
+inFile = "C:\Temp\Test1.txt"   ' Change this to your text file
+
+CR = Text.GetCharacter(13)     ' Carriage return
+LF = Text.GetCharacter(10)     ' Line feed
+SP = Text.GetCharacter(32)     ' Space
+
+lineCount  = 0
+spaceCount = 0
+charCount  = 0 
+
+strIn = File.ReadContents(inFile)
+len = Text.GetLength(strIn)
+
+For N = 1 To len
+  ch = Text.GetSubText(strIn, N, 1)
+  If (ch = CR) Then            ' Ignores the loop
+  ElseIf (ch = LF) Then        ' Finds a new line
+    lineCount = lineCount + 1
+  ElseIf (ch = SP) Then        ' Finds a space
+    spaceCount = spaceCount + 1
+  Else                         ' Finds some other character
+    charCount = charCount + 1
+  EndIf
+  
+  ' If the last line does not end in LF, count it
+  If ((N=len) And (ch <> LF)) Then
+    lineCount = lineCount + 1
+  EndIf
+  
+EndFor
+
+TextWindow.WriteLine("File statistics: ")
+TextWindow.WriteLine("  Number of lines.......: " + lineCount)
+TextWindow.WriteLine("  Number of spaces......: " + spaceCount)
+TextWindow.WriteLine("  Number of characters..: " + charCount)
+TextWindow.WriteLine("")

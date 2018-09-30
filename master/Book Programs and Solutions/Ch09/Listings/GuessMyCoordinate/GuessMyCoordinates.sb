@@ -1,0 +1,44 @@
+' GuessMyCoordinates.sb
+' Test your knowledge of the Cartesian coordinate system
+
+GraphicsWindow.Title = "Guess My Coordinates"
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 480  ' Same as background image
+GraphicsWindow.Height = 360  ' Same as background image
+GraphicsWindow.Top = 200  ' Position on your desktop
+GraphicsWindow.Left = 50   ' Position on your desktop
+TextWindow.Title = "Guess My Coordinates"
+TextWindow.Top = GraphicsWindow.Top 
+TextWindow.Left = GraphicsWindow.Left + GraphicsWindow.Width + 15
+
+path = Program.Directory                     ' Program's directory
+bkgnd = Shapes.AddImage(path + "\Grid.png")  ' Bkgnd (480 x 360)
+star = Shapes.AddImage(path + "\Star.png")   ' Star image (24 x 24)
+
+While ("True")                               ' Runs forever
+  ' Finds the star's random position (in grid units)
+  X0 = Math.GetRandomNumber(23) - 12         ' Ranges from -11 to 11
+  Y0 = Math.GetRandomNumber(17) - 9          ' Ranges from -8 to 8
+  pt = "(" + X0 + ", " + Y0 + ")"            ' Example: (5, -3)
+  
+  ' Sets to pixel units and moves the star to the random position
+  xPos = ((X0 + 12) * 20) - 12  '  Sets 12 pixels to the left
+  yPos = ((9 - Y0) * 20) - 12   ' And 12 pixels up  
+  Shapes.Move(star, xPos, yPos ) ' Moves the star  
+  
+  TextWindow.Write("What is the x-coordinate? ")
+  xAns = TextWindow.ReadNumber()
+  If (xAns = X0) Then   ' Player guessed the correct x-coordinate
+    TextWindow.Write("What is the y-coordinate? ")
+    yAns = TextWindow.ReadNumber()
+    If (yAns = Y0) Then  ' Player guessed the correct y-coordinate
+      TextWindow.WriteLine("Good job! You're a star!")      
+    Else ' Player entered an incorrect y-coordinate
+      TextWindow.WriteLine("Sorry. This star is at " + pt)
+    EndIf    
+  Else  ' Player entered an incorrect x-coordinate
+    TextWindow.WriteLine("Sorry. This star is at " + pt)
+  EndIf
+    
+  TextWindow.WriteLine("")  ' Empties the line before a new round
+EndWhile  

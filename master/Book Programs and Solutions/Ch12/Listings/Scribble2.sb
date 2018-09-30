@@ -1,0 +1,32 @@
+' Scribble2.sb
+btnR = Controls.AddButton("Red", 10, 30)
+btnG = Controls.AddButton("Green", 10, 65)
+btnB = Controls.AddButton("Blue", 10, 100)
+Controls.SetSize(btnR, 60, 30)
+Controls.SetSize(btnG, 60, 30)
+Controls.SetSize(btnB, 60, 30)
+
+GraphicsWindow.MouseMove = OnMouseMove
+Controls.ButtonClicked = OnButtonClicked
+
+Sub OnButtonClicked         ' Changes the pen color
+  If (Controls.LastClickedButton = btnR) Then
+    GraphicsWindow.PenColor = "Red"
+  ElseIf (Controls.LastClickedButton = btnG) Then
+    GraphicsWindow.PenColor = "Green"
+  Else
+    GraphicsWindow.PenColor = "Blue"
+  EndIf
+EndSub
+
+Sub OnMouseMove
+  x = GraphicsWindow.MouseX   ' Current x position of mouse
+  y = GraphicsWindow.MouseY   ' Current y position of mouse
+  
+  If (Mouse.IsLeftButtonDown) Then
+    GraphicsWindow.DrawLine(prevX, prevY, x, y)
+  EndIf
+  
+  prevX = x ' Updates the last (previous) position
+  prevY = y
+EndSub  

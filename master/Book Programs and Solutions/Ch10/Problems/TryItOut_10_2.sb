@@ -1,0 +1,41 @@
+' TryItOut_10_2.sb
+
+side1 = 12
+side2 = 6
+side3 = 16
+TriangleArea()
+totalArea = area             ' Saves the result from the subroutine call
+
+' Calculates the area of the second triangle
+side1 = 16
+side2 = 16
+side3 = 27
+TriangleArea()
+totalArea = totalArea + area ' Adds the new area
+
+' Calculates the area of the third triangle
+side1 = 27
+side2 = 11
+side3 = 24
+TriangleArea()
+totalArea = totalArea + area ' Adds the new area
+
+
+' Calculates the area of the fourth triangle
+side1 = 24
+side2 = 18
+side3 = 10
+TriangleArea()
+totalArea = totalArea + area ' Adds the new area
+
+totalArea = Math.Round(totalArea * 100) / 100 ' Rounds the answer
+TextWindow.WriteLine("Area = " + totalArea + " square meters")
+
+' Subroutine: computes the area of a triangle given its three sides
+' Inputs: side1, side2, and side3; the length of the three sides
+' Outputs: area; the area of the triangle
+' Temporary variables: s; the semiperimeter
+Sub TriangleArea
+  s = 0.5 * (side1 + side2 + side3)
+  area = Math.SquareRoot(s * (s - side1) * (s - side2) * (s - side3))
+EndSub  

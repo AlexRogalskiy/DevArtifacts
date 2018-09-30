@@ -1,0 +1,17 @@
+' Stamp.sb
+GraphicsWindow.Title = "Stamp"
+
+path = Program.Directory
+img = ImageList.LoadImage(path + "\Trophy.ico")
+
+width = ImageList.GetWidthOfImage(img)    ' Width of image
+height = ImageList.GetHeightOfImage(img)  ' Height of image
+
+GraphicsWindow.Width = 8 * width    ' 8 columns
+GraphicsWindow.Height = 3 * height  ' 3 rows
+
+For row = 0 To 2      ' 3 rows
+  For col = 0 To 7    ' 8 columns
+    GraphicsWindow.DrawImage(img, col * width, row * height)
+  EndFor
+EndFor

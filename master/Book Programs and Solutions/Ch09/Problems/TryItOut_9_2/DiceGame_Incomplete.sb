@@ -1,0 +1,34 @@
+' DiceGame_Incomplete.sb
+' Implements a dice game
+
+balance = 0		' Player's total balance
+
+' Asks the player to enter their bet and makes sure it is within range
+Again:
+TextWindow.Write("Your bet $[1-10]: ")
+bet = TextWindow.ReadNumber()
+If ((bet < 1) Or (bet > 10) Or (bet <> Math.Floor(bet))) Then
+  TextWindow.WriteLine("This is invalid.")
+  Goto Again
+EndIf
+
+' Rolls the two dice
+d1 = Math.GetRandomNumber(6)
+d2 = Math.GetRandomNumber(6)
+TextWindow.WriteLine("You rolled: " + d1 + ", " + d2)
+
+sum = d1 + d2
+If ((sum = 2) Or (sum = 12)) Then
+  TextWindow.WriteLine("You won $" + (3 * bet))
+  balance = balance + (3 * bet)
+ElseIf (...) Then   ' [TBD]: sum = 4 or 10
+  ' [TBD] Player won 2 times their bet
+ElseIf (...) Then ' [TBD]: sum = 7 or 11
+  ' [TBD] Player lost their bet
+Else
+  TextWindow.WriteLine("No gain")
+EndIf
+
+TextWindow.WriteLine("Current balance: $" + balance)
+TextWindow.WriteLine("")
+Goto Again

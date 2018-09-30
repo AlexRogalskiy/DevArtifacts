@@ -1,0 +1,21 @@
+' Typewriter.sb
+x = 0                ' x position for displaying the last character
+y = 0                ' y position for displaying the last character
+GraphicsWindow.Title = "Typewriter"
+GraphicsWindow.FontName = "Courier New"
+GraphicsWindow.TextInput = OnTextInput
+
+Sub OnTextInput
+  Sound.PlayClick()      ' Plays a typewriter sound effect
+  If (GraphicsWindow.LastKey = "Return") Then
+    x = 0                ' Moves to next line
+    y = y + 15
+  Else
+    GraphicsWindow.DrawText(x, y, GraphicsWindow.LastText)
+    x = x + 8        ' Advances x position for the next character
+    If (x > GraphicsWindow.Width) Then ' If more than right margin
+      x = 0          ' Moves to the next line
+      y = y + 15
+    EndIf
+  EndIf
+EndSub      

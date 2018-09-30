@@ -1,0 +1,14 @@
+' Scribble.sb
+GraphicsWindow.MouseMove = OnMouseMove
+
+Sub OnMouseMove
+  x = GraphicsWindow.MouseX   ' Current x position of mouse
+  y = GraphicsWindow.MouseY   ' Current y position of mouse
+  
+  If (Mouse.IsLeftButtonDown) Then
+    GraphicsWindow.DrawLine(prevX, prevY, x, y)
+  EndIf
+  
+  prevX = x                   ' Updates the last (previous) position
+  prevY = y
+EndSub  

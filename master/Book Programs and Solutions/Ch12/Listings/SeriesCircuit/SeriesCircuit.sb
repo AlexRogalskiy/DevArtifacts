@@ -1,0 +1,63 @@
+' SeriesCircuit.sb
+offImg = ImageList.LoadImage(Program.Directory + "\bkgndOff.bmp")
+onImg = ImageList.LoadImage(Program.Directory + "\bkgndOn.bmp")
+bkgndImg = offImg   ' Starts with the switch-off image
+
+GraphicsWindow.Width = ImageList.GetWidthOfImage (offImg)
+GraphicsWindow.Height = ImageList.GetHeightOfImage(offImg)
+GraphicsWindow.DrawImage(bkgndImg, 0, 0)
+
+r1Text = Controls.AddTextBox(130, 140)  ' R1 text box
+r2Text = Controls.AddTextBox(270, 140)  ' R2 text box
+r3Text = Controls.AddTextBox(308, 208)  ' R3 text box
+vText = Controls.AddTextBox(57, 218)    ' Voltage text box
+Controls.SetSize(r1Text, 42, 25)        ' Resizes the text boxes
+Controls.SetSize(r2Text, 42, 25)
+Controls.SetSize(r3Text, 42, 25)
+Controls.SetSize(vText, 48, 25)
+Controls.SetTextBoxText(vText, 10)      ' Sets the initial values
+Controls.SetTextBoxText(r1Text, 4)
+Controls.SetTextBoxText(r2Text, 4)
+Controls.SetTextBoxText(r3Text, 2)
+
+GraphicsWindow.MouseDown = OnMouseDown
+Controls.TextTyped = OnTextTyped
+
+Sub OnMouseDown   ' Switches the background image
+  x = GraphicsWindow.MouseX
+  y = GraphicsWindow.MouseY
+  If ((x > 185) And (x < 245) And (y > 300) And (y < 340)) Then
+    If (bkgndImg = offImg) Then
+      bkgndImg = onImg
+    Else
+      bkgndImg = offImg
+    EndIf    
+    UpdateUserInterface()
+  EndIf  
+EndSub
+
+Sub OnTextTyped
+  UpdateUserInterface()
+EndSub
+
+Sub UpdateUserInterface   ' Puts new values on the background
+  GraphicsWindow.DrawImage(bkgndImg, 0, 0)
+  If (bkgndImg = onImg) Then
+    R1 = Controls.GetTextBoxText(r1Text)
+    R2 = Controls.GetTextBoxText(r2Text)
+    R3 = Controls.GetTextBoxText(r3Text)
+    V = Controls.GetTextBoxText(vText)
+    Rtot = R1 + R2 + R3
+    If (Rtot > 0) Then
+      I = V / Rtot
+      V1 = Math.Round(I * R1 * 100) / 100
+      V2 = Math.Round(I * R2 * 100) / 100
+      V3 = Math.Round(I * R3 * 100) / 100
+      I = Math.Round(I * 100) / 100
+      GraphicsWindow.DrawText(130, 80, V1 + " V")
+      GraphicsWindow.DrawText(270, 80, V2 + " V")
+      GraphicsWindow.DrawText(415, 230, V3 + " V")
+      GraphicsWindow.DrawText(34, 100, I + " A")        
+    EndIf
+  EndIf
+EndSub

@@ -1,0 +1,34 @@
+' Unscramble.sb
+words = "1=mountain;2=valley;3=house;4=college;5=program;6=mirror;7=instruction;8=preface;9=processing;10=operator;11=information;12=conversion;13=graphical;14=interface;15=decision;16=comment;17=variable;18=search;19=argument;20=function;21=object;22=animation;"
+
+While ("True")
+  strIn = words[Math.GetRandomNumber(Array.GetItemCount(words))]  
+  Scramble()	' Returns strOut (a scrambled version of strIn)
+  
+  TextWindow.Write("Unscramble [" + strOut + "]: ")
+  ans = TextWindow.Read()
+  ans = Text.ConvertToLowerCase(ans)
+  
+  If (ans = strIn) Then
+    TextWindow.WriteLine("Good Job!")
+  Else
+    TextWindow.WriteLine("No. It is " + strIn + ".")
+  EndIf
+  TextWindow.WriteLine("")  
+EndWhile
+
+Sub Scramble                                ' Scramble subroutine
+  len = Text.GetLength(strIn)
+  For N = 1 To len                          ' Loops up to length of word
+    char[N] = Text.GetSubText(strIn, N, 1)  ' Saves each letter into an array
+  EndFor
+  
+  strOut = ""                               ' Empties the output string
+  While (Text.GetLength(strOut) < len)
+    pos = Math.GetRandomNumber(len)         ' Picks where to place the letter
+    If (char[pos] <> "") Then
+      strOut = strOut + char[pos]           ' Adds in the extra letter
+      char[pos] = ""                        ' Empties the element
+    EndIf
+  EndWhile
+EndSub    

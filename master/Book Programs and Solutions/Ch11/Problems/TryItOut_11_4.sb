@@ -1,0 +1,27 @@
+' TryItOut_11_4.sb
+
+GraphicsWindow.MouseMove = OnMouseMove
+GraphicsWindow.TextInput = OnTextInput
+
+Sub OnTextInput
+  chr = GraphicsWindow.LastText   ' Pressed character
+  If ((chr = "r") Or (chr = "R")) Then
+    GraphicsWindow.PenColor = "Red"
+  ElseIf ((chr = "g") Or (chr = "G")) Then
+    GraphicsWindow.PenColor = "Green"
+  ElseIf ((chr = "b") Or (chr = "B")) Then
+    GraphicsWindow.PenColor = "Black"
+  EndIf  
+EndSub
+
+Sub OnMouseMove
+  x = GraphicsWindow.MouseX       ' Current x position of the mouse
+  y = GraphicsWindow.MouseY       ' Current y position of the mouse
+  
+  If (Mouse.IsLeftButtonDown) Then
+    GraphicsWindow.DrawLine(prevX, prevY, x, y)
+  EndIf
+  
+  prevX = x                       ' Updates the last (previous) position
+  prevY = y
+EndSub  

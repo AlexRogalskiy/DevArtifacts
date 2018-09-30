@@ -1,0 +1,13 @@
+' AddTutor.sb
+While ("True")
+  num1 = math.GetRandomNumber(10) ' Sets num1 between 1 and 10
+  num2 = math.GetRandomNumber(10) ' Sets num2 between 1 and 10
+  correctAns = num1 + num2        ' Adds both numbers
+  TextWindow.Write("What is " + num1 + " + " + num2 + "? ")
+  ans = TextWindow.ReadNumber()   ' User enters an answer
+  If (ans = correctAns) Then      ' Checks if the answer is correct
+    TextWindow.WriteLine("This is correct.")
+  Else                            ' Gives the correct answer
+    TextWindow.WriteLine("Sorry. The answer is "+ correctAns)
+  EndIf
+EndWhile 

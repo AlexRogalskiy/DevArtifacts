@@ -1,0 +1,15 @@
+' TryItOut_7_6.sb
+
+TextWindow.Write("Enter the distance from the base of the tree (in feet): ")
+dist = TextWindow.ReadNumber()
+
+TextWindow.Write("Enter the angle (in degrees): ")
+theta = TextWindow.ReadNumber()
+
+thetaRad = Math.GetRadians(theta)
+
+height = dist * Math.Tan(thetaRad)
+height = Math.Round(height)
+
+TextWindow.WriteLine("The height of the tree is " + height + " ft.")
+TextWindow.WriteLine("")

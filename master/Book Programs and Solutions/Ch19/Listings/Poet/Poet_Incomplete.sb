@@ -1,0 +1,71 @@
+' Poet_Incomplete.sb
+' Authors funny poems
+
+GraphicsWindow.Title      = "The Poet"
+GraphicsWindow.CanResize  = "False"
+GraphicsWindow.Width      = 480
+GraphicsWindow.Height     = 360
+GraphicsWindow.FontBold   = "False"
+GraphicsWindow.FontItalic = "True"
+GraphicsWindow.FontSize   = 16
+
+path = Program.Directory
+GraphicsWindow.DrawImage(path + "\Background.png", 0, 0)
+Controls.AddButton("New", 10, 10)
+
+CreateLists()
+
+artCount  = Array.GetItemCount(article)
+adjCount  = Array.GetItemCount(adjective)
+nounCount = Array.GetItemCount(noun)
+verbCount = Array.GetItemCount(verb)
+prepCount = Array.GetItemCount(prepos)
+
+Controls.ButtonClicked = OnButtonClicked
+OnButtonClicked()
+
+Sub CreateLists
+EndSub
+
+Sub OnButtonClicked
+  GraphicsWindow.DrawImage(path + "\Background.png", 0, 0)
+  
+  MakeLine1()  ' Constructs poemLine1
+  MakeLine2()  ' Constructs poemLine2
+  MakeLine3()  ' Constructs poemLine3
+  
+  GraphicsWindow.DrawText(180, 140, poemLine1)
+  GraphicsWindow.DrawText(100, 165, poemLine2)
+  GraphicsWindow.DrawText(180, 190, poemLine3)  
+EndSub
+
+' Line 1: article, adjective, noun
+Sub MakeLine1
+  art1  = article[Math.GetRandomNumber(artCount)]
+  adj1  = adjective[Math.GetRandomNumber(adjCount)]
+  noun1 = noun[Math.GetRandomNumber(nounCount)] 
+  poemLine1 = art1 + " " + adj1 + " " + noun1
+EndSub
+
+' Line 2: article, noun, verb, preposition, article, adjective, noun
+Sub MakeLine2
+  art1  = article[Math.GetRandomNumber(artCOUNT)]  
+  art2  = article[Math.GetRandomNumber(artCOUNT)]      
+  noun1 = noun[Math.GetRandomNumber(nounCOUNT)]  
+  noun2 = noun[Math.GetRandomNumber(nounCOUNT)]  
+  verb1 = verb[Math.GetRandomNumber(verbCOUNT)]
+  prep1 = prepos[Math.GetRandomNumber(prepCOUNT)]  
+  adj1  = adjective[Math.GetRandomNumber(adjCOUNT)]
+  
+  poemLine2 = art1  + " " + noun1 + " " + verb1  
+  poemLine2 = poemLine2 + " " + prep1 + " " + art2
+  poemLine2 = poemLine2 + " " + adj1  + " " + noun2    
+EndSub
+
+' Line 3: adjective, adjective, noun
+Sub MakeLine3  
+  adj1  = adjective[Math.GetRandomNumber(AdjCOUNT)]
+  adj2  = adjective[Math.GetRandomNumber(AdjCOUNT)]
+  noun1 = noun[Math.GetRandomNumber(nounCOUNT)] 
+  poemLine3 = adj1 + " " + adj2 + " " + noun1
+EndSub

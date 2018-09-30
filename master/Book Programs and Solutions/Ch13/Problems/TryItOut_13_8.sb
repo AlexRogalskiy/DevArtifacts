@@ -1,0 +1,12 @@
+' TryItOut_13_8.sb
+' Finds all the sets of three integers that are less than 20 and
+' can be the sides of a right triangle
+
+For s1 = 1 To 19
+  For s2 = s1 To 19
+    s3 = Math.SquareRoot(s1 * s1 + s2 * s2)
+    If ((s3 < 20) And (s3 = Math.Floor(s3))) Then
+      TextWindow.WriteLine("(" + s1 + "," + s2 + "," + s3 + ")")
+    EndIf    
+  EndFor
+EndFor

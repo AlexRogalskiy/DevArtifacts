@@ -1,0 +1,13 @@
+' PigLatin.sb
+TextWindow.Title = "Pig Latin"
+
+While ("True")
+  TextWindow.Write("Enter a word: ")
+  word = TextWindow.Read()
+  
+  pigLatin = Text.GetSubTextToEnd(word, 2)          ' Gets characters 2 to end
+  pigLatin = pigLatin + Text.GetSubText(word, 1, 1) ' Appends first character
+  pigLatin = pigLatin + "ay"                        ' Appends "ay"
+  TextWindow.WriteLine(pigLatin)                    ' Displays the output
+  TextWindow.WriteLine("")
+EndWhile 

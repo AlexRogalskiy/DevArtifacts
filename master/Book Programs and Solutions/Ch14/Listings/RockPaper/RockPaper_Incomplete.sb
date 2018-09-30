@@ -1,0 +1,31 @@
+' RockPaper_Incomplete.sb
+GraphicsWindow.Title = "Rock, Paper, Scissors"
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+
+path = Program.Directory
+GraphicsWindow.DrawImage(path + "\Bkgnd.png", 0, 0)
+choice1 = 0              ' 0 = Unknown; 1 = Rock; 2 = Paper; 3 = Scissors
+GraphicsWindow.MouseDown = OnMouseDown
+
+While ("True")                        ' Loops forever
+  If (choice1 <> 0) Then              ' If player made a choice
+    blankImg = path + "\W3.png"       ' Clears last result
+    GraphicsWindow.DrawImage(blankImg, 115, 310)
+    choice2 = Math.GetRandomNumber(3) ' 1 to 3
+    SwitchImages()                    ' Shows player and computer choices
+    ShowWinner()                      ' Shows image for the result
+    choice1 = 0                       ' Ready for another round
+  EndIf
+  Program.Delay(10)                   ' Waits a little, then checks again
+EndWhile
+
+Sub OnMouseDown 
+EndSub
+
+Sub SwitchImages
+EndSub
+
+Sub ShowWinner
+EndSub

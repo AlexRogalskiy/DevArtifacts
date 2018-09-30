@@ -1,0 +1,54 @@
+' TryItOut_3_3.sb
+' We'll use a grid size of 20 pixels
+
+' Draw the two wheels
+GraphicsWindow.BrushColor = "#77787B"
+GraphicsWindow.FillEllipse(240, 100, 20, 20) ' Inner rim, front
+GraphicsWindow.PenWidth   = 2
+GraphicsWindow.PenColor   = "Black"
+GraphicsWindow.DrawEllipse(240, 100, 20, 20) ' Inner rim, front
+
+GraphicsWindow.PenColor   = "#77787B"
+GraphicsWindow.PenWidth = 6
+GraphicsWindow.DrawEllipse(20, 60, 100, 100)  ' Outer rim, back
+GraphicsWindow.DrawEllipse(200, 60, 100, 100) ' Outer rim, front
+
+' Draw the blue frame
+GraphicsWindow.PenColor = "#0075BF"
+GraphicsWindow.DrawTriangle(70, 110, 120, 40, 140, 120)  ' Left triangle
+GraphicsWindow.DrawTriangle(226, 40, 120, 40, 140, 120)  ' Top triangle
+GraphicsWindow.DrawLine(120,40, 115,20)                  ' Seat support
+GraphicsWindow.DrawLine(230,20, 230,92)                  ' Steering wheel
+GraphicsWindow.DrawLine(230,90, 250,110)
+
+' Rear wheel (inner circle)
+GraphicsWindow.FillEllipse(60, 100, 20, 20)
+
+' Pedal circles
+GraphicsWindow.FillEllipse(122, 102, 36, 36)
+GraphicsWindow.BrushColor = "White"
+GraphicsWindow.FillEllipse(130, 110, 20, 20)
+
+' Draw borders for the circles (in black)
+GraphicsWindow.PenColor = "Black"
+GraphicsWindow.PenWidth   = 2
+GraphicsWindow.DrawEllipse(60, 100, 20, 20)
+GraphicsWindow.DrawEllipse(122, 102, 36, 36)
+GraphicsWindow.DrawEllipse(130, 110, 20, 20)
+
+' Pedal
+GraphicsWindow.PenWidth = 5
+GraphicsWindow.DrawLine(142, 102, 150, 85)
+GraphicsWindow.DrawLine(144, 85, 158, 85)
+GraphicsWindow.DrawLine(138, 130, 132, 152)
+GraphicsWindow.DrawLine(126, 152, 138, 152)
+
+' Steering
+GraphicsWindow.PenColor = "#E3B8BB"
+GraphicsWindow.PenWidth = 6
+GraphicsWindow.DrawLine(212, 15, 248, 24)
+
+' Seat
+GraphicsWindow.PenColor = "#8E3F3D"
+GraphicsWindow.PenWidth = 8
+GraphicsWindow.DrawLine(95, 20, 130, 20)

@@ -1,0 +1,11 @@
+' AppendContentsDemo.sb
+outFile = Program.Directory + "\Log.txt"
+
+strLog = Clock.WeekDay + ", " + Clock.Date + ", " + Clock.Time
+result = File.AppendContents(outFile, strLog)
+If (result = "FAILED") Then
+  TextWindow.WriteLine("Failed to write to: " + outFile)
+  TextWindow.WriteLine(File.LastError)
+EndIf
+
+TextWindow.WriteLine("Thank you for using this program. And for using deodorant.")

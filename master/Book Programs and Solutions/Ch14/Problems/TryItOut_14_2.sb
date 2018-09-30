@@ -1,0 +1,12 @@
+' TryItOut_14_2.sb
+
+gotAns = 0          ' Set to false
+While (gotAns = 0)  ' Loops as long as we don't have an answer
+  TextWindow.Write("Do you think SpongeBob could become Santa [Y/N]? ")
+  ans = TextWindow.Read()  
+  If ((ans = "Y") Or (ans = "y") Or (ans = "N") Or (ans = "n")) Then
+    gotAns = 1      ' Since we got an answer, we set the condition to exit the loop
+  Else
+    TextWindow.WriteLine("Please enter Y or N")
+  EndIf  
+EndWhile

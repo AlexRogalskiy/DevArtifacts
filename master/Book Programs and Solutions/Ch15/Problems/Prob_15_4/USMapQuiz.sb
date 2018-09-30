@@ -1,0 +1,43 @@
+' USMapQuiz.sb
+' Quizes the user on a map of the United States
+
+GraphicsWindow.Title = "USA Map Quiz"
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+
+state = "1=OR;2=WY;3=NV;4=TX;5=CO;6=AZ;7=MT;8=SD;9=NM;"
+correctAns = "1=c;2=b;3=h;4=e;5=d;6=i;7=a;8=f;9=g;"
+path = Program.Directory
+bkgndImg = path + "\Background.png"
+yesImg = path + "\Yes.png"
+noImg = path + "\No.png"
+
+CreateGUI()    ' Creates the user interface
+Controls.ButtonClicked = OnButtonClicked
+
+Sub CreateGUI
+  GraphicsWindow.DrawImage(bkgndImg, 0, 0)
+  
+  For N = 1 To 9
+    yPos = 20 + (N - 1) * 30
+    edit[N] = Controls.AddTextBox(370, yPos)
+    Controls.SetSize(edit[N], 25, 25)    
+    GraphicsWindow.DrawText(400, yPos + 5, state[N])
+  EndFor
+  
+  Controls.AddButton("Check", 370, 300)
+EndSub
+
+Sub OnButtonClicked
+  For N = 1 To 9
+    yPos = 20 + (N - 1) * 30   
+    ans = Controls.GetTextBoxText(edit[N])
+    ans = Text.ConvertToLowerCase(ans)
+    If (ans = correctAns[N]) Then
+      GraphicsWindow.DrawImage(yesImg, 350, yPos)
+    Else
+      GraphicsWindow.DrawImage(noImg, 350, yPos)        
+    EndIf        
+  EndFor  
+EndSub

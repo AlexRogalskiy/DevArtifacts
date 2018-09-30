@@ -1,0 +1,103 @@
+' HungryMouse.sb
+' Simulates a mouse's search for cheese
+
+GraphicsWindow.Title = "Hungry Mouse"
+TextWindow.Title = GraphicsWindow.Title
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.CanResize = 0
+TextWindow.Left = GraphicsWindow.Left + GraphicsWindow.Width + 140
+TextWindow.Top = GraphicsWindow.Top
+
+GraphicsWindow.DrawImage(Program.Directory + "\bkgnd.png", 0, 0)
+mouseId = Shapes.AddImage(Program.Directory + "\mouse.png")
+Shapes.Move(mouseId, 65, 120)     ' Puts the mouse in Room 1
+
+TextWindow.WriteLine("Press any key to start the simulation!")
+TextWindow.PauseWithoutMessage()
+TextWindow.Clear()
+
+
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+'                                    R O O M  1
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+Room1:
+TextWindow.WriteLine("Room 1")
+Shapes.Move(mouseId, 65, 120)
+Program.Delay(1200)
+
+choice = Math.GetRandomNumber(2) ' Room 1 has two exits (2 and 4)
+If (choice = 1) Then
+  Goto Room2
+Else
+  Goto Room4
+EndIf
+
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+'                                    R O O M  2
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+Room2:
+TextWindow.WriteLine("Room 2")
+Shapes.Move(mouseId, 205, 120)
+Program.Delay(1200)
+
+choice = Math.GetRandomNumber(4) ' Room 2 has four exits (1, 3, 4, and 5)
+If (choice = 1) Then
+  Goto Room1
+ElseIf (choice = 2) Then
+  Goto Room3
+ElseIf (choice = 3) Then
+  Goto Room4
+Else
+  Goto Room5
+EndIf
+
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+'                                    R O O M  3
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+Room3:
+TextWindow.WriteLine("Room 3")
+Shapes.Move(mouseId, 345, 120)
+Program.Delay(1000)
+
+TextWindow.WriteLine("Got the cheese! Now he'll share it with Mickey and Fievel!")
+Goto Exit
+
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+'                                    R O O M  4
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+Room4:
+TextWindow.WriteLine("Room 4")
+Shapes.Move(mouseId, 90, 220)
+Program.Delay(1200)
+
+choice = Math.GetRandomNumber(3) ' Room 4 has three exits (1, 2, and 5)
+If (choice = 1) Then
+  Goto Room1
+ElseIf (choice = 2) Then
+  Goto Room2
+Else
+  Goto Room5
+EndIf
+
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+'                                    R O O M  5
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+Room5:
+TextWindow.WriteLine("Room 5")
+Shapes.Move(mouseId, 310, 220)
+Program.Delay(1000)
+
+TextWindow.WriteLine("The cat has a good snack. Yummy mouse. Better than Ratatouille.")
+Goto Exit
+
+
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+'                                    Exit
+' @@@@@@@@@@@@@@@@@@@@@@@@@
+Exit:
+TextWindow.WriteLine("")
+TextWindow.Write("Press any key to run the simulation again...")
+TextWindow.PauseWithoutMessage()
+TextWindow.Clear()
+Goto Room1

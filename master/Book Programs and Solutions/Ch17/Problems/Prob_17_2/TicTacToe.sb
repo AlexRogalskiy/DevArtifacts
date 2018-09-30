@@ -1,0 +1,112 @@
+' Tic Tac Toe
+' Implements a Tic-Tac-Toe game against the computer
+
+GraphicsWindow.Title = "Tic-Tac-Toe"
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+path = Program.Directory
+xImg = path + "\X.png"
+oImg = path + "\O.png"
+
+rowCenter = "1=60;2=158;3=256"
+colCenter = "1=60;2=158;3=256"
+
+Controls.AddButton("Play Again", 230, 320)
+Controls.ButtonClicked = OnPlayAgain
+GraphicsWindow.MouseDown = OnMouseDown
+
+OnPlayAgain() ' Resets the game board
+
+' This subroutine is called when the player clicks the button to start a new game
+Sub OnPlayAgain
+  winner = 0     ' No winner yet
+  count  = 0     ' Total count of Xs and Os
+  GraphicsWindow.DrawImage(path + "\Background.png", 0, 0)
+  For R = 1 To 3
+    For C = 1 To 3
+      board[R][C] = 0
+    EndFor
+  EndFor
+EndSub
+
+' Called when the player clicks the mouse on the grid
+Sub OnMouseDown
+  If (winner = 0 ) Then        ' If the game is not over yet
+    GetCell()                  ' Gets the click position
+    If ((rowIdx <> 0) And (colIdx <> 0)) Then ' If the click is inside the grid   
+      If (board[rowIdx][colIdx] = 0) Then     ' The cell is empty  
+        board[rowIdx][colIdx] = 1             ' Marks the cell for the player
+        GraphicsWindow.DrawImage(xImg, colCenter[colIdx] - 45, rowCenter[rowIdx] - 45)
+        CheckWinner()          ' Checks if the player's click makes them win
+        If (winner = 0) Then   ' The player did not win
+          ComputerTurn()       ' Lets the computer play
+          CheckWinner()        ' Checks if the computer wins
+        EndIf
+      EndIf
+    EndIf
+  EndIf
+EndSub
+
+' Returns the row and column index of the cell that the player clicked
+Sub GetCell
+  rowIdx = 0
+  colIdx = 0
+  xPos = GraphicsWindow.MouseX
+  yPos = GraphicsWindow.MouseY
+  For R = 1 To 3
+    yDiff = Math.Abs(yPos - rowCenter[R])
+    For C = 1 To 3
+      xDiff = Math.Abs(xPos - colCenter[C])
+      If ((xDiff < 45) And (yDiff < 45)) Then
+        rowIdx = R
+        colIdx = C
+      EndIf
+    EndFor
+  EndFor
+EndSub
+
+Sub CheckWinner
+  count  = count + 1         ' We added an X or an O to the grid
+  winner = 0                 ' Assumes no winner
+  ' Sum for each row
+  sum[1] = board[1][1] + board[1][2] + board[1][3]
+  sum[2] = board[2][1] + board[2][2] + board[2][3]
+  sum[3] = board[3][1] + board[3][2] + board[3][3]
+  'Sum for each column
+  sum[4] = board[1][1] + board[2][1] + board[3][1]
+  sum[5] = board[1][2] + board[2][2] + board[3][2]
+  sum[6] = board[1][3] + board[2][3] + board[3][3]
+  'Diagonal 1
+  sum[7] = board[1][1] + board[2][2] + board[3][3]
+  'Diagonal 2
+  sum[8] = board[1][3] + board[2][2] + board[3][1]
+  
+  For N = 1 To 8
+    If (sum[N] = 3) Then
+      winner = 1
+      GraphicsWindow.ShowMessage("Player wins! You are the champion!", "Game Over")
+    ElseIf (sum[N] = 15) Then
+      winner = 2
+      GraphicsWindow.ShowMessage("Computer wins! No time for losers!", "Game Over")
+    EndIf
+  EndFor  
+  
+  If ((winner = 0) And (count = 9)) Then
+    winner = 3
+    GraphicsWindow.ShowMessage("Tie! It's a feline's contest!", "Game Over")
+  EndIf  
+EndSub
+
+Sub ComputerTurn
+  done = 0
+  while (done = 0)
+    R = Math.GetRandomNumber(3)
+    C = Math.GetRandomNumber(3)
+    If (board[R][C] = 0) Then
+      board[R][C] = 5
+      GraphicsWindow.DrawImage(oImg, colCenter[C] - 45, rowCenter[R] - 45)
+      done = 1
+    EndIf    
+  EndWhile
+EndSub

@@ -1,0 +1,51 @@
+' Monster.sb
+
+TextWindow.Write("How many eyes [2,4,6]? ")
+eyes = TextWindow.ReadNumber()
+
+TextWindow.Write("How many mouths [1,2]? ")
+mouths = TextWindow.ReadNumber()
+
+path = Program.Directory
+xPos = 50
+yPos = 50                 ' Vertical position for drawing next image
+
+GraphicsWindow.Clear()
+DrawHead()
+DrawEyes()
+DrawMouths()
+DrawBody()
+
+Sub DrawHead
+  GraphicsWindow.DrawImage(path + "\head.png", xPos, yPos)
+  yPos = yPos + 150       ' Adds the head's height
+EndSub
+
+Sub DrawEyes
+  If (eyes >= 4) Then
+    GraphicsWindow.DrawImage(path + "\eyes.png", xPos, yPos)
+    yPos = yPos + 100       ' Adds the eyes' height
+  EndIf
+  
+  If (eyes >= 6) Then
+    GraphicsWindow.DrawImage(path + "\eyes.png", xPos, yPos)
+    yPos = yPos + 100       ' Adds the eyes' height
+  EndIf
+EndSub
+
+Sub DrawMouths
+  If (mouths >= 1) Then
+    GraphicsWindow.DrawImage(path + "\mouth.png", xPos, yPos)
+    yPos = yPos + 100       ' Adds the mouth's height
+  EndIf
+  
+  If (mouths >= 2) Then
+    GraphicsWindow.DrawImage(path + "\mouth.png", xPos, yPos)
+    yPos = yPos + 100       ' Adds the mouth's height
+  EndIf
+EndSub
+
+Sub DrawBody
+  GraphicsWindow.DrawImage(path + "\body.png", xPos, yPos)
+  yPos = yPos + 120       ' Adds the body's height
+EndSub

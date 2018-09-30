@@ -1,0 +1,19 @@
+' Money.sb
+TextWindow.Write("Enter an amount of money (such as 25.36): ")
+total = TextWindow.ReadNumber()      ' In dollars and cents = 25.36
+cents = Math.Floor(total * 100)      ' Total cents = 2536
+dollars = Math.Floor(cents / 100)    ' Number of dollars = 25
+cents = Math.Remainder(cents, 100)   ' Remaining cents = 36
+quarters = Math.Floor(cents / 25)    ' Number of quarters = 1
+cents = Math.Remainder(cents, 25)    ' Remaining cents = 11
+dimes = Math.Floor(cents / 10)       ' Number of dimes = 1
+cents = Math.Remainder(cents, 10)    ' Remaining cents = 1
+nickels = Math.Floor(cents / 5)      ' Number of nickels = 0
+pennies = Math.Remainder(cents, 5)   ' Number of pennies = 1
+TextWindow.Write("$" + total + " = ")
+TextWindow.Write("$" + dollars + ", ")
+TextWindow.Write(quarters + "Q, ")
+TextWindow.Write(dimes + "D, ")
+TextWindow.Write(nickels + "N, ")
+TextWindow.Write(pennies + "P.")
+TextWindow.WriteLine("")

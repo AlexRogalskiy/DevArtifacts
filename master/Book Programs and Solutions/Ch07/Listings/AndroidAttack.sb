@@ -1,0 +1,12 @@
+' AndroidAttack.sb
+v = 160 ' Initial speed = 160 feet/sec
+
+TextWindow.WriteLine("Shoot the cannon 500 feet to destroy the warehouse!")
+TextWindow.Write("Enter launch angle in degrees: ")
+angle = TextWindow.ReadNumber()
+theta = Math.GetRadians(angle) ' Angle in radians
+
+d = (v * v) * Math.Sin(2 * theta) / 32
+d = Math.Round(d)  ' Rounds to the nearest integer
+
+TextWindow.WriteLine("Distance = " + d + " feet.")

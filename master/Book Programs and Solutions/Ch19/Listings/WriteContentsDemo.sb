@@ -1,0 +1,16 @@
+' WriteContentsDemo.sb
+CR = Text.GetCharacter(13)                  ' Code for carriage return
+LF = Text.GetCharacter(10)                  ' Code for line feed
+outFile = "C:\Temp\Out.txt"                 ' Absolute path of output file
+
+strOut = ""                                 ' Text to be written to file
+strIn = ""                                  ' One line (read from the user)
+While(strIn <> "exit")                      ' Until user enters exit
+  TextWindow.Write("Data (exit to end): ")  ' Prompts for text
+  strIn = TextWindow.Read()                 ' Reads line
+  If (strIn <> "exit") Then                 ' If user didn't enter exit
+    strOut = strOut + strIn + CR + LF       ' Appends text to strOut
+  EndIf
+EndWhile
+
+File.WriteContents(outFile, strOut)         ' Writes strOut to file

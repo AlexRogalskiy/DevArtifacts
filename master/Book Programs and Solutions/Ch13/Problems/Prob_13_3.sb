@@ -1,0 +1,17 @@
+' Prob_13_3.sb
+
+score = 0
+For N = 1 To 10             ' Asks 10 questions
+  n1 = Math.GetRandomNumber(10)
+  n2 = Math.GetRandomNumber(10)
+  
+  TextWindow.Write(n1 + " x " + n2 + "? ")
+  ans = TextWindow.ReadNumber()
+  
+  If (ans = n1 * n2) Then   ' Increases the score
+    score = score + 1
+  Else                      ' Shows the correct answer
+    TextWindow.WriteLine("Incorrect --> " + (n1 * n2))
+  EndIf
+EndFor
+TextWindow.WriteLine("Your score is: " + score + "/10")

@@ -1,0 +1,102 @@
+' Space.sb
+' Shoot a flying UFO
+
+GraphicsWindow.Title = "Shoot"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.CanResize = 0
+GraphicsWindow.FontSize = 16
+GraphicsWindow.BrushColor = "Black"
+
+path = Program.Directory
+base = Shapes.AddImage(path + "\Base.ico")   ' Base launcher
+ufo = Shapes.AddImage(path + "\Ufo.ico")   
+rocket = Shapes.AddImage(path + "\Rocket.ico")
+scoreTxt = Shapes.AddText("Score:")
+
+Shapes.Move(base, 240, 320)
+Shapes.Move(ufo, 0, 32)
+Shapes.HideShape(rocket)
+
+GraphicsWindow.KeyDown = OnKeyDown
+GraphicsWindow.KeyUp = OnKeyUp
+
+MAX_BULLETS = 100
+fired = 0        ' Number of rockets fired so far
+score = 0        ' Player's score
+key0 = "None"    ' Previous key
+key1 = "None"    ' Current key
+gameOver = 0
+dir = 1          ' UFO's direction: 1 (right), -1 (left)
+
+While (gameOver = 0)
+  MoveUFO()             ' Move UFO object
+  
+  MovePlayer()          ' Checks if the player presses left/right arrow
+  
+  If (key1 = "Space") Then
+    Shoot()
+  EndIf
+  
+  msg = "Score: " + score + "    Bullets: " + (MAX_BULLETS-fired)
+  Shapes.SetText(scoreTxt, msg)
+  Program.Delay(100)
+EndWhile
+
+Sub OnKeyDown
+  key0 = key1  
+  key1 = GraphicsWindow.LastKey
+EndSub
+
+Sub OnKeyUp
+  key0 = "None"
+  key1 = "None"
+EndSub
+
+Sub MoveUFO
+  leftPos = Shapes.GetLeft(ufo)
+  topPos = Shapes.GetTop(ufo)
+  leftPos = leftPos + dir * Math.GetRandomNumber(32)
+  If (leftPos > 448) Then
+    leftPos = 448
+    dir = -1
+  ElseIf (leftPos < 0) Then
+    leftPos = 0
+    dir = 1
+  EndIf
+  Shapes.Move(ufo, leftPos, topPos)
+EndSub
+
+Sub MovePlayer
+  leftPos = Shapes.GetLeft(base)  ' Base left position
+  If (key1 = "Left") Then
+    leftPos = Math.Max(leftPos - 32, 0)
+  ElseIf(key1 = "Right") Then
+    leftPos = Math.Min(leftPos + 32, 448)
+  EndIf
+  
+  Shapes.Move(base, leftPos, 320)    
+EndSub
+
+Sub Shoot
+  baseXPos = Shapes.GetLeft(base)
+  Shapes.ShowShape(rocket)
+  For N = 320 To -32 Step -32
+    Shapes.Move(rocket, baseXPos, N)
+    Program.Delay(10)
+  EndFor
+  Shapes.HideShape(rocket)
+  
+  rocketXPos = baseXPos + 16    ' Center point
+  ufoXPos = Shapes.GetLeft(ufo) + 16
+  
+  If (Math.Abs(rocketXPos-ufoXPos) < 10) Then
+    score = score + 1
+    Sound.PlayClick()
+  EndIf
+  
+  fired = fired + 1
+  If (fired = MAX_BULLETS) Then
+    gameOver = 1
+  EndIf  
+EndSub

@@ -1,0 +1,36 @@
+' AnimalSpeed.sb
+' Quizzes the user on the speed of animals
+
+speed["cheetah"] = 70
+speed["antelope"] = 60
+speed["lion"] = 50
+speed["coyote"] = 43
+speed["hyena"] = 40
+speed["rabbit"] = 35
+speed["giraffe"] = 32
+speed["gizzly bear"] = 25
+speed["squirrel"] = 12
+
+animals = Array.GetAllIndices(speed)
+For N = 1 To Array.GetItemCount(animals)
+  animalName = animals[N]
+  animalSpeed = speed[animalName]
+  SpeedQuiz()
+EndFor
+
+Sub SpeedQuiz
+  ans = 0
+  While (ans <> animalSpeed)
+    TextWindow.Write("What is the speed of a ")
+    TextWindow.Write(animalName + " [mph]? ")
+    ans = TextWindow.ReadNumber()
+    If (ans = animalSpeed) Then
+      TextWindow.WriteLine("Correct! Now you can tell your friends, and they'll know you're not lion!")
+    ElseIf (ans < animalSpeed) Then
+      TextWindow.WriteLine("Too low.")
+    Else
+      TextWindow.WriteLine("Too high.")
+    EndIf
+  EndWhile
+  TextWindow.WriteLine("")
+EndSub

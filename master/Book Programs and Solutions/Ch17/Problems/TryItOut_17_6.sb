@@ -1,0 +1,20 @@
+' TryItOut_17_6.sb
+
+For rack = 1 To 5     ' For each rack
+  For row = 1 To 3    ' For each row
+    For col = 1 To 4  ' For each column
+      box[rack][row][col] = Math.GetRandomNumber(9)
+    EndFor
+  EndFor
+EndFor
+
+For rack = 1 To 5     ' For each rack
+  TextWindow.WriteLine("Rack " + rack + ":")
+  For row = 1 To 3    ' For each row
+    For col = 1 To 4  ' For each column
+      TextWindow.Write(box[rack][row][col] + " ")
+    EndFor
+    TextWindow.WriteLine("")
+  EndFor
+  TextWindow.WriteLine("")
+EndFor

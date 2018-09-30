@@ -1,0 +1,80 @@
+' RockPaper.sb
+' Plays Rock, Paper, Scissors game 
+
+GraphicsWindow.Title = "Rock, Paper, Scissors"
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+
+path = Program.Directory
+GraphicsWindow.DrawImage(path + "\Bkgnd.png", 0, 0)
+choice1 = 0              ' 0 = Unknown; 1 = Rock; 2 = Paper; 3 = Scissors
+GraphicsWindow.MouseDown = OnMouseDown
+
+While ("True")                        ' Loops forever
+  If (choice1 <> 0) Then              ' If player made a choice
+    blankImg = path + "\W3.png"       ' Clears last result
+    GraphicsWindow.DrawImage(blankImg, 115, 310)
+    choice2 = Math.GetRandomNumber(3) ' 1 to 3
+    SwitchImages()                    ' Shows player and computer choices
+    ShowWinner()                      ' Shows image for the result
+    choice1 = 0                       ' Ready for another round
+  EndIf
+  Program.Delay(10)                   ' Waits a little, then checks again
+EndWhile
+
+Sub OnMouseDown
+  If (choice1 = 0) Then        ' Ready for another round
+    y = GraphicsWindow.MouseY  ' Vertical click position
+    If ((y > 80) And (y < 120)) Then    ' Within range
+      x = GraphicsWindow.MouseX         ' Horizontal click
+      If ((x > 40) And (x < 80)) Then       ' Rock
+        choice1 = 1
+      ElseIf ((x > 110) And (x < 150)) Then ' Paper
+        choice1 = 2
+      ElseIf ((x > 175) And (x < 215)) Then ' Scissors
+        choice1 = 3
+      EndIf
+    EndIf
+  EndIf
+EndSub
+
+Sub SwitchImages
+  For M = 1 To 10 ' Flips images 10 times
+    N = 1 + Math.Remainder(M, 3)      ' N = 1,2,3,1,2,3...
+    img1 = path + "\P" + N + ".png"   ' {\P1, \P2, or \P3}.png
+    img2 = path + "\C" + N + ".png"   ' {\C1, \C2, or \C3}.png
+    GraphicsWindow.DrawImage(img1, 40, 150)   ' Draws img1
+    GraphicsWindow.DrawImage(img2, 280, 150)  ' Draws img2
+    Program.Delay(100)                ' Waits a short time
+  EndFor
+  
+  ' Shows the actual choices of the player and the computer
+  img1 = path + "\P" + choice1 + ".png"
+  img2 = path + "\C" + choice2 + ".png"
+  GraphicsWindow.DrawImage(img1, 40, 150)
+  GraphicsWindow.DrawImage(img2, 280, 150)
+EndSub
+
+
+
+Sub ShowWinner
+  ' W0: Tie; W1: Player1; W2: Computer
+  If ((choice1 = 1) And (choice2 = 2)) Then	     ' Paper (2) beats rock (1)
+    img = "\W2.png"
+  ElseIf ((choice1 = 1) And (choice2 = 3)) Then  ' Rock (1) beats scissors (3)
+    img = "\W1.png"
+  ElseIf ((choice1 = 2) And (choice2 = 1)) Then  ' Paper (2) beats rock (1)
+    img = "\W1.png"
+  ElseIf ((choice1 = 2) And (choice2 = 3)) Then  ' Scissors (3) beats paper (2)
+    img = "\W2.png"
+  ElseIf ((choice1 = 3) And (choice2 = 1)) Then  ' Rock (1) beats scissors (3)
+    img = "\W2.png"
+  ElseIf ((choice1 = 3) And (choice2 = 2)) Then  ' Scissors (3) beats paper (2)
+    img = "\W1.png"
+  Else
+    img = "\W0.png"
+  EndIf
+  
+  GraphicsWindow.DrawImage(path + img, 115, 310)
+EndSub

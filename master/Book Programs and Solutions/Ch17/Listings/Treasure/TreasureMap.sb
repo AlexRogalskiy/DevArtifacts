@@ -1,0 +1,140 @@
+' TreasureMap.sb
+' Guides the user to find the treasure using a treasure map
+
+GraphicsWindow.Title = "Treasure Map"
+GraphicsWindow.Width = 580
+GraphicsWindow.Height = 450
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.FontSize = 14
+GraphicsWindow.FontName = "Courier New"
+
+' Creates a text shape for showing the player's location
+GraphicsWindow.BrushColor = "Black"
+txtID = Shapes.AddText("")
+Shapes.Move(txtID, 60, 415)
+
+' Creates the 4 movement buttons and the new game button
+GraphicsWindow.BrushColor = "Red"
+btnN   = Controls.AddButton("N", 507, 10)
+btnS   = Controls.AddButton("S", 507, 90)
+btnW   = Controls.AddButton("W", 467, 50)
+btnE   = Controls.AddButton("E", 541, 50)
+btnNew = Controls.AddButton("New Game", 480, 370)
+
+Controls.ButtonClicked = OnButtonClicked
+
+NewGame()
+
+Sub NewGame
+  gameOver = 0   ' Game isn't over yet
+  moveNumber = 0 ' How many moves the player makes 
+  path = Program.Directory
+  
+  GraphicsWindow.DrawImage(path + "\Background.png", 0, 0)
+  CreateNewMap() ' Creates and draws a new treasure map
+  ShowLocation() ' Gives feedback to the player
+EndSub
+
+Sub CreateNewMap
+  For row = 1 To 10
+    For col = 1 To 10
+      map[row][col] = 0   ' Clears all cells
+    EndFor
+  EndFor
+  
+  objId = "1=1;2=1;3=1;4=1;5=1;6=1;7=1;8=1;9=2;10=2;11=2;12=2;13=2;14=2;15=2;16=2;17=3;18=3;19=4;20=4;21=5;22=5;23=6;24=6;25=7;26=0"
+  count = 1               ' Points to first element in objId
+  While (count <= Array.GetItemCount(objId))
+    row = Math.GetRandomNumber(10)
+    col = Math.GetRandomNumber(10)
+    If (map[row][col] = 0) Then    ' Cell is clear
+      map[row][col] = objId[count] ' Reserves the cell
+      DrawObject()      
+      count = count + 1   ' Points to next element in objId
+    EndIf    
+  EndWhile
+  
+  rowP = row              ' Player's current row
+  colP = col              ' Player's current colum
+EndSub
+
+Sub DrawObject
+  imgName = "1=Grass.ico;2=Tree.ico;3=Volcano.ico;4=Cave.ico;5=Rain.ico;6=Flower.ico;7=Treasure.ico"
+  
+  imgID = map[row][col]
+  If ((imgID >= 1) And (imgID <= 7)) Then
+    imgPath = path + "\" + imgName[imgID]
+    
+    xPos = 52 + (col - 1) * 38
+    yPos = 25 + (row - 1) * 38
+    GraphicsWindow.DrawImage(imgPath, xPos, yPos)
+  EndIf
+EndSub
+
+
+Sub ShowLocation
+  locID = map[rowP][colP]
+  If (locID = 1) Then
+    msg = "You're in a grass field."
+  ElseIf (locID = 2) Then
+    msg = "You're in a forest."
+  ElseIf (locID = 3) Then
+    msg = "You're next to a volcano."
+  ElseIf (locID = 4) Then
+    msg = "You're in a cave"
+  ElseIf (locID = 5) Then
+    msg = "You're in the rain"
+  ElseIf (locID = 6) Then
+    msg = "You're in a flower field."
+  ElseIf (locID = 7) Then
+    gameOver = 1
+    msg = "Congratulations! You found the treasure!"
+  Else
+    msg = "You're in the clear!"
+  EndIf
+  
+  Shapes.SetText(txtID, "[" + moveNumber + "]: " + msg)
+EndSub
+
+Sub OnButtonClicked
+  btnID = Controls.LastClickedButton
+  
+  If (btnID = btnNew) Then
+    NewGame()
+  ElseIf (gameOver = 0) Then
+    moveNumber = moveNumber + 1
+    
+    MovePlayer()     ' Finds the player's new row and column
+        
+    If ((rowP < 1) Or (rowP > 10) Or (colP < 1) Or (colP > 10)) Then
+      gameOver = 1
+      Shapes.SetText(txtID, "Sorry! You were eaten by the shark!")
+    Else
+      ShowLocation() ' Tells the player their new position
+    EndIf
+  EndIf  
+EndSub
+
+Sub MovePlayer
+  shift = 0                  ' How much to shift direction
+  randNum = Math.GetRandomNumber(10)
+  If (randNum = 1) Then
+    shift = 1
+  ElseIf (randNum = 2) Then
+    shift = -1
+  EndIf
+  
+  If (btnID = btnN) Then     ' North
+    rowP = rowP - 1
+    colP = colP + shift
+  ElseIf (btnID = btnS) Then ' South
+    rowP = rowP + 1
+    colP = colP + shift
+  ElseIf (btnID = btnE) Then ' East
+    colP = colP + 1
+    rowP = rowP + shift
+  ElseIf (btnID = btnW) Then ' West
+    colP = colP - 1
+    rowP = rowP + shift
+  EndIf
+EndSub

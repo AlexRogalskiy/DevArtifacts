@@ -1,0 +1,28 @@
+' TryItOut_15_2.sb
+' Fills an array called skeletor with even integers from 20 to 40
+
+For N = 1 To 11
+  skeletor[N] = 20 + (N - 1) * 2    ' Same as 2N + 18
+  TextWindow.WriteLine("skeletor[" + N + "] = " + skeletor[N])
+EndFor
+
+' Here is another way
+TextWindow.WriteLine("")
+N = 0
+For value = 20 To 40 Step 2
+  N = N + 1
+  skeletor[N] = value
+  TextWindow.WriteLine("skeletor[" + N + "] = " + skeletor[N])
+EndFor
+
+' Here is another way
+TextWindow.WriteLine("")
+N = 1           ' Index
+value = 20
+While (value <= 40)
+  skeletor[N] = value
+  TextWindow.WriteLine("skeletor[" + N + "] = " + skeletor[N])
+  
+  value = value + 2
+  N = N + 1
+EndWhile

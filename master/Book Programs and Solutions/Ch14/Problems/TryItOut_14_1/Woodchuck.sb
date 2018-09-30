@@ -1,0 +1,33 @@
+' Woodchuck.sb
+' A number guessing game
+
+TextWindow.WriteLine("How much wood would a woodchuck chuck")
+TextWindow.WriteLine("if a woodchuck could chuck wood?")
+TextWindow.WriteLine("")
+TextWindow.WriteLine("You have 4 chances to guess.")
+TextWindow.WriteLine("")
+
+ans = Math.GetRandomNumber(20)
+guess = 0
+trial = 0
+While ((trial < 4) And (guess <> ans)) 
+  trial = trial + 1
+  TextWindow.Write("Guess #" + trial + " [1-20]: ")
+  guess = TextWindow.ReadNumber()
+  If (guess = ans) Then
+    TextWindow.WriteLine("Correct. You guessed it on try #" + trial + ".")
+    TextWindow.WriteLine("The woodchucks scrunch their noses in your honor!")
+  ElseIf(guess > ans) Then
+    TextWindow.WriteLine("Too much. That's a lot of wood!")
+  Else
+    TextWindow.WriteLine("Too little. The woodchuck can chuck more!")
+  EndIf
+  
+  TextWindow.WriteLine("")
+  
+  If ((guess <> ans) And (trial = 4)) Then
+    msg = "You lost. The correct answer is " + ans + " logs. The woodchucks are deeply offended!"
+    TextWindow.WriteLine(msg)
+    TextWindow.WriteLine("")
+  EndIf
+EndWhile  

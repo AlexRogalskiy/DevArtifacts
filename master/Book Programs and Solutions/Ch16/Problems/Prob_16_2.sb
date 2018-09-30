@@ -1,0 +1,25 @@
+' Prob_16_2.sb
+' Keeps track of book information
+
+title["0312510780"] = "First 100 Words"
+author["0312510780"] = "Roger Priddy"
+year["0312510780"] = 2011
+
+title["0671449028"] = "The Going-To-Bed Book"
+author["0671449028"] = "Sandra Boynton"
+year["0671449028"] = 1982
+
+title["1593275676"] = "How Linux Works"
+author["1593275676"] = "Brian Ward"
+year["1593275676"] = 2014
+
+' Prints all the books in the collection
+isbnArray = Array.GetAllIndices(title)
+For N = 1 To Array.GetItemCount(isbnArray)
+  isbn = isbnArray[N]
+  TextWindow.WriteLine("Title : " + title[isbn])
+  TextWindow.WriteLine("Author: " + author[isbn])
+  TextWindow.WriteLine("ISBN  : " + isbn)
+  TextWindow.WriteLine("Year  : " + year[isbn])
+  TextWindow.WriteLine("")
+EndFor

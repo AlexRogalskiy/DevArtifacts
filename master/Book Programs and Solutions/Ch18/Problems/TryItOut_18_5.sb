@@ -1,0 +1,73 @@
+' TryItOut_18_5.sb
+
+score[1] = 0  ' Player 1 score
+score[2] = 0  ' Player 2 score
+
+For round = 1 To 10
+  For player = 1 To 2
+    NewRound()
+  EndFor
+  
+  TextWindow.WriteLine("Round " + round + " scores:")
+  ShowScores()
+EndFor
+
+' Now that the game is over, you display the winner
+TextWindow.Clear()
+TextWindow.WriteLine("Game over. The final scores are:")
+ShowScores()
+
+If (score[1] > score[2]) Then
+  TextWindow.WriteLine("Player 1 won the game. You must have gotten easier words.")
+ElseIf (score[1] < score[2]) Then
+  TextWindow.WriteLine("Player 2 won the game. You probably cheated.")
+Else
+  TextWindow.WriteLine("The game is a tie. But not the bow kind.")
+EndIf
+
+Sub ShowScores
+  TextWindow.WriteLine("Player 1: " + score[1])
+  TextWindow.WriteLine("Player 2: " + score[2])
+  TextWindow.WriteLine("")
+EndSub
+
+Sub NewRound
+  If (player = 1) Then    
+    TextWindow.Write("Player 1 - Please enter a word: ")
+    opponent = 2
+  Else
+    TextWindow.Write("Player 2 - Please enter a word: ")
+    opponent = 1
+  EndIf
+  
+  strIn = TextWindow.Read()
+  CountVowels()
+  
+  TextWindow.Clear()  
+  TextWindow.Write("Player " + opponent + " - How many vowels? ")
+  guess = TextWindow.ReadNumber()
+  
+  TextWindow.Write(strIn + " has [" + vowelCount + "] vowels ==> Your guess is ")
+  If (guess = vowelCount) Then
+    TextWindow.WriteLine("correct.")
+    score[opponent] = score[opponent] + 1
+  Else
+    TextWindow.WriteLine("wrong.")
+  EndIf
+  
+  TextWindow.WriteLine("")
+EndSub
+
+' This subroutine counts the number of vowels in an input string
+'  Input: strIn - the string whose vowels are to be counted
+' Output: vowelCount - the number of vowels
+Sub CountVowels
+  vowelCount = 0                          ' Sets vowelCount to 0 (so far)
+  For N = 1 To Text.GetLength(strIn)      ' Checks all the characters
+    ch = Text.GetSubText(strIn, N, 1)     ' Gets Nth character
+    ch = Text.ConvertToUpperCase(ch)      ' Makes it uppercase
+    If ((ch="A") Or (ch="E") Or (ch="I") Or (ch="O") Or (ch="U")) Then
+      vowelCount = vowelCount + 1         ' If it finds a vowel, it increments count
+    EndIf
+  EndFor  
+EndSub

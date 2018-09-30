@@ -1,0 +1,15 @@
+' RandomSelect.sb
+For N = 1 to 10 ' Puts the 10 balls in an array
+  ball[N] = N
+EndFor
+
+For N = 1 to 5                      ' Loops to select 5 balls
+  idx = Math.GetRandomNumber(10)    ' Gets random ball number
+  While (ball[idx] = 0)             ' Ball already selected
+    idx = Math.GetRandomNumber(10)  ' Gets another number
+  EndWhile
+  
+  TextWindow.Write(ball[idx] + ", ")  ' Displays selected ball
+  ball[idx] = 0                       ' Marks it out (taken)
+EndFor
+TextWindow.WriteLine("")

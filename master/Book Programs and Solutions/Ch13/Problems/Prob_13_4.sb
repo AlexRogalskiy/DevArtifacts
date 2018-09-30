@@ -1,0 +1,34 @@
+' Prob_13_4.sb
+' Creates patterns with lines
+
+GraphicsWindow.Width = 400
+GraphicsWindow.Height = 200
+GraphicsWindow.PenWidth = 1
+
+' Uncomment the code below to  make the pattern colorful
+
+' Corner 1
+For N = 1 To 10
+  ' GraphicsWindow.PenColor = GraphicsWindow.GetRandomColor()
+  GraphicsWindow.DrawLine(0, (N - 1) * 20,  N * 20, 200)
+EndFor
+
+' Corner 2
+For N = 1 To 10
+  ' GraphicsWindow.PenColor = GraphicsWindow.GetRandomColor()
+  GraphicsWindow.DrawLine(0, N * 20,  (11 - N) * 20, 0)
+EndFor
+
+' Corner 3
+For N = 1 To 10
+  ' GraphicsWindow.PenColor = GraphicsWindow.GetRandomColor()
+  GraphicsWindow.DrawLine(200 + (N - 1) * 20, 0,  400, N * 20)
+EndFor
+
+' Corner 4
+For N = 1 To 10
+  ' GraphicsWindow.PenColor = GraphicsWindow.GetRandomColor()
+  GraphicsWindow.DrawLine(400, (N - 1) * 20, 400 - (N * 20), 200)
+EndFor
+
+GraphicsWindow.DrawRectangle(0, 0, 400, 200)

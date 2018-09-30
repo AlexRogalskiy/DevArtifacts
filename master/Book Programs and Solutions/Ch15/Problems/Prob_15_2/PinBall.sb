@@ -1,0 +1,24 @@
+' PinBall.sb
+' Simulates a pinball machine
+
+For N = 1 To 7		' Seven pockets
+  count[N] = 0		' Zero balls in each pocket
+EndFor
+
+For ball = 1 To 10000	' Drops  10000 balls
+  pos = 4		' Starts in the middle
+  For level = 1 To 6	' Drops six levels
+    If (Math.GetRandomNumber(2) = 1) Then
+      pos = pos - 0.5
+    Else
+      pos = pos + 0.5
+    EndIf
+  EndFor
+  
+  pos = Math.Round(pos)	  ' Rounds position to nearest integer
+  count[pos] = count[pos] + 1	  ' Adds ball to pocket
+EndFor
+
+For N=1 To 7	' Displays result
+  TextWindow.WriteLine("pocket " + N + "  " + count[N] + " times")
+EndFor

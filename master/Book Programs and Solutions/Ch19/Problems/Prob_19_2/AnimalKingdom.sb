@@ -1,0 +1,66 @@
+' AnimalKingdom.sb
+
+path = Program.Directory + "\dataIn.txt"
+
+' Let's start by explaining the program to the user
+ShowInfo()
+
+N = 2                       ' Start with the second line
+While (N > 0)               ' We'll set N to 0 when we reach the end of the file
+  strLine = File.ReadLine(path, N)
+  If (strLine = "") Then    ' Reached the end of the file
+    N = 0
+  Else
+    ParseLine()             ' Parses the line 
+    AskUser()               ' Asks the user and processes her answer      
+    N = N + 1               ' Reads the next line from the file
+  EndIf  
+EndWhile
+
+
+Sub ShowInfo
+  ' Reads the first line of the file
+  strChoices = File.ReadLine(path, 1)
+  
+  oldColor = TextWindow.ForegroundColor
+  
+  TextWindow.ForegroundColor = "Red"
+  TextWindow.WriteLine("This program tests your knowledge of the animal kingdom.")
+  TextWindow.WriteLine("")
+  
+  TextWindow.ForegroundColor = oldColor
+  TextWindow.WriteLine("The program displays an animal's name, and then asks you")
+  TextWindow.WriteLine("to classify that animal by entering the number of the ")
+  TextWindow.WriteLine("correct class (as shown below):")
+  TextWindow.WriteLine("")
+  
+  TextWindow.ForegroundColor = "Green"
+  TextWindow.WriteLine(strChoices)
+  TextWindow.ForegroundColor = oldColor
+  
+  TextWindow.WriteLine("")
+  TextWindow.WriteLine("")
+EndSub
+
+' This subroutines parses the input line into its tokens
+' Input: strLine. The input line has the following format:
+      ' animal name; animal class (a number)
+' Outputs: strAnimal, strClass
+Sub ParseLine
+  idx = Text.GetIndexOf(strLine, ";")
+  strAnimal = Text.GetSubText(strLine, 1, idx - 1)
+  strClass = Text.GetSubTextToEnd(strLine, idx + 1)  
+EndSub
+
+Sub AskUser
+  TextWindow.Write(strAnimal + ": ")
+  ans = TextWindow.ReadNumber()
+  
+  If (ans = strClass) Then
+    TextWindow.WriteLine("  Correct. Continue your reign, deer.")
+  Else
+    TextWindow.WriteLine("  No. The correct class is " + strClass + ". You got it wrong? ... Awkward paws.")
+  EndIf
+  
+  TextWindow.WriteLine("")  
+EndSub

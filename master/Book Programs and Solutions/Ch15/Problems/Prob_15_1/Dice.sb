@@ -1,0 +1,22 @@
+' Dice.sb
+' Simulates rolling a die
+
+For N = 1 To 6
+  dice[N] = 0
+EndFor
+
+' Starts rolling
+For N = 1 To 10000
+  face = Math.GetRandomNumber(6)
+  dice[face] = dice[face] + 1
+EndFor
+
+' Displays Results
+TextWindow.WriteLine("Num  Count  Probability")
+For N = 1 To 6
+  TextWindow.Write(N)
+  TextWindow.CursorLeft = 5
+  TextWindow.Write(dice[N])
+  TextWindow.CursorLeft = 12
+  TextWindow.WriteLine(dice[N] / 10000)
+EndFor

@@ -1,0 +1,41 @@
+' VirtualPiano.sb
+' Converts the keyboard to a piano
+
+note["Q"] = "O3 c 64"
+note["W"] = "O3 d 64"
+note["E"] = "O3 e 64"
+note["R"] = "O3 f 64"
+note["T"] = "O3 g 64"
+note["Y"] = "O3 a 64"
+note["U"] = "O3 b 64"
+note["I"] = "O4 c 64"
+note["O"] = "O4 d 64"
+note["P"] = "O4 e 64"
+note["A"] = "O4 f 64"
+note["S"] = "O4 g 64"
+note["D"] = "04 a 64"
+note["F"] = "O4 b 64"
+note["G"] = "O5 c 64"
+note["H"] = "O5 d 64"
+note["J"] = "O5 e 64"
+note["K"] = "O5 f 64"
+note["L"] = "O5 g 64"
+note["Z"] = "O5 a 64"
+note["X"] = "O5 b 64"
+note["C"] = "O6 c 64"
+note["V"] = "O6 d 64"
+note["B"] = "O6 e 64"
+note["N"] = "O6 f 64"
+note["M"] = "O6 g 64"
+note[","] = "O6 a 64"
+note["."] = "O6 b 64"
+
+GraphicsWindow.KeyDown = OnKeyDown
+
+Sub OnKeyDown
+  key = GraphicsWindow.LastKey
+  value = note[key]
+  If (value <> "") Then
+    Sound.PlayMusic(value)
+  EndIf
+EndSub

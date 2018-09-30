@@ -1,0 +1,20 @@
+' Palindrome.sb
+Again:
+TextWindow.WriteLine("")
+TextWindow.Write("Enter a number: ")
+ans = TextWindow.ReadNumber()           ' Saves user's input in ans
+
+length = Text.GetLength(ans)            ' Number of digits of input number
+pos1 = 1                                ' Sets pos1 to read first digit
+pos2 = length                           ' Sets pos2 to read last digit
+For N = 1 To (length / 2)               ' Performs (length/2) comparisons
+  ch1 = Text.GetSubText(ans, pos1, 1)   ' Reads digit at position pos1
+  ch2 = Text.GetSubText(ans, pos2, 1)   ' Reads digit at position pos2
+  If (ch1 <> ch2) Then                  ' If not equal, no need to continue
+    TextWindow.WriteLine(ans + " is't a palindrome.") ' Shows result
+    Goto Again
+  EndIf
+EndFor
+
+TextWindow.WriteLine(ans + " is a palindrome.")
+Goto Again

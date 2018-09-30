@@ -1,0 +1,179 @@
+' Dragon.sb
+' Implements the Draggy vs Good Knight game
+
+SetUp()               ' Does one-time set up
+
+NewGame()             ' Sets the parameters for a new game
+
+UpdateUserInterface() ' Shows values on background image
+
+NextMove:
+GetChoice()           ' Displays options and gets the knight's choice
+
+ProcessChoice()       ' Processes the user's choice.
+
+DragonFire()          ' Now it's the dragon's turn
+Goto NextMove
+
+Sub SetUp
+  GraphicsWindow.Title = "Slay the Dragon"
+  TextWindow.Title = GraphicsWindow.Title
+  
+  GraphicsWindow.Width = 480
+  GraphicsWindow.Height = 380
+  GraphicsWindow.CanResize = 0 
+  GraphicsWindow.FontSize  = 14
+  GraphicsWindow.Left = 40
+  ' Positions the text window
+  TextWindow.Left = GraphicsWindow.Left + GraphicsWindow.Width + 20
+  TextWindow.Top = GraphicsWindow.Top
+  
+  path = Program.Directory
+  GraphicsWindow.DrawImage(path + "\bkgnd.png", 0, 0)
+  
+  ' Creates text objects to show distance, arrows,
+  ' shield strength, and message
+  distText = Shapes.AddText("")
+  arrowsText = Shapes.AddText("")
+  shieldText = Shapes.AddText("")
+  msgText = Shapes.AddText("Draggy VS Good Knight")
+  Shapes.Move(distText, 60, 30)
+  Shapes.Move(arrowsText, 200, 30)
+  Shapes.Move(shieldText, 370, 30)
+  Shapes.Move(msgText, 5, 362)
+  
+  ' Loads the images for the knight, dragon, and arrow
+  knightImg = Shapes.AddImage(path + "\knight.png")
+  dragon1Img = Shapes.AddImage(path + "\dragon1.png")
+  dragon2Img = Shapes.AddImage(path + "\dragon2.png")
+  arrowImg = Shapes.AddImage(path + "\arrow.png")
+  Shapes.Move(dragon1Img, 0, 250)
+  Shapes.Move(dragon2Img, 0, 250)
+  Shapes.Move(knightImg, 380, 250)
+  
+  Shapes.HideShape(dragon2Img)
+  Shapes.HideShape(arrowImg)
+EndSub
+
+Sub NewGame
+  dist = 9 + Math.GetRandomNumber(10)   ' 10 to 19
+  arrows = Math.Floor(0.4 * dist)       ' 4 to 8
+  shield = Math.Floor(0.4 * dist)       ' 4 to 8
+  moveStep = 280 / dist                 ' Knight's move in pixels
+EndSub
+
+Sub UpdateUserInterface
+  Shapes.SetText(distText, dist)
+  Shapes.SetText(arrowsText, arrows)
+  Shapes.SetText(shieldText, shield)
+EndSub
+
+Sub GetChoice
+  AskAgain:
+  TextWindow.WriteLine("Select:")
+  TextWindow.WriteLine("  [1] Move one step forward")
+  TextWindow.WriteLine("  [2] Shoot an arrow")
+  TextWindow.WriteLine("  [3] Stab the dragon (you have to be 1 step away)")
+  TextWindow.Write("  Your choice [1-3]: ")
+  
+  choice = TextWindow.ReadNumber()
+  If((choice <> 1) And (choice <> 2) And (choice <> 3)) Then
+    Goto AskAgain
+  EndIf
+  
+  If ((choice = 2) And (arrows = 0)) Then
+    Shapes.SetText(msgText, "You ran out of arrows! Borrow some from Link.")
+    Goto AskAgain
+  EndIf
+  
+  If ((choice = 3) And (dist > 1)) Then
+    Shapes.SetText(msgText, "You're too far to use your sword. Too bad you can't train dragons.")
+    Goto AskAgain
+  EndIf
+  
+  Shapes.SetText(msgText, "")
+  TextWindow.WriteLine("")
+EndSub
+
+Sub ProcessChoice
+  If (choice = 1) Then      ' Move-forward subroutine
+    MoveKnight()
+  ElseIf (choice = 2) Then  ' Shoot-arrow subroutine
+    ShootArrow()
+  Else                      ' Stab subroutine
+    StabDragon()
+  EndIf
+EndSub
+
+Sub MoveKnight
+  dist = dist - 1
+  Shapes.SetText(distText, dist)
+
+  Shapes.Move(knightImg, 100 + dist * moveStep, 250)
+
+  If (dist = 0) Then	      ' Checks whether the knight touched the dragon
+    Shapes.SetText(msgText, "The dragon swallowed you! You taste like chicken.")
+    GameOver()
+  EndIf
+EndSub
+
+Sub GameOver
+  TextWindow.Pause()
+  Program.End()
+EndSub
+
+Sub ShootArrow
+  arrows = arrows - 1
+  Shapes.SetText(arrowsText, arrows)
+
+  range = Math.GetRandomNumber(dist)
+
+  ' Animates the arrow
+  pos1X = 100 + dist * moveStep
+  pos2X = 100 + (dist - range) * moveStep
+  Shapes.Move(arrowImg, pos1X, 280)
+  Shapes.ShowShape(arrowImg)
+  Shapes.Animate(arrowImg, pos2X, 280, 2000)
+  Program.Delay(2000)
+  Shapes.HideShape(arrowImg)
+
+  If (range = dist) Then    ' You hit the dragon right on
+    Shapes.SetText(msgText,"Perfect shot. The dragon's dead! You kiss the princess's frog.")
+    GameOver()
+  Else
+    Shapes.SetText(msgText,"Your arrow missed! Robin Hood is giving lessons.")
+    Program.Delay(2000)     ' To read the message
+  EndIf	
+EndSub
+
+Sub StabDragon
+  If (Math.GetRandomNumber(2) = 1) Then
+    Shapes.SetText(msgText,"You killed the dragon! You marry the princess and 7 dwarves.")
+    GameOver()
+  Else
+    Shapes.SetText(msgText,"Your sword missed! Good one, Lance-a-Little!")
+    Program.Delay(2000)     ' To read the message
+  EndIf
+EndSub
+
+Sub DragonFire
+  Shapes.SetText(msgText, "The dragon ignited his fire. The Pokemon run.")
+  Shapes.HideShape(dragon1Img)
+  Shapes.ShowShape(dragon2Img)
+  Program.Delay(1000)
+  Shapes.HideShape(dragon2Img)
+  Shapes.ShowShape(dragon1Img)
+
+  If (Math.GetRandomNumber(2) = 1) Then  ' Knight is hit
+    If (shield = 0) Then                 ' Shield is damaged
+      Shapes.SetText(msgText, "The dragon's fire BURNINATED you!")
+      GameOver()
+    Else
+      shield = shield - 1
+      Shapes.SetText(shieldText, shield)
+      Shapes.SetText(msgText, "You're hit! Your shield became weaker. Use the force!")
+    EndIf
+  Else
+    Shapes.SetText(msgText, "The fire missed you! Aunt Mildred could've used your luck.")
+  EndIf
+EndSub

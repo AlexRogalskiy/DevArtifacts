@@ -1,0 +1,51 @@
+' Homonyms.sb
+
+path = Program.Directory + "\dataIn.txt"
+
+N = 1
+While (N > 0)               ' We'll set N to 0 when we reach the end of the file
+  strLine = File.ReadLine(path, N)
+  If (strLine = "") Then    ' Reached the end of the file
+    N = 0
+  Else
+    ParseLine()             ' Parses the line 
+    AskUser()               ' Asks the user and processes her answer
+    N = N + 1               ' Reads the next line from the file
+  EndIf  
+EndWhile
+
+' This subroutines parses the input line into its tokens
+' Input: strLine.; the input line has the following format:
+     ' Question ; Option1/Option2; CorrectAnswer
+' Outputs: strQ, strOp1, strOp2, strCorrect
+Sub ParseLine
+  idx = Text.GetIndexOf(strLine, ";")
+  strQ = Text.GetSubText(strLine, 1, idx - 1)
+  strRem = Text.GetSubTextToEnd(strLine, idx + 1) ' Remaining
+  
+  ' Parses the remaining string
+  idx = Text.GetIndexOf(strRem, ";")
+  strCorrect = Text.GetSubTextToEnd(strRem, idx + 1)
+  strRem = Text.GetSubText(strRem, 1, idx - 1)    ' The middle part
+  
+  ' Parses the middle part
+  idx = Text.GetIndexOf(strRem, "/")
+  strOp1 = Text.GetSubText(strRem, 1, idx - 1)
+  strOp2 = Text.GetSubTextToEnd(strRem, idx + 1)
+EndSub
+
+' This subroutine displays a question to the user and processes their answer
+Sub AskUser
+  TextWindow.Write(strQ + " (" + strOp1 + ", " + strOp2 + "): " )
+  ans = TextWindow.Read()
+  ans = Text.ConvertToLowerCase(ans)
+  
+  ' Makes the comparison case insensitive
+  If (ans = Text.ConvertToLowerCase(strCorrect)) Then
+    TextWindow.WriteLine("Correct. You're smarter than the average Yogi the Bear.")
+  Else
+    TextWindow.WriteLine("No. It is " + strCorrect + ". I am your homonemesis.")
+  EndIf
+  
+  TextWindow.WriteLine("")
+EndSub

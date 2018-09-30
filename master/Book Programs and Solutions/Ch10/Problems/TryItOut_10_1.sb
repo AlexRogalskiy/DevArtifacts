@@ -1,0 +1,17 @@
+' TryItOut_10_1.sb
+
+TextWindow.Write("How many mum-gluffs? ")
+mumGluffs = TextWindow.ReadNumber()
+
+MumGluffToFoot()      ' Calls the subroutine
+TextWindow.WriteLine("That's about " + feet + " feet.")
+
+Sub MumGluffToFoot
+  ' One mum-gluff is 20 glum-gluffs
+  ' One glum-gluff is 0.75 inches
+  ' One inch is 0.083 foot
+  
+  inches = (mumGluffs * 20) * (0.75)
+  feet = inches * 0.083
+  feet = Math.Round(feet * 100) / 100
+EndSub

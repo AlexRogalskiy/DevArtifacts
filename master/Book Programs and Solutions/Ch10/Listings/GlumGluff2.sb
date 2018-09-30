@@ -1,0 +1,14 @@
+' GlumGluff2.sb
+TextWindow.Write("How many glum-gluffs? ")
+glumGluffs = TextWindow.ReadNumber()
+
+GlumGluffToInch()    ' Calls the subroutine
+TextWindow.WriteLine("That's about " + inches + " inches.")
+
+' This subroutine converts from glum-gluffs to inches
+' Input: glumGluff; the size in glum-gluff units
+' Output: inches; the size in inches rounded to 2 decimal places
+Sub GlumGluffToInch
+  inches = 0.75 * glumGluffs
+  inches = Math.Round(inches * 100) / 100
+EndSub

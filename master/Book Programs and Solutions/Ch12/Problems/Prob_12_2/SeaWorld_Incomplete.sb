@@ -1,0 +1,28 @@
+' SeaWorld_Incomplete.sb
+' Computes ticket prices to Sea World
+
+GraphicsWindow.Title = "Sea World Tickets"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.CanResize = "False"
+
+imgPath = Program.Directory + "\Bkgnd.png"
+GraphicsWindow.DrawImage(imgPath, 0, 0)
+
+GraphicsWindow.FontSize = 18
+txtBox1 = Controls.AddTextBox(240, 90)    ' Number of adults
+txtBox2 = Controls.AddTextBox(240, 145)   ' Number of seniors
+txtBox3 = Controls.AddTextBox(240, 200)   ' Number of students
+txtBox4 = Controls.AddTextBox(240, 255)   ' Number of VIP
+txtShape1 = Shapes.AddText("------")
+Shapes.Move(txtShape1, 240, 315)
+btn1 = Controls.AddButton("Compute", 360, 310)
+
+'Resizes the controls
+Controls.SetSize(txtBox1, 80, 40)
+Controls.SetSize(txtBox2, 80, 40)
+Controls.SetSize(txtBox3, 80, 40)
+Controls.SetSize(txtBox4, 80, 40)
+
+
+' Add your code here

@@ -1,0 +1,17 @@
+' TryItOut_11_1.sb
+GraphicsWindow.MouseDown = OnMouseDown
+
+shape = 1          ' 1 for triangle and 2 for rectangle
+
+Sub OnMouseDown
+  GraphicsWindow.PenColor = GraphicsWindow.GetRandomColor()
+  X0 = GraphicsWindow.MouseX
+  Y0 = GraphicsWindow.MouseY
+  If (shape = 1) Then
+    GraphicsWindow.DrawTriangle(X0, Y0 - 10, X0 - 10, Y0 + 10, X0 + 10, Y0 + 10)
+    shape = 2
+  Else             ' shape = 2        
+    GraphicsWindow.DrawRectangle(X0 - 10, Y0 - 10, 20, 20)
+    shape = 1
+  EndIf 
+EndSub  

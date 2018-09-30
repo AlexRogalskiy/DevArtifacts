@@ -1,0 +1,17 @@
+' UnicodeDemo.sb
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 30  ' Makes the font larger
+
+code = 9728           ' Code point for the first symbol
+xPos = 0              ' Horizontal position for drawing a symbol
+yPos = 0              ' Vertical position for drawing a symbol
+For row = 1 to 7      ' Draws 7 rows
+  xPos = 0            ' For each new row, start at the left edge
+  For col = 1 to 20   ' 20 columns for each row
+    ch = Text.GetCharacter(code)              ' Gets a character
+    GraphicsWindow.DrawText(xPos, yPos, ch)   ' Draws it
+    code = code + 1                           ' Sets to next code point
+    xPos = xPos + 30                          ' Leaves a horizontal space
+  EndFor
+  yPos = yPos + 30                            ' Moves to the next row
+EndFor

@@ -1,0 +1,22 @@
+' TryItOut_14_3.sb
+
+While ("True")
+  num1 = math.GetRandomNumber(10)  ' Sets num1 to a random number
+  num2 = math.GetRandomNumber(10)  ' Sets num2 between 1 and 10
+  correctAns = num1 + num2         ' Adds both numbers
+    
+  gotAns = 0
+  While (gotAns = 0)
+    TextWindow.Write("What is " + num1 + " + " + num2 + "? : ")
+    ans = TextWindow.ReadNumber()  ' The user enters an answer
+    If (ans = correctAns) Then     ' Checks if the answer is correct
+      gotAns = 1                   ' Sets the condition to exit the loop
+    Else
+      TextWindow.WriteLine("Sorry. Please try again.")
+      TextWindow.WriteLine("")
+    EndIf
+  EndWhile
+  
+  TextWindow.WriteLine("This is correct.")
+  TextWindow.WriteLine("")
+EndWhile
