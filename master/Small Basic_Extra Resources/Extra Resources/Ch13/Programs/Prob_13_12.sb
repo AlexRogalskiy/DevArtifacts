@@ -1,0 +1,40 @@
+' Prob_13_12.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Creates a simple train animation
+
+GraphicsWindow.FontName = "Courier New"
+GraphicsWindow.FontSize = 14
+GraphicsWindow.BrushColor = "Black"
+
+xPos = 1
+yPos = 100
+
+For N = 1 to 100
+  L1 = "|----\"
+  L2 = "|   O|"
+  L3 = "|----("
+  L4 = " //// "
+  DrawFrame()
+  
+  L1 = "|----\"
+  L2 = "|   @|"
+  L3 = "|-----"
+  L4 = " |||| "
+  DrawFrame()
+  
+  L1 = "|----\"
+  L2 = "|   *|"
+  L3 = "|----("
+  L4 = " \\\\ "
+  DrawFrame()
+EndFor
+
+Sub DrawFrame
+  xPos = xPos + 1
+  GraphicsWindow.DrawText(xPos, yPos, L1)
+  GraphicsWindow.DrawText(xPos, yPos + 15, L2)
+  GraphicsWindow.DrawText(xPos, yPos + 30, L3)
+  GraphicsWindow.DrawText(xPos, yPos + 45, L4)
+  Program.Delay(200)
+  GraphicsWindow.Clear()
+EndSub

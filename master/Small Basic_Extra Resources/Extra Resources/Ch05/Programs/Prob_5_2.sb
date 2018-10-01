@@ -1,0 +1,25 @@
+' Prob_5_2.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Draws a wheel by rotating a simple pattern
+
+GraphicsWindow.Title = "Wheel"
+Turtle.Speed = 10
+Turtle.X = 10
+Turtle.Y = 90
+
+For I = 1 To 12     ' Rotates the house 12 times
+  
+  For K = 1 To 4    ' Draws the square
+    Turtle.Move(30)
+    Turtle.Turn(90)
+  EndFor
+  
+  Turtle.Move(30)   ' Moves to the upper-left corner
+  Turtle.Turn(30)   ' Turns 30 degrees to draw the triangle
+  
+  For K = 1 To 3    ' Draws the triangle
+    Turtle.Move(30)
+    Turtle.Turn(120)
+  EndFor
+  
+EndFor

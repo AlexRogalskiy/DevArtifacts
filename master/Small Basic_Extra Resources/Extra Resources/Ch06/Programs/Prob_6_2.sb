@@ -1,0 +1,23 @@
+' Prob_6_2.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+
+TextWindow.Title = "Tooth Fairy Supermarket"
+TextWindow.Write("Tooth price (in cents)   : ")
+price = TextWindow.ReadNumber()
+TextWindow.Write("Donation cents per tooth : ")
+donate = TextWindow.ReadNumber()
+
+' Let's now do the math
+totalSales = (1000000 * price)  / 100
+donation = (1000000 * donate) / 100
+profit = totalSales - donation
+taxes = 0.2 * profit
+netProfit = profit - taxes
+
+TextWindow.WriteLine("")
+TextWindow.WriteLine("Total sales : $" + Math.Round(totalSales))
+TextWindow.WriteLine("Donation    : $" + Math.Round(donation))
+TextWindow.WriteLine("Profit      : $" + Math.Round(profit))
+TextWindow.WriteLine("Taxes (20%) : $" + Math.Round(taxes))
+TextWindow.WriteLine("Net Profit  : $" + Math.Round(netProfit))
+TextWindow.WriteLine("")

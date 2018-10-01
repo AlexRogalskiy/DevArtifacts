@@ -1,0 +1,25 @@
+' Prob_14_9.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Tests this simple conjecture: start with any positive integer
+' If it’s even, divide it by 2; otherwise, multiply it by 3 and add 1 to the result
+' If you continue to repeat this process, the result should always equal 1
+  
+Again:
+TextWindow.Write("Enter a positive integer: ")
+num = TextWindow.ReadNumber()
+If (num < 0 Or num <> Math.Floor(num)) Then
+  Goto Again
+EndIf
+
+While ("True")
+  TextWindow.Write(num + " ")
+  If (num = 1) Then
+    TextWindow.WriteLine("")
+    TextWindow.WriteLine("")
+    Goto Again
+  ElseIf (Math.Remainder(num, 2) = 0) Then
+    num = num / 2
+  Else
+    num = (num * 3) + 1
+  EndIf
+EndWhile

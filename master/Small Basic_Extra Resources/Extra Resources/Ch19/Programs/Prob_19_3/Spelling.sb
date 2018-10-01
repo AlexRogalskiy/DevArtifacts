@@ -1,0 +1,37 @@
+' Spelling.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Implements a word-guessing game
+
+TextWindow.Title = "Spelling"
+
+path = Program.Directory + "\dataIn.txt"
+
+N = 1
+While (N > 0)
+  strLine = File.ReadLine(path, N)
+  If (strLine = "") Then
+    N = 0     ' To end the While loop
+  Else
+    NewQuestion()
+    N = N + 1
+  EndIf  
+EndWhile
+
+Sub NewQuestion
+  idx = Text.GetIndexOf(strLine, ",")
+  If (idx <> 0) Then
+    word1 = Text.GetSubText(strLine, 1, idx - 1)
+    word2 = Text.GetSubTextToEnd(strLine, idx + 1)
+    
+    TextWindow.Write(word1 + ": ")
+    ans = TextWindow.Read()
+    
+    If (ans = word2) Then
+      TextWindow.WriteLine("Very good!")
+    Else
+      TextWindow.WriteLine("Sorry, the correct spelling is " + word2)
+    EndIf
+    
+    TextWindow.WriteLine("")
+  EndIf
+EndSub

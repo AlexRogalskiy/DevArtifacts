@@ -1,0 +1,105 @@
+	.386p
+	model flat
+	ifndef	??version
+	?debug	macro
+	endm
+	endif
+	?debug	S "t1.c"
+	?debug	T "t1.c"
+_TEXT	segment dword public use32 'CODE'
+_TEXT	ends
+_DATA	segment dword public use32 'DATA'
+_DATA	ends
+_BSS	segment dword public use32 'BSS'
+_BSS	ends
+DGROUP	group	_BSS,_DATA
+_TEXT	segment dword public use32 'CODE'
+	align	4
+_main	proc	near
+?live1@0:
+   ;	
+   ;	int main( int argc, char **argv )
+   ;	
+@1:
+	push      ebp
+	mov       ebp,esp
+   ;	
+   ;	{
+   ;		int i;
+   ;		int j;
+   ;		
+   ;		i = argc;
+   ;	
+	mov       edx,dword ptr [ebp+8]
+   ;	
+   ;		j = **argv;
+   ;	
+?live1@32: ; EDX = i
+	mov       eax,dword ptr [ebp+12]
+	mov       ecx,dword ptr [eax]
+	movsx     eax,byte ptr [ecx]
+   ;	
+   ;		
+   ;		if( i == 2 )
+   ;	
+?live1@48: ; EAX = j, EDX = i
+	cmp       edx,2
+	jne       short @2
+   ;	
+   ;		{
+   ;			++j;
+   ;	
+	inc       eax
+   ;	
+   ;		}
+   ;	
+	jmp       short @3
+   ;	
+   ;		else
+   ;		{
+   ;			--j;
+   ;	
+@2:
+	dec       eax
+   ;	
+   ;		}
+   ;		
+   ;		printf( "i=%d, j=%d\n", i, j );
+   ;	
+@3:
+	push      eax
+	push      edx
+	push      offset s@
+	call      _printf
+	add       esp,12
+   ;	
+   ;		return 0;
+   ;	
+?live1@128: ; 
+	xor       eax,eax
+   ;	
+   ;	}
+   ;	
+@5:
+@4:
+	pop       ebp
+	ret 
+_main	endp
+_TEXT	ends
+_DATA	segment dword public use32 'DATA'
+s@	label	byte
+	;	s@+0:
+	db	"i=%d, j=%d",10,0
+	align	4
+_DATA	ends
+_TEXT	segment dword public use32 'CODE'
+_TEXT	ends
+	extrn	_printf:near
+	public	_main
+	extrn	__setargv__:near
+	?debug	D "F:\BC5\INCLUDE\_null.h" 8277 8192
+	?debug	D "F:\BC5\INCLUDE\_nfile.h" 8277 8192
+	?debug	D "F:\BC5\INCLUDE\_defs.h" 8277 8192
+	?debug	D "F:\BC5\INCLUDE\stdio.h" 8277 8192
+	?debug	D "t1.c" 11825 25587
+	end

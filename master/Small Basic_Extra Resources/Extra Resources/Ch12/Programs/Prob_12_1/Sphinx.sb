@@ -1,0 +1,32 @@
+' Sphinx.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Plays the Riddle of the Sphinx
+
+GraphicsWindow.Title = "Riddle of the Sphinx"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.CanResize = "False"
+
+imgPath = Program.Directory + "\Bkgnd.png"
+GraphicsWindow.DrawImage(imgPath, 0, 0)
+
+GraphicsWindow.FontSize = 18
+eb1 = Controls.AddTextBox(250, 250) 
+btn1 = Controls.AddButton("Check", 300, 300)
+
+' Resizes the controls
+Controls.SetSize(eb1, 200, 40)
+Controls.SetSize(btn1, 100, 35)
+
+Controls.ButtonClicked = OnButtonClicked
+
+Sub OnButtonClicked
+  ans = Controls.GetTextBoxText(eb1)
+  ans = Text.ConvertToLowerCase(ans)
+  
+  If (ans = "human" Or ans = "man" Or ans = "woman") Then
+    GraphicsWindow.ShowMessage("Correct. You destoyed me!", "Correct")
+  Else
+    GraphicsWindow.ShowMessage("Wrong. You are dead!", "Wrong")
+  EndIf
+EndSub

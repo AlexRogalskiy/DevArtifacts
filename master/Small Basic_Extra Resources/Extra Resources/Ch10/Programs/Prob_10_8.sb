@@ -1,0 +1,17 @@
+' Prob_10_8.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Converts feet per second to miles per hour
+
+TextWindow.Write("Enter your speed (in feet per second): ")
+fps = TextWindow.Read()
+
+SpeedConvert()
+
+TextWindow.WriteLine("That is " + mph + " miles per hour.")
+TextWindow.WriteLine("")
+
+' 1 foot per second is 0.681818 miles per hour
+Sub SpeedConvert
+  mph = fps * 0.681818
+  mph = Math.Round(mph * 100) / 100
+EndSub

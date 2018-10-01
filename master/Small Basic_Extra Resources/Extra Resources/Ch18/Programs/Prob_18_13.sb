@@ -1,0 +1,23 @@
+' Prob_18_13.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Replaces all occurrences of the letter A in the input string with the letter B
+
+While ("True")
+  TextWindow.Write("Enter a string: ")
+  strIn = TextWindow.Read()
+  
+  strOut = ""
+  For N = 1 To Text.GetLength(strIn)
+    ch = Text.GetSubText(strIn, N, 1)
+    If (ch = "A") Then
+      strOut = Text.Append(strOut, "B")
+    ElseIf (ch = "a") Then
+      strOut = Text.Append(strOut, "b")
+    Else
+      strOut = Text.Append(strOut, ch)
+    EndIf  
+  EndFor  
+  
+  TextWindow.WriteLine("Output string:  " + strOut)
+  TextWindow.WriteLine("")
+EndWhile

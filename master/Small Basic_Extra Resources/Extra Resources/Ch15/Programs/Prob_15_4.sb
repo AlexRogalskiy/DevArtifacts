@@ -1,0 +1,27 @@
+' Prob_15_4.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Generates ten unique random integers
+
+rand[1] = Math.GetRandomNumber(100)
+
+For N = 2 To 10
+  GetUniqueRandomNumber()
+  rand[N] = X
+EndFor
+
+' Displays the result
+For N = 1 To 10
+  TextWindow.Write(rand[N] + "  ")
+EndFor
+TextWindow.WriteLine("")
+TextWindow.WriteLine("")
+
+Sub GetUniqueRandomNumber
+  Again:  
+  X = Math.GetRandomNumber(100)
+  For J = 1 To N
+    If (X = rand[J]) Then
+      Goto Again
+    EndIf   
+  EndFor  
+EndSub 

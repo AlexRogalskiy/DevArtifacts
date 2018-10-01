@@ -1,0 +1,40 @@
+' Prob_10_10.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Converts from liters
+
+TextWindow.Title = "Liter Converter"
+
+TextWindow.Write("Enter the number of liters: ")
+liters = TextWindow.ReadNumber()
+TextWindow.WriteLine("")
+
+LiterConverter()
+
+' Displays the results
+TextWindow.WriteLine(liters + " liters is the same as:")
+TextWindow.WriteLine("  " + gallons + " gallons")
+TextWindow.WriteLine("  " + quarts + " quarts")
+TextWindow.WriteLine("  " + pints + " pints")
+TextWindow.WriteLine("  " + cups + " cups")
+TextWindow.WriteLine("  " + ounces + " ounces")
+TextWindow.WriteLine("")
+
+' 1 gallon = 3.785 liters; 
+' 1 gallon = 4 quarts; 
+' 1 quart = 2 pints; 
+' 1 pint = 2 cups; 
+' 1 cup = 8 ounces.
+Sub LiterConverter
+  gallons = (1 / 3.785) * liters
+  quarts = gallons * 4
+  pints = quarts * 2
+  cups = pints * 2
+  ounces = cups * 8
+  
+  ' Rounds the answers to two decimal places
+  gallons = Math.Round(gallons * 100) / 100
+  quarts = Math.Round(quarts * 100) / 100
+  pints = Math.Round(pints * 100) / 100
+  cups = Math.Round(cups * 100) / 100
+  ounces = Math.Round(ounces * 100) / 100  
+EndSub

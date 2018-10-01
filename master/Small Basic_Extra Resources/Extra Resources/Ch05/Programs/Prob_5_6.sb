@@ -1,0 +1,31 @@
+' Prob_5_6.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Draws a rhombus ring
+
+GraphicsWindow.Title = "Rhombus Ring"
+Turtle.Speed = 10
+Turtle.X = 60
+Turtle.Y = 120
+
+For I = 1 To 8    ' Rotates the pattern eight times
+  
+  ' Draws the square
+  For K = 1 To 4
+    Turtle.Move(30)
+    Turtle.Turn(-90)
+  EndFor
+  Turtle.Move(30)
+  
+  Turtle.Turn(-45)
+  For K = 1 To 2
+    Turtle.Move(30)
+    Turtle.Turn(-45)
+    Turtle.Move(30)
+    Turtle.Turn(-135)
+  EndFor
+    
+  Turtle.Turn(90)
+
+EndFor
+
+Turtle.Hide()

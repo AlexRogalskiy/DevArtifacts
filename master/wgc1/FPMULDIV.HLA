@@ -1,0 +1,576 @@
+program muldivDemo;
+#include( "stdlib.hhf" )
+    
+const
+    expAllOnes  := $7f80_0000;      // All exponent bits are ones.
+    infinity    := expAllOnes;
+    qNaN        := $7f_c000;        // Quiet NaN.
+    sNaN        := $7f_e000;        // Signalling NaN.
+    NaNmask     := $7f_ffff;        // If exp contains all ones, these bits
+                                    //  are 0-infinity, $80_0000-qNaN,
+                                    //  otherwise- sNaN.
+
+    
+// fpmul- Floating point multiply
+//
+//  Computes 
+//      eax = left * right
+//
+// Where left and right are real32 values.  Note that this function
+// returns a real32 object in EAX (not an integer!).
+
+procedure fpmul( left:real32; right:real32 ); 
+    @returns( "eax" );
+    @nodisplay;
+    @noalignstack;
+    
+begin fpmul;
+
+    // First, check to see if either operand is zero,  returning
+    // 0.0 (eax=0) if this is the case:
+    
+    xor( eax, eax );
+    exitif( eax = (type dword left) ) fpmul;
+    exitif( eax = (type dword right) ) fpmul;
+    
+    // Okay, now check for infinity and NaNs (returning value if we get one):
+    
+    mov( left, eax );
+    exitif( eax = infinity ) fpmul;
+    and( infinity, eax );
+    if( eax = infinity ) then
+        
+        // We've got qNaN or sNaN if all the exponent bits are ones
+        // and the L.O. 23 bits aren't all zeros.
+        
+        mov( left, eax );
+        exit fpmul;
+        
+    endif;
+    
+    
+    mov( right, eax );
+    exitif( eax = infinity ) fpmul;
+    and( infinity, eax );
+    if( eax = infinity ) then
+        
+        // We've got qNaN or sNaN if all the exponent bits are ones
+        // and the L.O. 23 bits aren't all zeros.
+        
+        mov( right, eax );
+        exit fpmul;
+        
+    endif;
+    
+    
+    // Okay, the numbers seem reasonable.  Let's extract the various
+    // fields so we can compute their product.
+    
+    push( ebx );
+    push( ecx );
+    push( edx );
+    
+    mov( (type dword left), ebx );  // Result sign is the XOR of the
+    xor( (type dword right), ebx ); //  operand signs.
+    and( $8000_0000, ebx );
+    
+    // Extract the exponents and eliminate the bias from one of them
+    // (leave the bias in right's exponent so the resulting exponent
+    // will still be bias-127).  Note that multiplying the two factional
+    // values together will produce an implicit division by two, so we
+    // factor that in by adding one to the exponent at the same time
+    // we remove one of the bias-127 values (meaning we really do subtract
+    // 126 below- this removes the bias and simultaneously adds one).
+    
+    mov( (type dword left), ecx );    // Exponent goes into bits 23..30
+    and( $7f80_0000, ecx );           //  of ECX;  mask these bits.
+    sub( 126 << 23, ecx );            // Eliminate the bias-127.
+    
+    mov( (type dword right), eax );
+    and( $7f80_0000, eax );
+    
+    // For multiplication, we need to add the exponents:
+    
+    add( eax, ecx );
+    
+    // If there was an overflow of the exponents, return
+    // infinity (with the result sign):
+    
+    lea( eax, [ebx+infinity]);  // Infinity plus the sign->eax.
+    if( @no ) then
+        
+        mov( (type dword left), eax );
+        mov( (type dword right), edx );
+        
+        // If we don't have a denormalized value (exponent bits are
+        // all zeros), then set the implied H.O. bit of the mantissa:
+        
+        test( expAllOnes, eax );  // Sets z-flag if exponent is zero.
+        if( @nz ) then
+        
+            or( $80_0000, eax );  // Set the implied bit to one.
+            
+        endif;
+        shl( 8, eax );  // moves mantissa to bits 8..31 and removes sign/exp.
+        
+        // Repeat the above for the right operand.
+        
+        test( expAllOnes, edx );
+        if( @nz ) then
+        
+            or( $80_0000, edx );
+            
+        endif;
+        shl( 8, edx );
+        
+        // Okay, compute the products of the two mantissas (this will
+        // leave the result in EDX:EAX).  Since the mantissas are
+        // sitting in bits 8..31 of EAX and EDX, the product will be
+        // sitting in bits 16..62 of EDX:EAX (note that there is an
+        // implicit division by two during this product because of the
+        // way fixed-point binary multiplication works -- the binary
+        // point appears just before bits 31 in EAX and EDX).
+        
+        mul( edx );
+        
+        // We need to normalize the result in EDX (we know the product
+        // isn't zero because neither operand was zero).  To normalize
+        // the product (appearing in bits 16..62 of EDX), we just shift
+        // EDX one bit to the left and decrement our exponent until the
+        // H.O. bit of EDX is one.
+        
+        repeat
+        
+            test( edx, edx );   // Sets the sign flag if H.O. bit of EDX = 1.
+            breakif( @s );      // Exit loop if H.O. bit is set.
+            
+            // If the value isn't normalized, shift it to the left
+            // one bit and decrement the exponent by one.
+            
+            shl( 1, edx );
+            sub( 1 << 23, ecx );  // Decrement the exponent in-place.       
+            
+        until( @z );  // If the exponent hits zero, our number is denormalized.
+        
+        // Now we've got to round the mantissa according to the IEEE
+        // rounding rules.  If bit 7 of EDX is zero, then we just use
+        // bits 8..31 of EDX as our mantissa.  If bit 7 of EDX is one
+        // and bits 0..6 of EDX are zero and EAX is zero, then we round
+        // to the nearest value that has a zero in bit position 8 of EDX.
+        // Otherwise we round EDX up starting at bit position 8.
+        
+        test( $80, edx );  // Clears zero flag if bit seven of EDX = 1.
+        if( @nz ) then
+        
+            add( $FFFF_FFFF, eax );  // Sets carry if EAX <> 0.
+            adc( $7f, dl );          // Sets carry if DL:EAX > $80_0000_0000
+            if( @c ) then
+            
+                // If DL:EAX > $80_0000_0000 then round the mantissa
+                // up by adding one to bit position eight:
+                
+                add( 1 << 8, edx );         
+        
+            else // DL:EAX = $80_0000_0000
+            
+                // We need to round to the value that has a zero
+                // in bit position zero of the mantissa (bit #8 of EDX):
+                
+                test( 8, edx );  // Clears zero 
+                if( @nz ) then
+                
+                    add( 1 << 8, edx );
+                    
+                    // If there was an overflow, renormalize:
+                    
+                    if( @c ) then
+                    
+                        rcr( 1, edx );
+                        inc( ecx );
+                    
+                endif;
+                    
+                endif;
+                
+            endif;
+            
+        endif;
+        
+        // Okay, assemble the final real32 value:
+        
+        shr( 8, edx );          // Move mantissa into bits 0..23
+        and( $7f_ffff, edx );   // Clear the implied bit.
+        lea( eax, [edx+ecx] );  // Merge mantissa & exponent into EAX.
+        or( ebx, eax );         // Merge in the sign.
+
+    endif;
+    pop( edx );
+    pop( ecx );
+    pop( ebx );
+    
+end fpmul;
+
+
+
+// fpdiv-  Floating point division
+//
+//  Computes 
+//      eax = left / right
+//
+// Where left and right are real32 values.  Note that this function
+// returns a real32 object in EAX (not an integer!).
+//
+//  This procedure raises the ex.fDivByZero exception if there
+// is an attempt to do a division by zero.
+
+
+procedure fpdiv( left:real32; right:real32);
+    @returns( "eax" );
+    @nodisplay;
+    @noalignstack;
+begin fpdiv;
+
+
+    // First, check to see if either operand is zero,  return
+    // 0.0 (eax=0) if left is zero and right is non-zero, return
+    // sNaN if both are zero, raise an exception if left is non-zero
+    // and right is zero:
+    
+    xor( eax, eax );        // Set EAX to 0.0
+    if( eax = (type dword left) ) then
+    
+        // Return 0.0 in EAX if left is zero and right is not zero:
+        
+        exitif( (type dword right) <> 0 ) fpdiv;
+        
+        // If both operands are zero, return a signaling NaN:
+        
+        mov( sNaN, eax );
+        exit fpdiv;
+        
+    endif;
+    
+    // If we get to this point, we know that left is non-zero.
+    // So check to see if right is 0.0 and raise an exception if it is.
+    
+    if( eax = (type dword right) ) then
+    
+        raise( ex.fDivByZero );
+        
+    endif; 
+    
+    
+    // Okay, now check for infinity and NaNs.  Here are the rules:
+    //
+    //  1.  Either operand is NaN -- return the NaN value.
+    //  2.  Both operands are Infinity -- return qNaN.
+    //  3.  Left is a normal number, right is infinity -- return 0.0
+    //  4.  Left is infinity, right is a normal number -- return infinity.
+    
+    mov( left, eax );
+    and( expAllOnes, eax );
+    if( eax = infinity ) then
+
+        // Check to see if the value is infinity or a NaN.
+        
+        mov( left, eax );
+        test( NaNmask, eax );   // Sets zero flag if infinity.
+        if( @z ) then
+        
+            // If the left operand is infinity, we need to check
+            // the right operand to determine what value we should
+            // return.
+            
+            mov( right, eax );
+            and( expAllOnes, eax );
+            if( eax = infinity ) then
+            
+                mov( right, eax );
+                test( NaNmask, eax );
+                if( @z ) then
+                
+                    // Both operands are infinity, return qNaN:
+                    
+                    mov( qNaN, eax );
+                    exit fpdiv;
+                    
+                endif;
+                
+                // At this point, left was infinity and right
+                // was some sort of NaN, return the NaN:
+                
+                mov( right, eax );
+                exit fpdiv;
+                
+            endif;
+            
+            // Left is infinity, right is a normal value.  Return
+            // infinity:
+            
+            mov( left, eax );
+            exit fpdiv;
+            
+        endif;
+        
+        // If we fall down here, left was a NaN, return that NaN value:
+        
+        mov( left, eax );
+        exit fpdiv;     
+
+    endif;
+
+
+    // At this point, left appears to be a reasonable number.
+    // Now we've got to check right to see if it's a NaN or infinity.
+    
+    mov( right, eax );
+    and( expAllOnes, eax );
+    if( eax = infinity ) then
+    
+        test( NaNmask, right );  // See if infinity or NaN
+        if( @nz ) then
+        
+            // right is a NaN, so return that value
+            
+            mov( right, eax );
+            exit fpdiv;
+            
+        endif;
+        
+        // left is a normal number, right is infinity.
+        // Return 0.0.
+        
+        xor( eax, eax );  // Sets EAX to 0.0.
+        exit fpdiv;
+        
+    endif;
+        
+    
+    // Okay, the numbers seem reasonable.  Let's extract the various
+    // fields so we can compute their quotient.
+    
+    push( ebx );                    // Preserve these register across
+    push( ecx );                    //  the function call.
+    push( edx );
+    push( edi );
+    
+    mov( (type dword left), ebx );  // Result sign is the XOR of the
+    xor( (type dword right), ebx ); //  operand signs.
+    and( $8000_0000, ebx );
+    
+    // Extract the exponents
+    
+    mov( (type dword left), ecx );  // Exponent comes from bits 23..30
+    shr( 23, ecx );
+    and( $ff, ecx );                // Mask out the sign bit (in bit 8).
+    
+    mov( (type dword right), eax );
+    shr( 23, eax );
+    and( $ff, eax );
+    
+    // Eliminate the bias from the exponents:
+    
+    sub( 127, ecx );
+    sub( 127, eax );
+    
+    // For division, we need to subtract the exponents:
+    
+    sub( eax, ecx );
+    
+
+    // Grab the operands:
+    
+    mov( (type dword left), edx );
+    mov( (type dword right), edi );
+    
+    // If we don't have a denormalized value (exponent bits are
+    // all zeros), then set the implied H.O. bit of the mantissa:
+    
+    test( expAllOnes, edx );    // Sets z-flag if exponent is zero.
+    if( @nz ) then
+    
+        or( $80_0000, edx );    // Set the implied bit to one.
+        shl( 8, edx );          // moves mantissa over sign/exp.
+        
+    else
+    
+        // If it's denormalized, normalize it (we can do this now
+        // because we've got a bigger exponent to play with).
+        
+        shl( 8, edx );          // Move mantissa over sign/exp.
+        forever
+        
+            test( edx, edx );   // Sets sign flag if H.O. bit set.
+            breakif( @s );      // Exit loop is H.O. bit is set.
+            
+            shl( 1, edx );      // Bump it up by one bit.
+            dec( ecx );         // Reduce exp by one to counteract shift.
+            
+        endfor;
+        
+    endif;
+    
+    // Repeat the above for the right operand.
+    
+    test( expAllOnes, edi );
+    if( @nz ) then
+    
+        or( $80_0000, edi );
+        shl( 8, edi );
+        
+    else
+    
+        // If it's denormalized, normalize it (we can do this now
+        // because we've got a bigger exponent to play with).
+        
+        shl( 8, edi );          // Move mantissa over sign/exp.
+        forever
+        
+            test( edi, edi );   // Sets sign flag if H.O. bit set.
+            breakif( @s );      // Exit loop is H.O. bit is set.
+            
+            shl( 1, edi );      // Bump it up by one bit.
+            inc( ecx );         // Increment 'cause this is the divisor.
+            
+        endfor;
+        
+    endif;
+
+    
+    // Okay, compute the quotient of the two mantissas (this will
+    // leave the result in EAX).  Note: To guarantee that the result
+    // will fit into EAX, we've got to shift EDX:EAX one bit to the
+    // right;  the alternative is that we could get a divide error
+    // in a few rare cases.  This loses one bit of precision, but
+    // since we only started with 24 bits to begin with, having
+    // only 31 bits of precision is far more than we need.
+    
+    xor( eax, eax );    // EAX := 0;
+    shr( 1, edx );      // Shift EDX:EAX to the right one bit to
+    rcr( 1, eax );      //  prevent a division error.
+    div( edi );         // Compute EAX = EDX:EAX / EDI.
+    
+    
+    // We need to normalize the result in EDX (we know the quotient
+    // isn't zero because the dividend wasn't zero).  To normalize
+    // the quotient (appearing in bits 0..30 of EAX), we just shift
+    // EAX one bit to the left and decrement our exponent until the
+    // H.O. bit of EDX is one.  Note that the quotient really is in
+    // bits 0..30 of EAX, not 0..31;  this is due to the fact that
+    // we did the shr operation above.
+    
+    repeat
+    
+        test( eax, eax );   // Sets the sign flag if H.O. bit of EAX = 1.
+        breakif( @s );      // Exit loop if H.O. bit is set.
+        
+        // If the value isn't normalized, shift it to the left
+        // one bit and decrement the exponent by one.
+        
+        shl( 1, eax );
+        dec( ecx );     
+        
+    until( @z );  // If the exponent hits zero, our number is denormalized.
+    
+    // We need to round the result we obtained to 24 bits.
+    
+    test( $80, al );    // See if the bit below the L.O. bit of the
+    if( @nz ) then      //  mantissa contains a zero or one.
+    
+        // Okay, the bit just below the L.O. bit of our mantissa
+        // contains a one.  If all other bits below the mantissa
+        // and this bit contain zeros, we have to round to the
+        // nearest mantissa value whose L.O. bit is zero.
+        
+        test( $7f, al );
+        if( @nz || edx <> 0 ) then
+        
+            // We just need to round up:
+            
+            add( $100, eax );  // Mantissa starts in bit #8 );
+            if( @c ) then
+            
+                // If there was an overflow, renormalize.
+                
+                rcr( 1, eax );
+                inc( ecx );
+                
+            endif;      
+            
+        else
+        
+            // The bits below the mantissa are exactly 1/2 the value
+            // of the L.O. mantissa bit.  So we need to round to the
+            // value that has a L.O. mantissa bit of zero:
+            
+            test( $100, eax );
+            if( @nz ) then
+            
+                add( $100, eax );
+                if( @c ) then
+                
+                    // If there was an overflow, renormalize.
+                    
+                    rcr( 1, eax );  // Put overflow bit back into EAX.
+                    inc( ecx );     // Adjust exponent accordingly.
+                    
+                endif;
+                
+            endif;
+            
+        endif;
+        
+    endif;
+                
+    
+    // Clean up the exponent (add bias back in and check for
+    // over/underflow).
+
+    if( (type int32 ecx) > 127 ) then
+    
+        mov( $ff-127, ecx );  // Set exponent value for infinity
+        xor( eax, eax );      //  because we just had overflow.
+        
+    elseif( (type int32 ecx) < -128 ) then
+    
+        mov( -127, ecx );       // Return zero for underflow (note that
+        xor( eax, eax );        //  we add 127 to ECX below).
+        
+    endif;                                      
+    add( 127, ecx );        // Add the bias back in.
+    shl( 23, ecx );         // Move the exponent to bits 23..30.
+    
+    // Okay, assemble the final real32 value:
+
+    shr( 8, eax );          // Move mantissa into bits 0..23
+    and( $7f_ffff, eax );   // Clear the implied bit.
+    or( ecx, eax );         // Merge mantissa & exponent into EAX.
+    or( ebx, eax );         // Merge in the sign.
+        
+    pop( edi );             // Restore these registers from the
+    pop( edx );             //  stack before returning.
+    pop( ecx );
+    pop( ebx );
+
+end fpdiv;
+
+
+
+static
+    r2      :real32 := 2.0;
+    r3      :real32 := 3.0;
+    r5000   :real32 := 5000;
+    
+    rRslt   :real32;
+    
+begin muldivDemo;
+
+    fpmul( r2, r3 );
+    mov( eax, (type real32 rRslt));
+    stdout.put( "Real result = ", rRslt:12, " ($", (type dword rRslt), ")" nl );    
+
+    fpdiv( r5000, r3 );
+    mov( eax, (type real32 rRslt));
+    stdout.put( "Div result = ", rRslt:12, " ($", (type dword rRslt), ")" nl ); 
+        
+end muldivDemo;

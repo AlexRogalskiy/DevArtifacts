@@ -1,0 +1,100 @@
+' Prob_17_6.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Calls matrix subroutines
+
+SIZE = 4  ' The size of the square matrix
+
+' Fills up the matrix (score) with numbers entered by the user
+For R = 1 To SIZE
+  For C = 1 To SIZE
+    TextWindow.Write("score[" + R + "][" + C + "] = ")
+    score[R][C] = TextWindow.ReadNumber()
+  EndFor  
+EndFor
+
+LowestNumber()
+RowAverage()
+ColAverage()
+MainDiagonalProduct()
+MatrixAverage()
+DiagonalMax()
+
+' a. Write a subroutine that finds the lowest number in score.
+Sub LowestNumber
+  min = score[1][1]
+  For R = 1 To SIZE
+    For C = 1 To SIZE
+      If (score[R][C] < min) Then
+        min = score[R][C]
+      EndIf        
+    EndFor  
+  EndFor
+  
+  TextWindow.WriteLine("The lowest number in score: " + min)
+EndSub
+
+' b. Write a subroutine that finds the average of each row in score.
+Sub RowAverage
+  For R = 1 To SIZE
+    sum = 0
+    For C = 1 To SIZE
+      sum = sum + score[R][C]
+    EndFor 
+    avg = sum / SIZE
+    TextWindow.WriteLine("The average of row " + R + ": " + avg)
+  EndFor  
+EndSub
+
+' c. Write a subroutine that finds the average of each column in score.
+Sub ColAverage
+  For C = 1 To SIZE
+    sum = 0
+    For R = 1 To SIZE
+      sum = sum + score[R][C]
+    EndFor 
+    avg = sum / SIZE
+    TextWindow.WriteLine("The average of column " + C + ": " + avg)
+  EndFor  
+EndSub
+
+' d. Write a subroutine that finds the products of the entries in the
+' upper-left to the lower-right diagonal of score.
+Sub MainDiagonalProduct
+  prod = score[1][1]
+  For R = 2 To SIZE
+    prod = prod * score[R][R]    
+  EndFor  
+  TextWindow.WriteLine("The product of the elements in the main diagonal: " + prod)
+EndSub
+
+' e. Write a subroutine that computes the average of all the elements of score.
+Sub MatrixAverage
+  sum = 0
+  For R = 1 To SIZE    
+    For C = 1 To SIZE
+      sum = sum + score[R][C]
+    EndFor 
+    avg = sum / (SIZE * SIZE)
+    TextWindow.WriteLine("The average of the matrix: " + avg)
+  EndFor  
+EndSub
+
+' f. Write a subroutine that finds the largest element on each diagonal.
+Sub DiagonalMax
+  max = score[1][1]
+  For R = 2 To SIZE
+    If (score[R][R] > max) Then
+      max = score[R][R]
+    EndIf    
+  EndFor  
+  TextWindow.WriteLine("The max of the main diagonal: " + max)
+  
+  max = score[1][SIZE]
+  For R = 2 To SIZE
+    If (score[R][SIZE - R + 1] > max) Then
+      max = score[R][SIZE - R + 1]
+    EndIf    
+  EndFor  
+  TextWindow.WriteLine("The max of the other diagonal: " + max)  
+EndSub
+TextWindow.WriteLine("")

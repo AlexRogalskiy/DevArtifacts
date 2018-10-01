@@ -1,0 +1,18 @@
+' TriArea.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Finds the area of an equilateral triangle, given its side length
+
+TextWindow.Write("Please enter the side length: ")
+side = TextWindow.ReadNumber()
+
+TriArea()     ' Call the TriArea() subroutine
+
+TextWindow.WriteLine("Area = " + area)
+
+' This subroutine finds the area of an equilateral triangle
+' Input: side - the length of the side of the triangle
+' Output: area - the computed area
+Sub TriArea
+  area = 0.5 * Math.SquareRoot(0.75) * side * side
+  area = Math.Round(area * 100) / 100
+EndSub

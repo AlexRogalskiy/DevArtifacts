@@ -1,0 +1,42 @@
+' Prob_15_2.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Calculates and displays the differences between the consecutive terms in a sequence
+
+' Reads the seven numbers from the user
+For N = 1 To 7
+  TextWindow.Write("Enter number " + N + ": ")
+  seq[N] = TextWindow.ReadNumber()
+EndFor
+
+TextWindow.Clear()
+
+TextWindow.Write("Original sequence: ")
+For N = 1 To 7
+  TextWindow.Write(seq[N] + "   ")
+EndFor
+TextWindow.WriteLine("")
+
+' Computes and displays the first difference
+TextWindow.Write(" First difference:   ")
+For N = 1 To 6
+  seq[N] = seq[N + 1] - seq[N]
+  TextWindow.Write(seq[N] + "   ")
+EndFor
+TextWindow.WriteLine("")
+
+' Computes and displays the second difference
+TextWindow.Write("Second difference:    ")
+For N = 1 To 5
+  seq[N] = seq[N + 1] - seq[N]
+  TextWindow.Write(seq[N] + "   ")
+EndFor
+TextWindow.WriteLine("")
+
+' Computes and displays the third difference
+TextWindow.Write(" Third difference:      ")
+For N = 1 To 4
+  seq[N] = seq[N + 1] - seq[N]
+  TextWindow.Write(seq[N] + "   ")
+EndFor
+TextWindow.WriteLine("")
+TextWindow.WriteLine("") 

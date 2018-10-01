@@ -1,0 +1,37 @@
+' Prob_18_16.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Implements a word-guessing game for two players
+
+While ("True")
+  ' The first player enters the word (the second player closes their eyes)
+  TextWindow.Write("Enter a word: ")
+  word = TextWindow.Read()
+  word = Text.ConvertToUpperCase(word)
+  
+  ' Clears the screen
+  TextWindow.Clear()
+  
+  ' Shows the first and last letters of the secret word with stars in between
+  length = Text.GetLength(word)
+  For N = 1 To length
+    If ((N = 1) Or (N = length)) Then
+      TextWindow.Write(Text.GetSubText(word, N, 1))    
+    Else
+      TextWindow.Write("*")      
+    EndIf    
+  EndFor
+  TextWindow.WriteLine("")
+  
+  ' Asks the second player to guess the secret word until they guess correctly
+  ans = ""
+  While (ans <> word)
+    TextWindow.Write("Your guess: ")
+    ans = TextWindow.Read()
+    ans = Text.ConvertToUpperCase(ans)
+  EndWhile
+  
+  TextWindow.WriteLine("You got it right! G**d j*b!")
+  TextWindow.WriteLine("")
+  
+  ' The players then switch places, and the second player enters the secret word  
+EndWhile

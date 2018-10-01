@@ -1,0 +1,14 @@
+' Prob_18_7.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Decrypts a string by substituting every letter with the letter that comes before it
+
+TextWindow.Write("Enter a message to decrypt: ")
+msg = TextWindow.Read()
+For N = 1 To Text.GetLength(msg)
+  ch = Text.GetSubText(msg, N, 1)
+  code = Text.GetCharacterCode(ch)
+  code = code - 1
+  ch = Text.GetCharacter(code)
+  TextWindow.Write(ch)
+EndFor
+TextWindow.WriteLine("")

@@ -1,0 +1,30 @@
+' Prob_14_7.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Three sailors trapped on a desert island
+
+count = 4
+While ("True")
+  pile = count
+  If (Math.Remainder(pile, 3) = 1) Then
+    pile = pile - Math.Floor(pile / 3) - 1       ' Soldier1 and monkey
+
+    If (pile > 3 And Math.Remainder(pile, 3) = 1) Then
+      pile = pile - Math.Floor(pile / 3) - 1     ' Soldier2 and monkey
+
+      If (pile > 3 And Math.Remainder(pile, 3) =1) Then
+        pile = pile - Math.Floor(pile / 3) - 1   ' Soldier3 and monkey
+
+        If (pile > 3 And Math.Remainder(pile, 3) = 1) Then
+          TextWindow.WriteLine(count + " coconuts")
+          Goto Done
+        EndIf
+      EndIf
+    EndIf
+  EndIf
+
+  count = count + 1  
+EndWhile
+
+Done:
+TextWindow.WriteLine("")
+TextWindow.WriteLine("The monkey is happy!")

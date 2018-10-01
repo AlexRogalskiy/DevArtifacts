@@ -1,0 +1,134 @@
+' MonsterChase.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Try to escape from a monster
+
+GraphicsWindow.Title = "Monster Chase"
+GraphicsWindow.Width = 250
+GraphicsWindow.Height = 250
+GraphicsWindow.CanResize = 0
+
+Grid()                                      ' Draws a 5x5 grid
+P = Shapes.AddRectangle(40, 40)             ' Player's shape
+M = Shapes.AddTriangle(0, 0, 40, 0, 20, 40) ' Monster's shape
+
+GraphicsWindow.KeyDown = OnKeyDown
+
+NewGame()
+
+Sub NewGame
+  rp = 5      ' Player's row
+  cp = 5      ' Player's column
+  rm = 1      ' Monster's row
+  cm = 1      ' Monster's column
+  count = 0   ' Number of player's movements
+  
+  Move()      ' Positions player and monster on the grid
+EndSub
+
+Sub Move
+  Shapes.Move(P, (cp - 1) * 50 + 5, (rp - 1) * 50 + 5)
+  Shapes.Move(M, (cm - 1) * 50 + 5, (rm - 1) * 50 + 5)
+EndSub
+
+' Checks whether the player's move is within the grid
+' If the player's move is valid, it processes the move
+Sub OnKeyDown
+  newR = rp                             ' New row
+  newC = cp                             ' New column
+  key = GraphicsWindow.LastKey
+  If (key = "Up" And newR > 1) Then
+    newR = newR - 1
+  ElseIf (key = "Down" And newR < 5) Then
+    newR = newR + 1
+  ElseIf (key = "Left" And newC > 1) Then
+    newC = newC - 1
+  ElseIf (key = "Right" and newC < 5) Then
+    newC = newC + 1
+  EndIf
+  
+  If (newR <> rp Or newC <> cp) Then    ' Player's position changed
+    count = count + 1                   ' Increases move count
+    rp = newR                           ' Sets new values
+    cp = newC
+    Process()
+  EndIf
+EndSub
+
+Sub Grid
+  For I = 1 To 5
+    For J = 1 To 5
+      X0 = (J - 1) * 50
+      Y0 = (I - 1) * 50
+      GraphicsWindow.DrawRectangle(X0, Y0, 50, 50)
+    EndFor
+  EndFor
+EndSub
+
+' Processes player's move
+' Moves player and then moves monster
+Sub Process
+  done = 0                        ' Assumes the player is not caught by the monster
+  Move()                          ' Updates the positions in the GUI
+  If (rp = rm And cp = cm) Then   ' Player moves to the monster's grid
+    done = 1                      ' Game over
+  Else                            ' Player moves and avoids monster
+    MoveMonster()                 ' Determines monster's new position (row and column)
+    Move()                        ' Updates positions in GUI
+    If (rp = rm And cp = cm) Then ' If monster hits player
+      done = 1                    ' Game over
+    EndIf
+  EndIf
+  
+  If (done = 1) Then
+    GraphicsWindow.ShowMessage("Game over: " + count, "Game over")
+    NewGame()
+  EndIf
+EndSub
+
+Sub MoveMonster
+  If (rm = rp And cm < cp) Then     ' Player is east of monster
+    D = 1                           ' Direction = East
+  ElseIf (rm > rp And cm < cp) Then ' Player is northeast of monster
+    D = 2                           ' Direction = Northeast
+  ElseIf (rm > rp And cm = cp) Then ' Player is directly north of monster
+    D = 3                           ' Direction = North
+  ElseIf (rm > rp And cm > cp) Then ' Player is northwest of monster
+    D = 4                           ' Direction = Northwest
+  ElseIf (rm = rp And cm > cp) Then ' Player is west of the monster
+    D = 5                           ' Direction = West
+  ElseIf (rm < rp And cm > cp) Then ' Player is southwest of monster
+    D = 6                           ' Direction = Southwest
+  ElseIf (rm > rp And cm = cp) Then ' Player is south of monster
+    D = 7                           ' Dircetion = South
+  Else                              ' Player is southeast of monster
+    D = 8                           ' Direction = Southeast
+  EndIf
+  
+  RandDir:
+  D = D + (Math.GetRandomNumber(3) - 2) ' Adds 1, 0, or -1 to D
+  If (D < 1) Then       ' Makes sure the direction is still between 1 and 8
+    D = 1
+  ElseIf (D > 8) Then
+    D = 8
+  EndIf
+  
+  ' Moves
+  newR = rm
+  newC = cm
+  
+  If ((D = 2 Or D = 3 Or D = 4) And (newR > 1)) Then      ' Moves up
+    newR = newR - 1
+  ElseIf ((D = 6 Or D = 7 Or D = 8) And (newR < 5)) Then  ' Moves down
+    newR = newR + 1
+  EndIf
+  If ((D = 4 Or D = 5 Or D = 6) And (newC > 1)) Then      ' Moves left
+    newC = newC - 1
+  ElseIf ((D = 1 or D = 2 Or D = 8) And (newC < 5)) Then  ' Moves right
+    newC = newC + 1
+  EndIf
+  If (newR = rm And newC = cm) Then                       ' Monster doesn’t move
+    Goto RandDir
+  EndIf
+  rm = newR                 ' Set monster's new position (row and column)
+  cm = newC
+EndSub

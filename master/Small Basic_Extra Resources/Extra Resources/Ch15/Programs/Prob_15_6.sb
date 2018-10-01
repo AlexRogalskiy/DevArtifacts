@@ -1,0 +1,54 @@
+' Prob_15_6.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Simulates a lucky number lottery
+
+' Creates an array that holds the 30 winning numbers
+' The lottery tickets have numbers from 1 to 1000
+For N = 1 To 30
+  lucky[N] = Math.GetRandomNumber(1000)
+EndFor
+
+' Shows the lucky numbers to the user
+TextWindow.Write("$100 Lucky Numbers: ")
+For N = 1 To 10
+  TextWindow.CursorLeft = 20 + (N - 1) * 5
+  TextWindow.Write(lucky[N])
+EndFor  
+TextWindow.WriteLine("")
+
+TextWindow.Write(" $50 Lucky Numbers: ")
+For N = 11 To 20
+  TextWindow.CursorLeft = 20 + (N - 11) * 5
+  TextWindow.Write(lucky[N])
+EndFor  
+TextWindow.WriteLine("")
+
+TextWindow.Write(" $25 Lucky Numbers: ")
+For N = 21 To 30
+  TextWindow.CursorLeft = 20 + (N - 21) * 5
+  TextWindow.Write(lucky[N])
+EndFor  
+TextWindow.WriteLine("")
+
+' Draws a lottery ticket at random and decides whether that number is a winner
+' The number can win more than one prize
+num = Math.GetRandomNumber(1000)
+
+win = 0   '  The win amount
+For N = 1 To 30
+  If (num = lucky[N]) Then
+    If (N <= 10) Then
+      win = win + 100
+    ElseIf (N <= 20) Then
+      win = win + 50
+    Else
+      win = win + 25
+    EndIf
+  EndIf  
+EndFor
+
+TextWindow.WriteLine("")
+TextWindow.Write("Your number is " + num + ". ")
+TextWindow.Write("You won $" + win + ".")
+TextWindow.WriteLine("")
+TextWindow.WriteLine("")

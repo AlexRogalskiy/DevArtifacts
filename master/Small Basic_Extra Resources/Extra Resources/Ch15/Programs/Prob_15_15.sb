@@ -1,0 +1,30 @@
+' Prob_15_15.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Runs a cave simulation
+
+For N = 1 To 10                     ' 10 rooms
+  door[N] = Math.GetRandomNumber(4) ' The number of the open door
+EndFor
+
+room = 1
+tries = 0
+While (room <= 10)
+  selDoor = 0                       ' The door selected by the player
+  While (selDoor <> door[room])
+    tries = tries + 1
+    TextWindow.WriteLine("You're now in room " + room + ".")
+    TextWindow.Write("Which door do you want to try (1-4)? ")
+    
+    selDoor = TextWindow.ReadNumber()
+    If (selDoor = door[room]) Then
+      TextWindow.WriteLine("This door is open.")
+    Else
+      TextWindow.WriteLine("This door is closed.")
+    EndIf
+    TextWindow.WriteLine("")
+  EndWhile
+  room = room + 1                   ' Goes to the next room
+EndWhile
+
+TextWindow.WriteLine("CONGRATULATIONS!")
+TextWindow.WriteLine("You escaped the cave in " + tries + " tries!")

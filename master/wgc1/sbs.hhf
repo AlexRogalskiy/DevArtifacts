@@ -1,0 +1,12 @@
+
+	#macro sbs( s );
+
+		// Grab all but the last character of the string:
+
+		(@substr( s, 0, @length(s) - 1) + 
+
+			// Concatenate the last character with its HO bit set:
+
+			char( uns8( char( @substr( s, @length(s) - 1, 1))) | $80 ))
+
+	#endmacro

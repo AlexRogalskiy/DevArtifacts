@@ -1,0 +1,39 @@
+' EtchASketch.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Draws square blocks with the arrow keys
+
+GraphicsWindow.Title = "Etch A Sketch"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 480
+GraphicsWindow.CanResize = 0
+
+defColor = GraphicsWindow.BrushColor  ' Default color
+xPos = 240
+yPos = 240
+GraphicsWindow.FillRectangle(xPos, yPos, 10, 10) 
+
+GraphicsWindow.KeyDown = OnKeyDown
+
+lastKey = ""
+While("True")
+  If (lastKey <> "") Then
+    If (lastKey =  "Left") Then
+      xPos = Math.Max(xPos - 10, 0)
+    ElseIf (lastKey = "Right") Then
+      xPos = Math.Min(xPos + 10, 470)
+    ElseIf (lastKey = "Up") Then
+      yPos = Math.Max(yPos - 10, 0)
+    ElseIf (lastKey = "Down") Then
+      yPos = Math.Min(yPos + 10, 470)
+    EndIf
+    
+    GraphicsWindow.FillRectangle(xPos, yPos, 10, 10)    
+    lastKey = ""
+  EndIf
+  
+  Program.Delay(50)
+EndWhile
+
+Sub OnKeyDown
+  lastKey = GraphicsWindow.LastKey
+EndSub

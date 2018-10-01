@@ -1,0 +1,34 @@
+' Prob_10_9.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Converts a Fahrenheit temperature to Celsius and a Celsius temperature to Fahrenheit
+
+TextWindow.Title = "TEMPERATURE CONVERTER"
+
+TextWindow.WriteLine("TEMPERATURE CONVERTER - Enter your choice (1 or 2):")
+TextWindow.WriteLine("[1] Convert from Celsius to Fahrenheit")
+TextWindow.WriteLine("[2] Convert from Fahrenheit to Celsius")
+
+choice = TextWindow.ReadNumber()
+If (choice = 1) Then
+  CelsiusToFahrenheit()
+ElseIf (choice = 2) Then
+  FahrenheitToCelsius()
+Else
+  TextWindow.WriteLine("Invalid choice.")
+EndIf
+
+Sub CelsiusToFahrenheit
+  TextWindow.Write("Temperature in °C: ")
+  degC = TextWindow.ReadNumber()
+  degF = (degC * (9 / 5)) + 32
+  degF = Math.Round(degF)
+  TextWindow.WriteLine("That is " + degF + " °F.")
+EndSub
+
+Sub FahrenheitToCelsius
+  TextWindow.Write("Temperature in °F: ")
+  degF = TextWindow.ReadNumber()
+  degC = (degF - 32) * (5 / 9)
+  degC = Math.Round(degC)
+  TextWindow.WriteLine("That is " + degC + " °C.")
+EndSub

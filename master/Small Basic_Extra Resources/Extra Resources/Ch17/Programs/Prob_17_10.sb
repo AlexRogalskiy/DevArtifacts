@@ -1,0 +1,34 @@
+' Prob_17_10.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Generates a special matrix
+
+TextWindow.Write("Enter a: ")
+mat[1][1] = TextWindow.ReadNumber()
+
+TextWindow.Write("Enter b: ")
+mat[1][2] = TextWindow.ReadNumber()
+
+TextWindow.Write("Enter c: ")
+mat[1][3] = TextWindow.ReadNumber()
+
+TextWindow.Write("Enter d: ")
+mat[1][4] = TextWindow.ReadNumber()
+
+TextWindow.WriteLine("")
+
+For R = 2 To 4  
+  mat[R][1] = mat[R-1][1] + 1 ' Fills column 1
+  mat[R][2] = mat[R-1][2] - 1 ' Fills column 2
+  mat[R][3] = mat[R-1][3] * 2 ' Fills clumn 3
+  mat[R][4] = mat[R-1][4] / 2 ' Fills column 4
+EndFor
+
+' Displays the matrix
+For R = 1 To 4  
+  For C = 1 To 4
+    TextWindow.CursorLeft = C * 5
+    TextWindow.Write(mat[R][C])
+  EndFor
+  TextWindow.WriteLine("")
+EndFor
+TextWindow.WriteLine("")

@@ -1,0 +1,13 @@
+' Prob_13_4.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Displays all the factors of an integer number, N, entered by a user
+
+TextWindow.Write("Enter N: ")
+N = TextWindow.ReadNumber()
+
+TextWindow.WriteLine("Factors of " + N + ":")
+For I = 1 To N
+  If (Math.Remainder(N, I) = 0) Then
+    TextWindow.WriteLine(I)
+  EndIf
+EndFor

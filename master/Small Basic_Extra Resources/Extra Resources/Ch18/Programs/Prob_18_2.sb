@@ -1,0 +1,18 @@
+' Prob_18_2.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Reads the name of a month and outputs the month's abbreviated name
+' (the first three characters)
+
+months = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
+
+While ("True")
+  TextWindow.WriteLine("")
+  TextWindow.Write("Enter the month's number [1-12]: ")
+  num = TextWindow.ReadNumber()
+  num = Math.Floor(num)
+  If ((num >= 1) And (num <= 12)) Then
+    pos = 1 + ((num - 1) * 4)
+    abbr = Text.GetSubText(months, pos, 3)
+    TextWindow.WriteLine("This is " + abbr + ". My favorite month!")    
+  EndIf  
+EndWhile

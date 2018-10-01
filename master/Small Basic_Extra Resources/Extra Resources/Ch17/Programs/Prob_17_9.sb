@@ -1,0 +1,40 @@
+' Prob_17_9.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Simulates a teacher’s attendance sheet
+
+' The following numbers represent the days each student was absent
+' in each of the four school terms
+absent["Jenny"][1] = 0
+absent["Jenny"][2] = 1
+absent["Jenny"][3] = 1
+absent["Jenny"][4] = 2
+absent["Jake"][1] = 2
+absent["Jake"][2] = 3
+absent["Jake"][3] = 0
+absent["Jake"][4] = 2
+absent["Karen"][1] = 3
+absent["Karen"][2] = 0
+absent["Karen"][3] = 1
+absent["Karen"][4] = 1
+
+While ("True")
+  ' Asks the user to enter a student’s name and the term number (from 1 to 4) 
+  ' and then displays the number of days the student was absent in that term
+
+  TextWindow.Write("Student name: ")
+  name = TextWindow.Read()
+  
+  TextWindow.Write("Term number [1-4]: ")
+  term = TextWindow.ReadNumber()
+  
+  value = absent[name][term]
+  If (value = "") Then
+    TextWindow.WriteLine("Sorry! I don't have this record.")
+  Else
+    TextWindow.Write(name + " missed " + value + " days ")
+    TextWindow.WriteLine("in term " + term + ".")
+  EndIf
+  
+  TextWindow.WriteLine("")
+  TextWindow.WriteLine("")
+EndWhile

@@ -1,0 +1,21 @@
+' Prob_18_10.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Prompts the user to enter a prefix to search for
+' And displays the words (from an array) that begin with the entered prefix
+
+words = "1=about;2=above;3=absorb;4=academy;5=accent;6=account;7=address;8=adhere;9=age;10=again;"
+
+While ("True")
+  TextWindow.Write("Enter the prefix to search for: ")
+  prefix = TextWindow.Read()
+  prefix = Text.ConvertToLowerCase(prefix)
+  
+  TextWindow.WriteLine("The following words start with " + prefix)
+  For N = 1 To Array.GetItemCount(words)
+    If (Text.StartsWith(words[N], prefix)) Then
+      TextWindow.WriteLine("  " + words[N])
+    EndIf    
+  EndFor
+  
+  TextWindow.WriteLine("")
+EndWhile

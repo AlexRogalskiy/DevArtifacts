@@ -1,0 +1,37 @@
+' Prob_13_13.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Draws a triangular pattern
+
+SIZE = 40
+x1 = 10               ' Left edge
+y1 = 100
+x2 = x1 + SIZE        ' Right edge
+y2 = y1
+x3 = x1 + (SIZE / 2)  ' Top edge
+y3 = y1 - SIZE
+x4 = x3               ' Bottom edge
+y4 = y1 + SIZE
+
+For N = 1 To 5
+  ' Draws upper triangle, lower triangle (filled), and its border
+  GraphicsWindow.DrawTriangle(x1, y1, x2, y2, x3, y3)
+  GraphicsWindow.FillTriangle(x1, y1, x2, y2, x4, y4)
+  GraphicsWindow.DrawTriangle(x1, y1, x2, y2, x4, y4)
+  
+  ' Moves all points to the right
+  x1 = x1 + SIZE
+  x2 = x2 + SIZE
+  x3 = x3 + SIZE
+  x4 = x4 + SIZE
+  
+  ' Draws upper triangle (filled) and its border, then lower triangle
+  GraphicsWindow.FillTriangle(x1, y1, x2, y2, x3, y3)
+  GraphicsWindow.DrawTriangle(x1, y1, x2, y2, x3, y3)
+  GraphicsWindow.DrawTriangle(x1, y1, x2, y2, x4, y4)
+  
+  ' Moves all points to the right
+  x1 = x1 + SIZE
+  x2 = x2 + SIZE
+  x3 = x3 + SIZE
+  x4 = x4 + SIZE
+EndFor

@@ -1,0 +1,28 @@
+' Prob_11_5.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Draws with cursor keys
+
+GraphicsWindow.Width  = 640
+GraphicsWindow.Height = 480
+
+GraphicsWindow.KeyDown = OnKeyDown
+
+Turtle.Show()
+
+Sub OnKeyDown
+  If (GraphicsWindow.LastKey = "Right") Then
+    Turtle.Angle = 90
+    Turtle.Move(5)
+  ElseIf (GraphicsWindow.LastKey = "Left") Then
+    Turtle.Angle = 270
+    Turtle.Move(5)    
+  ElseIf (GraphicsWindow.LastKey = "Up") Then
+    Turtle.Angle = 0
+    Turtle.Move(5)    
+  ElseIf (GraphicsWindow.LastKey = "Down") Then
+    Turtle.Angle = 180
+    Turtle.Move(5)
+  ElseIf (GraphicsWindow.LastKey = "Space") Then
+    GraphicsWindow.PenColor = GraphicsWindow.GetRandomColor()    
+  EndIf  
+EndSub

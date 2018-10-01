@@ -1,0 +1,37 @@
+' OlympicRecords.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Displays the names of the available events for the Summer Olympic Games
+
+TextWindow.Title = "OLYMPIC TRACK AND FIELD RECORDS"
+
+path = Program.Directory + "\dataIn.txt"
+
+N = 1         ' Line number
+M = 1         ' Event number
+strLine = File.ReadLine(path, N)
+While (strLine <> "")
+  If (M <= 9) Then
+     TextWindow.WriteLine(" " + M + ") " + strLine)
+   Else
+      TextWindow.WriteLine(M + ") " + strLine)
+  EndIf 
+  M = M + 1
+  N = N + 7
+  strLine = File.ReadLine(path, N)
+EndWhile
+
+While ("True")
+  TextWindow.WriteLine("")
+  TextWindow.Write("Enter the number of the event: ")
+  M = TextWindow.ReadNumber()
+  N = ((M - 1) * 7) + 1
+  
+  TextWindow.WriteLine("========= OLYMPIC RECORD BOOK =========")
+  TextWindow.WriteLine("         Event: " + File.ReadLine(path, N))
+  TextWindow.WriteLine("        Record: " + File.ReadLine(path, N + 1))
+  TextWindow.WriteLine(" Record Holder: " + File.ReadLine(path, N + 2))
+  TextWindow.WriteLine("       Country: " + File.ReadLine(path, N + 3))
+  TextWindow.WriteLine("         Games: " + File.ReadLine(path, N + 4))
+  TextWindow.WriteLine("          Date: " + File.ReadLine(path, N + 5))
+  TextWindow.WriteLine("=======================================")
+EndWhile

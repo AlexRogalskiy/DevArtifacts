@@ -1,0 +1,19 @@
+' Prob_6_8.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Determines how many pennies you need to stack
+
+TextWindow.Title = "How many pennies?"
+
+TextWindow.Write("Enter the height of a building (in meters): ")
+meters = TextWindow.ReadNumber()
+
+' One meter is 39.3701 inches
+heightInInches = meters * 39.3701
+
+pennyCount = heightInInches / 0.0598
+pennyCount = Math.Round(pennyCount)
+
+TextWindow.Write("You would need to stack " + pennyCount + " pennies ")
+TextWindow.Write("to reach that height.")
+TextWindow.WriteLine("")
+TextWindow.WriteLine("")

@@ -1,0 +1,21 @@
+' AddTutor.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Teaches addition
+
+START:
+
+num1 = math.GetRandomNumber(10)
+num2 = math.GetRandomNumber(10)
+correctAns = num1 + num2
+
+TextWindow.Write("What is " + num1 + " + " + num2 + "? ")
+ans = TextWindow.ReadNumber()
+
+If (ans = correctAns) Then
+  TextWindow.WriteLine("That is correct. You're as smart as Professor Oak.")
+Else
+  TextWindow.WriteLine("Sorry. The answer is " + correctAns + ". We're counting on you!")
+EndIf
+
+TextWindow.WriteLine("")
+Goto START

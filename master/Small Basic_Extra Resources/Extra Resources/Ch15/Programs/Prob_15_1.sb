@@ -1,0 +1,37 @@
+' Prob_15_1.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Computes the score in Olympic high diving
+
+' Reads the scores of the seven judges
+For N = 1 To 7
+  TextWindow.Write("Enter the score of judge " + N + ": ")
+  score[N] = TextWindow.ReadNumber()
+EndFor
+
+' Finds the min, max, and sum
+min = score[1]
+max = score[1]
+sum = 0
+For N = 1 To 7
+  If (score[N] > max) Then
+    max = score[N]
+  EndIf
+  
+  If (score[N] < min) Then
+    min = score[N]
+  EndIf
+  
+  sum = sum + score[N]  
+EndFor
+
+' Subtracts the min and max scores from sum
+sum = sum - (min + max)
+
+' Computes the average of the remaining 5 scores
+avg = sum / 5
+
+TextWindow.WriteLine("")
+TextWindow.WriteLine("Minimum score: " + min)
+TextWindow.WriteLine("Maximum score: "  + max)
+TextWindow.WriteLine("Average score: " + avg)
+TextWindow.WriteLine("")

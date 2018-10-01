@@ -1,0 +1,46 @@
+' Prob_12_6.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Teaches Turtle Boy how to type
+
+GraphicsWindow.Title = "Typing Tutor"
+GraphicsWindow.Width = 450
+GraphicsWindow.Height = 200
+GraphicsWindow.FontSize = 100
+
+txtBox1 = Controls.AddTextBox(20, 20)
+Controls.SetSize(txtBox1, 120, 150)
+
+txtBox2 = Controls.AddTextBox(160, 20)
+Controls.SetSize(txtBox2, 120, 150)
+
+GraphicsWindow.FontSize = 40
+btnNext = Controls.AddButton("Next", 300, 105)
+
+Controls.ButtonClicked = OnButtonClicked
+
+roundNum = 0
+score = 0
+NewRound()
+
+Sub OnButtonClicked
+  ' Checks the answer
+  ans = Controls.GetTextBoxText(txtBox2)
+  If (ans = char) Then
+    score = score + 1
+  EndIf    
+  
+  If (roundNum < 10) Then
+    NewRound()
+  Else
+    GraphicsWindow.ShowMessage("Your score is " + score + "/10", "Game Over")
+    Controls.HideControl(btnNext)
+  EndIf  
+EndSub
+
+Sub NewRound
+  roundNum = roundNum + 1
+  charCode = 64 + Math.GetRandomNumber(26)
+  char = Text.GetCharacter(charCode)
+  Controls.SetTextBoxText(txtBox1, char)  
+  Controls.SetTextBoxText(txtBox2, "")
+EndSub

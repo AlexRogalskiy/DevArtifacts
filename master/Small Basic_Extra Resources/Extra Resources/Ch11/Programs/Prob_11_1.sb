@@ -1,0 +1,13 @@
+' Prob_11_1.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Animates a circle moving from its current position to the mouse-click position in 0.5 seconds
+
+GraphicsWindow.MouseDown = OnMouseDown
+
+circle = Shapes.AddEllipse(50, 50)
+
+Sub OnMouseDown
+  x = GraphicsWindow.MouseX
+  y = GraphicsWindow.MouseY
+  Shapes.Animate(circle, x, y, 500)
+EndSub

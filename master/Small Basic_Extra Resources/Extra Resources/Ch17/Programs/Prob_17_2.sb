@@ -1,0 +1,23 @@
+' Prob_17_2.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Displays the contents of a matrix
+
+For I = 1 To 4
+  For J = 1 To 4
+    If (I > J) Then
+      mat[I][J] = 0
+    Else
+      mat[I][J] = 1
+    EndIf
+  EndFor
+EndFor
+
+' Displays the matrix
+For I = 1 To 4
+  For J = 1 To 4
+    TextWindow.CursorLeft = (J - 1) * 3
+    TextWindow.Write(mat[I][J])
+  EndFor
+  TextWindow.WriteLine("")
+EndFor
+TextWindow.WriteLine("")

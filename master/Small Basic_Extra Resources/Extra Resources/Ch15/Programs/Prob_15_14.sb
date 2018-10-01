@@ -1,0 +1,36 @@
+' Prob_15_14.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Demonstrates a locker problem
+
+' A school has 25 lockers numbered 1 to 25, and a student opens every locker
+' A second student closes every other locker, beginning with locker 2
+' A third student changes every third locker, beginning with locker 3 (they open the closed lockers and close the open lockers)
+' A fourth student changes every fourth locker, beginning with locker 4, and so on
+' Which lockers are open after the 25th student completes their pass?
+
+NUM_LOCKERS = 25
+NUM_STUDENTS = 25
+
+For N = 1 To NUM_LOCKERS
+  lock[N] = 0               '  1 means open and 0 means closed
+EndFor
+
+TextWindow.WriteLine("                  1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2")
+TextWindow.WriteLine("1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5")
+TextWindow.WriteLine("-------------------------------------------------")
+
+M = 1                       ' Start at this locker number
+For S = 1 to NUM_STUDENTS  
+  For N = M To NUM_LOCKERS Step M  
+    lock[N] = 1 - lock[N]   ' Changes 1 to 0 and 0 to 1
+  EndFor  
+  ShowStatus()
+  M = M + 1
+EndFor
+
+Sub ShowStatus
+  For J = 1 To NUM_LOCKERS
+    TextWindow.Write(lock[J] + " ")
+  EndFor
+  TextWindow.WriteLine("")
+EndSub

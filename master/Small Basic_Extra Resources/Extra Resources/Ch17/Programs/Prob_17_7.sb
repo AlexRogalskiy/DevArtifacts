@@ -1,0 +1,36 @@
+' Prob_17_7.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Simulates throwing two dice
+
+TextWindow.Title = "Dice Simulation"
+
+' a. Zero out all the elements of the 6×6 roll matrix.
+For R = 1 To 6
+  For C = 1 To 6
+    roll[R][C] = 0
+  EndFor
+EndFor
+
+' b. Start a loop that runs 36,000 times. In each iteration of the loop,
+' get two random numbers from 1 to 6 (one for the first die and the
+' other for the second die). Then increment the element in roll that corresponds
+' to the pair of numbers you obtained. For example, if the first
+' die was a 2 and the second die was a 4, increment roll[2][4] by 1.
+For I = 1 To 36000
+  R = Math.GetRandomNumber(6)
+  C = Math.GetRandomNumber(6)  
+  roll[R][C] = roll[R][C] + 1
+EndFor
+
+
+' c. When the loop terminates, display the roll matrix.
+TextWindow.WriteLine("    1     2     3     4     5     6")
+For R = 1 To 6
+  TextWindow.Write(R)
+  For C = 1 To 6
+    TextWindow.CursorLeft = 3 + (C - 1) * 6
+    TextWindow.Write(roll[R][C])    
+  EndFor
+  TextWindow.WriteLine("")
+EndFor
+TextWindow.WriteLine("")

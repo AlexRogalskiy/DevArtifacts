@@ -1,0 +1,74 @@
+' Battles.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Uses a data file of famous battles and their dates for a multiple choice quiz
+
+TextWindow.Title = "BATTLES QUIZ"
+
+path = Program.Directory + "\dataIn.txt"
+
+Q = 0                ' Number of questions
+N = 1                ' Line number in a file
+While (N > 0)
+  strLine = File.ReadLine(path, N)
+  If (strLine = "") Then
+    N = 0            ' Exit the loop
+  Else
+    ParseLine()
+    N = N + 1
+  EndIf  
+EndWhile
+
+' We have two arrays: date[] and battle[]
+' Starts the multiple choice quiz
+For N = 1 to Q
+  choice[1] = date[N]
+  GetChoices()       ' Gets three other (different) choices
+  
+  ' Picks a random location for the correct choice
+  idx = Math.GetRandomNumber(4)
+  temp = choice[idx]
+  choice[idx] = choice[1]
+  choice[1] = temp
+  
+  ShowQuestion()
+  If (ans = idx) Then
+    TextWindow.WriteLine("  Correct.")
+  Else
+    TextWindow.WriteLine("  No. The correct answer is " + idx + " : " + choice[idx])
+  EndIf
+  
+  TextWindow.WriteLine("")
+EndFor
+
+Sub ParseLine
+  idx = Text.GetIndexOf(strLine, ";")
+  If (idx <> 0) Then
+    Q = Q + 1
+    date[Q] = Text.GetSubText(strLine, 1, idx - 1)
+    battle[Q] = Text.GetSubTextToEnd(strLine, idx + 1)    
+  EndIf  
+EndSub
+
+Sub GetChoices
+  Again:
+  choice[2] = date[Math.GetRandomNumber(Q)]
+  choice[3] = date[Math.GetRandomNumber(Q)]
+  choice[4] = date[Math.GetRandomNumber(Q)]
+  For c1 = 1 To 3             ' 1               2          3
+    For c2 = (c1 + 1) To 4    ' 2  3  4      3  4     4
+      If (choice[c1] = choice[c2]) Then
+        Goto Again
+      EndIf      
+    EndFor    
+  EndFor
+EndSub
+
+Sub ShowQuestion
+  TextWindow.WriteLine(battle[N])
+  TextWindow.WriteLine("  1)  " + choice[1])
+  TextWindow.WriteLine("  2)  " + choice[2])
+  TextWindow.WriteLine("  3)  " + choice[3])
+  TextWindow.WriteLine("  4)  " + choice[4])
+  TextWindow.Write("  ")
+  ans = TextWindow.ReadNumber()
+EndSub

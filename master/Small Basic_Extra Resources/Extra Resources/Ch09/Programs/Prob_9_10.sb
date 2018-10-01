@@ -1,0 +1,33 @@
+' Prob_9_10.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Hosts a math quiz
+
+Again:
+num1 = Math.GetRandomNumber(10)
+num2 = Math.GetRandomNumber(10)
+op = Math.GetRandomNumber(4)
+If (op = 1) Then            ' Addition
+  msg = num1 + " + " + num2
+  ans = num1 + num2
+ElseIf (op = 2) Then        ' Subtraction
+  msg = num1 + " - " + num2
+  ans = num1 - num2
+ElseIf (op = 3) Then        ' Multiplication
+  msg = num1 + " * " + num2
+  ans = num1 * num2
+Else                        ' Division
+  msg = (num1 * num2) + " / " + num2
+  ans = num1
+EndIf
+
+TextWindow.Write(msg + " = ? ")
+input = TextWindow.ReadNumber()
+
+If (input = ans) Then
+  TextWindow.WriteLine("Correct. Great job!")
+Else
+  TextWindow.WriteLine("Wrong. The answer is " + ans)
+EndIf
+
+TextWindow.WriteLine("")
+Goto Again

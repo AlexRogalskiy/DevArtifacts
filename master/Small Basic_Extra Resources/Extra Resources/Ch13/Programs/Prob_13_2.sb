@@ -1,0 +1,18 @@
+' Prob_13_2.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Finds the average of N numbers entered by the user
+
+TextWindow.Write("How may numbers do you want to average? ")
+count = TextWindow.ReadNumber()
+
+If (count > 0) Then  
+  sum = 0
+  For N = 1 To count
+    TextWindow.Write("Number " + N + ": ")
+    sum = sum + TextWindow.ReadNumber()
+  EndFor
+  
+  avg = Math.Round(sum / count)
+  
+  TextWindow.WriteLine("Average = " + avg )
+EndIf

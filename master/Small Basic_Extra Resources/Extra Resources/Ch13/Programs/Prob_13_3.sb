@@ -1,0 +1,29 @@
+' Prob_13_3.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Counts the number of positives, negatives, and zeros in a set of numbers entered by a user
+
+TextWindow.Write("How may numbers do you have? ")
+count = TextWindow.ReadNumber()
+
+posCount = 0
+negCount = 0
+zeroCount = 0
+
+For N = 1 To count
+  TextWindow.Write("Number " + N + ": ")
+  num = TextWindow.ReadNumber()
+  If (num > 0) Then
+    posCount = posCount + 1
+  ElseIf (num < 0) Then
+    negCount = negCount + 1
+  Else
+    zeroCount = zeroCount + 1
+  EndIf
+EndFor
+
+TextWindow.WriteLine("")
+TextWindow.WriteLine("Your set has: ")
+TextWindow.WriteLine("  " + posCount  + " positive number(s)")
+TextWindow.WriteLine("  " + negCount  + " negative number(s)")
+TextWindow.WriteLine("  " + zeroCount + " zero(s)")
+TextWindow.WriteLine("")

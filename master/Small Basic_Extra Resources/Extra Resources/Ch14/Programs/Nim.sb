@@ -1,0 +1,68 @@
+' Nim.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Plays the game of Nim against the computer
+
+TextWindow.Title = "NIM"
+
+A = 0               ' Player's pick
+B = 0               ' Computer's pick
+W = 0               ' Winner: 1 for player and 2 for computer
+msg = ""            ' Message to decalre the winner
+Z = 14 + Math.GetRandomNumber(9)    ' From 15 to 23
+
+ShowStatus()        ' Shows game status
+
+While (W = 0)       ' As long as we don't have a winner
+  PlayerTurn()      ' Prompts the player to pick
+  
+  Z = Z - A  
+  If (Z = 0) Then   ' Player picked the last object(s)
+    W = 2           ' Computer wins
+    msg = "I won! 
+  Else
+    If ((Z = 2) Or (Z = 3) Or (Z = 4)) Then
+      B = Z - 1     ' To leave 1 object for the player
+    Else      
+      B = Math.GetRandomNumber(Math.Min(3,Z))
+    EndIf
+    
+    Z = Z - B
+    If (Z = 0) Then ' Computer picked last object
+      W = 1         ' Player wins
+      msg = "You won."
+    EndIf
+  EndIf
+  
+  TextWindow.Clear()
+  ShowStatus()
+EndWhile
+
+TextWindow.WriteLine(msg)
+TextWindow.WriteLine("")
+
+' [TODO]
+' Ask the player if he wants to play agian (Y/N) 
+' If he answers Y or y, play another round 
+' Otherwise, say goobye and wish him luck
+
+Sub ShowStatus
+  TextWindow.WriteLine("You took: " + A + "    I took: " + B)
+  TextWindow.Write(Z + ": ")
+  For K = 1 To Z
+    TextWindow.Write("▓ ")  ' Alt+178
+  EndFor
+  TextWindow.WriteLine("")
+  TextWindow.WriteLine("")
+EndSub
+
+Sub PlayerTurn
+  A = 0                     ' Invalid value
+  While(A = 0)              ' As long as we have an invalid input
+    max = Math.Min(Z, 3)
+    TextWindow.Write("How many would you like to take [1-3]? ")
+    A = TextWindow.ReadNumber()
+    If ((A < 1) Or (A > max) Or (A <> Math.Floor(A))) Then
+      A = 0                 ' We still have an invalid input
+    EndIf
+  EndWhile
+EndSub

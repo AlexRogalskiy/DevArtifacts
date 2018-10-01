@@ -1,0 +1,46 @@
+' Prob_9_12.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Plays Rock, Paper, Scissors against the computer
+
+' This is an array that we'll use to display the names of the choices
+' You''ll learn about arrays later in the book
+choice[1] = "rock"
+choice[2] = "paper"
+choice[3] = "scissors"
+
+Again:
+TextWindow.Write("Choose [1] rock, [2] paper, or [3] scissors: ")
+c1 = TextWindow.ReadNumber()  ' Player's choice
+If ((c1 <> 1) And (c1 <> 2) And (c1 <> 3)) Then
+  TextWindow.WriteLine("Invalid input.")
+  TextWindow.WriteLine("")
+  Goto Again
+EndIf
+
+c2 = Math.GetRandomNumber(3)  ' Computer's choice
+TextWindow.WriteLine(choice[c1] + " : " + choice[c2])
+
+If (c1 = c2) Then
+  TextWindow.WriteLine("You tied. You're like twins.")
+ElseIf (c1 = 1) Then          ' Player selected rock
+  If (c2 = 2) Then            ' Computer selected paper
+    TextWindow.WriteLine("The computer wins.")
+  Else                        ' Computer selected scissors
+    TextWindow.WriteLine("You win.")
+  EndIf
+ElseIf(c1 = 2) Then           ' Player selected paper
+  If (c2 = 1) Then
+    TextWindow.WriteLine("You win! This time...")
+  Else
+    TextWindow.WriteLine("The computer wins. That's how Terminator started.")
+  EndIf  
+Else                          ' Player selected scissors
+  If (c2 = 1) Then
+    TextWindow.WriteLine("The computer wins! And it's blushing too.")
+  Else
+    TextWindow.WriteLine("You win! Congratulations.")
+  EndIf  
+EndIf
+
+TextWindow.WriteLine("")
+Goto Again

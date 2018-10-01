@@ -1,0 +1,52 @@
+' Prob_16_7.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' A flashcard program to test the user ont their knowledge of space
+' The program displays a fact or definition of something related to space, 
+' waits for the user to press any key, and then reveals the answer
+
+TextWindow.Title = "Space Exploration"
+
+card["Made up of the sun and everything that surrounds it"] = "solar system"
+card["When an object travels around another object in its orbit"] = "revolution"
+card["When an object spins around on its axis"] = "rotation"
+card["How many days does it take the moon the make one revolution around the Earth?"] = "29 1/2 days"
+card["When the moon passes between the Earth and the sun"] = "solar ecplise"
+card["When the moon enters the Earth's shadow"] = "lunar eclipse"
+card["Circles the Earth once every 76 years"] = "Halley's Comet"
+card["Amount of time is takes the Earth to complete one rotation"] = "24 hours"
+card["Amount of days it takes the Earth to complete one revolution around the sun"] = "365 1/4"
+card["Made up of asteroids and lies between Mars and Jupiter"] = "asteroid belt"
+card["Natural satellite of the Earth"] = "moon"
+card["A solid, rocklike object that floats in space"] = "meteorite"
+card["A large chunk of ice, frozen gases, and dust that travels around the sun"] = "comet"
+card["Amount of times per year that a lunar eclipse occurs"] = "1-3 times"
+card["5th phase of the moon when the whole moon is visible"] = "full moon"
+card["1st phase of the moon when you cannot see the moon"] = "new moon"
+card["Atmosphere surrounding the sun"] = "corona"
+card["Small rocky body that orbits the sun"] = "asteroid"
+card["Largest known asteroid"] = "Ceres"
+card["Any body in space that revolves around another body"] = "satellite"
+card["1st planet from the sun; surface similar to the moon; temp. range 427 C to -173 C; 0.4 AU pressure; 4,878 km diameter"] = "Mercury"
+card["Brightest planet from Earth; thick blanket of clouds; dense atmosphere of CO2; 12.104 km diameter; 0.7 AU pressure"] = "Venus"
+card["1 AU pressure; 1 moon; 12,756 km diameter"] = "Earth"
+card["Red surface of iron oxide (rust); 2 moons; 1.5 AU pressure; 6.787 km diameter"] = "Mars"
+card["16 moons; largest planet; 1 ring; red spot - giant storm; colored bands; 5.2 AU pressure; 142.980 km diameter"] = "Jupiter"
+card["18 moons; 10,000 rings; 9.5 AU pressure; 120,540 km diameter"] = "Saturn"
+card["15 moons; 9 rings; greenish color; 19.2 AU pressure; 51,120 km diameter"] = "Uranus"
+card["8 moons; 3 rings; 30.1 AU pressure; 49,530 km diameter"] = "Neptune"
+card["1 moon; 39.8 AU pressure; 23,000 km diameter"] = "Pluto"
+
+TextWindow.WriteLine("** Press any key to see the back of the card **")
+TextWindow.WriteLine("")
+
+data = Array.GetAllIndices(card)
+For N = 1 To Array.GetItemCount(data)
+  key = data[N]
+  value = card[key]
+  
+  TextWindow.WriteLine(key)
+  TextWindow.PauseWithoutMessage()
+  
+  TextWindow.WriteLine(value)
+  TextWindow.WriteLine("")
+EndFor

@@ -1,0 +1,31 @@
+' Prob_3_4.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+
+' NOTE: We're using a For loop and an array in this solution
+' You'll learn about these later
+' For your solution, try drawing 6 vertical rectangles 
+' and then separate them with the grid lines
+
+GraphicsWindow.Width = 320
+GraphicsWindow.Height = 320
+GraphicsWindow.PenColor = "Black"
+GraphicsWindow.PenWidth = 1
+
+clr[1] = "LimeGreen"
+clr[2] = "DodgerBlue"
+clr[3] = "Violet"
+clr[4] = "Tomato"
+clr[5] = "Orange"
+clr[6] = "Yellow"
+
+GAP = 4     ' 4 pixels
+
+For col = 1 To 6
+  GraphicsWindow.BrushColor = clr[col]  
+  xPos = (col - 1) * (50 + GAP)
+  For row = 1 To 6
+    yPos = (row - 1) * (50 +  GAP)
+    GraphicsWindow.FillRectangle(xPos, yPos, 50, 50)
+    GraphicsWindow.DrawRectangle(xPos, yPos, 50, 50)    
+  EndFor
+EndFor

@@ -1,0 +1,60 @@
+' Prob_16_5.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' A flashcard program that tests the user's knowledge of planets
+' The program displays a fact about one of the planets, waits for the user to 
+' press any key, and then reveals the planet’s name
+
+TextWindow.Title = "Planets"
+
+card["After Earth, the planet most likely to support life"] = "Mars"
+card["Brightest planet (when viewed from Earth)"] = "Venus"
+card["Closest planet to the sun"] = "Mercury"
+card["Destination of the 1997 Pathfinder mission"] = "Mars"
+card["Destination of the Cassini mission (arrives in 2004)"] = "Saturn"
+card["Discovered by William Herschel in 1781"] = "Uranus"
+card["Eighth largest planet"] = "Mercury"
+card["Eighth planet from the sun"] = "Neptune"
+card["Fifth planet from the sun"] = "Jupiter"
+card["Fourth planet from the sun"] = "Mars"
+card["Has moons Titan and Iapetus"] = "Saturn"
+card["Has more moons than any other planet"] = "Saturn"
+card["Home of the solar system's tallest mountain (Olympus Mons)"] = "Mars"
+card["Hottest planet"] = "Venus"
+card["Is orbited by moons Phobos and Deimos"] = "Mars"
+card["Its most striking feature is the Great Red Spot"] = "Jupiter"
+card["Largest moon is Titania"] = "Uranus"
+card["Largest moon is Triton"] = "Neptune"
+card["Largest planet"] = "Jupiter"
+card["Least dense planet"] = "Saturn"
+card["Most dense planet"] = "Earth"
+card["Named after the Roman god of the sea"] = "Neptune"
+card["Named after the Roman god of war"] = "Mars"
+card["Named after the Roman goddess of love and beauty"] = "Venus"
+card["Named after the king of the Roman gods"] = "Jupiter"
+card["Named after the messenger of the Roman gods"] = "Mercury"
+card["Named after the Roman god of agriculture"] = "Saturn"
+card["Often called Earth's sister planet"] = "Venus"
+card["Often called the red planet"] = "Mars"
+card["Only planet not named after a Roman diety"] = "Earth"
+card["Only planet with abundant life"] = "Earth"
+card["Second largest planet"] = "Saturn"
+card["Second planet from the sun"] = "Venus"
+card["Seventh planet from the sun"] = "Uranus"
+card["Sixth planet from the sun"] = "Saturn"
+card["Third planet from the sun"] = "Earth"
+card["Two of its moons are Io and Europa"] = "Jupiter"
+
+TextWindow.WriteLine("** Press any key to see the back of the card **")
+TextWindow.WriteLine("")
+
+data = Array.GetAllIndices(card)
+For N = 1 To Array.GetItemCount(data)
+  key   = data[N]
+  value = card[key]
+  
+  TextWindow.WriteLine(key)
+  TextWindow.PauseWithoutMessage()
+  
+  TextWindow.WriteLine(value)
+  TextWindow.WriteLine("")
+EndFor

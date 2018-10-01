@@ -1,0 +1,62 @@
+' Prob_13_16b.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Creates an optical illusion pattern
+
+GraphicsWindow.Title = "Optical Illusion # 2"
+GraphicsWindow.Width = 288
+GraphicsWindow.Height = 288
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.PenWidth = 1
+
+delta = 6
+
+' Draws semicircles at the top edge
+xPos = 0
+yPos = -144
+For N = 1 To 24
+  diam = (25 - N) * 2 * delta
+  GraphicsWindow.DrawEllipse(xPos, yPos, diam, diam)
+  
+  xPos = xPos + delta
+  yPos = yPos + delta
+EndFor
+
+' Draws semicircles at the left edge
+xPos = -144
+yPos = 0
+For N = 1 To 24
+  diam = (25 - N) * 2 * delta
+  GraphicsWindow.DrawEllipse(xPos, yPos, diam, diam)
+  
+  xPos = xPos + delta
+  yPos = yPos + delta
+EndFor
+
+' Draws semicircles at the bottom edge
+xPos = 0
+yPos = 144
+For N = 1 To 24
+  diam = (25 - N) * 2 * delta
+  GraphicsWindow.DrawEllipse(xPos, yPos, diam, diam)
+  
+  xPos = xPos + delta
+  yPos = yPos + delta
+EndFor
+
+' Draws semicircles at the right edge
+xPos = 144
+yPos = 0
+For N = 1 To 24
+  diam = (25 - N) * 2 * delta
+  GraphicsWindow.DrawEllipse(xPos, yPos, diam, diam)
+  
+  xPos = xPos + delta
+  yPos = yPos + delta
+EndFor
+
+' Draws a square in the middle
+GraphicsWindow.PenColor = "Red"
+GraphicsWindow.PenWidth = 2
+xPos = 144 - 80
+yPos = 144 - 80
+GraphicsWindow.DrawRectangle(xPos, yPos, 160, 160)

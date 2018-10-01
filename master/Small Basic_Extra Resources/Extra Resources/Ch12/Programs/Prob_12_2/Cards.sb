@@ -1,0 +1,175 @@
+' Cards.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Bets on the chance that the 3rd card is between the first two
+
+GraphicsWindow.Title = "Cards"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.FontName = "MS UI Gothic"
+
+imgPath = Program.Directory + "\Bkgnd.png"
+GraphicsWindow.DrawImage(imgPath, 0, 0)
+
+' Creates GUI elements
+GraphicsWindow.FontSize = 14
+GraphicsWindow.BrushColor = "Black"
+
+' Creates edit box for entering bet amount
+betBox = Controls.AddTextBox(100, 260)  
+Controls.SetSize(betBox, 75, 30)
+Controls.SetTextBoxText(betBox, "5")  ' Sets default to $5
+
+' Creates the GO button
+goBtn = Controls.AddButton("GO", 185, 260)
+Controls.SetSize(goBtn, 75, 30)
+
+' Creates the DEAL button
+dealBtn = Controls.AddButton("DEAL", 345, 250)
+Controls.SetSize(dealBtn, 75, 30)
+Controls.HideControl(dealBtn)   ' Initially hidden
+
+' Creates the text shape for showing the result of this round
+resShape = Shapes.AddText("---")
+Shapes.Move(resShape, 105, 305)
+
+' Creates the text shape for showing the total credit
+creditShape = Shapes.AddText("CREDEIT: 0")
+Shapes.Move(creditShape, 300, 320)
+
+Controls.ButtonClicked = OnButtonClicked
+
+credit = 0    ' Starts with 0 credit
+
+DealCards()
+
+Sub OnButtonClicked
+  btnID = Controls.LastClickedButton
+  If (btnID = goBtn) Then         ' Player clicked the GO button
+    ProcessBet()
+  Else                            ' Player clicked the DEAL button
+    DealCards()
+    Controls.HideControl(dealBtn)
+    Controls.ShowControl(goBtn)  
+    Shapes.SetText(resShape, "")  ' Hides the result of the last round
+  EndIf
+EndSub
+
+Sub ProcessBet
+  amount = Controls.GetTextBoxText(betBox)
+  If ((amount = 0) Or (amount = 5) Or (amount = 10) Or (amount = 20)) Then
+    ' We have a valid bet amount
+    If (amount = 0) Then
+      ' Player wants to skip this round
+      credit = credit - 2
+      ShowCredit()
+      DealCards()
+    Else
+      ' Player made a valid bet
+      ' First, shows the 2nd card
+      card = card2
+      xPos = 190
+      yPos = 80
+      ShowCard()  
+      card2 = card   ' Value from 1 to 13      
+      minVal = Math.Min(card1, card3)
+      maxVal = Math.Max(card1, card3)
+      
+      If (card2 > minVal And card2 < maxVal) Then
+        credit = credit + amount
+        Shapes.SetText(resShape, "You won $" + amount)
+      Else
+        credit = credit - amount
+        Shapes.SetText(resShape, "You lost $" + amount)
+      EndIf
+      
+      ShowCredit()  ' Shows the total credit after this round
+      
+      Controls.HideControl(goBtn)
+      Controls.ShowControl(dealBtn)      
+    EndIf
+  Else
+    msg = "Please enter 0, 1, 5, or 10 for your bet."
+    GraphicsWindow.ShowMessage(msg, "Invalid Bet Amount")
+  EndIf
+EndSub
+
+Sub ShowCredit
+  Shapes.SetText(creditShape, "CREDIT: " + credit)
+EndSub
+
+Sub DealCards
+  card1 = Math.GetRandomNumber(52)
+  DrawAgain:
+  card2 = Math.GetRandomNumber(52)
+  card3 = Math.GetRandomNumber(52)
+  If ((card2 = card1) Or (card3 = card1) Or (card2 = card3)) Then
+    Goto DrawAgain
+  EndIf
+  
+  ' Redraws the background
+  GraphicsWindow.DrawImage(imgPath, 0, 0)
+  
+  ' Shows Card1
+  card = card1
+  xPos = 45
+  yPos = 80
+  ShowCard()
+  card1 = card   ' Value from 1 to 13
+  
+  ' Shows Card3
+  card = card3
+  xPos = 335
+  yPos = 80
+  ShowCard() 
+  card3 = card   ' Value from 1 to 13 
+ 
+EndSub
+
+' This subroutine draws a card at a given position
+' Inputs:
+' card: a number from 1 to 52
+' xPos: the left position of the bounding box
+' yPos: the top position of the bounding box
+Sub ShowCard
+  If (card > 39) Then
+    card = card - 39
+    suitName = Text.GetCharacter(9827) ' Spades
+    suitClr = "Black"
+  ElseIf (card > 26) Then
+    card = card - 26
+    suitName = Text.GetCharacter(9824) ' Hearts
+    suitClr = "Black"    
+  ElseIf (card > 13) Then
+    card = card - 13
+    suitName = Text.GetCharacter(9829) ' Diamonds
+    suitClr = "#AA0000"    
+  Else                                 ' Card between 1 and 13
+    suitName = Text.GetCharacter(9830) ' Clubs
+    suitClr = "#AA0000"  
+  EndIf
+  
+  ' Adds the card's name
+  If (card = 1) Then
+    faceName = "A"
+  ElseIf (card = 11) Then
+    faceName = "J"
+  ElseIf (card = 12) Then
+    faceName = "Q"
+  ElseIf (card = 13) Then
+    faceName = "K"
+  Else
+    faceName = card
+  EndIf
+  
+  ' Draws the card
+  GraphicsWindow.FontSize = 65     ' Big font
+  
+  GraphicsWindow.BrushColor = suitClr
+  GraphicsWindow.DrawText(xPos+5, yPos, suitName)
+  GraphicsWindow.DrawText(xPos+5, yPos+55, faceName)
+  
+  ' Restores the default font size and brush color
+  GraphicsWindow.FontSize = 15
+  GraphicsWindow.BrushColor = "Black"  
+EndSub

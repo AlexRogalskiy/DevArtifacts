@@ -1,0 +1,32 @@
+' Prob_15_7.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Evaluates a polynomial (such as 3 + 2x -5x^2 + 3x^3)  
+
+a[0] = 3  ' Coefficient for x^0
+a[1] = 2  ' Coefficient for x^1
+a[2] = -5 ' Coefficient for x^2
+a[3] = 3  ' Coefficient for x^3
+
+TextWindow.WriteLine("This program evaluates the polynomial ")
+TextWindow.WriteLine("      y = 3 + 2x -5x^2 + 3x^3")
+TextWindow.WriteLine("")
+
+While ("True")
+  TextWindow.Write("Enter x: ")
+  x = TextWindow.ReadNumber()
+  
+  ' Creates the power array
+  pwr[0] = 1
+  pwr[1] = x
+  pwr[2] = x * x
+  pwr[3] = x * x * x
+  
+  ' Finds the sum
+  y = 0
+  For N = 0 To 3
+    y = y + a[N] * pwr[N]
+  EndFor
+  
+  TextWindow.WriteLine("y(" + pwr[1] + ") = " + y)
+  TextWindow.WriteLine("")  
+EndWhile

@@ -1,0 +1,69 @@
+' Prob_16_8.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Prompts the user to enter the name of a state and then 
+' displays the coldest temperature on record for that state
+
+TextWindow.Title = "Coldest Tempratures on Record"
+
+temp["Alabama"] = -27
+temp["Alaska"] = -80
+temp["Arizona"] = -40
+temp["Arkansas"] = -29
+temp["California"] = -45
+temp["Colorado"] = -61
+temp["Connecticut"] = -37
+temp["Delaware"] = -17
+temp["Columbia"] = -15
+temp["Florida"] = -2
+temp["Georgia"] = -17
+temp["Hawaii"] = 15
+temp["Idaho"] = -60
+temp["Illinois"] = -36
+temp["Indiana"] = -36
+temp["Iowa"] = -47
+temp["Kansas"] = -40
+temp["Kentucky"] = -37
+temp["Louisiana"] = -16
+temp["Maine"] = -50
+temp["Maryland"] = -40
+temp["Massachusetts"] = -40
+temp["Michigan"] = -51
+temp["Minnesota"] = -60
+temp["Mississippi"] = -19
+temp["Missouri"] = -40
+temp["Montana"] = -70
+temp["Nebraska"] = -47
+temp["Nevada"] = -50
+temp["New Hampshire"] = -50
+temp["New Jersey"] = -34
+temp["New Mexico"] = -50
+temp["New York"] = -52
+temp["North Carolina"] = -34
+temp["North Dakota"] = -60
+temp["Ohio"] = -39
+temp["Oklahoma"] = -31
+temp["Oregon"] = -54
+temp["Pennsylvania"] = -42
+temp["Rhode Island"] = -28
+temp["South Carolina"] = -22
+temp["South Dakota"] = -58
+temp["Tennessee"] = -32
+temp["Texas"] = -23
+temp["Utah"] = -69
+temp["Vermont"] = -50
+temp["Virginia"] = -30
+temp["Washington"] = -48
+temp["West Virginia"] = -37
+temp["Wisconsin"] = -55
+temp["Wyoming"] = -66
+
+While ("True")
+  TextWindow.Write("Enter the name of a state: ")
+  state = TextWindow.Read()
+  If (temp[state] = "") Then
+    TextWindow.WriteLine("Sorry, I don't know this.")
+  Else
+    TextWindow.WriteLine("The coldest temperature on record is " + temp[state] + ".")   
+  EndIf  
+  TextWindow.WriteLine("")
+EndWhile

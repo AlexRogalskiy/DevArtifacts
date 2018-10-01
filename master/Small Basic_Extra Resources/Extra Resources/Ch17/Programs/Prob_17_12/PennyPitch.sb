@@ -1,0 +1,111 @@
+' PennyPitch.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Implements the Penny Pitch game
+
+GraphicsWindow.Title = "Penny Pitch"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.CanResize = "False"
+
+path = Program.Directory
+
+' Creates the text shapes for the score and number of pennies
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 30
+scoreTxt = Shapes.AddText("")
+penniesTxt = Shapes.AddText("")
+Shapes.Move(scoreTxt, 80, 100)
+Shapes.Move(penniesTxt, 80, 180)
+
+' Creates the coin shape for the animation and hides it
+coinShape = Shapes.AddImage(path + "\coin.ico")
+Shapes.HideShape(coinShape)
+
+GraphicsWindow.MouseDown = OnMouseDown
+
+NewGame()
+While ("True")
+  If (pitchFlag = 1) Then  ' The player clicked the pitch button
+    pennies = pennies - 1
+    Shapes.SetText( penniesTxt, pennies)
+    
+    PitchCoin()
+    
+    If (score = 0) Then
+      GraphicsWindow.ShowMessage("You lost. Must be an unlucky penny.", "Game Over")
+      NewGame()
+    ElseIf (pennies = 0) Then
+      GraphicsWindow.ShowMessage("You Won. You're pitch perfect!", "Game Over")
+      NewGame() 
+    EndIf    
+    pitchFlag = 0
+  EndIf
+  Program.Delay(100)
+EndWhile
+
+Sub NewGame
+  GraphicsWindow.DrawImage(path + "\Background.png", 0, 0)
+  
+  pitchFlag = 0   ' User did not click the pitch button yet
+  score = 0       ' Total score = 0
+  pennies = 9     ' Starts with 9 pennies
+  
+  Shapes.SetText(scoreTxt, score)
+  Shapes.SetText(penniesTxt, pennies)
+  
+  For R = 1 To 6
+    For C = 1 To 6
+      board[R][C] = 0
+    EndFor
+  EndFor
+  
+  bombs = 0
+  While (bombs < 5)
+    R = Math.GetRandomNumber(6)
+    C = Math.GetRandomNumber(6)
+    If (board[R][C] = 0) Then
+      board[R][C] = 1
+      bombs = bombs + 1
+    EndIf    
+  EndWhile  
+EndSub
+
+Sub OnMouseDown
+  If (pitchFlag = 0) Then
+    xPos = GraphicsWindow.MouseX
+    yPos = GraphicsWindow.MouseY      
+    If ((xPos > 80) And (xPos < 160) And (yPos > 310) And (yPos < 340)) Then
+      pitchFlag = 1
+    EndIf    
+  EndIf  
+EndSub
+
+Sub PitchCoin
+  R = Math.GetRandomNumber(6)
+  C = Math.GetRandomNumber(6)
+  
+  xPos = (208 + (C - 1) * 48) - 16
+  yPos = (90 + (R - 1) * 48) - 16
+  
+  Shapes.Move(coinShape, 20, 270)
+  Shapes.ShowShape(coinShape)
+  Shapes.Animate(coinShape, xPos, yPos, 1000)
+  Program.Delay(1000)
+  Shapes.HideShape(coinShape)
+  
+  If (board[R][C] = 1) Then
+    GraphicsWindow.DrawImage(path + "\bomb.ico", xPos, yPos)
+    score = 0
+  Else
+    GraphicsWindow.DrawImage(path + "\coin.ico", xPos, yPos)
+    If ((R = 1) Or (R = 6) Or (C = 1) Or (C = 6)) Then
+      score = score + 1
+    ElseIf ((R = 2) Or (R = 5) Or (C = 2) Or (C = 5)) Then
+      score = score + 2
+    Else
+      score = score + 3
+    EndIf
+  EndIf
+  
+  Shapes.SetText(scoreTxt, score)
+EndSub

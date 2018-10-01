@@ -1,0 +1,29 @@
+' Prob_8_14.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Plays a number-guessing game
+
+Start:
+TextWindow.WriteLine("I have a secret number between 1 and 100.")
+num = Math.GetRandomNumber(100)
+
+guess1 = Math.GetRandomNumber(100)
+TextWindow.WriteLine("  Computer guess: " + guess1)
+TextWindow.Write("  Your guess: ")
+guess2 = TextWindow.ReadNumber()
+
+diff1 = Math.Abs(guess1 - num)
+diff2 = Math.Abs(guess2 - num)
+
+TextWindow.Write("  The Secret number is " + num + ". ")
+If (diff1 < diff2) Then
+  TextWindow.WriteLine("The computer wins.")
+Else
+  If (diff2 < diff1) Then
+    TextWindow.WriteLine("You win!")
+  Else
+    TextWindow.WriteLine("Tie!")
+  EndIf
+EndIf
+
+TextWindow.WriteLine("")
+Goto Start

@@ -1,0 +1,22 @@
+<% cache text_post do %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= text_post.title %>
+      </h3>
+    </div>
+
+    <div class="panel-body">
+      <p><em>By <%= text_post.user.name %></em></p>
+
+      <p><%= sanitize text_post.body %></p>
+
+      <p><%= pluralize text_post.cached_comment_count, "Comment" %></p>
+    </div>
+  </div>
+<% end %>
+
+<% if text_post.user == current_user %>
+  <p><%= link_to 'Edit', edit_text_post_path(text_post),
+          class: "btn btn-default" %></p>
+<% end %>

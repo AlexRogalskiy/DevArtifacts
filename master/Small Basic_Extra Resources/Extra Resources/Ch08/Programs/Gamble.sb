@@ -1,0 +1,28 @@
+' Gamble.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Plays a simple gambling game
+
+START:
+TextWindow.WriteLine("Press any key to start.")
+TextWindow.PauseWithoutMessage()
+
+num  = Math.GetRandomNumber(100)
+TextWindow.Write("Your number is: " + num + ".   ")
+
+gain = 0 ' Sets the net gain/loss in this round
+
+If (Math.Remainder(num, 2) = 0) Then  ' If the remainder is evenly divisible by 2
+  gain = gain - 1                     ' You lose $1
+EndIf
+
+If (Math.Remainder(num, 5) = 0) Then  ' If the remainder is evenly divisible by 5
+  gain = gain + 2                     ' You gain $2
+EndIf
+
+If (Math.Remainder(num, 7) = 0) Then  ' If the remainder is evenly divisible by 7
+  gain = gain + 3                     ' You gain $3
+EndIf
+
+TextWindow.WriteLine("Your gain ($): " + gain)
+TextWindow.WriteLine("")
+Goto START

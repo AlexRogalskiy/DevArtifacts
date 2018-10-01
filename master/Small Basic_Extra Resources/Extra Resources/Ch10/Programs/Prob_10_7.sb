@@ -1,0 +1,19 @@
+' Prob_10_7.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Converts feet to meters
+
+TextWindow.Title = "Feet to Meters"
+
+TextWindow.Write("Enter a length (in feet): ")
+feet = TextWindow.Read()
+
+FeetToMeter()
+
+TextWindow.WriteLine("That is " + meters + " meters.")
+TextWindow.WriteLine("")
+
+' 1 foot is 0.3048 meters
+Sub FeetToMeter
+  meters = feet * 0.3048
+  meters = Math.Round(meters * 100) / 100
+EndSub

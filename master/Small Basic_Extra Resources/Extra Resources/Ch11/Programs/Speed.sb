@@ -1,0 +1,54 @@
+' Speed.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Tests your typing speed
+
+GraphicsWindow.Title     = "Speed Test"
+GraphicsWindow.Width     = 300
+GraphicsWindow.Height    = 300
+GraphicsWindow.CanResize = "False"
+
+' Creates a text shape to show the random letters
+GraphicsWindow.FontSize = 80
+txtID = Shapes.AddText("")
+Shapes.Move(txtID, 120, 100)
+
+' Creates a text shape to show the score (total time)
+GraphicsWindow.FontSize = 16
+scoreID = Shapes.AddText("Total time: ")
+Shapes.Move(scoreID, 5, 270)
+
+GraphicsWindow.ShowMessage("Click to Start", "Start")
+
+GraphicsWindow.KeyDown = onKeyDown
+
+t1 = Clock.ElapsedMilliseconds     ' Start time
+charNum = 1                        ' Shows only 10 characters
+
+ShowLetter()
+
+Sub ShowLetter
+  code = 64 + Math.GetRandomNumber(26)
+  char = Text.GetCharacter(code)
+  Shapes.SetText(txtID, char)
+EndSub
+
+Sub onKeyDown
+  If (charNum <= 10) Then
+    If (GraphicsWindow.LastKey = char) Then ' Matches
+      Sound.PlayClick()
+      If (charNum = 10) Then
+        ShowElapsedTime()
+      Else
+        ShowLetter()
+      EndIf
+      charNum = charNum + 1
+    EndIf
+  EndIf
+EndSub
+
+Sub ShowElapsedTime
+  totTime = Clock.ElapsedMilliseconds - t1
+  totTime = totTime / 1000
+  msg = "Total time: " + totTime + " sec."
+  Shapes.SetText(scoreID, msg)
+EndSub

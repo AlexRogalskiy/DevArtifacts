@@ -1,0 +1,60 @@
+' CountingAnimals.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Plays a puzzle to determine how many animals you see
+
+GraphicsWindow.Title = "Counting Animals"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.CanResize = "False"
+
+imgPath = Program.Directory + "\Bkgnd.png"
+GraphicsWindow.DrawImage(imgPath, 0, 0)
+
+' Creates the two edit boxes
+GraphicsWindow.FontSize = 18
+eb1 = Controls.AddTextBox(40, 205) 
+eb2 = Controls.AddTextBox(160, 205)
+
+' Creates the Check button
+GraphicsWindow.FontSize = 14
+GraphicsWindow.BrushColor = "Black"
+btn1 = Controls.AddButton("Check", 260, 205)
+
+'Resizes the controls
+Controls.SetSize(eb1, 90, 30)
+Controls.SetSize(eb2, 90, 30)
+Controls.SetSize(btn1, 60, 30)
+
+GraphicsWindow.FontSize = 18  ' For the question
+
+Controls.ButtonClicked = OnButtonClicked
+
+NewProblem()
+
+
+Sub OnButtonClicked
+  ans1 = Controls.GetTextBoxText(eb1)
+  ans2 = Controls.GetTextBoxText(eb2)
+  If (ans1 = numOstr And ans2 = numLions) Then
+    GraphicsWindow.ShowMessage("Correct. Good job!", "Correct")
+    NewProblem()
+  Else
+    GraphicsWindow.ShowMessage("Sorry. Try again.", "Incorrect")
+  EndIf
+EndSub
+
+Sub NewProblem
+  
+  ' Redraws the background image (to erase the old problem)
+  GraphicsWindow.DrawImage(imgPath, 0, 0)
+  
+  numOstr  = Math.GetRandomNumber(10)
+  numLions = Math.GetRandomNumber(10)
+
+  ques = "I went to the zoo. I saw " 
+  ques = ques + (numLions + numOstr) + " heads and "
+  ques = ques + (4 * numLions + 2* numOstr) + " feet. "
+  ques = ques + "How many ostriches and lions did I see?"
+
+  GraphicsWindow.DrawBoundText(40, 270, 320, ques)
+EndSub

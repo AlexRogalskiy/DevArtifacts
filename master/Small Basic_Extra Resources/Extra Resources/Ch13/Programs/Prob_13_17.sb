@@ -1,0 +1,24 @@
+' Prob_13_17.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Draws a checkered pattern
+
+GraphicsWindow.Width = 8 * 50
+GraphicsWindow.Height = 8 * 50
+GraphicsWindow.CanResize = 0
+
+GraphicsWindow.BrushColor = "#FFFFFF"
+For R = 1 To 8    ' Row counter
+  For C = 1 To 8  ' Column counter
+    GraphicsWindow.FillRectangle((C - 1) * 50, (R - 1) * 50, 50, 50)
+    SwitchBrush()
+  EndFor
+  SwitchBrush()
+EndFor
+
+Sub SwitchBrush
+  If (GraphicsWindow.BrushColor = "#FFFFFF") Then
+    GraphicsWindow.BrushColor = "#000000"
+  Else
+    GraphicsWindow.BrushColor = "#FFFFFF"
+  EndIf
+EndSub

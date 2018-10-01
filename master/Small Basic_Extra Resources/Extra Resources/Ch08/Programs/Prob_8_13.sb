@@ -1,0 +1,22 @@
+' Prob_8_13.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Plays a simple shell game
+
+score = 0
+
+Again:
+cup = Math.GetRandomNumber(3)
+TextWindow.Write("Which cup has the ball [1, 2, or 3]? ")
+ans = TextWindow.ReadNumber()
+
+If (ans = cup) Then  
+  score = score + 1
+  TextWindow.WriteLine("Correct. Score: " + score)
+Else  
+  score = score - 1
+  TextWindow.Write("Wrong. It was in cup " + cup + ". ")  
+  TextWindow.WriteLine("Score: " + score)
+EndIf  
+
+TextWindow.WriteLine("")
+Goto Again

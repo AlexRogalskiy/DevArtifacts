@@ -1,0 +1,20 @@
+' Prob_15_10.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Generates a sequence from the first two elements
+
+TextWindow.Write("Enter first number: ")
+arr[1] = TextWindow.ReadNumber()
+
+TextWindow.Write("Enter second number: ")
+arr[2] = TextWindow.ReadNumber()
+
+TextWindow.WriteLine("")
+TextWindow.WriteLine("Your sequence:")
+TextWindow.WriteLine(arr[1])
+TextWindow.WriteLine(arr[2])
+
+For N = 3 To 20
+  arr[N] = arr[N - 1] + arr[N - 2]
+  TextWindow.WriteLine(arr[N])
+EndFor
+TextWindow.WriteLine("")

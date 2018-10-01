@@ -1,0 +1,32 @@
+' Prob_16_3.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Quizzes the user on the phases of the moon
+' The program describes one phase of the moon and then asks the user to
+' enter the corresponding name
+
+TextWindow.Title = "Moon Phases"
+
+phase["New Moon"] = "The moon is not visible in the sky, except during a solar eclipse."
+phase["Waxing Crescent"] = "The moon is less than half illuminated by the sun but less than a quarter illuminated. Occurs when the moon's illumination is increasing."
+phase["First Quarter"] = "The moon is half illuminated by the sun. Occurs when the moon's illumination is increasing."
+phase["Waxing Gibbous"] = "The moon is more than half illuminated by the sun but not completely illuminated. Occurs when the moon's illumination is increasing."
+phase["Full Moon"] = "The moon is fully illuminated and totally visible in the sky, except during a lunar eclipse."
+phase["Waning Gibbous"] = "The moon is more than half illuminated by the sun but not completely illuminated. Occurs when the moon's illumination is decreasing."
+phase["Third Quarter"]  = "The moon is half illuminated by the sun. Occurs when the moon's illumination is decreasing."
+phase["Waning Crescent"] = "The moon is less than half illuminated by the sun but less than a quarter illuminated. Occurs when the moon's illumination is decreasing."
+
+data = Array.GetAllIndices(phase)
+For N = 1 To Array.GetItemCount(data)
+  key   = data[N]
+  value = phase[key]
+  TextWindow.Write(value + ": ")
+  ans = TextWindow.Read()
+  
+  If (Text.ConvertToLowerCase(ans) = Text.ConvertToLowerCase(key)) Then
+    TextWindow.WriteLine("Very good!")
+  Else
+    TextWindow.WriteLine("Sorry, the correct answer is " + key)
+  EndIf
+  
+  TextWindow.WriteLine("")
+EndFor

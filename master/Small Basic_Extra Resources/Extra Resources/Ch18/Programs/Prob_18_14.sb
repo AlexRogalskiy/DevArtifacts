@@ -1,0 +1,24 @@
+' Prob_18_14.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Displays strings, one character at a time
+
+msg = "Hello! I am a computer."
+SlowPrint()
+
+msg = "You can call me Crunchy."
+SlowPrint()
+
+Sub SlowPrint
+  len = Text.GetLength(msg)
+  For N = 1 To len
+    char = Text.GetSubText(msg, N, 1)
+    TextWindow.Write(char)
+    If (char <> " ") Then
+      Sound.PlayClickAndWait()
+    Else
+      Program.Delay(200)
+    EndIf
+  EndFor
+  Program.Delay(400)
+  TextWindow.WriteLine("")
+EndSub

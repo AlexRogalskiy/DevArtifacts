@@ -1,0 +1,45 @@
+' Prob_17_8.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Displays the distance between cities
+
+dist["Atlanta"]["Atlanta"] = 0
+dist["Atlanta"]["Boston"] = 1095
+dist["Atlanta"]["Chicago"] = 715
+dist["Atlanta"]["Dallas"] = 805
+
+dist["Boston"]["Atlanta"] = 1095
+dist["Boston"]["Boston"] = 0
+dist["Boston"]["Chicago"] = 983
+dist["Boston"]["Dallas"] = 1815
+
+dist["Chicago"]["Atlanta"] = 715
+dist["Chicago"]["Boston"] = 983
+dist["Chicago"]["Chicago"] = 0
+dist["Chicago"]["Dallas"] = 931
+
+dist["Dallas"]["Atlanta"] = 805
+dist["Dallas"]["Boston"] = 1815
+dist["Dallas"]["Chicago"] = 931
+dist["Dallas"]["Dallas"] = 0
+
+While ("True")
+  ' Asks  the user to input two cities from this table 
+  ' and then displays the distance between them
+
+  TextWindow.Write("Enter first city: ")
+  city1 = TextWindow.Read()
+  
+  TextWindow.Write("Enter second city: ")
+  city2 = TextWindow.Read()
+  
+  value = dist[city1][city2]
+  If (value = "") Then
+    TextWindow.WriteLine("Sorry! I don't know this.")
+  Else
+    TextWindow.Write("The distance between " + city1)
+    TextWindow.WriteLine(" and " + city2 + " is " + value)
+  EndIf
+  
+  TextWindow.WriteLine("")
+  TextWindow.WriteLine("")
+EndWhile

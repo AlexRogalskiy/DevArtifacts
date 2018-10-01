@@ -1,0 +1,20 @@
+' Prob_13_18.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+
+' A farmer has $200 to buy 100 animals (cows, pigs, and chickens)
+' A cow costs $20, a pig $6, and a chicken $1
+' How many of each animal can he buy?
+
+For cow = 1 To 9               ' Can't buy 10 cows (no money left for other animals)
+  For pig = 1 To 29            ' 1 cow leaves $180, which can buy 30 pigs max
+                               ' But we also need chickens
+    chick = 100 - (cow + pig)  ' To make the total animals = 100
+    price = (20 * cow) + (6 * pig) + chick
+    If (price = 200) Then
+      TextWindow.Write("The farmer can buy " + cow + " cows, ")
+      TextWindow.WriteLine(pig + " pig, and " + chick + " chickens.")
+      TextWindow.WriteLine("")
+    EndIf
+    
+  EndFor
+EndFor

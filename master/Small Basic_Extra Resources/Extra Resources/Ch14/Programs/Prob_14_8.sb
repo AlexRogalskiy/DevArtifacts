@@ -1,0 +1,29 @@
+' Prob_14_8.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Displays how many days it would take a snail to cross the road
+
+day = 1
+dist = 1
+tot = 1
+done = 0
+
+TextWindow.WriteLine("Day      Total Distance (meters)")
+TextWindow.WriteLine("----     --------------")
+While (done = 0)
+  TextWindow.Write(day)
+  TextWindow.CursorLeft = 10
+  TextWindow.WriteLine(Math.Round(tot * 100) / 100)
+  
+  If (tot >= 4) Then
+    done = 1
+  Else
+    day = day + 1
+    dist = 1 / day
+    tot = tot + dist
+  EndIf
+  
+  Program.Delay(100)
+EndWhile 
+
+TextWindow.WriteLine("")
+TextWindow.WriteLine("Snails usually live 10-15 years, so he's had a long life.")

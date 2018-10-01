@@ -1,0 +1,46 @@
+' MiniGolf.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Plays a simple game of golf
+
+TextWindow.Title = "Mini Golf"
+
+S = 0                         ' Score
+J = Math.GetRandomNumber(4)   ' Ball's position
+
+ShowField()
+
+done = 0
+While (done = 0)
+  TextWindow.Write("Stroke? ")
+  ans = TextWindow.ReadNumber()
+  
+  rand = Math.GetRandomNumber(10) / 10
+  J = J + Math.Floor(ans / (5 + rand))
+  J = Math.Min(J, 34)
+  S = S + 1
+  ShowField()
+  
+  If (J = 30) Then
+    TextWindow.WriteLine("You scored " + S + " on that hole.")
+    done = 1
+  ElseIf (J > 30) Then
+    done = 1
+    TextWindow.WriteLine("You overshot. Go home, ball!")
+  EndIf
+EndWhile
+
+Sub ShowField
+  TextWindow.Clear()
+  TextWindow.CursorTop = 1
+  TextWindow.CursorLeft = 1
+  TextWindow.Write("Score: " + S)
+  
+  TextWindow.CursorTop = 5
+  TextWindow.CursorLeft = J
+  TextWindow.WriteLine("O")
+  
+  TextWindow.WriteLine("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ▓▓▓▓")  ' ALT+178
+  
+  TextWindow.WriteLine("")
+  TextWindow.WriteLine("")  
+EndSub

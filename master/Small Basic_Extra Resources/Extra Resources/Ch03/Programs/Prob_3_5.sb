@@ -1,0 +1,39 @@
+'Prob_3_5.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+
+' NOTE: We're using a For loop and the Turtle object in this solution
+' You'll learn about these in the next chapter
+' In your solution, try to compute the vertices of the triangles
+' and use the DrawTriangle() method
+
+GraphicsWindow.Width = 300
+GraphicsWindow.Height = 300
+GraphicsWindow.PenColor = "Black"
+GraphicsWindow.PenWidth = 1
+
+Turtle.X = 150
+Turtle.Y = 150
+Turtle.Speed = 10
+Turtle.PenUp()
+
+For I = 1 To 16
+  
+  Turtle.Move(300)
+  x1 = Turtle.X
+  y1 = Turtle.Y
+  Turtle.Move(-300)
+  
+  Turtle.Turn(22.5)
+  Turtle.Move(300)
+  x2 = Turtle.X
+  y2 = Turtle.Y
+  Turtle.Move(-300)
+  
+  GraphicsWindow.BrushColor = GraphicsWindow.GetRandomColor()
+  GraphicsWindow.FillTriangle(150, 150, x1, y1, x2, y2)
+  GraphicsWindow.DrawTriangle(150, 150, x1, y1, x2, y2)
+  
+EndFor
+
+Turtle.Hide()
+GraphicsWindow.DrawRectangle(0, 0, 300, 300)

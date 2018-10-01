@@ -1,0 +1,15 @@
+' Prob_13_5.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Finds the sum of a series
+
+sign = 1
+sum = 0
+For N = 1 To 100
+  sum = sum + sign * (1 / N)
+  sign = -sign
+EndFor
+
+' Rounds to six decimal places
+sum = Math.Round(sum * 1000000) / 1000000
+
+TextWindow.WriteLine("The sum is: " + sum)

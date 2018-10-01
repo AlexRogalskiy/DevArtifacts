@@ -1,0 +1,29 @@
+' Prob_14_5.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Displays how many days it would take you to earn a million dollars
+
+day = 1      ' Day 1
+salary = 1   ' 1 penny
+earned = 1   ' Total earnings (1 penny so far)
+
+TextWindow.WriteLine("Day     Salary($)      Earnings($)")
+TextWindow.WriteLine("----    ---------      -----------")
+
+While ("True")
+  TextWindow.Write(day)
+  TextWindow.CursorLeft = 8
+  TextWindow.Write(salary / 100)
+  TextWindow.CursorLeft = 23
+  TextWindow.WriteLine(earned / 100)
+  If (earned >= 100000000) Then
+    Goto Done
+  Else
+    day = day + 1
+    salary = salary * 2
+    earned = earned + salary
+  EndIf
+EndWhile
+
+Done:
+TextWindow.WriteLine("")
+TextWindow.WriteLine("You made over a million dollars in 27 days! Thanks, Bill!")

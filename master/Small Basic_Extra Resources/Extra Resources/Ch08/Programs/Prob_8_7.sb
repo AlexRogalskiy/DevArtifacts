@@ -1,0 +1,21 @@
+' Prob_8_7.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Calculates ticket prices
+
+TextWindow.Write("Is it before 4:00 PM [y/n]? ")
+before4PM = TextWindow.Read()
+
+TextWindow.Write("How old are you? ")
+age = TextWindow.Read()
+
+If (age >= 14) Then
+  charge = 12
+Else
+  charge = 8
+EndIf
+
+If (before4PM = "y") Then
+  charge = charge / 2
+EndIf
+
+TextWindow.WriteLine("Please pay $" + charge + ".")

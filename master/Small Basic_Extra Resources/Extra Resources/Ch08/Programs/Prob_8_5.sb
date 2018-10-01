@@ -1,0 +1,42 @@
+' Prob_8_5.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Teaches Lucy how to count
+
+Again:
+TextWindow.WriteLine("")
+num = Math.GetRandomNumber(10)
+
+For I = 1 To num
+  TextWindow.Write("* ")
+EndFor
+
+TextWindow.CursorLeft = 25
+
+TextWindow.Write("How many asterisks are there? ")
+ans = TextWindow.ReadNumber()
+
+If (ans = num) Then   ' If the answer is correct
+  msgNum = Math.GetRandomNumber(3)
+  If (msgNum = 1) Then
+    msg = "Good work!"
+  ElseIf (msgNum = 2) Then
+    msg = "Fantastic! Try another one!"
+  Else
+    msg = "Right on! Keep it up!"
+  EndIf  
+Else
+  msgNum = Math.GetRandomNumber(3)
+  If (msgNum = 1) Then
+    msg = "Hmm...the answer is different. Try again!"
+  ElseIf (msgNum = 2) Then
+    msg = "Don't worry! You'll get it right the next time."
+  Else
+    msg = "Almost! You can do it!"
+  EndIf
+EndIf
+
+' Displays the message
+TextWindow.CursorLeft = 25
+TextWindow.WriteLine(msg)
+
+Goto Again

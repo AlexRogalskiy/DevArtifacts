@@ -1,0 +1,35 @@
+' Prob_9_11.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Has the computer guess the player's secret number
+
+TextWindow.Write("Think of a number between 1 and 100 ")
+TextWindow.WriteLine("and I'll guess it. ")
+TextWindow.WriteLine("Press any key when you’re ready...")
+TextWindow.PauseWithoutMessage()
+
+lo = 1
+hi = 100
+
+Again:
+TextWindow.WriteLine("")
+
+guess = Math.Floor((lo + hi) / 2)
+TextWindow.WriteLine("Your number is " + guess)
+TextWindow.Write(" Enter 1) Correct, 2) Too High, 3) Too Low: ")
+feedback = TextWindow.ReadNumber()
+
+If (feedback = 1) Then
+  TextWindow.WriteLine("")
+  TextWindow.Write("That's right! I nailed it! ")
+  TextWindow.WriteLine("I mean, thank you. That was fun.")
+  TextWindow.WriteLine("")
+Else
+  If (feedback = 2) Then      ' Computer's guess is high
+    hi = guess
+  ElseIf (feedback = 3) Then  ' Computer's guess is low
+    lo = guess
+  Else
+    TextWindow.WriteLine("     Please answer with 0, 1, or 2.")
+  EndIf
+  Goto Again
+EndIf  

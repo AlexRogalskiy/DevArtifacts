@@ -1,0 +1,48 @@
+' Prob_10_2.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Asks Harvey (the old, wise rabbit) some questions
+
+Again:
+TextWindow.Write("Please ask me a yes/no question: ")
+ques = TextWindow.Read()
+
+ThinkAndAnswer()
+
+TextWindow.WriteLine("")
+Goto Again
+
+Sub ThinkAndAnswer
+  msgNum = Math.GetRandomNumber(14)
+  
+  If (msgNum = 1) Then
+    msg = "Yes, I believe so."
+  ElseIf(msgNum = 2) Then
+    msg = "No, not really."
+  ElseIf(msgNum = 3) Then     
+    msg = "Not a chance."
+  ElseIf(msgNum = 4) Then     
+    msg = "Probably yes."
+  ElseIf(msgNum = 5) Then     
+    mags = "I have to say no."
+  ElseIf(msgNum = 6) Then     
+    msg = "There is a slight possibility."
+  ElseIf(msgNum = 7) Then     
+    msg = "The signs are good."
+  ElseIf(msgNum = 8) Then     
+    msg = "I must say no on that one."
+  ElseIf(msgNum = 9) Then     
+    msg = "Your question is confusing."
+  ElseIf(msgNum = 10) Then     
+    msg = "Chances are 50/50."
+  ElseIf(msgNum = 11) Then     
+    msg = "Perhaps. It depends who's asking."
+  ElseIf(msgNum = 12) Then     
+    msg = "Maybe. I'm a rabbit."
+  ElseIf(msgNum = 13) Then     
+    msg = "No. Tricks are for kids."
+  Else 
+    msg = "Sure."
+  EndIf
+  
+  TextWindow.WriteLine(msg)
+EndSub

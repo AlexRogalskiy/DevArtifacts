@@ -1,0 +1,21 @@
+' Vacation.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+
+totMiles = 500        '  Total miles = 500 
+milesPerGal = 18      ' Minivan gets 18 miles per gallon
+pricePerGal = 3.5     '  $3.50 per gallon
+avgSpeed = 60         '  Average speed  = 60 miles per hour
+
+' Computes the outputs
+driveTime = totMiles / avgSpeed
+fuelUsed = totMiles / milesPerGal
+fuelCost = fuelUsed * pricePerGal
+
+' Rounds the answers (for display)
+driveTime = Math.Round(driveTime * 100) / 100
+fuelCost = Math.Round(fuelCost * 100) / 100
+
+' Displays the results
+TextWindow.WriteLine("Driving time..: " + driveTime + " hours")
+TextWindow.WriteLine("Fuel cost ....: $" + fuelCost)
+TextWindow.WriteLine("")

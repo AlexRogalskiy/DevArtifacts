@@ -1,0 +1,34 @@
+' Prob_9_8.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Describes a Cartesian plane
+
+Again:
+TextWindow.Write("Enter the x-coordinate: ")
+x = TextWindow.ReadNumber()
+
+TextWindow.Write("Enter the y-coordinate: ")
+y = TextWindow.ReadNumber()
+
+If (x = 0 And y = 0) Then
+  msg = "origin"
+ElseIf (x = 0) Then
+  msg = "on the y-axis"
+ElseIf (y= 0) Then
+  msg = "on the x-axis"
+ElseIf (x > 0) Then        ' If the point is on the right side of the plane
+  If (y > 0) Then
+    msg = "in the first quadrant"
+  Else
+    msg = "in the fourth quadrant"
+  EndIf  
+Else                        ' If the point is on the left side of the plane
+  If (y > 0) Then
+    msg = "in the second quadrant"
+  Else
+    msg = "in the third quadrant"
+  EndIf    
+EndIf
+
+TextWindow.WriteLine("(" + x + ", " + y + "): " + msg)
+TextWindow.WriteLine("")
+Goto Again

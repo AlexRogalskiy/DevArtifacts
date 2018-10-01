@@ -1,0 +1,107 @@
+	TITLE	t1.c
+	.386P
+include listing.inc
+if @Version gt 510
+.model FLAT
+else
+_TEXT	SEGMENT PARA USE32 PUBLIC 'CODE'
+_TEXT	ENDS
+_DATA	SEGMENT DWORD USE32 PUBLIC 'DATA'
+_DATA	ENDS
+CONST	SEGMENT DWORD USE32 PUBLIC 'CONST'
+CONST	ENDS
+_BSS	SEGMENT DWORD USE32 PUBLIC 'BSS'
+_BSS	ENDS
+_TLS	SEGMENT DWORD USE32 PUBLIC 'TLS'
+_TLS	ENDS
+;	COMDAT ??_C@_0M@NHID@i?$DN?$CFd?0?5j?$DN?$CFd?6?$AA@
+_DATA	SEGMENT DWORD USE32 PUBLIC 'DATA'
+_DATA	ENDS
+;	COMDAT _main
+_TEXT	SEGMENT PARA USE32 PUBLIC 'CODE'
+_TEXT	ENDS
+FLAT	GROUP _DATA, CONST, _BSS
+	ASSUME	CS: FLAT, DS: FLAT, SS: FLAT
+endif
+PUBLIC	_main
+PUBLIC	??_C@_0M@NHID@i?$DN?$CFd?0?5j?$DN?$CFd?6?$AA@	; `string'
+EXTRN	_printf:NEAR
+;	COMDAT ??_C@_0M@NHID@i?$DN?$CFd?0?5j?$DN?$CFd?6?$AA@
+; File t1.c
+_DATA	SEGMENT
+??_C@_0M@NHID@i?$DN?$CFd?0?5j?$DN?$CFd?6?$AA@ DB 'i=%d, j=%d', 0aH, 00H ; `string'
+_DATA	ENDS
+;	COMDAT _main
+_TEXT	SEGMENT
+_argc$ = 8
+_argv$ = 12
+_main	PROC NEAR					; COMDAT
+
+; 4    : 	int i;
+; 5    : 	int j;
+; 6    : 	
+; 7    : 	i = argc;
+; 8    : 	j = **argv;
+
+	mov	eax, DWORD PTR _argv$[esp-4]
+	mov	ecx, DWORD PTR [eax]
+	movsx	eax, BYTE PTR [ecx]
+
+; 9    : 	
+; 10   : 	if( i == 2 )
+
+	mov	ecx, DWORD PTR _argc$[esp-4]
+	cmp	ecx, 2
+	jne	SHORT $L833
+
+; 11   : 	{
+; 12   : 		++j;
+
+	inc	eax
+
+; 17   : 	}
+; 18   : 	
+; 19   : 	printf( "i=%d, j=%d\n", i, j );
+
+	push	eax
+	push	ecx
+	push	OFFSET FLAT:??_C@_0M@NHID@i?$DN?$CFd?0?5j?$DN?$CFd?6?$AA@ ; `string'
+	call	_printf
+	add	esp, 12					; 0000000cH
+
+; 20   : 	return 0;
+
+	xor	eax, eax
+
+; 21   : }
+
+	ret	0
+$L833:
+
+; 13   : 	}
+; 14   : 	else
+; 15   : 	{
+; 16   : 		--j;
+
+	dec	eax
+
+; 17   : 	}
+; 18   : 	
+; 19   : 	printf( "i=%d, j=%d\n", i, j );
+
+	push	eax
+	push	ecx
+	push	OFFSET FLAT:??_C@_0M@NHID@i?$DN?$CFd?0?5j?$DN?$CFd?6?$AA@ ; `string'
+	call	_printf
+	add	esp, 12					; 0000000cH
+
+; 20   : 	return 0;
+
+	xor	eax, eax
+
+; 21   : }
+
+	ret	0
+_main	ENDP
+_TEXT	ENDS
+END

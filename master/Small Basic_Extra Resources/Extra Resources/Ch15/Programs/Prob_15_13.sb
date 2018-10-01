@@ -1,0 +1,39 @@
+' Prob_15_13.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Tallies the grades of 15 students
+
+NUM_STUDENTS = 15
+
+' Creates the grade array
+TextWindow.WriteLine("Here is the grade array: ")
+For N = 1 To NUM_STUDENTS
+  charCode = Text.GetCharacterCode("A")
+  charCode = charCode - 1 + Math.GetRandomNumber(4)
+  grade[N] = Text.GetCharacter(charCode)
+  TextWindow.WriteLine(grade[N])
+EndFor
+TextWindow.WriteLine("")
+
+' Tallies the grades
+ACount = 0
+BCount = 0
+CCount = 0
+DCount = 0
+For N = 1 To NUM_STUDENTS
+  If (grade[N] = "A") Then
+    ACount = ACount + 1
+  ElseIf (grade[N] = "B") Then
+    BCount = BCount + 1
+  ElseIf (grade[N] = "C") Then
+    CCount = CCount + 1
+  Else
+    DCount = DCount + 1
+  EndIf  
+EndFor
+
+' Shows the total number of students who got an A, B, C, or D
+TextWindow.WriteLine("Number of students who got A: " + ACount)
+TextWindow.WriteLine("Number of students who got B: " + BCount)
+TextWindow.WriteLine("Number of students who got C: " + CCount)
+TextWindow.WriteLine("Number of students who got D: " + DCount)
+TextWindow.WriteLine("")

@@ -1,0 +1,36 @@
+' MonsterChase_Incomplete.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Try to escape from a monster
+
+GraphicsWindow.Title = "Monster Chase"
+GraphicsWindow.Width = 250
+GraphicsWindow.Height = 250
+GraphicsWindow.CanResize = 0
+
+Grid()                                       ' Draws a 5x5 grid
+P = Shapes.AddRectangle(40, 40)              ' Player's shape
+M = Shapes.AddTriangle(0, 0, 40, 0, 20, 40)  ' Monster's shape
+
+GraphicsWindow.KeyDown = OnKeyDown
+
+NewGame()
+
+Sub NewGame
+ 	' [TO DO]
+EndSub
+
+' First, check if the player's move is valid (they'll stay within the grid)
+' If the player's move is valid, process it
+Sub OnKeyDown
+	' [TO DO]
+EndSub
+
+Sub Grid
+  For I = 1 To 5
+    For J = 1 To 5
+      X0 = (J - 1) * 50
+      Y0 = (I - 1) * 50
+      GraphicsWindow.DrawRectangle(X0, Y0, 50, 50)
+    EndFor
+  EndFor
+EndSub

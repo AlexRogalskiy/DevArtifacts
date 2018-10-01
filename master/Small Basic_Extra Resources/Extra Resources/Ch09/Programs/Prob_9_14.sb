@@ -1,0 +1,51 @@
+' Prob_9_14.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Plays Captain Jack on Xenon
+
+TextWindow.Title = "Space Monster"
+energy = 100      ' Monster's energy
+distC = 40        ' Captain Jack's distance to ship
+distM = 50        ' Monster's distance to ship
+
+Again:
+TextWindow.Write("You are " + distC + " meters, and the monster ")
+TextWindow.WriteLine("is " + distM + " meters away from the ship.")
+TextWindow.WriteLine("The monster's energy is " + energy + ".")
+TextWindow.Write("Choice: Move to ship (1) or Shoot (2)? ")
+action = TextWindow.ReadNumber()
+
+If (action = 2) Then              ' Captain Jack wants to shoot
+  hit = Math.GetRandomNumber(3)   ' Three possibilities
+  If (hit = 1) Then               ' Monster is hit but not critically
+    TextWindow.WriteLine("You hit him! He laughs at your feeble laser.")
+    damage = Math.GetRandomNumber(4)
+    energy = energy - damage
+    distM = distM - 2             ' He moves 2 meters
+  ElseIf (hit = 2) Then           ' Critical hit
+    TextWindow.WriteLine("You hurt him bad! Now he's angry!")
+    damage = 4 + Math.GetRandomNumber(4)
+    energy = energy - damage
+    distM = distM - 1             ' He makes a shorter stride
+  Else                            ' Missed monster
+    TextWindow.WriteLine("You missed him! Picard and Kirk are giving lessons.")
+    distM = distM - 3             ' He moves normally
+  EndIf
+ElseIf (action = 1) Then          ' Captain Jack wants to move to ship
+  distC = distC - 2
+  distM = distM - 3
+EndIf
+
+If (distC <= 0) Then              ' Captain Jack is safe
+  TextWindow.WriteLine("")
+  TextWindow.WriteLine("You are safe! That was a close one.")
+ElseIf (distM <= 0) Then          ' Monster wins
+  TextWindow.WriteLine("")
+  TextWindow.WriteLine("Sorry. The moster gobbled you! You were wearing a red shirt.")
+ElseIf (energy <=0 ) Then 
+  TextWindow.WriteLine("")
+  
+  TextWindow.WriteLine("You killed the monster! And now the other planets can invade this one.")
+Else
+  TextWindow.WriteLine("")
+  Goto Again
+EndIf

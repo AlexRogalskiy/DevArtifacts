@@ -1,0 +1,38 @@
+' MemoryTest.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Tests the player's memory
+
+TextWindow.WriteLine("M E M O R Y   T E S T")
+TextWindow.CursorTop = 5
+TextWindow.Pause()
+TextWindow.Clear()
+
+done = 0
+numDig = 1
+While (done = 0)
+  GetNumber()
+  TextWindow.WriteLine("Remember this: " + num)
+  Program.Delay(1000 + (numDig * 200))
+  TextWindow.Clear()
+  TextWindow.Write("What was the number? ")
+  ans = TextWindow.ReadNumber()
+  
+  If (ans = num) Then
+    TextWindow.WriteLine("Correct.")
+    numDig = numDig + 1
+  Else
+    TextWindow.WriteLine("Incorrect. The number was: " + num)
+    done = 1
+  EndIf
+EndWhile
+TextWindow.WriteLine("Your score is: " + (numDig - 1))
+
+Sub GetNumber
+  num = 0
+  pwr = 1
+  For N = 1 To numDig
+    dig = Math.GetRandomNumber(9)
+    num = num + (dig * pwr)
+    pwr = pwr * 10
+  EndFor
+EndSub

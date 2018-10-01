@@ -1,0 +1,99 @@
+; -- Machine type P
+; mark_description "Intel Reference C Compiler Release 5 Version x";
+; mark_description "Built Feb 20 1996 16:27:57";
+;ident "Intel Reference C Compiler Release 5 Version x"
+	.386P
+ 	.387
+	ifndef	??version
+?debug	macro
+	endm
+	endif
+	?debug	S "t1.c"
+	?debug	T "t1.c"
+DGROUP	group	_DATA,_BSS
+	ASSUME	cs:_TEXT,ds:DGROUP,ss:DGROUP
+_TEXT SEGMENT PARA PUBLIC USE32  'CODE'
+_TEXT ENDS
+_DATA SEGMENT PARA PUBLIC USE32  'DATA'
+	ALIGN 010H
+_DATA ENDS
+_BSS SEGMENT PARA PUBLIC USE32  'BSS'
+	ALIGN 010H
+_BSS ENDS
+	?debug	D "t1.c" 11825 25587
+	?debug	D "F:\BC5\INCLUDE\stdio.h" 8277 8192
+	?debug	D "F:\BC5\INCLUDE\_defs.h" 8277 8192
+	?debug	D "F:\BC5\INCLUDE\_nfile.h" 8277 8192
+	?debug	D "F:\BC5\INCLUDE\_null.h" 8277 8192
+_DATA SEGMENT PARA PUBLIC USE32  'DATA'
+@p_3@type@template EQU 0
+__1BSCTMPLPCK@SI8 EQU 0
+_DATA ENDS
+_TEXT SEGMENT PARA PUBLIC USE32  'CODE'
+; -- Begin _main
+; mark_begin;
+       ALIGN     4                                             ; 0
+	PUBLIC   _main
+_main	PROC NEAR
+@B1@3:                  ; preds: B1.2
+
+        push      ebp                                           ; 2
+        mov       ebp, esp                                      ; 2
+        sub       esp, 3                                        ; 2
+        and       esp, -8                                       ; 2
+        add       esp, 4                                        ; 2
+        mov       eax, DWORD PTR 12[ebp]                        ; 2
+        mov       edx, eax                                      ; 2
+        mov       eax, DWORD PTR 8[ebp]                         ; 2
+
+        sub       esp, 20                                       ; 2
+        mov       edx, DWORD PTR [edx]                          ; 8
+        cmp       eax, 2                                        ; 10
+        movsx     ecx, BYTE PTR [edx]                           ; 8
+        je        @B1@1         ; PROB 5%                       ; 10
+                                ; LOE:%eax%ecx%ebx%ebp%esi%edi%esp%al%ah%cl%ch
+@B1@4:                  ; preds: B1.3
+
+        lea       edx, DWORD PTR -1[ecx]                        ; 16
+                                ; LOE:%eax%edx%ebx%ebp%esi%edi%esp%al%ah%dl%dh
+@B1@5:                  ; preds: B1.4 B1.1
+
+        mov       DWORD PTR [esp], OFFSET @p_1@s                ; 19
+        mov       DWORD PTR 4[esp], eax                         ; 19
+        mov       DWORD PTR 8[esp], edx                         ; 19
+        call      _printf                                       ; 19
+                                ; LOE:%ebx%ebp%esi%edi%esp
+@B1@6:                  ; preds: B1.5
+
+        xor       eax, eax                                      ; 20
+        add       esp, 20                                       ; 20
+        mov       esp, ebp                                      ; 20
+        pop       ebp                                           ; 20
+        ret                                                     ; 20
+                                ; LOE:%ebx%ebp%esi%edi%esp
+@B1@1:     ; Infrequent ; preds: B1.3
+
+        lea       edx, DWORD PTR 1[ecx]                         ; 12
+        jmp       @B1@5         ; PROB 100%                     ; 12
+        ALIGN     4                                             ; 0
+                                ; LOE:%eax%edx%ebx%ebp%esi%edi%esp%al%ah%dl%dh
+; mark_end;
+_main ENDP
+_TEXT ENDS
+_DATA SEGMENT PARA PUBLIC USE32  'DATA'
+@2@1_2ab_p@1 EQU 0
+@2@1_2pab_p@1 EQU 0
+_DATA ENDS
+_TEXT SEGMENT PARA PUBLIC USE32  'CODE'
+_2@1_2auto_size EQU 20
+; -- End _main
+_TEXT ENDS
+_DATA SEGMENT PARA PUBLIC USE32  'DATA'
+@p_1@s	DB	"i=%d, j=%d",10,0
+EXTRN	__setargv__:BYTE
+_DATA ENDS
+_TEXT SEGMENT PARA PUBLIC USE32  'CODE'
+EXTRN	_printf:NEAR
+EXTRN	__chkstk:NEAR
+_TEXT ENDS
+	END

@@ -1,0 +1,30 @@
+' Prob_17_3.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Generates a special matrix
+
+For I = 1 To 5
+  For J = 1 To 5
+    If (I < J) Then
+      mat[I][J] = 1
+    ElseIf (I > J) Then
+      mat[I][J] = -1
+    Else
+      mat[I][J] = 0
+    EndIf
+  EndFor
+EndFor
+
+' Displays the matrix
+For I = 1 To 5
+  For J = 1 To 5
+    If (mat[I][J] < 0) Then    ' Negative
+      TextWindow.CursorLeft = (J * 3) - 1
+    Else
+      TextWindow.CursorLeft = (J * 3)
+    EndIf
+    
+    TextWindow.Write(mat[I][J])
+  EndFor
+  TextWindow.WriteLine("")
+EndFor
+TextWindow.WriteLine("")

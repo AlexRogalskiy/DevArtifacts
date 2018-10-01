@@ -1,0 +1,46 @@
+' Prob_15_12.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+
+' Creates two arrays that save employees' names and their pay rate per hour
+name[1] = "Jack"
+rate[1] = 9.50
+name[2] = "Helda"
+rate[2] = 12.50
+name[3] = "Janet"
+rate[3] = 10.00
+name[4] = "Mike"
+rate[4] = 10.50
+name[5] = "Paul"
+rate[5] = 11.00
+EMP_COUNT = 5   ' Employee count
+
+' Displays the table
+TextWindow.WriteLine("Employee#  Name            Pay rate/hour")
+TextWindow.WriteLine("---------  --------------  -------------")
+For N = 1 To EMP_COUNT
+  TextWindow.Write(N)
+  TextWindow.CursorLeft = 11
+  TextWindow.Write(name[N])
+  TextWindow.CursorLeft = 27
+  TextWindow.WriteLine(rate[N])
+EndFor
+TextWindow.WriteLine("")
+TextWindow.WriteLine("")
+
+' Prompts the user to enter an employee number and how many hours they worked in a week
+' Have your program compute and display the employee’s total pay
+While ("True")
+  TextWindow.Write("Employee number: ")
+  N = TextWindow.ReadNumber()
+  If ((N >= 1) And (N <= EMP_COUNT)) Then
+    TextWindow.Write("How many hours did " + name[N])
+    TextWindow.Write(" work last week? ")
+    hours = TextWindow.ReadNumber()
+    
+    totPay = hours * rate[N]
+    TextWindow.WriteLine(name[N] + "'s total pay is $" + totPay + ".")    
+  Else
+    TextWindow.WriteLine("Invalid number. Try again.")
+  EndIf
+  TextWindow.WriteLine("")
+EndWhile

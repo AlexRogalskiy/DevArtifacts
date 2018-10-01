@@ -1,0 +1,17 @@
+' Prob_13_6.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Finds all the numbers less than 1000 that are evenly divisible by 3, 5, and 7
+
+
+TextWindow.WriteLine("The following numbers are divisible by 3, 5, and 7:")
+
+For N = 1 To 1000
+  rem1 = Math.Remainder(N, 3)
+  rem2 = Math.Remainder(N, 5)
+  rem3 = Math.Remainder(N, 7)
+  
+  If ((rem1 = 0) And (rem2 = 0) And (rem3 = 0)) Then
+    TextWindow.WriteLine(N)
+  EndIf  
+EndFor
+TextWindow.WriteLine("")

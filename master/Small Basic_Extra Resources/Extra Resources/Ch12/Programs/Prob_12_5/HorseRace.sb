@@ -1,0 +1,83 @@
+' HorseRace.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Creates a horse race gambling game
+
+GraphicsWindow.Title = "Horse Race"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.CanResize = "False"
+
+imgPath = Program.Directory + "\Bkgnd.png"
+GraphicsWindow.DrawImage(imgPath, 0, 0)
+
+' Creates the GUI elements
+GraphicsWindow.FontSize = 14
+GraphicsWindow.BrushColor = "Black"
+
+eb1 = Controls.AddTextBox(80, 310)    ' Bet amount
+eb2 = Controls.AddTextBox(210, 310)   ' On horse #
+btn1 = Controls.AddButton("START", 360, 310)
+Controls.SetSize(eb1, 60, 30)
+Controls.SetSize(eb2, 60, 30)
+Controls.SetSize(btn1, 60, 30)
+Controls.SetTextBoxText(eb1, 100)     ' Default: $100
+Controls.SetTextBoxText(eb2, 1)       ' On horse 1
+
+' Adds shapes for the six horses
+For N = 1 to 6
+  horseImg[N] = Shapes.AddImage(Program.Directory + "\h" + N + ".png")
+EndFor
+
+Controls.ButtonClicked = OnButtonClicked
+
+Reset()
+
+Sub OnButtonClicked
+  ReadInputs()
+  Reset()
+  Controls.HideControl(btn1)
+  Timer.Interval = 100
+  Timer.Tick = OnTick
+EndSub
+
+Sub ReadInputs
+  betAmount = Controls.GetTextBoxText(eb1)
+  horseNum = Controls.GetTextBoxText(eb2)
+EndSub
+
+Sub Reset
+  winner = 0
+  For N = 1 to 6
+    Shapes.Move(horseImg[N], 3, (N - 1) * 37 + 73)
+  EndFor
+EndSub
+
+Sub OnTick
+  For N = 1 to 6
+    xPos = Shapes.GetLeft(horseImg[N])
+    yPos = Shapes.GetTop(horseImg[N])
+    xPos = xPos + Math.GetRandomNumber(5)
+    Shapes.Move(horseImg[N], xPos, yPos)
+    
+    If (xPos > 410) Then
+      winner = N
+      Goto GameOver
+    EndIf    
+  EndFor
+  
+  GameOver:
+  If (winner <> 0) Then
+    Timer.Interval = 100000000
+    If (horseNum = N) Then
+      msg = "Congratulations! You won $" + betAmount + "."
+    Else
+      msg = "The winner is horse " + N + ". You lost $" + betAmount + "."
+    EndIf
+    
+    GraphicsWindow.ShowMessage(msg, "Race Result")
+    Reset()
+    Controls.ShowControl(btn1)
+    
+  EndIf
+  
+EndSub

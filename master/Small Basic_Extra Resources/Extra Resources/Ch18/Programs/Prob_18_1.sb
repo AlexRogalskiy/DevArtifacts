@@ -1,0 +1,17 @@
+' Prob_18_1.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Reads the first and last name of the user and then displays the username 
+' as their first initial followed by the last four letters of the last name
+
+TextWindow.Write("First name: ")
+fName = TextWindow.Read()
+
+TextWindow.Write("Last name:  ")
+lName = TextWindow.Read()
+
+sub1 = Text.GetSubText(fName, 1, 1)  ' First initial
+sub2 = Text.GetSubText(lName, 1, 4)  ' First four letters of last name
+login = Text.Append(sub1, sub2)
+
+TextWindow.WriteLine("Your login name is: " + login)
+TextWindow.WriteLine("")

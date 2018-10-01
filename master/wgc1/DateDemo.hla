@@ -1,0 +1,77 @@
+program dateDemo;
+
+#include( Òstdlib.hhfÓ )
+
+static
+    day:        uns8;
+    month:      uns8;
+    year:       uns8;
+    
+    packedDate: word;
+    
+begin dateDemo;
+
+    stdout.put( ÒEnter the current month, day, and year: Ò );
+    stdin.get( month, day, year );
+    
+    // Pack the data into the following bits:
+    //
+    //  15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+    //   m  m  m  m  d  d  d  d  d  y  y  y  y  y  y  y
+    
+    mov( 0, ax );
+    mov( ax, packedDate );  //Just in case there is an error.
+    if( month > 12 ) then
+    
+        stdout.put( ÒMonth value is too largeÓ, nl );
+        
+    elseif( month = 0 ) then
+    
+        stdout.put( ÒMonth value must be in the range 1..12Ó, nl );
+        
+    elseif( day > 31 ) then
+    
+        stdout.put( ÒDay value is too largeÓ, nl );
+        
+    elseif( day = 0 ) then
+    
+        stdout.put( ÒDay value must be in the range 1..31Ó, nl );
+        
+    elseif( year > 99 ) then
+    
+        stdout.put( ÒYear value must be in the range 0..99Ó, nl );
+        
+    else
+    
+        mov( month, al );
+        shl( 5, ax );
+        or( day, al );
+        shl( 7, ax );
+        or( year, al );
+        mov( ax, packedDate );
+
+    endif;
+    
+    // Okay, display the packed value:
+    
+    stdout.put( ÒPacked data = $Ó, packedDate, nl );
+
+    // Unpack the date:
+
+    mov( packedDate, ax );
+    and( $7f, al );         // Retrieve the year value.
+    mov( al, year );
+    
+    mov( packedDate, ax );  // Retrieve the day value.
+    shr( 7, ax );
+    and( %1_1111, al );
+    mov( al, day );
+    
+    mov( packedDate, ax );  // Retrieve the month value.
+    rol( 4, ax );
+    and( %1111, al );
+    mov( al, month );
+
+    stdout.put( ÒThe date is Ò, month, Ò/Ó, day, Ò/Ó, year, nl ); 
+   
+end dateDemo;

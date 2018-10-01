@@ -1,0 +1,24 @@
+' Prob_15_11.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Displays the president and vice present candidates in your class
+
+' Reads the names of the five candidates in an array (name) 
+For N = 1 To 5
+  TextWindow.Write("Name " + N + ": ")
+  name[N] = TextWindow.Read()
+EndFor
+TextWindow.WriteLine("")
+
+'Displays all the possible pairs (president, vice president)
+TextWindow.WriteLine("President           Vice President")
+TextWindow.WriteLine("---------           --------------")
+For P = 1 To 5        ' President
+  For V = 1 To 5      ' Vice president
+    If (P <> V) Then
+      TextWindow.Write(name[P])
+      TextWindow.CursorLeft = 20
+      TextWindow.WriteLine(name[V])
+    EndIf
+  EndFor
+EndFor
+TextWindow.WriteLine("")

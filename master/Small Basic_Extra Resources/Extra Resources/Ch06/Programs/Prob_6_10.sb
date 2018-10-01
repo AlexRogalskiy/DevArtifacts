@@ -1,0 +1,25 @@
+' Prob_6_10.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Determines the cost of your dance party
+
+TextWindow.Title = "Dance Party"
+
+TextWindow.Write("Number of people in your group..: ")
+count = TextWindow.ReadNumber()
+
+TextWindow.Write("Table reservation fee...........: ")
+tableFee = TextWindow.ReadNumber()
+
+TextWindow.Write("Entrance fee per person.........: ")
+entryFee = TextWindow.ReadNumber()
+
+TextWindow.Write("Total cost of snacks............: ")
+snackCost = TextWindow.ReadNumber()
+
+total = tableFee + (entryFee * count) + snackCost
+personCost = total / count
+personCost = Math.Round(personCost * 100) / 100
+
+TextWindow.WriteLine("Total bill........: $" + total)
+TextWindow.WriteLine("Each person pays..: $" + personCost)
+TextWindow.WriteLine("")

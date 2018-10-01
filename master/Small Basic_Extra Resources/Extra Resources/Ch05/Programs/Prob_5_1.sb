@@ -1,0 +1,20 @@
+' Prob_5_1.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Draws a rotated flag
+
+GraphicsWindow.Title = "Rotated Flag"
+Turtle.X = 100
+Turtle.Y = 100
+
+For I = 1 To 10          ' To draw 10 rotated flags 
+  Turtle.Move(60)        ' Draws the flag's pole
+  For J = 1 To 4         ' Draws a square
+    Turtle.Move(30)
+    Turtle.TurnRight()
+  EndFor
+  Turtle.Move(-60)       ' Moves back to the starting point
+  
+  ' Gets ready to draw the next flag
+  ' Note that 36 = 360 / 10
+  Turtle.Turn(36)
+EndFor

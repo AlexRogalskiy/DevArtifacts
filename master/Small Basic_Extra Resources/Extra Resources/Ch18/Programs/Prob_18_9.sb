@@ -1,0 +1,23 @@
+' Prob_18_9.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Tells whether a string input by the user is in uppercase, lowercase, or mixed case
+
+' Note: The string "True" will fail this test because of the way it is treated in Small Basic
+' A better way to implement this program is to check all the letters of the input string
+
+While ("True")
+  TextWindow.Write("Enter a string: ")
+  ans = TextWindow.Read()
+  
+  ucase = Text.ConvertToUpperCase(ans)
+  lcase = Text.ConvertToLowerCase(ans)
+  
+  If (ans = ucase) Then
+    TextWindow.WriteLine("This is uppercase.")
+  ElseIf (ans = lcase) Then
+    TextWindow.WriteLine("This is lowercase.")
+  Else
+    TextWindow.WriteLine("This is mixed case.")
+  EndIf 
+  TextWindow.WriteLine("")
+EndWhile

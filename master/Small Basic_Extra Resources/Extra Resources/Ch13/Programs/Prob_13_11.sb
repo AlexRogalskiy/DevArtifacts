@@ -1,0 +1,17 @@
+' Prob_13_11.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Creates a 24-hour digital watch
+
+GraphicsWindow.Show()
+GraphicsWindow.FontSize = 40
+
+txtID = Shapes.AddText("")
+
+For H = 0 To 23
+  For M = 0 To 59
+    For S = 0 To 59
+      Shapes.SetText(txtID, H + ":" + M + ":" + S)
+      Program.Delay(1000)
+    EndFor
+  EndFor
+EndFor

@@ -1,0 +1,53 @@
+' Prob_16_2.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Helps a user review the scientific names of bones in the human skeleton
+' The program describes a bone or a group of bones
+' Then it asks the user to enter the bone's scientific name
+
+TextWindow.Title = "Human Skeleton Review"
+
+bone["Calcaneus"] = "Heel bones; two of them"
+bone["Carpals"] = "Wrist bones; seven of them"
+bone["Cervical Vertebrae"] = "Top seven vertebrae in the vertebral column; neck"
+bone["Clavicle"] = "Collar bone, two of them, from your shoulder to your sternum"
+bone["Cranium"] = "Skull"
+bone["Cuboid"] = "Foot bone; located in front of the heel bone (calcaneus)"
+bone["Femur"] = "Long bone, two of them, from your hip to your knee; thigh bone"
+bone["Fibula"] = "Located between the knee and ankle along the outside of our lower leg"
+bone["Humerus"] = "Upper arm bone that runs from your shoulder to your elbow"
+bone["Ilium"] = "Hip bone, two of them"
+bone["Lumbar Vertebrae"] = "Lower five vertebrae in the vertebral column; lower back"
+bone["Mandible"] = "Chin and cheek bone; lower jaw"
+bone["Maxilla"] = "Upper jaw bone; located above your upper lip"
+bone["Metacarpals"] = "Hand bones; top of hand; located between wrist and knuckles"
+bone["Metatarsals"] = "Foot bones; located just behind the toes (phalanges)"
+bone["Nasal"] = "Bridge of your nose; where glasses rest on your face or are worn"
+bone["Occipital"] = "Back of the skull"
+bone["Parietal"] = "Side of the skull"
+bone["Patella"] = "Kneecap, two of them"
+bone["Phalanges"] = "Little bones in your fingers and toes; 56 in all"
+bone["Radius"] = "Main forearm bone that runs from your elbow to your wrist on the thumb side"
+bone["Scapula"] = "Shoulder blade, two of them"
+bone["Sternum"] = "Breast bone; clavicles connect to it"
+bone["Talus"] = "Foot bone; located above the heel bone"
+bone["Thoracic Vertebrae"] = "Middle 12 vertebrae in the vertebral column; chest"
+bone["Tibia"] = "Located between the knee and ankle along the inside of our lower leg; main shin bone"
+bone["Ulna"] = "Lesser forearm bone that runs from your elbow to your wrist on the pinky side"
+bone["Zygomatic"] = "Cheek bone located around the eye"
+
+data = Array.GetAllIndices(bone)
+For N = 1 To Array.GetItemCount(data)
+  key = data[N]
+  value = bone[key]
+  TextWindow.Write(value + ": ")
+  ans = TextWindow.Read()
+  
+  If (Text.ConvertToLowerCase(ans) = Text.ConvertToLowerCase(key)) Then
+    TextWindow.WriteLine("Very good!")
+  Else
+    TextWindow.WriteLine("Sorry, the correct answer is " + key)
+  EndIf
+  
+  TextWindow.WriteLine("")
+  TextWindow.WriteLine("")
+EndFor

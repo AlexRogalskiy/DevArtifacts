@@ -1,0 +1,40 @@
+' Predict.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Tries to predict the next number picked by the computer
+
+TextWindow.Title = "Predict"
+A = Math.GetRandomNumber(9)  ' Current number
+B = Math.GetRandomNumber(9)  ' Next number
+S = 0                        ' Score
+
+done = 0
+While (done = 0)
+  ShowScore()
+  
+  TextWindow.Write("My current number is " + A + ". ")
+  TextWindow.Write("My next number is [1-9]?: ")
+  ans = TextWindow.ReadNumber()
+  
+  S = S + 1
+  
+  If (ans = B) Then
+    done = 1
+    TextWindow.WriteLine("")
+    TextWindow.WriteLine("Correct. Your score is " + S + ".")
+    TextWindow.WriteLine("")
+  Else
+    TextWindow.WriteLine("")
+    TextWindow.WriteLine("No. It was " + B + ".")
+    Program.Delay(1000)
+    
+    ShowScore()
+    A = B
+    B = Math.GetRandomNumber(9)
+  EndIf
+EndWhile
+
+Sub ShowScore
+  TextWindow.Clear()
+  TextWindow.WriteLine("Score: " + S)
+  TextWindow.WriteLine("")
+EndSub

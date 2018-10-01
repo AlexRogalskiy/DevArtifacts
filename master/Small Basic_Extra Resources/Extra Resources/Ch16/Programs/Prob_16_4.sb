@@ -1,0 +1,47 @@
+' Prob_16_4.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Helps a user review some terms related to earth science
+' The program describes a term, and then asks the user to enter its scientific name
+
+TextWindow.Title = "Earth Science"
+
+term["Asteroid belt"] = "The region of the solar system between the orbits of Mars and Jupiter, where many asteroids are found"
+term["Asteroids"] = "Objects revolving around the sun that are too small and too numerous to be considered planets"
+term["Chromosphere"] = "The middle layer of the sun's atmosphere"
+term["Comet"] = "A ball of ice and dust whose orbit is a long, narrow ellipse"
+term["Core"] = "The central part of the sun, where nuclear fusion occurs"
+term["Corona"] = "The outer layer of the sun's atmosphere"
+term["Ellipse"] = "An elongated circle, or oval shape; the shape of the planets' orbits"
+term["Extraterrestrial life"] = "Life that arises outside of Earth"
+term["Gas giants"] = "The name given to the first four outer planets: Jupiter, Saturn, Uranus, and Neptune"
+term["Geocentric"] = "A description of the solar system in which all of the planets and the sun revolve around the Earth"
+term["Greenhouse effect"] = "The process by which heat is trapped in the atmosphere by water vapor, carbon dioxide, methane, and other gases that form a blanket around Earth"
+term["Heliocentric"] = "A description of the solar system in which all of the planets revolve around the sun"
+term["Inertia"] = "The tendency of a moving object to continue in a straight line or a stationary object to remain in place"
+term["Meteorite"] = "A meteoroid that has hit Earth's surface"
+term["Meteor"] = "A streak of light in the sky produced by the burning of a meteoroid in Earth's atmosphere"
+term["Meteoroid"] = "A chunk of rock or dust in space"
+term["Nuclear fusion"] = "The combining of two atomic nuclei into a single larger nucleus, as when two hydrogen atoms join together to form helium, releasing energy"
+term["Photosphere"] = "The inner layer of the sun's atmosphere"
+term["Prominence"] = "A loop of gas that protrudes from the sun's surface, linking parts of sunspot regions"
+term["Retrograde rotation"] = "The spinning motion of a planet from east to west, opposite to the direction of rotation of most planets and moons"
+term["Solar flare"] = "An explosion of hydrogen gas from the sun's surface that occurs when loops in sunspot regions suddenly connect"
+term["Solar wind"] = "A stream of electrically charged particles produced by the sun's corona"
+term["Sunspot"] = "Dark, cooler regions on the surface of the sun"
+term["Terrestrial planets"] = "The name given to the four inner planets: Mercury, Venus, Earth, and Mars"
+
+data = Array.GetAllIndices(term)
+For N = 1 To Array.GetItemCount(data)
+  key = data[N]
+  value = term[key]
+  TextWindow.Write(value + ": ")
+  ans = TextWindow.Read()
+  
+  If (Text.ConvertToLowerCase(ans) = Text.ConvertToLowerCase(key)) Then
+    TextWindow.WriteLine("Very good!")
+  Else
+    TextWindow.WriteLine("Sorry, the correct answer is " + key)
+  EndIf
+  
+  TextWindow.WriteLine("")
+EndFor

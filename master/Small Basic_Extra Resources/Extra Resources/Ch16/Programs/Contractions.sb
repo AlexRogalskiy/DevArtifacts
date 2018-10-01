@@ -1,0 +1,45 @@
+' Contractions.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Presents the user with a series of phrases (such as "he is") and
+' asks them to enter its contraction (such as "he’s")
+' The program checks the user’s answer and provides feedback
+
+TextWindow.Title = "Practicing Contractions"
+
+contraction["He is"] = "He's"
+contraction["It is"] = "It's"
+contraction["We are"] = "We're"
+contraction["Will not"] = "Won't"
+contraction["Were not"] = "Weren't"
+contraction["Was not"] = "Wasn't"
+contraction["Are not"] = "Aren't"
+contraction["Is not"] = "Isn't"
+contraction["Do not"] = "Don't"
+contraction["Would not"] = "Wouldn't"
+contraction["Should not"] = "Souldn't"
+contraction["I am"] = "I'm"
+contraction["I have"] = "I've"
+contraction["We have"] = "We've"
+contraction["They have"] = "They've"
+contraction["They would"] = "They'd"
+contraction["Can not"] = "Can't"
+contraction["Should have"] = "Should've"
+contraction["Could have"] = "Could've"
+contraction["She will"] = "She'll"
+
+data = Array.GetAllIndices(contraction)
+For N = 1 To Array.GetItemCount(data)
+  key = data[N]
+  value = contraction[key]
+  correctAns = Text.ConvertToLowerCase(value)
+  
+  TextWindow.Write("The contraction of [" + key + "]: ")
+  ans = TextWindow.Read()
+  ans = Text.ConvertToLowerCase(ans)
+  If (ans = correctAns) Then
+    TextWindow.WriteLine("Very good!")
+  Else
+    TextWindow.WriteLine("Sorry, the correct answer is: " + value)
+  EndIf
+   TextWindow.WriteLine("")
+EndFor

@@ -1,0 +1,31 @@
+' Prob_17_5.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Stocks inventory of DreamPants
+
+NUM_ROWS = (40 - 28) + 1  '  Waist size (inches)
+NUM_COLS = (40 - 28) + 1  '  Length (inches)
+ 
+For R =  1 To NUM_ROWS
+  For C = 1 To NUM_COLS
+    stock[R][C] = Math.GetRandomNumber(11) - 1  ' From 0 to 10
+  EndFor
+EndFor
+
+' Displays the stock matrix 
+TextWindow.Write(" Length:")
+For C = 1 To NUM_COLS
+  TextWindow.CursorLeft = 10 + (C - 1) * 4
+  TextWindow.Write(28 + C - 1)
+EndFor
+TextWindow.WriteLine("")
+TextWindow.WriteLine("          --------------------------------------------------")
+
+For R =  1 To NUM_ROWS
+  TextWindow.Write("Size " + (28 + R - 1) + ":")
+  For C = 1 To NUM_COLS
+    TextWindow.CursorLeft = 10 + (C - 1) * 4
+    TextWindow.Write(stock[R][C])
+  EndFor
+  TextWindow.WriteLine("")
+EndFor
+TextWindow.WriteLine("")

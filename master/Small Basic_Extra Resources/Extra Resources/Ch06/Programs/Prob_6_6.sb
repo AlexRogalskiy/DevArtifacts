@@ -1,0 +1,21 @@
+' Prob_6_6.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Determines how much it costs to carpet a rectangular room
+
+TextWindow.Title = "Carpet Cost Estimator"
+
+TextWindow.Write("Room length (yards): ")
+length = TextWindow.ReadNumber()
+
+TextWindow.Write("Room width (yards): ")
+width = TextWindow.ReadNumber()
+
+TextWindow.Write("Carpet price per square yard ($): ")
+price = TextWindow.ReadNumber()
+
+area = length * width
+cost = area * price
+cost = Math.Round(cost)
+
+TextWindow.WriteLine("Carpeting will cost you $" + cost)
+TextWindow.WriteLine("")

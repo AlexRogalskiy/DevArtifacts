@@ -1,0 +1,47 @@
+' Prob_15_5.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Removes duplicates from an array
+
+For N = 1 to 10
+  TextWindow.Write("Enter number " + N + ": ")
+  seq[N] = TextWindow.ReadNumber()
+  
+  If (N = 1) Then
+    seq2[1] = seq[1]
+    J = 2
+  Else
+    CheckDuplicate()
+    If (unique = 1) Then
+      seq2[J] = seq[N]
+      J = J + 1
+    EndIf
+  EndIf  
+EndFor
+
+' Displays the two sequences:
+TextWindow.WriteLine("")
+TextWindow.Write("Original sequence: ")
+For N = 1 to 10
+  TextWindow.Write(seq[N] + "  ")
+EndFor
+TextWindow.WriteLine("")
+TextWindow.WriteLine("")
+TextWindow.Write("New sequence: ")
+For N = 1 to J
+  TextWindow.Write(seq2[N] + "  ")
+EndFor
+TextWindow.WriteLine("")
+TextWindow.WriteLine("The duplicate numbers were removed.")
+TextWindow.WriteLine("")
+
+
+' Checks that the current entry (seq[N]) is different than all
+' the previous entires in the array
+Sub CheckDuplicate
+  unique = 1    ' Assume it's unique
+  For K = 1 To N - 1
+    If (seq[N] = seq[K]) Then
+      unique = 0
+    EndIf
+  EndFor
+EndSub

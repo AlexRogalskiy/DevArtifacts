@@ -1,0 +1,39 @@
+' Prob_9_6.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Runs the Guess My Number game
+
+TextWindow.WriteLine("I have a secret number between 1 and 100")
+TextWindow.WriteLine("After each guess, I'll give you a hint:")
+TextWindow.WriteLine("One star (*) is very close.")
+TextWindow.WriteLine("Six stars(******) is very far.")
+TextWindow.WriteLine("")
+TextWindow.WriteLine("")
+
+num = Math.GetRandomNumber(100)
+
+Again:
+TextWindow.Write("Your guess: " )
+ans = TextWindow.ReadNumber()
+
+diff = Math.Abs(ans - num)
+If (diff = 0) Then
+  TextWindow.WriteLine("Correct. I'm glad I don't have a battleship, or you'd sink it.")
+Else
+  If (diff <= 2) Then
+    msg = "*"
+  ElseIf (diff <= 4) Then
+    msg = "**"
+  ElseIf (diff <= 8) Then
+    msg = "***"
+  ElseIf (diff <= 16) Then
+    msg = "****"
+  ElseIf (diff <= 32) Then
+    msg = "*****"
+  Else
+    msg = "******"
+  EndIf
+  
+  TextWindow.WriteLine(msg)
+  TextWindow.WriteLine("")  
+  Goto Again
+EndIf

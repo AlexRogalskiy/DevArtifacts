@@ -1,0 +1,20 @@
+' Prob_10_6.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Helps Captain Jean-Luc Skywalker count down to liftoff
+
+TextWindow.Write("What number should we count down from? ")
+N = TextWindow.Read()
+
+CountDown()
+
+Sub CountDown
+  Again:  
+  If (N >= 0) Then
+    TextWindow.WriteLine(N)
+    Program.Delay(500)
+    N = N - 1
+    Goto Again
+  EndIf 
+  
+  TextWindow.WriteLine("Blast off!") 
+EndSub

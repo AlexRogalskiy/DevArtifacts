@@ -1,0 +1,74 @@
+' Prob_15_3.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Implements the game Reverse
+
+For N = 1 To 9
+  seq[N] = N
+EndFor
+
+' Shuffles the sequence
+For N = 1 To 20
+  idx1 = Math.GetRandomNumber(9)
+  idx2 = Math.GetRandomNumber(9)
+  temp = seq[idx1]
+  seq[idx1] = seq[idx2]
+  seq[idx2] = temp
+EndFor
+
+done = 0
+round = 0
+While (done = 0)
+  round = round + 1
+  DisplaySeq()
+  GetReverseIndex()
+  ReverseSeq()
+  CheckDone()
+EndWhile
+
+DisplaySeq()
+TextWindow.WriteLine("")
+TextWindow.WriteLine("Good job! You solved it in " + round + " rounds.")
+TextWindow.WriteLine("")
+
+Sub DisplaySeq
+  TextWindow.WriteLine("           Index: 1  2  3  4  5  6  7  8  9")
+  TextWindow.WriteLine("           --------------------------------")
+  TextWindow.Write("Your sequence is: ")
+  For N = 1 To 9
+    TextWindow.Write(seq[N] + "  ")
+  EndFor
+  TextWindow.WriteLine("")
+  TextWindow.WriteLine("") 
+EndSub
+
+Sub GetReverseIndex
+  Again:
+  TextWindow.Write("Reverse index [1-9]? ")
+  revIdx = TextWindow.ReadNumber()
+  revIdx = Math.Floor(revIdx)
+  If ((revIdx < 1) Or (revIdx > 9)) Then
+    Goto Again
+  EndIf  
+  
+  TextWindow.WriteLine("")
+  TextWindow.WriteLine("")   
+EndSub
+
+Sub ReverseSeq
+  For N = 1 To revIdx / 2
+    pos1 = N
+    pos2 = revIdx + 1 - N
+    temp = seq[pos1]
+    seq[pos1] = seq[pos2]
+    seq[pos2] = temp    
+  EndFor  
+EndSub
+
+Sub CheckDone
+  done = 1      ' Assumes it's done
+  For N = 1 To 9
+    If (seq[N] <> N) Then
+      done = 0  ' Not done yet
+    EndIf
+  EndFor
+EndSub

@@ -1,0 +1,29 @@
+' Prob_8_10.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Helps Hercules defeat the Hydra
+
+numHeads = 3
+
+Again:
+TextWindow.Write("Which head do you want to attack ")
+TextWindow.Write ("[1-" + numHeads + "]? ")
+ans = TextWindow.ReadNumber()
+
+mainHead = Math.GetRandomNumber(numHeads)
+
+If (ans = mainHead) Then
+  TextWindow.Write ("Splendid! You've killed the Hydra. ")
+  TextWindow.WriteLine ("Hercules will now take you to Hades!")
+Else
+  numHeads = 2 * (numHeads - 1)
+  
+  TextWindow.WriteLine("Oops! You've destroyed the wrong head.")
+  TextWindow.WriteLine("The Hydra now has " + numHeads + " heads.")
+  TextWindow.WriteLine("")
+  
+  If (numHeads = 66) Then    
+    TextWindow.WriteLine("The hydra has too many heads. Sorry, you've lost the battle!")
+  Else
+    Goto Again
+  EndIf  
+EndIf 

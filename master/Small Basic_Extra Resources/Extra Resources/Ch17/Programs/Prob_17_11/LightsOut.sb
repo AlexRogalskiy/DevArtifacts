@@ -1,0 +1,66 @@
+' LightsOut.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Implements the Lights Out game
+
+GraphicsWindow.Title = "Lights Out"
+GraphicsWindow.Width = 294
+GraphicsWindow.Height = 310
+GraphicsWindow.CanResize = "False"
+
+path = Program.Directory
+
+NewGame()
+
+GraphicsWindow.MouseDown = OnMouseDown
+
+Sub NewGame
+  GraphicsWindow.DrawImage(path + "\Background.png", 0, 0)
+  For R = 1 To 5
+    For C = 1 To 5
+      board[R][C] = Math.GetRandomNumber(2) - 1
+      ShowBulb()
+    EndFor
+  EndFor
+EndSub
+
+' Draws a light bulb at row R, column C
+Sub ShowBulb
+  xPos = (52  + (C - 1) * 48) - 16
+  yPos = (81  + (R - 1) * 48) - 16  
+  If (board[R][C] = 1) Then
+    image = path + "\On.ico"
+  Else
+    image = path + "\Off.ico"
+  EndIf
+  
+  GraphicsWindow.DrawImage(image, xPos, yPos)  
+EndSub
+
+Sub OnMouseDown
+  xPos = GraphicsWindow.MouseX
+  yPos = GraphicsWindow.MouseY      
+  If ((xPos > 29) And (xPos < 268) And (yPos > 57) And (yPos < 296)) Then
+    col = 1 + Math.Floor((xPos - 29) / 48)
+    row = 1 + Math.Floor((yPos - 57) / 48)    
+    ProcessClick()
+  EndIf
+EndSub
+
+' Called when the player clicks a bulb on the grid
+' Inputs:
+  ' row: the row number being clicked (from 1 to 5)
+  ' column: the column number being clicked (from 1 to 5)
+Sub ProcessClick  
+  N = 0            ' Cell number
+  For R = (row - 1) To (row + 1)
+    For C = (col - 1) To (col + 1)
+      N = N + 1
+      If ((R >= 1) And (R <= 5) And (C >= 1) And (C <= 5)) Then        
+        If ((N = 1) Or (N = 3) Or (N = 5) Or (N = 7) Or (N = 9)) Then
+          board[R][C] = 1 - board[R][C]
+         ShowBulb()
+        EndIf        
+      EndIf      
+    EndFor
+  EndFor  
+EndSub

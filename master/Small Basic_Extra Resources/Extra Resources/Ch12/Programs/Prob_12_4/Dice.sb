@@ -1,0 +1,103 @@
+' Dice.sb
+' Learn to Program with Small Basic. Copyright (c) 2016 by Majed Marji and Ed Price
+' Plays a gambling game with dice
+
+GraphicsWindow.Title = "Dice"
+GraphicsWindow.Width = 480
+GraphicsWindow.Height = 360
+GraphicsWindow.CanResize = "False"
+
+imgPath = Program.Directory + "\Bkgnd.png"
+GraphicsWindow.DrawImage(imgPath, 0, 0)
+
+' Creates GUI elements
+GraphicsWindow.FontSize   = 14
+GraphicsWindow.BrushColor = "Black"
+
+eb1  = Controls.AddTextBox(170, 210)  ' Bet number
+eb2  = Controls.AddTextBox(170, 250)  ' Bet amount
+btn1 = Controls.AddButton("ROLL", 240, 210)
+txt1 = Shapes.AddText("")             ' Formatting to show the result for each round
+txt2 = Shapes.AddText("CREDIT: 0")    ' To show the total credit
+Controls.SetSize(eb1, 60, 30)
+Controls.SetSize(eb2, 60, 30)
+Controls.SetSize(btn1, 60, 30)
+Shapes.Move(txt1, 245, 255)
+Shapes.Move(txt2, 185, 300)
+Controls.SetTextBoxText(eb1, 1)       ' Default: bet on #1
+Controls.SetTextBoxText(eb2, 2)       ' Default: $2
+
+credit = 0                            ' Total credit so far
+
+Controls.ButtonClicked = OnButtonClicked
+
+Sub OnButtonClicked
+  ReadInputs()
+  If (amt > 0) Then      ' If we have valid inputs
+    Roll()               ' Rolls the dice
+    Process()            ' Processes the player's bet
+  EndIf
+EndSub
+
+Sub ReadInputs
+  amt = 0                ' Also used to indictae valid inputs
+  num = Controls.GetTextBoxText(eb1)
+  If ((num < 1) Or (num > 6) Or (num <> Math.Floor(num))) Then
+    msg = "Please enter 1, 2, 3, 4, 5, or 6."
+    GraphicsWindow.ShowMessage(msg, "Invalid Number")
+    
+  Else                   ' The dice number is valid
+    ' Checks amount
+    amt = Controls.GetTextBoxText(eb2)
+    If ((amt <= 0) Or (amt > 10) Or (amt <> Math.Floor(amt))) Then
+      msg = "You can bet from $1 to $10."
+      GraphicsWindow.ShowMessage(msg, "Invalid Bet Amount")
+      amt = 0            ' To tell the caller that we don't have a valid entry
+    EndIf    
+  EndIf  
+EndSub
+
+Sub Roll
+  d1 = Math.GetRandomNumber(6)
+  d2 = Math.GetRandomNumber(6)
+  d3 = Math.GetRandomNumber(6)
+  
+  img1 = Program.Directory + "\d" + d1 + ".png"
+  img2 = Program.Directory + "\d" + d2 + ".png"
+  img3 = Program.Directory + "\d" + d3 + ".png"
+  
+  ' Redraws the background image
+  GraphicsWindow.DrawImage(imgPath, 0, 0)
+  
+  ' Draws the 3 dice
+  GraphicsWindow.DrawImage(img1, 128, 105)
+  GraphicsWindow.DrawImage(img2, 213, 105)
+  GraphicsWindow.DrawImage(img3, 297, 105)
+  
+EndSub
+
+Sub Process
+  win = 0
+  If (num = d1) Then
+    win = win + amt
+  EndIf
+
+  If (num = d2) Then
+    win = win + amt
+  EndIf
+  
+  If (num = d3) Then
+    win = win + amt
+  EndIf
+  
+  If (win = 0) Then
+    Shapes.SetText(txt1, "You lost $" + amt + ".")
+    credit = credit - amt
+  Else
+    Shapes.SetText(txt1, "You won $" + win + ".")
+    credit = credit + win
+  EndIf
+  
+  Shapes.SetText(txt2, "CREDIT: " + credit)
+  
+EndSub
