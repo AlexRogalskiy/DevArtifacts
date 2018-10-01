@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="author" content="Aurelio De Rosa">
+      <title>Web Notifications API Demo by Aurelio De Rosa</title>
+      <link rel="stylesheet" href="../shared.css" />
+      <style>
+         .form-notification
+         {
+            margin-top: 1em;
+         }
+
+         .notification-title,
+         .notification-body
+         {
+            width: 100%;
+         }
+
+         .notification-body
+         {
+            height: 5em;
+         }
+      </style>
+   </head>
+   <body>
+      <a href="https://www.sitepoint.com/introduction-web-notifications-api/">Go back to the article</a>
+
+      <h1>Web Notifications API</h1>
+
+      <span id="wn-unsupported" class="api-support hidden">API not supported</span>
+
+      <form id="custom-notification" class="form-notification" action="">
+         <label>
+            Title:
+            <input type="text" id="title" class="notification-title" name="title" />
+         </label>
+
+         <label>
+            Body:
+            <textarea id="body" class="notification-body" name="body"></textarea>
+         </label>
+
+         <div class="buttons-wrapper">
+            <button id="button-wn-show-preset" class="button">Show Preset Notification</button>
+            <input type="submit" id="button-wn-show-custom" class="button" value="Show Custom Notification" />
+         </div>
+      </form>
+
+      <h3>Log</h3>
+      <div id="log" class="log"></div>
+      <button id="clear-log" class="button">Clear log</button>
+
+      <small class="author">
+         Demo created by <a href="https://www.audero.it">Aurelio De Rosa</a>
+         (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>).<br />
+         This demo is part of the <a href="https://github.com/AurelioDeRosa/HTML5-API-demos">HTML5 API demos repository</a>.
+      </small>
+
+      <script>
+         if (!('Notification' in window)) {
+            document.getElementById('wn-unsupported').classList.remove('hidden');
+            document.getElementById('button-wn-show-preset').setAttribute('disabled', 'disabled');
+            document.getElementById('button-wn-show-custom').setAttribute('disabled', 'disabled');
+         } else {
+            var log = document.getElementById('log');
+            var notificationEvents = ['onclick', 'onshow', 'onerror', 'onclose'];
+
+            function notifyUser(event) {
+               var title;
+               var options;
+
+               event.preventDefault();
+
+               if (event.target.id === 'button-wn-show-preset') {
+                  title = 'Email received';
+                  options = {
+                     body: 'You have a total of 3 unread emails',
+                     tag: 'preset',
+                     icon: 'https://www.audero.it/images/favicon.be96d45a.ico'
+                  };
+               } else {
+                  title = document.getElementById('title').value;
+                  options = {
+                     body: document.getElementById('body').value,
+                     tag: "custom"
+                  };
+               }
+
+               Notification.requestPermission(function() {
+                  var notification = new Notification(title, options);
+
+                  notificationEvents.forEach(function(eventName) {
+                     notification[eventName] = function(event) {
+                        log.innerHTML = 'Event "' + event.type + '" triggered for notification "' + notification.tag +
+                                '"<br />' + log.innerHTML;
+                     };
+                  });
+               });
+            }
+
+            document.getElementById('button-wn-show-preset').addEventListener('click', notifyUser);
+            document.getElementById('button-wn-show-custom').addEventListener('click', notifyUser);
+
+            document.getElementById('clear-log').addEventListener('click', function() {
+               log.innerHTML = '';
+            });
+         }
+      </script>
+   </body>
+</html>

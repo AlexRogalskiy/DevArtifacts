@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="author" content="Aurelio De Rosa">
+      <title>getUserMedia Demo by Aurelio De Rosa</title>
+      <link rel="stylesheet" href="../shared.css" />
+      <style>
+         .video
+         {
+            display: block;
+            width: 100%;
+         }
+      </style>
+   </head>
+   <body>
+      <a href="https://www.sitepoint.com/introduction-getusermedia-api/">Go back to the article</a>
+
+      <h1>getUserMedia API</h1>
+      <span id="gum-unsupported" class="api-support hidden">API not supported</span>
+      <span id="gum-partially-supported" class="api-support hidden">API partially supported (video only)</span>
+
+      <video id="video" class="video" autoplay="autoplay" controls="controls"></video>
+      <div class="buttons-wrapper">
+         <button id="button-play-gum" class="button">Play demo</button>
+         <button id="button-stop-gum" class="button">Stop demo</button>
+      </div>
+
+      <small class="author">
+         Demo created by <a href="https://www.audero.it">Aurelio De Rosa</a>
+         (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>).<br />
+         This demo is part of the <a href="https://github.com/AurelioDeRosa/HTML5-API-demos">HTML5 API demos repository</a>.
+      </small>
+
+      <script>
+         var videoStream = null;
+         var video = document.getElementById('video');
+
+         // Test browser support
+         window.navigator = window.navigator || {};
+         navigator.getUserMedia = navigator.getUserMedia       ||
+                                  navigator.webkitGetUserMedia ||
+                                  navigator.mozGetUserMedia    ||
+                                  null;
+         if (navigator.getUserMedia === null) {
+            document.getElementById('gum-unsupported').classList.remove('hidden');
+            document.getElementById('button-play-gum').setAttribute('disabled', 'disabled');
+            document.getElementById('button-stop-gum').setAttribute('disabled', 'disabled');
+         } else {
+            // Opera <= 12.16 accepts the direct stream.
+            // More on this here: https://dev.opera.com/articles/view/playing-with-html5-video-and-getusermedia-support/
+            var createSrc = window.URL ? window.URL.createObjectURL : function(stream) {return stream;};
+
+            // Opera <= 12.16 supports video only.
+            var audioContext = window.AudioContext       ||
+                               window.webkitAudioContext ||
+                               null;
+            if (audioContext === null) {
+               document.getElementById('gum-partially-supported').classList.remove('hidden');
+            }
+
+            document.getElementById('button-play-gum').addEventListener('click', function() {
+
+               // Capture user's audio and video source
+               navigator.getUserMedia({
+                  video: true,
+                  audio: true
+               },
+               function(stream) {
+                  videoStream = stream;
+                  // Stream the data
+                  video.src = createSrc(stream);
+                  video.play();
+               },
+               function(error) {
+                  console.log('Video capture error: ' + error.code);
+               });
+            });
+            document.getElementById('button-stop-gum').addEventListener('click', function() {
+               // Pause the video
+               video.pause();
+               // Stop the stream
+               videoStream.stop();
+            });
+         }
+      </script>
+   </body>
+</html>

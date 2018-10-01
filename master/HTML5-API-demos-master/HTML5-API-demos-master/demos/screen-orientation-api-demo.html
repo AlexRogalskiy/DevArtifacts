@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="author" content="Aurelio De Rosa">
+      <title>Screen Orientation API Demo by Aurelio De Rosa</title>
+      <link rel="stylesheet" href="../shared.css" />
+   </head>
+   <body>
+      <a href="https://www.sitepoint.com/introducing-screen-orientation-api/">Go back to the article</a>
+
+      <h1>Screen Orientation API</h1>
+
+      <span id="so-unsupported" class="api-support hidden">API not supported</span>
+      <span id="soo-supported" class="api-support hidden">Old API version supported</span>
+
+      <div id="so-results">
+         <ul>
+            <li>
+               The orientation of the device is <span id="orientation" class="value">unavailable</span>.
+            </li>
+            <li class="new-api hidden">
+               The angle of the device is <span id="angle" class="value">unavailable</span>.
+            </li>
+         </ul>
+
+         <form>
+            <label for="orientation-type">Lock the device in:</label>
+            <select id="orientation-type">
+               <option value="any">any</option>
+               <option value="natural">natural</option>
+               <option value="portrait">portrait</option>
+               <option value="landscape">landscape</option>
+               <option value="portrait-primary">portrait-primary</option>
+               <option value="portrait-secondary">portrait-secondary</option>
+               <option value="landscape-primary">landscape-primary</option>
+               <option value="landscape-secondary">landscape-secondary</option>
+            </select>
+            <br />
+            <input class="button" id="lock-button" type="submit" value="Lock!" />
+            <input class="button" id="unlock-button" type="reset" value="Unlock!" />
+         </form>
+      </div>
+
+      <small class="author">
+         Demo created by <a href="https://www.audero.it">Aurelio De Rosa</a>
+         (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>).<br />
+         This demo is part of the <a href="https://github.com/AurelioDeRosa/HTML5-API-demos">HTML5 API demos repository</a>.
+      </small>
+
+      <script>
+         var prefix = 'orientation' in screen ? '' :
+                      'mozOrientation' in screen ? 'moz' :
+                      'msOrientation' in screen ? 'ms' :
+                      null;
+
+         if (prefix === null) {
+            document.getElementById('so-unsupported').classList.remove('hidden');
+
+            ['lock-button', 'unlock-button'].forEach(function(elementId) {
+               document.getElementById(elementId).setAttribute('disabled', 'disabled');
+            });
+         } else {
+            var select = document.getElementById('orientation-type');
+            var orientationElem = document.getElementById('orientation');
+            var onChangeHandler;
+
+            var Fullscreen = {
+               launch: function(element) {
+                  if(element.requestFullscreen) {
+                     element.requestFullscreen();
+                  } else if(element.mozRequestFullScreen) {
+                     element.mozRequestFullScreen();
+                  } else if(element.webkitRequestFullscreen) {
+                     element.webkitRequestFullscreen();
+                  } else if(element.msRequestFullscreen) {
+                     element.msRequestFullscreen();
+                  }
+               },
+               exit: function() {
+                  if(document.exitFullscreen) {
+                     document.exitFullscreen();
+                  } else if(document.mozCancelFullScreen) {
+                     document.mozCancelFullScreen();
+                  } else if(document.webkitExitFullscreen) {
+                     document.webkitExitFullscreen();
+                  } else if (document.msExitFullscreen) {
+                     document.msExitFullscreen();
+                  }
+               }
+            };
+
+            // Determine what version of the API is implemented
+            if ('orientation' in screen && 'angle' in screen.orientation) {
+               // The browser supports the new version of the API
+
+               // Show the properties supported by the new version
+               var newProperties = document.getElementsByClassName('new-api');
+               for(var i = 0; i < newProperties.length; i++) {
+                  newProperties[i].classList.remove('hidden');
+               }
+
+               document.getElementById('lock-button').addEventListener('click', function (event) {
+                  event.preventDefault();
+                  Fullscreen.launch(document.documentElement);
+                  screen.orientation.lock(select.value);
+               });
+
+               document.getElementById('unlock-button').addEventListener('click', function (event) {
+                  event.preventDefault();
+                  Fullscreen.exit();
+                  screen.orientation.unlock();
+               });
+
+               var angleElem = document.getElementById('angle');
+               onChangeHandler = function() {
+                  orientationElem.textContent = screen.orientation.type;
+                  angleElem.textContent = screen.orientation.angle;
+               };
+               screen.orientation.addEventListener('change', onChangeHandler);
+               onChangeHandler();
+            } else {
+               // The browser supports the old version of the API, so the user is informed of that
+               document.getElementById('soo-supported').classList.remove('hidden');
+
+               // Remove the options that aren't available in the old version of the API
+               var unavailableOptions = [
+                  document.querySelector('#orientation-type option[value="any"]'),
+                  document.querySelector('#orientation-type option[value="natural"]')
+               ];
+               for(var i = 0; i < unavailableOptions.length; i++) {
+                  unavailableOptions[i].parentElement.removeChild(unavailableOptions[i]);
+               }
+
+               document.getElementById('lock-button').addEventListener('click', function (event) {
+                  event.preventDefault();
+                  Fullscreen.launch(document.documentElement);
+
+                  setTimeout(function () {
+                     screen[prefix + (prefix === '' ? 'l' : 'L') + 'ockOrientation'](select.value);
+                  }, 1);
+               });
+               document.getElementById('unlock-button').addEventListener('click', function (event) {
+                  event.preventDefault();
+                  screen[prefix + (prefix === '' ? 'u' : 'U') + 'nlockOrientation']();
+                  Fullscreen.exit();
+               });
+
+               onChangeHandler = function() {
+                  var orientationProperty = prefix + (prefix === '' ? 'o' : 'O') + 'rientation';
+                  orientationElem.textContent = screen[orientationProperty];
+               };
+               screen.addEventListener(prefix + 'orientationchange', onChangeHandler);
+               onChangeHandler();
+            }
+         }
+      </script>
+   </body>
+</html>

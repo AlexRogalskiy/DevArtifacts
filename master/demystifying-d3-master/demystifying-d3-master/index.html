@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>The Wealth & Health of Nations</title>
+  <link rel="stylesheet" type="text/css" href="styles/base.css">
+  <style type="text/css">
+    body {
+      position: relative;
+    }
+
+    .big-year {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 60px;
+      font-family: sans-serif;
+      line-height: 60px;
+      color: darkgrey;
+    }
+
+    circle.nation {
+      stroke-width: 0.75px;
+      stroke: black;
+    }
+
+    text {
+      font: 10px sans-serif;
+    }
+
+    .axis path, .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+  </style>
+</head>
+<body>
+  <h2>Moving through time</h2>
+
+  <!-- libraries -->
+  <script src="js/d3.v3.min.js"></script>
+
+  <!-- main script -->
+  <script>
+
+  // define global variables
+  var nations;
+  var margin = { top : 5, right : 0, bottom : 25, left: 19.5 };
+  var width = 960 - margin.left - margin.right;
+  var height = 600 - margin.top - margin.bottom;
+  var startYear = 1820;
+  var finalYear = 2008;
+  var currentYear = startYear;
+  var indicators = ["income", "lifeExpectancy", "population"];
+  var updateInterval = 150;
+
+  // make a nation-based color scale
+  var nationColors = d3.scale.category10();
+
+  // define scales mapping income and life expectancy to x and y position
+  var incomeX = d3.scale.log().range([0, width]),
+      lifeY = d3.scale.linear().range([height, 0]),
+      populationR = d3.scale.sqrt().range([1, 40]);
+
+  // define axis helpers for x & y
+  var xAxis = d3.svg.axis()
+        .orient("bottom")
+        .ticks(12, d3.format(",d")),
+      yAxis = d3.svg.axis()
+        .orient("left");
+
+  // select the body element a la jquery
+  var body = d3.select("body");
+
+  // create some svg elements to hold our chart
+  var svg = body.append("svg")
+              .attr("height", height + margin.top + margin.bottom)
+              .attr("width", width + margin.left + margin.right);
+
+  var chart = svg.append("g")
+                .attr("transform", "translate("+margin.left+","+margin.top+")");
+
+  var circleGroup = chart.append("g").attr("class", "circles");
+
+  // append a div that will display the current year (in big font!)
+  var yearField = body.append("div").attr("class","big-year");
+
+  // load the data, calling back our handler function when ready
+  d3.json("data/nation_stats.json", function(items){
+    // store items for future reference
+    nations = items;
+
+    // set domain for color scale based on list of possible regions
+    nationColors.domain(calcRegions(nations));
+
+    // set domains for x and y scales based on the min and max values
+    // of income and life expectancy indicators across all nations and years
+    incomeX.domain(calcExtents(nations, "income"));
+    lifeY.domain(calcExtents(nations, "lifeExpectancy")).nice();
+    populationR.domain(calcExtents(nations, "population")).nice();
+
+    createAxes();
+    displayData();
+  });
+
+  function calcCurrentValues(nations, indicators, year){
+    nations.forEach(function(nation){
+      nation.current = {};
+      indicators.forEach(function(indicator){
+        nation.current[indicator] = getValueFor(nation, indicator, year);
+      });
+    });
+  }
+
+  function getValueFor(nation, indicator, year){
+    var items = nation[indicator].filter(function(d){
+      return d.year == year;
+    });
+
+    return items.length ? items[0].value : null;
+  }
+
+  function calcRegions(nations) {
+    return d3.nest()
+
+      // aggregate all rows into groups using the region as the group
+      // key
+      .key(function(d) {
+        return d.region;
+      })
+
+      // pass our nation rows
+      .entries(nations)
+
+      // iterate over the results and collect all the group keys, which
+      // map to our region names.
+      .map(function(d) {
+        return d.key;
+      });
+  }
+
+  function calcExtents(nations, indicator){
+
+    // get all indicator values for all nations into a single array
+    var allValues = nations.map(function(d){
+      return d[indicator];
+    }).reduce(function(values, current){
+       return values.concat(current)
+    }, []);
+
+    // return the extents
+    return d3.extent(allValues, function(d){ return d.value });
+  }
+
+  function createAxes() {
+    // set the scales on our axes, now that we have their domain ready.
+    xAxis.scale(incomeX);
+    yAxis.scale(lifeY);
+
+    // container for the x axis
+    chart.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0, " + height + ")")
+      .call(xAxis);
+
+    // container for the y axis
+    chart.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+  }
+
+  function plotCircles(nations) {
+    // determine which nations have valid data for this year
+    var validNations = nations.filter(function(d){
+      return d.current.income
+          && d.current.lifeExpectancy
+          && d.current.population;
+    });
+
+    // bind valid nation data to a d3 selection
+    var nationCircles = circleGroup.selectAll(".nation")
+      .data(validNations, function(d){
+        return d.name;
+      });
+
+    var newCircles = nationCircles.enter(),
+        oldCircles = nationCircles.exit();
+
+
+    // append a circle for every entering element
+    newCircles
+      .append("circle")
+      .classed("nation", true)
+      .attr("r", 1e-8)
+      .style("fill-opacity", 1e-8)
+      .style("fill", function(d) {
+        return nationColors(d.region);
+      });
+
+    nationCircles
+      .sort(function(a, b) {
+        return populationR(b.current.population) - populationR(a.current.population);
+      })
+      .transition()
+      .duration(updateInterval)
+      .attr("r", function(d) {
+        return populationR(d.current.population);
+      })
+      .attr("cx", function(d){
+        return incomeX(d.current.income);
+      })
+      .attr("cy", function(d) {
+        return lifeY(d.current.lifeExpectancy);
+      })
+      .style("fill-opacity", 1);
+
+    oldCircles
+      .transition()
+      .duration(updateInterval * 2/3)
+      .attr("r", 1e-8)
+      .style("fill-opacity", 1e-8)
+      .remove();
+  }
+
+  function displayData(){
+    // update year field
+    yearField.text(currentYear);
+
+    // calculate values for current year
+    calcCurrentValues(nations, indicators, currentYear);
+
+    // plot the current state of the scatterplot
+    plotCircles(nations);
+
+    // until we reach the final year, advance year
+    // and call this function again after the desired interval
+    if (++currentYear <= finalYear) {
+      setTimeout(displayData, updateInterval);
+    } else {
+      svg.selectAll(".nation").call(addInteractivity);
+    }
+  }
+
+  function addInteractivity(){
+    var circles = this;
+
+    circles.on("click", function(current){
+      var currentCircle = d3.select(this);
+
+      nations.forEach(function(d){
+        if (d != current) d.active = false;
+      })
+
+      current.active = !current.active;
+
+      circles
+        .style("stroke-width", function(d){
+          return d === current && d.active ? 5 : 0.5;
+        })
+        .style("opacity", function(d){ 
+          return current.active && d.region !== current.region ? 0.2 : 1;
+        });
+    })
+  }
+
+  </script>
+</body>
+</html>

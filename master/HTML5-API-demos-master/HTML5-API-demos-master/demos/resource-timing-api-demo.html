@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="author" content="Aurelio De Rosa">
+      <title>Resource Timing API Demo by Aurelio De Rosa</title>
+      <link rel="stylesheet" href="../shared.css" />
+   </head>
+   <body>
+      <a href="https://www.sitepoint.com/introduction-resource-timing-api/">Go back to the article</a>
+
+      <h1>Resource Timing API</h1>
+
+      <span id="rt-unsupported" class="hidden">API not supported</span>
+
+      <div>
+         <h2>Test 1 - jQuery</h2>
+
+         <ul id="script-list">
+         </ul>
+      </div>
+      <div>
+         <h2>Test 2 - Image</h2>
+
+         <img src="https://www.sitepoint.com/wp-content/themes/sitepoint/assets/svg/sitepoint.svg" />
+         <ul id="img-list">
+         </ul>
+      </div>
+
+      <small class="author">
+         Demo created by <a href="https://www.audero.it">Aurelio De Rosa</a>
+         (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>).<br />
+         This demo is part of the <a href="https://github.com/AurelioDeRosa/HTML5-API-demos">HTML5 API demos repository</a>.
+      </small>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script>
+         if ( !('performance' in window) ||
+                 !('getEntriesByType' in window.performance) ||
+                 !(window.performance.getEntriesByType('resource') instanceof Array)
+                 ) {
+            document.getElementById('rt-unsupported').classList.remove('hidden');
+         } else {
+            window.addEventListener('load', function() {
+               var resources = window.performance.getEntriesByType('resource');
+               for(var index in resources) {
+                  var list = '';
+                  for(var properties in resources[index]) {
+                     list += '<li>' + properties + ': <span class="value">' + resources[index][properties] + '</span></li>';
+                  }
+                  document.getElementById(resources[index].initiatorType + '-list').innerHTML = list;
+               }
+            });
+         }
+      </script>
+   </body>
+</html>

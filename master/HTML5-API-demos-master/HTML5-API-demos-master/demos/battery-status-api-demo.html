@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="author" content="Aurelio De Rosa">
+      <title>Battery Status API Demo by Aurelio De Rosa</title>
+      <link rel="stylesheet" href="../shared.css" />
+      <style>
+         .bs-info
+         {
+            font-weight: bold;
+         }
+      </style>
+   </head>
+   <body>
+      <a href="https://code.tutsplus.com/tutorials/html5-battery-status-api--mobile-22795">Go back to the article</a>
+
+      <h1>Battery Status API</h1>
+
+      <p hidden class="js-api-support">API not supported</p>
+      <p hidden class="js-old-api-support">Old API version supported</p>
+
+      <div class="js-api-info">
+         <p>Status:</p>
+
+         <ul>
+            <li>Is battery in charge? <span id="in-charge" class="bs-info">unavailable</span></li>
+            <li>Battery will be charged in <span id="charging-time" class="bs-info">unavailable</span> seconds</li>
+            <li>Battery will be discharged in <span id="discharging-time" class="bs-info">unavailable</span> seconds</li>
+            <li>Current battery level: <span id="battery-level" class="bs-info">unavailable</span>/1</li>
+         </ul>
+
+         <h2>Log</h2>
+         <div id="log" class="log"></div>
+         <button id="clear-log" class="button">Clear log</button>
+      </div>
+
+      <small class="author">
+         Demo created by <a href="https://www.audero.it">Aurelio De Rosa</a>
+         (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>).<br />
+         This demo is part of the <a href="https://github.com/AurelioDeRosa/HTML5-API-demos">HTML5 API demos repository</a>.
+      </small>
+
+      <script>
+         function updateBatteryInfo(battery) {
+            document.getElementById('in-charge').innerHTML = battery.charging ? 'Yes' : 'No';
+            document.getElementById('charging-time').innerHTML = battery.chargingTime;
+            document.getElementById('discharging-time').innerHTML = battery.dischargingTime;
+            document.getElementById('battery-level').innerHTML = battery.level;
+         }
+
+         function eventHandler(event) {
+            var log = document.getElementById('log');
+
+            log.innerHTML = 'Event "' + event.type + '" fired<br />' + log.innerHTML;
+            updateBatteryInfo(event.target);
+         }
+
+         function addBatteryEvents(battery) {
+            var events = [
+               'chargingchange',
+               'chargingtimechange',
+               'dischargingtimechange',
+               'levelchange'
+            ];
+
+            for (var i = 0; i < events.length; i++) {
+               battery.addEventListener(events[i], eventHandler);
+            }
+         }
+
+         function enableClearLogButton() {
+            document.getElementById('clear-log').addEventListener('click', function() {
+               document.getElementById('log').innerHTML = '';
+            });
+         }
+
+         window.navigator = window.navigator || {};
+
+         var isOldApiSupported = 'battery' in window.navigator;
+         var isNewApiSupported = 'getBattery' in window.navigator;
+
+         if (!isOldApiSupported && !isNewApiSupported) {
+            document.querySelector('.js-api-support').removeAttribute('hidden');
+            document.querySelector('.js-api-info').setAttribute('hidden', '');
+         } else if (isOldApiSupported) {
+            updateBatteryInfo(navigator.battery);
+            addBatteryEvents(navigator.battery);
+            enableClearLogButton();
+         } else {
+            navigator
+               .getBattery()
+               .then(function(battery) {
+                  updateBatteryInfo(battery);
+                  addBatteryEvents(battery);
+               });
+            enableClearLogButton();
+         }
+      </script>
+   </body>
+</html>

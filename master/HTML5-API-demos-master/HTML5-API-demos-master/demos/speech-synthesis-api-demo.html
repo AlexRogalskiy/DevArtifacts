@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="author" content="Aurelio De Rosa">
+      <title>Speech Synthesis API Demo by Aurelio De Rosa</title>
+      <link rel="stylesheet" href="../shared.css" />
+   </head>
+   <body>
+      <a href="https://www.sitepoint.com/talking-web-pages-and-the-speech-synthesis-api/">Go back to the article</a>
+
+      <h1>Speech Synthesis API</h1>
+
+      <p hidden class="js-api-support">API not supported</p>
+
+      <h2>Play area</h2>
+      <form action="" method="get">
+         <label for="text">Text:</label>
+         <textarea id="text" class="log"></textarea>
+         <div class="field-wrapper">
+            <label for="voice">Voice:</label>
+            <select id="voice"></select>
+         </div>
+         <div class="field-wrapper">
+            <label for="rate">Rate (0.1 - 10):</label>
+            <input type="number" id="rate" min="0.1" max="10" value="1" step="any" />
+         </div>
+         <div class="field-wrapper">
+            <label for="pitch">Pitch (0.1 - 2):</label>
+            <input type="number" id="pitch" min="0.1" max="2" value="1" step="any" />
+         </div>
+         <div class="buttons-wrapper">
+            <button type="button" id="button-speak" class="button">Speak</button>
+            <button type="button" id="button-stop" class="button">Stop</button>
+            <button type="button" id="button-pause" class="button">Pause</button>
+            <button type="button" id="button-resume" class="button">Resume</button>
+         </div>
+      </form>
+
+      <h2>Log</h2>
+      <div id="log" class="log"></div>
+      <button id="clear-all" class="button">Clear log</button>
+
+      <small class="author">
+         Demo created by <a href="https://www.audero.it">Aurelio De Rosa</a>
+         (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>).<br />
+         This demo is part of the <a href="https://github.com/AurelioDeRosa/HTML5-API-demos">HTML5 API demos repository</a>.
+      </small>
+
+      <script>
+         function injectVoices(voicesElement, voices) {
+            voicesElement.innerHTML = voices
+               .map(function(voice) {
+                  var option = document.createElement('option');
+
+                  option.value = voice.lang;
+                  option.textContent = voice.name + (voice.default ? ' (default)' : '');
+                  option.setAttribute('data-voice-uri', voice.voiceURI);
+
+                  return option;
+               })
+               .map(function(option) {
+                  return option.outerHTML;
+               })
+               .join('');
+         }
+
+         function logEvent(string) {
+            var log = document.getElementById('log');
+
+            log.innerHTML = string + '<br />' + log.innerHTML;
+         }
+
+         if (!('SpeechSynthesisUtterance' in window)) {
+            document.querySelector('.js-api-support').removeAttribute('hidden');
+            [].forEach.call(document.querySelectorAll('form button'), function(button) {
+               button.setAttribute('disabled', '');
+            });
+         } else {
+            var text = document.getElementById('text');
+            var voices = document.getElementById('voice');
+            var rate = document.getElementById('rate');
+            var pitch = document.getElementById('pitch');
+
+            injectVoices(voices, speechSynthesis.getVoices());
+
+            speechSynthesis.addEventListener('voiceschanged', function onVoiceChanged() {
+               speechSynthesis.removeEventListener('voiceschanged', onVoiceChanged);
+
+               injectVoices(voices, speechSynthesis.getVoices());
+            });
+
+            document.getElementById('button-speak').addEventListener('click', function() {
+               var selectedOption = voices.options[voices.selectedIndex];
+               var selectedVoice = speechSynthesis
+                  .getVoices()
+                  .filter(function(voice) {
+                     return voice.voiceURI === selectedOption.getAttribute('data-voice-uri');
+                  })
+                  .pop();
+
+               // Create the utterance object setting the chosen parameters
+               var utterance = new SpeechSynthesisUtterance();
+               utterance.text = text.value;
+               utterance.voice = selectedVoice;
+               utterance.lang = selectedVoice.lang;
+               utterance.rate = rate.value;
+               utterance.pitch = pitch.value;
+
+               utterance.addEventListener('start', function() {
+                  logEvent('Speaker started');
+               });
+               utterance.addEventListener('end', function() {
+                  logEvent('Speaker finished');
+               });
+
+               speechSynthesis.speak(utterance);
+            });
+
+            document.getElementById('button-stop').addEventListener('click', function() {
+               speechSynthesis.cancel();
+               logEvent('Speaker stopped');
+            });
+
+            document.getElementById('button-pause').addEventListener('click', function() {
+               speechSynthesis.pause();
+               logEvent('Speaker paused');
+            });
+
+            document.getElementById('button-resume').addEventListener('click', function() {
+               speechSynthesis.resume();
+               logEvent('Speaker resumed');
+            });
+
+            document.getElementById('clear-all').addEventListener('click', function() {
+               document.getElementById('log').textContent = '';
+            });
+         }
+      </script>
+   </body>
+</html>

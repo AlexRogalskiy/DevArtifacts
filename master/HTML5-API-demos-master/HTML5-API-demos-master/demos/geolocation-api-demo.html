@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="author" content="Aurelio De Rosa">
+      <title>Geolocation API Demo by Aurelio De Rosa</title>
+      <link rel="stylesheet" href="../shared.css" />
+      <style>
+         .g-info
+         {
+            font-weight: bold;
+         }
+      </style>
+   </head>
+   <body>
+      <a href="https://code.tutsplus.com/tutorials/an-introduction-to-the-geolocation-api--cms-20071">Go back to the article</a>
+
+      <span id="g-unsupported" class="api-support hidden">API not supported</span>
+
+      <h1>Geolocation API</h1>
+      <div class="buttons-wrapper">
+         <button id="button-get-position" class="button">Get current position</button>
+         <button id="button-watch-position" class="button">Watch position</button>
+         <button id="button-stop-watching" class="button">Stop watching position</button>
+      </div>
+
+      <h2>Information</h2>
+      <div id="g-information">
+         <ul>
+            <li>
+               Your position is <span id="latitude" class="g-info">unavailable</span>° latitude,
+               <span id="longitude" class="g-info">unavailable</span>° longitude (with an accuracy of
+               <span id="position-accuracy" class="g-info">unavailable</span> meters)
+            </li>
+            <li>
+               Your altitude is <span id="altitude" class="g-info">unavailable</span> meters
+               (with an accuracy of <span id="altitude-accuracy" class="g-info">unavailable</span> meters)
+            </li>
+            <li>You're <span id="heading" class="g-info">unavailable</span>° from the True north</li>
+            <li>You're moving at a speed of <span id="speed" class="g-info">unavailable</span>° meters/second</li>
+            <li>Data updated at <span id="timestamp" class="g-info">unavailable</span></li>
+         </ul>
+      </div>
+
+      <h3>Log</h3>
+      <div id="log"></div>
+      <button id="clear-log" class="button">Clear log</button>
+
+      <small class="author">
+         Demo created by <a href="https://www.audero.it">Aurelio De Rosa</a>
+         (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>).<br />
+         This demo is part of the <a href="https://github.com/AurelioDeRosa/HTML5-API-demos">HTML5 API demos repository</a>.
+      </small>
+
+      <script>
+         if (!(window.navigator && window.navigator.geolocation)) {
+            document.getElementById('g-unsupported').classList.remove('hidden');
+            ['button-get-position', 'button-watch-position', 'button-stop-watching'].forEach(function(elementId) {
+               document.getElementById(elementId).setAttribute('disabled', 'disabled');
+            });
+         } else {
+            var log = document.getElementById('log');
+            var watchId = null;
+            var positionOptions = {
+               enableHighAccuracy: true,
+               timeout: 10 * 1000, // 10 seconds
+               maximumAge: 30 * 1000 // 30 seconds
+            };
+
+            function success(position) {
+               document.getElementById('latitude').innerHTML = position.coords.latitude;
+               document.getElementById('longitude').innerHTML = position.coords.longitude;
+               document.getElementById('position-accuracy').innerHTML = position.coords.accuracy;
+
+               document.getElementById('altitude').innerHTML = position.coords.altitude ?  position.coords.altitude :
+                       'unavailable';
+               document.getElementById('altitude-accuracy').innerHTML = position.coords.altitudeAccuracy ?
+                       position.coords.altitudeAccuracy :
+                       'unavailable';
+               document.getElementById('heading').innerHTML = position.coords.heading ? position.coords.heading :
+                       'unavailable';
+               document.getElementById('speed').innerHTML = position.coords.speed ? position.coords.speed :
+                       'unavailable';
+
+               document.getElementById('timestamp').innerHTML = (new Date(position.timestamp)).toString();
+
+               log.innerHTML = 'Position succesfully retrieved<br />' + log.innerHTML;
+            }
+
+            function error(positionError) {
+               log.innerHTML = 'Error: ' + positionError.message + '<br />' + log.innerHTML;
+            }
+
+            document.getElementById('button-get-position').addEventListener('click', function() {
+               navigator.geolocation.getCurrentPosition(success, error, positionOptions);
+            });
+
+            document.getElementById('button-watch-position').addEventListener('click', function() {
+               watchId = navigator.geolocation.watchPosition(success, error, positionOptions);
+            });
+
+            document.getElementById('button-stop-watching').addEventListener('click', function() {
+               if (watchId !== null) {
+                  navigator.geolocation.clearWatch(watchId);
+                  log.innerHTML = 'Stopped watching position<br />' + log.innerHTML;
+               }
+            });
+
+            document.getElementById('clear-log').addEventListener('click', function() {
+               log.innerHTML = '';
+            });
+         }
+      </script>
+   </body>
+</html>
