@@ -1,0 +1,29 @@
+<!-- 
+This (app/views/layouts/album.html) 
+is a "wrapper" that encloses all views for the 
+album controller.
+-->
+
+<html lang="en-us">
+
+<head>
+
+<title>
+Album: <%= page_title %>
+</title>
+
+<%= stylesheet_link_tag('master') %>
+<%= stylesheet_link_tag(controller.action_name) if controller %>
+
+</head>
+
+<body>
+
+<!-- 
+"yield :layout" outputs the view's results, whichever it is.
+-->
+<%= yield :layout %>
+
+</body>
+
+</html>

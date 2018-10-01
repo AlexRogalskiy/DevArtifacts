@@ -1,0 +1,64 @@
+<!--
+image_tag is built-in to Rails.
+prev_id and next_id are in app/models/photo.rb
+show_photo is in app/helpers/album_helper.rb
+-->
+
+<table id="dark_bg">
+  <tr>
+    <td>
+      <div class="photo">
+			<%= show_photo( @photo ) %>
+      </div>
+    </td>
+
+    <td class="desc_wrapper">
+      <div class="description">
+        <h1><%= h(@photo.title) %></h1>
+        <p class="description"><%= @photo.description %></p>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<hr style="clear:both;" />
+
+<ul class="navlinks">
+  <li><%= 
+		link_to 'First',		
+			:action => 'show', 
+			:id     => Photo.minimum(:id) 
+	%></li>
+
+	<li><%= 
+		link_to 'Previous', 
+			:action => 'show', 
+			:id     => @photo.prev_id %></li>
+
+	<li><%= 
+		link_to 'Next',	
+			:action => 'show', 
+			:id     => @photo.next_id     %></li>
+
+	<li><%= 
+		link_to 'Last',	
+			:action => 'show', 
+			:id     => Photo.maximum(:id) %></li>
+  
+	<!-- You have the option of some GUI helpers in the optional parameters hash -->
+	
+	<!-- like :confirm for a JS confirm box -->
+	<li><%= link_to( 
+		'Full List', 
+		{ :action  => 'index' }, 
+		{ :confirm => AlbumHelper::CONFIRM_MESSAGE } 
+	) %></li>
+	
+	<!-- 
+		See RSS[:link_options] in app/helpers/footer_helper.rb
+		for how to link across multiple controllers
+	-->
+  
+</ul>
+
+<%= show_footer %>

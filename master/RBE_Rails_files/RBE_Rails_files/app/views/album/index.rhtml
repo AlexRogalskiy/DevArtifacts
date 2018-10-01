@@ -1,0 +1,41 @@
+<!--
+row_class_from_index() 
+show_listing_header_columns()
+show_thumbnail_for_list()
+all in app/helpers/album_helper.rb
+
+@photos derived from AlbumController's index method
+
+-->
+
+<h1>Listing photos</h1>
+
+<table>
+
+	<%= show_listing_header_columns() %>
+ 
+	<% @photos.each_with_index do |photo,i| -%>
+  <tr>
+    
+		<td class="<%= row_class_from_index(i) %>">
+      <%= 
+				link_to(
+					title_with_thumbnail(photo),
+					:action => 'show', 
+					:id => photo.id
+				)
+      %>
+    </td>
+    
+		<td class="<%= row_class_from_index(i) %>">
+      <%= photo.description %>
+    </td>
+  
+	</tr>
+	<% end %>
+
+</table>
+
+<hr />
+
+<%= show_footer %>
