@@ -1,0 +1,171 @@
+//Author: Brady Sammons
+//URL: www.bradysammons.com
+@import "compass/reset";
+@import "compass/css3";
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,500);
+
+*{
+	@include box-sizing(border-box);
+}
+
+// ////////////////////////////////////////////
+// page Styling
+// ////////////////////////////////////////////
+body{
+	background-color: #ecf0f1;
+  font-family: 'Roboto', sans-serif;
+	font-size: 1em;
+  
+}
+.container{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+header{
+  padding: 3.5rem 10%;
+  background-color: #fff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  svg{
+    max-width: 20px;
+    display: inline-block;
+    fill: #1abc9c;
+     vertical-align: -2px;
+  }
+  h1, h2, p{
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  h1{
+    font-weight: 300;
+    color: #1abc9c;
+    letter-spacing: -0.1rem;
+    font-size: 2rem;
+    text-shadow:0 1px 0 rgba(255,255,255,.8);
+  }
+  h2{
+    font-size: .8rem;
+    margin-bottom: 0;
+    span{
+      font-weight: 300;
+      display: inlie-block;
+      padding: 0 8px;
+      font-size: 80%;
+      color: #fff;
+      @include border-radius(4px);
+      &.js{
+        background-color: #E4A128;        
+      }
+      &.css{
+        background-color: #0070BB;
+      }
+      &.heart{
+        background-color: #EB304A;
+      }
+    }
+  }
+}
+p{
+  line-height:1.5;
+  text-align: left;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+// ////////////////////////////////////////////
+// Card Deck Styling
+// ////////////////////////////////////////////
+$primary: #3498db;
+.card-drop{
+	position: relative;
+	margin: 0 auto;
+	@include perspective(800px);
+  background: rgba(0,0,0,.1);
+
+  // style all links 
+	a{
+		display: block;
+		width: 100%;
+		padding:20px 0 20px 20px;
+		height: 60px;
+		text-decoration: none;
+		color: darken($primary, 10%);
+		background-color: #fafafa;
+		border: 1px solid #ddd;
+		@include transition(all .3s ease-out );
+		i{
+			display: inline-block;
+			width: 20px;
+		}
+	}
+  
+  // specific stlye for the toggle link
+	>a.toggle{
+		position: relative;
+		z-index: 100;
+		@include backface-visibility(hidden);
+		@include transform-style(preserve-3d);
+		@include transform-origin(50%, 0%);
+		@include transition(.1s linear);
+		&:active{
+			 @include rotateX(60deg);
+      &:after{
+        @include rotateX(180deg);
+      }
+		}
+    &:before, 
+    &:after{
+      content: "";
+      position: absolute;
+    }
+		&:before{
+			right: 25px;
+			top: 50%;
+      margin-top: -2.5px;
+      border-left: 6px solid transparent;
+	    border-right: 6px solid transparent;
+	    border-top: 6px solid rgba(0,0,0,.8);
+		}
+    &.active{
+      &:before{
+        transform: rotate(180deg);
+       }
+    }
+	}
+	ul{
+		position: absolute;
+		height: 100%;
+		top: 0;
+		display: block;
+		width: 100%;
+		li{
+			margin: 0 auto;
+			@include transition(all, .3s ease-out);
+			position: absolute;
+			top: 0;
+			z-index: 0;
+			width:100%;
+      a{
+        border-top: none;
+      }
+      a:hover{
+			  background-color: lighten($primary, 5%);
+			  color: lighten($primary, 44%);
+		  }
+			&.active{
+				a{
+					color: #fff;
+					background-color: darken($primary, 5%);
+					cursor: default;
+				}
+			}
+			&.closed{
+				a:hover{
+					cursor: default;
+					background-color: $primary;
+				}
+			}
+		}
+	}
+}

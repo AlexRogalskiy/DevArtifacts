@@ -1,0 +1,210 @@
+@import "compass";
+@import "compass/reset";
+@import "compass/css3";
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
+
+*{
+  @include box-sizing(border-box);
+}
+html, 
+body{
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+body{
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  @include background-image(linear-gradient(to bottom right,#2CCABA, #1EC68D));
+  color: #fff;
+}
+.confirm{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #2ecc71;
+  background-color: #fff;
+  z-index: 100;
+  text-align: center;
+  @include scale(0);
+  @include opacity(0);
+  @include transition(all .4s ease);
+  &.show{
+     @include scale(1);
+     @include opacity(1);
+  }
+  .close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: rgba(0,0,0,.2);
+    font-size: 60px;
+    display: inline-block;
+    padding: 20px;
+    cursor: pointer;
+    &:hover{
+      color: rgba(0,0,0,.7);
+    }
+  }
+  h1{
+    margin: 0 auto;
+    margin-top: 35vh;
+    display:inline-block;
+    font-size: 48px;
+    line-height: 1;
+    .fa{
+     display:block; 
+    }
+  }
+}
+form{
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.row{
+  >div{
+    width: 33.33333333333333%;
+    display:inline-block;
+    margin-right:-5px;
+    position: relative;
+    &:after{
+      content: '';
+      border-right: 1px solid rgba(255,255,255,.7);
+      position: absolute;
+      top: 3px;
+      height: 75%;
+      right: -3px;
+    }
+    &:last-child:after{
+      display:none;
+    }
+  }
+}
+h1{
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 3;
+  margin-bottom: 25px;
+  text-align: center;
+  .fa-camera-retro{
+    $size: 100px;
+    width: $size;
+    height: $size;
+    line-height: $size;
+    border: 2px solid #fff;
+    cursor: pointer;
+    @include border-radius(50%);
+    @include transition(background-color .3s ease);
+    &:hover{
+      background-color: rgba(255,255,255,.2);
+    }
+  }
+}
+
+.btn{
+  font-family: 'Lato', sans-serif;
+  border: none;
+  width: 100%;
+  display:block;
+  padding: 15px;
+  background-color: #fff;
+  font-size: 18px;
+  color: #2ecc71;
+  cursor: pointer;
+  @include transition(all .3s ease);
+  @include border-radius(0);
+  &:hover,
+  &:focus{
+    color: #333;
+    outline: none;
+  }
+}
+#clear{
+  background: none;
+  color: #fff;
+  font-weight: 100;
+}
+
+//Float Label main style
+.float-label{
+  position: relative;
+  margin-bottom: 10px;
+  label,
+  & input,
+  & select,
+  & textarea{
+    font-family: 'Lato', sans-serif;  
+    font-size: 24px;
+    font-weight: 300;
+  }
+  & input,
+  & select,
+  & textarea{
+    //Reset styles
+    -webkit-appearance: none;
+    outline:none;
+    border: none;
+    width: 100%;
+    display:block;
+    cursor: pointer;
+    @include border-radius(0);
+    
+    //Main style
+    font-family: 'Lato', sans-serif;  
+    font-size: 24px;
+    border-bottom: 1px solid rgba(255,255,255,.7);
+    background: transparent;
+    color: #fff;
+    padding: 15px 20px 10px 10px;
+  }
+  label{
+    position: absolute;
+    left: 10px;
+    top: 18px;
+    color: #fff;
+    pointer-events: none;
+    @include transition(all .2s ease);
+    &.active{
+      font-size: 14px;
+      font-weight: 400;
+      top:-1px;
+      color: rgba(0,0,0,.7);
+    }
+  }
+  textarea{
+    height: 100px;
+    resize: none;
+  }
+  //position Icons
+  .fa{
+     position: absolute;
+     right: 5px;
+     bottom: 20px;
+     font-size: 12px;
+    &.eye{
+      right:0;
+      bottom:2px;
+      z-index: 10;
+      padding: 20px;
+      padding-right:0;
+      font-size: 16px;
+      cursor:pointer;
+      color: rgba(0,0,0,.5);
+      &.show{
+        color: rgba(255,255,255,.9);
+      }
+    }
+  }
+}
+
+@media(max-width: 320px) {
+    .row > div{
+      display: block;
+      width: auto;
+      &:after{
+        display:none;
+      }
+    }   
+}
+
