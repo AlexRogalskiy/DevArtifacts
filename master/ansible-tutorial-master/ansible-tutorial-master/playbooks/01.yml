@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  become: true
+  become_method: sudo
+  
+  tasks:
+  - name: Create an empty file
+    file: path=/etc/foo.conf state=touch mode=0644
+  - name: Install nginx
+    apt:
+      pkg: nginx
+      state: installed
+      update-cache: yes

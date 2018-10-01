@@ -1,0 +1,94 @@
+Jupiter README
+==============
+
+1 - Introduction
+2 - Roadmap
+3 - Building Jupiter 
+4 - Installing Jupiter 
+5 - Users Guide
+6 - Developers Guide
+7 - FAQ
+
+1 - Introduction
+-----------------
+Jupiter is an effort to create a world-class standards-based utility to 
+print "Hello world" stuff to the screen.
+
+2 - Roadmap
+------------
+
+3 - Building Jupiter
+--------------------
+Building Jupiter from the Subversion repository source code requires the 
+proper installation of automake, autoconf and libtool. Building Jupiter
+from a distribution source tarball does NOT require Autotools or libtool 
+to be installed.
+
+To build Jupiter use the following steps:
+
+   1) Unzip and untar the distribution jupiter-x.y.tar.bz2 source tarball:
+   
+      $ tar -jxvf jupiter-x.y.tar.bz2
+      $ cd jupiter-x.y
+ OR
+
+   1) Use a Subversion client to retrieve the source code anonymously from
+      the project site. Then run the autoreconf utility at the root of
+      the jupiter directory to generate a configure script.
+
+      $ svn co https://path.to.jupiter.repository/svnroot/jupiter/trunk jupiter
+      $ cd jupiter/jupiter
+      $ autoreconf -i
+          
+   2) Run the configure script to create Jupiter Makefiles. If the configure
+      script fails... now you have a problem.
+     
+      $ ./configure --help          # (for available configuration options)
+      $ ./configure [--with-option1][--with-the-other-option]
+
+      NOTE: You may also run configure from a different directory in order to
+      keep your distribution clean, e.g.:
+
+      $ mkdir build
+      $ chdir build
+      $ ../configure [--with-option1][--with-the-other-option]
+          
+   3) Run the top level Makefile:
+    
+      $ make
+          
+   4) If the make is successful, look for the following binaries:
+      
+      jupiter/.libs/jupiter
+
+Additional build targets are listed in the top level Makefile.am. These
+include:
+
+      $ make srcrpm                 # builds a standard source rpm
+      $ make rpms                   # builds both source and binary rpms
+
+4 - Installing Jupiter
+----------------------
+To install Jupiter build the install target in the top level Makefile
+    
+      $ make install
+    
+Installation of Jupiter creates the following files:
+    
+      /usr/bin/jupiter
+
+5 - Jupiter Users Guide 
+-----------------------
+
+[TBD]
+
+6 - Jupiter Programmers Guide
+-----------------------------
+
+[TBD]
+    
+7 - FAQ
+--------
+
+[TBD]
+

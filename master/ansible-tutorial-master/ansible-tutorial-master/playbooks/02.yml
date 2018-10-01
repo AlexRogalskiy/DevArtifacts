@@ -1,0 +1,16 @@
+---
+- hosts: webservers
+  become: true
+  become_method: sudo
+  vars:
+    file_path: /etc/bar.conf
+    package: wget
+  
+  tasks:
+  - name: Create an empty file
+    file: path={{ file_path }} state=touch mode=0644
+  - name: Install a package
+    apt:
+      pkg: "{{ package }}"
+      state: installed
+      update-cache: yes

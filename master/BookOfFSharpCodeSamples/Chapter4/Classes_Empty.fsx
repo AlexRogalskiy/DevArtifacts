@@ -1,0 +1,1 @@
+﻿type ConstructorlessClass = class end

@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  become: true
+  become_method: sudo
+  vars:
+    file_path: /etc/qux.conf
+  roles:
+    - create-file
+    - install-package
