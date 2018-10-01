@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="document">
+<head>
+
+<meta charset="utf-8" />
+<title>User profile ✿ dabblet.com</title>
+
+<link rel="stylesheet" href="/style/global.css" />
+<link rel="stylesheet" href="style.css" />
+<script src="/code/prefixfree.min.js"></script>
+
+<!--
+<script>window._gaq = [['_setAccount', 'UA-27750908-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+-->
+
+</head>
+<body>
+
+<header>
+	<h1><a href="/">dabblet</a></h1>
+	
+	<div class="with-inactive-dropdown">
+		<a id="currentuser" target="_blank" class="user button">Log in</a>
+		<menu class="dropdown">
+			<a href="/user/" target="_blank" class="command my-profile">My profile</a>
+			<a href="/" onclick="Dabblet.user.logout()" class="command">Log out</a>
+		</menu>
+	</div>
+	
+	<div class="controls-group">
+		<a href="/help/" class="button" title="Help &amp; credits" target="_blank">?</a>
+		
+		<div class="tabs">
+			<a href="#" class="tab">
+				Dabblets
+			</a>
+			
+			<a href="#following" class="tab">
+				Following
+				<span class="count">0</span>
+			</a>
+			
+			<a href="#followers" class="tab">
+				Followers
+				<span class="count">0</span>
+			</a>
+		</div>
+	</div>
+	
+</header>
+
+<div role="main">
+	<section id="profile" class="vcard">
+		<img class="photo" />
+		<h2>
+			<span class="fn"></span>
+			<span class="nickname"></span>
+			<button class="follow" onclick="UserProfile.setFollow(true)">Follow</button>
+			<button class="unfollow" onclick="UserProfile.setFollow(false)">Unfollow</button>
+			<a href="https://github.com/settings/profile" class="button edit-profile" target="_blank">Edit your profile</a>
+		</h2>
+		<p class="label adr"></p>
+		<p class="online">
+			<a class="url"></a>
+			<span class="separator">●</span>
+			<a class="github"></a>
+		</p>
+		<p class="note"></p>
+	</section>
+	
+	<section id="dabblets" class="page" data-next="1">
+		<button class="more" onclick="UserProfile.loadDabblets()">More</button>
+	</section>
+	
+	<section id="following" class="page" data-next="1">
+		<button class="more" onclick="UserProfile.loadFollowing()">More</button>
+	</section>
+	
+	<section id="followers" class="page" data-next="1">
+		<button class="more" onclick="UserProfile.loadFollowers()">More</button>
+	</section>
+</div>
+
+<footer></footer>
+<script src="/code/utopia.js"></script>
+<script>!!document.createElement("a").classList || $u.script("/code/classList.min.js");</script>
+<script src="/code/global.js"></script>
+<script src="user-profile.js"></script>
+
+</body>
+</html>

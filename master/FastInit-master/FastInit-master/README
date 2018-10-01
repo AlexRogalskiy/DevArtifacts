@@ -1,0 +1,6 @@
+To use it you need the fastinit.js file and In your page you call FastInit.addOnLoad with a reference or 2 to your onload functions like this:
+
+FastInit.addOnLoad(yourFunction, anotherFunction, yetAnotherFunction);
+All functions are called in the order in which they were added. You can call addOnLoad as many times as you like. Functions loaded before the DOM is loaded are placed in the queue, and called in order after the 'DOM loaded' event occurs. Those loaded after the DOM is loaded are executed immediately.
+
+It will also default to the standard handlers if the browser doesn't support either of the faster methods.
