@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Material Design Gauge</title>
+        <meta name="description"
+              content="Simple Material Design gauge control implemented in pure CSS/HTML">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="material-gauge.css">
+		<style>
+
+			body {
+				color: rgba(0, 0, 0, 0.541176);
+				font-family: Roboto, Helvetica, Arial, sans-serif;
+				font-size: 24px;
+				font-weight: normal;
+				height: 32px;
+				letter-spacing: normal;
+				line-height: 32px;
+				padding-top: 100px;
+			}
+
+		</style>
+    </head>
+    <body>
+    	<div class="gauge gauge--liveupdate" id="gauge">
+        	<div class="gauge__container">
+        		<div class="gauge__marker"></div>
+        		<div class="gauge__background"></div>
+        		<div class="gauge__center"></div>
+        		<div class="gauge__data"></div>
+        		<div class="gauge__needle"></div>
+        	</div>
+        	<div class="gauge__labels mdl-typography__headline">
+            	<span class="gauge__label--low">No</span>
+            	<span class="gauge__label--spacer"></span>
+            	<span class="gauge__label--high">Yes</span>
+        	</div>
+    	</div>
+        <script src="material-gauge.js"></script>
+		<script>
+
+			var gauge = new Gauge(document.getElementById("gauge"));
+
+			gauge.value(0.75);
+
+		</script>
+	</body>
+</html>

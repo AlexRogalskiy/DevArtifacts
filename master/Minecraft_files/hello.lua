@@ -1,0 +1,5 @@
+print('Hello, world!')
+print('I am ' .. os.getComputerLabel())
+print('What is your name?')
+name = io.read()
+textutils.slowPrint('Nice to meet you, ' .. name)
