@@ -1,0 +1,155 @@
+@import "compass/css3";
+
+@import "compass/reset";
+@import "compass/css3";
+
+//-----------------
+//Change Color Here
+$menu_Color: #519799;
+//-----------------
+
+*{
+	@include box-sizing(border-box);
+}
+body{
+	padding-top: 60px;
+	font-family: helvetica, arial, sans-serif;
+	background-color: lighten($menu_Color, 40%);
+}
+a{
+	text-decoration: none;
+	color:#fff;
+	@include transition(background-color .3s linear);
+}
+h1{
+	font-size: 2em;
+	text-align: center;
+	margin-top: 1em;
+	color:darken($menu_Color, 20%);
+	span{
+		font-weight: 600;
+	}
+}
+.clearfix:after{
+	content: "";
+	height:0;
+	line-height: 0;
+	clear: both;
+	display: block;
+	*zoom:1;
+}
+
+nav{
+	height: 60px;
+	width: 100%;
+	background-color: $menu_Color;
+	font-size: .8em;
+	position: fixed;
+	top:0;
+}
+nav ul{
+	margin-top: 10px;
+	li{ 
+		float: left;
+		display: inline-block;
+		width: 100px;
+		position: relative;
+		margin-left: 10px;
+		text-align: center;
+		@include border-radius(4px);
+		&.submenu:after{
+			font-family: "FontAwesome";
+			content: "\f0d7";
+			display: block;
+			position: absolute;
+			right: 12px;
+			top:12px;
+			color: lighten($menu_Color, 20%);
+		}
+		&:hover{
+			background-color: darken($menu_Color, 20%);
+		}
+		background-color: darken($menu_Color, 10%);
+		a{
+			padding: 10px;
+			display: block;
+			width: 100%;	
+		}
+	}
+}
+
+li{
+	>ul{
+		position: absolute;
+		left: 0;
+		padding-top:3px;
+		margin: 0;
+		display: none;
+		margin-top:0;
+		>li{
+			margin: 0 0 3px 0;
+		}
+	}
+}
+nav a#drop{
+	display: none;
+	background-color: darken($menu_Color, 10%);
+	line-height: 30px;
+	padding: 10px 0;
+	text-indent: 10px;
+	font-size: 1.5em;
+	width: 100%;
+	& i{
+		float: right;
+		line-height: 30px;
+		margin-right: 10px;	
+	}
+}
+
+/* -------------------------------------------------------- */ 
+/*	Media Queries
+/* -------------------------------------------------------- */ 
+@media screen and(max-width: 800px){
+	body{
+		padding:0;
+	}
+	nav{
+		height: auto;
+		position: static;
+		ul{
+			margin-top: 0;
+			padding: 10px;
+			display: none;
+			li{
+				display: block;
+				text-align: left;
+				//text-indent: 10px;
+				width: 100%;
+				margin-left: 0;
+				font-size: 1.2em;
+				background-color: transparent;
+				>ul{
+					position: static;
+					padding-left: 30px;
+					padding-top: 0;
+					>li{
+						text-indent: 10px;
+						font-size: 1em;
+						&:hover, &.active{
+							background-color: darken($menu_Color, 10%);
+						}
+						&:last-child{
+							margin-bottom: 8px;
+						}
+						a{
+							padding-left: 0;
+						} 
+					}
+				}
+			}
+		}
+	}
+	nav a#drop{
+		display: block;
+	}
+}

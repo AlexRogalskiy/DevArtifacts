@@ -1,0 +1,213 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 60px;
+  font-family: helvetica, arial, sans-serif;
+  background-color: #d0e5e6;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  -moz-transition: background-color 0.3s linear;
+  -o-transition: background-color 0.3s linear;
+  -webkit-transition: background-color 0.3s linear;
+  transition: background-color 0.3s linear;
+}
+
+h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 1em;
+  color: #2e5556;
+}
+h1 span {
+  font-weight: 600;
+}
+
+.clearfix:after {
+  content: "";
+  height: 0;
+  line-height: 0;
+  clear: both;
+  display: block;
+  *zoom: 1;
+}
+
+nav {
+  height: 60px;
+  width: 100%;
+  background-color: #519799;
+  font-size: .8em;
+  position: fixed;
+  top: 0;
+}
+
+nav ul {
+  margin-top: 10px;
+}
+nav ul li {
+  float: left;
+  display: inline-block;
+  width: 100px;
+  position: relative;
+  margin-left: 10px;
+  text-align: center;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #3f7678;
+}
+nav ul li.submenu:after {
+  font-family: "FontAwesome";
+  content: "\f0d7";
+  display: block;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: #8dc1c3;
+}
+nav ul li:hover {
+  background-color: #2e5556;
+}
+nav ul li a {
+  padding: 10px;
+  display: block;
+  width: 100%;
+}
+
+li > ul {
+  position: absolute;
+  left: 0;
+  padding-top: 3px;
+  margin: 0;
+  display: none;
+  margin-top: 0;
+}
+li > ul > li {
+  margin: 0 0 3px 0;
+}
+
+nav a#drop {
+  display: none;
+  background-color: #3f7678;
+  line-height: 30px;
+  padding: 10px 0;
+  text-indent: 10px;
+  font-size: 1.5em;
+  width: 100%;
+}
+nav a#drop i {
+  float: right;
+  line-height: 30px;
+  margin-right: 10px;
+}
+
+/* -------------------------------------------------------- */
+/*	Media Queries
+/* -------------------------------------------------------- */
+@media screen and (max-width: 800px) {
+  body {
+    padding: 0;
+  }
+
+  nav {
+    height: auto;
+    position: static;
+  }
+  nav ul {
+    margin-top: 0;
+    padding: 10px;
+    display: none;
+  }
+  nav ul li {
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin-left: 0;
+    font-size: 1.2em;
+    background-color: transparent;
+  }
+  nav ul li > ul {
+    position: static;
+    padding-left: 30px;
+    padding-top: 0;
+  }
+  nav ul li > ul > li {
+    text-indent: 10px;
+    font-size: 1em;
+  }
+  nav ul li > ul > li:hover, nav ul li > ul > li.active {
+    background-color: #3f7678;
+  }
+  nav ul li > ul > li:last-child {
+    margin-bottom: 8px;
+  }
+  nav ul li > ul > li a {
+    padding-left: 0;
+  }
+
+  nav a#drop {
+    display: block;
+  }
+}

@@ -1,0 +1,83 @@
+@import "compass";
+@import "compass/css3";
+@import "compass/reset";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+//color variables
+$blue:     #3498db;
+$orange:   #e67e22; 
+$green:    #1abc9c;
+$red:      #e74c3c;
+
+body{
+  font-family: 'Open Sans', sans-serif; 
+  background-color: $blue;
+  @include transition(background-color .4s ease);
+  //this is just some fun non-sense to change the background colors ^_^
+  &.home{
+    background-color: $blue;
+  }
+  &.about{
+    background-color: $orange;
+  }
+  &.clients{
+    background-color: $red;
+  }
+  &.contact{
+    background-color: $green;
+  }
+}
+strong{
+  font-weight: 600;
+}
+h1{
+  color: rgba(255,255,255,.9);
+  margin-top: 30vh;
+  font-weight: 100;
+  text-align: center;
+  font-size: 55px;
+  line-height: 1.5;
+  background: rgba(0,0,0,.1);
+  padding: 0px 0 20px 0;
+  span{
+    font-weight: 400;
+    display: block;
+    font-size: 25%;
+  }
+}
+nav{
+  display: flex;
+  flex-dirction: row;
+  a{
+    width:25%;
+    text-align: center;
+    padding: 25px 20px;
+    text-decoration: none;
+    margin: auto;  /* Magic! */
+    position:relative; //this lets us then position the ball
+    color: rgba(255,255,255,.3);
+    @include transition(all .3s linear);
+    &:hover,
+    &.active{
+      color: #fff; //links have an "active" class or hover change to white
+    }
+    
+    &:after{  //we'll use the :after pseude element to create our bulb!
+      content: ''; //all pseudo element MUST have a content declaration!
+      $size: 8px;
+      width: $size;
+      height: $size;
+      background: #fff;
+      display: inline-block;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      margin-left: -$size/2; //offset the bulb to center it perfectly
+      @include border-radius(50%);
+      @include scale(0);
+      @include transition(transform .3s cubic-bezier(0.610, 0.000, 0.405, 1.630));
+    }
+    &.active:after{
+      @include scale(1); //when the link is active lets scale upo that bulb!
+    }
+  }
+}
