@@ -1,0 +1,132 @@
+<a href="http://tympanus.net/Development/MultiLayoutSlideshow/"><img src="http://tympanus.net/codrops/wp-content/uploads/2016/07/MultiLayoutSlideshow_800x600.jpg" alt="MultiLayoutSlideshow_800x600" width="800" height="600" class="alignnone size-full wp-image-27685" /></a>
+
+<a class="demo" href="http://tympanus.net/Development/MultiLayoutSlideshow/">View demo</a> <a class="download" href="http://tympanus.net/Development/MultiLayoutSlideshow/MultiLayoutSlideshow.zip" onclick="var that=this;_gaq.push(['_trackEvent','Download','ZIP',this.href]);setTimeout(function(){location.href=that.href;},400);return false;">Download source</a>
+
+Today we'd like to share a simple decorative slideshow component with you. The idea behind this slideshow is to have an individual layout for each slide, accompanied by a distinct effect. The images of each slide is meant to have a decorative purpose which could be suitable for an article header; or, for example, an ornamental quotes slideshow within an article. 
+
+<div class="box-attention"><strong>Attention:</strong> Note that we are using some modern CSS properties like relative viewport units and 3D transforms which won't work in old browsers.</div>
+
+The animations for this slideshow are powered by <a href="http://anime-js.com/">anime.js</a> by Julian Garnier. The images we use in the demos are from <a href="http://unsplash.com">Unsplash.com</a>, a great resource for free high-quality images. 
+
+The slideshow structure looks as follows:
+
+<pre class="brush:html"><code>
+&lt;div class="slideshow"&gt;
+	&lt;div class="slide slide--layout-1" data-layout="layout1"&gt;
+		&lt;div class="slide-imgwrap"&gt;
+			&lt;div class="slide__img"&gt;&lt;div class="slide__img-inner" style="background-image: url(img/1.jpg);"&gt;&lt;/div&gt;&lt;/div&gt;
+			&lt;div class="slide__img"&gt;&lt;div class="slide__img-inner" style="background-image: url(img/2.jpg);"&gt;&lt;/div&gt;&lt;/div&gt;
+			&lt;div class="slide__img"&gt;&lt;div class="slide__img-inner" style="background-image: url(img/3.jpg);"&gt;&lt;/div&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="slide__title"&gt;
+			&lt;h3 class="slide__title-main"&gt;Now or Never&lt;/h3&gt;
+			&lt;p class="slide__title-sub"&gt;Our battered suitcases were piled on the sidewalk again; we had longer ways to go. But no matter, the road is life. &lt;a href="#"&gt;Read more&lt;/a&gt;&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;&lt;!-- /slide --&gt;
+	&lt;div class="slide slide--layout-2" data-layout="layout2"&gt;
+		&lt;!-- ... --&gt;
+	&lt;/div&gt;
+	&lt;!-- ... --&gt;
+&lt;/div&gt;&lt;!-- /slideshow --&gt;
+</code></pre>
+
+Each slide has the respective layout class and also a <strong>data-layout</strong> attribute that will help us define individual animations for each slide.
+
+[adrotate group="2"]
+
+An example for the styles of a layout is the following:
+
+<pre class="brush:css"><code>/* Layout 1: 3 grid images */
+
+.slide--layout-1 .slide__img {
+	position: absolute;
+	width: calc(50% - 1em);
+}
+
+.slide--layout-1 .slide__img:first-child {
+	left: 0.5em;
+	height: 100%;
+}
+
+.slide--layout-1 .slide__img:nth-child(n+2) {
+	left: calc(50% + 0.5em);
+	height: calc(50% - 0.5em);
+}
+
+.slide--layout-1 .slide__img:nth-child(3) {
+	top: calc(50% + 0.5em);
+}</code></pre>
+
+This layout can be achieved in many different ways; keep in mind that this is merely an example. 
+
+<a href="http://tympanus.net/Development/MultiLayoutSlideshow/"><img src="http://tympanus.net/codrops/wp-content/uploads/2016/07/MultiLayoutSlideshow_00.jpg" alt="MultiLayoutSlideshow_00" width="890" height="510" class="alignnone size-full wp-image-27683" /></a>
+
+The animations for each layout are defined in our layout configuration. The structure is <strong>[layout name] : { out : {navigating out properties}, in : {navigating in properties} }</strong>. We can set different animations for the incoming slide and the disappearing one, where we can distinguish between whether the slide is the next or previous one. We use <a href="http://anime-js.com/">anime.js</a> for the animations and you can find out more about the structure and how to use it in the <a href="https://github.com/juliangarnier/anime">GitHub repo</a>. 
+
+The following is an example (first layout in the demo):
+<pre class="brush:js"><code>MLSlideshow.prototype.options = {
+	// Starting position.
+	startIdx : 0,
+	// Layout configuration.
+	// [layout name] : { out : {navigating out properties}, in : {navigating in properties} }
+	// For some properties we can have a "next" and "prev" behavior which can be different for the two - navigating out/in to the right or left.
+	// For the translationX/Y we can use percentage values (relative to the Slideshow).
+	layoutConfig : {
+		layout1 : {
+			out : {
+				translateX : {
+					next: '-100%', 
+					prev: '100%'
+				},
+				rotateZ : {
+					next: function(el, index) {
+						return anime.random(-15, 0);
+					}, 
+					prev: function(el, index) {
+						return anime.random(0, 15);
+					}
+				},
+				opacity : 0,
+				duration: 1200,
+				easing : 'easeOutQuint',
+				itemsDelay : 80
+			},
+			in : {
+				resetProps : {
+					translateX : {
+						next: '100%', 
+						prev: '-100%'
+					},
+					rotateZ : {
+						next: function(el, index) {
+							return anime.random(0, 15);
+						}, 
+						prev: function(el, index) {
+							return anime.random(-15, 0);
+						}
+					},
+					opacity : 0,
+				},
+				translateX : '0%',
+				rotateZ : 0,
+				opacity : 1,
+				duration: 700,
+				easing : 'easeOutQuint',
+				itemsDelay : 80
+			}
+		},
+		layout2 : { /* ... */ },
+		layout3 : { /* ... */ },
+		/* ... */
+	}
+};</code></pre>
+
+<a href="http://tympanus.net/Development/MultiLayoutSlideshow/"><img src="http://tympanus.net/codrops/wp-content/uploads/2016/07/MultiLayoutSlideshow_01.jpg" alt="MultiLayoutSlideshow_01" width="890" height="510" class="alignnone size-full wp-image-27684" /></a>
+
+We hope you enjoy this little slideshow component and find it useful.
+
+[browsersupport chrome="all" safari="9" opera="all" firefox="all" ie="11"]
+
+<div class="ct-github-link"><a href="https://github.com/codrops/MultiLayoutSlideshow/">Find this project on Github</a></div>
+
+<a class="demo" href="http://tympanus.net/Development/MultiLayoutSlideshow/">View demo</a> <a class="download" href="http://tympanus.net/Development/MultiLayoutSlideshow/MultiLayoutSlideshow.zip" onclick="var that=this;_gaq.push(['_trackEvent','Download','ZIP',this.href]);setTimeout(function(){location.href=that.href;},400);return false;">Download source</a>
