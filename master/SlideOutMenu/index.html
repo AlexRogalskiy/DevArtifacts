@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>UI Elements: jQuery Horizontal Slide Out Menu</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="description" content="UI Elements: jQuery Horizontal Slide Out Menu" />
+        <meta name="keywords" content="jquery, ui, horizontal menu, slide out"/>
+        <!-- The JavaScript -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                //graceful degradation
+                $('#ui_element').find('ul').css({
+                    'left'	:	'-660px'
+                }).siblings('.mh_right').css({
+                    'left'	:	'200px'
+                });
+				
+                var $arrow = $('#ui_element').find('.mh_right');
+                var $menu  = $('#ui_element').find('ul');
+                $arrow.bind('mouseenter',function(){
+                    var $this 	= $(this);
+                    $this.stop().animate({'left':'160px'},50);
+                    $menu.stop().animate({'left':'202px'},500,function(){
+                        $(this).find('a')
+                        .unbind('mouseenter,mouseleave')
+                        .bind('mouseenter',function(){
+                            $(this).addClass('hover');
+                        })
+                        .bind('mouseleave',function(){
+                            $(this).removeClass('hover');
+                        });
+                    });
+                });
+                $menu.bind('mouseleave',function(){
+                    var $this 	= $(this);
+                    $this.stop().animate({'left':'-660px'},500,function(){
+                        $arrow.stop().animate({'left':'200px'},500);
+                    });
+                });
+            });
+        </script>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+        <style>
+            *{
+                padding:0;
+                margin:0;
+            }
+             body{
+                background-color:#f0f0f0;
+                font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+            }
+            h1{
+                font-size:180px;
+                line-height:180px;
+                text-transform: uppercase;
+                color:#ddd;
+                position:absolute;
+                text-shadow:0 1px 0 #fff;
+                top:-25px;
+                left:-20px;
+                white-space: nowrap;
+            }
+            span.reference{
+                position:fixed;
+                left:10px;
+                bottom:10px;
+                font-size:11px;
+            }
+            span.reference a{
+                color:#666;
+                text-decoration:none;
+                text-transform: uppercase;
+                text-shadow:0 1px 0 #fff;
+            }
+            span.reference a:hover{
+                color:#ccc;
+            }
+            .box{
+                border:15px solid #fff;
+                margin:180px 0px 0px -15px;
+                height:240px;
+                position:relative;
+                padding:30px 10px 30px 50px;
+                -moz-box-shadow:0px 0px 2px #ccc inset;
+                -webkit-box-shadow:0px 0px 2px #ccc inset;
+                box-shadow:0px 0px 2px #ccc inset;
+                background:#f6f6f6 url(click.png) no-repeat 200px 120px;
+            }
+            .box h2{
+                text-transform: uppercase;
+                color:#ccc;
+                text-shadow:0 1px 0 #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <h1>UI Elements</h1>
+            <div class="box">
+                <h2>jQuery Horizontal Slide Out Menu</h2>
+                <div id="ui_element" class="mh_wrapper">
+                    <ul>
+                        <li><a href="#" class="hover">Menu Item A</a></li>
+                        <li><a href="#">Menu Item A B</a></li>
+                        <li><a href="#">Menu Item A C</a></li>
+                        <li><a href="#">Menu Item A AA</a></li>
+                        <li><a href="#">Menu Item A BB</a></li>
+                        <li><a href="#">Menu Item A CC</a></li>
+                    </ul>
+                    <div class="mh_itemMain">Menu</div>
+                    <div class="mh_right"></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <span class="reference">
+                <a href="http://tympanus.net/codrops/2010/06/21/ui-elements-combobox/">© Codrops - back to post</a>
+            </span>
+        </div>       
+    </body>
+</html>
