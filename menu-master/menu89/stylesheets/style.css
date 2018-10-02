@@ -1,0 +1,287 @@
+/*
+Name: Responsive navigation
+Author: Jean LAW YIM WAN
+Author URI: http://jean-lawyimwan.fr/
+Copyright: 2016, Jean LAW YIM WAN
+*/
+/**
+ * Mixins
+ */
+/**
+ * Variables
+ */
+/**
+ * Component burger-icon
+ */
+.burger-icon {
+  text-decoration: none;
+  color: #FFFFFF;
+  display: block;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 17.5px;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+}
+.burger-icon > span {
+  display: block;
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 2px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.burger-right {
+  right: 15px;
+}
+
+.burger-left {
+  left: 15px;
+}
+
+.burger-icon > span:nth-child(1) {
+  top: 0;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.burger-icon > span:nth-child(2) {
+  top: 10px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.burger-icon > span:nth-child(3) {
+  top: 20px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.burger-icon.open > span:nth-child(1) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: -3px;
+  left: 8px;
+}
+
+.burger-icon.open > span:nth-child(2) {
+  width: 0;
+  opacity: 0;
+}
+
+.burger-icon.open > span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 18px;
+  left: 8px;
+}
+
+/**
+ * Component navbar
+ */
+#main-navbar {
+  background: #317bac;
+}
+@media (max-width: 992px) {
+  #main-navbar .container {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/** Base class */
+.navbar {
+  display: block;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.navbar:before, .navbar:after {
+  content: " ";
+  /** 1 */
+  display: table;
+  /** 2 */
+}
+.navbar:after {
+  clear: both;
+}
+@media (max-width: 992px) {
+  .navbar {
+    display: none;
+  }
+}
+.navbar > li {
+  position: relative;
+  display: block;
+}
+.navbar > li > a {
+  position: relative;
+  display: block;
+  padding: 20px 15px;
+}
+.navbar > li > a:hover, .navbar > li > a:focus {
+  text-decoration: none;
+}
+
+/** Navbar open when small screen */
+.navbar.open {
+  display: block;
+}
+
+/** Responsive navbar */
+.navbar > li {
+  position: relative;
+}
+@media (max-width: 544px) {
+  .navbar > li {
+    width: 100%;
+  }
+}
+@media (min-width: 544px) and (max-width: 992px) {
+  .navbar > li {
+    width: 50%;
+  }
+}
+
+/** navigation-nav */
+.navigation-nav {
+  border: none;
+}
+.navigation-nav > li {
+  float: left;
+  /** Dropdown menu */
+  /** Active state of tab */
+}
+.navigation-nav > li > a {
+  color: #FFFFFF;
+  transition: background .2s, color .2s;
+  -webkit-transition: background .2s, color .2s;
+}
+.navigation-nav > li > a:hover {
+  background: #265f84;
+  color: #FFFFFF;
+}
+.navigation-nav > li.dropdown.open {
+  background: #265f84;
+}
+.navigation-nav > li.dropdown.open > ul {
+  display: block;
+}
+.navigation-nav > li.dropdown > ul {
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 170px;
+  padding: 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #317bac;
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+  /** Responsive dropdown menu */
+}
+@media (max-width: 992px) {
+  .navigation-nav > li.dropdown > ul {
+    position: relative;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .navigation-nav > li.dropdown > ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+.navigation-nav > li.dropdown > ul > li {
+  position: relative;
+  display: block;
+}
+.navigation-nav > li.dropdown > ul > li > a {
+  position: relative;
+  display: block;
+  color: #FFFFFF;
+  padding: 5px 15px;
+}
+@media (max-width: 992px) {
+  .navigation-nav > li.dropdown > ul > li > a {
+    padding: 20px 30px;
+  }
+}
+.navigation-nav > li.dropdown > ul > li > a, .navigation-nav > li.dropdown > ul > li > a:hover, .navigation-nav > li.dropdown > ul > li > a:focus {
+  text-decoration: none;
+}
+.navigation-nav > li.dropdown > ul > li > a:hover, .navigation-nav > li.dropdown > ul > li > a:focus {
+  background: #265f84;
+}
+.navigation-nav > li.active > a, .navigation-nav > li.active > a:hover, .navigation-nav > li.active > a:focus {
+  color: #FFFFFF;
+  background: #265f84;
+}
+
+/** Navigation header when tablet or smartphone */
+.navigation-header {
+  z-index: 110;
+  display: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+  background: #317bac;
+  height: 60px;
+  width: 100%;
+  position: relative;
+}
+.navigation-header > .navigation-brand {
+  position: relative;
+  display: table;
+  color: #FFFFFF;
+  padding: 20px 15px;
+  background: red;
+}
+.navigation-header > .navigation-brand, .navigation-header > .navigation-brand:hover, .navigation-header > .navigation-brand:focus {
+  text-decoration: none;
+}
+@media (max-width: 992px) {
+  .navigation-header {
+    display: block;
+  }
+}
+
+/**
+ * Core css
+ */
+html, body {
+  margin: 0;
+  font-family: Lato, sans-serif;
+}
+
+.icon-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.icon-left span {
+  left: 15px;
+}
+
+.jumbotron {
+  margin-top: 30px;
+}

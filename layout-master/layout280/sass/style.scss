@@ -1,0 +1,72 @@
+.list-grid-demo .glyphicon {
+	margin-right: 5px;
+}
+@media only screen and (min-width: 481px) {
+	.grid-group-wrapper.row {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.grid-group-wrapper.row:after,
+	.grid-group-wrapper.row:before {
+		display: flex;
+	}
+	.grid-group-wrapper.row {
+		> [class*='col-'] {
+			display: flex;
+			flex-direction: column;
+		}
+		.thumbnail,
+		.caption {
+			display: flex;
+			flex: 1 0 auto;
+			flex-direction: column;
+		}
+		.caption-text {
+			flex-grow: 1;
+		}
+		img {
+			width: 100%;
+			height: auto;
+		}
+		.price-buy-spacing {
+			display: flex;
+			justify-content: space-between;
+		}
+		.price-buy-spacing .lead {
+			margin-bottom: 0px;
+		}
+		.price-buy-spacing {
+			margin-bottom: 10px;
+		}
+	}
+	.list-group-wrapper {
+		.item {
+			float: none;
+			width: 100%;
+		}
+		.item:before,
+		.item:after {
+			display: table;
+			content: " ";
+		}
+		.item:after {
+			clear: both;
+		}
+		.item {
+			.thumbnail img {
+				margin-right: 10px;
+				float: left;
+			}
+			.caption,
+			.thumbnail {
+				display: flex;
+			}
+			.caption {
+				flex-direction: column;
+			}
+			.caption-text {
+				flex-grow: 1;
+			}
+		}
+	}
+}

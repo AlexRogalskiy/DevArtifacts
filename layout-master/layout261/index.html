@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+		<link rel="stylesheet" href="http://meyerweb.com/eric/tools/css/reset/reset.css" />	
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />	
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+
+<body>
+
+<!-- Credits -->
+<!-- filtering streamers functionality by Blake Watson, https://codepen.io/blakewatson/pen/xEXApK -->
+<!-- search box functionality and css streamer info by Andreas Remdt, https://codepen.io/andreasremdt/pen/rvQJYR -->
+<!-- css search box and radio button by Ophelia Fournier-Laflamme, https://codepen.io/opheliafl/pen/LGKMNL -->
+<!-- reset.css by Nicolas Udy https://codepen.io/udyux/pen/jWMbjG -->
+
+<div id="app">
+  <form>
+    <section class="input-container">
+      <label>
+        <input type="search" placeholder="Search" role="searchbox" v-model="searchStreamers">
+        <span>type streamer name, e.g. freeCodeCamp</span>
+      </label>
+    </section>
+
+    <fieldset>
+      <input type="radio" v-model="selectedCategory" value="all" id="all" />
+      <label for="all">All</label>
+
+      <input type="radio" v-model="selectedCategory" value="online" id="online" />
+      <label for="online">Online</label>
+
+      <input type="radio" v-model="selectedCategory" value="offline" id="offline" />
+      <label for="offline">Offline</label>
+    </fieldset>
+  </form>
+
+  <div class="streamers">
+    <div v-for="streamer in filteredStreamers" class="streamer-box">
+      <div class="streamer-image">
+        <img v-bind:src="streamer.logo" width="100" height="100">
+      </div>
+      
+      <div class="streamer-info">
+        <h2>{{ streamer.display_name }}</h2>
+        <p v-if="!streamer.status">-</p>
+        <p v-else>{{ streamer.status }}</p>
+        <span>
+          <a v-bind:href="streamer.url" class="link" target="_blank" rel="noopener noreferrer">{{ streamer.url }}</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+<!--  footer -->
+</html>

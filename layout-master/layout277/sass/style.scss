@@ -1,0 +1,148 @@
+/*
+Flexi Bootstrap - The Missing Bootstrap Thumbnail Demos
+
+Author : Bryan Willis
+
+Working Demos of Equal Height Flexbox and Tables as well as Masonary Thumbnails in Bootstrap 3. See the Github repo for complete version supporting legacy browser fallback.
+*/
+
+
+/* EXAMPLE 1 - BOOTSTRAP FLEXBOX
+   - Equal Height Columns in Rows
+   - Equal Height Thumbnails
+   - Flex Grow to Fill Paragraph Height
+*/
+
+/* Flexbox Equal Height Bootstrap Columns (fully responsive) */
+@media only screen and (min-width : 481px) {
+  .flex-row.row {
+    display: flex;
+	 flex-wrap: wrap;
+  }
+  .flex-row.row > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-row.row:after, 
+  .flex-row.row:before {
+	 display: flex;
+  }
+  .flex-row.row > [class*='col-'] > .box {
+    display: flex;
+	 flex: 1;
+  }
+}
+
+
+
+
+/* Grow thumbnails to fill columns height */
+.flex-row .thumbnail,
+.flex-row .caption {
+	display: flex;
+	flex: 1 0 auto;
+	flex-direction: column;
+}
+
+/* Flex Grow Text Container */
+.flex-row .caption p.flex-text {
+	flex-grow: 1;
+}
+
+/* Flex Responsive Image */
+.flex-row img {
+	width: 100%;
+	height: auto;
+}
+
+
+
+
+/* EXAMPLE 2 - CSS TABLES EQUAL HEIGHT
+   - ie9 support 
+   - not responsive (mobile fallback)
+*/
+
+.table-row.row,
+.table-row-equal {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+	word-wrap: break-word;
+}
+.table-row.row [class*="col-"] {
+	width: 25%;
+}
+.table-row.row [class*="col-"],
+.table-row-equal .thumbnail {
+	float: none;
+	display: table-cell;
+	vertical-align: top;
+}
+.table-row-equal {
+	border-spacing: 30px 0px;
+}
+.table-row-equal .thumbnail {
+	width: 1%;
+}
+/* mobile fallback to support partial responsiveness */
+@media only screen and (max-width: 480px) {
+	.table-row-equal .thumbnail {
+		display: block;
+		width: 100%;
+	}
+}
+
+
+/* MASONARY BOOTSTRAP 3 GRID
+   - Who needs V4?
+*/
+.masonary-row.row {
+	-webkit-column-gap: 30px;
+	-moz-column-gap: 30px;
+	column-gap: 30px;
+	padding-left: 15px;
+	padding-right: 15px;
+	word-wrap: break-word;
+	column-fill: balance;
+}
+.masonary-row [class*="col-"] {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	float: none;
+	padding: 0px;
+	column-fill: balance;
+}
+
+
+@media (min-width: 480px) {
+	.masonary-row.row {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+	}
+}
+@media (min-width: 768px) {
+	.masonary-row.row {
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-count: 3;
+	}
+}
+
+
+/* demo */
+.bootflex .well {
+	    flex-grow: 1;
+	}
+
+/* pre hack for small devices */
+pre {
+	display: flex;
+	flex: 1;
+}
+.flex-row.flex-code.row > [class*='col-'] .flex-text {
+	flex-grow: 1;
+	display: flex;
+}

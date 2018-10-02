@@ -1,0 +1,150 @@
+/* #temp, #max-temp, #min-temp, #place, #country, #humidity, #weather-main, #weather-description {
+  font-weight: bold;
+} */
+
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: grey;
+}
+
+.container {
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 100px auto;
+  max-width: 720px;
+  /*   background-color: orange; */
+}
+
+.main-box, .side-box, .side-box-1, .side-box-2 {
+  flex: 1;
+}
+
+.main-box, .side-box-1, .side-box-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-box, .side-box {
+  height: 320px;
+}
+
+.main-box {
+  max-width: 60%;
+  background-color: #414141;
+}
+
+.main-box #temp {
+  font-size: 70px;
+}
+
+.side-box {
+  max-width: 40%;
+  background-color: #f3f3f3;
+}
+
+.main-box ul, .side-box ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  padding: 0;
+  list-style: none;
+  letter-spacing: 1px;
+  font-size: 20px;
+}
+
+.main-box ul li, .side-box ul li {
+  padding: 5px;
+}
+
+.side-box ul li {
+  color: #414141;
+}
+
+.main-box ul li {
+  color: #f3f3f3;
+}
+
+.side-box .side-box-1, .side-box .side-box-2 {
+  height: 160px;
+}
+
+/* stack columns when <= 640px */
+@media all and (max-width: 640px) {
+  .container {
+    flex-flow: column;
+  }
+
+  .main-box, .side-box {
+    max-width: 320px;
+    width: 100%;
+  }
+}
+
+/* unused button made by me */
+/* .main-box .switch {
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50%;
+  border-color: #fff;
+  width: 30px;
+  color: #848484;
+  background-color: #f3f3f3;
+}
+
+.main-box .switch:hover {
+  box-shadow: 0px 0px 3px 1px #ccc;
+}
+
+.main-box .switch:focus {
+  outline: 0;
+} */
+
+/* made by aPinix, https://codepen.io/aPinix/pen/wertm */
+input:focus,select:focus,textarea:focus,button:focus {
+  outline: none;
+}
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 150px;
+  background-color: transparent;
+  border: 2px solid #f3f3f3;
+  display: inline-block;
+  width: 37px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+
+  transition: all .3s ease-out .1s;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+input[type=checkbox]:checked {
+  border: 2px solid #f3f3f3;
+}
+
+input[type=checkbox]:after {
+	content: '';
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	border-radius: 150px;
+	cursor: pointer;
+	background-color: #f3f3f3;
+	left: -2px;
+
+	transition: all .1s ease-in .1s;
+}
+
+input[type="checkbox"]:checked:after {
+  left: 20px;
+  background: #f3f3f3;
+}

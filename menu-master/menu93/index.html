@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html ng-app="store">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css' />
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />	
+    </head>
+<!--  header -->
+
+<body>
+<div class="container">
+  <p class=" h3 text-right">Issue Tracking</p>
+
+<ul class="text-right list-unstyled">
+  <li> <a target="_blank" href="https://bugzilla.mozilla.org/show_bug.cgi?id=930218">Initial issue <span class="text-danger">ID #930218</span> opened in 2013. </a></li>
+  <li> <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1231059" target="_blank">Current issue <span class="text-danger"> #1231059</span> opened December 2015.</a></li>
+  <li> <a href="https://github.com/twbs/bootstrap/issues/18855" target="_blank"><span class="text-warning">The Bootstrap related issue can be found on Github here.</span></a></li>
+</ul>
+  <h1 class="text-center">Firefox Padding Bug</h1>
+    <p class="text-muted">To see the bug in action you need to be using Mozilla Firefox. For those of you without Firefox <a href="https://cloud.githubusercontent.com/assets/4042621/12084404/b7c7e5c4-b278-11e5-8a37-4b8239a343fd.png">you can view a screenshot here.</a> This issue occurs when an element/image has a height of 100% and no explicit width set  inside of a block element that has padding on it with and a defined height. If you set the inner elements width to anything other than auto this issue goes away. Also, when changing <code>box-sizing: border-box;</code> the issue doesn't appear to apply except slightly in example 3.</p><p class="text-muted">For web developers, a temporary fix when you want your element/ image to be responsive to to it's container height is to make sure the elements parent container doesn't have any padding. Instead, apply the padding to the element itself as demonstrated in example 4.</p>
+<p class="text-muted">
+  These demos all use Bootstrap 3. For Bootstrap users see <a href="https://codepen.io/bootstrapped/details/KwYGwq/" target="_blank">this related pen</a> for several alternative demos on how to implement a better navbar image.</p>
+<hr>
+<h3> Demos </h3>
+    
+     
+
+<p class="lead page-header">
+<b>Example 1:</b> Default Navbar Height <code>20px</code> Applied to image <code>750x250px</code>. <a href="https://getbootstrap.com/components/#navbar-brand-image" target="_blank">This is the example</a> Bootstrap uses on their docs &nbsp;<em class="text-success">...(Working in firefox)</em>
+</p>
+</div>
+
+
+<div class="container">
+  <nav class="navbar navbar-default demo-1">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">
+          <img src="http://placehold.it/750x250" alt="">
+        </a>
+      </div>
+      <div id="navbar-1" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+           <li><a href="#">Skills</a></li>
+          <li><a href="#">Portfolio</a></li>
+                  <li><a href="#">Portfolio</a></li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown Menu<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+  </nav>
+</div>
+
+
+
+
+
+
+
+
+<div class="container">
+<p class="lead page-header">
+<b>Example 2:</b> Image dimensions <code>750x250px</code> using <code>100%</code> height to fit navbar-brand <code>50px</code> height <em class="text-danger">... (broken in Firefox)</em>
+</p>
+</div>
+
+
+<div class="container">
+  <nav class="navbar navbar-default demo-2">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-2">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">
+          <img src="http://placehold.it/750x250" alt="">
+        </a>
+      </div>
+      <div id="navbar-2" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+         <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+           <li><a href="#">Skills</a></li>
+          <li><a href="#">Portfolio</a></li>
+                  <li><a href="#">Portfolio</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown Menu<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+  </nav>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="container">
+<p class="lead page-header">
+<b>Example 3:</b> Image dimensions <code>50x200px</code> using <code>100%</code> height to fit navbar-brand <code>50px</code> height <em class="text-danger">... (broken in Firefox)</em>
+</p>
+</div>
+
+
+<div class="container">
+  <nav class="navbar navbar-default demo-3">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-3">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">
+          <img src="http://placehold.it/50x200" alt="">
+        </a>
+      </div>
+      <div id="navbar-3" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+           <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+           <li><a href="#">Skills</a></li>
+          <li><a href="#">Portfolio</a></li>
+                  <li><a href="#">Portfolio</a></li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown Menu <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+  </nav>
+</div>
+
+
+
+
+<div class="container">
+<p class="lead page-header">
+<b>Example 4 :</b> Image dimensions are <code>1200x300px</code> with <code>100%</code> height applied on image. The key here is that padding is removed from <code>.navbar-brand</code> and added to the image tag. Refer to <b><a href="https://codepen.io/bootstrapped/details/KwYGwq/">this pen</a></b> for complete working demos and examples for different use cases <em class="text-success"> (Works in firefox!)</em>
+</p>
+</div>
+
+
+<div class="container">
+  <nav class="navbar navbar-default demo-4">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-4">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">
+          <img src="http://placehold.it/1200x300" alt="">
+        </a>
+      </div>
+      <div id="navbar-4" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+           <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+           <li><a href="#">Skills</a></li>
+          <li><a href="#">Portfolio</a></li>
+                  <li><a href="#">Portfolio</a></li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+  </nav>
+</div>
+
+	<script src="https://cdn.jsdelivr.net/g/jquery@2.1.4,jquery.migrate@1.4.1,bootstrap@3.3.7,jquery.matchheight@0.7.0,jquery.owlcarousel@1.31"></script>
+	<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+	
+    
+</body>
+
+<!--  footer -->
+</html>

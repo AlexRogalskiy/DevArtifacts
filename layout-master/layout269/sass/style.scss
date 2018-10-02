@@ -1,0 +1,300 @@
+html {
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    min-height: 100%;
+    height: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    padding-top: 30px;
+    min-height: 100%;
+    height: 100%;
+    background-color: #fff;
+    color: #333;
+    font-weight: 300;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-smooth: always;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+}
+
+.txtcenter{
+    text-align: center;
+}
+
+.row-full-width {
+    display: table;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.row-full-width .span3 {
+    display: inline;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.row-full-width .span3 {
+    width: 25%;
+}
+
+@media only screen and (max-width: 767px) {
+    .row-full-width {
+        display: block;
+    }
+    .row-full-width .span3 {
+        display: block;
+        float: none;
+        width: 100%;
+    }
+}
+/* styling item class */
+
+.item {
+    background: #ccc;
+    text-align: center;
+}
+
+.item h4 {
+    margin-top: 10px;
+}
+/* I. Classic hover effect */
+
+.hoverfx-img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hoverfx-img img {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.hoverfx-img:before {
+    display: inline-block;
+    padding-top: 80%;
+    content: '';
+    vertical-align: middle;
+}
+
+.hoverfx-img .figure {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    padding: 12px;
+    max-width: 60%;
+    border: 3px solid #e9e9e9;
+    color: #ecf0f1;
+    vertical-align: middle;
+    font-size: 1rem;
+    text-transform: uppercase;
+    opacity: 0;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition-property: all .3s ease;
+}
+
+.hoverfx-img .overlay {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    padding: 50%;
+    background: #333;
+    opacity: 0;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition-property: all .3s ease;
+}
+
+.hoverfx-img:hover .figure,
+.hoverfx-img:hover .overlay {
+    opacity: 1;
+}
+/* II. Contrary effect on hover - reveal image */
+
+.hoverfx-div {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hoverfx-div img {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.hoverfx-div:before {
+    display: inline-block;
+    padding-top: 80%;
+    content: '';
+    vertical-align: middle;
+}
+
+.hoverfx-div .figure {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    padding: 12px;
+    max-width: 60%;
+    border: 3px solid #e9e9e9;
+    color: #ecf0f1;
+    vertical-align: middle;
+    font-size: 1rem;
+    text-transform: uppercase;
+    opacity: 0;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition-property: all .3s ease;
+}
+
+.hoverfx-div .overlay {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    padding: 50%;
+    background: #333;
+    opacity: 0;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition-property: all .3s ease;
+}
+
+.item:hover .hoverfx-div .figure,
+.item:hover .hoverfx-div .overlay {
+    opacity: 1;
+}
+/* III. Classic hover effect with container */
+
+.hoverfx-img-contra {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hoverfx-img-contra img {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.hoverfx-img-contra:before {
+    display: inline-block;
+    padding-top: 80%;
+    content: '';
+    vertical-align: middle;
+}
+
+.hoverfx-img-contra .figure {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    padding: 12px;
+    max-width: 60%;
+    border: 3px solid #e9e9e9;
+    color: #ecf0f1;
+    vertical-align: middle;
+    font-size: 1rem;
+    text-transform: uppercase;
+    opacity: 1;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition-property: all .3s ease;
+}
+
+.hoverfx-img-contra .overlay {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    padding: 50%;
+    background: #333;
+    opacity: 1;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition-property: all .3s ease;
+}
+
+.hoverfx-img-contra:hover .figure,
+.hoverfx-img-contra:hover .overlay {
+    opacity: 0;
+}
+/* IV. Contrary hover effect with container - reveal image */
+
+.hoverfx-img-contra-div {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hoverfx-img-contra-div img {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.hoverfx-img-contra-div:before {
+    display: inline-block;
+    padding-top: 80%;
+    content: '';
+    vertical-align: middle;
+}
+
+.hoverfx-img-contra-div .figure {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    padding: 12px;
+    max-width: 60%;
+    border: 3px solid #e9e9e9;
+    color: #ecf0f1;
+    vertical-align: middle;
+    font-size: 1rem;
+    text-transform: uppercase;
+    opacity: 1;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition-property: all .3s ease;
+}
+
+.hoverfx-img-contra-div .overlay {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    padding: 50%;
+    background: #333;
+    opacity: 1;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition-property: all .3s ease;
+}
+
+.item:hover .hoverfx-img-contra-div .figure,
+.item:hover .hoverfx-img-contra-div .overlay {
+    opacity: 0;
+}

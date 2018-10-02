@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Animation Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="UTF-8" />
+        <meta name="description" content="TEST API" />
+        <meta name="keywords" content="TEST,API" />
+        <meta name="author" content="Alexander R." />
+        <meta name="theme-color" content="#000000" />
+        <meta name="copyright" content="Alexander R." />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+        <meta name="apple-mobile-web-app-title" content="TEST API" />
+        <meta name="msapplication-TileImage" content="/images/icons/144x144.png" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+		<link rel="stylesheet" href="http://meyerweb.com/eric/tools/css/reset/reset.css" />	
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" />	
+		
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
+        <link rel="stylesheet" href="stylesheets/style.css" type="text/css" charset="utf-8" media="all" />
+    </head>
+<!--  header -->
+
+<body>
+<!-- tic tac toe with minimax algorithm by Beau Carnes, https://www.youtube.com/watch?v=P2TcQ3h0ipQ -->
+
+<div id="app" class="ui centered grid">
+	<div class="row">
+		<table>
+			<tr>
+				<td class="cell" id="0"></td>
+				<td class="cell" id="1"></td>
+				<td class="cell" id="2"></td>
+			</tr>
+			<tr>
+				<td class="cell" id="3"></td>
+				<td class="cell" id="4"></td>
+				<td class="cell" id="5"></td>
+			</tr>
+			<tr>
+				<td class="cell" id="6"></td>
+				<td class="cell" id="7"></td>
+				<td class="cell" id="8"></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="end-game">
+		<div class="text"></div>
+		<br>
+		<button v-on:click="startGame" class="ui icon inverted basic pink button large"><i class="undo alternate icon"></i></button>
+	</div>
+
+	<div class="row">
+		<div class="selection">
+			<div class="ui form">
+				<div class="inline fields">
+					<label>Pick one to start the game</label>
+					<div class="field">
+						<div class="ui radio checkbox">
+							<input type="radio" id="one" value="X" v-model="humanPlayer">
+							<label for="one" v-on:click="whichPick">X</label>
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui radio checkbox">
+							<input type="radio" id="two" value="O" v-model="humanPlayer">
+							<label for="two" v-on:click="whichPick">O</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<span>human pick: {{ humanPlayer }}</span>
+			<br>
+			<span>ai pick: {{ aiPlayer }}</span>
+		</div>
+	</div>
+
+</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+<!--  footer -->
+</html>

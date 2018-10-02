@@ -1,0 +1,585 @@
+/*
+  CSS File 
+*/
+/* 
+-----------------------------------------------------------------------------*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300,300italic,600,600italic,700,700italic,800,800italic);
+/* Gray Scale */
+/* Global Variables */
+/*Header*/
+/* Mobile Menu*/
+/* Desktop Menu*/
+/* =Global
+-----------------------------------------------------------------------------*/
+body {
+  font-family: 100% "Open Sans", Arial, Sans-serif;
+  font-size: 1em;
+  color: #212121;
+  background: #F2F2F2;
+  /* These styles don't have to be on body,
+     they could be on an element that wraps around
+     the left-flyout-nav and the content. 
+     This is to prevent a problem on Chrome that
+     leaves the width of the container with the 
+     added width of the flyout nav even after it's been
+     hidden. */
+  top: 0;
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 600;
+  margin-top: .2em;
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.4em;
+  font-weight: 400;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  margin: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+/* General Mobile First Styles */
+.hidden-sm {
+  display: none;
+}
+
+@media screen and (min-width: 961px) {
+  .visible-sm {
+    display: none;
+  }
+
+  .hidden-sm {
+    display: block;
+  }
+}
+@media screen and (max-width: 960px) {
+  .the-header .units-row .unit-40,
+  .the-header .units-row .unit-60 {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+    margin-bottom: 1.65em;
+  }
+
+  .mobile-20 {
+    width: 17.6%;
+    float: left;
+  }
+
+  .mobile-80 {
+    width: 79.4%;
+    float: right;
+  }
+}
+/* =Header
+-----------------------------------------------------------------------------*/
+.the-header {
+  margin-bottom: 0;
+}
+
+#header-logo {
+  background-color: transparent;
+}
+
+h1#logo {
+  color: #000000;
+  padding: .25em 0 .35em .25em;
+  margin: 0 0 0 0;
+}
+
+.search {
+  margin-bottom: 0;
+  background-color: #CCCCCC;
+}
+
+.search-form {
+  padding: .25em 10px .35em 10px;
+  margin: 0 0 .8em 0;
+}
+
+nav.global-nav {
+  height: 40px;
+  margin: 0 0 0 1.25em;
+}
+
+@media screen and (max-width: 960px) {
+  h1#logo {
+    font-size: 2em;
+    padding: .25em 0 .35em .25em;
+    margin: 0 0 0 0;
+  }
+}
+/* =Navigation
+-----------------------------------------------------------------------------*/
+.animation-properties, .layout-left-flyout, .cbFlyNav-wrap, .layout-right-content {
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  perspective: 1000;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.layout-left-flyout {
+  height: 100%;
+  position: fixed;
+  visibility: hidden;
+  z-index: 0;
+  transition: visibility 0 linear .2s;
+  background: #383838;
+}
+
+.layout-left-flyout.isCbFlyNavActive {
+  visibility: visible;
+  transition: z-index 0 linear .2s;
+  z-index: 1;
+}
+
+.cbFlyNav-wrap {
+  display: block;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  width: 270px;
+  background: #383838;
+}
+.cbFlyNav-wrap > nav {
+  transform: translateY(0);
+  transition: transform 0 ease-in-out;
+  /*    height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;*/
+}
+
+.nav-collapse {
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform-style: preserve-3d;
+}
+
+.layout-right-content {
+  transition: transform .2s ease-in-out;
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
+  /* NOTE! Put container bg here so you don't
+     get any clipping when the content is 
+     transitioning. Any tips on alternate 
+     solutions are welcome.
+  */
+  background: #FFFFFF;
+}
+
+.layout-right-content.isCbFlyNavActive {
+  transform: translate3d(270px, 0, 0);
+  min-width: 320px;
+}
+
+.icon-cbmore {
+  content: "";
+  float: right;
+  margin-top: 4.5px;
+  padding: 4.5px;
+  box-shadow: 1px -1px 0 0px #F7F7F7 inset;
+  -webkit-transform: rotate(225deg);
+}
+
+.nav-flyout-navmask, .nav-flyout-contentmask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav-flyout-contentmask {
+  z-index: 1;
+}
+
+.nav-flyout-navmask {
+  right: 180px;
+  z-index: 1;
+}
+
+/* Menu Toggle */
+.btn-navbar {
+  position: absolute;
+  width: 50px;
+  height: 40px;
+  padding: 4px 0;
+  margin: 5px 0;
+  display: block;
+  z-index: 1;
+  cursor: auto;
+}
+
+.btn-navbar-navtoggle {
+  left: 10px;
+}
+
+.btn-navbar .icon-menu {
+  display: block;
+  width: 30px;
+  height: 33px;
+  color: #4D4D4D;
+  margin: 0 auto 0 auto;
+}
+
+a.btn-navbar:hover {
+  text-decoration: none;
+}
+
+.btn-navbar .icon-bar {
+  display: block;
+  width: 28px;
+  height: 4px;
+  background-color: #4D4D4D;
+  margin: 7px auto 0 auto;
+}
+
+.btn-navbar .icon-bar + .icon-bar {
+  margin-top: 3px;
+}
+
+@media screen and (min-width: 961px) {
+  div.navbar a.btn-navbar {
+    display: none;
+  }
+}
+/* Global Navbar Styles */
+nav.global-nav ul.nav li.nav-dropdown {
+  font-size: .8em;
+  margin-right: 0;
+  float: left;
+}
+
+/* Navbar Styles */
+.navbar {
+  height: 40px;
+  margin: 0;
+  padding: 5px 0;
+  position: relative;
+  background: #FAFAFA;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 0 .25em;
+  font-family: "Open Sans", Arial, Sans-serif;
+  box-shadow: 0 1px 1px 0px #D1D1D1;
+  border-top: 1px solid #D1D1D1;
+}
+
+@media screen and (max-width: 960px) {
+  .global-nav,
+  .navbar .nav-collapse {
+    display: none;
+  }
+
+  .navbar {
+    height: 50px;
+  }
+
+  .search {
+    margin-bottom: 0 !important;
+  }
+}
+@media screen and (min-width: 961px) {
+  .navbar {
+    height: auto;
+    position: relative;
+    background: #FAFAFA;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 0 0 0 1.35em;
+  }
+}
+/* Mobile First Nav */
+.the-nav ul.nav-flyout {
+  display: block;
+  margin-bottom: 15px;
+  float: none;
+  height: 100%;
+  background: #383838;
+}
+.the-nav ul.nav-flyout > li {
+  float: none;
+  display: block;
+  width: 270px;
+  border-bottom: 1px solid #474747;
+}
+.the-nav ul.nav-flyout li a {
+  color: #F7F7F7;
+  display: block;
+  text-decoration: none;
+  padding: 11px 15px;
+  margin-right: 0;
+}
+.the-nav ul.nav-flyout li a:hover {
+  background: #CCCCCC;
+  color: #0A0A0A;
+}
+.the-nav ul.nav-flyout li a:hover i.icon-cbmore {
+  box-shadow: 1px -1px 0 0px #0A0A0A inset;
+}
+.the-nav ul.nav-flyout .nav-dropdown {
+  position: static;
+}
+.the-nav ul.nav-flyout .nav-dropdown .subnav {
+  float: none;
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  left: auto;
+  width: 0;
+  min-width: 0;
+  margin: 0;
+  list-style: none;
+  z-index: 1000;
+  background: #595959;
+  transition: width .2s ease-in-out;
+}
+.the-nav ul.nav-flyout .nav-dropdown .subnav > li {
+  width: 200px;
+  border: 1px solid #616161;
+}
+.the-nav ul.nav-flyout .nav-dropdown .subnav.is-subnav-visible {
+  width: 180px;
+}
+.the-nav.is-inactive ul.nav-flyout > li > a {
+  opacity: .2;
+}
+.the-nav.is-inactive ul.nav-flyout > li.is-active > a {
+  opacity: 1;
+  background: #CCCCCC;
+  color: #212121;
+}
+
+@media screen and (max-width: 960px) {
+  .search-form.mobile {
+    padding: 5px 15px 5px 0;
+    margin: 0;
+  }
+}
+/* Large Screen Styles*/
+@media screen and (min-width: 961px) {
+  .container {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .the-nav {
+    display: block;
+  }
+
+  .the-nav .nav {
+    display: block;
+  }
+
+  .the-nav .nav-pill:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .the-nav > .nav {
+    margin: 0;
+    line-height: normal;
+  }
+
+  .the-nav > .nav > li,
+  .global-nav > .nav > li {
+    display: inline-block;
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  .the-nav > .nav > li.mobile {
+    display: none;
+  }
+
+  .the-nav > .nav > li .caret {
+    margin-top: 8px;
+    margin-left: 2px;
+    border-top-color: #A6A6A6;
+    border-bottom-color: #A6A6A6;
+  }
+
+  .global-nav > .nav > li .caret {
+    margin-top: 8px;
+    margin-left: 2px;
+    border-top-color: #303030;
+    border-bottom-color: #303030;
+  }
+
+  .the-nav > .nav > li a {
+    display: block;
+    padding: 10px 10px 10px;
+    color: #212121;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .global-nav > .nav > li a {
+    color: #212121;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .the-nav > .nav > li:nth-of-type(1) > a {
+    padding-left: 0;
+  }
+
+  .the-nav > .nav > li:last-of-type > a {
+    padding-right: 0;
+  }
+
+  /* Active State */
+  .global-nav > .nav > li:hover a {
+    color: #000000;
+  }
+
+  .the-nav > .nav > li:hover > a {
+    color: #303030;
+  }
+
+  .the-nav > .nav > li:hover .subnav {
+    display: block;
+  }
+
+  .the-nav > .nav > li:hover .caret {
+    border-top-color: #303030;
+    border-bottom-color: #303030;
+  }
+
+  /* Subnav */
+  .nav > li > .subnav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 20;
+    margin: 0;
+    padding: 0;
+    min-width: 160px;
+    background: #F7F7F7;
+    box-shadow: 0 1px 1px 0px #303030;
+  }
+
+  .nav > li > .subnav > li {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .nav > li > .subnav > li a {
+    color: #212121;
+    transition: all .2s;
+    width: 200px;
+  }
+
+  .nav > li > .subnav > li:hover a {
+    background: #CCCCCC;
+    color: #121212;
+  }
+}
+/* Resets and clean ups and extras */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.dropdown .caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid gray;
+  content: "";
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.container {
+  font-family: "Open Sans", Arial, Sans-serif;
+  max-width: 1200px;
+  width: 95%;
+  margin: 0 auto;
+}
+.container.navbar {
+  width: 100%;
+}
+.container:before, .container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* =Wrapper
+-----------------------------------------------------------------------------*/
+div.wrapper {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1200px;
+}
+div.wrapper.main {
+  background: #FFFFFF;
+}
+
+div.wrapper div.inner-wrapper[role="main"] {
+  margin: 0 auto;
+  padding: 0;
+}
+
+div.content-wrapper {
+  padding: 0 1.6em 0 1.6em;
+}
+
+img.hero-image {
+  width: 100%;
+  margin-bottom: 1.65em;
+}
+
+.layout-right-content {
+  color: #212121;
+}
+
+/* =Footer
+-----------------------------------------------------------------------------*/
+.footer {
+  background: #404040;
+  color: #ccc;
+  flex-shrink: 0;
+  padding: 2em;
+}

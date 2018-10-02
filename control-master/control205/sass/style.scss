@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+
+input[type="password"]::-webkit-input-placeholder {
+  color: rgba(71, 87, 98, .8);
+}
+
+input[type="password"]::input-placeholder {
+  color: rgba(71, 87, 98, .8);
+}
+
+#app {
+  width: 350px;
+  height: auto;
+  padding: 10px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#app h2 {
+  font-size: 25px;
+  color: #475762;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input_container {
+  display: block;
+  margin: 0 auto;
+  width: 320px;
+  height: auto;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+#app input[type="password"] {
+  width: 320px;
+  height: auto;
+  border: 1px solid transparent;
+  background: #EEEEEE;
+  color: #475762;
+  font-size: 15px;
+  border-radius: 4px;
+  padding: 12px 5px;
+  overflow: hidden;
+  outline: none;
+  -webkit-transition: all .1s;
+  transition: all .1s;
+}
+
+#app input[type="password"]:focus {
+  border: 1px solid #2196F3;
+}
+
+.password_length {
+  padding: 2px 10px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: #FBD490;
+  color: rgba(71, 87, 98, .8);
+  border-radius: 4px;
+  font-size: 13px;
+  display: none;
+  -webkit-transition: all .1s;
+  transition: all .1s;
+}
+
+.valid_password_length {
+  background: #00AD7C;
+  color: rgba(255, 255, 255, .9);
+}
+
+.show_password_length {
+  display: block;
+}
+
+.lnu_container {
+  display: block;
+  margin: 10px auto;
+  width: 320px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lnu_container p {
+  width: 100px;
+  height: auto;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  border-radius: 2px;
+  color: rgba(71, 87, 98, .8);
+  background: linear-gradient(to right, #00AD7C 50%, #eee 50%);
+  background-size: 201% 100%;
+  background-position: right;
+  -webkit-transition: background .3s;
+  transition: background .3s;
+}
+
+.lovercase_valid,
+.number_valid,
+.uppercase_valid {
+  background-position: left !important;
+  color: rgba(255, 255, 255, .9) !important;
+}
+
+.valid_password_container {
+  display: block;
+  margin: 10px auto;
+  border-radius: 4px;
+  position: relative;
+  background: #00AD7C;
+  width: 20px;
+  height: 20px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.show_valid_password_container {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tick {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: white;
+  stroke-width: 25;
+  stroke-linecap: round;
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+}
+
+.checked {
+  -webkit-animation: draw 0.5s ease forwards;
+  animation: draw 0.5s ease forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

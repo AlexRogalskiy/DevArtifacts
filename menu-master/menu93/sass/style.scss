@@ -1,0 +1,34 @@
+/**********************************
+Responsive navbar-brand image CSS
+  - Remove navbar-brand padding for firefox and older versions of safari.
+  - The catch with this method is that it breaks text alignment on navbar-brand if we
+    don't add a custom selector. We coulud use flexbox or a few other methods though
+    to align the navbar-brand text automatically and forgo the extra `.logo` class.
+***********************************/
+
+.demo-4 .navbar-brand {
+  padding: 0px;
+}
+.demo-4 .navbar-brand>img {
+  /* just like .img-responsive */
+  max-height: 100%; /*  height: 100%; also works */
+  width: auto;
+  padding: 15px; /* add .navbar-brand padding here instead */
+}
+
+
+
+
+/* the issue */
+.demo-2 .navbar-brand>img,
+.demo-3 .navbar-brand>img {
+   height: 100%;
+}
+
+/* demo styles*/
+.navbar-brand {
+    background: #99ccff;
+}
+.demo-1 .navbar-brand>img {
+   height: 20px;
+}
