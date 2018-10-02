@@ -1,0 +1,329 @@
+@import url(http://www.uibox.info/css/general-style.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,900);
+
+@mixin size {
+	width: inherit;
+	height: inherit;
+}
+
+$yellow: #ffcc5c;
+$black: #151515;
+$brigthText: #fff;
+
+@mixin transitionA {
+	transition: all .25s ease-in-out
+}
+
+@mixin transitionB {
+	transition: all .5s cubic-bezier(1, -0.71, 0.46, 0.9);
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	@extend html;
+	background: $yellow;
+	font: 400 13px/1 'Lato', 'Helvetica', sans-serif;
+	color: $brigthText;
+}
+
+.wrapper {
+	@extend html;
+	margin: auto;
+	display: block;
+}
+
+section.main {
+	@extend html;
+	
+	section.slider {
+		@include size;
+	
+		.feed {
+			@include size;
+			width: calc(64px * 6);
+			@include transitionA;
+			transition-delay: .25s;
+			position: relative;
+			overflow: hidden;
+			left: 0;
+			&:hover {
+				/*width: calc(64px * 6);*/
+			}
+
+			.posts {
+				display: flex;
+				flex-flow: column wrap;
+				justify-content: flex-start;			
+				height: inherit;
+				position: absolute;
+				@include transitionA;
+
+				article {
+					width: 64px;
+					height: 100%;
+					position: relative;
+					cursor: pointer;
+					background-color: #151515;
+					@include transitionA;
+					transition-delay: .25s;
+
+					.sl-container {
+						position: fixed;
+						z-index: -10;
+						top: 0;
+						right: 0;
+						width: calc(100% - 64px * 5);
+						height: 100%;
+						opacity: 0;
+						background-repeat: no-repeat;
+						background-position: center;
+						background-size: cover;
+						@include transitionA;
+					}				
+
+					.ar-container {
+						position: absolute;
+						width: inherit;
+						height: 600px;
+						display: flex;
+						flex-flow: column nowrap;
+						justify-content: space-around;
+						@include transitionA;	
+						transition-delay: .25s;
+
+						.ar-ins-a-container {
+							flex: 1 auto;
+							width: inherit;
+
+							.ar-ins-b-container:not(.ins-avatar) {
+								transform-origin: bottom right;
+								transform: rotate(-90deg);
+								white-space: nowrap;
+								position: absolute;
+								box-sizing: border-box;
+								padding: 12px 0px;							
+
+							}						
+							.ar-ins-b-container {
+								width: inherit;
+
+								h1 {
+									text-transform: uppercase;
+									font-size: 12px;
+									opacity: 0.8;
+								}
+
+								.cat {
+									@extend h1;
+								}
+
+								time {
+									table {
+										tr {
+											td {
+												box-sizing: border-box;
+												padding: 0 4px;
+											}
+										}
+										tr.number {
+											font-size: 28px;
+											font-weight: 100;
+										}
+
+										tr.label {
+											font-size: 12px;
+										}
+									}
+								}
+
+								img.avatar {
+									display: block;
+									width: 56px;
+									transform: scale(.65);
+									margin: auto;
+									border-radius: 100%;
+									@include transitionA;
+									transition-delay: .25s;
+								}
+							}
+						}
+					}
+					&:hover {
+						width: 128px;
+
+						.ar-container {
+							transform: translateX(50%);	
+							width: 64px;
+						}
+
+						img.avatar {
+							transform: scale(1.25) !important;
+						}
+					}
+					&:nth-child(1) {
+						background-color: #151515;
+						.ar-container {
+							bottom: 0%;
+						}
+						.sl-container {
+							background-image: url(http://uibox.info/wtm/bg-1.jpg);
+						}
+					}
+					&:nth-child(2) {
+						background-color: #7835e6;
+						.ar-container {
+							bottom: 20%;
+						}
+						.sl-container {
+							background-image: url(http://uibox.info/wtm/bg-2.jpg);
+						}
+					}
+					&:nth-child(3) {
+						background-color: #ecedd6;
+						color: #151515;
+						.ar-container {
+							top: 0;
+						}
+						.sl-container {
+							background-image: url(http://uibox.info/wtm/bg-3.jpg);
+						}
+					}
+					&:nth-child(4) {
+						background-color: #3e4d64;
+						.ar-container {
+							bottom: 0;
+						}
+						.sl-container {
+							background-image: url(http://uibox.info/wtm/bg-4.jpg);
+						}
+					}
+					&:nth-child(5) {
+						background-color: #151515;
+						.ar-container {
+							bottom: 15%;
+						}
+					}
+					&:nth-child(6) {
+						background-color: deeppink;
+						.ar-container {
+							top: 0;
+						}
+					}
+					&:nth-child(7) {
+						background-color: darkslateblue;
+						.ar-container {
+							bottom: 0;
+						}
+					}
+					&:nth-child(8) {
+						background-color: tomato;
+						.ar-container {
+							bottom: 30%;
+						}
+					}
+
+				}
+				article.active {
+					width: 128px;				
+
+					.ar-container {
+						transform: translateX(50%);
+						width: 64px;
+
+						img.avatar {
+							transform: scale(1.25) !important;
+							transform-origin: top;
+						}
+					}				
+				}
+				article.back {
+					.sl-container {
+						opacity: 1;
+						z-index: -1;
+						animation: kburns 1s forwards;
+					}
+				}
+			}
+
+			.primary.posts {
+				left: 0;
+				z-index: 9;
+			}
+			.secondary.posts {
+				left: calc(64px * 5);
+				z-index: 8;
+			}		
+		}
+		.feed.move {
+			left:calc(64px * 6);
+		}
+	}
+}
+
+@keyframes kburns {
+	0% {background-size: auto 100%;}
+	100% {background-size: auto 110%;}
+}
+
+/* Header */
+
+header {
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	bottom: 0;
+	left: calc(64px * 5);
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	width: 64px;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 12px;
+	overflow: hidden;
+	@include transitionA;
+	transition-delay: .25s;
+}
+
+header nav {
+	height: inherit;
+}
+
+header nav ul {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    height: inherit;
+    font-size: 14px;
+}
+
+header nav ul li {
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.43);
+    display: flex !important;
+    align-items: center;
+    transition: all .25s linear;
+    transform-origin: center;
+}
+
+header nav ul li:before {
+    cursor: pointer;
+}
+
+header nav ul li:hover {
+    color: $yellow;
+}
+
+header nav ul li:active {
+    transform: scale(1.25);
+}
+
+header nav ul li:last-child {
+    border-bottom: 0;
+}
+
+
+

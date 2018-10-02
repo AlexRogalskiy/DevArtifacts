@@ -1,0 +1,160 @@
+$npages: 7 /* This is the number of pages added in "pageTitle" in the HTML editor */
+$bg: #2B2B38
+$bg-odd: #F5004F
+/* The basic stuff to make it work */
+.contenedor
+	width: 100vw
+	height: 100vh
+	background: deeppink
+
+	position: relative
+	display: flex
+	align-items: center
+
+	form
+		box-sizing: border-box
+		text-align: center
+		padding: 22px
+		display: inline-flex
+		flex-direction: column
+		position: fixed
+		height: 100vh
+		justify-content: center
+		
+		input
+			height: 0
+			margin: 12px 0
+			z-index: 1
+			&:checked
+				outline: 0
+				border: 0
+			&:before
+				content: ""
+				position: absolute
+				display: inline-block
+				width: 8px
+				height: 8px
+				border: 1px solid rgba(255, 255, 255, 0.81)
+				border-radius: 11px
+				cursor: pointer
+				transition: all .25s linear
+			&:checked:before 
+				background-color: white			
+			&:after
+				content: ""attr(titulo)""
+				position: relative
+				left: 30px
+				opacity: 0
+				color: white
+				font-size: 9px
+				display: block
+				min-width: 80px
+				transition: all .25s linear
+			&:checked:after
+				opacity: 1
+				left: 20px
+			&:hover:after:not(label)
+				opacity: 1		
+			@for $i from 1 through $npages	
+				&:nth-of-type(#{$i}):checked ~ .labels label
+					transform: translateY(-#{($i - 1) * 100%})
+
+		.labels 
+			position: absolute
+			top: 0
+			left: 0
+			width: 100vw
+			height: 100vh
+			display: flex
+			flex-direction: column
+
+			label
+				min-width: 100vw
+				min-height: 100vh
+				display: flex
+				flex-direction: column
+				justify-content: center
+				align-items: center
+				background-color: $bg
+				z-index: 0
+				transition: all .75s cubic-bezier(0.75, 0.25, 0, 1.05)
+				&:nth-child(odd)
+					background-color: $bg-odd
+					color: white !important
+
+
+/* Fancy style */
+body
+	font:
+		family: 'Open sans', sans-serif
+		size: 16px
+		weight: 100
+	color: white
+
+.content 
+	width: 100%
+	box-sizing: border-box
+	padding: 0 110px
+	
+	.block 
+		width: inherit
+		font:
+			size: 11px
+			weight: 400
+		line-height: 1.5
+		margin: 42px 0
+		display: flex
+		justify-content: center
+
+	
+		span
+			margin: 0 42px
+	
+			i
+				margin-bottom: 22px
+				@extend span
+				&:before
+					font-size: 30px
+
+.Slide:nth-child(even) .content .block
+	color: #717171
+
+
+
+.icon 
+	position: absolute
+	bottom: 30px
+	left: 0
+	right: 0
+	font-size: 11px
+	text-align: center
+	line-height: 1.5
+	display: flex
+	flex-direction: column
+
+#Slide5 .content .block
+	flex-direction: column
+	i
+		margin: 0 12px
+		vertical-align: middle
+
+strong
+	font-weight: 400
+
+h1
+	text-transform: uppercase
+
+ol
+	text-align: left
+	list-style-type: decimal
+
+a
+	text-decoration: none
+	color: inherit
+	transition: all .25s linear
+	&:hover
+		color: rebeccapurple
+
+
+
+		

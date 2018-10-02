@@ -1,0 +1,183 @@
+/* The basic stuff to make it work */
+.contenedor {
+  width: 100vw;
+  height: 100vh;
+  background: deeppink;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.contenedor form {
+  box-sizing: border-box;
+  text-align: center;
+  padding: 22px;
+  display: inline-flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  justify-content: center;
+}
+.contenedor form input {
+  height: 0;
+  margin: 12px 0;
+  z-index: 1;
+}
+.contenedor form input:checked {
+  outline: 0;
+  border: 0;
+}
+.contenedor form input:before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.81);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: all 0.25s linear;
+}
+.contenedor form input:checked:before {
+  background-color: white;
+}
+.contenedor form input:after {
+  content: "" attr(titulo) "";
+  position: relative;
+  left: 30px;
+  opacity: 0;
+  color: white;
+  font-size: 9px;
+  display: block;
+  min-width: 80px;
+  transition: all 0.25s linear;
+}
+.contenedor form input:checked:after {
+  opacity: 1;
+  left: 20px;
+}
+.contenedor form input:hover:after:not(label) {
+  opacity: 1;
+}
+.contenedor form input:nth-of-type(1):checked ~ .labels label {
+  transform: translateY(-0%);
+}
+.contenedor form input:nth-of-type(2):checked ~ .labels label {
+  transform: translateY(-100%);
+}
+.contenedor form input:nth-of-type(3):checked ~ .labels label {
+  transform: translateY(-200%);
+}
+.contenedor form input:nth-of-type(4):checked ~ .labels label {
+  transform: translateY(-300%);
+}
+.contenedor form input:nth-of-type(5):checked ~ .labels label {
+  transform: translateY(-400%);
+}
+.contenedor form input:nth-of-type(6):checked ~ .labels label {
+  transform: translateY(-500%);
+}
+.contenedor form input:nth-of-type(7):checked ~ .labels label {
+  transform: translateY(-600%);
+}
+.contenedor form .labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.contenedor form .labels label {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2B2B38;
+  z-index: 0;
+  transition: all 0.75s cubic-bezier(0.75, 0.25, 0, 1.05);
+}
+.contenedor form .labels label:nth-child(odd) {
+  background-color: #F5004F;
+  color: white !important;
+}
+
+/* Fancy style */
+body {
+  font-family: "Open sans", sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  color: white;
+}
+
+.content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 110px;
+}
+.content .block {
+  width: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 42px 0;
+  display: flex;
+  justify-content: center;
+}
+.content .block span, .content .block span i {
+  margin: 0 42px;
+}
+.content .block span i {
+  margin-bottom: 22px;
+}
+.content .block span i:before {
+  font-size: 30px;
+}
+
+.Slide:nth-child(even) .content .block {
+  color: #717171;
+}
+
+.icon {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+}
+
+#Slide5 .content .block {
+  flex-direction: column;
+}
+#Slide5 .content .block i {
+  margin: 0 12px;
+  vertical-align: middle;
+}
+
+strong {
+  font-weight: 400;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+ol {
+  text-align: left;
+  list-style-type: decimal;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s linear;
+}
+a:hover {
+  color: rebeccapurple;
+}
