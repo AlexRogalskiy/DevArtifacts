@@ -1,0 +1,84 @@
+/**************************************
+*	breakPointer() - expose breakpoints
+***************************************
+
+Usage:
+1. Edit the $breakPointer_breakpoints variable list below. These comma separated values should match your project's key breakpoints. 
+
+3. Drop JS in your project's main JS file and call the breakPointer() function when you need it.
+
+*/
+
+$breakPointer_breakpoints: (
+  small 20em,
+  medium 39em,
+  large 48em,
+  x-large 57em,
+  xx-large 76em,
+  xxx-large 109em
+);
+
+body.breakPointer:after {
+
+  content:'No media query';
+
+  @each $breakpoint in $breakPointer_breakpoints {
+    @media (min-width: nth($breakpoint,2)) {
+      content: '#{nth($breakpoint,1)}';
+    }
+  }
+  
+  position:fixed; 
+  top:3em; 
+  right:0;
+  background:#fff; 
+  padding:.2em .3em;
+  color:lighten(#000,17%);
+  font-size:1em;
+  opacity:.8;
+  z-index:9999;
+
+}
+
+/* end breakPointer - 
+
+inspired by: https://codepen.io/bartveneman/pen/sfbxI 
+
+built upon this concept:
+http://johanbrook.com/design/css/debugging-css-media-queries/
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* demo - not needed */
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab);body{background:darken(#EC5B5F,8%);font-family:'Roboto Slab',serif;padding:15px}h1{color:#fff}p{color:#fff;font-size:1.3em;line-height:2em}span{background:#fff;padding:.2em .3em;opacity:.8;color:#2C3E50}

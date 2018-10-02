@@ -1,0 +1,63 @@
+body {
+  margin:25px;
+  text-align:center;
+  background:#000;
+}
+
+
+$primaryColor: #13AB9E;
+$secondaryColor: #26ABDE;
+$tertiaryColor: #202C2B;
+$activeKeyColor: red;
+
+h1 {
+  color:$secondaryColor;
+}
+
+.virtual-keyboard {
+  .row {
+    text-align:center;
+    margin:0 0 15px;
+  }
+  .row.spacebar {
+    input {
+      padding:10px 150px;
+    }
+  }
+  input[type='button']{
+    padding:10px 20px;
+    border-radius:30px;
+    border:3px solid $tertiaryColor;
+    background:$primaryColor;
+    color:#fff;
+    text-transform:uppercase;
+    &.shift-activated {
+      background:$activeKeyColor;
+    }
+    &.delete, &.shift {
+      text-transform:none;
+    }
+  }
+}
+
+.output {
+  margin:15px;
+  input {
+    color:white;
+    background:black;
+    border:0px;
+    line-height:2.2em;
+    text-align:center;
+    font-size:2em;
+    width:100%;
+    &:focus {
+      outline:none;
+      border:0px;
+    }
+  }
+  ::-webkit-input-placeholder {
+    color:white;
+    text-align:center;
+    font-size:1em;
+  }
+}

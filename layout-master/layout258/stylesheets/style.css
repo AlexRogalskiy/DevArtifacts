@@ -1,0 +1,85 @@
+/**************************************
+*	breakPointer() - expose breakpoints
+***************************************
+
+Usage:
+1. Edit the $breakPointer_breakpoints variable list below. These comma separated values should match your project's key breakpoints. 
+
+3. Drop JS in your project's main JS file and call the breakPointer() function when you need it.
+
+*/
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
+body.breakPointer:after {
+  content: 'No media query';
+  position: fixed;
+  top: 3em;
+  right: 0;
+  background: #fff;
+  padding: .2em .3em;
+  color: #2b2b2b;
+  font-size: 1em;
+  opacity: .8;
+  z-index: 9999;
+}
+@media (min-width: 20em) {
+  body.breakPointer:after {
+    content: "small";
+  }
+}
+@media (min-width: 39em) {
+  body.breakPointer:after {
+    content: "medium";
+  }
+}
+@media (min-width: 48em) {
+  body.breakPointer:after {
+    content: "large";
+  }
+}
+@media (min-width: 57em) {
+  body.breakPointer:after {
+    content: "x-large";
+  }
+}
+@media (min-width: 76em) {
+  body.breakPointer:after {
+    content: "xx-large";
+  }
+}
+@media (min-width: 109em) {
+  body.breakPointer:after {
+    content: "xxx-large";
+  }
+}
+
+/* end breakPointer - 
+
+inspired by: https://codepen.io/bartveneman/pen/sfbxI 
+
+built upon this concept:
+http://johanbrook.com/design/css/debugging-css-media-queries/
+
+*/
+/* demo - not needed */
+body {
+  background: #e8363b;
+  font-family: 'Roboto Slab',serif;
+  padding: 15px;
+}
+
+h1 {
+  color: #fff;
+}
+
+p {
+  color: #fff;
+  font-size: 1.3em;
+  line-height: 2em;
+}
+
+span {
+  background: #fff;
+  padding: .2em .3em;
+  opacity: .8;
+  color: #2C3E50;
+}

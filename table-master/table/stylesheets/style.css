@@ -1,0 +1,123 @@
+@import url(https://fonts.googleapis.com/css?family=Arvo:400,700);
+.adap-table thead tr {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+@media (min-width: 42em) {
+  .adap-table thead tr {
+    position: relative;
+  }
+}
+.adap-table span.adapTable-header {
+  font-weight: bold;
+  padding-right: .5em;
+}
+@media (min-width: 42em) {
+  .adap-table span.adapTable-header {
+    display: none;
+  }
+}
+@media (max-width: 42em) {
+  .adap-table {
+    display: block;
+  }
+  .adap-table thead, .adap-table tbody, .adap-table th, .adap-table td, .adap-table tr {
+    display: block;
+  }
+}
+
+/* not needed just for demo look and feel */
+table {
+  background: #FFF;
+  margin-bottom: 1.25rem;
+  border: solid 1px #ddd;
+  width: 100%;
+  box-shadow: 0px 0px 3px #650808;
+}
+
+table tfoot, table thead {
+  background: #F5F5F5;
+}
+
+table tfoot tr td, table tfoot tr th, table thead tr td, table thead tr th {
+  padding: .5rem .625rem .625rem;
+  font-size: .875rem;
+  font-weight: 700;
+  color: #222;
+  text-align: left;
+}
+
+table tr td, table tr th {
+  padding: .5625rem .625rem;
+  font-size: .875rem;
+  color: #222;
+}
+
+table tr.alt, table tr.even, table table tbody tr td, table tfoot tr td, table tfoot tr th, table thead tr th, table tr td {
+  display: table-cell;
+  line-height: 1.125rem;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Arvo', serif;
+  margin: 1em;
+  color: #fff;
+  background: #871c0a;
+  /* Old browsers */
+  background: linear-gradient(45deg, #871c0a 20%, #fc7c0f 61%, #fd7914 100%);
+  background-size: cover;
+}
+
+h1, h2 {
+  font-family: 'Arvo', serif;
+  font-weight: 700;
+  text-shadow: 2px 1px 1px #222;
+}
+
+p {
+  text-shadow: 2px 1px 1px #222;
+}
+
+td {
+  vertical-align: top;
+}
+
+@media (max-width: 42em) {
+  tr {
+    margin-bottom: .5em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: .5em;
+  }
+  tr:last-of-type {
+    border: 0;
+  }
+}
+td.title span.adapTable-header, td.description span.adapTable-header {
+  display: block;
+}
+@media (min-width: 42em) {
+  td.title span.adapTable-header, td.description span.adapTable-header {
+    display: none;
+  }
+}
+
+td.title {
+  max-width: 200px;
+}
+
+@media (min-width: 42em) {
+  td.description {
+    max-width: 400px;
+  }
+}
+@media (max-width: 42em) {
+  td.description {
+    max-height: 100px;
+    overflow: scroll;
+  }
+}
