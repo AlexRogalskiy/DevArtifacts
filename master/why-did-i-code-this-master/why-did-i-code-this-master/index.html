@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Warum habe ich das so programmiert?</title>
+	<link rel="stylesheet" href="css/prism.css">
+	<link rel="stylesheet" href="css/default.css">
+	<script src="js/jq.min.js"></script>
+	<script src="js/fastclick.js"></script>
+	<script>window.addEventListener('load', function() {
+	new FastClick(document.body);}, false);</script>
+</head>
+<body>
+	<div class="wrapper">
+		<pre>
+			<code title="Führt das komplette Skript erst, wenn das Dokument vollständig geladen ist." class="frag language-javascript">$(document).ready(function(){</code>
+			<code title="Initiiert einen Variablen-Block." class="language-javascript frag inline">	var</code><code class="language-javascript">	</code><code data-target="var_toggle" title="Eine Variable für alle Elemente mit der Klasse 'toggle-info' wird erstellt." class="language-javascript frag">toggleInfo	= $('.toggle-info'),</code>
+			<code class="language-javascript frag">		navLink 	= $('.nav-link'),</code>
+			<code class="language-javascript frag">		areaTarget 	= $("area[data-route-index]"),</code>
+			<code class="language-javascript frag">		infoPos 	= $('.loc'),</code>
+			<code class="language-javascript frag">		norPlat		= $('area[data-platform=normal]'),</code>
+			<code class="language-javascript frag">		mainPlat	= $('area[data-platform=main]');</code>
+
+			<code title="Wir erstellen hier ein multidimensionales Javascript-Objekt mit Informationen, die wir später gut über Variablen abrufen können" class="language-javascript frag">	var parcours = { 
+		zirkel: {
+			name: "zirkel",
+			title: "Magischer Zirkel", 
+			dif: "für Einsteiger, Familien und Kinder.", 
+			desc: "Hier können Sie Ihre ersten Hochseil-Erfahrungen sammeln.", 
+			stations: "Stationen: Kletterstart, … Back to earth"},
+			...
+		}</code>
+
+	<code data-find="var_toggle" title="Wir machen nun irgendwas, dies ist eigentlich nur ein test für die errinerung an Variablen" class="language-javascript frag">	toggleInfo.on('click', function() {</code>
+	<code title="" class="language-javascript frag">		$(this).parent().toggleClass('min');</code>
+	<code title="" class="language-javascript frag">		$(this).toggleClass('rotate');</code>
+	<code title="" class="language-javascript">	});</code>
+		</pre>
+	</div>
+
+	
+
+<!-- <code title="" class="language-javascript frag"></code> -->
+
+	<script src="js/prism.js"></script>
+	<script>
+
+		// Uncomment the next line to delete the localStorage entry
+		delete localStorage.closed;
+
+		var t1 = "Du verstehst den Code nicht?",
+			t2 = "Klicke einfach eine Zeile an um einen Kommentar von mir zu erhalten.",
+			t3 = "So werden meine Gedankengänge endlich verständlich!",
+			t4 = "Klicke irgendwo um zu beginnen …";
+
+		if (!localStorage.closed == 1) {
+			$('.wrapper').after('<div class="layer"><div class="center"><h2>'+t1+'</h2><p>'+t2+'</p><p>'+t3+'</p><p>'+t4+'</p></div></div>');
+		}
+
+		$(document).ready(function(){
+			var code = $('.frag'),
+				layer = $('.layer');
+
+			layer.on('click', function() {
+					$(this).remove();
+					localStorage.closed = "1";
+			});
+
+			code.each(function() {
+				var w 	= $(this).outerWidth(),
+					t 	= $(this).attr('title'),
+					df 	= $(this).attr('data-find');
+
+				$(this).on('click', function() {
+					if ($(this).hasClass('sel')) {
+						$(this).removeClass('sel');
+						$(this).nextAll('div').remove();
+					} else {
+						$('code').removeClass('sel');
+						$('.info').remove();
+						$(this).addClass('sel');
+
+						if ($(this).next('div').length == 1 && !$(this).hasClass('inline')) {
+							return false;
+						} else {
+							if ($(this).hasClass('inline')) {
+								$(this).nextAll('code[title]').first().after('<div class="info">' + t + '</div>');
+							} else {
+								$(this).after('<div class="info">' + t + '</div>');
+							}
+						}
+					}
+
+					if ($(this).attr('data-find')) {
+						console.log('Ja, nun var suchen');
+						$('code[data-target=' + df + ']').toggleClass('target');
+					} else {
+						$('code[data-target]').removeClass('target');
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,59 +1,81 @@
-# Some Sass mixins for your needs
+# sass-mixins
+Useful sass mixins without bs
+- all demos are listed here as a collection: http://codepen.io/collection/AKwvjR/
 
-Take what you need!
+## List of mixins included:
 
-### This repository has some Sass-Mixins for you:
 
-* [animation](partials/_animation.scss)
-* [appearance](partials/_appearance.scss)
-* [background-size](partials/_background-size.scss)
-* [border-radius](partials/_border-radius.scss)
-* [box-shadow](partials/_box-shadow.scss)
-* [box-sizing](partials/_box-sizing.scss)
-* [calc](partials/_calc.scss)
-* [flexbox](partials/_flexbox.scss)
-* [linear-gradient](partials/_linear-gradient.scss)
-* [multiple-backgrounds](partials/_multiple-backgrounds.scss)
-* [multiple-colored-gradient](partials/_multiple-colored-gradient.scss)
-* [opacity](partials/_opacity.scss)
-* [placeholder](partials/_placeholder.scss)
-* [rem](partials/_rem.scss)
-* [transform](partials/_transform.scss)
-* [transition](partials/_transition.scss)
-* [tab-size](partials/_tab-size.scss)
-* [user-select](partials/_user-select.scss)
+### font-face
+- include local fonts easy
+- usage `@include font-face('hk_grotesklight', '../fonts/hk-grotesk/hkgrotesk-light-webfont')`
 
-Documentation on how to use each of these can be found in the partials.
+### breakpoint
+- for mediquerys with singe argument
+- usage: `@include breakpoint(xl){}` or `@include breakpoint(600px, min-width){}` or `@include breakpoint(number or predefined point, max-width(px)/min-width(px)/or any other feature){}`
+- define variables for breakpoints before usage
+- demo: http://codepen.io/riogrande/pen/jqPJPO
 
-### General Usage
+### breakpoints
+- for mediquerys with two breakpoint arguments
+- usage: `@include breakpoints(400px, 600px){}` or `@include breakpoints(400px, 600px, 'only screen'){}`
+- `$media-type` is disabled as default
+- demo: http://codepen.io/riogrande/pen/JXYPKY
 
-In general you should include the file `mixins.scss` in `build` into your
-project and use the mixins as suggested in the docs for each mixin.
+### box-sizing
+- usage: `@include box-sizing;`
+- with or without arguments, border-box is default
 
-#### Install with Bower
+### clearfix 
+- usage: `@include clearfix;`
+- no arguments
 
-You can install the package using [Bower](http://bower.io/). Please run
+### transitions
+- usage: `@include transitions; or @include transitions(color, .5, ease-out, .1);`
+- demo: http://codepen.io/riogrande/pen/WwrdJo
 
-	$ bower install --save-dev sass-mixins
+### border-radius-radius
+- for the rounded edges
+- usage: `@include border-radius-radius; or @include border-radius-radius(5px);`
+- demo: http://codepen.io/riogrande/pen/mPVprY
 
-in your project's root directory to install the mixins repository. After that
-you can require the mixins file within your project.
+### border-radius-round
+- for circling
+- usage: `@include border-radius-round; or @include border-radius-round(100%);`
+- demo: http://codepen.io/riogrande/pen/mPVprY
 
-## Contribute
+### border-radius-custom
+- for defining only some rounded corners
+- usage: `@include border-radius-custom;` or `@include border-radius-custom(5px, 5px, 0, 0);`
+- second example above will give 5px border radius on top left and top right corner
+- demo: http://codepen.io/riogrande/pen/mPVprY
 
-Please [file an issue](https://github.com/drublic/Sass-Mixins/issues) if you
-think something could be improved. Please submit Pull Requests when ever
-possible.
+### center 
+- center anything - with position absolute
+- usage: `@include center(vertical/horizontal/both)`
+- must have argument
+- demo: http://codepen.io/riogrande/pen/VaeyMR
 
-## Up the road
+### box-shadow
+- usage: `@include box-shadow;` or `@include box-shadow(0, 2px, 2px, #333);`
+- demo: http://codepen.io/riogrande/pen/grPoeb
 
-* radial-gradient
-* Mixin that generates grids
+### gradient
+- usage: `@include gradient(90, #fff, #333);`
+- must have argument
+- demo: http://codepen.io/riogrande/pen/XdXVYq
 
-## Thanks
+### rotate
+- usage: `@include rotate;` or `@include rotate(90);`
+- demo: http://codepen.io/riogrande/pen/pygpZr
 
-Thanks to @Schepp for starting [a similar repo](https://github.com/Schepp/SASS-Mixins).
+### opacity
+- usage `@include opacity(0.5);`
+- must have argument
+- demo: http://codepen.io/riogrande/pen/xVMyKr
 
-## License
+## Installation
+- copy/paste to your project
+- include as partial 
 
-[The MIT License](LICENSE.md)
+## Licence
+Do what ever you want 

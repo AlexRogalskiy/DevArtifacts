@@ -1,0 +1,94 @@
+$bg: #141414;
+$mw: 720px;
+
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
+
+// Transition-mixin. Prefix-free coding's easier ;)
+@mixin prefix($method, $arg) {
+	#{$method}: ($arg);
+	-webkit-#{$method}: ($arg);
+	-moz-#{$method}: ($arg);
+}
+
+* 		{box-sizing: border-box;font-family: 'Source Code Pro', sans-serif !important;}
+body 	{background: $bg; margin: 0; color:white;font-size: 16px;}
+::selection {background: transparent;}
+
+.wrapper {
+	padding: 3em 1em;
+	max-width: $mw;
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+	@include prefix(transition, all 0s linear);
+}
+
+@media all and (max-width: 719px) {
+	.wrapper {font-size: 0.75rem;}
+}
+
+// reset some inherited css by prism.js
+pre[class*="language-"] {
+	border: 0;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 0 0px 0px 7px;
+	margin: 0;
+	overflow: hidden;
+	white-space: pre-line;
+}
+
+code {
+	border-radius: 4px;
+	white-space: pre-wrap !important;
+
+	&.frag {
+		display: inline-block;
+		padding: 3px 7px;
+		margin-left: -7px;
+
+		&:hover, &:active {background: rgba(255,255,255,0.1);}
+		&.sel {background: rgba(139,26,94,0.35);}
+		&.target {background: rgba(133,115,22,0.35);}
+	}
+}
+
+.info {
+	display: block;
+	background: $bg;
+	position: relative;
+	max-width: $mw;
+	margin-right: -3px;
+	color: #464646;
+	padding: 6px 0;
+	// height: 0;
+	@include prefix(transition, height 500ms ease-in-out);
+
+	&:before {content: '//	';}
+}
+
+.layer {
+	position: fixed;
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.85);
+	top: 0;
+	z-index: 999;
+
+	.center {
+		width: 100%;
+		position: relative;
+		padding: 0 3rem;
+		max-width: $mw;
+		max-height: $mw;
+		min-height: $mw/3;
+		top: -50%;
+		margin: ($mw/3)/2 auto 0;
+		display: block;
+		
+		h2 {color: #F9EE9A;font-size: 2rem;}
+		p:last-of-type {color: #919E6B;}
+	}
+}
