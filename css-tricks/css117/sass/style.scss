@@ -1,0 +1,32 @@
+#red { background-color: #A43741; }
+#blue { background-color: #2F4073; }
+#green { background-color: #2D882D; }
+#yellow { background-color: #FFC107; }
+
+.rating{
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+}
+.rating > span:hover{
+  cursor:pointer;
+}
+/* .rating > span:hover:before, */
+.rating > span#red:hover ~ span:before,
+.rating > span#blue:hover ~ span:before,
+.rating > span#green:hover ~ span:before,
+.rating > span#yellow:hover ~ .rating > span:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  background-color: red;
+  opacity: .25;
+  width: 10rem;
+  height: 10rem;
+}
