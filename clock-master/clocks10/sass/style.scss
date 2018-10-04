@@ -1,0 +1,307 @@
+$bg-color: #282828;
+
+$clock-bg: #252525;
+$clock-radius: 30vh;
+$clock-mark-color: #fff;
+$clock-start-bg: #4fe3c1;
+$clock-stop-bg: #ff415a;
+$clock-button-bg: #ebebeb;
+$clock-button-color: #5e5e5e;
+
+// Main style
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: $bg-color;
+  font-family: "PT Sans", "Helvetica", sans-serif;
+  font-size: 14px;
+}
+
+.clock-wrapper {
+  display: block;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.clock {
+  position: relative;
+  display: block;
+  margin: 0 auto 30px;
+  min-width: 250px;
+  min-height: 250px;
+  max-width: 90vw;
+  max-height: 90vw;
+  width: $clock-radius * 2;
+  height: $clock-radius * 2;
+  background-color: $clock-bg;
+  border-radius: 50%;
+  box-shadow: 0 0 5px darken($clock-bg, 5%);
+}
+
+.clock__inner-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 92%;
+  height: 92%;
+  background-color: $clock-bg;
+  border-radius: 50%;
+  box-shadow: 0 0 3px darken($clock-bg, 5%);
+
+  transform: translate(-50%, -50%);
+}
+
+.clock__inner-bg:nth-of-type(2) {
+  width: 85%;
+  height: 85%;
+  background-color: darken($clock-bg, 1%);
+  box-shadow: none;
+}
+
+.clock__center {
+  z-index: 2;
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background-color: $clock-start-bg;
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    background-color: #454f4e;
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+  }
+}
+
+.clock--started .clock__center {
+  background-color: $clock-stop-bg;
+}
+
+.clock__markers,
+.clock__minutes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.clock__mark {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 5px;
+  height: 50%;
+
+  transform-origin: 50% bottom;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    color: $clock-mark-color;
+    font-size: 22px;
+
+    transform: translateX(-50%);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    width: 2.5px;
+    height: 2.5px;
+    background-color: $clock-mark-color;
+    border-radius: 50%;
+
+    transform: translateX(-50%);
+  }
+
+  &:nth-child(1)::before {
+    content: '60';
+  }
+
+  &:nth-child(5n + 1)::after {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+$angle: 360/60;
+@for $i from 1 through 60 {
+  .clock__mark:nth-child(#{$i}) {
+    transform: translateX(-50%) rotate(#{($angle * ($i - 1))}deg);
+  }
+
+  // rotate in reverse the minutes to be always readable
+  .clock__mark:nth-child(#{$i})::before {
+    transform: translate(-50%, -50%) rotate(-#{($angle * ($i - 1))}deg);
+
+  }
+}
+
+@for $i from 1 through 12 {
+  .clock__mark:nth-child(#{$i * 5 + 1})::before {
+    content: '#{$i * 5}';
+
+    @if $i % 3 != 0 {
+      font-size: 16px;
+    }
+  }
+}
+
+.clock__pointer {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 27.5%;
+  background-color: $clock-start-bg;
+  border-top-left-radius: 30%;
+  border-top-right-radius: 30%;
+
+  transform: translate(-50%, -100%) rotate(0);
+  transform-origin: 50% bottom;
+  will-change: transform;
+}
+
+.clock--started .clock__pointer {
+  background-color: $clock-stop-bg;
+}
+
+.clock__inner-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid #4e4e4e;
+
+  transform: translate(-50%, -50%);
+}
+
+@for $i from 1 through 3 {
+  .clock__inner-center:nth-child(#{$i}) {
+    width: 20px * $i;
+    height: 20px * $i;
+    border-color: rgba(78, 78, 78, ($i * 0.25));
+  }
+}
+
+.clock-time {
+  display: block;
+  width: auto;
+  margin: 0 auto 30px;
+  color: $clock-mark-color;
+  font-size: 2em;
+  letter-spacing: 2px;
+}
+
+.clock-button {
+  position: relative;
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  margin: 0 20px;
+  background-color: $clock-button-bg;
+  border-radius: 50%;
+  border: none;
+  color: $clock-button-color;
+  font-size: 1.5em;
+  font-family: "PT Sans", "Helvetica", sans-serif;
+
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+
+  &::before {
+    z-index: 0;
+    content: '';
+    position: absolute;
+    top: -7.5px;
+    left: -7.5px;
+    right: -7.5px;
+    bottom: -7.5px;
+    background-color: transparentize($clock-button-bg, 0.5);
+    border-radius: 50%;
+
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active::before {
+    transform: scale(0.95);
+  }
+
+  &:active,
+  &:focus {
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  	-moz-tap-highlight-color: rgba(0,0,0,0);
+  	tap-highlight-color: rgba(0,0,0,0);
+  }
+}
+
+.clock-button--start {
+  background-color: $clock-start-bg;
+  color: #fff;
+
+  &::before {
+    background-color: transparentize($clock-start-bg, 0.5);
+  }
+}
+
+.clock-button--pause {
+  background-color: $clock-stop-bg;
+  color: #fff;
+
+  &::before {
+    background-color: transparentize($clock-stop-bg, 0.5);
+  }
+}
+
+.clock-button__text {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+
+  ellipse {
+    stroke-dasharray: 136%;
+    stroke-dashoffset: -136%;
+    ;
+  }
+}

@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono");
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Share Tech Mono", "Andale Mono", monospace;
+  cursor: crosshair;
+  overflow: hidden;
+}
+
+section {
+  position: absolute;
+  width: 1200px;
+  max-width: calc(100% - 1rem);
+  max-height: calc(100% - 1rem);
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  display: flex;
+  flex-direction: column;
+}
+section div.progress,
+section div.abilities {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+section div.progress .anim,
+section div.abilities .anim {
+  animation: animIn 250ms ease-in forwards;
+}
+@keyframes animIn {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+section div.progress {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+}
+section div.progress span {
+  text-align: center;
+  flex-basis: 33.33%;
+}
+section div.progress span:first-child {
+  text-align: left;
+}
+section div.progress span:last-child {
+  text-align: right;
+}
+section div.abilities {
+  line-height: 1.4rem;
+  height: 1.4rem;
+}
+section div.abilities p:first-child {
+  color: white;
+}
+section div.abilities p {
+  margin: 0;
+}
+section div.abilities em {
+  font-style: italic;
+}
+section div.canvas {
+  flex-basis: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+section div.canvas .author,
+section div.canvas .restart {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+}
+section div.canvas .restart {
+  right: 0;
+}
+section div.canvas .author {
+  left: 0;
+}
+section div.canvas canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+section div.canvas canvas.overlay {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
+p span {
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+body div.intro {
+  display: block;
+}
+
+body.focused div.intro {
+  display: none;
+}
+
+div.intro,
+div.final-score {
+  color: white;
+  background: black;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 95%;
+  max-width: 450px;
+  padding: 1rem;
+  box-sizing: border-box;
+  transform: translate(-50%, -50%);
+  border: 1px solid;
+}
+div.intro p,
+div.final-score p {
+  margin: 0;
+}
+div.intro p + p,
+div.final-score p + p {
+  margin-top: 0.8rem;
+}
+
+div.intro p:first-child {
+  font-size: 2rem;
+}
+
+div.final-score p:nth-child(2) {
+  font-size: 2rem;
+}
+
+a {
+  z-index: 99;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+a:hover {
+  color: white;
+  border-bottom-color: white;
+}
+
+.abilities,
+.fullscreen,
+.restart {
+  user-select: none;
+}
+
+.fullscreen {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}

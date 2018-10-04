@@ -1,0 +1,209 @@
+body {
+  background-color: black;
+}
+
+main {
+  padding: 3vw 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.block {
+  position: relative;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 12rem;
+  height: 8rem;
+  margin: 1rem;
+  transition: all 1.5s ease, height 0s, width 0s, margin 0s;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+@media (min-width: 640px) {
+  .block {
+    width: 24vw;
+    height: 16vw;
+    margin: 3vw;
+  }
+}
+.block:before, .block:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+  background: inherit;
+  border-radius: inherit;
+  transition: inherit;
+}
+
+.block:nth-child(1) {
+  transition-delay: 0.33333s, 0s, 0s, 0s;
+}
+
+.block:nth-child(2) {
+  transition-delay: 0.66667s, 0s, 0s, 0s;
+}
+
+.block:nth-child(3) {
+  transition-delay: 1s, 0s, 0s, 0s;
+}
+
+.block:nth-child(4) {
+  transition-delay: 1.33333s, 0s, 0s, 0s;
+}
+
+.block:nth-child(5) {
+  transition-delay: 1.66667s, 0s, 0s, 0s;
+}
+
+.block:nth-child(6) {
+  transition-delay: 2s, 0s, 0s, 0s;
+}
+
+.block:nth-child(7) {
+  transition-delay: 2.33333s, 0s, 0s, 0s;
+}
+
+.block:nth-child(8) {
+  transition-delay: 2.66667s, 0s, 0s, 0s;
+}
+
+.block:nth-child(9) {
+  transition-delay: 3s, 0s, 0s, 0s;
+}
+
+.block:nth-child(10) {
+  transition-delay: 3.33333s, 0s, 0s, 0s;
+}
+
+.block:nth-child(11) {
+  transition-delay: 3.66667s, 0s, 0s, 0s;
+}
+
+.block:nth-child(12) {
+  transition-delay: 4s, 0s, 0s, 0s;
+}
+
+.block:nth-child(13) {
+  transition-delay: 4.33333s, 0s, 0s, 0s;
+}
+
+.block:nth-child(14) {
+  transition-delay: 4.66667s, 0s, 0s, 0s;
+}
+
+.block.clicked {
+  transition-delay: 0s !important;
+}
+
+.effect-0 {
+  background-size: 0;
+}
+.effect-0:before {
+  background-size: cover;
+  transform: scale(0.6);
+}
+.effect-0:after {
+  background-size: cover;
+  transform: scale(0.8);
+}
+.loaded-document .effect-0.loaded-image:before, .loaded-document .effect-0.loaded-image:after {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.effect-1 {
+  background-size: 20% auto;
+  opacity: 0;
+}
+.effect-1:before {
+  transform: scale(0.6);
+  background-size: cover;
+}
+.effect-1:after {
+  transform: scale(0.8);
+  background-size: cover;
+}
+.loaded-document .effect-1.loaded-image {
+  opacity: 1;
+  background-size: 100% auto;
+}
+.loaded-document .effect-1.loaded-image:before, .loaded-document .effect-1.loaded-image:after {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.effect-2 {
+  background-size: 0;
+}
+.effect-2:before, .effect-2:after {
+  width: 50%;
+  opacity: 0;
+  background-size: 200% auto;
+}
+.effect-2:before {
+  background-position: right 0;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+.effect-2:after {
+  background-position: left 0;
+  left: auto;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+.loaded-document .effect-2.loaded-image:before, .loaded-document .effect-2.loaded-image:after {
+  opacity: 1;
+}
+.loaded-document .effect-2.loaded-image:before {
+  background-position: 0 0;
+}
+.loaded-document .effect-2.loaded-image:after {
+  background-position: right 0;
+}
+
+.effect-3 {
+  background-size: 0;
+}
+.effect-3:before, .effect-3:after {
+  opacity: 0;
+}
+.effect-3:before {
+  background-size: cover;
+  right: 50%;
+  bottom: 50%;
+}
+.effect-3:after {
+  background-size: cover;
+  top: 50%;
+  left: 50%;
+}
+.loaded-document .effect-3.loaded-image:before, .loaded-document .effect-3.loaded-image:after {
+  opacity: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.effect-4 {
+  background-size: 0;
+  overflow: hidden;
+}
+.effect-4:before {
+  background-size: cover;
+  transform: scale(2);
+}
+.effect-4:after {
+  background-size: cover;
+  transform: scale(0.5);
+}
+.loaded-document .effect-4.loaded-image:before, .loaded-document .effect-4.loaded-image:after {
+  transform: scale(1);
+  opacity: 1;
+}

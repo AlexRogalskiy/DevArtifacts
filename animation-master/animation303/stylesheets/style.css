@@ -1,0 +1,54 @@
+:root {
+  --mouse-x;
+  --mouse-y;
+  --scale;
+  --radius: 40px;
+  --factor: 1;
+}
+
+.ball {
+  width: var(--radius);
+  height: var(--radius);
+  background: #D92659;
+  border-radius: 50%;
+  position:absolute;
+/* use calc() and the CSS variables created above to center the ball around the mouse position.  */
+  transform: translate(calc(var(--mouse-x) * 1px - var(--radius)/2),calc(var(--mouse-y) * 1px - var(--radius)/2));
+}
+
+.halo {
+  width: var(--radius);
+  height: var(--radius);
+  background: rgb(114, 61, 83);
+  border-radius: 50%;
+  position:absolute;
+  opacity: .15;
+/*   filter: blur(var(--factor)); */
+  transform: scale(calc(var(--scale) * var(--factor)));
+ 
+}
+
+.halo:nth-of-type(1) {
+  --factor: .3;
+}
+
+.halo:nth-of-type(2) {
+  --factor: 0.5;
+}
+
+.halo:nth-of-type(3) {
+  --factor: .9;
+}
+
+body {
+  background: #070611;
+  font-family: Verdana, sans-serif;
+}
+
+p {
+  color: whitesmoke;
+  width: 400px;
+  top: 10px;
+  left: 10px;
+  position:absolute;
+}

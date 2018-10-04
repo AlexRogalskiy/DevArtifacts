@@ -1,0 +1,65 @@
+$hover: #FC5185
+$border-width: 4px
+
+html
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  text-rendering: optimizelegibility
+
+html, body
+  height: 100%
+
+body
+  background: linear-gradient(to left bottom, #3FC1C9, #364F6B)
+  display: flex
+  align-items: center
+  justify-content: center
+  font-family: 'Montserrat', sans-serif
+
+button
+  display: inline-block
+  background: none
+  border: none
+  // backface-visibility: hidden
+  padding: 1em 2em
+  font-size: 1.5em
+  font-weight: 600
+  font-family: inherit
+  letter-spacing: .05em
+  text-transform: uppercase
+  text-decoration: none
+  color: #F5F5F5
+  transition: color .2s
+  box-shadow: inset 0 0 0 $border-width #F5F5F5, 0 0 1px 1px rgba(black,.25)
+  text-shadow: 0 0 2px rgba(black,.5)
+  position: relative
+  overflow: hidden
+  transform: translateZ(0)
+  cursor: pointer!important
+  
+  &:before, &:after
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    border: $border-width solid transparent
+    will-change: transform
+    transition: transform .3s ease
+    pointer-events: none
+    transform: translateZ(0)
+  
+  &:before
+    border-color: $hover transparent
+    transform: skew(-81deg,0)
+  
+  &:after
+    border-color: transparent $hover
+    transform: skew(0,40deg)
+    transition: transform .4s
+  
+  &:hover
+    color: $hover
+    &:before, &:after
+      transform: skew(0,0)

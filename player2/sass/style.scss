@@ -1,0 +1,155 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body, section {
+  background: #111;
+}
+
+$size: 300px;
+
+div.trydebug {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  z-index: 10;
+  padding: 4rem;
+  width: 400px;
+  max-width: 95%;
+  transform: translate(-50%, -50%);
+  background: black;
+  color: white;
+  text-align: center;
+  border: 2px solid tomato;
+  a {
+    color: tomato;
+  }
+  &.hide {
+    display: none;
+  }
+}
+
+section {
+  height: $size * 2;
+  width: $size;
+  position: absolute;
+  left: calc(50% - #{$size * 0.5});
+  top: calc(50% - #{$size});
+  flex-direction: column;
+  display: flex;
+  box-shadow: 0px 4px 24px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  div, canvas {
+    height: $size;
+    width: $size;
+    display: block;
+  }
+  div {
+    overflow: hidden;
+    position: relative;
+    video {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  canvas {
+    image-rendering: pixelated;
+  }
+}
+
+
+header {
+  position: fixed;
+  font-family: system, Helvetica, Arial, sans-serif;
+  color: white;
+  width: $size;
+  left: calc(50% - #{$size * 0.5});
+  top: calc(50% + #{$size + 10});
+  display: flex;
+  > div {
+    flex: 1;
+    height: 20px;
+    position: relative;
+    display: flex;
+    border-radius: 4px;
+    box-shadow: 0px 4px 24px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    > span {
+      flex: 1;
+    }
+    > span:last-child {
+      position: absolute;
+      display: block;
+      top: 0;
+      width: 2px;
+      height: 20px;
+      background: white;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  transform: translateX(-50%);
+  max-width: $size * 2;
+  color: white;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  button {
+    appearance: none;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 0px 1px rgba(0, 0, 0, 0.3);
+    background: black;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    // text-transform: uppercase;
+    font-weight: bold;
+    &.active {
+      background: white;
+      color: black;
+    }
+    &:active {
+      box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.3);
+      transform: translateY(2px);
+    }
+    &:not(.active) span:last-child,
+    &.active span:first-child {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: #{$size * 2}) {
+  section {
+    width: $size * 2;
+    height: $size;
+    flex-direction: row;
+    left: calc(50% - #{$size});
+    top: calc(50% - #{$size * 0.5});
+  }
+  header {
+    top: calc(50% + #{$size * 0.5 + 10});
+    width: $size * 2;
+    left: calc(50% - #{$size});
+  }
+}

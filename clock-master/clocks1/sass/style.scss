@@ -1,0 +1,172 @@
+@import 'reset.scss';
+
+main {
+	width: 100%;
+	height: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: space-around;
+	    -ms-flex-pack: distribute;
+	        justify-content: space-around;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	background-image: radial-gradient(at top left,#585F63, #3c4042);
+}
+
+#clock {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	border-radius: 50%;
+}
+
+svg:first-of-type,
+svg:nth-of-type(2) {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	stroke-width: 40;
+	border-radius: 50%;
+}
+
+svg:last-of-type,
+svg:nth-of-type(3) {
+	width: 104%;
+	height: 104%;
+	position: absolute;
+	top: -2%;
+	left: -2%;
+	stroke-width: 1.5;
+	border-radius: 50%;
+}
+
+svg:last-of-type {
+	stroke-width: 2;
+}
+
+#hour {
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	background: #transparent;
+	border-radius: 50%;
+}
+
+#hour div {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#hour div:nth-child(2),
+#hour div:nth-child(4) {
+	-webkit-transform: rotate(30deg);
+	        transform: rotate(30deg);
+}
+
+#hour div:nth-child(3),
+#hour div:nth-child(5) {
+	-webkit-transform: rotate(-30deg);
+	        transform: rotate(-30deg);
+}
+
+#hour div::before,
+#hour div::after {
+	content: '';
+	position: absolute;
+	background: #282828;
+}
+
+#hour div:first-child::before {
+	width: 2%;
+	height: 12%;
+	top: 10%;
+	left: 49%;
+}
+
+#hour div:nth-child(2)::before,
+#hour div:nth-child(3)::before {
+	width: 2%;
+	height: 4%;
+	top: 10%;
+	left: 49%;
+}
+
+#hour div:first-child::after {
+	width: 2%;
+	height: 12%;
+	bottom: 10%;
+	left: 49%;
+}
+
+#hour div:nth-child(2)::after,
+#hour div:nth-child(3)::after {
+	width: 2%;
+	height: 4%;
+	bottom: 10%;
+	left: 49%;
+}
+
+#hour div:last-child::before {
+	width: 12%;
+	height: 2%;
+	top: 49%;
+	left: 10%;
+}
+
+#hour div:nth-child(4)::before,
+#hour div:nth-child(5)::before {
+	width: 4%;
+	height: 2%;
+	top: 49%;
+	left: 10%;
+}
+
+#hour div:last-child::after {
+	width: 12%;
+	height: 2%;
+	top: 49%;
+	right: 10%;
+}
+
+#hour div:nth-child(4)::after,
+#hour div:nth-child(5)::after {
+	width: 4%;
+	height: 2%;
+	top: 49%;
+	right: 10%;
+}
+
+#hour span {
+	-webkit-transition: all 1s linear;
+	transition: all 1s linear;
+	width: 3%;
+	height: 40%;
+	position: absolute;
+	bottom: 45%;
+	left: 48.5%;
+	background: #fff;
+	border-top-left-radius: 100%;
+	border-top-right-radius: 100%;
+	-webkit-transform-origin: 50% 88%;
+	        transform-origin: 50% 88%;
+}

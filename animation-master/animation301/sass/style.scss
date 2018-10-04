@@ -1,0 +1,55 @@
+:root {
+  --radius: 100px;
+  --scale: 1;
+  --deg: 0deg;
+  --dur: 4;
+  --repeat: infinite;
+}
+
+body {
+  margin:4em 2em 1em 2em;
+  background: rgb(30, 30, 30);
+}
+
+li {
+  --hue:270;
+  width: var(--radius);
+  height: var(--radius);
+  background: hsl(var(--hue), 80%, 60%);
+  border-radius: 5%;
+  
+   animation: thing calc(var(--dur) * 1s) linear var(--repeat) alternate;
+}
+
+li:nth-of-type(1) {
+  --scale:.8;
+  --deg:67deg; 
+}
+
+li:nth-of-type(2) {
+  --scale:.9;
+  --deg:-30deg;
+}
+
+li:nth-of-type(3) {
+  --scale:1.2;
+  --deg:50deg;
+}
+
+li:nth-of-type(4) {
+  --scale:1.4;
+  --deg:-80deg;
+}
+
+@keyframes thing {
+ 100% {transform: scale(calc(var(--scale))) rotate(var(--deg));}
+}  
+
+
+
+ul {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+   width: 100%;
+}

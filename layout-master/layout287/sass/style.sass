@@ -1,0 +1,147 @@
+%gallery-caption
+  +absolute(bottom 4rem left 50%)
+  transform: translate(-50%,0%)
+  font-size: 12px
+  +breakpoint($mobile)
+    font-size: 14px
+  color: rgba(white,0)
+  padding: 1.25em 1.5em
+  transition: all .2s ease
+  font-weight: 600
+  // min-width: 10rem
+  // width: 50%
+  // max-width: calc(100% - 6rem)
+
+  line-height: 1.25
+  text-align: center
+  box-sizing: border-box
+  pointer-events: none
+
+  &:before, &:after
+    content: ''
+    +absolute(top right left bottom)
+    background: rgba(black,1)
+    width: 100%
+    height: 100%
+    transition: all .3s ease 0s
+    z-index: -1
+
+  &:before
+    top: auto
+    height: 3px
+    transform: scale(0,1)
+    transform-origin: bottom left
+    transition-delay: .6s
+
+  &:after
+    transform: scale(1,0)
+    transform-origin: bottom
+    transition-delay: .3s
+
+
+  &.visible
+    color: rgba(white,1)
+    text-shadow: 0 0 1px rgba(black,.2)
+    transition: all .3s ease .3s
+    &:before
+      transform: scale(1,1)
+      transition-delay: 0s
+    &:after
+      transform: scale(1,1)
+
+  &:empty
+    display: none
+
+$corner: 1rem
+
+%image-border
+  +relative
+  &:before, &:after
+    content: ''
+    +absolute(top right left bottom)
+    border: 0 solid rgba(black,.1)
+    transition: all .2s
+    will-change: border
+    z-index: 10
+
+  &.active
+    &:before
+      border-width: .5rem
+    &:after
+      border-width: 2px
+  
+  &:after
+    margin: $corner
+    border: 2px solid rgba(white,.5)
+    clip-path: polygon(0 calc(100% - #{$corner}), 0 100%, $corner 100%, $corner 0, 0 0, 0 $corner, 100% $corner, 100% 0, calc(100% - #{$corner}) 0, calc(100% - #{$corner}) 100%, 100% 100%, 100% calc(100% - #{$corner}))
+
+  &:hover
+    &:after
+      transform: scale(.9)
+      border-color: rgba(white,1)
+
+%caption-outside
+  background-color: black
+  color: white
+  padding: .75em 1em
+  display: inline-block
+  text-align: left
+
+
+%gallery-grid
+  +sans-serif-font
+  width: 100%
+  display: grid
+  grid-template-rows: flow
+  grid-auto-flow: dense
+
+  +breakpoint(max-width $mobile - 1px)
+    grid-template-columns: repeat(2, 1fr)
+  +breakpoint($mobile $desktop - 1px)
+    grid-template-columns: repeat(3, 1fr)
+  +breakpoint($desktop $laptop - px)
+    grid-template-columns: repeat(4, 1fr)
+  +breakpoint($laptop $screen - 1px)
+    grid-template-columns: repeat(5, 1fr)  
+  +breakpoint($screen)
+    grid-template-columns: repeat(6, 1fr)  
+%gallery-item
+  +relative
+  background-color: rgba(black,.5)
+  overflow: hidden
+  
+  img, a
+    display: block
+
+  &.vertical
+    grid-row: span 2
+
+  &.horizontal
+    grid-column: span 2
+    
+.gallery
+  @extend %gallery-grid
+
+
+.gallery-item
+  @extend %gallery-item
+  
+  a
+    display: block
+    @extend %image-border
+
+    .lazy-images &.image-lazyloaded, html:not(.lazy-images) &
+      @extend %image-border.active
+
+
+.gallery-caption
+
+  html:not(.touchevents) &
+    @extend %gallery-caption
+
+  
+  .gallery-item:hover &
+    @extend %gallery-caption.visible
+
+  [class*=list] &, .gallery-size-thumbnail &
+    display: none

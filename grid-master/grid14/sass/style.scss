@@ -1,0 +1,71 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.grid {
+  display: grid;
+  grid-template: "a     b     c" /* row size */  minmax(50px, auto)
+                 "d     .     e" /* row size */  minmax(50px, auto)
+                 ".     f     g" /* row size */  minmax(50px, auto)
+                 "h     i     ." /* row size */  minmax(50px, auto)
+                 / minmax(50px, auto) 1fr minmax(50px, auto); /* columns size */
+}
+
+.grid__item {
+  padding: .2em;
+  background: #009688;
+  border-radius: 5px;
+  border: 1px solid #fff;
+}
+
+.grid__item_random {
+  animation: gridAreaRandom 5s 2s ease-in-out infinite;
+}
+
+.example-code {
+  display: inline-block;
+  background-color: #e0e0e0;
+  margin: 1em;
+}
+
+pre {
+  margin: 0;
+  padding: 0  1em 0.5em 0;
+}
+
+@keyframes gridAreaRandom {
+  10% {
+    grid-area: a;
+  }
+  20% {
+    grid-area: b;
+  }
+  30% {
+    grid-area: c;
+  }
+  40% {
+    grid-area: d;
+  }
+  50% {
+    grid-area: e;
+  }
+  60% {
+    grid-area: f;
+  }
+  70% {
+    grid-area: g;
+  }
+  80% {
+    grid-area: h;
+  }
+  90% {
+    grid-area: i;
+  }
+  100% {
+    grid-area: a;
+  }
+}

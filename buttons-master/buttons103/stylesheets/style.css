@@ -1,0 +1,66 @@
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(to left bottom, #3FC1C9, #364F6B);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+button {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 1em 2em;
+  font-size: 1.5em;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #F5F5F5;
+  transition: color 0.2s;
+  box-shadow: inset 0 0 0 4px #F5F5F5, 0 0 1px 1px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  cursor: pointer !important;
+}
+button:before, button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 4px solid transparent;
+  will-change: transform;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+button:before {
+  border-color: #FC5185 transparent;
+  transform: skew(-81deg, 0);
+}
+button:after {
+  border-color: transparent #FC5185;
+  transform: skew(0, 40deg);
+  transition: transform 0.4s;
+}
+button:hover {
+  color: #FC5185;
+}
+button:hover:before, button:hover:after {
+  transform: skew(0, 0);
+}

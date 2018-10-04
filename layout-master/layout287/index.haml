@@ -1,0 +1,61 @@
+//- PREVIOUS VERSION: https://codepen.io/mican/pen/awxmpY
+
+- var placeholder = function(width, height) { return "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http://www.w3.org/2000/svg'%20viewBox%3D'0%200%20" + width + "%20" + height + "'%20%2F%3E" }
+
+- var images = [{ id: '-gS54SWrHMg', width: 1000, height: 500 },{id: 'AU1rKyKPJco', width: 500, height: 1000, caption: 'Hello from Poland' },{ id: 'AXfDvKOawZQ' },{ id: 'gKlkZrsG_Pw', width: 1000, height: 500 },{ id: 'DVONaLgCRxo', width: 500, height: 1000 },{ id: 'o7txpYpxNLs', caption: 'Have a nice day' },{ id: 'ZsgUsl8GATg', width: 500, height: 1000, caption: 'This is a very very long description to show you it\'s possible to add something like this' },{ id: 'CkagyZJ88kE' },{ id: 'PpQ4-HOZ_8U', width: 1000, height: 500 },{ id: 'si7gjqJQj_8' },{ id: 'u0M0gyuexfE', width: 500, height: 1000 },{ id: 'aQcE3gDSSTY' },{ id: 'GkCafprWKRo', width: 500, height: 1000 },{ id: 'OFlzoTfpRdw' },{ id: 'YlFM0-LdHu8' },{ id: 'c_Tc9ZELeYw' }]
+
+
+mixin gallery-item(id, width=500, height=500, caption)
+  if height > width
+    - var klass = 'vertical' 
+  else if width > height
+    - var klass = 'horizontal'
+
+  figure.gallery-item(itemprop='associatedMedia', itemscope='', itemtype='http://schema.org/ImageObject', class=klass)
+    a(href=`https://source.unsplash.com/${id}/${width*2}x${height*2}`, itemprop='contentUrl', data-size=`${width*2}x${height*2}`)
+      img.lazyload.lazypreload.fadein(src=placeholder(width,height) data-src=`https://source.unsplash.com/${id}/${width}x${height}`, itemprop='thumbnail', alt='Image description')
+    figcaption.gallery-caption(itemprop='caption description')= caption || 'Caption'
+
+
+.gallery(itemscope='', itemtype='http://schema.org/ImageGallery')
+  each image in images
+    +gallery-item(image.id,image.width,image.height, image.caption)
+    
+    
+// Root element of PhotoSwipe. Must have class pswp.
+.pswp(tabindex='-1', role='dialog', aria-hidden='true')
+  //
+    Background of PhotoSwipe.
+    It's a separate element as animating opacity is faster than rgba().
+  .pswp__bg
+  // Slides wrapper with overflow:hidden.
+  .pswp__scroll-wrap
+    //
+      Container that holds slides.
+      PhotoSwipe keeps only 3 of them in the DOM to save memory.
+      Don't modify these 3 pswp__item elements, data is added later on.
+    .pswp__container
+      .pswp__item
+      .pswp__item
+      .pswp__item
+    // Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed.
+    .pswp__ui.pswp__ui--hidden
+      .pswp__top-bar
+        // Controls are self-explanatory. Order can be changed.
+        .pswp__counter
+        button.pswp__button.pswp__button--close(title='Close (Esc)')
+        button.pswp__button.pswp__button--share(title='Share')
+        button.pswp__button.pswp__button--fs(title='Toggle fullscreen')
+        button.pswp__button.pswp__button--zoom(title='Zoom in/out')
+        // Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR
+        // element will get class pswp__preloader--active when preloader is running
+        .pswp__preloader
+          .pswp__preloader__icn
+            .pswp__preloader__cut
+              .pswp__preloader__donut
+      .pswp__share-modal.pswp__share-modal--hidden.pswp__single-tap
+        .pswp__share-tooltip
+      button.pswp__button.pswp__button--arrow--left(title='Previous (arrow left)')
+      button.pswp__button.pswp__button--arrow--right(title='Next (arrow right)')
+      .pswp__caption
+        .pswp__caption__center

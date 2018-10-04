@@ -1,0 +1,165 @@
+//GLOBAL PRESENTATION
+body{
+  background-color: #eee;
+  padding-top: 40px;
+}
+h1{
+  text-align: center;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+h2{
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+hr{
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+footer{
+  text-align: center;
+  padding-bottom: 50px;
+}
+.link{
+  text-align: center;
+  color: #278fb2;
+}
+//end global
+
+
+//variables
+$color-off: #bf1e1e;
+$color-on: #0cb018;
+
+//checkbox
+.checkbox{
+  width: 200px;
+  margin: 0 auto;
+  &__container{
+    display: block;
+    position: relative;
+    height: 82px;
+  }
+  &__toggle{
+    display: none;
+    &:checked + .checkbox__checker {
+			//left: calc(100% - 76px);
+      //background-color: $color-on;
+		}
+    &:checked ~ .checkbox__path{
+      .path--top{
+        stroke-dashoffset: 0px;
+        stroke: $color-on;
+      }
+      .path--bottom{
+        stroke-dasharray: 14px 360px;//size of dash / space between...
+        stroke-dashoffset: 0px;
+        stroke: $color-on;
+      }
+    }
+  }
+  
+  &__checker {
+		position: absolute;
+		top: 4px;
+		left: 4px;
+		//box-shadow: 0px 2px 6px rgba(0,0,0,.5);
+		z-index: 1;
+		display: block;
+		width: 73px;
+		height: 73px;
+		background-color: #fff;
+    //opacity: .5;
+		border-radius: 50%;
+		//transition: 1s;
+    z-index: 9;
+	}
+
+  &__bg, &__path{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &__bg{
+    .shape-bg{
+      fill: #aaa;
+    }
+  }
+  &__path{
+    z-index: 9;
+    .shape-bg{
+      fill: #fff;
+      stroke-width: 1px;
+      stroke: #aaa;
+    }
+    .path{
+      stroke-width: 4px;
+      stroke: $color-off;
+      fill: none;
+      stroke-linecap: round;
+      transition: 1s;
+      &--top{
+        stroke-dasharray: 33px 360px;//size of dash / space between...
+        stroke-dashoffset: -336px;
+      }
+      &--bottom{
+        stroke-dasharray: 33px 360px;//size of dash / space between...
+        stroke-dashoffset: -324px;
+      }
+    }
+  }
+  
+  #checkbox__circle{
+    z-index: 9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+
+  }
+}
+
+
+
+
+//Animation
+.anim{
+  transition-timing-function: cubic-bezier(0.385, -0.600, 0.685, 1.590);
+  transition-duration: .2s;
+}
+.anim--smallerize{
+  //transform: scale(.6, .6);
+}
+.anim--go-right{
+   left: calc(100% - 76px);
+}
+.anim--speed{
+  //animation-delay: .2s;
+  animation-duration: .5s;
+  animation-name: speedSmall;  
+}
+
+//transitions test
+@keyframes speed {
+  0%   { transform: scaleY(.6); }
+  30%   { transform: scaleY(2.3); }
+  60%   { transform: scaleY(2.3); }
+  100%  { transform: scaleY(.6); }
+}
+@keyframes speedSmall {
+  0%   { transform: scale(1, 1); }
+  25%   { transform: scale(.7, .7); }
+  35%   { transform: scale(.7, .7); }
+  50%   { transform: scale(.7, .3); }
+  65%   { transform: scale(.7, .7); }
+  75%   { transform: scale(.7, .7); }
+  100%  { transform: scale(1, 1); }
+}

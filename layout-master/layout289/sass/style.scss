@@ -1,0 +1,113 @@
+section {
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+
+  @media (min-width: 700px) {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:first-child {
+    background-color: black;
+  }
+
+  &:nth-child(2) {
+    background-color: mix(black, white);
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.fadein {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &.lazyloaded {
+    opacity: 1;
+  }
+}
+
+.slider {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 2px 0px rgba(black, 0.5);
+
+  .slide {
+    pointer-events: none;
+    display: block;
+
+    img {
+      display: block;
+      transition: all 0.5s ease;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    ~ .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      z-index: 2;
+      pointer-events: initial;
+    }
+
+    @for $i from 2 through 4 {
+      &:first-child:nth-last-child(#{$i}) {
+        &, & ~ * {
+          &:before {
+            width: percentage(1 / $i);
+          }
+        }
+
+        $s: "";
+
+        @for $j from 1 through $i - 1 {
+          $s: $s + " + *";
+
+          #{"&#{$s}"} {
+            img {
+              clip-path: polygon(percentage($j / $i) 0, percentage(($j + 1) / $i) 0, percentage(($j + 1) / $i) 100%, percentage($j / $i) 100%);
+            }
+
+            &:before {
+              left: percentage($j / $i);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .slide img {
+      clip-path: polygon(0% 0, 0% 0, 0% 100%, 0% 100%) !important;
+    }
+  }
+
+  .slide:hover {
+    img {
+      clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%) !important;
+    }
+
+    ~ .slide img {
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%) !important;
+    }
+  }
+}

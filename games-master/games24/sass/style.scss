@@ -1,0 +1,182 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Cardo:400,400italic);
+
+html { height: 100%; }
+body { min-height: 100%; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  justify-content: space-between;
+  font-family: Cardo, Georgia, serif;
+}
+
+.center { text-align: center; }
+
+header, main, aside {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+header, aside { flex-direction: column; }
+
+main {
+  display: flex;
+}
+header, aside {
+  color: #c7c7c7;
+  width: 90%;
+  max-width: 600px;
+  margin: 2rem auto;
+  line-height: 1.6;
+}
+
+.playing aside {
+  color: #666;
+}
+header {
+  top: 10vh;
+}
+
+aside {
+  bottom: 5vh;
+}
+
+section span, label, button {
+  font-family: Montserrat, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.125em;
+}
+
+button {
+  border: none;
+  font-size: 2rem;
+  padding: 0.25em 0.5em;
+  background: hsla(80, 80, 50, 1);
+  box-shadow: 0px 0px 0px 2px hsla(80, 80, 30, 1);
+  border-radius: 4px;
+  animation: button 500ms ease-in-out alternate infinite;
+  color: white;
+  opacity: 0.9;
+  &:hover { opacity: 1; }
+  .playing & {
+    animation: none;
+    opacity: 0.4;
+    &:hover { opacity: 1; }
+    .play { display: none; }
+    .stop { display: block; }
+  }
+  .stop { display: none; }
+}
+
+@keyframes button {
+  from { transform: scale(1); }
+  to   { transform: scale(1.1); }
+}
+  
+  
+h1, h2 {
+  text-align: center;
+  font-weight: 400;
+  margin: 0.25rem 0;
+}
+h1 {
+  font-family: Montserrat, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.125em;
+  font-size: 2.4rem;
+}
+h2 {
+  font-style: italic;
+  font-family: 1.2rem;
+}
+
+$steps: 16;
+section {
+  background: #1c1c1c;
+  height: 200px;
+  display: flex;
+  margin: 1rem 0 1rem 1rem;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  flex: 1;
+  position: relative;
+  border-radius: 2px;
+  border: 1px solid rgba(255,255,255,0.05);
+  opacity: 0.7;
+  transition: flex 500ms ease-in-out,
+    background 200ms linear;
+  flex: 1;
+  &[data-solo="true"] {
+    flex: 2;
+  }
+  &[class*="note-"] { opacity: 1; }
+  &:last-child { margin-right: 1rem; }
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 8px);
+    z-index: 2;
+    left: 50%;
+    transform: translateX(-50%) translateZ(0);
+    border-top: 8px solid hsla(80, 80, 50, 1);
+    transition: width 50ms linear;
+    border-radius: 2px;
+  }
+  span {
+    position: absolute;
+    color: #444;
+    text-transform: uppercase;
+    display: block;
+    right: 0;
+  }
+  span {
+    top: calc(100% + 0.5rem);
+  }
+  span.meter {
+    left: 0; right: auto;
+  }
+  div {
+    z-index: 3;
+    background: #444;
+    position: relative;
+    height: 1 / $steps * 100%;
+    border-radius: 2px;
+    margin: 0 0.125rem;
+    transition: transform 200ms ease-in-out;
+    transform: scaleY(0.5) translateZ(0);
+    @for $s from 0 through 15 {
+      &[data-note="#{$s}"] { top: (100% - $s / $steps * 100%) - 1 / $steps * 100%; }
+    }
+    @for $r from 1 through 16 {
+      &[data-res="#{$r}"] { flex: $r; }
+    }
+    @for $s from 0 through 7 {
+      $rat: $s / 7;
+      $sat: (1-$rat) * 70 + 10;
+      $color: hsl(80, $sat, $rat * 40 + 50);
+      &[data-note="#{$s}"],
+      &[data-note="#{$s + 7}"] { background: $color; }
+    }
+  }
+  
+  $data-steps: (16, 24, 28, 32, 40);
+  @each $step in $data-steps {
+    @for $n from 0 through $step {
+      &[data-steps="#{$step}"][data-step="#{$n}"]::before {
+        width: (1 - $n / $step) * 100%;
+      }
+    }
+  }
+  @for $n from 0 through $steps {
+    &.note-#{$n} div:nth-child(#{$n + 1}) {
+      // background: white;
+      // box-shadow: 0px 0px 0px 2px rgba(white,0.3);
+      z-index: 4;
+      transform: scaleY(1) translateZ(0);
+    }
+  }
+}

@@ -1,0 +1,141 @@
+body
+  background-color: black
+
+main
+  padding: 3vw 0
+  
+  display: flex
+  flex-flow: row wrap
+  align-items: center
+  align-content: center
+  justify-content: center
+
+
+  
+.block
+  position: relative
+  border-radius: .25rem
+  cursor: pointer
+  
+  width: 12rem
+  height: 8rem
+  margin: 1rem
+  
+  @media (min-width: 640px)
+    width: 24vw
+    height: 16vw
+    margin: 3vw
+
+  transition: all 1.5s ease, height 0s, width 0s, margin 0s
+  
+  background-repeat: no-repeat
+  background-position: center
+
+  &:before, &:after
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: -1
+    opacity: 0
+    background: inherit
+    border-radius: inherit
+    transition: inherit
+
+@for $i from 1 to 15
+  .block:nth-child(#{$i})
+    transition-delay: #{$i/3}s, 0s, 0s, 0s
+
+.block.clicked
+  transition-delay: 0s!important
+
+.effect-0
+  background-size: 0
+  &:before
+    background-size: cover
+    transform: scale(.6)
+  &:after
+    background-size: cover
+    transform: scale(.8)
+  
+  .loaded-document &.loaded-image
+    &:before, &:after
+      transform: scale(1)
+      opacity: 1
+  
+.effect-1
+  background-size: 20% auto
+  opacity: 0
+  &:before
+    transform: scale(.6)
+    background-size: cover
+  &:after
+    transform: scale(.8)
+    background-size: cover
+  
+  .loaded-document &.loaded-image
+    opacity: 1
+    background-size: 100% auto
+    &:before, &:after
+      transform: scale(1)
+      opacity: 1
+
+.effect-2
+  background-size: 0
+  &:before, &:after
+    width: 50%
+    opacity: 0
+    background-size: 200% auto
+  &:before
+    background-position: right 0
+    border-radius: .25rem 0 0 .25rem
+  &:after
+    background-position: left 0
+    left: auto
+    border-radius: 0 .25rem .25rem 0
+  
+  .loaded-document &.loaded-image
+    &:before, &:after
+      opacity: 1
+    &:before
+      background-position: 0 0
+    &:after
+      background-position: right 0
+  
+.effect-3
+  background-size: 0
+  &:before, &:after
+    opacity: 0
+  &:before
+    background-size: cover
+    right: 50%
+    bottom: 50%
+  &:after
+    background-size: cover
+    top: 50%
+    left: 50%
+  
+  .loaded-document &.loaded-image
+    &:before, &:after
+      opacity: 1
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+    
+.effect-4
+  background-size: 0
+  overflow: hidden
+  &:before
+    background-size: cover
+    transform: scale(2)
+  &:after
+    background-size: cover
+    transform: scale(.5)
+  
+  .loaded-document &.loaded-image
+    &:before, &:after
+      transform: scale(1)
+      opacity: 1

@@ -1,0 +1,1002 @@
+$base-unit: 16
+
+@function rem($pixels, $context: $base-unit)
+  @return #{ strip-unit($pixels) / $context }rem
+
+@function em($pixels, $context: $base-unit)
+  @return #{ strip-unit($pixels) / $context }em
+
+@function strip-unit($number)
+  @if type-of($number) == "number" and not unitless($number)
+    @return $number / ($number * 0 + 1)
+  @else
+    @return $number
+
+@function gunit($i:1)
+  @return $base-unit * $i
+
+$prefixes: ("-webkit-","-moz-", "-o-", "")
+
+=selection($color, $background)
+  @each $prefix in $prefixes 
+    ::#{$prefix}selection 
+      color: $color
+      background: $background
+
+=clear-list
+  margin: 0
+  padding: 0
+  list-style-type: none
+
+=ellipsis($no-wrap: true)
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  
+=hide-text
+  $approximate-em-value: 12px / 1em
+  $wider-than-any-screen: -9999em
+  text-indent: $wider-than-any-screen * $approximate-em-value
+  overflow: hidden
+  text-align: left
+
+=placeholder
+  &.placeholder
+    @content
+  &:-moz-placeholder
+    @content
+  &::-webkit-input-placeholder
+    @content
+
+// ----
+// Sass (v3.3.7)
+// Compass (v1.0.0.alpha.18)
+// ----
+
+// Helper mixin for offset positioning
+// About: http://hugogiraudel.com/2013/08/05/offsets-sass-mixin/
+// ---
+// Here is an improved version adding some extra features
+// ---
+// @param [string] $position: position
+// @param [list] $args (()): offsets list
+// ---
+// Explanations
+// 1. Output position
+// 2. If `$args` is not empty
+// 3. Loop other the 4 popular offsets (`$offsets`)
+// 4. Check if the current one exists in `$args`
+// 5. If it is found in `$args`
+// 6. And if it is at last position
+// 7. Set it to 0
+// 8. Else if it is found at any other index
+// 9. Store the next value from `$args`
+// 10. If it is a valid length
+// 11. Set the offset to this value
+// 12. Else if it is another offset
+// 13. Set the offset to 0
+// 14. Else
+// 15. Warn the user
+// ---
+
+=position($position, $args: ())
+  $offsets: top right bottom left
+  position: $position
+  // 1
+  @each $offset in $offsets
+    // 3
+    $index: index($args, $offset)
+    // 4
+    @if $index
+      // 5
+      @if $index == length($args)
+        // 6
+        #{$offset}: 0
+        // 7
+      @else
+        // 8
+        $next: nth($args, $index + 1)
+        // 9
+        @if is-valid-length($next)
+          // 10
+          #{$offset}: $next
+          // 11
+        @else if index($offsets, $next)
+          // 12
+          #{$offset}: 0
+          // 13
+        @else
+          // 14
+          // @warn "Invalid value `#{$next}` for offset `#{$offset}`."
+          #{$offset}: $next
+          // 15
+
+// Function checking if $value is a valid length
+// ---
+// @param [literal] $value: value to test
+// ---
+// @return [bool]
+
+@function is-valid-length($value)
+  @return type-of($value) == "number" and not unitless($value) or index(auto initial inherit 0, $value) != null
+
+// Shorthands
+// ---
+
+=absolute($args: ())
+  +position(absolute, $args)
+
+=fixed($args: ())
+  +position(fixed, $args)
+
+=relative($args: ())
+  +position(relative, $args)
+
+// Examples
+// ---
+
+// .a
+//   +absolute
+
+// .b
+//   +absolute(top)
+
+// .c
+//   +absolute(top right)
+
+// .d
+//   +absolute(top right bottom)
+
+// .e
+//   +absolute(top right bottom left)
+
+// .f
+//   +absolute(top right 1em)
+
+// .g
+//   +absolute(top 1em right)
+
+// .h
+//   +absolute(top 1em right 100%)
+
+// .i
+//   +absolute(top right mistake)
+
+// .j
+//   +absolute(top 1em right 1em bottom 1em left 1em)
+
+
+=stripes($color1: #555, $color2: transparent, $angle: 0deg, $stripe1-width: 25px, $stripe2-width: null)
+  @if $stripe2-width == null
+    $stripe2-width: $stripe1-width
+
+  $tile-size: ($stripe1-width + $stripe2-width) * 2
+  $stripe2-start: $stripe1-width / $tile-size * 100%
+  $stripe3-start: $stripe2-start + $stripe2-width / $tile-size * 100%
+  $stripe4-start: $stripe3-start + $stripe1-width / $tile-size * 100%
+
+  background-size: $tile-size $tile-size
+  background-image: linear-gradient($angle, $color1, $color1 $stripe2-start, $color2 $stripe2-start, $color2 $stripe3-start, $color1 $stripe3-start, $color1 $stripe4-start, $color2 $stripe4-start, $color2)
+  background-repeat: repeat
+
+=clip-path($clip)
+  shape-inside: $clip
+  -webkit-clip-path: $clip
+  -moz-clip-path: $clip
+  -ms-clip-path: $clip
+
+
+$mod_1: 1.067
+$mod_2: 1.333
+
+// Fluid Type Mixin
+
+@function strip-unit($value)
+  @return $value / ($value * 0 + 1)
+
+=fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size)
+  $u1: unit($min-vw)
+  $u2: unit($max-vw)
+  $u3: unit($min-font-size)
+  $u4: unit($max-font-size)
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4
+    &
+      font-size: $min-font-size
+
+      @media screen and (min-width: $min-vw)
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}))
+
+      @media screen and (min-width: $max-vw)
+        font-size: $max-font-size
+  @else
+    @error "Detected mixed units. Please use the same units for all parameters. " + $u1 + ", " + $u2 + ", " + $u3 + ", " + $u4
+
+// Calculate Modular Scale
+
+$h1-min: $mod_1 * $mod_1 * $mod_1 * $mod_1 * 1rem
+$h1-max: $mod_2 * $mod_2 * $mod_2 * $mod_2 * 1rem
+
+$h2-min: $mod_1 * $mod_1 * $mod_1 * 1rem
+$h2-max: $mod_2 * $mod_2 * $mod_2 * 1rem
+
+$h3-min: $mod_1 * $mod_1 * 1rem
+$h3-max: $mod_2 * $mod_2 * 1rem
+
+$h4-min: $mod_1 * 1rem
+$h4-max: $mod_2 * 1rem
+
+$h5-min: 1rem
+$h5-max: 1rem
+
+$h6-min: 1rem / $mod_1
+$h6-max: 1rem / $mod_2
+
+// _decimal.scss | MIT License | gist.github.com/terkel/4373420
+
+// Round a number to specified digits.
+//
+// @param  {Number} $number A number to round
+// @param  {Number} [$digits:0] Digits to output
+// @param  {String} [$mode:round] (round|ceil|floor) How to round a number
+// @return {Number} A rounded number
+// @example
+//     decimal-round(0.333)    => 0
+//     decimal-round(0.333, 1) => 0.3
+//     decimal-round(0.333, 2) => 0.33
+//     decimal-round(0.666)    => 1
+//     decimal-round(0.666, 1) => 0.7
+//     decimal-round(0.666, 2) => 0.67
+//
+@function decimal-round($number, $digits: 0, $mode: round)
+  $n: 1
+
+  // $number must be a number
+  @if type-of($number) != number
+    @warn "#{$number} is not a number."
+
+    @return $number
+
+  // $digits must be a unitless number
+  @if type-of($digits) != number
+    @warn "#{$digits} is not a number."
+
+    @return $number
+  @else if not unitless($digits)
+    @warn "#{$digits} has a unit."
+
+    @return $number
+
+  @if $digits > 0
+    @for $i from 1 through $digits
+      $n: $n * 10
+
+  @if $mode == round
+    @return round($number * $n) / $n
+  @else if $mode == ceil
+    @return ceil($number * $n) / $n
+  @else if $mode == floor
+    @return floor($number * $n) / $n
+  @else
+    @warn "#{$mode} is undefined keyword."
+
+    @return $number
+
+// Ceil a number to specified digits.
+//
+// @param  {Number} $number A number to round
+// @param  {Number} [$digits:0] Digits to output
+// @return {Number} A ceiled number
+// @example
+//     decimal-ceil(0.333)    => 1
+//     decimal-ceil(0.333, 1) => 0.4
+//     decimal-ceil(0.333, 2) => 0.34
+//     decimal-ceil(0.666)    => 1
+//     decimal-ceil(0.666, 1) => 0.7
+//     decimal-ceil(0.666, 2) => 0.67
+//
+@function decimal-ceil($number, $digits: 0)
+  @return decimal-round($number, $digits, ceil)
+
+// Floor a number to specified digits.
+//
+// @param  {Number} $number A number to round
+// @param  {Number} [$digits:0] Digits to output
+// @return {Number} A floored number
+// @example
+//     decimal-floor(0.333)    => 0
+//     decimal-floor(0.333, 1) => 0.3
+//     decimal-floor(0.333, 2) => 0.33
+//     decimal-floor(0.666)    => 0
+//     decimal-floor(0.666, 1) => 0.6
+//     decimal-floor(0.666, 2) => 0.66
+//
+@function decimal-floor($number, $digits: 0)
+  @return decimal-round($number, $digits, floor)
+
+// Media queries
+
+$phone: 480px // 30rem
+$mobile: 640px // 40rem
+$tablet: 770px
+$desktop: 1020px
+$laptop: 1260px
+$screen: 1600px // 100rem
+$widescreen: 2000px // 125 rem
+
+// Colors
+
+$red: #FFE0E0
+
+$light-grey: #fafafa
+$grey: mix(black,white,20%) // #ccc
+
+$darker-white: mix(white,black,90%)
+$lighter-black: mix(black,white,90%)
+
+$bg: white
+$text: black
+
+// Transitions
+$_transition-soft: cubic-bezier(0.5, 0.000, 0.000, 1.000)
+
+$transition: 1s cubic-bezier(0.230, 1.000, 0.320, 1.000)
+$smooth-transition: .3s #{$_transition-soft}
+$quick-transition: .15s #{$_transition-soft}
+
+// Spaces
+
+// 16 * .75 + 1.25 * 320 / 100 = 16
+$_space: '.75rem + 1.25vw'
+
+// 16 * .75 + 1.25 * 320 / 100 = 18
+// $_space: '1.125rem + 1.25vw'
+
+// 16 * .9375 + 1.5625 * 320 / 100 = 20
+// $_space: '.9375rem + 1.5625vw'
+
+// 16 * .875 + 1.875 * 320 / 100 = 20
+// $_space: '.875rem + 1.875vw'
+
+
+$_nspace: '(#{$_space})*-1'
+
+$half-space: calc((#{$_space})/2)
+$half-nspace: calc((#{$_nspace})/2)
+$_half-space: '(#{$_space})/2'
+
+// $space: calc(1em + 1.25vmin)
+$space: calc(#{$_space})
+$nspace: calc((#{$_space})*-1)
+
+$double-space: calc((#{$_space})*2)
+$double-nspace: calc((#{$_space})*-2)
+
+$_double-space: '(#{$_space})*2'
+$_double-nspace: '(#{$_space})*-2'
+
+
+$tripple-space: calc((#{$_space})*3)
+
+
+// HSPACE - alternative space, bigger on mobile, smaller on desktops
+// 22 + 2 = 24
+$_hspace: '1.375rem + 0.625vw'
+// 22 + 2
+// $_hspace: '1.3125rem + 0.9375vw'
+$_nhspace: '(#{$_hspace})*-1'
+$half-hspace: calc((#{$_hspace})/2)
+$half-nhspace: calc((#{$_nhspace})/2)
+$_half-hspace: '(#{$_hspace})/2'
+$hspace: calc(#{$_hspace})
+$nhspace: calc((#{$_hspace})*-1)
+$double-hspace: calc((#{$_hspace})*2)
+$_double-hspace: '(#{$_hspace})*2'
+
+
+// Gradient
+// $gradient: #1d2671, #c33764
+// $gradient: #fc00ff, #00dbde
+$gradient: rgba(black,1), rgba(black,.2)
+
+// Shadow
+
+$light-shadow: 0 1px 1px 0px rgba(black,.125)
+
+// Fonts
+=sans-serif-font
+  font-family: 'Montserrat', 'HelveticaNeueLTStd', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+
+=serif-font
+  // font-family: 'Slabo 27px', serif
+  // font-family: 'Roboto Slab', serif
+  // font-family: 'Playfair Display', serif
+
+
+  // font-family: 'Bitter', serif
+
+  // font-family: 'Merriweather', serif
+  // font-family: 'Lora', serif
+  font-family: 'Droid Serif', serif
+  // font-family: 'PT Serif', serif
+  // font-family: 'Noto Serif', serif
+
+html
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  text-rendering: optimizelegibility
+
+  -webkit-font-feature-settings: "liga","kern"
+  font-feature-settings: "liga","kern"
+  // overflow-y: scroll
+  // overflow-x: hidden
+
+  // &, > *
+  //   backface-visibility: hidden
+
+  font:
+    family: 'Montserrat', 'HelveticaNeueLTStd', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+    // size: 1em
+  line-height: 1.5
+
+body
+
+// .no-js .lazyload
+//   display: none
+
+.fadein
+  opacity: 0
+  transition: opacity .3s ease-in-out
+
+  &.lazyloaded
+    opacity: 1
+
+.blur-up
+  will-change: filter, opacity, transform
+  filter: blur(3px)
+  transition: transform 1s, opacity 1s, blur .3s
+  opacity: 0
+  transform: scale(.95)
+  transform-origin: center
+  &:not(.lazyload)
+    opacity: 1
+    transform: scale(1)
+  &.lazyloaded
+    filter: blur(0)
+
+.spinner
+  background: rgba(black,.03) url('../images/ui/spinner.svg') no-repeat center
+
+
+::selection
+  color: white
+  background: black
+  text-shadow: none
+
+
+.custom-background
+  &:after
+    content: ''
+    +fixed(bottom right left)
+    background: inherit
+    z-index: -3
+    // background-size: cover
+    background-attachment: scroll
+    min-height: 100vh
+    height: calc(100vw * 16 / 9)
+    @media (orientation: landscape)
+      height: calc(100vw * 3 / 4)
+
+%first-last-clear
+  > *
+    &:first-child:not(img):not(form):not(figure):not(div)
+      margin-top: -.25em
+    &:last-child:not(img):not(form):not(figure):not(div)
+      margin-bottom: -.25em
+
+%divider
+  margin-top: $double-space
+  padding-top: $double-space
+  position: relative
+  &:before
+    content: ''
+    +absolute(bottom 100% left right)
+    // height: 6px
+    // margin-top: -3px
+    // +stripes(#bbb, transparent, 135deg, 1px, 4px)
+    border-top: 1px solid #ddd
+    border-bottom: 1px solid #eee
+    z-index: 10
+
+  //   // background: linear-gradient(to right, $gradient)
+  //   // background: rgba(black,.25)
+    
+
+%line-hover
+
+  background-image: linear-gradient(black 0%, black 100%), linear-gradient(black 0%, black 100%)
+  background-repeat: no-repeat
+  background-size: 0% 2px, 0% 2px
+  background-position: 0 98%, 100% 98%
+  transition: background-size .4s cubic-bezier(0.435, 0.000, 0.000, 1.000)
+  &:hover
+    background-size: 51% 2px, 50% 2px
+
+%background-hover
+  
+  +relative
+  display: inline-block
+  &:before, &:after
+    content: ''
+    +absolute(top -.5em left -.75em bottom -.5em right -.75em)
+    display: block
+
+
+  &:before
+    transform-origin: right 0
+    transform: scaleX(0)
+    transition: transform .3s, transform-origin .3s
+    background: black
+    z-index: -1
+
+  &:hover
+    color: white
+    transition: color .15s .15s
+    &:before
+      transform-origin: left 0
+      transform: scaleX(1)
+      transition: transform-origin 0s, transform .3s
+    &:after
+      z-index: 1
+
+%block
+  padding: .75em 1.5em
+  appearance: none
+  outline: none
+  line-height: normal
+  border-radius: 0
+  border: none
+
+%backup-bg
+  position: relative
+  &:before
+    content: ''
+    +absolute(top right left bottom)
+    margin: $nspace
+    z-index: -2
+    transition: background .2s ease
+    background-color: rgba(white,0)
+
+  &:hover, &:focus
+    &:before
+      background-color: rgba(white,1)
+
+%content-block
+  // background: white
+  +relative
+  max-width: 60em
+  margin:
+    left: auto
+    right: auto
+  &:before
+    content: ''
+    +absolute(top right left bottom)
+    z-index: -1
+    margin: $nspace
+    background: white
+    
+h1, h2, h3, h4, h5, h6
+  margin: 1rem 0
+  font-family: 'Montserrat', 'HelveticaNeueLTStd', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  
+  &:not([class]) 
+    max-width: 60rem
+
+
+h1
+  +fluid-type(37.5rem, 80rem, $h1-min, $h1-max)
+  font-weight: 600
+  // margin: #{(12/16)}em 0
+  line-height: (20/16)
+
+h2
+  +fluid-type(37.5rem, 80rem, $h2-min, $h2-max)
+  font-weight: 600
+  // margin: 1em 0
+  line-height: (22/16)
+
+h3
+  +fluid-type(37.5rem, 80rem, $h3-min, $h3-max)
+  font-weight: 500
+  // margin: #{(18/16)}em 0
+
+h4
+  +fluid-type(37.5rem, 80rem, $h4-min, $h4-max)
+  font-weight: 500
+
+h5
+  +fluid-type(37.5rem, 80rem, $h5-min, $h5-max)
+  font-weight: 500
+  
+h6
+  +fluid-type(37.5rem, 80rem, $h6-min, $h6-max)
+  font-weight: 500
+
+a
+  color: inherit
+  text-decoration: none
+  &:focus
+    outline: none
+
+em
+
+strong
+
+small
+  font-size: rem(12)
+
+pre
+  @media (max-width: $mobile)
+    overflow: hidden
+
+p, ul, dl, ol, blockquote
+  margin: #{(20/16)}em 0
+
+  &:not([class])
+    max-width: 60rem
+
+
+ul
+  list-style-type: square
+
+hr
+  border: none
+  border-bottom: 2px dashed rgba(black,1)
+  margin: $space 0
+
+  // +relative
+  // &:before
+  //   content: ''
+  //   +absolute(top right left bottom)
+  //   height: 2px
+  //   border:
+  //     left: $space solid black
+  //     right: $space solid black
+  // &:after
+  //   content: ''
+  //   +absolute(top right left bottom)
+  //   height: 2px
+  //   background: black
+  //   width: $space
+  //   margin: auto
+
+fieldset
+  border: 1rem solid rgba(black,.02)
+  margin:
+    left: -1rem
+    right: -1rem
+  padding: $space
+  legend
+    border: 1rem solid rgba(black,.02)
+    margin:
+      bottom: 0
+    // +relative(top 1.25em)
+    background-color: white
+    padding: .25em .5em
+    @extend h2
+
+  > *
+    margin:
+      left: auto
+      right: auto
+
+figure
+  margin: 0
+
+  &[style]
+    max-width: 100%
+    
+img, svg
+  max-width: 100%
+  height: auto
+  border: 0
+
+table
+  
+  background: rgba(black,.02)
+  width: 100%
+
+  th, td
+    padding: .75em 1em
+
+    &:not(:last-child)
+      border-right: .5rem solid white
+
+  tr:not(:last-child)
+    td, th
+      border-bottom: .5rem solid  white
+
+  th
+    background: rgba(black,.02)
+
+  td
+    font-size: em(14)
+
+  th, caption
+    text-align: center
+    text-transform: uppercase
+    font-weight: 500
+    letter-spacing: .1em
+
+  caption
+    padding: 1.25em .5em 0
+
+// dl
+//   dt, dd
+//     display: inline
+//     margin: 0
+
+//   dd
+//     &:after
+//       content: '\A'
+//       white-space: pre
+
+
+ol, ul
+  padding: 0
+  list-style-position: inside
+  li + li
+    margin-top: .5em
+
+%text
+  font-family: 'PT Serif', serif
+  a
+    text-decoration: underline
+
+%screen-reader-text
+  clip: rect(1px, 1px, 1px, 1px)
+  clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px)
+  position: absolute !important
+  white-space: nowrap
+  height: 1px
+  width: 1px
+  overflow: hidden
+  &:focus
+    clip: auto !important
+    display: block
+    height: auto
+    left: 5px
+    top: 5px
+    width: auto
+    z-index: 100000 // /* Above WP toolbar. */
+
+%container
+  max-width: 100rem
+
+  padding:
+    left: $space
+    right: $space
+  margin:
+    left: auto
+    right: auto
+    
+.container
+  @extend %container
+  
+body
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+
+[id=wrapper]
+  flex: 1
+  align-items: center
+  width: 100%
+  box-sizing: border-box
+  body:not(.has-gallery) &, body:not(.single-format-gallery) &, body:not(.page-template-gallery)
+    @media (min-width: $desktop)
+      display: flex
+      flex-flow: row wrap
+      justify-content: center
+
+  padding:
+    top: $space
+    bottom: $double-space
+
+  > *
+    + *
+      margin-top: $double-space
+
+
+  body:not(.has-gallery):not(.single-format-gallery):not(.page-template-gallery) &
+    @extend %container
+
+  .has-gallery &, .single-format-gallery &, .page-template-gallery &
+    &, main
+      padding-top: 0
+      max-width: none
+    
+  .gallery-grid
+    &:first-child
+      padding-top: $double-space
+    &:last-child
+      padding-bottom: $double-space
+
+
+  .page-header
+    text-align: center
+    margin-bottom: $double-space
+    @extend %first-last-clear
+    text-transform: uppercase
+
+[id=main]
+  @media (min-width: $desktop)
+    width: calc(100% - 280px + (#{$_nspace}*2))
+    margin-right: $double-space
+    &:only-child, .single-format-gallery &, .page-template-gallery &
+      width: 100%
+      margin-right: 0
+
+  .single &
+    @extend %content-block
+    &:not(:only-child)
+      + *
+        margin-left: $double-space
+
+  .entry
+    @extend %text
+
+  > * + *
+    margin-top: $tripple-space
+
+
+[id=sidebar]
+  
+  @media (min-width: $desktop)
+    body:not(.single-format-gallery):not(.page-template-gallery) &
+      width: calc(280px)
+      margin-top: 0
+
+  .single-format-gallery &, .page-template-gallery &
+    @extend %container
+
+    
+  font-size: .75em
+  transition: color .15s .15s
+
+  > *
+    @extend %first-last-clear
+    + *
+      margin-top: $double-space
+
+    @extend %backup-bg
+
+  @media (min-width: $mobile) and (max-width: $tablet - 1px)
+    display: flex
+    flex-flow: row wrap
+    justify-content: space-between
+
+    > [class*=search]
+      width: 100%
+      
+    > *:not([class*=search])
+      width: calc((100% - 1.5rem - 3vw)/2)
+
+  h1, h2
+    font-size: 1.25em
+    text-transform: uppercase
+    white-space: nowrap
+
+    border-bottom: 2px solid
+    padding-bottom: .5rem
+
+
+  li
+    display: block
+    padding-left: $space
+
+    +relative
+    &:before
+      content: ''
+      +absolute(top calc(.75em - 1px) left)
+      border-top: 2px solid
+      width: 4px
+  a
+    @extend %background-hover
+      
+
+  .single-format-gallery &, .page-template-gallery &
+    @media (min-width: $tablet)
+      width: 100%
+      
+      display: flex
+      flex-flow: row wrap
+
+      > *[class*=search]
+        width: 100%
+
+      > *:not([class*=search])
+        width: calc((100% - (#{$_space})*8) / 4)
+      
+      > *
+        margin: $space
+
+
+  &.background--dark, &.background--complex, .background--dark &
+    color: white
+    text-shadow: 0 1px 2px rgba(black,.5)
+    > *:hover
+      color: black
+      text-shadow: none
+    
+    
+[id=footer]
+  
+  text-align: center
+  .container
+    padding: $double-space 0
+    min-height: 100%
+    box-sizing: border-box
+    @extend %first-last-clear
+
+    &:after
+      left: auto
+      right: $space
+
+    > *
+      display: block
+      + *
+        margin-top: $space
+
+
+  // footer elements
+
+  .footer-title
+    font-weight: 600
+    font-size: 1.5em
+
+  .footer-entry
+    text-transform: uppercase
+    font-size: .75em
+
+
+  // custom properties
+
+  +relative
+    
+  .container
+    overflow: hidden
+    +relative
+    &:before
+      content: ''
+      +absolute(top right left bottom)
+      background: url('images/ui/target.svg') no-repeat left top, url('images/ui/target.svg') no-repeat right top, url('images/ui/target.svg') no-repeat left bottom, url('images/ui/target.svg') no-repeat right bottom
+      margin: 0 -16px -16px
+      z-index: -1
+
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+    // fill: currentColor
+
+  .custom-background &
+    height: 100vh
+    overflow: visible
+    .container
+      &:before
+        margin: $space
+        background-image: url('http://dev.mobilemarkup.com/calibration/wp-content/themes/calibration/assets/images/ui/target-background.svg')
+        background-size: contain
+        background-position: center
+
+      display: flex
+      flex-direction: column
+      > *:first-child
+        margin-top: auto!important
+
+  &.background--dark, .background--dark &
+    color: white
+    text-shadow: 0 1px 2px rgba(black,.5)
+
+    

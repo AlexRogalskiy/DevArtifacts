@@ -1,0 +1,406 @@
+@charset "UTF-8";
+/*------------тИЮ
+|  reset.css  |
+тИЮ------------*/
+/* тИЮтИЮ postcss тИЮтИЮ */
+@import url(https://fonts.googleapis.com/css?family=Lato:300,900);
+@use postcss-nested;
+/* тИЮтИЮ font тИЮтИЮ */
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+/* тИЮтИЮ global тИЮтИЮ */
+* {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-color: inherit;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-size: 100%;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+/* тИЮтИЮ text styling тИЮтИЮ */
+h1, h2, h3, h4, h5, h6, p, em, a, b, strong {
+  font-style: normal;
+  font-weight: 300;
+}
+
+strong {
+  font-size: 1.15em;
+}
+
+small {
+  font-size: .85em;
+}
+
+ul,
+ol,
+menu {
+  list-style: none;
+}
+
+sub,
+sup {
+  font-size: .75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+dfn {
+  font-style: italic;
+}
+
+/* тИЮтИЮ form elements тИЮтИЮ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-radius: 0;
+  appearance: none;
+}
+
+button,
+select {
+  text-transform: none;
+  cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+/* тИЮтИЮ link styling тИЮтИЮ */
+a {
+  display: inline;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+	/* a::before {
+		width: 100%;
+		height: .2rem;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		background-color: #7ac;
+	}
+
+	a:hover::before {
+		background-color: #49e;
+		height: .35rem;
+	} */
+/* тИЮтИЮ hr using box тИЮтИЮ */
+hr {
+  border: none;
+  box-sizing: border-box;
+  height: .075rem;
+}
+
+/* тИЮтИЮ hidden тИЮтИЮ */
+[hidden],
+template {
+  display: none;
+}
+
+/* тИЮтИЮ media specific тИЮтИЮ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/* тИЮтИЮ tables тИЮтИЮ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: none;
+}
+
+td,
+th {
+  margin: 0;
+  padding: 0;
+  font-weight: inherit;
+  text-align: inherit;
+}
+
+/*====================================================== тИЮтИЮ browser specific тИЮтИЮ */
+/* тИЮтИЮ IE тИЮтИЮ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+a {
+  background-color: transparent;
+}
+
+button {
+  overflow: visible;
+}
+
+html {
+  -ms-text-size-adjust: 100%;
+}
+
+img {
+  border: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+legend {
+  border: none;
+  padding: 0;
+}
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+textarea {
+  overflow: auto;
+}
+
+/* тИЮтИЮ moz тИЮтИЮ */
+body {
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+
+input {
+  line-height: normal;
+}
+
+/* тИЮтИЮ webkit тИЮтИЮ */
+* {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased !important;
+}
+
+blockquote {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+}
+
+fieldset {
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  -webkit-padding-before: 0;
+  -webkit-padding-start: 0;
+  -webkit-padding-end: 0;
+  -webkit-padding-after: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  height: auto;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration,
+progress {
+  -webkit-appearance: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#kiwi {
+  transition: transform 2.2s cubic-bezier(0.4, 0.25, 0.3, 1.3);
+  width: 200px;
+  height: 200px;
+  background-color: #9dcb78;
+  border: 6px solid #555643;
+  border-radius: 50%;
+  z-index: 0;
+  cursor: pointer;
+}
+#kiwi section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 25%;
+  position: absolute;
+  top: 37.5%;
+  left: 0;
+  z-index: 2;
+}
+#kiwi section div {
+  width: 35%;
+  height: 100%;
+  background-color: #8fc267;
+}
+#kiwi section div::after {
+  content: '';
+  width: 25%;
+  height: 17.5%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #424852;
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+}
+#kiwi section div:first-child {
+  border-top-left-radius: 80%;
+  border-bottom-left-radius: 80%;
+  border-top-right-radius: 85%;
+  border-bottom-right-radius: 85%;
+}
+#kiwi section div:last-child {
+  border-top-left-radius: 85%;
+  border-bottom-left-radius: 85%;
+  border-top-right-radius: 80%;
+  border-bottom-right-radius: 80%;
+}
+#kiwi section:nth-of-type(2) {
+  transform: rotate(45deg);
+}
+#kiwi section:nth-of-type(3) {
+  transform: rotate(-45deg);
+}
+#kiwi section:last-of-type {
+  transform: rotate(90deg);
+}
+#kiwi::after {
+  content: '';
+  width: 50%;
+  height: 50%;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+hgroup {
+  position: absolute;
+  bottom: 2rem;
+  left: 3rem;
+  color: #424852;
+  font-family: 'Josefin Sans', sans-serif;
+}
+hgroup h2 {
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+}
+hgroup h1 {
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+hgroup h1 span {
+  font-size: 1.1em;
+  font-weight: 300;
+}

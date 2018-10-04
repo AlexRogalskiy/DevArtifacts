@@ -1,0 +1,121 @@
+//GLOBAL PRESENTATION
+body{
+  background-color: #eee;
+  padding-top: 40px;
+}
+h1{
+  text-align: center;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+h2{
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+hr{
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+footer{
+  text-align: center;
+  padding-bottom: 50px;
+}
+.link{
+  text-align: center;
+  color: #278fb2;
+}
+//end global
+
+
+
+
+//VARIABLES
+$check-size: 20px; // try to change this value, auto-adapt
+
+.clearfix:after{
+    content: "";
+    display: table;
+    clear: both;
+    height: 0;
+    visibility: hidden
+}
+
+//STYLE
+.checkbox-ios{
+	//width: 75px; //original value
+  width: $check-size + 55px;//adaptative value
+  margin: 0 auto;
+  margin-bottom: 10px;
+  @extend .clearfix;
+  
+	&__toggle{
+		display: none;
+	}
+	&__toggle + &__label{//no checked
+    display: block;
+    position: relative;
+		transition: .3s;
+		border-radius: 50px;
+		background-color: #4e4e4e;
+		height: $check-size + 10px;
+		margin-bottom: 0;
+    cursor: pointer;
+		&:before{
+			transition: .3s;
+			content: "";
+			display: block;
+			position: absolute;
+			border-radius: 50%;
+			background-color: #fff;
+			width: $check-size;
+			height: $check-size;
+			top: 5px;
+			left: 5px;
+		}
+	}
+	&__value{
+		display: block;
+		float: left;
+		width: 50%;
+		font-size: 11px;
+		text-align: center;
+		margin-top: $check-size + 15px;
+		letter-spacing: 1px;
+		line-height: 1.5;
+		&.left{
+			text-align: left;
+      font-weight: bold;
+		}
+		&.right{
+			text-align: right;
+		}
+	}
+  &__toggle:checked + &__label{//checked
+		background-color: #2cc524;
+		&:before{
+      left: calc(100% - #{$check-size} - 5px);
+		}
+    .right{
+      font-weight: bold;
+    }
+    .left{
+      font-weight: normal;
+    }
+	}
+
+  &--blue{
+    .checkbox-ios__toggle:checked + .checkbox-ios__label{
+      background-color: #2a9db3;
+    }
+  }
+
+  &--alert{
+    .checkbox-ios__toggle:checked + .checkbox-ios__label{
+      background-color: #cf201b;
+    }
+  }
+}

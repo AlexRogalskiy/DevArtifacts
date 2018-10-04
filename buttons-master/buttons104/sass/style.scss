@@ -1,0 +1,277 @@
+$body-bg: #1BC6F1;
+$btn-bg: #FFC22B;
+$btn-color: #fff;
+$btn-confirm-bg: #7FD136;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1em;
+  font-size: 16px;
+
+  background-color: $body-bg;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes create-ripple {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.ripple {
+  z-index: -1;
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  right: -30%;
+  bottom: -30%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  animation: create-ripple 0.3s cubic-bezier(0, 0, 0.3, 1) forwards;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -15%;
+    left: -15%;
+    right: -15%;
+    bottom: -15%;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+  }
+}
+
+/**
+ * Invitation styling
+ */
+.invite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+
+  transform: translate(-50%, -50%);
+}
+
+.invite--opened {
+  width: 100%;
+  height: 100%;
+}
+
+.invite-bg {
+  opacity: 0;
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: $btn-bg;
+  border-radius: 50%;
+
+  transform: scale(0);
+}
+
+.invite-bg--confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 100%;
+  background-color: $btn-confirm-bg;
+
+}
+
+.invite-confirm-text {
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  font-size: 1.5em;
+  color: #fff;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 100;
+  letter-spacing: 2px;
+
+  transform: translate(-50%, 200%);
+}
+
+.invite-confirm-text--show {
+  animation: show-text 0.5s 0.1s forwards;
+}
+
+@keyframes show-text {
+  to {
+    opacity: 1;
+    top: 50%;
+  }
+}
+
+.invite__images {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20vh 20px 0;
+
+  display: flex;
+  flex-direction: row;
+
+  list-style: none;
+}
+
+.invite__image {
+  opacity: 0;
+  flex: 1;
+  display: inline-block;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.invite__thumbnail {
+  width: 10vw;
+  max-width: 100px;
+  height: auto;
+  border-radius: 50%;
+  border: 5px solid transparent;
+
+  transition: transform 0.1s;
+}
+
+.invite__image--selected .invite__thumbnail {
+  border-color: lighten($btn-bg, 20%);
+}
+
+.btn-invite {
+  z-index: 1;
+  position: relative;
+  top: 50%;
+  left: 50%;
+
+  display: block;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+
+  will-change: top;
+  transform: translate(-50%, -50%);
+  transition: top 0.2s;
+
+  &:focus,
+  &:hover,
+  &:active {
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  // .btn-invite__wrapper
+  @at-root #{&}__wrapper {
+    position: relative;
+    display: block;
+    padding: 40px;
+    background-color: transparent;
+    border-radius: 50%;
+
+    background-color: $btn-bg;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s, background-color 0.4s;
+    transform: rotate(0);
+
+    will-change: box-shadow, background-color;
+  }
+
+  // .btn-invite__bar
+  @at-root #{&}__bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: $btn-color;
+
+    transform: translate(-50%, -50%);
+
+    &:last-child {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+}
+
+.btn-invite--confirm .btn-invite__bar:last-child {
+  width: 15px;
+  transform: translate(6px, 6px) rotate(90deg);
+}
+
+.invite:not(.invite--opened) .btn-invite:active .btn-invite__wrapper {
+  transform: scale(0.9);
+}
+
+// Opening animation
+.invite--opened .invite-bg {
+  opacity: 1;
+
+  transition: transform 0.3s,
+              opacity 0.3s;
+}
+
+.invite--opened .invite-bg--confirm {
+  transition: transform 0.75s;
+}
+
+.invite--opened .invite__images {
+  display: flex;
+}
+
+@for $i from 1 through 6 {
+  .invite--opened .invite__image:nth-child(#{$i}) {
+    animation: show-image 0.5s (0.1s * $i) cubic-bezier(0, 0, 0.3, 1) forwards;
+  }
+}
+
+@keyframes show-image {
+  0% {
+    opacity: 0;
+    transform: translateY(-30vh);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(30%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.invite--opened .btn-invite__wrapper {
+  box-shadow: none;
+}
