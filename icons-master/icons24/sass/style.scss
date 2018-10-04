@@ -1,0 +1,114 @@
+/* Variables */
+$circleSize: 250px;
+$r: $circleSize/2;
+
+$lineSize: 156px;
+$borderWidth: 3px;
+$offset: 40px;
+
+$bg: #2c2c2c;
+$bg2: #b83170;
+$color: #e03a72;
+$color2: #FFF;
+
+$animation-time: 2s;
+$animation-timing: cubic-bezier(.5,0,.5,0);
+
+$pi: 3.141592653589793238462643383279502884197169;
+$perimeterCircle: 2 * $pi * $r;
+
+
+
+
+
+/* Helpers */
+%middle{ position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+%horizontal-line{ display: block; width: $lineSize; height: $borderWidth; border-radius: $borderWidth; background: $color; }
+%animation{ animation-duration: $animation-time; animation-timing-function: $animation-timing; animation-fill-mode: both; animation-iteration-count: infinite; animation-direction: alternate; }
+
+
+
+
+
+/* Mixins */
+@mixin generateAnimations($startDelay, $stopDelay){ //[$startDelay ∧ $stopDelay ∊ (0;100 - $secondAnimationStartDelay)] && [$startDelay + $stopDelay < 100 - $secondAnimationStartDelay]
+	$secondAnimationStartDelay: 20;
+	$startSecond: $startDelay + $secondAnimationStartDelay;
+	$animationTime: 100 - $startDelay - $stopDelay;
+	$secondAnimationTime: 100 - $startDelay - $stopDelay - $secondAnimationStartDelay;
+
+	@keyframes circle{
+		0%, #{$startDelay - 0.001}%{ clip-path: polygon(0 0); border-color: $color; }
+		#{$startSecond - 0.001}%{ clip-path: polygon(0 0); }
+		#{$startSecond}%{
+			display: block; clip-path: polygon($r $r, $r + $circleSize $r, $r + $circleSize $r, $r + $circleSize $r, $r + $circleSize $r, $r + $circleSize $r);
+		}
+		#{$startSecond + $secondAnimationTime * 0.25}%{
+			clip-path: polygon($r $r, $r + $circleSize $r, $r $r - $circleSize, $r $r - $circleSize, $r $r - $circleSize, $r $r - $circleSize);
+		}
+		#{$startSecond + $secondAnimationTime * 0.5}%{
+			clip-path: polygon($r $r, $r + $circleSize $r, $r $r - $circleSize, $r - $circleSize $r, $r - $circleSize $r, $r - $circleSize $r);
+		}
+		#{$startSecond + $secondAnimationTime * 0.75}%{
+			clip-path: polygon($r $r, $r + $circleSize $r, $r $r - $circleSize, $r - $circleSize $r, $r $r + $circleSize, $r $r + $circleSize);
+		}
+		#{100 - $stopDelay}%, 100%{ clip-path: polygon($r $r, $r + $circleSize $r, $r $r - $circleSize, $r - $circleSize $r, $r $r + $circleSize, $r + $circleSize $r); border-color: $color2; }
+	}
+
+	@keyframes line-middle{
+		0%, #{$startDelay - 0.001}%{ transform: translateX(0); background: $color; }
+		#{($startDelay +  $secondAnimationStartDelay / 2) * 0.9}%{ transform: translateX(-($lineSize/10) * 1.2); }
+		#{$startSecond}%{ transform: translateX(($circleSize - $lineSize) * 0.5); }
+		#{$startSecond + $secondAnimationTime * 0.25}%{ transform: translateX(($circleSize - $lineSize) * 0.5 + $perimeterCircle); }
+		#{100 - $stopDelay}%, 100%{ transform: translateX(($circleSize - $lineSize) * 0.5 + $perimeterCircle); background: $color2; }
+	}
+
+	@keyframes line-top{
+		0%, #{$startDelay - 0.001}%{ transform: translateX(0) translateX(0) translateY(0) rotate(0deg); background: $color; }
+		#{($startDelay +  $secondAnimationStartDelay / 2) * 1.1}%{ transform: translateX(-$lineSize/10) translateY(0) rotate(10deg); }
+		#{100 - $stopDelay}%, 100%{ transform: translateX(0) translateY($offset) rotate(-135deg); background: $color2; }
+	}
+
+	@keyframes line-bottom{
+		0%, #{$startDelay - 0.001}%{ transform: translateY(0) rotate(0deg); background: $color; }
+		#{($startDelay +  $secondAnimationStartDelay / 2) * 1.1}%{ transform: translateX(-$lineSize/10) translateY(0) rotate(-10deg); }
+		#{100 - $stopDelay}%, 100%{ transform: translateX(0) translateY(-$offset) rotate(135deg); background: $color2; }
+	}
+
+	@keyframes background{
+		0%, #{$startSecond}%{ background: $bg; }
+		#{100 - $stopDelay}%, 100%{ background: $bg2; }
+	}
+}
+
+
+
+
+
+/* Main */
+@include generateAnimations(35, 35);
+
+html{ position: relative; height: 100%; box-sizing: border-box; @extend %animation; animation-name: background; }
+*, *:before, *:after{ box-sizing: inherit; }
+
+head{ display: block; }
+
+//Circle
+meta:nth-of-type(1){ display: block; width: $circleSize; height: $circleSize; @extend %middle; border: $borderWidth solid $color; border-radius: 100%; @extend %animation; animation-name: circle; }
+
+//Middle line
+style:nth-of-type(1){ display: block; height: $circleSize; width: $circleSize; @extend %middle; overflow: hidden; text-indent: -99999px;
+	&:before{ content: ""; @extend %horizontal-line; position: absolute; top: 50%; left: 50%; margin-top: -$borderWidth/2; margin-left: -$lineSize/2; @extend %animation; animation-name: line-middle; }
+}
+
+//Top & bottom line
+script:nth-of-type(1){ display: block; height: $circleSize; width: $circleSize; @extend %middle; text-indent: -99999px;
+	&:before,
+	&:after{ content: ""; @extend %horizontal-line; position: absolute; top: 50%; left: 50%; margin-left: -$lineSize/2; }
+	&:before{ margin-top: -$offset - $borderWidth/2; @extend %animation; animation-name: line-top; }
+	&:after{ margin-top: $offset - $borderWidth/2; @extend %animation; animation-name: line-bottom; }
+}
+
+@media screen and (min-width: 800px){
+  body:after{ content: "Note: Firefox doesn't support path-clip: polygon(...); It's recommend to use Chrome instead"; display: block; position: absolute; bottom: 10px; right: 10px; color: #FFF; font-family: Arial; font-size: 11px; }  
+}

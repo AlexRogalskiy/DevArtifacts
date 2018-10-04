@@ -1,0 +1,244 @@
+$hour: 12;
+$minute: 14;
+$second: 27;
+
+$radius: 75px;
+$animation-timing: cubic-bezier(1,0,1,0);
+
+$color--active: #FFF;
+$color--inactive: rgba(#FFF, 0.2);
+
+$font-size: 35px;
+
+$hourTens: floor($hour / 10);
+$hourOnes: $hour % 10;
+$minuteTens: floor($minute / 10);
+$minuteOnes: $minute % 10;
+$secondTens: floor($second / 10);
+$secondOnes: $second % 10;
+
+$pi: 3.14159265359;
+$_precision: 10;
+
+@function pow($base, $exp) {
+  $value: $base;
+  @if $exp > 1 {
+    @for $i from 2 through $exp {
+      $value: $value * $base;
+    }
+  }
+  @if $exp < 1{
+    @for $i from 0 through -$exp {
+      $value: $value / $base;
+    }
+  }
+  @return $value;
+}
+
+@function fact($num) {
+  $fact: 1;
+  @if $num > 0{
+    @for $i from 1 through $num {
+      $fact: $fact * $i;
+    }
+  }
+  @return $fact;
+}
+
+@function _to_unitless_rad($angle) {
+  @if unit($angle) == "deg" {
+    $angle: $angle / 180deg * $pi;
+  }
+  @if unit($angle) == "rad" {
+    $angle: $angle / 1rad;
+  }
+  @return $angle;
+}
+
+@function sin($angle){
+  $a: _to_unitless_rad($angle);
+  $sin: $a;
+  @for $n from 1 through $_precision {
+    $sin: $sin + (pow(-1, $n) / fact(2 * $n + 1) ) * pow($a, (2 * $n + 1));
+  }
+  @return $sin;
+}
+
+@function cos($angle){
+  $a: _to_unitless_rad($angle);
+  $cos: 1;
+  @for $n from 1 through $_precision {
+    $cos: $cos + ( pow(-1,$n) / fact(2*$n) ) * pow($a,2*$n);
+  }
+  @return $cos;
+}
+
+@function tan($angle){
+  @return sin($angle) / cos($angle);
+}
+
+@mixin generateAnimation($name, $numberOfDigits){
+	$step: 100 / $numberOfDigits;
+	$angle: 360deg / $numberOfDigits;
+
+	@for $i from 1 through $numberOfDigits{
+		@keyframes #{$name}#{$i}{
+			@for $j from 1 through $numberOfDigits{
+				$val: $j - $i + 1;
+
+				$top: round($radius * sin(($val) * $angle));
+
+				@if $j == $numberOfDigits{
+					0%, 100%{ top: $top;
+						@if abs(($val) * $angle) > 180{
+							transform: rotateX(360 - abs(($val) * $angle));
+						}
+						@else{
+							transform: rotateX(abs(($val) * $angle));
+						}
+						@if $i == 1{ color: $color--active; }
+					}
+				}
+				@else{
+					#{$j * $step}%{ top: $top;
+						@if abs(($val) * $angle) > 180{
+							transform: rotateX(360 - abs(($val) * $angle));
+						}
+						@else{
+							transform: rotateX(abs(($val) * $angle));
+						}
+						@if $val == 0{ color: $color--active; }
+						@else{ color: $color--inactive; }
+					}
+				}
+			}
+		}
+	}
+}
+
+@include generateAnimation("ten", 10);
+@include generateAnimation("six", 6);
+@include generateAnimation("three", 3);
+
+.hourTens{
+	@for $i from 1 through 3 {
+		$index: $i + $hourTens;
+    
+		@if $index > 3 { $index: $index - 3; }
+    
+		li:nth-child(#{$index}) {
+      animation: three#{$i} 108000s $animation-timing infinite;
+      animation-delay: #{-(3600*$hourOnes + 600*$minuteTens + 60*$minuteOnes + 10*$secondTens + $secondOnes)}s;
+    }
+	}
+}
+
+.hourOnes{
+	@for $i from 1 through 10 {
+		$index: $i + $hourOnes;
+    
+		@if $index > 10 { $index: $index - 10; }
+    
+		li:nth-child(#{$index}) {
+      animation: ten#{$i} 36000s $animation-timing infinite;
+      animation-delay: #{-(600*$minuteTens + 60*$minuteOnes + 10*$secondTens + $secondOnes)}s;
+    }
+	}
+}
+
+.minuteTens{
+	@for $i from 1 through 6{
+		$index: $i + $minuteTens;
+    
+		@if $index > 6 { $index: $index - 6; }
+    
+		li:nth-child(#{$index}) {
+      animation: six#{$i} 3600s $animation-timing infinite;
+      animation-delay: #{-(60*$minuteOnes + 10*$secondTens + $secondOnes)}s;
+    }
+	}
+}
+
+.minuteOnes{
+	@for $i from 1 through 10 {
+		$index: $i + $minuteOnes;
+    
+		@if $index > 10 { $index: $index - 10; }
+    
+		li:nth-child(#{$index}) {
+      animation: ten#{$i} 600s $animation-timing infinite;
+      animation-delay: #{-(10 * $secondTens + $secondOnes)}s;
+    }
+	}
+}
+
+.secondTens{
+	@for $i from 1 through 6{
+		$index: $i + $secondTens;
+		@if $index > 6{ $index: $index - 6; }
+		li:nth-child(#{$index}){ animation: six#{$i} 60s $animation-timing infinite; animation-delay: #{-$secondOnes}s; }
+	}
+}
+.secondOnes{
+	@for $i from 1 through 10{
+		$index: $i + $secondOnes;
+		@if $index > 10{ $index: $index - 10; }
+		li:nth-child(#{$index}){ animation: ten#{$i} 10s cubic-bezier(.9,0,.9,0) infinite; }
+	}
+}
+
+html { height: 100%; }
+
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: #DB6713;
+  background: linear-gradient(45deg, #dba013, #df2445);
+  font-family: 'Lato', sans-serif;
+}
+
+div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+ul {
+  position: relative;
+  width: 30px;
+  height: $font-size;
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style-type: none;
+  font-size: 35px;
+  font-weight: bold;
+
+  &:nth-of-type(even) {
+    margin-right: 15px;
+    padding-right: 15px;
+
+    &::after {
+      content: ":";
+      position: absolute;
+      right: 0;
+      color: $color--active;
+      line-height: 1;
+    }
+  }
+
+  &:last-of-type::after { display: none; }
+
+  li {
+    position: absolute;
+    backface-visibility: hidden;
+    color: $color--inactive;
+    font-size: $font-size;
+    line-height: 1;
+  }
+}

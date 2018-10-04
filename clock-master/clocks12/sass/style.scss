@@ -1,0 +1,164 @@
+*{ backface-visibility: hidden; }
+
+.whole-page{ background: radial-gradient(circle, #FFFFFF 0%, #8E8E8E 17%, #202020 100%); }
+
+.vertical-middle{ display: table; width: 100%; height: 100%; position: absolute;
+    &__child{ display: table-cell; vertical-align: middle; text-align: center; }
+}
+
+/* Math functions */
+$pi: 3.14159265359;
+$_precision: 10;
+
+@function radian($angle){
+    @return $angle * $pi / 180;
+}
+
+@function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+}
+
+@function even($number){
+    $number: round($number);
+    @if strip-units($number)%2 != 0{
+        $number: $number + 1;
+    }
+    @return $number;
+}
+
+@function pow($base, $exp) {
+  $value: $base;
+  @if $exp > 1 {
+    @for $i from 2 through $exp {
+      $value: $value * $base;
+    }
+  }
+  @if $exp < 1{
+    @for $i from 0 through -$exp {
+      $value: $value / $base;
+    }
+  }
+  @return $value;
+}
+
+@function fact($num) {
+  $fact: 1;
+  @if $num > 0{
+    @for $i from 1 through $num {
+      $fact: $fact * $i;
+    }
+  }
+  @return $fact;
+}
+
+@function _to_unitless_rad($angle) {
+  @if unit($angle) == "deg" {
+    $angle: $angle / 180deg * $pi;
+  }
+  @if unit($angle) == "rad" {
+    $angle: $angle / 1rad;
+  }
+  @return $angle;
+}
+
+@function sin($angle){
+  $a: _to_unitless_rad($angle);
+  $sin: $a;
+  @for $n from 1 through $_precision {
+    $sin: $sin + (pow(-1, $n) / fact(2 * $n + 1) ) * pow($a, (2 * $n + 1));
+  }
+  @return $sin;
+}
+
+@function cos($angle){
+  $a: _to_unitless_rad($angle);
+  $cos: 1;
+  @for $n from 1 through $_precision {
+    $cos: $cos + ( pow(-1,$n) / fact(2*$n) ) * pow($a,2*$n);
+  }
+  @return $cos;
+}
+
+@function tan($angle){
+  @return sin($angle) / cos($angle);
+}
+
+
+
+/* Clock */
+$clockSize: 400px;
+
+$clockPadding: $clockSize/60;
+$clockBorderWidth: $clockSize * 0.035;
+$digitsSize: round($clockSize / 10);
+
+$numOfMinuteMarks: 60;
+$radius: 360 / $numOfMinuteMarks;
+
+$handsCircleSize: round($clockSize/20);
+
+$handHourLength: round($clockSize * 0.3);
+$handHourWidth: even($handsCircleSize * 0.5);
+
+$handMinuteLength: round($clockSize * 0.4);
+$handMinuteWidth: even($handsCircleSize * 0.35);
+
+$handSecondLength: $handMinuteLength * 1.1;
+$handSecondWidth: ceil($clockSize/300);
+
+$S: (
+    x: ($clockSize - $clockPadding)/2,
+    y: ($clockSize - $clockPadding)/2
+);
+$A: (
+    x: ($clockSize - $clockPadding)/2,
+    y: 0
+);
+$u: (
+    x: -1 * map-get($S, x),
+    y: -1 * map-get($S, y)
+);
+
+.clock{ font-family: "Droid Serif", serif; display: inline-block; width: $clockSize; height: $clockSize; border: $clockBorderWidth solid #000; border-radius: 100%; position: absolute; top: 50%; left: 50%; margin-top: -$clockSize/2 - $clockBorderWidth; margin-left: -$clockSize/2 - $clockBorderWidth; background: linear-gradient(to bottom right, #E3E3E3, #FFF); box-shadow: 5px 5px 10px rgba(#000, 0.5) inset;
+    &__marks{ list-style: none; position: absolute; top: 0; left: 0; margin: 0; padding: 0;
+        li{ display: block; position: absolute;
+            &:before{ content: ""; display: block; width: 1px; height: 6px; position: absolute; top: 0; left: 0; background: #000 }
+            &:after{ font-size: $digitsSize; line-height: 1; position: absolute; top: $digitsSize*0.4; width: 50px; left: -25px; text-align: center; -webkit-font-smoothing: antialiased; }
+            
+            @for $i from 1 through $numOfMinuteMarks{
+                $B: (
+                    x: -(map-get($A, y) + map-get($u, y)) * sin(radian($i * $radius))  -  map-get($u, x) + $clockPadding/2,
+                    y: (map-get($A, y) + map-get($u, y)) * cos(radian($i * $radius))  -  map-get($u, y) + $clockPadding/2
+                );
+                &:nth-child(#{$i}){ left: map-get($B, x); top: map-get($B, y); transform: rotate(#{$i * $radius}deg);
+                    @if $i%5 == 0{
+                        &:before{ width: 3px; height: 7px; left: -1px; }
+                        &:after{ content: "#{$i/5}"; transform: rotate(#{-1 * $i * $radius}deg); }
+                    }
+                }
+            }
+        }
+    }
+
+    &__hands{ width: $handsCircleSize; height: $handsCircleSize; border-radius: 100%; background: #6C5116; box-sizing: border-box; position: absolute; left: 50%; top: 50%; margin-left: -$handsCircleSize/2; margin-top: -$handsCircleSize/2; transform: rotate(180deg); }
+
+    &__hand{ transform-origin: top center; background: #000; position: absolute; top: $handsCircleSize/2; transition: transform 0.2s;
+         &:before{ content: ""; display: block; width: 0; height: 0; position: absolute; }
+        &:after{ content: ""; display: block; position: absolute; background: #000; }
+
+        &--hour{ width: $handHourWidth; height: $handHourLength; left: $handsCircleSize/2 - $handHourWidth/2;
+            &:before{ bottom: -2 * floor($handHourWidth*0.8); border: solid transparent; border-width: floor($handHourWidth*0.8) $handHourWidth/2; border-top-color: #000; }
+            &:after{ width: $handHourWidth; height: $handHourLength/5; top: -$handHourLength/5; }
+        }
+
+        &--minute{ width: $handMinuteWidth; height: $handMinuteLength; left: $handsCircleSize/2 - $handMinuteWidth/2;
+            &:before{ bottom: -2 * floor($handMinuteWidth*0.8); border: solid transparent; border-width: floor($handMinuteWidth*0.8) $handMinuteWidth/2; border-top-color: #000; }
+            &:after{ width: $handMinuteWidth; height: $handMinuteLength/5; top: -$handMinuteLength/5; }
+        }
+
+        &--second{ width: $handSecondWidth; height: $handSecondLength; left: $handsCircleSize/2 - $handSecondWidth/2;
+            &:before{ top: -$handSecondLength*0.33; border: 0; width: $handSecondWidth + 2; height: $handSecondLength*0.25; background: #000; left: -1px; }
+            &:after{ width: $handSecondWidth; height: $handSecondLength/5; top: -$handSecondLength/5; }
+        }
+    }
+}
