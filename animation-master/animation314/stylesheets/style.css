@@ -1,0 +1,520 @@
+body {
+  background-color: #fff;
+  position: relative;
+}
+
+#snotomax {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 100px;
+  margin-left: -130px;
+}
+
+#snoHead {
+  border: 4px solid #fff;
+  border-top-left-radius: 90px;
+  border-top-right-radius: 90px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 250px;
+  height: 130px;
+  background-color: #4E869D;
+  z-index: 2;
+  position: absolute;
+}
+
+.snoLeftFace, .snoRightFace {
+  background-color: #fff;
+  border: 4px solid #fff;
+  border-top-left-radius: 90px;
+  border-top-right-radius: 90px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 125px;
+  height: 100px;
+  position: relative;
+}
+
+.snoLeftFace {
+  bottom: -18px;
+  right: -25px;
+  z-index: 2;
+}
+
+.snoRightFace {
+  bottom: 90px;
+  right: -100px;
+  z-index: 3;
+}
+
+/* pseudo elements may be a better solution for the whiskers */
+#leftWhiskers,
+.whisk1,
+.whisk2,
+.whisk3,
+#rightWhiskers,
+.whisk4,
+.whisk5,
+.whisk6 {
+  border: 1px solid #536D70;
+  background-color: #536D70;
+  border-radius: 60px;
+  width: 70px;
+  height: 2px;
+  z-index: 10;
+}
+
+.whisk1 {
+  position: absolute;
+  transform: rotate(7deg);
+  top: 90px;
+  right: 110px;
+}
+
+.whisk2 {
+  position: absolute;
+  transform: rotate(-7deg);
+  top: 105px;
+  right: 110px;
+}
+
+.whisk3 {
+  position: absolute;
+  transform: rotate(-20deg);
+  top: 115px;
+  right: 108px;
+}
+
+.whisk4 {
+  position: absolute;
+  transform: rotate(-20deg);
+  top: 85px;
+  left: 235px;
+}
+
+.whisk5 {
+  position: absolute;
+  transform: rotate(-7deg);
+  top: 100px;
+  left: 236px;
+}
+
+.whisk6 {
+  position: absolute;
+  transform: rotate(7deg);
+  top: 110px;
+  left: 235px;
+}
+
+.snoLeftEye, .snoRightEye {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #494441;
+  background-color: #494441;
+  border-radius: 20px;
+}
+
+.snoLeftEye {
+  bottom: 140px;
+  left: 60px;
+  z-index: 4;
+}
+
+.snoRightEye {
+  bottom: 157px;
+  left: 180px;
+  z-index: 3;
+}
+
+.snoMouthLine {
+  position: relative;
+  border: 1px solid #494441;
+  width: 120px;
+  bottom: 165px;
+  left: 60px;
+  z-index: 3;
+}
+
+#ears {
+  position: absolute;
+}
+
+.snoLeftEar, .snoRightEar {
+  position: relative;
+  background: #447991;
+  border: 4px solid #fff;
+  width: 60px;
+  height: 60px;
+  -moz-border-radius: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 0;
+  z-index: 1;
+}
+
+.snoLeftEar {
+  transform: rotate(10deg);
+  bottom: 14px;
+  right: -10px;
+  animation: wiggleLeft 2.5s infinite;
+}
+
+@keyframes wiggleLeft {
+  0% {
+    transform: rotate(10deg);
+  }
+  80% {
+    transform: rotate(10deg);
+  }
+  85% {
+    transform: rotate(10deg);
+  }
+  95% {
+    transform: rotate(14deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+.snoRightEar {
+  transform: rotate(80deg);
+  bottom: 80px;
+  right: -180px;
+}
+
+#shakeHead {
+  animation: sidetoside 2s linear 1s infinite;
+}
+
+@keyframes sidetoside {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+#snoBody {
+  background-color: #4E869D;
+  border: 4px solid #fff;
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
+  border-bottom-left-radius: 90px;
+  border-bottom-right-radius: 90px;
+  width: 365px;
+  height: 230px;
+  position: absolute;
+  bottom: -95px;
+  left: -56px;
+  z-index: 4;
+}
+
+.snoBelly {
+  background-color: #fff;
+  border: 4px solid #fff;
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  width: 300px;
+  height: 150px;
+  position: relative;
+  bottom: -5px;
+  left: 30px;
+  z-index: 4;
+}
+
+#marking {
+  position: relative;
+}
+
+/* pseudo elements may be a better solution for the cresents */
+.cresent1, .cresent2, .cresent3, .cresent4, .cresent5, .cresent6, .cresent7 {
+  position: absolute;
+  background: #98C7CE;
+  border: 2px solid #fff;
+  width: 30px;
+  height: 30px;
+  -moz-border-radius: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 7;
+}
+
+.cresentBlock1,
+.cresentBlock2,
+.cresentBlock3,
+.cresentBlock4,
+.cresentBlock5,
+.cresentBlock6,
+.cresentBlock7 {
+  position: absolute;
+  background: #fff;
+  border: 2px solid #fff;
+  width: 28px;
+  height: 30px;
+  -moz-border-radius: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 7;
+}
+
+.cresent1 {
+  width: 28px;
+  bottom: 105px;
+  left: 100px;
+  transform: rotate(25deg);
+}
+
+.cresentBlock1 {
+  bottom: 95px;
+  left: 105px;
+  transform: rotate(25deg);
+}
+
+.cresent2 {
+  width: 25px;
+  bottom: 110px;
+  left: 165px;
+  transform: rotate(40deg);
+}
+
+.cresentBlock2 {
+  bottom: 98px;
+  left: 165px;
+  transform: rotate(40deg);
+}
+
+.cresent3 {
+  width: 28px;
+  bottom: 105px;
+  left: 230px;
+  transform: rotate(60deg);
+}
+
+.cresentBlock3 {
+  bottom: 95px;
+  left: 230px;
+  transform: rotate(50deg);
+}
+
+.cresent4 {
+  bottom: 70px;
+  left: 64px;
+  transform: rotate(120deg);
+}
+
+.cresentBlock4 {
+  bottom: 60px;
+  left: 70px;
+  transform: rotate(120deg);
+}
+
+.cresent5 {
+  bottom: 80px;
+  left: 125px;
+  transform: rotate(120deg);
+}
+
+.cresentBlock5 {
+  bottom: 70px;
+  left: 130px;
+  transform: rotate(120deg);
+}
+
+.cresent6 {
+  bottom: 80px;
+  left: 195px;
+  transform: rotate(140deg);
+}
+
+.cresentBlock6 {
+  bottom: 70px;
+  left: 195px;
+  transform: rotate(140deg);
+}
+
+.cresent7 {
+  bottom: 70px;
+  left: 260px;
+  transform: rotate(160deg);
+}
+
+.cresentBlock7 {
+  bottom: 60px;
+  left: 260px;
+  transform: rotate(160deg);
+}
+
+#legs {
+  position: absolute;
+}
+
+.snoLeftLeg, .snoRightLeg, .bottomLeft, .bottomRight {
+  position: relative;
+  background-color: #3D738D;
+  border: 4px solid #fff;
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
+  border-bottom-left-radius: 150px;
+  border-bottom-right-radius: 100px;
+  width: 120px;
+  height: 120px;
+  z-index: 5;
+}
+
+.snoLeftLeg {
+  transform: rotate(-50deg);
+  bottom: 0px;
+  right: 70px;
+  animation: leftLeg 3s linear 1s infinite;
+}
+
+.bottomLeft {
+  background-color: #fff;
+  border: none;
+  width: 90px;
+  height: 90px;
+  left: 10px;
+  top: 20px;
+}
+
+@keyframes leftLeg {
+  0% {
+    bottom: 0px;
+  }
+  25% {
+    bottom: 50px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+.snoRightLeg {
+  transform: rotate(130deg);
+  bottom: 135px;
+  right: -210px;
+  animation: rightLeg 2s linear 1s infinite;
+}
+
+.bottomRight {
+  background-color: #fff;
+  border: none;
+  width: 90px;
+  height: 90px;
+  left: 20px;
+  top: 20px;
+}
+
+@keyframes rightLeg {
+  0% {
+    bottom: 135px;
+  }
+  25% {
+    bottom: 165px;
+  }
+  100% {
+    bottom: 135px;
+  }
+}
+#arms {
+  position: absolute;
+}
+
+.snoLeftArm, .snoRightArm {
+  background-color: #4E869D;
+  border: 4px solid #fff;
+  width: 70px;
+  height: 130px;
+  position: relative;
+  z-index: -1;
+}
+
+.snoLeftArm {
+  border-top-left-radius: 450px;
+  border-top-right-radius: 150px;
+  border-bottom-left-radius: 150px;
+  border-bottom-right-radius: 400px;
+  transform: rotate(55deg);
+  bottom: 140px;
+  right: 60px;
+  animation: leftarm 2s linear 1s infinite alternate;
+}
+
+@keyframes leftarm {
+  0% {
+    bottom: 160px;
+  }
+  50% {
+    bottom: 160px;
+  }
+  75% {
+    bottom: 160px;
+  }
+  100% {
+    bottom: 160px;
+  }
+  from {
+    transform: rotate(55deg);
+  }
+  to {
+    transform: rotate(80deg);
+  }
+}
+.snoRightArm {
+  border-top-left-radius: 150px;
+  border-top-right-radius: 450px;
+  border-bottom-left-radius: 400px;
+  border-bottom-right-radius: 100px;
+  transform: rotate(125deg);
+  bottom: 285px;
+  left: 245px;
+  animation: rightarm 2s linear 1s infinite alternate;
+}
+
+@keyframes rightarm {
+  0% {
+    bottom: 297px;
+  }
+  50% {
+    bottom: 297px;
+  }
+  75% {
+    bottom: 297px;
+  }
+  100% {
+    bottom: 297px;
+  }
+  from {
+    transform: rotate(125deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+.text {
+  position: absolute;
+  bottom: 130px;
+  left: 100px;
+  font-size: 30px;
+  margin: 0;
+  font-family: monospace;
+  color: #327B76;
+  z-index: 10;
+}

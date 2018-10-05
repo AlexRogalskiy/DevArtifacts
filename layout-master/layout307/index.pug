@@ -1,0 +1,11 @@
+h1 Helix Subsector
+ul.map
+	-function pad(n){return (n<10) ? ('0'+n) : n;}
+	-for (var x = 1; x < 11; x++)
+		-for (var y = 1; y < 9; y++)
+			-var idnumber = pad(y) + pad(x)
+			li(id=idnumber)
+				div
+					svg(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 105 85')
+						polygon(points='26.25 85 0 42.5 26.25 0 78.75 0 105 42.5 78.75 85 26.25 85')
+					p= idnumber

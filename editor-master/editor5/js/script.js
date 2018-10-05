@@ -1,0 +1,1 @@
+Tripetto.Editor.Open();

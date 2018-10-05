@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"
+        content="ie=edge">
+		
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+<link rel="stylesheet" href="stylesheets/style.css" />
+
+  <title>Vue Typer</title>
+</head>
+
+<body>
+
+  <p>press power button below to turn on | hold down shift to drag-erase |
+    double click to erase single cells </p>
+
+  <div class="container clear-fix">
+  <!-- SIZE PICKER -->
+  <!-- <form id="sizePicker" onSubmit="makeGrid(event)">
+        <input type="number" id="inputHeight" name="height" min="1" value="" max="15" maxlength="2" placeholder="H">
+        <input type="number" id="inputWidth" name="width" min="1" max="27" maxlength="2" value="" placeholder="W">
+        <input type="submit" value="GO" id="submit-button">
+       </form> -->
+  
+   <!-- ERASE BUTTON -->
+  <button class="size-button erase-button" id="eraser" value="" onClick="clearCanvas()">
+    <i class="fas fa-trash-alt"></i>
+  </button>
+  
+  <!-- COLOR -->
+  <table border="0" class="colorPalette" id="no-border">
+    <tr>
+      <td><div class="colorSelection" id="red" value="#FF0000"></div></td>
+      <td><div class="colorSelection" id="blue" value="#0000FF"></div></td>
+      <td><div class="colorSelection" id="orange" value="#FFA500"></div></td>
+      <td><div class="colorSelection" id="white" value="#FFFFFF"></div></td>
+      <td><div class="colorSelection" id="green" value="#00FF00"></div></td>
+      <td><div class="colorSelection" id="yellow" value="#FFFF00"></div></td>
+      <td><div class="colorSelection" id="pink" value="#FF00FF"></div></td>
+      <td><div class="colorSelection" id="purple" value="#8A2BE2"></div></td>
+    </tr>
+  </table>
+  <!--   <input type="color" id="colorPicker"> -->
+   
+   <!-- CANVAS AREA -->
+  <div class="canvas-area">
+    <table id="pixelCanvas"></table>
+  </div>
+    
+  <div class="projectLogo">
+    <img src="http://res.cloudinary.com/beatrizeagustin/image/upload/c_scale,w_150/v1522351988/assembly_5.png" alt="Lite Brite Pixel Maker image">
+  </div>
+  
+   <!-- POWER BUTTON -->
+  <button class="size-button blink-button" id="blinker" onClick="makeGrid()"><i class="fas fa-power-off"></i></button>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,47 @@
+html, body {box-sizing: border-box;}
+svg {
+	display: block;
+	cursor: crosshair;
+	&#icons { display: none; }
+	#heart, #rocket { display: none; }
+	rect { fill: #eee; }
+	line {
+		stroke: #888;
+		stroke-dasharray: 3;
+		stroke-width: 1;
+		shape-rendering: crispEdges;
+		pointer-events: none;
+	}
+	path {
+		fill: none;
+		stroke: navy;
+		stroke-width: 2;
+		shape-rendering: geometricPrecision;
+		pointer-events: none;
+	}
+	text {
+		font: italic 16px Helvetica;
+		fill: #999;
+		pointer-events: none;
+	}
+}
+.buttons {
+	margin-top: 10px;
+	width: 500px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	button {
+		width: 100px;
+		border: 2px solid #999;
+		padding: 20px;
+		cursor: pointer;
+	}
+}
+.takeoff {
+	transform: scaleX(1) translateX(0);
+	animation: 1500ms takeoff cubic-bezier(.2,-0.18,.74,.05) forwards;
+}
+@keyframes takeoff {
+	to { transform: scaleX(1.5) translate(500px); }
+}

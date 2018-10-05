@@ -1,0 +1,59 @@
+html,
+body {
+  box-sizing: border-box;
+}
+svg {
+  display: block;
+  cursor: crosshair;
+}
+svg#icons {
+  display: none;
+}
+svg #heart,
+svg #rocket {
+  display: none;
+}
+svg rect {
+  fill: #eee;
+}
+svg line {
+  stroke: #888;
+  stroke-dasharray: 3;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+  pointer-events: none;
+}
+svg path {
+  fill: none;
+  stroke: navy;
+  stroke-width: 2;
+  shape-rendering: geometricPrecision;
+  pointer-events: none;
+}
+svg text {
+  font: italic 16px Helvetica;
+  fill: #999;
+  pointer-events: none;
+}
+.buttons {
+  margin-top: 10px;
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.buttons button {
+  width: 100px;
+  border: 2px solid #999;
+  padding: 20px;
+  cursor: pointer;
+}
+.takeoff {
+  transform: scaleX(1) translateX(0);
+  animation: 1500ms takeoff cubic-bezier(0.2, -0.18, 0.74, 0.05) forwards;
+}
+@keyframes takeoff {
+  to {
+    transform: scaleX(1.5) translate(500px);
+  }
+}

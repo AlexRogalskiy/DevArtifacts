@@ -1,0 +1,155 @@
+html, body {
+  background-color: #232323;
+  color: #cfcfcf;
+  font-family: Arial, sans-serif;
+}
+
+#item-list {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#item {
+  border: 1px solid #2f2f2f;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  align-content: stretch;
+  align-items: stretch;
+  padding: 5px;
+}
+
+#checkbox {
+  /*   border: 1px dashed red; */
+  order: 1;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: stretch;
+  justify-content: center;
+  min-width: 80px;
+}
+
+#checkbox div {
+  /*   border: 1px dashed gray; */
+  cursor: pointer;
+  background-color: #2f2f2f;
+  display: flex;
+  flex: 1 0 auto;
+  margin: 1px;
+  min-width: 160px;
+  min-height: 160px;
+  align-items: center;
+  justify-content: center;
+}
+
+#checkbox div:hover {
+  background-color: #436EAE;
+  color: white;
+}
+
+#content {
+  order: 2;
+  /*   border: 1px dashed yellow; */
+  background-color: #2f2f2f;
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: column nowrap;
+  padding: 5px;
+  margin: 1px;
+  /*   max-height: 100px; */
+  /*   overflow: auto; */
+}
+
+#controls {
+  /*   border: 1px dashed blue; */
+  order: 3;
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 0 0 auto;
+}
+
+#controls div {
+  /*   border: 1px dashed gray; */
+  cursor: pointer;
+  background-color: #2f2f2f;
+  display: flex;
+  flex: 1 0 auto;
+  margin: 1px;
+  min-width: 80px;
+  align-items: center;
+  justify-content: center;
+}
+
+#controls div:hover {
+  background-color: #436EAE;
+  color: white;
+}
+
+ul.t-list {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0px;
+  margin: 0px;
+}
+
+.t {
+  font-size: 0.6rem;
+  cursor: pointer;
+  border: 1px solid #696969;
+  margin: 1px 2px;
+  padding: 1px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: center;
+  align-items: center;
+}
+
+.t-content {
+  /*   border: 1px solid steelblue; */
+  display: flex;
+  padding: 0px 5px 0px 10px;
+  align-content: center;
+}
+
+.t-remove {
+  /*   border: 1px solid #690000; */
+  padding: 0px 5px 0px 5px;
+}
+
+.t-add {
+  cursor: pointer;
+  display: flex;
+  border: 1px solid #696969;
+  padding: 1px 5px;
+  margin: 1px 5px;
+}
+
+.t-content:hover {
+  color: white;
+}
+
+.t-remove:hover {
+  color: white;
+}
+
+.t-add:hover {
+  color: white;
+}
+
+@media screen and (max-width: 480px) {
+  #item {
+    flex-flow: column nowrap;
+  }
+
+  #checkbox {
+    order: 4;
+  }
+
+  #checkbox div {
+    min-height: 80px;
+  }
+
+  #controls {
+    flex-flow: row nowrap;
+  }
+}

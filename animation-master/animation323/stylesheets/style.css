@@ -1,0 +1,94 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  perspective: 600px;
+}
+body .wrap {
+  position: absolute;
+  width: 450px;
+  height: 250px;
+  left: 50%;
+  top: 50%;
+  transform: translateX(calc(-50% + 50px)) translateY(calc(-50% - 50px)) rotateX(30deg) rotate(-15deg) rotateY(15deg);
+  perspective: 500px;
+}
+body .wrap h1:first-of-type {
+  top: -125px;
+}
+body .wrap h1:nth-of-type(2) {
+  animation-delay: 0.25s;
+  transform: scale(0.5);
+  left: 100px;
+}
+body .wrap h1:nth-of-type(2):before, body .wrap h1:nth-of-type(2):after {
+  animation-delay: 0.25s;
+  content: 'IT';
+}
+body .wrap h1:nth-of-type(3) {
+  top: 125px;
+  animation-delay: 0.5s;
+}
+body .wrap h1:nth-of-type(3):before, body .wrap h1:nth-of-type(3):after {
+  animation-delay: 0.5s;
+  content: 'OUT';
+}
+body h1 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 200px;
+  margin: 0;
+  z-index: 1;
+  color: #333;
+  transform-style: preserve-3d;
+}
+body h1:before {
+  content: 'CUT';
+  position: absolute;
+  color: #fff;
+  text-shadow: -2px -2px 0 #fff, -2px -1px 0 #fff, -2px 0px 0 #fff, -2px 1px 0 #fff, -2px 2px 0 #fff, -1px -2px 0 #fff, -1px -1px 0 #fff, -1px 0px 0 #fff, -1px 1px 0 #fff, -1px 2px 0 #fff, 0px -2px 0 #fff, 0px -1px 0 #fff, 0px 0px 0 #fff, 0px 1px 0 #fff, 0px 2px 0 #fff, 1px -2px 0 #fff, 1px -1px 0 #fff, 1px 0px 0 #fff, 1px 1px 0 #fff, 1px 2px 0 #fff, 2px -2px 0 #fff, 2px -1px 0 #fff, 2px 0px 0 #fff, 2px 1px 0 #fff, 2px 2px 0 #fff;
+  z-index: 2;
+  animation: spin 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite alternate;
+  transform-origin: 50% 190px;
+}
+@keyframes spin {
+  50% {
+    transform: rotateX(0deg);
+    color: #fff;
+    text-shadow: -2px -2px 0 #fff, -2px -1px 0 #fff, -2px 0px 0 #fff, -2px 1px 0 #fff, -2px 2px 0 #fff, -1px -2px 0 #fff, -1px -1px 0 #fff, -1px 0px 0 #fff, -1px 1px 0 #fff, -1px 2px 0 #fff, 0px -2px 0 #fff, 0px -1px 0 #fff, 0px 0px 0 #fff, 0px 1px 0 #fff, 0px 2px 0 #fff, 1px -2px 0 #fff, 1px -1px 0 #fff, 1px 0px 0 #fff, 1px 1px 0 #fff, 1px 2px 0 #fff, 2px -2px 0 #fff, 2px -1px 0 #fff, 2px 0px 0 #fff, 2px 1px 0 #fff, 2px 2px 0 #fff;
+  }
+  65% {
+    transform: rotateX(-70deg);
+    color: #efefef;
+    text-shadow: -2px -2px 0 #efefef, -2px -1px 0 #efefef, -2px 0px 0 #efefef, -2px 1px 0 #efefef, -2px 2px 0 #efefef, -1px -2px 0 #efefef, -1px -1px 0 #efefef, -1px 0px 0 #efefef, -1px 1px 0 #efefef, -1px 2px 0 #efefef, 0px -2px 0 #efefef, 0px -1px 0 #efefef, 0px 0px 0 #efefef, 0px 1px 0 #efefef, 0px 2px 0 #efefef, 1px -2px 0 #efefef, 1px -1px 0 #efefef, 1px 0px 0 #efefef, 1px 1px 0 #efefef, 1px 2px 0 #efefef, 2px -2px 0 #efefef, 2px -1px 0 #efefef, 2px 0px 0 #efefef, 2px 1px 0 #efefef, 2px 2px 0 #efefef;
+  }
+  100% {
+    transform: rotateX(-70deg);
+    color: #efefef;
+    text-shadow: -2px -2px 0 #efefef, -2px -1px 0 #efefef, -2px 0px 0 #efefef, -2px 1px 0 #efefef, -2px 2px 0 #efefef, -1px -2px 0 #efefef, -1px -1px 0 #efefef, -1px 0px 0 #efefef, -1px 1px 0 #efefef, -1px 2px 0 #efefef, 0px -2px 0 #efefef, 0px -1px 0 #efefef, 0px 0px 0 #efefef, 0px 1px 0 #efefef, 0px 2px 0 #efefef, 1px -2px 0 #efefef, 1px -1px 0 #efefef, 1px 0px 0 #efefef, 1px 1px 0 #efefef, 1px 2px 0 #efefef, 2px -2px 0 #efefef, 2px -1px 0 #efefef, 2px 0px 0 #efefef, 2px 1px 0 #efefef, 2px 2px 0 #efefef;
+  }
+}
+body h1:after {
+  content: 'CUT';
+  position: absolute;
+  left: 0;
+  animation: spin 2s ease-in-out infinite alternate;
+  animation: shadow 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite alternate;
+  transform-origin: 50% 185px;
+  color: #eee;
+  filter: blur(15px);
+  transform: scaleY(0) rotateX(180deg) skewX(0deg);
+}
+@keyframes shadow {
+  50% {
+    transform: scaleY(0) rotateX(180deg) skewX(0deg);
+  }
+  65% {
+    transform: scaleY(0.5) rotateX(180deg) skewX(-20deg);
+  }
+  100% {
+    transform: scaleY(0.5) rotateX(180deg) skewX(-20deg);
+  }
+}
