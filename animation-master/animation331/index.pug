@@ -1,0 +1,111 @@
+mixin walls 
+  - for (wallCount = 0; wallCount < 6; wallCount++)
+    .wall.metal
+
+#open_water
+  .camera_x
+    .camera_z
+      .sea_wrapper
+        .sea
+          - for (i = 0; i < 5; i++)
+            .dolphin
+              .dolphin_move
+                .dolphin_z
+                  .dolphin_rotate
+                    .body.fish_2
+                    .front_fin.fish_1
+                    .back_fin.fish_1
+          - for (i = 0; i < 30; i++)
+            .wave
+      .ship
+        .ship_body
+          .keel
+            .front_nose
+              +walls
+            .front_top
+              +walls
+            .front_bottom
+              +walls
+            .under
+              +walls
+            .back
+              +walls
+            
+          .pillar
+            .sail_1
+              - for (i = 0; i < 4; i++)
+                .cloth
+                  .cloth_inner.black
+            .sail_2
+              - for (i = 0; i < 4; i++)
+                .cloth
+                  .cloth_inner.black
+            .main
+              .left.tree_2
+              .right.tree_2
+              .back.tree_2
+              .front.tree_2
+              .top.tree_2
+            .arm_1
+              .top.tree_1
+              .front.tree_1
+              .bottom.tree_1
+              .back.tree_1
+              .left.tree_1
+              .right.tree_1
+            .arm_2
+              .top.tree_1
+              .front.tree_1
+              .bottom.tree_1
+              .back.tree_1
+              .left.tree_1
+              .right.tree_1
+          .deck
+            .floor.wood
+            .left.metal
+            .right.metal
+            .fence_left.metal
+            .fence_right.metal
+          .tip
+            .left.metal
+            .right.metal
+            .floor.wood
+          .room
+            .roof.wood
+              .roof_left.metal
+              .roof_right.metal
+              .roof_back.metal
+              .handle_stand.metal
+              .handle.tree_1
+                .handle_arm.tree_1
+                .handle_arm.tree_1
+                .handle_arm.tree_1
+                .handle_arm.tree_1
+            .left.metal
+            .right.metal
+            .front.tree_1
+            .back.metal
+            .bottom.black
+            .rudder_left.tree_2
+              - for (i = 0; i < 7; i++)
+                .step.metal
+            .rudder_right.tree_2
+              - for (i = 0; i < 7; i++)
+                .step.metal
+          .side
+            .left
+              .top.tree_2
+              .bottom.tree_2
+            .right
+              .top.tree_2
+              .bottom.tree_2
+          .front
+            .left
+              .top.tree_2
+              .bottom.tree_2
+            .right
+              .top.tree_2
+              .bottom.tree_2
+          .rear
+            .back.tree_1
+            .rudder.wood

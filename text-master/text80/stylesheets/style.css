@@ -1,0 +1,112 @@
+html,
+body {
+  height: 100%;
+  background: #000;
+}
+
+.section1 {
+  background: #fff;
+  min-height: 100%;
+}
+.section1:before, .section1:after {
+  content: "";
+  width: 50%;
+  top: 0;
+  position: absolute;
+}
+.section1:before {
+  background: grey;
+  height: 60%;
+}
+@media screen and (min-width: 600px) {
+  .section1:before {
+    height: 70%;
+  }
+}
+.section1:after {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 250px 400px 0 0;
+  border-color: #000 transparent transparent transparent;
+}
+
+.woman {
+  position: relative;
+  margin: 0 auto;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/magazine.png) no-repeat center center;
+  height: 494px;
+  width: 218px;
+  z-index: 2;
+}
+@media screen and (min-width: 786px) {
+  .woman {
+    background-size: 300px 680px;
+    height: 680px;
+    width: 300px;
+  }
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  font-size: 7vw;
+  margin: 0;
+  height: 100%;
+  position: absolute;
+  color: black;
+  width: 100%;
+  text-align: center;
+  font-family: 'Satisfy', cursive;
+}
+h1:focus {
+  outline: none;
+}
+h1:before {
+  content: attr(data-heading);
+  overflow: hidden;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  clip-path: polygon(72% 19%, 76% 23%, 79% 27%, 78% 29%, 78% 32%, 82% 36%, 86% 40%, 85% 46%, 86% 51%, 86% 56%, 83% 61%, 79% 63%, 49% 65%, 41% 62%, 36% 60%, 31% 57%, 24% 54%, 18% 49%, 12% 43%, 9% 36%, 8% 31%, 11% 27%, 16% 27%, 22% 27%, 24% 24%, 31% 23%, 35% 18%, 45% 18%, 56% 17%, 65% 15%);
+}
+
+.content {
+  max-width: 90%;
+  position: relative;
+  font-family: 'Playfair Display', serif;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+@media screen and (min-width: 600px) {
+  .content {
+    left: 64%;
+    max-width: 300px;
+    width: 30%;
+    top: 50%;
+    position: absolute;
+  }
+}
+.content:before {
+  content: "";
+  height: 10px;
+  background: #000;
+  width: 100%;
+  position: absolute;
+  top: -1.5rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+p {
+  font-size: .8rem;
+  line-height: 1.6;
+  letter-spacing: 0.05rem;
+}

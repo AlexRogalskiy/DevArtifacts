@@ -1,0 +1,62 @@
+
+@font-face {
+	src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/Cheee_Variable.woff2');
+	font-family:'Cheee Variable';
+	font-style: normal;
+}
+
+body {
+	height: 2500px;
+     background: linear-gradient(to top, #1a2980, #26d0ce); 
+
+}
+
+h1 {
+	--yeast: 500;
+	--gravity: 0;
+	--pos: 0;
+	font-family:'Cheee Variable', arial;
+	font-variation-settings: "yest" var(--gravity), "gvty" var(--gravity);
+	font-size: 16vw;
+	color: white;
+
+	// Positioning
+	position: fixed;
+	top: var(--pos);
+	margin: 0;
+	width: 100%;
+	text-align: center;
+	transform: translateY(-100%);
+	line-height: 0.6;
+}
+
+
+#down{	
+	position: absolute;
+	top:0;
+	text-align: center;
+	display: block;
+	width: 100%;
+	font-size: 50px;
+	animation: bounce 1.25s infinite ease-in-out;
+	color: #fff;
+}
+
+@keyframes bounce {
+	 0% { top: 10%; }
+	 50%   { top: 15%; }
+	 100% { top: 10%; }
+}
+
+.terms {
+	position: absolute;
+	font-family: arial, sans-serif;
+	top: 0;
+	text-align: center;
+	color: black;
+	width: 100%;
+	
+	a {
+		color: black;
+	}
+}
