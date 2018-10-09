@@ -1,0 +1,130 @@
+
+# Last Updated: 01/03/05
+
+For latest info, always refer to http://airsnort.shmoo.com/windows.html
+
+Minimal setup instructions for Windows users:
+
+SETUP
+
+You need to install gtk for Windows, get it here:
+   http://www.gimp.org/~tml/gimp/win32/downloads.html
+
+If you have an airsnort binary for Windows, you will need only:
+   gtk
+   glib
+   pango
+   atk
+   libiconv
+   gettext
+
+If you intend to compile your own binary you also need the development
+packages:
+   gtk-dev
+   glib-dev
+   pango-dev
+   atk-dev
+
+Unzip all of these into same directory referred to as <gtkdir> from here on 
+out. If you choose c:\gtk for <gtkdir>, then windows.mak and the Visual C++
+project file should work as is for you.
+
+The following bash script will create c:\gtk, then download and unzip all of
+the gtk files you need.  This script runs just fine under cygwin.  if you
+don't have cygwin, get it here: http://www.cygwin.com.
+
+#---------------BEGIN SCRIPT---------------------
+#!/bin/sh
+cd /cygdrive/c
+mkdir -p gtk
+cd gtk
+wget http://www.gimp.org/~tml/gimp/win32/glib-2.4.7.zip
+unzip glib-2.4.7.zip
+wget http://www.gimp.org/~tml/gimp/win32/gtk+-2.4.14.zip
+unzip -o gtk+-2.4.14.zip
+wget http://www.gimp.org/~tml/gimp/win32/pango-1.4.1.zip
+unzip pango-1.4.1.zip
+wget http://www.gimp.org/~tml/gimp/win32/atk-1.6.0.zip
+unzip atk-1.6.0.zip
+wget http://www.gimp.org/~tml/gimp/win32/libiconv-1.9.1.bin.woe32.zip
+unzip -o libiconv-1.9.1.bin.woe32.zip
+wget http://www.gimp.org/~tml/gimp/win32/gettext-runtime-0.13.1.zip
+unzip -o gettext-runtime-0.13.1.zip
+
+#if you plan to compile your own binaries, then uncomment the following lines:
+
+#wget http://www.gimp.org/~tml/gimp/win32/glib-dev-2.4.7.zip
+#unzip -o glib-dev-2.4.7.zip
+#wget http://www.gimp.org/~tml/gimp/win32/gtk+-dev-2.4.14.zip
+#unzip -o gtk+-dev-2.4.14.zip
+#wget http://www.gimp.org/~tml/gimp/win32/pango-dev-1.4.1.zip
+#unzip -o pango-dev-1.4.1.zip
+#wget http://www.gimp.org/~tml/gimp/win32/atk-dev-1.6.0.zip
+#unzip -o atk-dev-1.6.0.zip
+#---------------END SCRIPT---------------------
+
+
+add <gtkdir>\bin to your path
+
+get and install airopeeknx demo: http://www.wildpackets.com
+
+From the airopeek install directory, copy peek.dll and peek5.sys into your
+airsnort/bin directory (if your airsnort distro does not have a bin
+subdirectory, create one or one will be created when you build airsnort below.
+
+Follow the directions in the airopeeknx readme to install appropriate drivers
+for your wireless card.
+
+Make sure you can run airopeek.  If it won't work, airsnort is not likely to.
+
+BUILDING
+
+The makefile windows.mak is known to work with VC++ 6.0, dont ask me about any
+other compilers.  Visual C++ workspace and project files are now included with
+the airsnort distribution.
+
+If you installed gtk anywhere other than c:\gtk, edit windows.mak to set
+GTKDIR to your <gtkdir>
+
+In the airsnort directory issue the command:
+
+   nmake /f windows.mak
+   
+if all goes well you should have an airsnort binary in the bin subdirectory.
+
+NOTE: nmake is the command line make utility included with Visual C++ 6.0. 
+When you installed Visual C++, you should have been given the option to set
+environment variables required to use the command line tools.  If you can't
+execute nmake at the command line, try executing the VCVARS32.BAT script
+included with your Visual C++ install (probably at
+C:\Program Files\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT)
+
+RUNNING
+
+Assuming that you followed the directions above, double click on the airsnort
+executable.  Before you start a capture, specify your wireless card in the 
+device name dropdown.  Choose the device name that matches you wireless card.
+See the console window for a list of network adapters tat airsnort recognizes.
+Orinoco user, select card type Orinoco, Cisco and DWL-650 users, select 
+DWL-650.  Before you click the start button, make sure the "scan" radio
+button is selected.  Once started, you can change to single channel monitoring
+by choosing the desired channel and changing the radio button. If you want to
+save captured packets to a file (ala pcap), make sure you select "Log to file"
+from the File menu BEFORE you start a capture.
+
+Now sit back, have some fun and wait for keys to appear.  Airsnort will do its
+best to discover and display SSIDs that it sees in addition to the ASCII and
+hex representations of any WEP keys it manages to crack.
+
+WARNING
+
+This stuff is very shaky on Windows.  I am not responsible for any BSODs you
+may be subject to.  I develop and test on XP only, though this may work on
+Win2k as well.  Feel free to report any repeatable problems, but I make no
+promises as to whether I can fix them or not.  The most helpful thing you can
+send to me is a couple of minutes of packets logged using the "Log to file"
+option of airsnort.
+
+ADDITIONAL INFO:
+
+Please see http://airsnort.shmoo.com/windows.html

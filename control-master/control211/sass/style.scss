@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300);
+$highlight: #ff5500;
+$background: #222;
+$text: #fff8d6;
+
+body {
+  background: linear-gradient(to bottom, $background 0%,lighten($background,5%) 50%,$background 100%);
+  padding:0;
+  margin:0;
+  height:100vh;
+  width:100vw;
+  color:$text;
+  font-family: 'Lato', sans-serif;
+  line-height:200%;
+  font-size:24px;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  flex-direction:column;
+}
+
+blockquote {
+  width:50%;
+  max-width:1000px;
+}
+
+input {
+  background:$highlight;
+  border: solid 1px mix($highlight, $text, 50%);
+  padding:10px;
+  font-family: 'Lato', sans-serif; 
+  color: $text;
+  font-size:32px;
+  width:40%;
+  max-width:800px;
+  &:focus {
+    outline: solid 1px $text;
+  }
+  &::-webkit-input-placeholder {
+     color: mix($highlight, $text, 60%);
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+     color: mix($highlight, $text, 60%);  
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+     color: mix($highlight, $text, 60%);  
+  }
+
+  &:-ms-input-placeholder {  
+     color: mix($highlight, $text, 60%);  
+  }
+}
+
+span {
+  background: linear-gradient(to bottom, transparentize($highlight, 1) 0%,transparentize($highlight, 1) 45%, $highlight 45%, $highlight 75%,transparentize($highlight, 1) 75%,transparentize($highlight, 1) 100%);
+}

@@ -1,0 +1,96 @@
+body {
+  font-family: sans-serif;
+}
+
+nav {
+  background: #1d9099;
+  padding: 5px;
+  border-bottom: solid 3px #000;
+}
+
+header {
+  transition: all .5s;
+  height: 0;
+  padding-left: 15px;
+  background: #ccc;
+  color: #333;
+  position: absolute;
+  min-height: 0;
+  top: 55px;
+  width: 100vw;
+}
+header .header-content {
+  height: 100%;
+}
+header.open {
+  height: 250px;
+  min-height: 100px;
+  max-height: calc(100vh ~"- 100px");
+}
+header.open .resize-bar {
+  display: inline;
+}
+header.open ~ nav a {
+  background: #555;
+}
+
+.resize-bar {
+  height: 10px;
+  width: 100%;
+  margin-left: -15px;
+  background: #111;
+  position: absolute;
+  bottom: 0;
+  display: none;
+  cursor: n-resize;
+  color: #666;
+}
+.resize-bar:after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  width: 50px;
+  text-align: center;
+  margin-left: calc(50% ~"- 25px");
+  border-bottom: solid 1px #444;
+  border-top: solid 1px #888;
+}
+
+.dropdown {
+  padding: 5px;
+  border: solid 1px #333;
+  border-radius: 5px;
+  margin: 5px auto;
+  text-align: center;
+  width: 150px;
+  list-style: none;
+  background: #d53a33;
+  transition: all .5s;
+}
+.dropdown:hover {
+  background: #555;
+  cursor: pointer;
+}
+.dropdown:hover a {
+  color: #DDD;
+}
+.dropdown a {
+  color: white;
+  transition: all .5s;
+}
+.dropdown a:hover, .dropdown a:active, .dropdown a:focus {
+  text-decoration: none;
+}
+
+section {
+  height: calc(100vh ~"- 70px");
+}
+
+.mCSB_scrollTools .mCSB_draggerContainer {
+  bottom: 15px;
+  top: 5px;
+}
+
+.mCS_no_scrollbar {
+  padding-right: 30px;
+}

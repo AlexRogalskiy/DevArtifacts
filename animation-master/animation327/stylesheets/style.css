@@ -1,0 +1,212 @@
+body {
+  overflow: hidden;
+  background: #633636;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 350px 1fr;
+  grid-template-rows: 1fr 350px 1fr;
+}
+
+* {
+  position: relative;
+}
+
+.middleCircle {
+  height: 350px;
+  width: 350px;
+  grid-row: 2 / 2;
+  grid-column: 2 / 2;
+  border-radius: 50%;
+}
+
+.middleCircle::before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: -30px;
+  left: -30px;
+  border: solid 30px #633636;
+  border-radius: 50%;
+}
+
+.middleCircle::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: calc(100% + 20px);
+  width: calc(100% + 20px);
+  top: -20px;
+  left: -20px;
+  border: solid 10px #fad1d1;
+  border-radius: 50%;
+}
+
+.backCircle, .frontCircle {
+  height: 350px;
+  width: 350px;
+  grid-row: 2 / 2;
+  grid-column: 2 / 2;
+  animation: spin 12s linear infinite;
+}
+
+.smallCircle {
+  position: absolute;
+  width: 60px;
+  height: 220px;
+  left: calc(50% - 30px);
+  top: -45px;
+  transform-origin: 50% 100%;
+}
+
+.smallCircle::after {
+  content: '';
+  display: block;
+  height: 40px;
+  width: 40px;
+  border: solid 10px #633636;
+  background-color: #fad1d1;
+  border-radius: 50%;
+}
+
+.backCircle .smallCircle::after {
+  animation: move 1s ease-in-out alternate infinite;
+}
+
+.frontCircle .smallCircle::after {
+  animation: move 1s ease-in-out alternate infinite, opacity 2s linear infinite;
+}
+
+.smallCircle:nth-child(1) {
+  transform: rotate(30deg);
+}
+
+.smallCircle:nth-child(1)::after {
+  animation-delay: -99.83333s;
+}
+
+.smallCircle:nth-child(2) {
+  transform: rotate(60deg);
+}
+
+.smallCircle:nth-child(2)::after {
+  animation-delay: -99.66667s;
+}
+
+.smallCircle:nth-child(3) {
+  transform: rotate(90deg);
+}
+
+.smallCircle:nth-child(3)::after {
+  animation-delay: -99.5s;
+}
+
+.smallCircle:nth-child(4) {
+  transform: rotate(120deg);
+}
+
+.smallCircle:nth-child(4)::after {
+  animation-delay: -99.33333s;
+}
+
+.smallCircle:nth-child(5) {
+  transform: rotate(150deg);
+}
+
+.smallCircle:nth-child(5)::after {
+  animation-delay: -99.16667s;
+}
+
+.smallCircle:nth-child(6) {
+  transform: rotate(180deg);
+}
+
+.smallCircle:nth-child(6)::after {
+  animation-delay: -99s;
+}
+
+.smallCircle:nth-child(7) {
+  transform: rotate(210deg);
+}
+
+.smallCircle:nth-child(7)::after {
+  animation-delay: -98.83333s;
+}
+
+.smallCircle:nth-child(8) {
+  transform: rotate(240deg);
+}
+
+.smallCircle:nth-child(8)::after {
+  animation-delay: -98.66667s;
+}
+
+.smallCircle:nth-child(9) {
+  transform: rotate(270deg);
+}
+
+.smallCircle:nth-child(9)::after {
+  animation-delay: -98.5s;
+}
+
+.smallCircle:nth-child(10) {
+  transform: rotate(300deg);
+}
+
+.smallCircle:nth-child(10)::after {
+  animation-delay: -98.33333s;
+}
+
+.smallCircle:nth-child(11) {
+  transform: rotate(330deg);
+}
+
+.smallCircle:nth-child(11)::after {
+  animation-delay: -98.16667s;
+}
+
+.smallCircle:nth-child(12) {
+  transform: rotate(360deg);
+}
+
+.smallCircle:nth-child(12)::after {
+  animation-delay: -98s;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(-50px) scale(1.5);
+  }
+  to {
+    transform: translateY(50px) scale(1);
+  }
+}
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

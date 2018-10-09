@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  font-size: 5vh;
+  font-family: sans-serif;
+  background: #ECF0C9;
+  font-weight: bold;
+  color: #baddbc;
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.round {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  opacity: .5;
+}
+.round.completed {
+  opacity: 1;
+}
+.round:last-child .bracket:after {
+  display: none;
+}
+.round:last-child .player:after {
+  display: none;
+}
+.round:first-child .player:before {
+  display: none;
+}
+
+.bracket {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 40px;
+  position: relative;
+}
+.bracket:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 25%;
+  right: 0;
+  height: 50%;
+  width: 2px;
+  background: #334D5C;
+}
+
+.player {
+  background: #45B29D;
+  flex: 1;
+  flex: 0 0 7vh;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.player.winner {
+  background: #DF5A49;
+  color: #334D5C;
+}
+.player.loser {
+  background: #DF5A49;
+  opacity: .5;
+}
+.player:before {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 40px;
+  background: #334D5C;
+  position: absolute;
+  left: -40px;
+  top: 50%;
+}
+.player:after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 40px;
+  background: #334D5C;
+  position: absolute;
+  right: -40px;
+  top: 50%;
+}

@@ -1,0 +1,162 @@
+01/09/05
+* Cleaned up defines in PacketSource and callbacks
+* Fixed endian issue for identifying unique IVs in korek.c
+* Added check to prevent call to stopMonitor when packets
+  are read from a file.
+* release 0.2.7e
+01/07/05
+* Added SNAP detection as an indicator of a properly decrypted
+  packet.  This is a workaround for instances in which the 
+  WEP ICV is not computed correctly.
+* Release of version 0.2.7d
+01/05/05
+* Fixed some endian issues to enable proper execution on PPC.
+12/27/04
+* Fixed integer overflow problem found by Caz
+* Fixed numerous problems with save/restore of options
+12/23/04
+* Changes to Windows code to handle packet format returned when
+  using DWL-650 drivers.
+12/19/04
+* Better handling of Korek attacks though still no user interface
+  for specifying parameters.  Default fudge factor is 2.  Running
+  cracks are aborted and new cracks started for each 256k packets 
+  recieved.
+12/18/04
+* Added Korek/Devine aircrack style attacks.  Attacks are done
+  in real time while airsnort collects the packets.
+* Fixed code to handle Orinoco EN10MB reporting problem
+09/21/04
+* Improved Windows stability. I have actually done a successful
+  crack with this windows code!
+* Various stability improvements including elimination of some
+  memory leaks and more reliable file handling.
+09/05/04
+* Modified Windows support
+* Release 0.2.5 with limited Windows suport
+* Compiled windows binary now included with release.
+03/17/04
+* Added conditional around IW_MODE_MONITOR
+* Stopped using prism headers with wlan-ng drivers
+* Fixed declaration of fs in callbacks.c/loadFile to work with
+  older C compilers
+* Finally removed gnome dependencies (I hope)
+02/19/04
+* Added support for latest orinoco (cvs) drivers which provide
+  support for monitor mode via iwconfig
+* Bug fix to make device dropdown work properly, Refresh button
+  fixed
+* Changed driver type drop down to reflect HostAP support
+  (which works the same as the latest orinoco drivers, both are
+   handled by: iwconfig DEV mode monitor)
+* Release 0.2.4 - Works with latest orinoco drivers
+12/31/03
+* Added last packet time of receipt to statistics and display.
+  I am not really happy with the time format which is straight
+  from ctime.  Suggestions anyone?
+* Made all columns in the display area resizable
+* Fixed problems with modal lockout in save packet confirmation
+  on exit
+
+12/30/03
+* Release 0.2.3b - bug fix release
+* Fixed crashes associated with file open operations
+* Deleted a few dialog boxes defined in airsnort.glade in order
+  to do all file selection operations programatically
+
+12/07/03
+* Updated glade file to glade-2
+* Rewrote gui components to use GTK 2.2
+  - THIS HAS NOT BEEN TESTED IN A WINDOWS ENVIRONMENT
+
+11/09/03
+* man pages now install with a 'make install'
+* Incorporated faq into CVS
+* Fixed compile problem for gcc 2.95.4 centered around 
+  FrameControlZero union declaration
+
+08/17/02
+* Bug fixes.
+  - fixed CRC checking problem in checkKey
+  - fixed CRC mismatch between orinoco and prism cards
+* A crack attempt is now made when breadth is changed.  Previously cracks
+  were tried only with each 10 new interesting packets
+* Fixed bugs in gencases and decrypt that prevented decrypt from decrypting
+  gencases files and airsnort from cracking gencases files
+
+06/07/02
+* Fixed bug that caused tens of thousands of false IVs to be reported as
+  weak
+* Added orinoco_hopper to the distribution
+* New version of decrypt will take a key file as input to perform 
+  dictionary style key guessing
+
+05/20/2002
+  Reworked the glade file to remove gnome support in the hopes that
+  greater compatibility is achieved.  gtk+1.2 is still required.
+
+New in v0.2.1
+* Packet capture is done using libpcap. THIS MEANS NETLINK SOCKETS ARE
+  NO LONGER SUPPORTED.  This primarily affects users of older wlan-ng
+  drivers. For wlan-ng users, you must use a patched 0.1.13 driver, or
+  a 0.1.14 or later driver.
+* It should be possible to use ANY card that passes monitor mode packets
+  up via the PF_PACKET interface. For wlan-ng and patched Orinoco drivers
+  airsnort will do automatic placement into monitor mode and channel scan
+  at a 0.2 second interval. For other cards, like Cisco, you will need to
+  manually place the card in monitor mode before airsnort will see any
+  packets. Orinoco users MUST use the the *-packet-* Orinoco driver
+  patch available at http://airsnort.shmoo.com/orinocoinfo.html
+* Minor user interface changes to bring common options to the main page.
+  The preferences dialog is gone.  Options are saved and loaded from
+  .airsnortrc in your home directory.
+* Airsnort can save packets in pcap dump format
+* Airsnort can read pcap dump files
+* The gencases tool will generate encrypted packets using weak IVs, and
+  save them to a pcap format dump file.  Load the file with Airsnort to 
+  observe it crack the password.
+* The decrypt tool opens a pcap dump file and decrypts all packets 
+  associated with a specified AP when supplied with the proper password.
+  decrypted packets are saved to a new pcap dump file. As an option, 
+  beacon packets can be filtered out of the output file.
+
+
+New in v0.2.0:
+ 
+* Packets are sorted based on the SSID of the associated AP, allowing
+  packets from several APs to be captured simultaneously without 
+  hindering the crack operation
+* Cracking is attempted in parallel with capture.  There is no need to
+  guess whether you have enough packets to obtain a successful crack.
+  Packet capture for a given AP terminates when that AP is cracked.
+  A couple of cracking parameters are configurable in the Preferences
+  dialog.
+* The GUI may be a bit buggy as I did not take the time to learn about
+  using GTK in a mutli-threading environment.  If anyone wants to look
+  into improving reliability I am all for it.
+* An increased set of IVs that result in a resolved condition is 
+  accepted.
+* airsnort sets the channel to sniff on via direct communication with
+  the nic.  There is no need to place the card in promiscuous mode
+  prior to starting airsnort.  Also, airsnort now has a crude channel
+  scanning capability built in.
+* Orinoco WaveLAN/IEEE cards are now supported, via a patch to the
+  orinoco_cs driver (actually the orinoco.o module) available for
+  the pcmcia-cs-3.1.31 source.
+* Wireless device name is configurable in the Preferences dialog.
+* It is even possible to start a session w/ a prism2 nic, pause it, 
+  swap to an orinoco nic, and resume the session, without exiting
+  airsnort.
+* The PF_PACKET interface available with a patch to linux-wlan-ng-0.1.13
+  and expected to be available in 0.1.14 is supported with a radio
+  button in the preferences dialog.  The patch is available here
+  http://www.shaftnet.org/~pizza/software
+
+0.1.0
+ - Fixed bugs in RC4 that caused seg faults in certain cases, thanks
+   go to David Bradbury <dpbrad@au1.ibm.com> for the basis of the fix.
+ - Fixed line continuation problem in crc-32.
+ - Fixed timeout problem: thanks to Bob Plotts <plotts@monmouth.com>
+ - Added support for hex style keys in decrypt.cc and gencases.cc
+
+

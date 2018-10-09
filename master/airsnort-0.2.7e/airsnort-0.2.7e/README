@@ -1,0 +1,140 @@
+Last Modified: 17 Aug 02
+
+- AirSnort Installation
+
+*NEW* AirSnort ONLY works with cards that pass their monitor mode
+packets up via the PF_PACKET interface (and thus can be read by libpcap)
+This includes Prism2 cards running wlan-ng 0.1.14, Orinoco cards with
+the orinoco-0.11b-packet patch installed, and Cisco cards.
+
+Assuming you have one of these, and a linux installation, you must have
+the following available to build AirSnort:
+
+   * gtk-1.2
+   * libpcap 0.7.1 or later. You should patch the stock 0.7.1 to 
+     understand the DLT_PRISM_HEADER datalink type OR get one of 
+     the "current builds" which incorporate the patch.
+   * For Orinoco cards, pcmcia-cs-3.1.34 or kernel orinoco_cs
+     drivers v0.11b (so that you can patch it).  The patch is
+     available at http://airsnort.shmoo.com/orinocoinfo.html
+   * For Prism2 cards, pcmcia-cs-3.1.33 and wlan-ng-0.1.14
+   * In order to build pcmcia-cs or wlan-ng, you will need the 
+     kernel sources
+
+See the ChangeLog for the latest changes in AirSnort.
+
+All of these are linked from our website (http://airsnort.shmoo.com)
+
+To start, you must configure the kernel source code. This will link
+the include directories in the the source tree to the system wide
+directory, /usr/include. The kernel source code need not be compiled
+or installed, but it must be the same version as the one running. The
+kernel version can be determined with the command 'uname -a.' In
+addition, the running kernel needs to support loadable modules, PCMCIA,
+and PF_PACKET. If the running kernel does not support these, you will
+need to compile and install the source code.
+
+The source code for PCMCIA must be installed, and it must be the same
+as the version you are running. To determine the version of PCMCIA CS
+you are running, consult the output of the command 'cardmgr -V.' If you
+have the appropriate version, you need not compile and install the
+source code, but you must complete the configuration process. All of
+the defaults are okay.  If you plan to use an Orinoco card, you must
+patch the pcmcia-cs sources with an appropriate Orinoco monitor mode
+patch from the link mentioned above.
+
+The linux-wlan-ng is the kernel module to drive prism2 based wlan cards.
+If you are using a prism2 based card, you must make and install the 
+linux-wlan-ng driver. You must [re]start the cardmgr, and you can then
+insert your wlan card. If anything failed, consult the linux-wlan-ng
+documentation.
+
+Install libpcap. Get the tarball from www.tcpdump.org, build and 
+install the pcap library.  IMPORTANT NOTE: make sure that you do not
+have an old version of libpcap installed that gets located instead.
+This may be particularly true for RedHat users that had pcap installed
+via rpm.  Make sure you uninstall the old version of pcap, or things 
+won't work.
+
+Assuming everything went well, AirSnort can now be built. This makes
+the executables 'airsnort', 'gencases', and 'decrypt. If everything 
+went well, the section "Running AirSnort" is right for you. If anything
+failed, (predictably,) consult the appropriate package's documentation.
+
+- Running AirSnort
+
+The first thing to be done to crack 802.11b is to get unmodified
+encrypted packets. This can be done by putting the card in a mode
+which gathers all packets indiscriminately. This mode is known as
+monitor mode, and it is entered automatically by selecting the
+'Start' button.  Choose between "scan" mode and fixed "channel" mode
+to scan all 11 802.11b channels or a specific channel respectively. 
+
+With a capture in progress, packets are collected and saved in various
+data structures to facilitate cracking.  Packets are not saved to a 
+file unless you choose to do so (via the File/Save menu).  You can 
+also load the data structures from a previous capture session that did
+not result in a successful crack, in order to resume packet collection.
+In this version of Airsnort, cracking is attempted in parallel with
+packet capture.  In this implementation, the cracker attempts to crack
+the captured packets for both a 40 bit and 128 bit key each time it
+is instructed to do so by the capture thread.  This happens each time
+10 interesting packets are captured.  The breadth of the search used
+by the cracker can be controlled via the Settings/Preferences menu
+option and defaults to 3 for 40 bit cracks and 2 for 128 bit cracks.
+
+The number of interesting packets needed to perform a successful crack
+depends on two things; luck and key length. Assuming that luck is on
+your side, the key length is the only important factor. For a key
+length of 128 bits, this translates to about 1500 packets. For other
+key lengths, assume 115 packets per byte of the key.
+
+For a discussion of the algorithm, and how it affects runtime,
+and statistics, see the section "AirSnort Theory."
+
+In any case, if the crack thread believes it has a correct password,
+it checks the checksum of a random packet. If this is successful, the
+correct password printed in ASCII and Hex, and the successful crack is
+indicated by an 'X' in the leftmost column of the display. A successful 
+crack causes packet collection for the associated SSID to cease. 
+
+- Capture Details
+
+Capture uses either the pcap library to receive monitor mode packets.
+The packets go through two filters. First, non-encrypted packets are
+filtered out. Then, if they are encrypted, useless packets are
+discarded. All non-data packets are discarded with the exception of
+802.11b Beacon and probe response packets which are examined in order
+to obtain access point SSID data.
+
+To distinguish encrypted and non-encrypted packets, capture examines
+the first two bytes of the output. Since unencrypted packets have a first
+pair value of 0xAAAA, all of these packets get dropped. These bytes
+comes from the Snap header.
+
+Useful packets are those with the following property of their IV; the
+first byte is a number three greater than one of the offsets of the
+bytes of the key. For 128 bit encryption, this means a number from
+3-16. The second byte must be 255 and the third byte can have any
+value. This means that for every byte of the key, there are 256 weak
+IVs.  As of version 0.2.0, two additional classes of IVs are 
+recognized by airsnort.  See the source code for details.
+
+When every weak IV has been gathered (13 key bytes * 256 = 3315
+packets), there is no point to continuing the capture process. In
+reality, it takes somewhat fewer packets than this. As of version
+0.2.0, there are on the order of 9400 resolving IVs recognized by
+airsnort.
+
+- Cracking Details
+
+When executing the cracking operation, crack operates with a partial
+key search from the given data. Since it is a probabalistic attack, 
+The best guess may not be the right one, so, with limited captured 
+data and enough CPU power, you can perform more exaustive searches. 
+By setting the breadth parameter, you can specify to search "worse" 
+guesses. It is not suggested that you specify a breadth of more than 
+three or four.
+
+See the paper linked on our website for a reference to the paper
+describing the attack.

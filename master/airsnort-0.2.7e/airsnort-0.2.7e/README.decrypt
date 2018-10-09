@@ -1,0 +1,48 @@
+Last Modified: 17 Aug 2002
+
+This is the decrypt program for airsnort version 2.1.
+
+This is a command line tool that takes 3 pieces of input, a pcap format
+input file, a WEP key, and a bssid (access point MAC address).  Its
+output is a new pcap compatible file for which all data packets associated
+with the indicated bssid have been decrypted with the provided key.  The
+output can be opened with tools such as ethereal to view the decrypted data.
+
+This tool understands two link types, LINKTYPE_IEEE802_11 and 
+LINKTYPE_PRISM_HEADER.  Other 802.11b capture formats can be decrypted by 
+specifying an optional offset command line argument with the -o switch to
+indicate the number of header bytes that precede the actual 802.11b packet.
+That is, the number of bytes that preced the first frame control byte of
+each 802.11b packet.
+
+Building:
+
+'make' should be sufficient to create an executable named 'decrypt'
+
+Usage:
+decrypt (-p <pw> | -f <dictfile>) [-b] [-o <offset>] -m <bssid> -e <infile> -d <outfile>
+
+pw - password whose length must be 5 or 13 bytes of ascii data or
+     5 or 13 2 digit, colon separated hex values
+
+dictfile - the name of a file containing one password per line in the format
+           specified above.  All passwords in the file will be tried against
+           the specified bssid
+
+-b     - discard beacon packets
+
+offset - optional integer number of bytes of header that precede the first
+         frame control byte in the 802.11b packet
+
+bssid - 6 byte mac address of the AP for which traffic is to be decrypted
+        in the form xx:xx:xx:xx:xx:xx
+
+infile - the name of the file containing encrypted packets.  This file is
+         expected to be in pcap format
+
+outfile - the output file produced by decrypting all data packets associated
+          with the named AP using the specified key.  All other packets are
+          copied from infile unchanged.  This file will be in pcap format.
+
+Please report any problems to me at: snax@shmoo.com
+

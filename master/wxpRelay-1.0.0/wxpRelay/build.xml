@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="wxprelay" default="all">
+  
+  
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value="-source 1.2 -target 1.2"/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="compiler.excluded"/>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+  </patternset>
+  <!-- JDK definitions -->
+  
+  <property name="jdk.home.java_version_1.5.0_01" value="C:/Program Files/Java/jdk1.5.0_01"/>
+  <path id="jdk.classpath.java_version_1.5.0_01">
+    <fileset dir="${jdk.home.java_version_1.5.0_01}">
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.java_version_1.5.0_01}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.java_version_1.5.0_01"/>
+  <!-- Project Libraries -->
+  <!-- Global Libraries -->
+  
+  
+  <dirname property="module.wxprelay.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.wxprelay" value="${project.jdk.home}"/>
+  <property name="module.jdk.classpath.wxprelay" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.wxprelay" value="${compiler.args}"/>
+  
+  <property name="wxprelay.output.dir" value="${module.wxprelay.basedir}/classes"/>
+  <property name="wxprelay.testoutput.dir" value="${module.wxprelay.basedir}/classes"/>
+  
+  <path id="wxprelay.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="wxprelay.module.classpath">
+    <path refid="${module.jdk.classpath.wxprelay}"/>
+    <pathelement location="${module.wxprelay.basedir}/resources/commons-httpclient-2.0.2.jar"/>
+    <pathelement location="${module.wxprelay.basedir}/resources/commons-logging-api.jar"/>
+    <pathelement location="${module.wxprelay.basedir}/resources/commons-logging.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.wxprelay"/>
+  
+  <patternset id="excluded.from.compilation.wxprelay">
+    <patternset refid="excluded.from.module.wxprelay"/>
+    <patternset refid="compiler.excluded"/>
+  </patternset>
+  
+  <path id="wxprelay.module.sourcepath">
+    <dirset dir="${module.wxprelay.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.wxprelay" depends="compile.module.wxprelay.production,compile.module.wxprelay.tests" description="compile module wxpRelay"/>
+  
+  <target name="compile.module.wxprelay.production" description="compile module wxpRelay production classes">
+    <mkdir dir="${wxprelay.output.dir}"/>
+    <javac destdir="${wxprelay.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memoryMaximumSize="${compiler.max.memory}" fork="true" executable="${module.jdk.home.wxprelay}/bin/javac">
+      <compilerarg line="${compiler.args.wxprelay}"/>
+      <bootclasspath refid="wxprelay.module.bootclasspath"/>
+      <classpath refid="wxprelay.module.classpath"/>
+      <src refid="wxprelay.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.wxprelay"/>
+    </javac>
+    <copy todir="${wxprelay.output.dir}">
+      <fileset dir="${module.wxprelay.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.wxprelay"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.wxprelay.tests" depends="compile.module.wxprelay.production" description="compile module wxpRelay test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.wxprelay" description="cleanup module">
+    <delete dir="${wxprelay.output.dir}"/>
+    <delete dir="${wxprelay.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.wxprelay" description="cleanup all"/>
+  
+  <target name="all" depends="init, clean, compile.module.wxprelay, jar" description="build all"/>
+
+  <target name="jar" depends="compile.module.wxprelay" description="make the jar files">
+    <jar destfile="${module.wxprelay.basedir}/wxpRelay-server.jar" basedir="${wxprelay.output.dir}" manifest="${module.wxprelay.basedir}/resources/MANIFEST.server.txt"/>
+    <jar destfile="${module.wxprelay.basedir}/wxpRelay-client.jar" basedir="${wxprelay.output.dir}" manifest="${module.wxprelay.basedir}/resources/MANIFEST.client.txt"/>
+  </target>
+
+</project>

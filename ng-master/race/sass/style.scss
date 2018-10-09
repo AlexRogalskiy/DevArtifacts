@@ -1,0 +1,178 @@
+$bg: #ECF0C9;
+$label: #334D5C;
+$p1: #45B29D;
+$p2: #DF5A49;
+$p3: #E27A3F;
+$p4: #EFC94C;
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  padding:0;
+  margin:0;
+  height:100vh;
+  width:100vw;
+  font-family:sans-serif;
+  background:$bg;
+}
+
+.score {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  flex:1;
+  position:fixed;
+  height:90vh;
+  width:100%;
+  z-index:999;
+  color:$bg;
+  font-size:20vmax;
+  pointer-events:none;
+  > span {
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+}
+
+.screen {
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+}
+
+.scoreBoard {
+  flex:1;
+  display:flex;
+  justify-content:space-between;
+}
+
+.team {
+  color:$bg;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  &.team-1 {
+    margin-right: 4px;
+    .player-right {
+      background: $p1;
+      margin-top:2px;
+    }
+    .player-left {
+      background: $p2;
+    }
+    .serving__isServing {
+      order:1;
+    }
+    .serving__isNotServing {
+      order:-1;
+    }
+  }
+  &.team-2 {
+    margin-left: 4px;
+    .player-left {
+      background: $p3;
+      margin-top:2px;
+    }
+    .player-right {
+      background: $p4;
+    }
+    .serving__isServing {
+      order:-1;
+    }
+    .serving__isNotServing {
+      order:1;
+    }
+  }
+  
+  &.team__isServing .serving__isServing {
+    color:$bg;
+    animation: serving 1s infinite reverse;
+  }
+}
+
+.player {
+  flex: 1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  input {
+    width:90%;
+    height:10vh;
+    background:$label;
+    color:$bg;
+    border:none;
+    text-align:center;
+    font-size:8vh;
+  }
+  
+  &.player-alone {
+    order:3;
+  }
+}
+
+header, input.teamName {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  background:$label;
+  color: mix($label, $bg, 70%);
+  max-height:10vh;
+  font-size:8vh;
+  flex:1;
+  border:none;
+  text-align:center;
+}
+
+@keyframes serving {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:.5;
+  }
+}
+
+footer {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  height:10vh;
+  font-size:5vmin;
+  color:$label;
+  &.menu {
+    display:flex;
+    justify-content:space-between;
+    padding: 0 2vw;
+    div {
+      display:flex;
+      flex:1;
+      justify-content:space-around;
+    }
+    button {
+      background:$label;
+      color:$bg;
+      border:none;
+      height:9vh;
+      font-size:7vh;
+      padding: 0 2vw;
+      &.notSelected {
+        color: mix($bg, $label, 50%);
+      }
+    }
+  }
+}
+
+.dimmed {
+  opacity: .5;
+  pointer-events:none;
+}

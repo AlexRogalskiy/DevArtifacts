@@ -1,0 +1,142 @@
+$delayMode: 6; // 1 to 6 are most interesting
+$bgColor: hsl(0, 30%, 30%);
+$fgColor: hsl(0, 80%, 90%);
+
+body {
+  overflow: hidden;
+  background: $bgColor;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  
+  display: grid;
+  grid-template-columns: 1fr 350px 1fr;
+  grid-template-rows: 1fr 350px 1fr;
+  
+}
+
+* {
+  position: relative;
+}
+
+.middleCircle {
+  height: 350px;
+  width: 350px;
+  grid-row: 2 / 2;
+  grid-column: 2 / 2;
+  border-radius: 50%;
+}
+
+.middleCircle::before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: -30px;
+  left: -30px;
+  border: solid 30px $bgColor;
+  border-radius: 50%;
+}
+
+.middleCircle::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: calc(100% + 20px);
+  width: calc(100% + 20px);
+  top: -20px;
+  left: -20px;
+  border: solid 10px $fgColor;
+  border-radius: 50%;
+}
+
+.backCircle, .frontCircle {
+  height: 350px;
+  width: 350px;
+  grid-row: 2 / 2;
+  grid-column: 2 / 2;
+  animation: spin 12s linear infinite;
+}
+
+.smallCircle {
+  position: absolute;
+  width: 60px;
+  height: 220px;
+  left: calc(50% - 30px);
+  top: -45px;
+  transform-origin: 50% 100%;
+}
+
+.smallCircle::after {
+  content: '';
+  display: block;
+  height: 40px;
+  width: 40px;
+  border: solid 10px $bgColor;
+  background-color: $fgColor;
+  border-radius: 50%;
+}
+
+.backCircle .smallCircle::after {
+  animation: move 1s ease-in-out alternate infinite;
+}
+
+.frontCircle .smallCircle::after {
+  animation: move 1s ease-in-out alternate infinite, opacity 2s linear infinite;
+}
+
+@for $i from 1 through 12 {
+  .smallCircle:nth-child(#{$i}) {
+    transform: rotate(#{30 * $i}deg);
+  }
+  
+  .smallCircle:nth-child(#{$i})::after {
+    animation-delay: #{($i / $delayMode) - 100}s;
+  }
+
+}
+
+@keyframes move {
+  from {
+    transform: translateY(-50px) scale(1.5);
+  }
+  
+  to {
+    transform: translateY(50px) scale(1);
+  }
+}
+
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  
+  49% {
+    opacity: 0;
+  }
+  
+  50% {
+    opacity: 1;
+  }
+  
+  99% {
+    opacity: 1;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from { 
+    transform: rotate(0deg)
+  }
+  
+  to {
+    transform: rotate(360deg);
+  }
+}

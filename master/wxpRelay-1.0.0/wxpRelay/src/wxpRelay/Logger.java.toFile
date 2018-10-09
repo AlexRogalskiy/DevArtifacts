@@ -1,0 +1,36 @@
+package wxpRelay;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.Date;
+
+public class Logger {
+    private String prefix = null;
+    private static BufferedWriter output;
+
+    public Logger(String prefix) {
+        this.prefix = prefix;
+        try {
+            output = new BufferedWriter(new FileWriter("/wxpOutput.txt", false));
+        } catch( Exception e ) {
+            System.out.println("LOGGER ERROR: couldn't open wxpOutput.txt for writing, bailing.");
+            System.exit(-1);
+        }
+    }
+    public void log(String s) {
+        Date now = new Date();
+        out(now.toString() + " - " + prefix + " - " + s + "\n");
+    }
+
+    private synchronized static void out(String s) {
+        //System.out.println(s);
+        try {
+            output.write(s);
+            output.flush();
+        } catch( Exception e ) {
+            System.out.println("LOGGER ERROR: couldn't write to wxpOutput.txt for writing, bailing.");
+            System.exit(-1);
+        }
+
+    }
+}
