@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"
+        content="ie=edge">
+
+	<link href="https://fonts.googleapis.com/css?family=Nunito|Rubik+Mono+One" rel="stylesheet">
+	<link rel="stylesheet" href="stylesheets/style.css" />
+	
+  <title>Vue Typer</title>
+</head>
+
+<body>
+
+<header>
+  <h1>
+    <span>Drag and Drop</span>
+    Shape Morpher
+  </h1>
+  <p>Works best with <code>viewBox="0 0 100 100"</code> SVGs with just one <code>&lt;path></code>. <a href="https://d.pr/f/C2BD/3qSgrJaN" target="_blank">Need some to play with</a>? Uses <a href="https://greensock.com/morphSVG" target="_blank">MorphSVG</a>.</p>
+</header>
+
+<div class="grid">
+  <div>Morph this shape</div>
+  <div>into</div>
+  <div>this shape.</div>
+</div>
+
+<div class="grid">
+  <div class="dropzone" id="dropzone-1">
+    <svg id="shape-1" viewBox="0 0 100 100">
+      <path id="shape-1-path" d="M99.36,40.93,87,31.53A15,15,0,0,0,85.26,27a23.47,23.47,0,0,0-41,0l-2,3.61A22,22,0,0,1,22.74,42,22,22,0,0,1,3.19,30.61a1.75,1.75,0,0,0-1.93-.84A1.62,1.62,0,0,0,0,31.36,43.94,43.94,0,0,0,13.18,62.75,44.59,44.59,0,0,0,42.72,75.67l4.53,11.58a1.72,1.72,0,0,0,1.59,1.09,1.43,1.43,0,0,0,.59-.08,1.7,1.7,0,0,0,.92-2.18l-4-10.32a40.08,40.08,0,0,0,6.38-.67l4.78,12.17a1.72,1.72,0,0,0,1.59,1.09,1.43,1.43,0,0,0,.59-.08,1.7,1.7,0,0,0,.92-2.18L56.06,74.5a39.83,39.83,0,0,0,5.37-1.68A46.73,46.73,0,0,0,75.7,64.18a35,35,0,0,0,8.64-11.75,23,23,0,0,0,1.26-3.36L98.86,44a1.77,1.77,0,0,0,1.09-1.34A1.6,1.6,0,0,0,99.36,40.93ZM17.46,55.87a1.66,1.66,0,1,1,2.35-2.35,28.46,28.46,0,0,0,20.06,8.22,29.33,29.33,0,0,0,10.41-1.93,28,28,0,0,0,9-5.45,1.7,1.7,0,0,1,2.35.08,1.63,1.63,0,0,1-.17,2.35A32.25,32.25,0,0,1,39.78,65,31.64,31.64,0,0,1,17.46,55.87Zm52-18a3.69,3.69,0,1,1,0-7.38,3.69,3.69,0,1,1,0,7.38Z"></path>
+    </svg>
+  </div>
+
+  <div class="morph-area">
+    <svg viewBox="0 0 100 100">
+      <path id="morph-path" d="M99.36,40.93,87,31.53A15,15,0,0,0,85.26,27a23.47,23.47,0,0,0-41,0l-2,3.61A22,22,0,0,1,22.74,42,22,22,0,0,1,3.19,30.61a1.75,1.75,0,0,0-1.93-.84A1.62,1.62,0,0,0,0,31.36,43.94,43.94,0,0,0,13.18,62.75,44.59,44.59,0,0,0,42.72,75.67l4.53,11.58a1.72,1.72,0,0,0,1.59,1.09,1.43,1.43,0,0,0,.59-.08,1.7,1.7,0,0,0,.92-2.18l-4-10.32a40.08,40.08,0,0,0,6.38-.67l4.78,12.17a1.72,1.72,0,0,0,1.59,1.09,1.43,1.43,0,0,0,.59-.08,1.7,1.7,0,0,0,.92-2.18L56.06,74.5a39.83,39.83,0,0,0,5.37-1.68A46.73,46.73,0,0,0,75.7,64.18a35,35,0,0,0,8.64-11.75,23,23,0,0,0,1.26-3.36L98.86,44a1.77,1.77,0,0,0,1.09-1.34A1.6,1.6,0,0,0,99.36,40.93ZM17.46,55.87a1.66,1.66,0,1,1,2.35-2.35,28.46,28.46,0,0,0,20.06,8.22,29.33,29.33,0,0,0,10.41-1.93,28,28,0,0,0,9-5.45,1.7,1.7,0,0,1,2.35.08,1.63,1.63,0,0,1-.17,2.35A32.25,32.25,0,0,1,39.78,65,31.64,31.64,0,0,1,17.46,55.87Zm52-18a3.69,3.69,0,1,1,0-7.38,3.69,3.69,0,1,1,0,7.38Z"></path>
+    </svg>
+  </div>
+
+  <div class="dropzone" id="dropzone-2">
+    <svg id="shape-2" viewBox="0 0 100 100">
+      <path id="shape-2-path" d="M76,73.55C93.14,56.41,97.16,0,97.16,0S85.51,6.07,66.91,7.67c-17.54,1.51-33.79,4-43.31,13.5-14.69,14.7-18.37,35.61-10,50.39C22.8,57.12,60.65,36.51,60.65,36.51,33.48,55.94,19.64,71,1,97.55L10.14,100s6.8-12.29,12.72-18.22C37.7,92.31,60.35,89.19,76,73.55Z"></path>
+    </svg>
+  </div>
+</div>
+
+<div class="center">
+  <button id="run-again">Run Again</button>
+</div>
+
+<div class="elapsed-grid">
+<!--  div*10>svg[viewBox="0 0 100 100"]>path[d=""]  -->
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+  <div>
+    <svg viewBox="0 0 100 100">
+      <path d=""></path>
+    </svg>
+  </div>
+</div>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+  <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
+

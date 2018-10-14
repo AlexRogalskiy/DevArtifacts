@@ -1,0 +1,86 @@
+{
+    "name": "reax-helpers",
+    "version": "1.2.6",
+    "license": "MIT",
+    "author": "Damiano Barbati <damiano.barbati@gmail.com> (http://github.com/damianobarbati)",
+    "repository": "https://github.com/damianobarbati/reax-helpers",
+    "main": "src/index.js",
+    "module": "src/index.js",
+    "jsnext:main": "src/index.js",
+    "scripts": {
+        "jslint": "eslint **/*.js --ignore-path .gitignore --ignore-pattern **/*.min.js ."
+    },
+    "eslintConfig": {
+        "parser": "babel-eslint",
+        "env": {
+            "es6": true,
+            "browser": true,
+            "node": true,
+            "jest": true
+        },
+        "parserOptions": {
+            "ecmaVersion": 2017,
+            "sourceType": "module",
+            "allowImportExportEverywhere": false,
+            "impliedStrict": true,
+            "ecmaFeatures": {
+                "jsx": true,
+                "impliedStrict": true,
+                "globalReturn": false,
+                "experimentalObjectRestSpread": true
+            }
+        },
+        "plugins": [
+            "import",
+            "react",
+            "jest"
+        ],
+        "extends": [
+            "eslint:recommended",
+            "plugin:react/recommended",
+            "plugin:jest/recommended"
+        ],
+        "rules": {
+            "no-console": "off"
+        }
+    },
+    "babel": {
+        "presets": [
+            [
+                "@babel/preset-env",
+                {
+                    "modules": false,
+                    "useBuiltIns": "usage",
+                    "debug": false
+                }
+            ],
+            "@babel/preset-stage-0",
+            "@babel/preset-react"
+        ]
+    },
+    "peerDependencies": {
+        "prop-types": "^15.6.0",
+        "react": "^16.0.0"
+    },
+    "dependencies": {
+        "@babel/core": "^7.0.0-beta.42",
+        "@babel/polyfill": "^7.0.0-beta.42",
+        "@babel/preset-env": "^7.0.0-beta.42",
+        "@babel/preset-react": "^7.0.0-beta.42",
+        "@babel/preset-stage-0": "7.0.0-beta.36",
+        "babel-eslint": "8.2.2",
+        "babel-jest": "22.4.3",
+        "eslint": "^4.19.1",
+        "eslint-loader": "^2.0.0",
+        "eslint-plugin-import": "^2.10.0",
+        "eslint-plugin-jest": "^21.15.0",
+        "eslint-plugin-react": "^7.7.0",
+        "fbemitter": "^2.1.1",
+        "react-redux": "^5.0.7",
+        "redux": "^3.7.1",
+        "redux-devtools-extension": "^2.13.2",
+        "redux-logger": "3.0.6",
+        "redux-promise": "0.5.3",
+        "redux-thunk": "2.2.0"
+    }
+}

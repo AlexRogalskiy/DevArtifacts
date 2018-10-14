@@ -1,0 +1,65 @@
+{
+    "name": "binize",
+    "version": "1.0.3",
+    "description": "binize",
+    "license": "MIT",
+    "main": "src/index.js",
+    "author": "Damiano Barbati <damiano.barbati@gmail.com> (http://github.com/damianobarbati)",
+    "repository": "https://github.com/damianobarbati/binize",
+    "scripts": {
+        "jslint": "eslint **/*.js --ignore-path .gitignore --ignore-pattern **/*.min.js .",
+        "test": "jest --no-cache --coverage",
+        "test:watch": "jest --watchAll --no-cache --coverage"
+    },
+    "eslintConfig": {
+        "parser": "babel-eslint",
+        "parserOptions": {
+            "ecmaVersion": 2017,
+            "sourceType": "module",
+            "impliedStrict": true,
+            "ecmaFeatures": {
+                "jsx": true,
+                "impliedStrict": true,
+                "globalReturn": false,
+                "experimentalObjectRestSpread": true
+            }
+        },
+        "env": {
+            "browser": true,
+            "node": true,
+            "jest": true,
+            "es6": true
+        },
+        "plugins": [
+            "import",
+            "react",
+            "jest"
+        ],
+        "extends": [
+            "eslint:recommended",
+            "plugin:react/recommended",
+            "plugin:jest/recommended"
+        ],
+        "rules": {
+            "no-console": "off",
+            "no-unsafe-finally": "off",
+            "no-unreachable": "off",
+            "no-unused-vars": "off",
+            "react/no-children-prop": "off",
+            "react/no-find-dom-node": "off",
+            "react/no-unescaped-entities": "off"
+        }
+    },
+    "dependencies": {
+        "better-console": "1.0.0",
+        "yargs": "9.0.1"
+    },
+    "devDependencies": {
+        "babel-eslint": "^8.0.1",
+        "eslint": "^4.8.0",
+        "eslint-loader": "1.9.0",
+        "eslint-plugin-import": "2.7.0",
+        "eslint-plugin-jest": "^21.2.0",
+        "eslint-plugin-react": "^7.4.0"
+    }
+}

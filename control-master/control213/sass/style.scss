@@ -1,0 +1,100 @@
+password {
+  position: relative;
+  display: block;
+  width: 300px;
+  height: 50px;  
+}
+
+input {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  font-size: 16px;
+  outline: 0;
+}
+
+button {
+  position: absolute;
+  height: 100%; width: 50px;
+  top: 0; right: 0;
+  background: #424242;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+}
+
+button::before,
+button::after {
+  content:'';
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  margin: auto;
+}
+
+
+/* Eye open */
+input[type='password'] + button::before {
+  width: 20px;
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 15px 0 15px 0;
+  transform: rotate(45deg);
+  transition: height .168s;
+}
+
+/* Pupil open */
+input[type='password'] + button::after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #424242;
+}
+
+/* Eye closed  */
+input[type='text'] + button::before {
+  width: 15px;
+  height: 15px;
+  background: transparent;
+  border: 3px solid #e0e0e0;
+  border-radius: 15px 0 15px 0;
+  transform: rotate(45deg);
+}
+
+/* Pupil closed */
+input[type='text'] + button::after {
+  width: 3px;
+  height: 30px;
+  border-radius: 0;
+  transform: rotate(30deg);
+  background: #e0e0e0;
+  transition: height .132s;
+}
+
+
+/* Demo Styles */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: #212121;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: #fff;
+  font-family: helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 36px;
+}

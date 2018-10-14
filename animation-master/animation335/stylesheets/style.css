@@ -1,0 +1,87 @@
+html {
+  font-family: sans-serif;
+  font-size: calc(10px + 1.6vmin);
+}
+
+body {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  background: #00d2ff;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #3a7bd5, #00d2ff);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #3a7bd5, #00d2ff);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+main * + * {
+  margin-top: 1rem;
+}
+main h1 {
+  font-size: 10rem;
+  display: inline;
+  line-height: 100%;
+  margin: 0 0 1rem;
+  font-weight: lighter;
+  transition: opacity .5s;
+}
+main span {
+  font-size: .62rem;
+  margin: 0;
+  letter-spacing: .05rem;
+}
+main img {
+  display: none;
+}
+main button {
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  background: none;
+  border: 2px solid #fff;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: .05rem;
+  outline: none;
+}
+main button:not([disabled]) {
+  animation: scale 2s infinite;
+}
+main [disabled] {
+  opacity: .5;
+}
+main progress {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15rem;
+  height: .25rem;
+}
+main progress::-webkit-progress-bar {
+  background-color: rgba(255, 255, 255, 0.38);
+  overflow: hidden;
+}
+main progress::-webkit-progress-value {
+  background-color: rgba(255, 255, 255, 0.62);
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+#sheet {
+  display: none;
+}

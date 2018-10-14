@@ -1,0 +1,111 @@
+{
+    "name": "@damianobarbati/react-effect",
+    "version": "1.0.12",
+    "description": "react-effect",
+    "license": "MIT",
+    "main": "./src/index.js",
+    "jsnext:main": "./src/index.js",
+    "author": "Damiano Barbati <damiano.barbati@gmail.com> (http://github.com/damianobarbati)",
+    "scripts": {
+        "jslint": "eslint **/*.js --ignore-path .gitignore --ignore-pattern **/*.min.js .",
+        "csslint": "stylelint **/*.css **/*.scss --ignore-path .gitignore --ignore-pattern **/*.min.css .",
+        "docs": "jsdoc -c ./config/jsdoc.json",
+        "docs:watch": "yarn watch --wait 1 'yarn docs' ./src",
+        "test": "jest --no-cache --coverage",
+        "test:watch": "jest --watchAll --no-cache --coverage"
+    },
+    "eslintConfig": {
+        "parser": "babel-eslint",
+        "env": {
+            "es6": true,
+            "browser": true,
+            "node": true,
+            "jest": true
+        },
+        "parserOptions": {
+            "ecmaVersion": 2017,
+            "sourceType": "module",
+            "allowImportExportEverywhere": false,
+            "impliedStrict": true,
+            "ecmaFeatures": {
+                "jsx": true,
+                "impliedStrict": true,
+                "globalReturn": false,
+                "experimentalObjectRestSpread": true
+            }
+        },
+        "plugins": [
+            "import",
+            "react",
+            "jest"
+        ],
+        "extends": [
+            "eslint:recommended",
+            "plugin:react/recommended",
+            "plugin:jest/recommended"
+        ],
+        "rules": {
+            "no-console": "off",
+            "no-unused-vars": "off"
+        }
+    },
+    "stylelint": {
+        "extends": [
+            "stylelint-config-standard",
+            "stylelint-config-sass-guidelines"
+        ],
+        "rules": {
+            "indentation": 4,
+            "order/properties-alphabetical-order": null,
+            "no-missing-end-of-source-newline": null,
+            "selector-list-comma-newline-after": null,
+            "max-nesting-depth": null,
+            "selector-pseudo-class-no-unknown": [
+                true,
+                {
+                    "ignorePseudoClasses": [
+                        "global",
+                        "local"
+                    ]
+                }
+            ]
+        }
+    },
+    "jest": {
+        "bail": true
+    },
+    "peerDependencies": {
+        "lodash-es": "^4.17.4",
+        "prop-types": "^15.5.10",
+        "react": "^15.6.0"
+    },
+    "devDependencies": {
+        "babel-eslint": "^7.2.3",
+        "babel-jest": "^20.0.0",
+        "babel-loader": "^7.1.1",
+        "babel-plugin-react-css-modules": "^3.0.0",
+        "babel-plugin-transform-class-properties": "^6.24.1",
+        "babel-plugin-transform-decorators-legacy": "^1.3.4",
+        "babel-preset-env": "^1.5.2",
+        "babel-preset-latest": "^6.24.1",
+        "babel-preset-react": "^6.24.1",
+        "babel-preset-stage-0": "^6.24.1",
+        "cssnano-preset-default": "^4.0.0-rc.0",
+        "enzyme": "^2.9.1",
+        "enzyme-to-json": "^1.5.1",
+        "eslint": "^4.1.1",
+        "eslint-loader": "^1.7.1",
+        "eslint-plugin-import": "^2.6.0",
+        "eslint-plugin-jest": "^20.0.3",
+        "eslint-plugin-react": "^7.1.0",
+        "file-loader": "^0.11.1",
+        "jest": "^20.0.4",
+        "stylelint-config-sass-guidelines": "^2.1.0",
+        "stylelint-config-standard": "^16.0.0",
+        "stylelint-scss": "^1.4.4",
+        "stylelint-webpack-plugin": "^0.8.0"
+    },
+    "dependencies": {
+        "deep-diff": "^0.3.8"
+    }
+}

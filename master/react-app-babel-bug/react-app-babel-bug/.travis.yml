@@ -1,0 +1,44 @@
+language: node_js
+node_js: v8.7.0
+git:
+    depth: 1
+    submodules: false
+env:
+    - STG_HOSTNAME=$(jq -r '.host.staging.hostname // .host.hostname' package.json) PROD_HOSTNAME=$(jq -r '.host.production.hostname // .host.hostname' package.json)
+install: true
+before_script:
+    - ssh-keyscan -H $STG_HOSTNAME >> ~/.ssh/known_hosts
+    - ssh-keyscan -H $PROD_HOSTNAME >> ~/.ssh/known_hosts
+script:
+    - yarn install
+    - yarn test
+after_success:
+    - yarn build:prod
+before_deploy:
+    - openssl aes-256-cbc -K $encrypted_21dfeea756f6_key -iv $encrypted_21dfeea756f6_iv -in ssl/travis-ci.enc -out travis-ci -d
+    - eval "$(ssh-agent -s)"
+    - chmod 0400 travis-ci
+    - ssh-add travis-ci
+deploy:
+    - provider: script
+      script: rsync -ar --stats --delete-after $TRAVIS_BUILD_DIR/ user@$STG_HOSTNAME:/tmp/build && ssh user@$STG_HOSTNAME 'rm -rf ~/build && mv /tmp/build ~/build && cd ~/build && yarn serve:stg'
+      skip_cleanup: true
+      on:
+        branch: master
+        tags: false
+    - provider: script
+      script: rsync -ar --stats --delete-after $TRAVIS_BUILD_DIR/ user@$PROD_HOSTNAME:/tmp/build && ssh user@$PROD_HOSTNAME 'rm -rf ~/build && mv /tmp/build ~/build && cd ~/build && yarn serve:prod'
+      skip_cleanup: true
+      on:
+        branch: master
+        tags: true
+        condition: "$TRAVIS_TAG != *manual*"
+notifications:
+    email:
+        recipients: damiano.barbati@gmail.com
+        on_success: always
+        on_failure: always
+    slack:
+        rooms: quant01:ZEfVbEWb1OUDGlCPyUgHvHc9#builds
+        on_success: always
+        on_failure: always

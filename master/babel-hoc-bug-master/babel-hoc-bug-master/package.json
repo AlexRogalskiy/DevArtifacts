@@ -1,0 +1,136 @@
+{
+    "name": "babel-hoc-bug",
+    "version": "0.1.0",
+    "author": "Damiano Barbati <damiano.barbati@gmail.com> (http://github.com/damianobarbati)",
+    "main": "index.mjs",
+    "enginesStrict": true,
+    "engines": {
+        "node": ">= 10.1"
+    },
+    "browserslist": [
+        "chrome 64",
+        "safari 11.1",
+        "ios_saf 11.3"
+    ],
+    "bundles": [
+        {
+            "name": "myApp",
+            "baseRoute": "/",
+            "js": "./app/index.js",
+            "html": "./app/index.html",
+            "favicon": "./app/logo.png"
+        }
+    ],
+    "host": {
+        "development": {
+            "url": "http://localhost:8080",
+            "hostname": "localhost",
+            "httpPort": 8080
+        }
+    },
+    "ssl": {
+        "cert": "./ssl/localhost.cert",
+        "key": "./ssl/localhost.key"
+    },
+    "eslintConfig": {
+        "parser": "babel-eslint",
+        "parserOptions": {
+            "ecmaVersion": 2017,
+            "sourceType": "module",
+            "impliedStrict": true,
+            "ecmaFeatures": {
+                "jsx": true,
+                "impliedStrict": true,
+                "globalReturn": false,
+                "experimentalObjectRestSpread": true
+            }
+        },
+        "env": {
+            "browser": true,
+            "serviceworker": true,
+            "node": true,
+            "jest": true,
+            "es6": true
+        },
+        "plugins": [
+            "react",
+            "jest"
+        ],
+        "extends": [
+            "eslint:recommended",
+            "plugin:react/recommended",
+            "plugin:jest/recommended"
+        ],
+        "rules": {
+            "no-console": "off",
+            "no-unreachable": "off",
+            "no-unused-vars": "off"
+        }
+    },
+    "babel": {
+        "presets": [
+            [
+                "@babel/preset-env",
+                {
+                    "modules": false,
+                    "useBuiltIns": "usage",
+                    "debug": true
+                }
+            ],
+            [
+                "@babel/preset-stage-2",
+                {
+                    "decoratorsLegacy": true
+                }
+            ],
+            "@babel/preset-react"
+        ],
+        "plugins": [
+            "transform-strict-mode",
+            "@babel/plugin-proposal-class-properties",
+            "@babel/plugin-proposal-export-default-from",
+            "lodash"
+        ]
+    },
+    "dependencies": {
+        "mz": "^2.7.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.0.0-beta.51",
+        "@babel/plugin-proposal-class-properties": "^7.0.0-beta.51",
+        "@babel/plugin-proposal-export-default-from": "^7.0.0-beta.51",
+        "@babel/polyfill": "^7.0.0-beta.51",
+        "@babel/preset-env": "^7.0.0-beta.51",
+        "@babel/preset-react": "^7.0.0-beta.51",
+        "@babel/preset-stage-2": "^7.0.0-beta.51",
+        "babel-eslint": "^8.2.1",
+        "babel-jest": "^23.0.1",
+        "babel-loader": "^8.0.0-beta.1",
+        "babel-plugin-lodash": "^3.3.2",
+        "babel-plugin-transform-strict-mode": "^6.24.1",
+        "case-sensitive-paths-webpack-plugin": "^2.1.2",
+        "classnames": "^2.2.5",
+        "clean-webpack-plugin": "^0.1.19",
+        "compression-webpack-plugin": "^1.1.11",
+        "css-loader": "^0.28.11",
+        "eslint": "^4.19.1",
+        "eslint-loader": "^2.0.0",
+        "eslint-plugin-jest": "^21.15.0",
+        "eslint-plugin-react": "^7.7.0",
+        "file-loader": "^1.1.11",
+        "html5-webpack-plugin": "^1.0.10",
+        "img-loader": "^3.0.0",
+        "open-browser-webpack-plugin": "^0.0.5",
+        "react": "^16.4.0",
+        "react-dom": "^16.3.0",
+        "react-jss": "^8.4.0",
+        "react-router-dom": "^4.2.2",
+        "style-loader": "^0.21.0",
+        "uglifyjs-webpack-plugin": "^1.2.3",
+        "url-loader": "^1.0.1",
+        "webpack": "^4.5.0",
+        "webpack-bundle-analyzer": "^2.11.1",
+        "webpack-command": "^0.2.1",
+        "webpack-notifier": "^1.6.0"
+    }
+}
