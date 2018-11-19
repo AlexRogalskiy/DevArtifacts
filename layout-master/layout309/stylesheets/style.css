@@ -1,0 +1,132 @@
+/* line 1, ../sass/style.scss */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 9, ../sass/style.scss */
+.chaplin {
+  width: 40em;
+  height: 30em;
+  font-size: 10px;
+  background-color: #eee;
+  box-shadow: 0 0 3em rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  color: #555;
+  transition: 1s linear;
+}
+
+/* line 23, ../sass/style.scss */
+.chaplin:hover {
+  box-shadow: 0 0 4em 1em rgba(0, 0, 0, 0.2);
+}
+
+/* line 27, ../sass/style.scss */
+.hat {
+  position: absolute;
+  width: 6.4em;
+  height: 4.6em;
+  background-color: currentColor;
+  border-radius: 2.3em 2.3em 0 0;
+  top: 1.4em;
+  display: flex;
+  justify-content: center;
+}
+
+/* line 38, ../sass/style.scss */
+.hat::before {
+  content: '';
+  position: absolute;
+  width: 10em;
+  height: 0.8em;
+  background-color: currentColor;
+  border-radius: 0.4em;
+  top: calc(100% + 0.4em);
+}
+
+/* line 48, ../sass/style.scss */
+.beard {
+  position: absolute;
+  width: 1.5em;
+  height: 0;
+  top: 11.6em;
+  border: solid transparent;
+  border-width: 0 0.4em 1em 0.4em;
+  border-bottom-color: currentColor;
+}
+
+/* line 58, ../sass/style.scss */
+.stick {
+  position: absolute;
+  width: 0.8em;
+  height: 10.5em;
+  background-color: currentColor;
+  bottom: 0;
+  left: calc((100% - (5.6em - 0.8em)) / 2);
+}
+
+/* line 67, ../sass/style.scss */
+.stick::before {
+  content: '';
+  position: absolute;
+  box-sizing: border-box;
+  width: 5.6em;
+  height: 3em;
+  border: 0.8em solid;
+  border-radius: 5.6em 5.6em 0 0;
+  border-bottom: none;
+  top: -3em;
+}
+
+/* line 79, ../sass/style.scss */
+.stick::after {
+  content: '';
+  position: absolute;
+  width: 0.8em;
+  height: 0.8em;
+  background-color: currentColor;
+  border-radius: 50%;
+  left: calc(5.6em - 0.8em);
+  top: -0.4em;
+}
+
+/* line 90, ../sass/style.scss */
+.quote {
+  position: absolute;
+  left: 50%;
+  bottom: 2.5em;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+/* line 101, ../sass/style.scss */
+.quote span:nth-child(1) {
+  letter-spacing: 0.05em;
+}
+
+/* line 105, ../sass/style.scss */
+.quote span:nth-child(2) {
+  font-size: 1.6em;
+}
+
+/* line 109, ../sass/style.scss */
+.quote span:nth-child(1),
+.quote span:nth-child(3) {
+  filter: opacity(0);
+  transition: 1s ease-in;
+}
+
+/* line 115, ../sass/style.scss */
+.chaplin:hover .quote span:nth-child(1),
+.chaplin:hover .quote span:nth-child(3) {
+  filter: opacity(1);
+}
