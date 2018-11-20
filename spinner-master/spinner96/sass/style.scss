@@ -1,0 +1,25 @@
+:root {
+  --bg: #131514;
+}
+
+body {
+  background: var(--bg);
+  witdh: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 1;
+}
+
+@for $i from 0 through 7 {
+  .c-#{$i} {
+    stroke: hsl(40, 100%, 100% - ($i * 13%) );
+    transform: translate3d(var(--c#{$i}-x), var(--c#{$i}-y), 0); 
+  }
+}
+

@@ -1,0 +1,56 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,300);
+
+html, body {
+  min-height: 100%;
+  height: 100%;
+}
+
+$light: rgb(63, 154, 133);
+$dark: rgb(15, 134, 107);
+
+body {
+  background-color: #ccc;
+  @include background-image(linear-gradient(top, $dark 0%, $light 50%,$dark 100%));
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.5);
+  height: 100vh;
+  width: 100vw;
+  color: rgba(#fff, 0.5);
+}
+
+#title {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  z-index: 100;
+}
+
+ul {
+  position: fixed;
+  top: 35px;
+  left: 10px;
+  list-style: none;
+  & > li {
+    display: inline-block;
+    padding-right: 10px;
+    cursor: pointer;
+    @include transition(all 0.3s ease);
+    &:hover {
+      @include transform(scale(0.9));
+    }
+  }
+}
+#container {
+  width: 100%;
+  height: 100%;
+}
+
+#waves {
+  position: absolute;
+  z-index: 20;
+}

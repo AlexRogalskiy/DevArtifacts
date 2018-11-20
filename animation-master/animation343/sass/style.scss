@@ -1,0 +1,182 @@
+$c-bg: #28303A;
+$c-panel: #FEFFFE;
+$c-circle: #D6DAE7;
+$circle-size: 8vmin;
+
+html {
+	height: 100%;
+	display: flex;
+}
+
+body {
+	position: relative;
+	margin: auto;
+	background: $c-bg;
+}
+
+.panel {
+	width: 40vmin;
+	height: 14vmin;
+	
+	background: $c-panel;
+	border-radius: 2vw;
+	position: relative;
+	box-shadow: inset 0px 0px 0px 4px rgba(0,0,0,0.1);
+	
+	transform: rotate(90deg);
+	transform-origin: 50% 50%;
+	
+	&:after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 100%;
+		width: 70%;
+		height: 20%;
+		
+		border-radius: 0 1vmin 1vmin 0;
+		background: #15191F;
+		transform: translateY(-50%);
+	}
+}
+
+.circles {
+	width: calc(100% - 5vmin);
+	height: 100%;
+	margin: auto;
+	display: flex;
+	
+	position: relative;
+	justify-content: space-between;
+	align-items: center;
+	filter: url('#goo');
+	
+	&__element {
+		width: $circle-size;
+		height: $circle-size;
+		display: flex;
+		
+		justify-content: center;
+		align-content: center;
+		align-items: center;
+		background: $c-circle;
+
+		border-radius: 50%;
+		color: rgba(255, 255, 255, 1);
+		font-size: 1.5em;
+		
+		box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,0.1);
+	}
+	
+	&__control {
+		position: absolute;
+		background: #FB5652;
+		left: 0;
+		transform-origin: 50% 50%;
+	}
+}
+	
+
+
+
+
+
+// RANGE NORMALIZATION
+$thumb-color: transparent !default;
+$thumb-radius: 100% !default;
+$thumb-height: $circle-size !default;
+$thumb-width: $circle-size !default;
+$track-color: transparent !default;
+$track-radius: 0px !default;
+$track-width: auto !default;
+$track-height: $circle-size !default;
+
+@mixin track {
+  width: $track-width;
+  height: $track-height;
+  cursor: pointer;
+  animation: 0.2s;
+}
+
+@mixin thumb {
+  width: $thumb-width;
+  height: $thumb-height;
+  cursor: pointer;
+  border-radius: $thumb-radius;
+  background: $thumb-color;
+	transform: translateY(-50%);
+}
+
+@mixin input-type-range {
+  -webkit-appearance: none;
+  width: $track-width;
+  background: transparent;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include track;
+    border-radius: $track-radius;
+    background: $track-color;
+  }
+
+  &::-webkit-slider-thumb {
+    @include thumb;
+    -webkit-appearance: none;
+  }
+
+  &:focus::-webkit-slider-runnable-track {
+    background: $track-color;
+  }
+
+  &::-moz-range-track {
+    @include track;
+    border-radius: $track-radius;
+    background: $track-color;
+  }
+
+  &::-moz-range-thumb {
+    @include thumb;
+  }
+
+  &::-ms-track {
+    @include track;
+    color: transparent;
+    background: transparent;
+  }
+
+  &::-ms-fill-lower {
+    border-radius: $track-radius * 2;
+    background: $track-color;
+  }
+
+  &::-ms-fill-upper {
+    border-radius: $track-radius * 2;
+    background: $track-color;
+  }
+
+  &::-ms-thumb {
+    @include thumb;
+  }
+
+  &:focus::-ms-fill-lower {
+    background: $track-color;
+  }
+
+  &:focus::-ms-fill-upper {
+    background: $track-color;
+  }
+}
+
+.panel__input {
+	@include input-type-range();
+	position: absolute;
+	width: 90%;
+	top: 50%;
+	left: 50%;
+	
+	transform: translate(-50%, -50%);
+	z-index: 2;	
+}

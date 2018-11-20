@@ -1,0 +1,42 @@
+@import 'addons';
+
+$flex-legacy-enabled: true;
+
+.row {
+  @include display-flex;
+  /* fix for Firefox */
+  width: 100%;
+}
+
+.block {
+  min-width: 30%;
+  @include flex(1 30%);
+  @include display-flex;
+  @include flex-direction(column);
+  @include justify-content(space-between);
+}
+
+.block h3 {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.block div {
+  text-align: center;
+  margin-top: 1em;
+}
+
+/* pretty it up! */
+
+body {
+  background: lighten(blue, 40%);
+}
+
+.block {
+  background: white;
+  margin: 0 .5em;
+  padding: 1em;
+  border: 1px solid;
+  @include box-sizing(border-box);
+  @include border-radius(1em);
+}

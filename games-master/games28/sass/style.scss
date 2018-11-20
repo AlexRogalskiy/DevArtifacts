@@ -1,0 +1,74 @@
+table#board {
+  float: left;
+  
+  td {
+    border: 1px solid;
+    width: 4em;
+    height: 6em;
+  }
+}
+
+.one {
+  background: lighten(orange, 40%);
+}
+    
+.two {
+  background: lighten(blue, 40%);
+}
+
+.hand {
+  // z-index adjustments done so that the li will capture the click event
+  padding-left: 0;
+  position: relative;
+  z-index: 100;
+  
+  li {
+    display: inline-block;
+    vertical-align: text-top;
+    
+    ul.card {
+      position: relative;
+      z-index: -1;
+    }
+  }
+}
+
+ul.card {
+  border: 2px solid !important;
+  width: 4em;
+  height: 6em;
+  
+  $colors: a red, b orange, c green, d blue, e purple;
+  
+  @each $c in $colors {
+    &.#{nth($c, 1)} {
+      color: nth($c, 2);
+    }
+  }
+}
+
+ul.card {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+
+  .modifiers, li {
+    height: 1em;
+    width: 1.5em;
+    border: 1px solid;
+    text-align: center;
+    line-height: 1;
+    
+    &:empty {
+      visibility: hidden;
+    }
+  }
+}
+
+.selected {
+  box-shadow: 0 0 .25em .25em yellow;
+}

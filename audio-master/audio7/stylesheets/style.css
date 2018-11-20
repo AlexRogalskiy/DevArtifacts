@@ -1,0 +1,243 @@
+/* line 4, ../sass/style.scss */
+*, *:before, *:after, ul, li, a, button, input, h1, h2, h3, h4, h5, h6, p, img, image, svg, path, g {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  font-family: 'Roboto';
+  user-select: none;
+}
+
+/* line 15, ../sass/style.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #FAFAFA;
+  font-family: 'Roboto';
+}
+
+/* line 24, ../sass/style.scss */
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  background: url("https://images.unsplash.com/photo-1451444635319-e5e247fbb88d?ixlib=rb-0.3.5&q=80&fm=jpg") no-repeat center center fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+/* line 36, ../sass/style.scss */
+.wrapper:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 61, 221, 0.8);
+  left: 0;
+  top: 0;
+}
+
+/* line 47, ../sass/style.scss */
+h1 {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-weight: 900;
+  font-size: 5em;
+}
+
+/* line 56, ../sass/style.scss */
+h2 {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-weight: 300;
+  font-size: 1em;
+  margin-bottom: 50px;
+  margin-top: -10px;
+}
+
+/* line 66, ../sass/style.scss */
+#player {
+  position: relative;
+  z-index: 2;
+  width: 600px;
+  height: 150px;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+}
+/* line 74, ../sass/style.scss */
+#player img {
+  position: absolute;
+  left: 15px;
+  top: -25px;
+  border-radius: 10px;
+}
+/* line 80, ../sass/style.scss */
+#player .player-song {
+  width: 370px;
+  height: 100%;
+  margin-left: 230px;
+}
+/* line 86, ../sass/style.scss */
+#player .player-song .title {
+  color: #333;
+  font-weight: 500;
+  font-size: 20px;
+  margin-top: 20px;
+}
+/* line 93, ../sass/style.scss */
+#player .player-song .artist {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+}
+/* line 99, ../sass/style.scss */
+#player .player-song .timestamps {
+  width: calc(100% - 15px);
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.4);
+}
+/* line 107, ../sass/style.scss */
+#player .player-song .actions {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* line 114, ../sass/style.scss */
+#player .player-song .actions .next, #player .player-song .actions .prev {
+  cursor: pointer;
+}
+/* line 118, ../sass/style.scss */
+#player .player-song .actions i {
+  font-size: 32px;
+  transform: translateY(2px);
+  color: #bbbbbb;
+  transition: .1s;
+}
+/* line 124, ../sass/style.scss */
+#player .player-song .actions i:hover {
+  color: #888888;
+  transition: .1s;
+}
+
+/* line 133, ../sass/style.scss */
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: calc(100% - 15px);
+  height: 6px;
+  border-radius: 50px;
+  margin-top: 20px;
+}
+
+/* line 142, ../sass/style.scss */
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 50px;
+}
+
+/* line 147, ../sass/style.scss */
+progress[value]::-webkit-progress-value {
+  border-radius: 50px;
+  background-color: #333DDD;
+}
+
+/* line 152, ../sass/style.scss */
+.play-button {
+  height: 16px;
+  width: 16px;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  margin: 0 10px;
+}
+/* line 161, ../sass/style.scss */
+.play-button:hover .left, .play-button:hover .right {
+  background-color: #888888;
+}
+
+/* line 166, ../sass/style.scss */
+.left {
+  height: 100%;
+  float: left;
+  background-color: #bbbbbb;
+  width: 36%;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+/* line 175, ../sass/style.scss */
+.triangle-1 {
+  -webkit-transform: translate(0, -100%);
+  transform: translate(0, -100%);
+}
+
+/* line 179, ../sass/style.scss */
+.triangle-2 {
+  -webkit-transform: translate(0, 100%);
+  transform: translate(0, 100%);
+}
+
+/* line 183, ../sass/style.scss */
+.triangle-1,
+.triangle-2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-right: 16px solid #fff;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  -webkit-transition: -webkit-transform 0.25s ease;
+  transition: -webkit-transform 0.25s ease;
+  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, -webkit-transform 0.25s ease;
+}
+
+/* line 199, ../sass/style.scss */
+.right {
+  height: 100%;
+  float: right;
+  width: 36%;
+  background-color: #bbbbbb;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+/* line 207, ../sass/style.scss */
+.paused .left {
+  width: 50%;
+}
+
+/* line 210, ../sass/style.scss */
+.paused .right {
+  width: 50%;
+}
+
+/* line 213, ../sass/style.scss */
+.paused .triangle-1 {
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+
+/* line 217, ../sass/style.scss */
+.paused .triangle-2 {
+  -webkit-transform: translate(0, 50%);
+  transform: translate(0, 50%);
+}

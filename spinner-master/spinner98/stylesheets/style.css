@@ -1,0 +1,129 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100);
+@use postcss-for;
+@use postcss-simple-vars;
+@use postcss-nested;
+/* line 16, ../sass/style.scss */
+.center {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: #0CA0CC;
+}
+
+/* line 23, ../sass/style.scss */
+.container {
+  filter: url("#goo");
+  height: calc(140px);
+  width: calc(140px);
+  margin: 0 auto;
+  animation: spin calc(15s) linear infinite;
+}
+
+/* line 30, ../sass/style.scss */
+.ball-container {
+  position: absolute;
+  left: calc(5px);
+  top: calc(55px);
+  width: 130px;
+  height: 30px;
+  animation: spin-in-out 5s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
+
+/* line 38, ../sass/style.scss */
+.ball {
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  /* border-radius: 50%; */
+  background-color: #01D994;
+}
+
+/* line 48, ../sass/style.scss */
+.ball-container:nth-child(1) {
+  animation-delay: calc(-0.5s);
+}
+
+/* line 48, ../sass/style.scss */
+.ball-container:nth-child(2) {
+  animation-delay: calc(-1s);
+}
+
+/* line 48, ../sass/style.scss */
+.ball-container:nth-child(3) {
+  animation-delay: calc(-1.5s);
+}
+
+/* line 48, ../sass/style.scss */
+.ball-container:nth-child(4) {
+  animation-delay: calc(-2s);
+}
+
+/* line 48, ../sass/style.scss */
+.ball-container:nth-child(5) {
+  animation-delay: calc(-2.5s);
+}
+
+/* line 48, ../sass/style.scss */
+.ball-container:nth-child(6) {
+  animation-delay: calc(-3s);
+}
+
+/* line 48, ../sass/style.scss */
+.ball-container:nth-child(7) {
+  animation-delay: calc(-3.5s);
+}
+
+/* line 48, ../sass/style.scss */
+.ball-container:nth-child(8) {
+  animation-delay: calc(-4s);
+}
+
+/* line 48, ../sass/style.scss */
+.ball-container:nth-child(9) {
+  animation-delay: calc(-4.5s);
+}
+
+/* line 48, ../sass/style.scss */
+.ball-container:nth-child(10) {
+  animation-delay: calc(-5s);
+}
+
+@keyframes spin-in-out {
+  0% {
+    transform: rotateZ(90deg);
+  }
+  20% {
+    transform: rotateZ(90deg);
+  }
+  80% {
+    transform: rotateZ(450deg);
+  }
+  100% {
+    transform: rotateZ(450deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+/* line 79, ../sass/style.scss */
+.pen-title {
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 100;
+  position: fixed;
+  left: 10px;
+  top: 10px;
+}
+/* line 87, ../sass/style.scss */
+.pen-title small {
+  font-size: 12px;
+  opacity: 0.58;
+}

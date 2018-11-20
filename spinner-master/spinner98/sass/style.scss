@@ -1,0 +1,91 @@
+@use postcss-for;
+@use postcss-simple-vars;
+@use postcss-nested;
+
+$size: 130px; 
+$ball-size: 30px;
+$ball-color: #01D994;
+$background-color: #0CA0CC;
+$padding: 10px;
+$time-length: 5s;
+$ball-count: 5;
+$delay-modifier: 0.5;
+$easing-fn: cubic-bezier(0.6, 0, 0.4, 1);
+$length: 10;
+
+.center {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: $background-color;
+}
+.container {
+  filter: url("#goo");
+  height: calc(#{$size + $padding});
+  width: calc(#{$size + $padding});
+  margin: 0 auto;
+  animation: spin calc(#{$time-length * 3}) linear infinite;
+}
+.ball-container {
+  position: absolute;
+  left: calc(#{$padding / 2});
+  top: calc(#{($size / 2) - ($ball-size / 2) + ($padding / 2)});
+  width: $size;
+  height: $ball-size;
+  animation: spin-in-out $time-length $easing-fn infinite;
+}
+.ball {
+  position: absolute;
+  left: 0;
+  width: $ball-size;
+  height: $ball-size;
+  /* border-radius: 50%; */
+  background-color: $ball-color;
+}
+
+@for $i from 1 through $length {
+  .ball-container:nth-child(#{$i}) { 
+    animation-delay: calc(#{$i * -1 * ($time-length / $ball-count) * $delay-modifier});
+  }
+}
+
+@keyframes spin-in-out {
+  0% {
+      transform: rotateZ(90deg);
+  }
+  20% {
+      transform: rotateZ(90deg);
+  }
+  80% {
+      transform: rotateZ(450deg);
+  }
+  100% {
+      transform: rotateZ(450deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+      transform: rotateZ(0deg);
+  }
+  100% {
+      transform: rotateZ(360deg);
+  }
+}
+
+@import url(https://fonts.googleapis.com/css?family=Lato:100);
+
+.pen-title {
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 100;
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  small {
+    font-size: 12px;
+    opacity: 0.58;
+  }
+}

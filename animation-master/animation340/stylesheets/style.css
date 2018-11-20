@@ -1,0 +1,174 @@
+
+body {
+  --bg: #f9f9f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+div {
+  cursor: pointer;
+  position: relative;
+  margin: 0 auto;
+  width: calc(var(--width));
+  height: calc(var(--width));
+  background-color: var(--a-bg);
+  border: 0.5vmin solid #383232;
+  border-radius: 2vmin;
+
+  background:
+    var(--line),
+    var(--dot-1, var(--dot)),
+    var(--dot-2, var(--dot)),
+    var(--dot-3, var(--dot)),
+    var(--dot-4, var(--dot)),
+    var(--dot-5, var(--dot)),
+    var(--dot-6, var(--dot)),
+    var(--dot-7, var(--dot)),
+    var(--dot-8, var(--dot)),
+    var(--dot-9, var(--dot)),
+    var(--line),
+    var(--circle, var(--circle)),
+    var(--line-2),
+    var(--album-background);
+  
+  background-position:
+    var(--line-1-x) var(--line-1-y),
+    var(--dot-1-x) var(--dot-1-y),
+    var(--dot-2-x) var(--dot-2-y),
+    var(--dot-3-x) var(--dot-3-y),
+    var(--dot-4-x) var(--dot-4-y),
+    var(--dot-5-x) var(--dot-5-y),
+    var(--dot-6-x) var(--dot-6-y),
+    var(--dot-7-x) var(--dot-7-y),
+    var(--dot-8-x) var(--dot-8-y),
+    var(--dot-9-x) var(--dot-9-y),
+    var(--line-2-x) var(--line-2-y),
+    var(--circle-x) var(--circle-y),
+    var(--line-3-x) var(--line-3-y),
+    0 0;
+  
+  background-repeat: no-repeat;
+}
+
+div:after {
+  content: '';
+  position: absolute;
+  transform: translateX(10%);
+  border-radius: 50%;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: var(--lp);
+  transition: transform 0.4s cubic-bezier(.4, 0, .6, 1);
+}
+
+div:before {
+  content: '';
+  position: absolute;
+  bottom: -0.6vmin;
+  left: 0;
+  transform: translateX(-10%);
+  z-index: 1;
+  width: 120%;
+  height: 0.5vmin;
+  background-color: #222;
+
+  box-shadow:
+      -2vmin 0 0 0 var(--bg),
+      2vmin 0 0 0 var(--bg),
+      -4vmin 0px 0px 0px var(--black),
+      8vmin 0px 0px 0px var(--black);
+}
+
+div:hover:after, div:focus:after {
+  transform: translateX(51%);
+}
+
+
+div {
+  --shadow: #B9BBB9;
+  --a-bg: #f4f3eb;
+  --width: 20vmin;
+  --black: #222;
+  
+  /* dots in top corner */
+  --dot-color: #222;
+  --dot-size: 0.25vmin;
+
+  --dot-1-y: -7vmin; --dot-1-x: -5vmin;
+  --dot-2-y: -7vmin; --dot-2-x: -6vmin;
+  --dot-3-y: -7vmin; --dot-3-x: -7vmin;
+  
+  --dot-4-y: -6vmin; --dot-4-x: -5vmin;
+  --dot-5-y: -6vmin; --dot-5-x: -6vmin;
+  --dot-6-y: -6vmin; --dot-6-x: -7vmin;
+  
+  --dot-7-y: -5vmin; --dot-7-x: -5vmin;
+  --dot-8-y: -5vmin; --dot-8-x: -6vmin;
+  --dot-9-y: -5vmin; --dot-9-x: -7vmin;
+
+  --dot: radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size));
+  
+  /* circles in the center */
+  --circle-1-color: #222;
+  --circle-color: 30;
+  --circle-size: 5vmin;
+  --circle-y: 0vmin; --circle-x: 0vmin;
+
+  --circle: radial-gradient(circle, 
+        hsl(var(--circle-color), 100%, 50%) calc(var(--circle-size)), 
+        transparent calc(var(--circle-size)));
+
+  /* center lines */
+  --lines-color: #222;
+  --lines-size: 5.5vmin;
+  --lines-2-size: 8vmin;
+  --line-1-x: 5vmin; --line-1-y: 5vmin;
+  --line-2-x: 7.1vmin; --line-2-y: 7.1vmin;
+  --line-3-x: 4.4vmin; --line-3-y: 4.4vmin;
+  --line: linear-gradient(to bottom right, 
+    transparent var(--lines-size),
+    var(--lines-color) var(--lines-size),
+    var(--lines-color) calc(var(--lines-size) * 1.02),
+    transparent calc(var(--lines-size) * 1.02));
+  --line-2: linear-gradient(to bottom right, 
+    transparent var(--lines-2-size),
+    hsl(var(--circle-color), 100%, 40%) var(--lines-2-size),
+    hsl(var(--circle-color), 100%, 40%) calc(var(--lines-2-size) * 1.02),
+    transparent calc(var(--lines-2-size) * 1.01));
+
+
+  /* lp */
+  --lp-c-1: #000;
+  --lp-c-2: #3EC9AE;
+  --lp-c-3: #383232;
+  --lp-c-4: #262222;
+  --lp: radial-gradient(circle,
+        var(--lp-c-1) 0%, var(--lp-c-1) 5%,
+        var(--lp-c-2) 5%, var(--lp-c-2) 20%,
+        var(--lp-c-1) 20%, var(--lp-c-1) 23%,
+        var(--lp-c-3) 23%, var(--lp-c-3) 35%,
+        var(--lp-c-4) 35%, var(--lp-c-4) 40%,
+        var(--lp-c-3) 40%, var(--lp-c-3) 60%,
+        var(--lp-c-4) 60%, var(--lp-c-4) 65%,
+        var(--lp-c-1) 65%, var(--lp-c-1) 100%);
+
+
+  /* bg */
+  --album-background: linear-gradient(to left, var(--a-bg), var(--a-bg));
+}
+
+
+.link {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #333;
+}

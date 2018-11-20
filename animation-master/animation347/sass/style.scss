@@ -1,0 +1,137 @@
+//usual reset stuff
+*,*:before,*:after,ul,li,a,button,input,h1,h2,h3,h4,h5,h6,p, img, image, svg, path, g  {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background-color: transparent;
+	border: none;
+	text-decoration: none;
+	font-family: 'Roboto';
+	user-select: none;
+	list-style: none;
+}
+
+$delay: .1s;
+
+@mixin animation-delay($col, $row) {
+	animation-delay: ($col - 1 + $row)  * $delay;
+}
+
+%flex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+$gray: #333;
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: $gray;
+	font-family: 'Roboto';
+	
+	@extend %flex;
+	
+	overflow: hidden;
+}
+
+.wrapper {
+	width: calc(100px * 24);
+	height: 500px;
+	@extend %flex;
+}
+
+.col {
+	// width: 100%;
+	height: 100%;
+	// border: 1px solid red;
+	margin-left: -40px;
+	@extend %flex;
+	flex-direction: column;
+	
+	@for $i from 1 through 24 {
+		@for $j from 1 through 5 {
+			&:nth-child(#{$i}) > .triangle-wrap:nth-child(#{$j}) > .triangle {
+				@include animation-delay($i, $j);
+			}
+		}
+	}
+	
+	&:nth-child(even) {
+		
+		.triangle-wrap {
+			&:nth-child(odd) {
+				transform: rotate(180deg);
+			}
+		}
+	}
+	
+	&:nth-child(odd) {
+		.triangle-wrap {
+			&:nth-child(even) {
+				transform: rotate(180deg);
+			}
+		}
+	}
+	
+	
+}
+
+.triangle-wrap {
+	width: 100px;
+	height: 85px;
+	position: relative;
+	margin: 5px 0;
+	
+	.triangle {
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 50px 85px 50px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		
+		&:nth-child(even) {
+			border-color: transparent transparent #ffffff transparent;
+			animation: white 1s linear infinite;
+		}
+		
+		&:nth-child(odd) {
+			border-color: transparent transparent $gray transparent;
+			transform: scale(0);
+			animation: gray 1s linear infinite;
+			z-index: 2;
+		}
+	}
+}
+
+@keyframes gray {
+	50% {
+		transform: scale(1);
+	}
+	
+	100% {
+		transform: scale(1);
+	}	
+}
+
+@keyframes white {
+	50% {
+		transform: scale(1);
+		z-index: 1;
+	}
+	
+	50.000000001% {
+		z-index: 3;
+		transform: scale(0);
+	}
+	
+	100% {
+		z-index: 3;
+		transform: scale(1);
+	}	
+}
