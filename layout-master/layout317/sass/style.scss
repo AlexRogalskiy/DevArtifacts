@@ -1,0 +1,211 @@
+:root {
+    --background-color: #2eec96;
+    --text-color: #222;
+    --label-color: #1a905d;
+    --border-color: rgba(250, 250, 250, 0.5);
+    --base-font-size: 14px;
+    --base-line-height: 1.6;
+}
+.browser-alert {
+    margin: 0;
+    padding: 1rem;
+    background-color: white;
+    color: black;
+}
+.browser-alert a {
+    color: inherit;
+}
+@supports (--css: variables) {
+    .browser-alert {
+        display: none;
+    }
+}
+html,
+body {
+    min-height: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: var(--base-font-size);
+    line-height: var(--base-line-height);
+    font-weight: 300;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: font-size 0.2s ease-in-out, line-height 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    line-height: calc(var(--base-line-height) * 0.85);
+    transition: line-height 0.2s ease-in-out;
+}
+label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--label-color);
+}
+.wrapper {
+    max-width: 60rem;
+    min-height: calc(100vh - 56px - 3rem);
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+.theme-editor-container {
+    width: 100%;
+}
+.theme-editor-container > h1 {
+    margin-bottom: 2rem;
+}
+.theme-editor,
+.theme-preview {
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-color);
+}
+.theme-editor > section {
+    margin-bottom: 2.5rem;
+}
+button[data-theme] {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.25rem;
+    border: 1px solid var(--text-color);
+    border-radius: 50%;
+    font-size: 0;
+    background: transparent;
+    outline: 0;
+    cursor: pointer;
+}
+.color-picker {
+    display: flex;
+    align-items: center;
+}
+.color-picker label {
+    margin-right: 0.5rem;
+}
+.typography label {
+    margin-right: 0.5rem;
+}
+input[type='color'] {
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    background: transparent;
+    outline: 0;
+}
+input[type=range] {
+    -webkit-appearance: none;
+    background: transparent;
+    outline: 0;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    margin-top: -5px;
+    border-color: transparent;
+    border-radius: 50%;
+    background-color: var(--label-color);
+    cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    margin-top: -5px;
+    border-color: transparent;
+    border-radius: 50%;
+    background-color: var(--label-color);
+    cursor: pointer;
+}
+input[type=range]::-ms-thumb {
+    width: 18px;
+    height: 18px;
+    margin-top: -5px;
+    border-color: transparent;
+    border-radius: 50%;
+    background-color: var(--label-color);
+    cursor: pointer;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    border-radius: 12px;
+    background-color: var(--border-color);
+    transition: background-color 0.1s ease-out;
+    cursor: pointer;
+}
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    border-radius: 12px;
+    background-color: var(--border-color);
+    transition: background-color 0.1s ease-out;
+    cursor: pointer;
+}
+input[type=range]::-ms-track {
+    width: 100%;
+    border-width: 16px;
+    border-color: transparent;
+    border-radius: 12px;
+    color: transparent;
+    background-color: transparent;
+    transition: background-color 0.1s ease-out;
+    cursor: pointer;
+}
+input[type=range]::-ms-fill-lower {
+    background-color: var(--border-color);
+}
+input[type=range]::-ms-fill-upper {
+    background-color: var(--border-color);
+}
+.theme-preview > h1 {
+    font-size: 2em;
+}
+@media (min-width: 50rem) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    .wrapper {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .theme-editor-container {
+        display: flex;
+    }
+    .theme-editor-container > * {
+        padding: 0 0.5rem;
+    }
+    .theme-editor-container > h1 {
+        flex: 1;
+        margin-top: 1rem;
+    }
+    .theme-editor,
+    .theme-preview {
+        padding: 0 2rem;
+        border: 0;
+    }
+    .theme-editor {
+        flex: 2;
+    }
+    .theme-preview {
+        flex: 3;
+    }
+    .color-picker,
+    .typography form p {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,69 @@
+@use postcss-nested;
+
+:root {
+  --button-border-color: gray;
+  --button-text-color: white;
+  --button-background-color: gray;
+}
+
+[class^='button'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border: 1px solid var(--button-border-color);
+  border-radius: 4px;
+  background-color: var(--button-background-color);
+  font-size: 16px;
+  color: var(--button-text-color);
+  
+  &[class*='primary'] {
+    --button-border-color: #0069d9;
+    --button-text-color: white;
+    --button-background-color: #0069d9;
+  }
+  
+  &[class*='secondary'] {
+    --button-border-color: #727b84;
+    --button-text-color: white;
+    --button-background-color: #727b84;
+  }
+  
+  &[class*='success'] {
+    --button-border-color: #28a745;
+    --button-text-color: white;
+    --button-background-color: #28a745;
+  }
+  
+  &[class*='danger'] {
+    --button-border-color: #dc3545;
+    --button-text-color: white;
+    --button-background-color: #dc3545;
+  }
+  
+  &[class*='warning'] {
+    --button-border-color: #ffc107;
+    --button-text-color: white;
+    --button-background-color: #ffc107;
+  }
+  
+  &[class*='info'] {
+    --button-border-color: #17a2b8;
+    --button-text-color: white;
+    --button-background-color: #17a2b8;
+  }
+  
+  &[class*='light'] {
+    --button-border-color: #f8f9fa;
+    --button-text-color: #111;
+    --button-background-color: #f8f9fa;
+  }
+  
+  &[class*='dark'] {
+    --button-border-color: #343a40;
+    --button-text-color: white;
+    --button-background-color: #343a40;
+  }
+}

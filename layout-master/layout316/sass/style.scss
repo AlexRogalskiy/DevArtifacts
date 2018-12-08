@@ -1,0 +1,115 @@
+.browser-alert {
+    margin: 0;
+    padding: 1rem;
+    background-color: #222;
+    color: white;
+}
+
+.browser-alert a {
+    color: inherit;
+}
+
+@supports (object-fit: cover) and (display: grid) {
+    .browser-alert {
+        display: none;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.blog-post-teasers {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+}
+
+.blog-post-teasers > * {
+    flex: 1 1 300px;
+    align-self: flex-start;
+    padding: 1rem;
+}
+
+@supports (display: grid) {
+    .blog-post-teasers {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 2rem;
+    }
+
+    .blog-post-teasers > * {
+        padding: 0;
+    }
+}
+
+.blog-post-teaser figure {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 30% 0;
+    cursor: pointer;
+}
+
+.blog-post-teaser figure::before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(0deg, #f093fb 0%, #f5576c 100%);
+    content: '';
+}
+
+.blog-post-teaser figure:hover img {
+    opacity: 0.25;
+}
+
+.blog-post-teaser figure:hover figcaption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blog-post-teaser figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: all 0.3s ease-in-out;
+}
+
+.blog-post-teaser figcaption h1 {
+    font-size: 18px;
+}
+
+.blog-post-teaser figcaption a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.blog-post-teaser img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    filter: saturate(0);
+    transition: all 0.3s ease-in-out;
+}
